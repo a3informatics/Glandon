@@ -30,7 +30,7 @@ function dtBCEditFields() {
 }
 
 /**
- * Editable Field definitions for a SDTMSD Editor table
+ * Editable Field definitions for a SDTM SD Editor table
  * Field of type 'select' must have options specified 
  * @return {Array} DataTables SDTM SD Edit column definitions collection
  */
@@ -41,7 +41,8 @@ function dtSDTMSDEditFields() {
     { name: 'label', type: 'textarea' },
     _selectField({ name: 'typed_as' }),     
     { name: 'format', type: 'textarea' },
-    { name: 'ct_reference', type: 'picker', pickerName: 'refPicker', compare: compareRefItems },
+    { name: 'ct_reference', data: 'ct_reference', type: 'picker', 
+      pickerName: 'refPicker', compare: compareRefItems },
     _selectField({ name: 'classified_as' }),     
     { name: 'description', type: 'textarea' },
     _selectField({ name: 'compliance' }),  

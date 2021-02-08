@@ -3,6 +3,7 @@ import { icons, iconTypes, renderIcon, iconsInline } from 'shared/ui/icons'
 import { renderIndicators } from 'shared/ui/indicators'
 import { renderTagsInline } from 'shared/ui/tags'
 import { getRdfNameByType } from 'shared/helpers/rdf_types'
+import { itemReferences } from 'shared/ui/collections'
 
 /**
  * Returns column definition for the history column
@@ -172,6 +173,30 @@ function dtExternalEditColumn(name, opts = {}) {
 }
 
 /**
+ * Returns column definition for a Picker-based editable column
+ * @param {string} name data property name
+ * @param {string} pickerName Unique name of the Picker instance assigned to Editable Panel Pickers def. object 
+ * @param {boolean} newTab Specifies whether the references' links should open in a new tab [default=false] 
+ * @param {object} opts additional column opts
+ * @return {object} DataTables pickable editable column definition
+ */
+function dtPickerEditColumn(name, {
+  pickerName,
+  newTab = false,
+  opts = {} 
+} = {}) {
+
+  return {
+    className: `editable pickable ${ pickerName }`,
+    data: name,
+    editField: name,
+    render: (data, type, r, m) => itemReferences(data, type, newTab),
+    ...opts 
+  }
+
+}
+
+/**
  * Returns column definition for an Item type column 
  * @param {object} opts Additional column options
  * @return {object} DataTables Item type column definition
@@ -251,6 +276,7 @@ export {
   dtBooleanEditColumn,
   dtInlineEditColumn,
   dtExternalEditColumn,
+  dtPickerEditColumn,
   dtSelectEditColumn,
   dtRowRemoveColumn
 }

@@ -1,7 +1,7 @@
-import { termReferences } from 'shared/ui/collections'
+import { itemReferences } from 'shared/ui/collections'
 
 import { dtButtonColumn, dtInlineEditColumn, dtIndicatorsColumn, dtTagsColumn, dtBooleanColumn,
-         dtItemTypeColumn, dtVersionColumn, dtBooleanEditColumn, dtExternalEditColumn, dtSelectEditColumn, dtRowRemoveColumn } 
+         dtItemTypeColumn, dtVersionColumn, dtBooleanEditColumn, dtPickerEditColumn, dtSelectEditColumn, dtRowRemoveColumn } 
   from 'shared/helpers/dt/dt_columns'
 
 
@@ -128,7 +128,7 @@ function dtBCShowColumns() {
     {
       data: "has_complex_datatype.has_property.has_coded_value",
       width: "30%",
-      render: (data, type, r, m) => termReferences(data, type)
+      render: (data, type, r, m) => itemReferences(data, type)
     }
   ]
 
@@ -153,7 +153,7 @@ function dtFormShowColumns() {
     {
       data: "has_coded_value",
       width: "30%",
-      render: (data, type, r, m) => termReferences(data, type)
+      render: (data, type, r, m) => itemReferences(data, type)
     }
   ]
 
@@ -209,7 +209,7 @@ function dtSDTMIGDomainShowColumns() {
     {
       data: "ct_reference",
       width: 150,
-      render: (data, type, r, m) => termReferences(data, type)
+      render: (data, type, r, m) => itemReferences(data, type)
     },
     { data: "classified_as.label" },
     { data: "description" },
@@ -322,14 +322,14 @@ function dtBCEditColumns() {
       editField: 'format'
     }),
 
-    // Items Picker column
-    {
-      className: 'editable inline pickable termPicker',
-      data: 'has_complex_datatype.has_property.has_coded_value',
-      width: '30%',
-      editField: 'has_coded_value',
-      render: (data, type, r, m) => termReferences(data, type, true)
-    }
+    dtPickerEditColumn('has_complex_datatype.has_property.has_coded_value', {
+      pickerName: 'termPicker',
+      newTab: true,
+      opts: {
+        width: '30%',
+        editField: 'has_coded_value'
+      }
+    })
   ]
 
 }
@@ -348,13 +348,13 @@ function dtSDTMSDDomainEditColumns() {
     dtSelectEditColumn( 'typed_as' ),
     dtInlineEditColumn( 'format' ),
 
-    // Items Picker column
-    {
-      className: 'editable inline pickable termPicker',
-      data: 'ct_reference',
-      width: 200,
-      render: (data, type, r, m) => termReferences(data, type, true)
-    },
+    dtPickerEditColumn('ct_reference', {
+      pickerName: 'refPicker',
+      newTab: true,
+      opts: {
+        width: 200,
+      }
+    }),
 
     dtSelectEditColumn( 'classified_as' ),
     dtInlineEditColumn( 'description' ),

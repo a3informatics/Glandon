@@ -1,6 +1,6 @@
 import InformationDialog from 'shared/ui/dialogs/information_dialog'
 
-import { unmanagedConceptRef, managedConceptRef } from 'shared/ui/strings'
+import { unmanagedItemRef, managedItemRef } from 'shared/ui/strings'
 
 /**
  * Selection View
@@ -301,8 +301,8 @@ export default class SelectionView {
    */
   _getItemReference(item) { 
     return item.rdf_type === this.itemTypes.unmanaged_concept.rdfType ?
-              unmanagedConceptRef(item, item.context) :
-              managedConceptRef(item);
+              unmanagedItemRef(item, item.context) :
+              managedItemRef(item);
   }
 
   /**
