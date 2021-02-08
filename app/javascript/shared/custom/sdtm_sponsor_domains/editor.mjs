@@ -13,6 +13,7 @@ import { dtRowRemoveColumn } from 'shared/helpers/dt/dt_columns'
 
 import { getEditorSelectOptions } from 'shared/helpers/dt/dt_metadata'
 import { dtFieldsInit } from 'shared/helpers/dt/dt_fields'
+import { renameKey } from 'shared/helpers/objects'
 
 /**
  * SDTM Sponsor Domain Editor 
@@ -95,17 +96,23 @@ export default class SDTMSDEditor extends EditablePanel {
 
     $confirm({
       dangerous: true,
-      callback: () => $delete({
-                        url: this.urls.removeVar,
-                        data: {
-                          [ this.param ]: {
-                            non_standard_var_id: dtRow.data().id
-                          }
-                        },
-                        done: () => this.onEdited(),
-                        always: () => this.refresh()
-                      })
-    });
+      callback: () => {
+
+        this._loading( true )
+
+        $delete({
+          url: this.urls.removeVar,
+          data: {
+            [ this.param ]: {
+              non_standard_var_id: dtRow.data().id
+            }
+          },
+          done: () => this.onEdited(),
+          always: () => this.refresh()
+        })
+
+      }
+    })
 
   }
 
@@ -165,17 +172,22 @@ setTimeout( () => console.log(this.rowDataToArray), 1500 )
    */
   _preformatUpdateData(d) {
 
-    const updateData = Object.keys( d.data ).map( id =>
-      Object.assign( {}, { 
-          ...d.data[ id ], 
-          non_standard_var_id: id 
-      } )
-    )
+    let [ data ] = super._preformatUpdateData( d )
 
-    d.sdtm_sponsor_domain = { 
-      ...updateData[0]
+    // Map ct reference to id value only and rename param to ct_id_set 
+    if ( data.ct_reference ) {
+
+      data.ct_reference = data.ct_reference.map( item => item.reference.id )
+      data = renameKey( data, 'ct_reference', 'ct_id_set' )
+
     }
 
+    // Rename id param to non_standard_var_id
+    data = renameKey( data, 'id', 'non_standard_var_id' )
+
+    d.sdtm_sponsor_domain = data
+
+    // Clear unused prop
     delete d.data;
 
   }
@@ -188,13 +200,12 @@ setTimeout( () => console.log(this.rowDataToArray), 1500 )
    */
   _postformatUpdatedData(_oldData, newData) {
 
-
     // Merge and update edited row data
     const editedRow = this.table.row( this.editor.modifier().row ),
-          mergedData = Object.assign( {}, editedRow.data(), newData[0] );
+          mergedData = Object.assign( {}, editedRow.data(), newData[0] )
 
-    editedRow.data( mergedData );
-    
+    editedRow.data( mergedData )
+
   }
 
   /**
@@ -225,10 +236,10 @@ setTimeout( () => console.log(this.rowDataToArray), 1500 )
    */
   _editable(modifier) {
 
-    const { standard } = this.table.row( modifier.row ).data(),
-          fieldName = this.table.column( modifier.column ).dataSrc()
+    const { standard } = this.table.row( modifier.row || modifier ).data(),
+          fieldName = this.table.column( modifier.column || modifier ).dataSrc()
 
-    return standard === false || fieldName === 'used';
+    return standard === false || fieldName === 'used'
 
   }
 
@@ -241,7 +252,7 @@ setTimeout( () => console.log(this.rowDataToArray), 1500 )
     return data.standard === true
   }
 
-    /**
+  /**
    * Initializes Items Pickers to use in an Editable Panel
    * @override super's _initPickers
    */

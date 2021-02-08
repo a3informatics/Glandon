@@ -111,13 +111,13 @@ export default class BCEditor extends EditablePanel {
   /**
    * Formats the updated data returned from the server before being added to Editor
    * @override for custom behavior
-   * @param {object} oldData Data object sent to the server
+   * @param {object} _oldData Data object sent to the server
    * @param {object} newData Data returned from the server
    */
-  _postformatUpdatedData(oldData, newData) {
+  _postformatUpdatedData(_oldData, newData) {
 
     // Render new data
-    this._render( newData, true );
+    this._render( newData, true, 'full-hold' )
 
   }
 
