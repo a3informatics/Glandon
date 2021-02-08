@@ -252,8 +252,9 @@ export default class TablePanel {
    * Add data into table and draw
    * @param {Array} data Sequence of items containing data to be added to the table
    * @param {boolean} clear Enable clearing the table before rendering, optional, default = false
+   * @param {boolean | string} drawType Draw type, optional, see DataTables documentation
    */
-  _render(data, clear = false) {
+  _render(data, clear = false, drawType) {
 
     // Clear data first if argument set to true
     if ( clear )
@@ -263,7 +264,7 @@ export default class TablePanel {
       this.table.row.add( item );
     }
 
-    this.table.draw()
+    this.table.draw( drawType )
     this.table.columns.adjust();
 
   }
