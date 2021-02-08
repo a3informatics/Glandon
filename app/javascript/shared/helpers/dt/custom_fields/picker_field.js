@@ -1,4 +1,4 @@
-import { termReferences } from 'shared/ui/collections'
+import { itemReferences } from 'shared/ui/collections'
 
 /**
  * Custom Editable Field for an Items Picker selection
@@ -14,6 +14,8 @@ export default function DTPickerField() {
      * @return {JQuery Element} Field's input element to be appended to the edited cell
      */
     create(conf) {
+
+      conf._enabled = true
       conf._safeId = $.fn.dataTable.Editor.safeId( conf.id )
 
       // Render parent div for the item references
@@ -22,22 +24,24 @@ export default function DTPickerField() {
       // Editor Opened event - set submit callback and show picker
       $(this).on( 'open', () => {
 
-        // Get current field
-        let field = this.field( this.displayed()[0] )
-
-        // Check field pickerName matches this instance's configuration
-        if ( field.s.opts.pickerName !== conf.pickerName )
-          return 
+        // Get current field and picker name 
+        const field = this.field( this.displayed()[0] ),
+              pickerName = field.s.opts.pickerName
+      
+        // Check field enabled and pickerName matches this instance's configuration
+        if ( pickerName !== conf.pickerName || !conf._enabled )
+          return
 
         // Set the Picker's onSubmit handler to submit the selection in the Editor
-        this.pickers[ conf.pickerName ].onSubmit = s => {
+        this.pickers[ pickerName ].onSubmit = s => {
 
           this.set( conf.name, _mapSelectionToColumn(s) )
           this.submit()
 
         }
 
-        this.pickers[conf.pickerName].show()
+        // Show Picker
+        this.pickers[ pickerName ].show()
 
       })
 
@@ -75,7 +79,7 @@ export default function DTPickerField() {
       const pickerInstance = this.pickers[conf.pickerName]
 
       // Render references in HTML
-      $( conf._input ).html( termReferences( data, 'display' ) )
+      $( conf._input ).html( itemReferences( data, 'display' ) )
 
       // Check Picker instance exists
       if ( !pickerInstance )
@@ -110,6 +114,31 @@ export default function DTPickerField() {
         return false
 
       return this.pickers[conf.pickerName].modal.find(n).length > 0
+
+    },
+
+    /**
+     * Disable field
+     * @param {Object} conf DT field configuration object
+     */
+    disable(conf) {
+      
+      conf._enabled = false
+      const disabledMsg = $( '<div>' ).addClass( 'field-disabled-msg' )
+                                      .text( 'Not Editable' )
+      $( conf._input ).append( disabledMsg )
+
+    },
+
+    /**
+     * Enable field
+     * @param {Object} conf DT field configuration object
+     */
+    enable(conf) {
+
+      conf._enabled = true
+      $( conf._input ).find( '.field-disabled-msg' )
+                      .remove()
 
     }
 
