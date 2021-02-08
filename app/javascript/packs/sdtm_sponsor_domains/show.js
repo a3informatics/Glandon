@@ -11,7 +11,8 @@ $(document).ready( () => {
     extraColumns: dtSDTMSDDomainShowColumns(),
     count: 1000,
     order: [[0, "asc"]],
-    buttons: [csvExportBtn(), excelExportBtn()]
+    buttons: [csvExportBtn(), excelExportBtn()],
+    autoHeight: true
   });
 
 });

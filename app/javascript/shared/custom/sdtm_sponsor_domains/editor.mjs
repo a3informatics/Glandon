@@ -236,10 +236,12 @@ setTimeout( () => console.log(this.rowDataToArray), 1500 )
    */
   _editable(modifier) {
 
+    const editableInAllVariables = [ 'used', 'notes', 'comment', 'method' ] 
+
     const { standard } = this.table.row( modifier.row || modifier ).data(),
           fieldName = this.table.column( modifier.column || modifier ).dataSrc()
 
-    return standard === false || fieldName === 'used'
+    return standard === false || editableInAllVariables.includes( fieldName )
 
   }
 
