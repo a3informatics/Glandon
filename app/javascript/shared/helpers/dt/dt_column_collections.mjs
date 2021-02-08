@@ -225,10 +225,22 @@ function dtSDTMIGDomainShowColumns() {
 function dtSDTMSDDomainShowColumns() {
 
   return [
-    ...dtSDTMIGDomainShowColumns(),
-    // Notes
-    // Comment 
-    // Method
+    { data: "ordinal" },
+    { data: "name" },
+    { data: "label" },
+    { data: "typed_as.label" },
+    { data: "format" },
+    { data: "ct_and_format" },
+    {
+      data: "ct_reference",
+      width: 150,
+      render: (data, type, r, m) => itemReferences(data, type)
+    },
+    { data: "classified_as.label" },
+    { data: "description" },
+    { data: "comment" },
+    { data: "compliance.label" },
+    { data: "method" }
   ]
 
 }
@@ -316,6 +328,7 @@ function dtBCEditColumns() {
       editField: 'prompt_text',
       width: '25%'
     }),
+
     { data: "has_complex_datatype.label" },
 
     dtInlineEditColumn('has_complex_datatype.has_property.format', {
@@ -323,7 +336,7 @@ function dtBCEditColumns() {
     }),
 
     dtPickerEditColumn('has_complex_datatype.has_property.has_coded_value', {
-      pickerName: 'termPicker',
+      pickerName: 'refPicker',
       newTab: true,
       opts: {
         width: '30%',
@@ -358,7 +371,9 @@ function dtSDTMSDDomainEditColumns() {
 
     dtSelectEditColumn( 'classified_as' ),
     dtInlineEditColumn( 'description' ),
-    dtSelectEditColumn( 'compliance' )
+    dtInlineEditColumn( 'comment' ),
+    dtSelectEditColumn( 'compliance' ),
+    dtInlineEditColumn( 'method' )
   ]
 
 }

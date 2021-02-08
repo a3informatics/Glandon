@@ -261,9 +261,10 @@ setTimeout( () => console.log(this.rowDataToArray), 1500 )
     super._initPickers()
 
     // Initializes Terminology Reference Picker
-    this.editor.pickers["refPicker"] = new ItemsPicker({
-      id: 'term-ref',
+    this.editor.pickers[ 'refPicker' ] = new ItemsPicker({
+      id: 'sdtm-term-ref',
       types: ['managed_concept'],
+      submitText: 'Submit selection',
       emptyEnabled: true,
       onShow: () => this.keysDisable(),
       onHide: () => {
