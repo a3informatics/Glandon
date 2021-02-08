@@ -63,6 +63,8 @@ describe ManagedCollection do
       parent.has_managed << item_2
       parent.has_managed << item_3
       fix_dates(parent, sub_dir, "create_expected_1.yaml", :creation_date, :last_change_date)
+      fix_dates(parent.has_managed.first, sub_dir, "create_expected_1.yaml", :creation_date, :last_change_date)
+      fix_dates(parent.has_managed.last, sub_dir, "create_expected_1.yaml", :creation_date, :last_change_date)
       check_file_actual_expected(parent.to_h, sub_dir, "create_expected_1.yaml", equate_method: :hash_equal)
     end
 
