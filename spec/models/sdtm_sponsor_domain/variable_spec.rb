@@ -274,6 +274,7 @@ describe SdtmSponsorDomain::VariableSSD do
       expect(non_standard.errors.count).to eq(0)
       sponsor_variable = SdtmSponsorDomain::VariableSSD.find_full(non_standard.id)
       check_file_actual_expected(non_standard.to_h, sub_dir, "update_ct_ref_expected_1a.yaml", equate_method: :hash_equal)
+      ct_ref = OperationalReferenceV3::TmcReference.find(Uri.new(uri:"http://www.assero.co.uk/SDV#1760cbb1-a370-41f6-a3b3-493c1d9c2238_TMC1"))
 
       params2 = {description:"description updated 2", ct_id_set: [cl_2.id]}
       non_standard = non_standard.update_with_clone(params2, sponsor_domain)

@@ -115,28 +115,21 @@ class SdtmSponsorDomain::VariableSSD < SdtmIgDomain::Variable
 
   private
 
+    # Update CT reference property
     def update_ct_reference(params)
-      params[:ct_id_set].each do |x|
-        self.ct_reference = [add_reference(x, self)]
+      references = []
+      params[:ct_id_set].each_with_index do |x, i|
+        references << add_reference(x, i+1, self)
       end
+      self.ct_reference = references
       params.delete(:ct_id_set)
     end
 
-    def add_reference(id, parent)
-      if self.ct_reference.empty?
-        ref = OperationalReferenceV3::TmcReference.new(reference: Fuseki::Base.as_uri(id), optional: true, ordinal: 1)
-        ref.uri = ref.create_uri(parent.uri)
-        ref
-      else
-        ref = update_ref(id)
-      end
+    # Add a new Operational Reference 
+    def add_reference(id, ordinal, parent)
+      ref = OperationalReferenceV3::TmcReference.new(reference: Fuseki::Base.as_uri(id), optional: true, ordinal: ordinal)
+      ref.uri = ref.create_uri(parent.uri)
       ref.save
-      ref
-    end
-
-    def update_ref(id)
-      ref = self.ct_reference.first
-      ref.reference = Fuseki::Base.as_uri(id)
       ref
     end
 
