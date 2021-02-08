@@ -33,11 +33,11 @@ if ENVIRONMENT == 'VAL'
     visit "/users/sign_in"
     if string == "Community Reader"
     fill_in "Email", :with => C_COMM_READER
-    fill_in "Password", :with => 'Changeme11?'
+    fill_in "Password", :with => 'Changeme12?'
     end 
     if string == "Curator"
     fill_in "Email", :with => C_CURATOR
-    fill_in "Password", :with => 'Changeme6?'
+    fill_in "Password", :with => 'Changeme7?'
     end
     click_button "Log in"
     expect(page).to have_text string

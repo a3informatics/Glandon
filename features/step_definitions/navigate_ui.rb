@@ -87,6 +87,7 @@ When('I click {string} in context menu for {string}') do |string, string2|
   find(".icon-context-menu").click
   context_menu_element_v3("history", string2, string)
   wait_for_ajax(20)
+
  end
 
  When('I click Edit in context menu for the latest version of the {string} code list') do |string|
@@ -94,6 +95,12 @@ When('I click {string} in context menu for {string}') do |string, string2|
   context_menu_element_v2('history', 1, :edit)
   
     wait_for_ajax(20)
+end
+ 
+ When('I click Delete in context menu for the latest version of the {string} code list') do |string|
+  ui_table_search("history", "Incomplete")
+  context_menu_element_v2('history', 1, :delete)
+  wait_for_ajax(20)
 end
 
 When('I click Show in context menu for the latest version of the {string} code list') do |string|
@@ -104,6 +111,7 @@ end
 
 When('I click {string} in the confirmation box') do |string|
   ui_confirmation_dialog('string')
+  wait_for_ajax(20)
 end
 
 When('I enter {string} in the search area and click {string} in the context menu') do |string, string2|

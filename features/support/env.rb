@@ -41,14 +41,15 @@ include ScenarioHelpers
 include QualificationUserHelpers
 include EditorHelpers
 include ItemsPickerHelpers
+include IsoManagedHelpers
 
 Cucumber::Rails::Database.autorun_database_cleaner = false
 #DatabaseCleaner.strategy = :truncation
 #Cucumber::Rails::Database.javascript_strategy = :truncation
  
-#ENVIRONMENT = 'VAL'
+ENVIRONMENT = 'VAL'
 
-ENVIRONMENT = 'PROD'
+#ENVIRONMENT = 'PROD'
 
 #ENVIRONMENT = 'TEST'
 
