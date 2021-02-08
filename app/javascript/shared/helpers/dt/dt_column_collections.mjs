@@ -237,10 +237,11 @@ function dtSDTMSDDomainShowColumns() {
       render: (data, type, r, m) => itemReferences(data, type)
     },
     { data: "classified_as.label" },
-    { data: "description" },
-    { data: "comment" },
+    { data: "description", width: '15%' },
+    { data: "notes", width: '10%' },
+    { data: "comment", width: '10%' },
     { data: "compliance.label" },
-    { data: "method" }
+    { data: "method", width: '10%' }
   ]
 
 }
@@ -360,20 +361,20 @@ function dtSDTMSDDomainEditColumns() {
     dtInlineEditColumn( 'label' ),
     dtSelectEditColumn( 'typed_as' ),
     dtInlineEditColumn( 'format' ),
-
-    dtPickerEditColumn('ct_reference', {
+    { data: 'ct_and_format' },
+    dtPickerEditColumn( 'ct_reference', {
       pickerName: 'refPicker',
       newTab: true,
       opts: {
         width: 200,
       }
     }),
-
     dtSelectEditColumn( 'classified_as' ),
-    dtInlineEditColumn( 'description' ),
-    dtInlineEditColumn( 'comment' ),
+    dtInlineEditColumn( 'description', { width: '15%' } ),
+    dtInlineEditColumn( 'notes', { width: '10%' } ),
+    dtInlineEditColumn( 'comment', { width: '10%' } ),
     dtSelectEditColumn( 'compliance' ),
-    dtInlineEditColumn( 'method' )
+    dtInlineEditColumn( 'method', { width: '10%' } )
   ]
 
 }

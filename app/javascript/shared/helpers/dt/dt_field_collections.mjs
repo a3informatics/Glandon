@@ -45,7 +45,10 @@ function dtSDTMSDEditFields() {
       pickerName: 'refPicker', compare: compareRefItems },
     _selectField({ name: 'classified_as' }),     
     { name: 'description', type: 'textarea' },
+    { name: 'notes', type: 'textarea' },
+    { name: 'comment', type: 'textarea' },
     _selectField({ name: 'compliance' }),  
+    { name: 'method', type: 'textarea' }
   ]
 }
 
