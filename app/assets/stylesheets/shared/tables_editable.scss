@@ -67,6 +67,17 @@ $editable-color: $primary-color-bright;
 
   }
 
+  // Editable pickable field disabled 
+  td.editable.pickable .disabled {
+    pointer-events: none;
+    opacity: .7;
+      
+    .field-disabled-msg { 
+      font-style: italic;
+      font-size: $font-tiny;
+    }
+  }
+
   // Fade
   tr.highlight {
    background-color: white !important;
