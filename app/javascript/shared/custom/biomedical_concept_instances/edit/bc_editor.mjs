@@ -82,20 +82,15 @@ export default class BCEditor extends EditablePanel {
    */
   _preformatUpdateData(d) {
 
-    let [data] = super._preformatUpdateData( d ),
-        field = this.currentField;
+    let [data] = super._preformatUpdateData( d )
 
     // Map item references to an array of ids
-    if ( field === 'has_coded_value' && Array.isArray( data.has_coded_value ) )
-
-      data.has_coded_value = data.has_coded_value.map( i => {
-
-        return {
-          id: i.reference.id,
-          context_id: i.context.id
-        }
-
-      });
+    if ( Array.isArray( data.has_coded_value ) )
+      data.has_coded_value = data.has_coded_value.map( i => Object.assign( {}, {
+        id: i.reference.id,
+        context_id: i.context.id
+       }) 
+      )
 
     // Format update data
     d[ this.param ] = {
