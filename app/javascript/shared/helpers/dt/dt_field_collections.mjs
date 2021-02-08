@@ -25,7 +25,7 @@ function dtBCEditFields() {
     { name: 'prompt_text', data: 'has_complex_datatype.has_property.prompt_text',  type: 'textarea' },
     { name: 'format', data: 'has_complex_datatype.has_property.format',  type: 'textarea' },
     { name: 'has_coded_value', data: 'has_complex_datatype.has_property.has_coded_value', type: 'picker',
-      pickerName: 'termPicker', compare: compareRefItems }
+      pickerName: 'refPicker', compare: compareRefItems }
   ]
 }
 

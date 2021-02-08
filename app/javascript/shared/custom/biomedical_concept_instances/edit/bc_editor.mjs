@@ -152,7 +152,7 @@ export default class BCEditor extends EditablePanel {
     super._initPickers();
 
     // Initializes Terminology Reference Picker
-    this.editor.pickers["termPicker"] = new ItemsPicker({
+    this.editor.pickers[ 'refPicker' ] = new ItemsPicker({
       id: 'bc-term-ref',
       types: ['unmanaged_concept'],
       submitText: 'Submit selection',
