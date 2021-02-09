@@ -1,0 +1,45 @@
+<% content_for :page_title do %> <%= "Edit: #{@mc.has_identifier.identifier} (#{@mc.semantic_version})" %> <% end %>
+
+<%= javascript_pack_tag 'managed_collections/edit' %>
+
+<% third_level_breadcrumb(:managed_collections, @mc, @close_path) %>
+
+<%= javascript_tag "let tokenTimerId = '#{@edit.token.id}',
+                        tokenTimerWarning = '#{current_user.edit_lock_warning}';"%>
+
+
+<div class="row">
+  <%= render layout: "shared/headers/header_managed_item", :locals => {:item => @mc, :badge => "icon-collection"} do %>
+
+    <div class="actions-wrap">
+
+      <%= render partial: "shared/buttons/timeout" %>
+      <%= render partial: "shared/buttons/return", :locals => { url: @close_path } %>
+
+      <%= render layout: "shared/context_menu/menu", :locals => { id: "header-con-menu", color: "blue", side: "left" } do %>
+
+        <%= render partial: "shared/context_menu/menu_item", :locals => { url: @edit_tags_path, id: "edit-tags-button",
+            icon: "icon-tag", text: "Edit tags", disabled: @edit_tags_path.empty?, new_tab: true } %>
+
+      <% end %>
+
+    </div>
+
+  <% end %>
+</div>
+
+<div class="row">
+
+  <div class="col-md-12 card wide">
+
+    <div class="card-header">
+      Managed Collection Editor 
+    </div>
+
+    <div class="card-content">
+      <%= render partial: "shared/managed_collections/edit_panel", locals: { default_urls: true } %>
+    </div>
+
+  </div>
+
+</div>

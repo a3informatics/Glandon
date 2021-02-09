@@ -1,4 +1,4 @@
-import ManagedCollectionPanel from 'shared/custom/iso_managed/managed_collection_panel'
+import EditMCPanel from 'shared/custom/managed_collections/edit_panel'
 import TokenTimer from 'shared/custom/tokens/token_timer'
 
 $(document).ready( () => {
@@ -8,7 +8,7 @@ $(document).ready( () => {
     warningTime: tokenTimerWarning
   });
 
-  let mcp = new ManagedCollectionPanel({
+  let emcp = new EditMCPanel({
     urls: bcAssociationsUrls,
     param: 'sdtm_sponsor_domain',
     idsParam: 'bc_id_set',

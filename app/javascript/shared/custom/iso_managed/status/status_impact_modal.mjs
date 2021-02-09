@@ -163,6 +163,7 @@ export default class StatusImpactModal extends ModalView {
   _initPanel() {
 
     return new ManagedItemsPanel({
+      url: this.dataUrl,
       selector: this.selector,
       deferLoading: true,
       autoHeight: true,

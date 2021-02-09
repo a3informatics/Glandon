@@ -6,6 +6,11 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+
+  // Fix header icon offset
+  .circular-badge.big [class^="icon-"] {
+    line-height: inherit;
+  }
 }
 
 .h-inner-wrap{
