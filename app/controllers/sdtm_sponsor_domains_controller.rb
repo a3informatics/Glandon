@@ -190,7 +190,7 @@ private
   end
 
   def update_var_params
-    params.require(:sdtm_sponsor_domain).permit(:non_standard_var_id, :used, :name, :label, :typed_as, :format, :classified_as, :description, :compliance, :notes, :comment, :method, :ct_id_set => [])
+    params.require(:sdtm_sponsor_domain).permit(:non_standard_var_id, :used, :name, :label, :typed_as, :format, :classified_as, :description, :compliance, :notes, :comment, :method, :ct_reference => [])
   end
 
   def bc_params
