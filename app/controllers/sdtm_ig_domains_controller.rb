@@ -23,9 +23,8 @@ class SdtmIgDomainsController < ManagedItemsController
   end
 
   def show_data
-    sdtm_ig_domain = SdtmIgDomain.find_minimum(protect_from_bad_id(params))
-    items = sdtm_ig_domain.get_children
-    render json: {data: items}, status: 200
+    @sdtm_ig_domain = SdtmIgDomain.find_minimum(protect_from_bad_id(params))
+    render json: {data: variables_with_paths(@sdtm_ig_domain)}, status: 200
   end
   
   # def export_ttl
@@ -56,6 +55,21 @@ private
       else
         return super(action, object)
     end
+  end
+
+  # Get variables with paths
+  def variables_with_paths(sdtm_ig_domain)
+    add_tc_paths_to_items(sdtm_ig_domain.get_children)
+  end
+
+  # Add paths to terminology references
+  def add_tc_paths_to_items(items)
+    items = items.each do |x|
+      unless x[:ct_reference].nil?
+        x[:ct_reference].reverse_merge!({show_path: thesauri_managed_concept_path({id: x[:ct_reference][:reference][:id], managed_concept: {context_id: ""}}) })
+      end
+    end
+    items
   end
 
   def model_klass
