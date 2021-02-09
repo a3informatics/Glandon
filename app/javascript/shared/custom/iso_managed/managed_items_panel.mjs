@@ -15,7 +15,7 @@ export default class ManagedItemsPanel extends TablePanel {
    * Create a Managed Items Panel instance
    * @param {Object} params Instance parameters
    * @param {string} params.selector Unique selector of the parent element
-   * @param {string} params.url Url of source data
+   * @param {string} params.url Url of source data, optional, when not defined, will use managedItemsDataUrl from _managed_items_panel partial (data_url param **must** be specified there)
    * @param {string} params.param Strict parameter name required for the controller params
    * @param {int} params.count Count of items fetched in one request [default = 5000]
    * @param {boolean} params.deferLoading Set to true if data load should be deferred. Load data has to be called manually in this case. Optional
@@ -39,7 +39,7 @@ export default class ManagedItemsPanel extends TablePanel {
   }) {
 
     super({
-      url: (url || managedItemsDataUrl),
+      url: (url || window.managedItemsDataUrl),
       selector: `${ selector } #managed-items`,
       order: [[1, "asc"]],
       param, count, autoHeight, deferLoading, paginated,
