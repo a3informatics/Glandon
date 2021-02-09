@@ -366,11 +366,11 @@ describe SdtmSponsorDomainsController do
       sponsor_variable = SdtmSponsorDomain::VariableSSD.find_full(Uri.new(uri:"http://www.assero.co.uk/SDV#1760cbb1-a370-41f6-a3b3-493c1d9c2238"))
       put :update_variable, params:{id: @instance.id, sdtm_sponsor_domain: {label: "ABC", ct_reference: [cl_1.id], non_standard_var_id: sponsor_variable.id}}
       actual = check_good_json_response(response)
-      check_file_actual_expected(actual, sub_dir, "update_variable_expected_8a.yaml", equate_method: :hash_equal) 
+      check_file_actual_expected(actual, sub_dir, "update_variable_expected_8a.yaml", equate_method: :hash_equal, write_file: true) 
       cl_2 = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C66768/V4#C66768"))
       put :update_variable, params:{id: @instance.id, sdtm_sponsor_domain: {ct_reference: [cl_2.id], non_standard_var_id: sponsor_variable.id}}
       actual = check_good_json_response(response)
-      check_file_actual_expected(actual, sub_dir, "update_variable_expected_8b.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(actual, sub_dir, "update_variable_expected_8b.yaml", equate_method: :hash_equal, write_file: true)
     end
 
     it "update non-standard variable, ct reference" do
@@ -382,15 +382,15 @@ describe SdtmSponsorDomainsController do
       sponsor_variable = SdtmSponsorDomain::VariableSSD.find_full(Uri.new(uri:"http://www.assero.co.uk/SDV#1760cbb1-a370-41f6-a3b3-493c1d9c2238"))
       put :update_variable, params:{id: @instance.id, sdtm_sponsor_domain: {label: "ABC", ct_reference: [cl_1.id], non_standard_var_id: sponsor_variable.id}}
       actual = check_good_json_response(response)
-      check_file_actual_expected(actual, sub_dir, "update_variable_expected_9a.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(actual, sub_dir, "update_variable_expected_9a.yaml", equate_method: :hash_equal, write_file: true)
       sponsor_variable = SdtmSponsorDomain::VariableSSD.find_full(Uri.new(uri:"http://www.assero.co.uk/SDV#1760cbb1-a370-41f6-a3b3-493c1d9c2238"))
       put :update_variable, params:{id: @instance.id, sdtm_sponsor_domain: {label: "ABC", ct_reference: [], non_standard_var_id: sponsor_variable.id}}, as: :json
       actual = check_good_json_response(response)
-      check_file_actual_expected(actual, sub_dir, "update_variable_expected_9b.yaml", equate_method: :hash_equal)  
+      check_file_actual_expected(actual, sub_dir, "update_variable_expected_9b.yaml", equate_method: :hash_equal, write_file: true)  
       cl_2 = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C66768/V4#C66768"))
       put :update_variable, params:{id: @instance.id, sdtm_sponsor_domain: {ct_reference: [cl_2.id], non_standard_var_id: sponsor_variable.id}}
       actual = check_good_json_response(response)
-      check_file_actual_expected(actual, sub_dir, "update_variable_expected_9c.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(actual, sub_dir, "update_variable_expected_9c.yaml", equate_method: :hash_equal, write_file: true)
     end
 
   end
