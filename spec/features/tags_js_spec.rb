@@ -285,6 +285,7 @@ describe "Tags", :type => :feature do
       load_data_file_into_triple_store("mdr_iso_concept_systems_migration_3.ttl")
       load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V1.ttl")
       load_data_file_into_triple_store("cdisc/sdtm_ig/SDTM_IG_V1.ttl")
+      load_cdisc_term_versions(1..8)
       nv_destroy
       nv_create({ parent: '10', child: '999' })
       ua_curator_login

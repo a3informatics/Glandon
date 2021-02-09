@@ -11,7 +11,14 @@ import { managedConceptRef, unmanagedConceptRef } from 'shared/ui/strings'
  * @return {string} formatted HTML / text
  */
 function termReferences(data = [], type, newTab = false) {
-  return type === 'display' ? _termReferenceBtns(data, newTab) : _termReferenceStrings(data);
+
+  if ( !data || data.length < 1 )
+    return ''
+
+  return type === 'display' ? 
+    _termReferenceBtns(data, newTab) : 
+    _termReferenceStrings(data);
+
 }
 
 /** Private **/
@@ -24,6 +31,8 @@ function termReferences(data = [], type, newTab = false) {
  */
 function _termReferenceBtns(data = [], newTab = false) {
   let html = '<div class="bg-labels-wrap">';
+
+  data = Array.isArray(data) ? data : [data]
 
   for (const d of data) {
     html += termReferenceBtn(d.show_path, d.reference, d.context, newTab);
@@ -41,6 +50,8 @@ function _termReferenceBtns(data = [], newTab = false) {
  */
 function _termReferenceStrings(data = []) {
   let texts = [];
+
+  data = Array.isArray(data) ? data : [data]
 
   for (const d of data) {
     if (d.context)

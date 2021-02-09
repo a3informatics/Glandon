@@ -23,6 +23,7 @@ describe SdtmSponsorDomain do
       load_data_file_into_triple_store("mdr_iso_concept_systems_migration_2.ttl")
       load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V1.ttl")
       load_data_file_into_triple_store("cdisc/sdtm_ig/SDTM_IG_V1.ttl")
+      load_cdisc_term_versions(1..8)
       allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
     end
 
@@ -51,7 +52,8 @@ describe SdtmSponsorDomain do
       actual = []
       item = SdtmSponsorDomain.find_full(Uri.new(uri:"http://www.s-cubed.dk/AAA/V1#SPD"))
       children = item.get_children
-      children.each {|x| actual << x.to_h}
+      children_sorted = children.each.sort_by {|x| x[:ordinal]} 
+      children_sorted.each {|x| actual << x.to_h}
       check_file_actual_expected(actual, sub_dir, "find_children.yaml", equate_method: :hash_equal)
     end
 

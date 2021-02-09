@@ -17,7 +17,7 @@ class SdtmIgDomain < Tabulation
   def get_children
     results = []
     query_string = %Q{
-      SELECT DISTINCT ?ordinal ?c ?type ?label ?name ?ct_and_format ?format ?description ?used ?compliance ?compliance_label ?typed_as ?typed_as_label ?classification ?classification_label ?standard WHERE       
+      SELECT DISTINCT ?ordinal ?c ?type ?label ?name ?ct_and_format ?format ?ct_reference ?description ?used ?compliance ?compliance_label ?typed_as ?typed_as_label ?classification ?classification_label ?standard WHERE       
       {         
         #{self.uri.to_ref} bd:includesColumn ?c .         
         ?c bd:ordinal ?ordinal .         
@@ -27,6 +27,7 @@ class SdtmIgDomain < Tabulation
         ?c bd:description ?description .         
         ?c bd:ctAndFormat ?ct_and_format .
         ?c bd:format ?format .
+        OPTIONAL {?c bd:ctReference ?ct_reference .}
         OPTIONAL {?c bd:compliance ?compliance .
         ?compliance isoC:prefLabel ?compliance_label .}
         OPTIONAL {?c bd:basedOnClassVariable/bd:typedAs|bd:basedOnIgVariable/bd:basedOnClassVariable/bd:typedAs|bd:typedAs ?typed_as .
@@ -37,10 +38,10 @@ class SdtmIgDomain < Tabulation
         OPTIONAL {?c bd:used ?used}           
       } ORDER BY ?ordinal
     }
-    query_results = Sparql::Query.new.query(query_string, "", [:isoC, :bd])
-    query_results.by_object_set([:ordinal, :c, :type, :label, :name, :ct_and_format, :format, :description, :used, :compliance, :compliance_label, :typed_as, :typed_as_label, :classification, :classification_label, :standard]).each do |x|
+    query_results = Sparql::Query.new.query(query_string, "", [:isoC, :bd, :bo])
+    query_results.by_object_set([:ordinal, :c, :type, :label, :name, :ct_and_format, :format, :ct_reference, :description, :used, :compliance, :compliance_label, :typed_as, :typed_as_label, :classification, :classification_label, :standard]).each do |x|
       results << {id: x[:c].to_id ,uri: x[:c].to_s, ordinal: x[:ordinal].to_i, rdf_type: x[:type].to_s, standard: x[:standard].to_bool, label: x[:label], name: x[:name],
-      ct_and_format: x[:ct_and_format], format: x[:format], description: x[:description], used: x[:used].to_bool, compliance: {id: x[:compliance].to_id, label: x[:compliance_label]}, typed_as: {id: x[:typed_as].to_id, label:x[:typed_as_label]}, classified_as: {id:x[:classification].to_id, label: x[:classification_label]} }
+      ct_and_format: x[:ct_and_format], format: x[:format], ct_reference: set_ct_reference(x[:ct_reference]), description: x[:description], used: x[:used].to_bool, compliance: {id: x[:compliance].to_id, label: x[:compliance_label]}, typed_as: {id: x[:typed_as].to_id, label:x[:typed_as_label]}, classified_as: {id:x[:classification].to_id, label: x[:classification_label]} }
     end
     results
   end
@@ -64,6 +65,18 @@ class SdtmIgDomain < Tabulation
   end
 
   private
+
+    def set_ct_reference(ct_ref)
+      if ct_ref.blank?
+        ref = nil
+      else
+        ref = OperationalReferenceV3::TmcReference.find(ct_ref).to_h
+        ref = ref.except(:context)
+        parent = Thesaurus::ManagedConcept.find_with_properties(Uri.new(uri: ref[:reference]))
+        ref[:reference] = {id: parent.id, uri: parent.uri.to_s, identifier: parent.has_identifier.identifier, label: parent.label, notation: parent.notation, semantic_version: parent.has_identifier.semantic_version}
+        ref
+      end
+    end
 
     # Get variable names
     #
