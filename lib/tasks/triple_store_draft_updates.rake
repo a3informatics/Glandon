@@ -2,7 +2,7 @@ namespace :triple_store do
 
   desc "Draft Updates"
 
-  @changes = []
+  @changes = {}
 
   # Format results as a simple table
   def display_results(items, labels, widths=[])
@@ -150,57 +150,65 @@ namespace :triple_store do
   end
 
   def custom_properties_difference(current, curr_child, curr_child_cp, prev_child_cp)
-    results = []
+    @changes[current.identifier][:items][curr_child.identifier] = [] unless @changes[current.identifier][:items].key?(curr_child.identifier)
     names = curr_child_cp.map{|x| x[:name]}.uniq
     names.each do |name|
       curr = curr_child_cp.find { |x| x[:name] == name }
       prev = prev_child_cp.find { |x| x[:name] == name }
       next if curr == prev
-      results << {cl: current.identifier, cli: curr_child.identifier, exists: true, name: name, previous: prev[:value], current: curr[:value], type: :custom, action: :update}
+      @changes[current.identifier][:items][curr_child.identifier] << { cli_action: :update, type: :custom, name: name, previous: prev[:value], current: curr[:value]}
     end
-    results 
   end
 
   def custom_properties_build_new(current, curr_child, curr_child_cp)
-    results = []
+    @changes[current.identifier][:items][curr_child.identifier] = [] unless @changes[current.identifier][:items].key?(curr_child.identifier)
     names = curr_child_cp.map{|x| x[:name]}.uniq
     names.each do |name|
       curr = curr_child_cp.find { |x| x[:name] == name }
-      results << {cl: current.identifier, cli: curr_child.identifier, exists: false, name: name, previous: "", current: curr[:value], type: :custom, action: :create}
+      @changes[current.identifier][:items][curr_child.identifier] << { cli_action: :create, type: :custom, name: name, previous: "", current: curr[:value] }
     end
-    results 
   end
 
   def item_difference(current, curr_child, prev_child)
-    results = []
+    @changes[current.identifier][:items][curr_child.identifier] = [] unless @changes[current.identifier][:items].key?(curr_child.identifier)
     difference = curr_child.difference(prev_child)
-    difference.each {|k,v| results << {cl: current.identifier, cli: curr_child.identifier, exists: true, name: k, previous: v[:previous], current: v[:current], type: :property, action: :update} if !v.is_a?(Array) && v.key?(:status) && v[:status] == :updated }
+    difference.each {|k,v| @changes[current.identifier][:items][curr_child.identifier] << { cli_action: :update, type: :property, name: k, previous: v[:previous], current: v[:current] } if !v.is_a?(Array) && v.key?(:status) && v[:status] == :updated }
     pt = difference.dig(:preferred_term, :label)
-    results << {cl: current.identifier, cli: curr_child.identifier, exists: true, name: :preferred_term, previous: pt[:previous], current: pt[:current], type: :preferred_term, action: :update} if !pt.nil? && pt[:status] == :updated
+    @changes[current.identifier][:items][curr_child.identifier] << { cli_action: :update, type: :preferred_term, name: :preferred_term, previous: pt[:previous], current: pt[:current] } if !pt.nil? && pt[:status] == :updated
     prev_syn = prev_child.synonyms_to_a
     curr_syn = curr_child.synonyms_to_a
     synonyms_created = curr_syn - prev_syn
     synonyms_deleted = prev_syn - curr_syn
     synonyms_created.each do |x|
-      results << {cl: current.identifier, cli: curr_child.identifier, exists: true, name: :synonym, previous: "", current: x, type: :synonym, action: :create}
+      @changes[current.identifier][:items][curr_child.identifier] << { cli_action: :create, type: :synonym, name: :synonym, previous: "", current: x }
     end
     synonyms_deleted.each do |x|
-      results << {cl: current.identifier, cli: curr_child.identifier, exists: true, name: :synonym, previous: x, current: "", type: :synonym, action: :delete}
+      @changes[current.identifier][:items][curr_child.identifier] << { cli_action: :delete, type: :synonym, name: :synonym, previous: x, current: "" }
     end
-    results
   end
 
   def item_build_new(current, curr_child)
-    results = []
+    @changes[current.identifier][:items][curr_child.identifier] = [] unless @changes[current.identifier][:items].key?(curr_child.identifier)
     properties = curr_child.to_h.slice(:identifier, :notation, :definition, :label, :extensible)
-    properties.each {|k,v| results << {cl: current.identifier, cli: curr_child.identifier, exists: false, name: k, previous: "", current: v, type: :property, action: :create}} 
+    properties.each {|k,v| @changes[current.identifier][:items][curr_child.identifier] << { cli_action: :create, type: :property, name: k, previous: "", current: v }} 
     pt = curr_child.to_h.dig(:preferred_term, :label)
-    results << {cl: current.identifier, cli: curr_child.identifier, exists: false, name: :preferred_term, previous: "", current: pt, type: :preferred_term, action: :create} unless pt.nil?
+    @changes[current.identifier][:items][curr_child.identifier] << { cli_action: :create, type: :preferred_term, name: :preferred_term, previous: "", current: pt } unless pt.nil?
     synonyms_created = curr_child.synonyms_to_a
     synonyms_created.each do |x|
-      results << {cl: current.identifier, cli: curr_child.identifier, exists: false, name: :synonym, previous: "", current: x, type: :synonym, action: :create}
+      @changes[current.identifier][:items][curr_child.identifier] << { cli_action: :create, type: :synonym, name: :synonym, previous: "", current: x }
     end
-    results
+  end
+
+  def code_list_build_new(current)
+    properties = current.to_h.slice(:identifier, :notation, :definition, :label, :extensible)
+    properties.each {|k,v| @changes[current.identifier][k] = v} 
+    pt = current.to_h.dig(:preferred_term, :label)
+    @changes[current.identifier][:preferred_term] = pt unless pt.nil?
+    synonyms_created = current.synonyms_to_a
+    @changes[current.identifier][:synonyms] = []
+    synonyms_created.each do |x|
+      @changes[current.identifier][:synonyms] << x
+    end
   end
 
   def item_different?(current, curr_child, prev_child)
@@ -208,16 +216,34 @@ namespace :triple_store do
     prev_child_cp = prev_child.custom_properties.name_value_pairs
     cp_diff = curr_child_cp != prev_child_cp
     return false unless curr_child.diff?(prev_child) || cp_diff
-    @changes += custom_properties_difference(current, curr_child, curr_child_cp, prev_child_cp)
-    @changes += item_difference(current, curr_child, prev_child)
+    @changes[current.identifier] = {cl_action: :none, subsets: subsets?(current.uri), extends: extends?(current.uri), items: {}} unless @changes.key?(current.identifier)
+    custom_properties_difference(current, curr_child, curr_child_cp, prev_child_cp)
+    item_difference(current, curr_child, prev_child)
     true
   end
 
   def item_new?(current, curr_child)
     curr_child_cp = custom_properties_resolve!(custom_properties_remove_duplicates!(curr_child.custom_properties.name_value_pairs))
-    @changes += custom_properties_build_new(current, curr_child, curr_child_cp)
-    @changes += item_build_new(current, curr_child)
+    @changes[current.identifier] = {cl_action: :none, subsets: subsets?(current.uri), extends: extends?(current.uri), items: {}} unless @changes.key?(current.identifier)
+    custom_properties_build_new(current, curr_child, curr_child_cp)
+    item_build_new(current, curr_child)
     true
+  end
+
+  def code_list_new?(current)
+    @changes[current.identifier] = {cl_action: :create, subsets: subsets?(current.uri), extends: extends?(current.uri), items: {}} unless @changes.key?(current.identifier)
+    code_list_build_new(current)
+    true
+  end
+
+  def code_list_dump(current)
+    ex = Thesaurus::ManagedConcept.find_full(current.uri, :export_paths)
+    full_path = Rails.root.join "public/test/triple_store_#{ex.identifier}_#{Time.now}.yaml"
+    File.open(full_path, "w+") do |f|
+      f.write(ex.to_h.to_yaml)
+    end
+  rescue => e
+    byebug
   end
 
   def identify_detailed_changes(items)
@@ -237,16 +263,8 @@ namespace :triple_store do
       previous = previous_uri.nil? ? nil : Thesaurus::ManagedConcept.find_full(previous_uri)
 
       if previous.nil?
-        begin
-          ex = Thesaurus::ManagedConcept.find_full(x[:s], :export_paths)
-          #filename = ex.to_ttl! 
-          full_path = Rails.root.join "public/test/triple_store_#{ex.identifier}_#{Time.now}.yaml"
-          File.open(full_path, "w+") do |f|
-            f.write(ex.to_h.to_yaml)
-          end
-        rescue => e
-          byebug
-        end
+        code_list_new?(current)
+        code_list_dump(current)
       end
 
       created.each do |curr_uri_s|
@@ -264,7 +282,7 @@ namespace :triple_store do
             warning: "***"
           }
         elsif prev_child.nil?
-          diff = previous.nil? ? true : item_new?(current, curr_child)
+          diff = item_new?(current, curr_child)
           notes = previous.nil? ? "1st version of CL" : "No previous child"
           results << {
             uri: curr_uri_s, 
@@ -324,17 +342,25 @@ namespace :triple_store do
     nil
   end
         
-  def write_results(items)
-    results = {}
-    items.each do |item|
-      results[item[:cl]] = {} unless results.key?(item[:cl])
-      results[item[:cl]][item[:cli]] = { exists: item[:exists], items: [] } unless results[item[:cl]].key?(item[:cli])
-      results[item[:cl]][item[:cli]][:items] << { name: item[:name], previous: item[:previous], current: item[:current], type: item[:type], action: item[:action] }
-    end
+  def write_results
     full_path = Rails.root.join "public/test/triple_store_migration_#{Time.now}.yaml"
     File.open(full_path, "w+") do |f|
-      f.write(results.to_yaml)
+      f.write(@changes.to_yaml)
     end
+  end
+
+  def flatten_changes
+    results = []
+    @changes.each do |cl, cl_entry|
+      cl_entry[:items].each do |cli, cli_entry|
+        cli_entry.each do |entry|
+          record = {cl: cl, cl_action: cl_entry[:cl_action], subsets: cl_entry[:subsets], extends: cl_entry[:extends], cli: cli }
+          entry.each { |k,v| record[k] = v }
+          results << record
+        end
+      end
+    end
+    results
   end
 
   # Actual rake task
@@ -342,8 +368,8 @@ namespace :triple_store do
     items = identify_updates
     identify_summary_changes(items)
     identify_detailed_changes(items)
-    display_results(@changes, ["Code List", "Item", "Exists", "Name", "Previous", "Current", "Type", "Action"], [0, 0, 0, 0, 50, 50, 15, 10])
-    write_results(@changes)
+    display_results(flatten_changes, ["Code List", "CL Action", "Subset", "Extends", "Item", "CLI Action", "Type", "Name", "Previous", "Current" ], [0, 0, 0, 0, 0, 0, 15, 20, 50, 50])
+    write_results
   end
 
 end
