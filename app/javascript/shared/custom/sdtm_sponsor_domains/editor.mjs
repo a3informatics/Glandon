@@ -174,13 +174,9 @@ setTimeout( () => console.log(this.rowDataToArray), 1500 )
 
     let [ data ] = super._preformatUpdateData( d )
 
-    // Map ct reference to id value only and rename param to ct_id_set 
-    if ( data.ct_reference ) {
-
+    // Map CT reference data objects to id value(s) only
+    if ( data.ct_reference ) 
       data.ct_reference = data.ct_reference.map( item => item.reference.id )
-      data = renameKey( data, 'ct_reference', 'ct_id_set' )
-
-    }
 
     // Rename id param to non_standard_var_id
     data = renameKey( data, 'id', 'non_standard_var_id' )
