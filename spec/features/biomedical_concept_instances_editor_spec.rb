@@ -129,7 +129,7 @@ describe "Biomedical Concept Instances Editor", :type => :feature do
     it "allows to edit a single BC, terminology selection" do
       go_to_edit 'HEIGHT'
 
-      ui_editor_select_by_location 7, 8, true
+      ui_editor_select_by_location 7, 8
 
       # Add Terminology References
       ui_in_modal do
@@ -145,8 +145,7 @@ describe "Biomedical Concept Instances Editor", :type => :feature do
       ui_editor_check_value 7, 8, 'UNCLE, BIOLOGICAL C96587 (RELSUB C100130 v10.0.0) SISTER, BIOLOGICAL C96586 (RELSUB C100130 v10.0.0)'
 
       # Remove Multiple Terminology References
-      ui_press_key :arrow_up
-      ui_press_key :enter
+      ui_editor_select_by_location 6, 8, true
 
       ui_in_modal do
         ip_remove_from_selection [ 'C48500', 'C71253' ], 'bc-term-ref'
@@ -159,7 +158,8 @@ describe "Biomedical Concept Instances Editor", :type => :feature do
 
       # Remove All Terminology References
 
-      ui_press_key :enter
+      ui_editor_select_by_location 6, 8, true
+
       ui_in_modal do
         ip_clear_selection 'bc-term-ref'
         ip_check_selected_info '0', 'bc-term-ref'
@@ -333,7 +333,7 @@ describe "Biomedical Concept Instances Editor", :type => :feature do
 
       # Remove Term Reference
 
-      ui_press_key :enter
+      ui_editor_select_by_location 9, 8, true
 
       ui_in_modal do
         ip_remove_from_selection ['C32141'], 'bc-term-ref'
@@ -600,7 +600,7 @@ describe "Biomedical Concept Instances Editor", :type => :feature do
 
       ui_check_table_cell_icon 'editor', 1, 2, 'sel-filled'
 
-      ui_editor_select_by_location 2, 8, true
+      ui_editor_select_by_location 2, 8
 
       ui_in_modal do
           ip_pick_unmanaged_items :unmanaged_concept, [

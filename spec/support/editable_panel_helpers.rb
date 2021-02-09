@@ -25,7 +25,7 @@ module EditorHelpers
   def ui_editor_select_by_location(row, col, with_offset = false, table = 'editor')
     target = find(:xpath, "//table[@id='#{ table }']//tbody/tr[#{ row }]/td[#{ col }]")
     if with_offset
-      target.double_click(x: 10, y: 10)
+      target.double_click(x: 10, y: 70)
     else
       target.double_click()
     end
@@ -34,7 +34,7 @@ module EditorHelpers
   def ui_editor_select_by_content(text, with_offset = false, table = 'editor')
     target = find(:xpath, "//table[@id='#{ table }']//tbody/tr/td[contains(.,'#{ text }')]")
     if with_offset
-      target.double_click(x: 10, y: 10)
+      target.double_click(x: 10, y: 70)
     else
       target.double_click()
     end
