@@ -56,15 +56,6 @@ class SdtmSponsorDomain::VariableSSD < SdtmIgDomain::Variable
     @parent_for_validation.unique_name_in_domain?(self, self.name)
   end
 
-  # Toggle with clone. Toggles Used attribute, clone if there are multiple parents
-  # def toggle_with_clone(managed_ancestor)
-  #   if multiple_managed_ancestors?
-  #     update_with_clone(toggle_used, managed_ancestor)
-  #   else
-  #     self.update(toggle_used)
-  #   end
-  # end
-
   # Update with clone. Update the object. Clone if there are multiple parents.
   #
   # @param [Hash] params the params
@@ -81,9 +72,23 @@ class SdtmSponsorDomain::VariableSSD < SdtmIgDomain::Variable
       end
     else
       return self unless name_change_valid?(params)
-      update_ct_reference(params) if params.key?(:ct_id_set)
       super(params, managed_ancestor)
     end
+  end
+
+  # Update. Update the object with the specified properties if valid. Intercepts to handle the terminology
+  #
+  # @param [Hash] params a hash of properties to be updated
+  # @return [Object] returns the object. Not saved if errors are returned.
+  def update(params)
+    if params.key?(:ct_reference) 
+      self.ct_reference_objects
+      set = IsoConceptV2::CodedValueSetTmc.new(self.ct_reference, self)
+      set.update(params)
+      self.ct_reference = set.items
+      params.delete(:ct_reference)
+    end
+    super
   end
 
   # Delete. Delete the object. Clone if there are multiple parents.
@@ -114,24 +119,6 @@ class SdtmSponsorDomain::VariableSSD < SdtmIgDomain::Variable
   end
 
   private
-
-    # Update CT reference property
-    def update_ct_reference(params)
-      references = []
-      params[:ct_id_set].each_with_index do |x, i|
-        references << add_reference(x, i+1, self)
-      end
-      self.ct_reference = references
-      params.delete(:ct_id_set)
-    end
-
-    # Add a new Operational Reference 
-    def add_reference(id, ordinal, parent)
-      ref = OperationalReferenceV3::TmcReference.new(reference: Fuseki::Base.as_uri(id), optional: true, ordinal: ordinal)
-      ref.uri = ref.create_uri(parent.uri)
-      ref.save
-      ref
-    end
 
     # Check if params contain valid standard keys
     def valid_keys?(params)
