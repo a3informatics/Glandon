@@ -22,21 +22,21 @@ module EditorHelpers
     wait_for_ajax 20
   end
 
-  def ui_editor_select_by_location(row, col, with_offset = false, table = 'editor')
+  def ui_editor_select_by_location(row, col, offset_y: nil, table: 'editor')
     target = find(:xpath, "//table[@id='#{ table }']//tbody/tr[#{ row }]/td[#{ col }]")
-    if with_offset
-      target.double_click(x: 10, y: 70)
+    if offset_y.nil? # Specify offset_y to avoid click in the center of the cell (used for cells containing linked item references)
+      target.double_click 
     else
-      target.double_click()
+      target.double_click(x: 10, y: offset_y) 
     end
   end
 
-  def ui_editor_select_by_content(text, with_offset = false, table = 'editor')
+  def ui_editor_select_by_content(text, offset_y: nil, table: 'editor')
     target = find(:xpath, "//table[@id='#{ table }']//tbody/tr/td[contains(.,'#{ text }')]")
-    if with_offset
-      target.double_click(x: 10, y: 70)
+    if offset_y.nil? # Specify offset_y to avoid click in the center of the cell (used for cells containing linked item references)
+      target.double_click 
     else
-      target.double_click()
+      target.double_click(x: 10, y: offset_y) 
     end
   end
 
