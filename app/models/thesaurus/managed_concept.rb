@@ -515,9 +515,9 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{s
 
   # Newer source? Is there a newer source version?
   #
-  # @return [Boolean] Returns true if there is a newer source version
+  # @return [Boolean] Returns true if there is a newer source version for a Subset or Extension
   def newer_source?
-    !Sparql::Query.new.query("ASK {#{self.uri.to_ref} th:extends|th:subsets ?x. ?x ^isoT:hasPreviousVersion ?o}", "", [:th, :isoT]).ask? 
+    Sparql::Query.new.query("ASK {#{self.uri.to_ref} th:extends|th:subsets ?x. ?x ^isoT:hasPreviousVersion ?o}", "", [:th, :isoT]).ask? 
   end
 
   # Create Next Version. Creates the next version of the managed object if necessary
