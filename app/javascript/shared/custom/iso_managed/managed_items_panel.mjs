@@ -37,9 +37,12 @@ export default class ManagedItemsPanel extends TablePanel {
     addedColumns = [],
     autoHeight
   }) {
+    
+    if ( typeof managedItemsDataUrl !== 'undefined' )
+      url = managedItemsDataUrl
 
     super({
-      url: (url || window.managedItemsDataUrl),
+      url,
       selector: `${ selector } #managed-items`,
       order: [[1, "asc"]],
       param, count, autoHeight, deferLoading, paginated,
