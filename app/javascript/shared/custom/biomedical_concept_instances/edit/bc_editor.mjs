@@ -34,7 +34,7 @@ export default class BCEditor extends EditablePanel {
   }) {
 
     // Initialize custom DataTable Editor fields
-    dtFieldsInit( ['truefalse', 'picker'] );
+    dtFieldsInit( ['boolean', 'picker'] );
 
     // Initialize super with custom options
     super({ selector, dataUrl: urls.data, updateUrl: urls.update, param: 'biomedical_concept_instance',
@@ -57,20 +57,6 @@ export default class BCEditor extends EditablePanel {
     this.setDataUrl( this.bcInstance.dataUrl );
     this.setUpdateUrl( this.bcInstance.updateUrl );
 
-  }
-
-  /**
-   * Enable the Editor Key & Click interaction
-   */
-  kEnable() {
-    this.table.keys.enable();
-  }
-
-  /**
-   * Disable the Editor Key & Click interaction
-   */
-  kDisable() {
-    this.table.keys.disable();
   }
 
 
@@ -96,20 +82,15 @@ export default class BCEditor extends EditablePanel {
    */
   _preformatUpdateData(d) {
 
-    let [data] = super._preformatUpdateData( d ),
-        field = this.currentField;
+    let [data] = super._preformatUpdateData( d )
 
     // Map item references to an array of ids
-    if ( field === 'has_coded_value' && Array.isArray( data.has_coded_value ) )
-
-      data.has_coded_value = data.has_coded_value.map( i => {
-
-        return {
-          id: i.reference.id,
-          context_id: i.context.id
-        }
-
-      });
+    if ( Array.isArray( data.has_coded_value ) )
+      data.has_coded_value = data.has_coded_value.map( i => Object.assign( {}, {
+        id: i.reference.id,
+        context_id: i.context.id
+       }) 
+      )
 
     // Format update data
     d[ this.param ] = {
@@ -125,13 +106,13 @@ export default class BCEditor extends EditablePanel {
   /**
    * Formats the updated data returned from the server before being added to Editor
    * @override for custom behavior
-   * @param {object} oldData Data object sent to the server
+   * @param {object} _oldData Data object sent to the server
    * @param {object} newData Data returned from the server
    */
-  _postformatUpdatedData(oldData, newData) {
+  _postformatUpdatedData(_oldData, newData) {
 
     // Render new data
-    this._render( newData, true );
+    this._render( newData, true, 'full-hold' )
 
   }
 
@@ -171,16 +152,16 @@ export default class BCEditor extends EditablePanel {
     super._initPickers();
 
     // Initializes Terminology Reference Picker
-    this.editor.pickers["termPicker"] = new ItemsPicker({
+    this.editor.pickers[ 'refPicker' ] = new ItemsPicker({
       id: 'bc-term-ref',
       types: ['unmanaged_concept'],
       submitText: 'Submit selection',
       multiple: true,
       emptyEnabled: true,
-      onShow: () => this.kDisable(),
+      onShow: () => this.keysDisable(),
       onHide: () => {
         this.editor.close();
-        this.kEnable();
+        this.keysEnable();
       }
     });
 

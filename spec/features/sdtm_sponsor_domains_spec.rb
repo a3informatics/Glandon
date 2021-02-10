@@ -71,7 +71,7 @@ describe "SDTM Sponsor Domains", :type => :feature do
       wait_for_ajax 10
       expect(page).to have_content 'Show: SDTM Sponsor Domain'
       ui_check_table_info("show", 1, 10, 41)
-      ui_check_table_row("show", 1, [ "1", "STUDYID", "Study Identifier", "Character", "", "", "", "Identifier", "Unique identifier for a study.", "Required"])
+      ui_check_table_row("show", 1, [ "1", "STUDYID", "Study Identifier", "Character", "", "", "", "Identifier", "Unique identifier for a study.", "", "", "Required", ""])
       ui_table_search("show", "AELOC")
       ui_check_table_cell("show", 1, 2, "AELOC")
       ui_check_table_cell("show", 1, 3, "Location of Event")

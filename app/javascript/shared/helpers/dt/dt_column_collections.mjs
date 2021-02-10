@@ -1,8 +1,7 @@
-import { iconsInLine } from 'shared/ui/icons'
-import { termReferences } from 'shared/ui/collections'
+import { itemReferences } from 'shared/ui/collections'
 
-import { dtButtonColumn, dtInlineEditColumn, dtIndicatorsColumn, dtTagsColumn, dtTrueFalseColumn,
-         dtItemTypeColumn, dtVersionColumn, dtTrueFalseEditColumn, dtExternalEditColumn, dtSelectEditColumn, dtRowRemoveColumn } 
+import { dtButtonColumn, dtInlineEditColumn, dtIndicatorsColumn, dtTagsColumn, dtBooleanColumn,
+         dtItemTypeColumn, dtVersionColumn, dtBooleanEditColumn, dtPickerEditColumn, dtSelectEditColumn, dtRowRemoveColumn } 
   from 'shared/helpers/dt/dt_columns'
 
 
@@ -14,24 +13,28 @@ import { dtButtonColumn, dtInlineEditColumn, dtIndicatorsColumn, dtTagsColumn, d
  * @return {Array} DataTables Index panel column definitions collection
  */
 function dtIndexColumns() {
+  
   return [
     { data : "owner" },
     { data : "identifier" },
     { data : "label" },
     dtIndicatorsColumn()
-  ];
-};
+  ]
+
+}
 
 /**
  * Column definitions for a Code List Index panel
  * @return {Array} DataTables Code List Index panel column definitions collection
  */
 function dtCLIndexColumns() {
-  const indexColumns = [...dtIndexColumns()];
-  indexColumns.splice( 3, 0, { data: "notation" } );
+  
+  const indexColumns = [...dtIndexColumns()]
+  indexColumns.splice( 3, 0, { data: "notation" } )
 
-  return indexColumns;
-};
+  return indexColumns
+
+}
 
 
 /*** History ***/
@@ -42,13 +45,15 @@ function dtCLIndexColumns() {
  * @return {Array} DataTables simplified History panel column definitions collection
  */
 function dtSimpleHistoryColumns() {
+  
   return [
     dtVersionColumn(),
     { data: "has_identifier.version_label" },
     { data: "has_state.registration_status" },
     dtIndicatorsColumn()
-  ];
-};
+  ]
+  
+}
 
 
 /*** Children ***/
@@ -60,6 +65,7 @@ function dtSimpleHistoryColumns() {
  * @return {Array} DataTables Children panel column definitions collection
  */
 function dtChildrenColumns(opts = {}) {
+  
   return [
     { data: 'identifier', ...opts },
     { data: 'notation', ...opts },
@@ -67,8 +73,9 @@ function dtChildrenColumns(opts = {}) {
     { data: 'synonym', ...opts },
     { data: 'definition', ...opts },
     dtTagsColumn(opts)
-  ];
-};
+  ]
+
+}
 
 
 /*** Iso Managed ***/
@@ -88,17 +95,182 @@ function dtManagedItemsColumns(opts = {}, typeColumn = false, ownerColumn = fals
     { data: 'identifier', ...opts },
     { data: 'label', ...opts },
     { data: 'version_label', ...opts }
-  ];
+  ]
 
   if ( ownerColumn )
-    columns.splice( 0, 0, { data: 'owner', ...opts });
+    columns.splice( 0, 0, { data: 'owner', ...opts })
 
   if ( typeColumn )
-    columns.splice( 0, 0, dtItemTypeColumn() );
+    columns.splice( 0, 0, dtItemTypeColumn() )
 
-  return columns; 
+  return columns 
 
-};
+}
+
+
+/*** Show ***/
+
+
+/**
+ * Column definitions for Biomedical Concept Instance show
+ * @return {Array} DataTables Biomedical Concept Instance show column definitions collection
+ */
+function dtBCShowColumns() {
+
+  return [
+    dtBooleanColumn("enabled"),
+    dtBooleanColumn("collect"),
+    { data: "has_complex_datatype.has_property.alias" },
+    { data: "has_complex_datatype.has_property.question_text" },
+    { data: "has_complex_datatype.has_property.prompt_text" },
+    { data: "has_complex_datatype.label" },
+    { data: "has_complex_datatype.has_property.format" },
+    {
+      data: "has_complex_datatype.has_property.has_coded_value",
+      width: "30%",
+      render: (data, type, r, m) => itemReferences(data, type)
+    }
+  ]
+
+}
+
+/**
+ * Column definitions for Form show
+ * @return {Array} DataTables Form show column definitions collection
+ */
+function dtFormShowColumns() {
+
+  return [
+    { data: "order_index" },
+    { data: "ordinal" },
+    { data: "label" },
+    { render: (data, type, r, m) => r.question_text || r.free_text },
+    { data: "datatype" },
+    { data: "format" },
+    { data: "mapping" },
+    { data: "completion" },
+    { data: "note" },
+    {
+      data: "has_coded_value",
+      width: "30%",
+      render: (data, type, r, m) => itemReferences(data, type)
+    }
+  ]
+
+}
+
+/**
+ * Column definitions for generic SDTM show (shared SDTM IG, SDTM Model)
+ * @return {Array} DataTables SDTM show column definitions collection
+ */
+function dtSDTMShowColumns() {
+
+  return [
+    { data: "has_identifier.identifier" },
+    { data: "label" },
+    { data: "has_identifier.has_scope.short_name" },
+    { data: "has_identifier.version" },
+    { data: "has_identifier.version_label" },
+    dtButtonColumn('show')
+  ]
+
+}
+
+/**
+ * Column definitions for SDTM Class show
+ * @return {Array} DataTables SDTM Class show column definitions collection
+ */
+function dtSDTMClassShowColumns() {
+
+  return [
+    { data: "ordinal" },
+    { data: "name" },
+    { data: "label" },
+    { data: "typed_as" },
+    { data: "description" },
+    { data: "classified_as" }
+  ]
+
+}
+
+/**
+ * Column definitions for SDTM IG Domain show
+ * @return {Array} DataTables SDTM IG Domain show column definitions collection
+ */
+function dtSDTMIGDomainShowColumns() {
+
+  return [
+    { data: "ordinal" },
+    { data: "name" },
+    { data: "label" },
+    { data: "typed_as.label" },
+    { data: "format" },
+    { data: "ct_and_format" },
+    {
+      data: "ct_reference",
+      width: 150,
+      render: (data, type, r, m) => itemReferences(data, type)
+    },
+    { data: "classified_as.label" },
+    { data: "description" },
+    { data: "compliance.label" }
+  ]
+
+}
+
+/**
+ * Column definitions for SDTM SD Domain show
+ * @return {Array} DataTables SDTM SD Domain show column definitions collection
+ */
+function dtSDTMSDDomainShowColumns() {
+
+  return [
+    { data: "ordinal" },
+    { data: "name" },
+    { data: "label" },
+    { data: "typed_as.label" },
+    { data: "format" },
+    { data: "ct_and_format" },
+    {
+      data: "ct_reference",
+      width: 150,
+      render: (data, type, r, m) => itemReferences(data, type)
+    },
+    { data: "classified_as.label" },
+    { data: "description", width: '15%' },
+    { data: "notes", width: '10%' },
+    { data: "comment", width: '10%' },
+    { data: "compliance.label" },
+    { data: "method", width: '10%' }
+  ]
+
+}
+
+/**
+ * Column definitions for ADaM IG show (identical to SDTM Show columns)
+ * @return {Array} DataTables ADaM IG show column definitions collection
+ */
+function dtADaMIGShowColumns() {
+  return dtSDTMShowColumns()
+}
+
+/**
+ * Column definitions for ADaM IG Dataset show
+ * @return {Array} DataTables ADaM IG Dataset show column definitions collection
+ */
+function dtADaMIGDatasetShowColumns() {
+
+  return [
+    { data: "ordinal" },
+    { data: "name" },
+    { data: "label" },
+    { data: "typed_as" }, //datatype_label
+    { data: "ct" },
+    { data: "notes" },
+    { data: "compliance" }
+  ]
+
+}
 
 
 /*** Edit ***/
@@ -109,6 +281,7 @@ function dtManagedItemsColumns(opts = {}, typeColumn = false, ownerColumn = fals
  * @return {Array} DataTables Code List Edit column definitions collection
  */
 function dtCLEditColumns() {
+
   return [
     { data: 'identifier' },
     dtInlineEditColumn('notation', {
@@ -128,17 +301,19 @@ function dtCLEditColumns() {
     dtIndicatorsColumn(),
     // Remove / unlink button
     dtRowRemoveColumn( 'Remove/unlink item' )
-  ];
-};
+  ]
+
+}
 
 /**
  * Column definitions for Biomedical Concept Instance show
  * @return {Array} DataTables Biomedical Concept Instance show column definitions collection
  */
 function dtBCEditColumns() {
+
   return [
-    dtTrueFalseEditColumn('enabled'),
-    dtTrueFalseEditColumn('collect'),
+    dtBooleanEditColumn('enabled'),
+    dtBooleanEditColumn('collect'),
 
     {
       data: 'has_complex_datatype.has_property.alias',
@@ -154,173 +329,76 @@ function dtBCEditColumns() {
       editField: 'prompt_text',
       width: '25%'
     }),
+
     { data: "has_complex_datatype.label" },
 
     dtInlineEditColumn('has_complex_datatype.has_property.format', {
       editField: 'format'
     }),
 
-    // Items Picker column
-    {
-      className: 'editable inline pickable termPicker',
-      data: 'has_complex_datatype.has_property.has_coded_value',
-      width: '30%',
-      editField: 'has_coded_value',
-      render: (data, type, r, m) => termReferences(data, type, true)
-    }
-  ];
-};
-
-/**
- * Column definitions for SDTM IG Domain edit
- * @return {Array} DataTables SDTM IG Domain edit column definitions collection
- */
-function dtSDTMIGDomainEditColumns() {
-
-  return [
-    { data: "ordinal" },
-    dtTrueFalseEditColumn( 'used' ),
-    dtInlineEditColumn( 'name' ),
-    dtInlineEditColumn( 'label' ),
-    dtSelectEditColumn( 'typed_as' ),
-    dtInlineEditColumn( 'format' ),
-    dtSelectEditColumn( 'classified_as' ),
-    dtInlineEditColumn( 'description' ),
-    dtSelectEditColumn( 'compliance' )
+    dtPickerEditColumn('has_complex_datatype.has_property.has_coded_value', {
+      pickerName: 'refPicker',
+      newTab: true,
+      opts: {
+        width: '30%',
+        editField: 'has_coded_value'
+      }
+    })
   ]
 
 }
 
-
-/*** Show ***/
-
-
 /**
- * Column definitions for Biomedical Concept Instance show
- * @return {Array} DataTables  Biomedical Concept Instance show column definitions collection
+ * Column definitions for SDTM SD Domain edit
+ * @return {Array} DataTables SDTM SD Domain edit column definitions collection
  */
-function dtBCShowColumns() {
-  return [
-    dtTrueFalseColumn("enabled"),
-    dtTrueFalseColumn("collect"),
-    { data: "has_complex_datatype.has_property.alias" },
-    { data: "has_complex_datatype.has_property.question_text" },
-    { data: "has_complex_datatype.has_property.prompt_text" },
-    { data: "has_complex_datatype.label" },
-    { data: "has_complex_datatype.has_property.format" },
-    {
-      data: "has_complex_datatype.has_property.has_coded_value",
-      width: "30%",
-      render: (data, type, r, m) => termReferences(data, type)
-    }
-  ];
-};
+function dtSDTMSDDomainEditColumns() {
 
-/**
- * Column definitions for Form show
- * @return {Array} DataTables  Form show column definitions collection
- */
-function dtFormShowColumns() {
-  return [
-    { data: "order_index" },
-    { data: "ordinal" },
-    { data: "label" },
-    { render: (data, type, r, m) => r.question_text || r.free_text },
-    { data: "datatype" },
-    { data: "format" },
-    { data: "mapping" },
-    { data: "completion" },
-    { data: "note" },
-    {
-      data: "has_coded_value",
-      width: "30%",
-      render: (data, type, r, m) => termReferences(data, type)
-    }
-  ];
-};
-
-/**
- * Column definitions for SDTM Class show
- * @return {Array} DataTables  SDTM Class show column definitions collection
- */
-function dtSDTMClassShowColumns() {
   return [
     { data: "ordinal" },
-    { data: "name" },
-    { data: "label" },
-    { data: "typed_as" },
-    { data: "description" },
-    { data: "classified_as" }
-  ];
-};
+    dtBooleanEditColumn( 'used' ),
+    dtInlineEditColumn( 'name' ),
+    dtInlineEditColumn( 'label' ),
+    dtSelectEditColumn( 'typed_as' ),
+    dtInlineEditColumn( 'format' ),
+    { data: 'ct_and_format' },
+    dtPickerEditColumn( 'ct_reference', {
+      pickerName: 'refPicker',
+      newTab: true,
+      opts: {
+        width: 200,
+      }
+    }),
+    dtSelectEditColumn( 'classified_as' ),
+    dtInlineEditColumn( 'description', { width: '15%' } ),
+    dtInlineEditColumn( 'notes', { width: '10%' } ),
+    dtInlineEditColumn( 'comment', { width: '10%' } ),
+    dtSelectEditColumn( 'compliance' ),
+    dtInlineEditColumn( 'method', { width: '10%' } )
+  ]
 
-/**
- * Column definitions for SDTM Model and IG show
- * @return {Array} DataTables  SDTM Model and IG show column definitions collection
- */
-function dtSDTMShowColumns() {
-  return [
-    { data: "has_identifier.identifier" },
-    { data: "label" },
-    { data: "has_identifier.has_scope.short_name" },
-    { data: "has_identifier.version" },
-    { data: "has_identifier.version_label" },
-    dtButtonColumn('show')
-  ];
-};
-
-/**
- * Column definitions for SDTM IG Domain show
- * @return {Array} DataTables  SDTM IG Domain show column definitions collection
- */
-function dtSDTMIGDomainShowColumns() {
-  return [
-    { data: "ordinal" },
-    { data: "name" },
-    { data: "label" },
-    { data: "typed_as.label" },
-    { data: "format" },
-    { data: "ct_and_format" },
-    {
-      data: "ct_reference",
-      width: 150,
-      render: (data, type, r, m) => termReferences(data, type)
-    },
-    { data: "classified_as.label" },
-    { data: "description" },
-    { data: "compliance.label" }
-  ];
-};
-
-/**
- * Column definitions for ADaM IG Dataset show
- * @return {Array} DataTables  ADaM IG Dataset show column definitions collection
- */
-function dtADaMIGDatasetShowColumns() {
-  return [
-    { data: "ordinal" },
-    { data: "name" },
-    { data: "label" },
-    { data: "typed_as" }, //datatype_label
-    { data: "ct" },
-    { data: "notes" },
-    { data: "compliance" }
-  ];
-};
+}
 
 export {
+  // Index, history columns
   dtIndexColumns,
   dtSimpleHistoryColumns,
   dtCLIndexColumns,
   dtChildrenColumns,
   dtManagedItemsColumns,
-  dtCLEditColumns,
-  dtBCShowColumns,
-  dtBCEditColumns,
+  
+  // Show columns
   dtFormShowColumns,
-  dtSDTMClassShowColumns,
-  dtSDTMIGDomainEditColumns,
   dtSDTMShowColumns,
+  dtSDTMClassShowColumns,
   dtSDTMIGDomainShowColumns,
-  dtADaMIGDatasetShowColumns
+  dtSDTMSDDomainShowColumns,
+  dtADaMIGDatasetShowColumns,
+  dtADaMIGShowColumns,
+
+   // Edit columns
+   dtCLEditColumns,
+   dtBCShowColumns,
+   dtBCEditColumns,
+   dtSDTMSDDomainEditColumns,
 }

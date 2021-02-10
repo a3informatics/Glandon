@@ -392,8 +392,10 @@ describe "Tags", :type => :feature do
     end
 
     it "view and attach tags on a SDTM Sponsor Domain" do
+      load_cdisc_term_versions(1..8)
 
       view_attach_detach_tags do
+
         click_navbar_sdtm_sponsor_domains
         wait_for_ajax 20
 

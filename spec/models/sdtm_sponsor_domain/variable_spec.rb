@@ -148,47 +148,6 @@ describe SdtmSponsorDomain::VariableSSD do
 
   end
 
-  # describe "Toggle Tests" do
-
-  #   before :each do
-  #     data_files = ["SDTM_Sponsor_Domain.ttl"]
-  #     load_files(schema_files, data_files)
-  #     load_data_file_into_triple_store("mdr_identification.ttl")
-  #   end
-
-  #   it "toggle single parent" do
-  #     parent = SdtmSponsorDomain.find_full(Uri.new(uri:"http://www.s-cubed.dk/AAA/V1#SPD"))
-  #     sponsor_variable = SdtmSponsorDomain::VariableSSD.find_full(Uri.new(uri:"http://www.s-cubed.dk/AAA/V1#SPD_STUDYID"))
-  #     expect(sponsor_variable.used).to eq(true)
-  #     sponsor_variable.toggle_with_clone(parent)
-  #     sponsor_variable = SdtmSponsorDomain::VariableSSD.find_full(Uri.new(uri:"http://www.s-cubed.dk/AAA/V1#SPD_STUDYID"))
-  #     expect(sponsor_variable.used).to eq(false)
-  #   end
-
-  #   it "toggle multiple parent" do
-  #     parent = SdtmSponsorDomain.find_full(Uri.new(uri:"http://www.s-cubed.dk/AAA/V1#SPD"))
-  #     make_standard(parent)
-  #     #check_dates(parent, sub_dir, "toggle_var_1a.yaml", :creation_date, :last_change_date)
-  #     check_file_actual_expected(parent.to_h, sub_dir, "toggle_var_1a.yaml", equate_method: :hash_equal)
-  #     new_parent = parent.create_next_version
-  #     new_parent = SdtmSponsorDomain.find_full(new_parent.uri)
-  #     sponsor_variable = SdtmSponsorDomain::VariableSSD.find_full(Uri.new(uri:"http://www.s-cubed.dk/AAA/V1#SPD_STUDYID"))
-  #     expect(sponsor_variable.used).to eq(true)
-  #     sponsor_variable.toggle_with_clone(new_parent)
-  #     sponsor_variable = SdtmSponsorDomain::VariableSSD.find_full(Uri.new(uri:"http://www.s-cubed.dk/AAA/V1#SPD_STUDYID"))
-  #     expect(sponsor_variable.used).to eq(true)
-  #     new_sponsor_variable = SdtmSponsorDomain::VariableSSD.find_full(Uri.new(uri:"http://www.s-cubed.dk/AAA/V2#SPD_STUDYID"))
-  #     expect(new_sponsor_variable.used).to eq(false)
-  #     parent = SdtmSponsorDomain.find_full(parent.id)
-  #     #check_dates(parent, sub_dir, "toggle_var_1a.yaml", :creation_date, :last_change_date)
-  #     check_file_actual_expected(parent.to_h, sub_dir, "toggle_var_1a.yaml", equate_method: :hash_equal)
-  #     new_parent = SdtmSponsorDomain.find_full(new_parent.uri)
-  #     check_dates(new_parent, sub_dir, "toggle_var_1b.yaml", :creation_date, :last_change_date)
-  #     check_file_actual_expected(new_parent.to_h, sub_dir, "toggle_var_1b.yaml", equate_method: :hash_equal)
-  #   end
-
-  # end
-
   describe "Standard Variable Tests" do
 
     before :all do
@@ -229,6 +188,14 @@ describe SdtmSponsorDomain::VariableSSD do
       check_file_actual_expected(result.to_h, sub_dir, "update_var_2.yaml", equate_method: :hash_equal)
     end
 
+    it "update, standard variable, notes, comment and method" do
+      sponsor_domain = SdtmSponsorDomain.find_full(Uri.new(uri:"http://www.s-cubed.dk/AAA/V1#SPD"))
+      sponsor_variable = SdtmSponsorDomain::VariableSSD.find_full(Uri.new(uri:"http://www.s-cubed.dk/AAA/V1#SPD_STUDYID"))
+      params = {description: "description updated", label: "label updated", notes: "Notes updated", comment: "Comment updated", method: "Method updated"}
+      result = sponsor_variable.update_with_clone(params, sponsor_domain)
+      check_file_actual_expected(result.to_h, sub_dir, "update_var_5.yaml", equate_method: :hash_equal)
+    end
+
     it "update error, standard variable" do
       sponsor_domain = SdtmSponsorDomain.find_full(Uri.new(uri:"http://www.s-cubed.dk/AAA/V1#SPD"))
       sponsor_variable = SdtmSponsorDomain::VariableSSD.find_full(Uri.new(uri:"http://www.s-cubed.dk/AAA/V1#SPD_STUDYID"))
@@ -241,7 +208,7 @@ describe SdtmSponsorDomain::VariableSSD do
     it "update, non standard variable" do
       sponsor_domain = SdtmSponsorDomain.find_full(Uri.new(uri:"http://www.s-cubed.dk/AAA/V1#SPD"))
       non_standard = sponsor_domain.add_non_standard_variable
-      params2 = {description:"description updated"}
+      params2 = {description:"description updated", notes: "Notes updated", comment: "Comment updated", method: "Method updated"}
       result = non_standard.update_with_clone(params2, sponsor_domain)
       check_file_actual_expected(result.to_h, sub_dir, "update_var_1a.yaml", equate_method: :hash_equal)
     end
@@ -281,6 +248,76 @@ describe SdtmSponsorDomain::VariableSSD do
     end
 
   end
+
+  describe "Update Tests, CT Reference" do
+
+    before :each do
+      data_files = ["SDTM_Sponsor_Domain.ttl"]
+      load_files(schema_files, data_files)
+      load_data_file_into_triple_store("mdr_identification.ttl")
+      load_cdisc_term_versions(1..4)
+    end
+
+    before :each do
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
+    end
+
+    it "update, ct ref" do
+      cl_1 = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C66767/V4#C66767"))
+      cl_2 = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C66768/V4#C66768"))
+      cl_3 = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C66780/V4#C66780"))
+      sponsor_domain = SdtmSponsorDomain.find_full(Uri.new(uri:"http://www.s-cubed.dk/AAA/V1#SPD"))
+
+      non_standard = sponsor_domain.add_non_standard_variable
+      params = {description:"description updated", ct_reference: [cl_1.id]}
+      non_standard = non_standard.update_with_clone(params, sponsor_domain)
+      expect(non_standard.errors.count).to eq(0)
+      sponsor_variable = SdtmSponsorDomain::VariableSSD.find_full(non_standard.id)
+      check_file_actual_expected(non_standard.to_h, sub_dir, "update_ct_ref_expected_1a.yaml", equate_method: :hash_equal)
+      ct_ref = OperationalReferenceV3::TmcReference.find(Uri.new(uri:"http://www.assero.co.uk/SDV#1760cbb1-a370-41f6-a3b3-493c1d9c2238_TMC1"))
+
+      params2 = {description:"description updated 2", ct_reference: [cl_2.id]}
+      non_standard = non_standard.update_with_clone(params2, sponsor_domain)
+      expect(non_standard.errors.count).to eq(0)
+      sponsor_variable = SdtmSponsorDomain::VariableSSD.find_full(non_standard.id)
+      check_file_actual_expected(non_standard.to_h, sub_dir, "update_ct_ref_expected_1b.yaml", equate_method: :hash_equal)
+
+      params3 = {description:"description updated 3", ct_reference: [cl_3.id]}
+      non_standard = non_standard.update_with_clone(params3, sponsor_domain)
+      expect(non_standard.errors.count).to eq(0)
+      sponsor_variable = SdtmSponsorDomain::VariableSSD.find_full(non_standard.id)
+      check_file_actual_expected(non_standard.to_h, sub_dir, "update_ct_ref_expected_1c.yaml", equate_method: :hash_equal)
+    end
+
+    it "update II, ct ref" do
+      cl_1 = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C66767/V4#C66767"))
+      cl_2 = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C66768/V4#C66768"))
+      cl_3 = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C66780/V4#C66780"))
+      sponsor_domain = SdtmSponsorDomain.find_full(Uri.new(uri:"http://www.s-cubed.dk/AAA/V1#SPD"))
+
+      non_standard = sponsor_domain.add_non_standard_variable
+      params = {description:"description updated", ct_reference: [cl_1.id]}
+      non_standard = non_standard.update_with_clone(params, sponsor_domain)
+      expect(non_standard.errors.count).to eq(0)
+      sponsor_variable = SdtmSponsorDomain::VariableSSD.find_full(non_standard.id)
+      check_file_actual_expected(non_standard.to_h, sub_dir, "update_ct_ref_expected_2a.yaml", equate_method: :hash_equal)
+      ct_ref = OperationalReferenceV3::TmcReference.find(Uri.new(uri:"http://www.assero.co.uk/SDV#1760cbb1-a370-41f6-a3b3-493c1d9c2238_TMC1"))
+
+      params2 = {description:"description updated 2", ct_reference: []}
+      non_standard = non_standard.update_with_clone(params2, sponsor_domain)
+      expect(non_standard.errors.count).to eq(0)
+      sponsor_variable = SdtmSponsorDomain::VariableSSD.find_full(non_standard.id)
+      check_file_actual_expected(non_standard.to_h, sub_dir, "update_ct_ref_expected_2b.yaml", equate_method: :hash_equal)
+
+      params3 = {description:"description updated 3", ct_reference: [cl_3.id]}
+      non_standard = non_standard.update_with_clone(params3, sponsor_domain)
+      expect(non_standard.errors.count).to eq(0)
+      sponsor_variable = SdtmSponsorDomain::VariableSSD.find_full(non_standard.id)
+      check_file_actual_expected(non_standard.to_h, sub_dir, "update_ct_ref_expected_2c.yaml", equate_method: :hash_equal)
+    end
+
+  end
+
 
   describe "Correct prefix" do
 

@@ -292,6 +292,15 @@
   rdfs:range xsd:string ;
   skos:definition "Comments regarding the variable."^^xsd:string ;
 .
+:method
+  rdf:type owl:DatatypeProperty ;
+  rdfs:label "Method"^^xsd:string ;
+  rdfs:subPropertyOf isoC:property ;
+  rdf:type owl:FunctionalProperty ;
+  rdfs:domain :SdtmSponsorDomainVariable ;
+  rdfs:range xsd:string ;
+  skos:definition "Method regarding the variable."^^xsd:string ;
+.
 :nonStandard
   rdf:type owl:DatatypeProperty ;
   rdfs:label "Non standard / supplemental qualifier."^^xsd:string ;
