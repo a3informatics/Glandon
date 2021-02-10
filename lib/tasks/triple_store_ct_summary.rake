@@ -31,14 +31,14 @@ namespace :triple_store do
   end
 
   # Identify Code Lists
-  def identify_code_lists
+  def identify_code_lists(short_name)
     query_string = %Q{
       SELECT DISTINCT ?s ?l ?v ?i ?sv (COUNT(?x) as ?c) WHERE 
       {
         ?s rdf:type #{Thesaurus::ManagedConcept.rdf_type.to_ref} .
         ?s isoT:hasState ?st .
         ?s isoT:hasIdentifier ?si .
-        ?si isoI:hasScope/isoI:shortName "Sanofi" .
+        ?si isoI:hasScope/isoI:shortName "#{short_name}" .
         ?s isoC:label ?l .
         ?si isoI:version ?v .
         ?si isoI:identifier ?i .
@@ -54,7 +54,10 @@ namespace :triple_store do
 
   # Actual rake task
   task :ct_summary => :environment do
-    identify_code_lists
+    ARGV.each { |a| task a.to_sym do ; end }
+    abort("A short name$ should be supplied") if ARGV.count == 1
+    abort("Only a single parameter (a short name) should be supplied") unless ARGV.count == 2
+    actions = identify_code_lists(ARGV[1])
   end
 
 end
