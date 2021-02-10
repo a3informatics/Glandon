@@ -233,6 +233,10 @@ namespace :triple_store do
     @changes[current.identifier][:items][curr_child.identifier][:synonym] = curr_child.synonyms_to_a unless curr_child.synonyms_to_a.empty?
   end
 
+  def item_remove(current, curr_child)
+    @changes[current.identifier][:items][curr_child.identifier] = { action: :remove, uri: curr_child.uri.to_s, custom_properties: {} } unless @changes[current.identifier][:items].key?(curr_child.identifier)
+  end
+
   def code_list_build_new(current)
     properties = current.to_h.slice(:identifier, :notation, :definition, :label, :extensible)
     properties.each {|k,v| @changes[current.identifier][k] = v} 
@@ -350,11 +354,13 @@ namespace :triple_store do
         }
       end
       deleted.each do |match_uri_s|
+        curr_child = find_child(match_uri_s)
+        item_remove(current, curr_child)
         results << {
           uri: match_uri_s, 
           different: false,
-          checked: "N",
-          type: "Deleted",
+          checked: "",
+          type: "Remove",
           notes: "",
           warning: ""
         }
