@@ -154,9 +154,9 @@ class IsoManagedV2
           ?definition rdf:type isoC:CustomPropertyDefinition .           
           ?definition isoC:customPropertyOf #{klass.rdf_type.to_ref} .
           FILTER ( NOT EXISTS {
+            ?cpv isoC:appliesTo ?subject .
             ?context ^isoC:context ?cpv .
             ?cpv rdf:type isoC:CustomProperty . 
-            ?cpv isoC:appliesTo ?subject .
             ?cpv isoC:customPropertyDefinedBy ?definition
           })  
         } ORDER BY ?subject ?definition
