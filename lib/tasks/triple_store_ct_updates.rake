@@ -54,7 +54,7 @@ namespace :triple_store do
     }
     query_results = Sparql::Query.new.query(query_string, "", [:isoC, :isoI, :isoT, :isoR])
     items = query_results.by_object_set([:s, :l, :v, :i, :sv])
-    display_results(items, ["Uri", "Label", "Ver", "Identifier", "Semantic Ver"])
+    display_results(items, ["Uri", "Label", "Ver", "Identifier", "Semantic Ver"], [0, 75, 0, 0, 0])
     items
   end
 
@@ -216,7 +216,7 @@ namespace :triple_store do
   end
 
   def item_difference(current, curr_child, prev_child)
-    @changes[current.identifier][:items][curr_child.identifier] = { action: :create, uri: prev_child.uri.to_s, custom_properties: {} } unless @changes[current.identifier][:items].key?(curr_child.identifier)
+    @changes[current.identifier][:items][curr_child.identifier] = { action: :update, uri: prev_child.uri.to_s, custom_properties: {} } unless @changes[current.identifier][:items].key?(curr_child.identifier)
     difference = curr_child.difference(prev_child)
     difference.each {|k,v| @changes[current.identifier][:items][curr_child.identifier][k] = v[:current] if !v.is_a?(Array) && v.key?(:status) && v[:status] == :updated }
     pt = difference.dig(:preferred_term, :label)
@@ -226,7 +226,7 @@ namespace :triple_store do
 
   def item_build_new(current, curr_child)
     action = curr_child.uri.to_s.start_with?("http://www.cdisc.org/") ? :refer : :create
-    @changes[current.identifier][:items][curr_child.identifier] = { action: action, cli_uri: curr_child.uri.to_s, custom_properties: {} } unless @changes[current.identifier][:items].key?(curr_child.identifier)
+    @changes[current.identifier][:items][curr_child.identifier] = { action: action, uri: curr_child.uri.to_s, custom_properties: {} } unless @changes[current.identifier][:items].key?(curr_child.identifier)
     properties = curr_child.to_h.slice(:identifier, :notation, :definition, :label, :extensible)
     properties.each {|k,v| @changes[current.identifier][:items][curr_child.identifier][k] = v }
     pt = curr_child.to_h.dig(:preferred_term, :label)
@@ -262,14 +262,14 @@ namespace :triple_store do
   end
 
   def code_list_exists?(current, previous)
-    @changes[current.identifier] = {action: :new_version, cl_uri: previous.uri.to_s, subsets: subsets?(current.uri), extends: extends?(current.uri), items: {}} unless @changes.key?(current.identifier)
+    @changes[current.identifier] = {action: :new_version, uri: previous.uri.to_s, subsets: subsets?(current.uri), extends: extends?(current.uri), items: {}} unless @changes.key?(current.identifier)
     @changes[current.identifier][:subset_of] = subset_master(current.uri).to_s if @changes[current.identifier][:subsets]
     @changes[current.identifier][:extension_of] = extension_master(current.uri).to_s if @changes[current.identifier][:extends]
     true
   end
 
   def code_list_new?(current)
-    @changes[current.identifier] = {action: :create, cl_uri: current.uri.to_s, subsets: subsets?(current.uri), extends: extends?(current.uri), items: {}} unless @changes.key?(current.identifier)
+    @changes[current.identifier] = {action: :create, uri: current.uri.to_s, subsets: subsets?(current.uri), extends: extends?(current.uri), items: {}} unless @changes.key?(current.identifier)
     @changes[current.identifier][:subset_of] = subset_master(current.uri).to_s if @changes[current.identifier][:subsets]
     @changes[current.identifier][:extension_of] = extension_master(current.uri).to_s if @changes[current.identifier][:extends]
     code_list_build_new(current)
