@@ -669,6 +669,7 @@ describe Thesauri::ManagedConceptsController do
       expect(assigns(:subset).uri.to_id).to eq(sub_mc.is_ordered.uri.to_id)
       expect(assigns(:close_path)).to eq(history_thesauri_managed_concepts_path({managed_concept: {identifier: sub_mc.scoped_identifier, scope_id: sub_mc.scope}}))
       expect(assigns(:token)).to_not eq(nil)
+      expect(assigns(:upgradable)).to eq(false)
       expect(response).to render_template("edit_subset")
     end
 
@@ -777,10 +778,11 @@ describe Thesauri::ManagedConceptsController do
       tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001"))
       extended_tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C99079/V28#C99079"))
       get :edit_extension, params:{id: tc.id}
-      expect(assigns(:is_extending)).to eq(true)
-      expect(assigns(:is_extending_path)).to eq("/thesauri/managed_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzk5MDc5L1YyOCNDOTkwNzk=?managed_concept%5Bcontext_id%5D=")
+      expect(assigns(:tc).id).to eq(tc.id)
+      expect(assigns(:extended_tc).id).to eq(extended_tc.id)
       expect(assigns(:close_path)).to eq("/thesauri/managed_concepts/history?managed_concept%5Bidentifier%5D=A00001&managed_concept%5Bscope_id%5D=aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQUNNRQ%3D%3D")
       expect(assigns(:token)).to_not eq(nil)
+      expect(assigns(:upgradable)).to eq(false)
       expect(response).to render_template("edit_extension")
     end
 
