@@ -168,16 +168,16 @@ namespace :triple_store do
       curr = curr_child_cp.find { |x| x[:name] == name }
       prev = prev_child_cp.find { |x| x[:name] == name }
       next if curr == prev
-      @changes[current.identifier][:items][curr_child.identifier][:custom_properties][name] = { previous: prev[:value], current: curr[:value] }
+      @changes[current.identifier][:items][curr_child.identifier][:custom_properties][name] = curr[:value]
     end
   end
 
   def custom_properties_build_new(current, curr_child, curr_child_cp)
-    @changes[current.identifier][:items][curr_child.identifier] = { action: :create, uri: curr_child.uri.to_s, custom_properties: {} } unless @changes[current.identifier][:items].key?(curr_child.identifier)
+    @changes[current.identifier][:items][curr_child.identifier] = { action: :action, uri: curr_child.uri.to_s, custom_properties: {} } unless @changes[current.identifier][:items].key?(curr_child.identifier)
     names = curr_child_cp.map{|x| x[:name]}.uniq
     names.each do |name|
       curr = curr_child_cp.find { |x| x[:name] == name }
-      @changes[current.identifier][:items][curr_child.identifier][:custom_properties][name] = { previous: "", current: curr[:value] }
+      @changes[current.identifier][:items][curr_child.identifier][:custom_properties][name] = curr[:value]
     end
 
     # definitions = curr_child.class.find_custom_property_definitions
@@ -194,9 +194,9 @@ namespace :triple_store do
   def item_difference(current, curr_child, prev_child)
     @changes[current.identifier][:items][curr_child.identifier] = { action: :create, uri: prev_child.uri.to_s, custom_properties: {} } unless @changes[current.identifier][:items].key?(curr_child.identifier)
     difference = curr_child.difference(prev_child)
-    difference.each {|k,v| @changes[current.identifier][:items][curr_child.identifier][k] = { previous: v[:previous], current: v[:current] } if !v.is_a?(Array) && v.key?(:status) && v[:status] == :updated }
+    difference.each {|k,v| @changes[current.identifier][:items][curr_child.identifier][k] = v[:current] if !v.is_a?(Array) && v.key?(:status) && v[:status] == :updated }
     pt = difference.dig(:preferred_term, :label)
-    @changes[current.identifier][:items][curr_child.identifier][:preferred_term] = { previous: pt[:previous], current: pt[:current] } if !pt.nil? && pt[:status] == :updated
+    @changes[current.identifier][:items][curr_child.identifier][:preferred_term] = pt[:current] if !pt.nil? && pt[:status] == :updated
     prev_syn = prev_child.synonyms_to_a
     curr_syn = curr_child.synonyms_to_a
     synonyms_created = curr_syn - prev_syn
@@ -211,11 +211,12 @@ namespace :triple_store do
   end
 
   def item_build_new(current, curr_child)
-    @changes[current.identifier][:items][curr_child.identifier] = { cli_action: :create, cli_uri: curr_child.uri.to_s, custom_properties: {} } unless @changes[current.identifier][:items].key?(curr_child.identifier)
+    action = curr_child.uri.to_s.start_with?("http://www.cdisc.org/") ? :refer : :create
+    @changes[current.identifier][:items][curr_child.identifier] = { action: action, cli_uri: curr_child.uri.to_s, custom_properties: {} } unless @changes[current.identifier][:items].key?(curr_child.identifier)
     properties = curr_child.to_h.slice(:identifier, :notation, :definition, :label, :extensible)
-    properties.each {|k,v| @changes[current.identifier][:items][curr_child.identifier][k] = { previous: "", current: v }}
+    properties.each {|k,v| @changes[current.identifier][:items][curr_child.identifier][k] = v }
     pt = curr_child.to_h.dig(:preferred_term, :label)
-    @changes[current.identifier][:items][curr_child.identifier][:preferred_term] = { previous: "", current: pt } unless pt.nil?
+    @changes[current.identifier][:items][curr_child.identifier][:preferred_term] = pt unless pt.nil?
     synonyms_created = curr_child.synonyms_to_a
     @changes[current.identifier][:items][curr_child.identifier][:synonym] = []
     synonyms_created.each do |x|
@@ -240,22 +241,22 @@ namespace :triple_store do
     prev_child_cp = prev_child.custom_properties.name_value_pairs
     cp_diff = curr_child_cp != prev_child_cp
     return false unless curr_child.diff?(prev_child) || cp_diff
-    @changes[current.identifier] = {cl_action: :new_version, cl_uri: previous.uri.to_s, subsets: subsets?(current.uri), extends: extends?(current.uri), items: {}} unless @changes.key?(current.identifier)
-    custom_properties_difference(current, curr_child, prev_child, curr_child_cp, prev_child_cp)
+    @changes[current.identifier] = {action: :new_version, cl_uri: previous.uri.to_s, subsets: subsets?(current.uri), extends: extends?(current.uri), items: {}} unless @changes.key?(current.identifier)
     item_difference(current, curr_child, prev_child)
+    custom_properties_difference(current, curr_child, prev_child, curr_child_cp, prev_child_cp)
     true
   end
 
   def item_new?(current, curr_child)
     curr_child_cp = custom_properties_resolve!(custom_properties_remove_duplicates!(curr_child.custom_properties.name_value_pairs))
-    @changes[current.identifier] = {cl_action: :new_version, cl_uri: current.uri.to_s, subsets: subsets?(current.uri), extends: extends?(current.uri), items: {}} unless @changes.key?(current.identifier)
-    custom_properties_build_new(current, curr_child, curr_child_cp)
+    @changes[current.identifier] = {action: :new_version, cl_uri: current.uri.to_s, subsets: subsets?(current.uri), extends: extends?(current.uri), items: {}} unless @changes.key?(current.identifier)
     item_build_new(current, curr_child)
+    custom_properties_build_new(current, curr_child, curr_child_cp)
     true
   end
 
   def code_list_new?(current)
-    @changes[current.identifier] = {cl_action: :create, cl_uri: current.uri.to_s, subsets: subsets?(current.uri), extends: extends?(current.uri), items: {}} unless @changes.key?(current.identifier)
+    @changes[current.identifier] = {action: :create, cl_uri: current.uri.to_s, subsets: subsets?(current.uri), extends: extends?(current.uri), items: {}} unless @changes.key?(current.identifier)
     code_list_build_new(current)
     true
   end
@@ -358,7 +359,8 @@ namespace :triple_store do
   end
         
   def write_results
-    full_path = Rails.root.join "public/test/triple_store_migration_#{Time.now}.yaml"
+    time_now = Time.now.strftime("%FT%T")
+    full_path = Rails.root.join "public/test/triple_store_migration_#{time_now}.yaml"
     File.open(full_path, "w+") do |f|
       f.write(@changes.to_yaml)
     end
@@ -369,7 +371,7 @@ namespace :triple_store do
     @changes.each do |cl, cl_entry|
       cl_entry[:items].each do |cli, cli_entry|
         cli_entry.each do |entry|
-          record = {cl: cl, cl_action: cl_entry[:cl_action], subsets: cl_entry[:subsets], extends: cl_entry[:extends], cli: cli }
+          record = {cl: cl, action: cl_entry[:cl_action], subsets: cl_entry[:subsets], extends: cl_entry[:extends], cli: cli }
           entry.each { |k,v| record[k] = v }
           results << record
         end
