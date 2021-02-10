@@ -78,16 +78,12 @@ namespace :triple_store do
 
   def process_updates(parent, child, action_hash)
     [:definition, :notation, :label, :preferred_term, :synonym].each do |x|
-  begin
       next if action_hash.dig(x).nil?
       child = Thesaurus::UnmanagedConcept.find_full(child.uri)
       params = {}
       params[x] = action_hash.dig(x)
       params[x] = params[x].join(";") if x == :synonym 
       child = child.update_with_clone(params, parent) 
-  rescue => e
-    byebug
-  end
     end
     child
   end
@@ -114,7 +110,6 @@ namespace :triple_store do
       process_custom_properties(parent, new_child, action_hash)
     elsif action == :refer
       if parent_hash.dig(:subsets)
-byebug
         source = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: parent_hash.dig(:subset_of)))
         subset = parent.is_ordered_objects
         subset.add([Uri.new(uri: action_hash[:uri]).to_id], source)
@@ -124,8 +119,18 @@ byebug
         new_child = add_referenced_child(parent, action_hash)
         process_custom_properties(parent, new_child, action_hash)
       end
+    elsif action == :remove
+      if parent_hash.dig(:subsets)
+        subset = parent.is_ordered_objects
+        items = subset.ordered_list
+byebug
+        item = items.find{ |x| x.item == Uri.new(uri: action_hash[:uri])}
+        subset.remove([item.id])
+      else
+        puts "Error: CLI remove action. Extends: #{parent_hash.dig(:extends)}. Uri: #{action_hash[:uri]}"
+      end  
     else
-      puts "Errror: CLI action"
+      puts "Error: CLI action"
     end
   end
 
