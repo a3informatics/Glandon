@@ -107,8 +107,32 @@ namespace :triple_store do
     Sparql::Query.new.query("ASK { #{uri.to_ref} th:subsets ?x }", "", [:th]).ask?
   end
 
+  def subset_master(uri)
+    query_string = %Q{
+      SELECT DISTINCT ?s WHERE 
+      {
+        #{uri.to_ref} th:subsets ?s
+      }
+    }
+    query_results = Sparql::Query.new.query(query_string, "", [:isoC, :isoI, :isoT, :isoR, :th])
+    return nil if query_results.empty?
+    query_results.by_object(:s).first
+  end
+
   def extends?(uri)
     Sparql::Query.new.query("ASK { #{uri.to_ref} th:extends ?x }", "", [:th]).ask?
+  end
+
+  def extension_master(uri)
+    query_string = %Q{
+      SELECT DISTINCT ?s WHERE 
+      {
+        #{uri.to_ref} th:extends ?s
+      }
+    }
+    query_results = Sparql::Query.new.query(query_string, "", [:isoC, :isoI, :isoT, :isoR, :th])
+    return nil if query_results.empty?
+    query_results.by_object(:s).first
   end
 
   def identify_summary_changes(items)
@@ -225,7 +249,6 @@ namespace :triple_store do
     prev_child_cp = prev_child.custom_properties.name_value_pairs
     cp_diff = curr_child_cp != prev_child_cp
     return false unless curr_child.diff?(prev_child) || cp_diff
-    @changes[current.identifier] = {action: :new_version, cl_uri: previous.uri.to_s, subsets: subsets?(current.uri), extends: extends?(current.uri), items: {}} unless @changes.key?(current.identifier)
     item_difference(current, curr_child, prev_child)
     custom_properties_difference(current, curr_child, prev_child, curr_child_cp, prev_child_cp)
     true
@@ -233,14 +256,22 @@ namespace :triple_store do
 
   def item_new?(current, curr_child)
     curr_child_cp = custom_properties_resolve!(custom_properties_remove_duplicates!(curr_child.custom_properties.name_value_pairs))
-    @changes[current.identifier] = {action: :new_version, cl_uri: current.uri.to_s, subsets: subsets?(current.uri), extends: extends?(current.uri), items: {}} unless @changes.key?(current.identifier)
     item_build_new(current, curr_child)
     custom_properties_build_new(current, curr_child, curr_child_cp)
     true
   end
 
+  def code_list_exists?(current, previous)
+    @changes[current.identifier] = {action: :new_version, cl_uri: previous.uri.to_s, subsets: subsets?(current.uri), extends: extends?(current.uri), items: {}} unless @changes.key?(current.identifier)
+    @changes[current.identifier][:subset_of] = subset_master(current.uri).to_s if @changes[current.identifier][:subsets]
+    @changes[current.identifier][:extension_of] = extension_master(current.uri).to_s if @changes[current.identifier][:extends]
+    true
+  end
+
   def code_list_new?(current)
     @changes[current.identifier] = {action: :create, cl_uri: current.uri.to_s, subsets: subsets?(current.uri), extends: extends?(current.uri), items: {}} unless @changes.key?(current.identifier)
+    @changes[current.identifier][:subset_of] = subset_master(current.uri).to_s if @changes[current.identifier][:subsets]
+    @changes[current.identifier][:extension_of] = extension_master(current.uri).to_s if @changes[current.identifier][:extends]
     code_list_build_new(current)
     true
   end
@@ -264,6 +295,8 @@ namespace :triple_store do
       if previous.nil?
         code_list_new?(current)
         #@to_ttl << {type: :code_list, item: current}
+      else
+        code_list_exists?(current, previous)
       end
 
       created.each do |curr_uri_s|
