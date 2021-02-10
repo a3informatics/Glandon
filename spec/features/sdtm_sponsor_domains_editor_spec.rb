@@ -218,8 +218,10 @@ describe "SDTM Sponsor Domains Editor", :type => :feature do
       # Remove CT Reference
       ui_editor_select_by_location 3, 8, offset_y: 30
 
-      ip_clear_selection('sdtm-term-ref')
-      ip_submit('sdtm-term-ref')
+      ui_in_modal do 
+        ip_clear_selection('sdtm-term-ref')
+        ip_submit('sdtm-term-ref')
+      end 
       ui_editor_check_value 3, 8, ""
     end
 
