@@ -35,22 +35,20 @@ namespace :triple_store do
 
   # Identify Updates
   def identify_updates
-    # After the filter line, only use if dont want completely new items
-    # FILTER (EXISTS { ?s isoT:hasPreviousVersion ?y } )
     query_string = %Q{
       SELECT DISTINCT ?s ?l ?v ?i ?sv WHERE 
       {
         ?s rdf:type #{Thesaurus::ManagedConcept.rdf_type.to_ref} .
+        ?s isoT:creationDate ?cd .
+        FILTER (?cd > "2020-09-26T00:00:00+00:00"^^xsd:dateTime)
         ?s isoT:hasState ?st .
-        ?st isoR:registrationStatus "Incomplete" .
-        FILTER (NOT EXISTS { ?s ^isoT:hasPreviousVersion ?x } )
         ?s isoT:hasIdentifier ?si .
         ?si isoI:hasScope/isoI:shortName "Sanofi" .
         ?s isoC:label ?l .
         ?si isoI:version ?v .
         ?si isoI:identifier ?i .
         ?si isoI:semanticVersion ?sv .
-      } ORDER BY ?l
+      } ORDER BY ?l ?v
     }
     query_results = Sparql::Query.new.query(query_string, "", [:isoC, :isoI, :isoT, :isoR])
     items = query_results.by_object_set([:s, :l, :v, :i, :sv])
@@ -262,14 +260,14 @@ namespace :triple_store do
   end
 
   def code_list_exists?(current, previous)
-    @changes[current.identifier] = {action: :new_version, uri: previous.uri.to_s, subsets: subsets?(current.uri), extends: extends?(current.uri), items: {}} unless @changes.key?(current.identifier)
+    @changes[current.identifier] = {action: :new_version, uri: previous.uri.to_s, identifier: previous.identifier, subsets: subsets?(current.uri), extends: extends?(current.uri), items: {}} unless @changes.key?(current.identifier)
     @changes[current.identifier][:subset_of] = subset_master(current.uri).to_s if @changes[current.identifier][:subsets]
     @changes[current.identifier][:extension_of] = extension_master(current.uri).to_s if @changes[current.identifier][:extends]
     true
   end
 
   def code_list_new?(current)
-    @changes[current.identifier] = {action: :create, uri: current.uri.to_s, subsets: subsets?(current.uri), extends: extends?(current.uri), items: {}} unless @changes.key?(current.identifier)
+    @changes[current.identifier] = {action: :create, uri: current.uri.to_s, identifier: current.identifier, subsets: subsets?(current.uri), extends: extends?(current.uri), items: {}} unless @changes.key?(current.identifier)
     @changes[current.identifier][:subset_of] = subset_master(current.uri).to_s if @changes[current.identifier][:subsets]
     @changes[current.identifier][:extension_of] = extension_master(current.uri).to_s if @changes[current.identifier][:extends]
     code_list_build_new(current)
@@ -377,7 +375,7 @@ namespace :triple_store do
   end
         
   def write_results
-    time_now = Time.now.strftime("%FT%T")
+    time_now = Time.now.strftime("%FT%H-%M-%S")
     full_path = Rails.root.join "public/test/triple_store_migration_#{time_now}.yaml"
     File.open(full_path, "w+") do |f|
       f.write(@changes.to_yaml)
