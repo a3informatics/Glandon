@@ -197,7 +197,7 @@ namespace :triple_store do
     difference.each {|k,v| @changes[current.identifier][:items][curr_child.identifier][k] = v[:current] if !v.is_a?(Array) && v.key?(:status) && v[:status] == :updated }
     pt = difference.dig(:preferred_term, :label)
     @changes[current.identifier][:items][curr_child.identifier][:preferred_term] = pt[:current] if !pt.nil? && pt[:status] == :updated
-    @changes[current.identifier][:items][curr_child.identifier][:synonym] = curr_child.synonyms_to_a
+    @changes[current.identifier][:items][curr_child.identifier][:synonym] = curr_child.synonyms_to_a if curr_child.synonyms_to_a != prev_child.synonyms_to_a
   end
 
   def item_build_new(current, curr_child)
@@ -207,7 +207,8 @@ namespace :triple_store do
     properties.each {|k,v| @changes[current.identifier][:items][curr_child.identifier][k] = v }
     pt = curr_child.to_h.dig(:preferred_term, :label)
     @changes[current.identifier][:items][curr_child.identifier][:preferred_term] = pt unless pt.nil?
-    @changes[current.identifier][:items][curr_child.identifier][:synonym] = curr_child.synonyms_to_a
+    @changes[current.identifier][:items][curr_child.identifier][:preferred_term] = curr_child.label if pt.nil?
+    @changes[current.identifier][:items][curr_child.identifier][:synonym] = curr_child.synonyms_to_a unless curr_child.synonyms_to_a.empty?
   end
 
   def code_list_build_new(current)
@@ -215,7 +216,8 @@ namespace :triple_store do
     properties.each {|k,v| @changes[current.identifier][k] = v} 
     pt = current.to_h.dig(:preferred_term, :label)
     @changes[current.identifier][:preferred_term] = pt unless pt.nil?
-    @changes[current.identifier][:synonyms] = current.synonyms_to_a
+    @changes[current.identifier][:items][curr_child.identifier][:preferred_term] = curr_child.label if pt.nil?
+    @changes[current.identifier][:synonyms] = current.synonyms_to_a unless curr_child.synonyms_to_a.empty?
   end
 
   def item_different?(current, previous, curr_child, prev_child)
