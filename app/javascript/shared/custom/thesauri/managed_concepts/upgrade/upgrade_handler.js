@@ -1,4 +1,4 @@
-import { $post } from 'shared/helpers/ajax'
+import { $put } from 'shared/helpers/ajax'
 
 /**
  * Upgrade Handler
@@ -35,7 +35,7 @@ export default class UpgradeHandler {
 
     this._loading( true )
 
-    $post({
+    $put({
       url: this.url,
       done: () => location.reload(),
       always: () => this._loading( false )
