@@ -17,6 +17,14 @@ namespace :triple_store do
     IsoManagedV2.create(child)
   end
 
+  def create_subset(master, action_hash)
+    new_mc = create_version(action_hash)
+    subset = Thesaurus::Subset.create(parent_uri: new_mc.uri)
+    new_mc.add_link(:is_ordered, subset.uri)
+    new_mc.add_link(:subsets, master.uri)
+    new_mc
+  end
+
   def add_child(parent, action_hash)
     child = Thesaurus::UnmanagedConcept.empty_concept
     child.merge!(params)
@@ -29,6 +37,13 @@ namespace :triple_store do
   def add_referenced_child(parent, action_hash)
     uri = Uri.new(uri: action_hash[:uri])
     parent.add_referenced_child([{id: uri.to_id, context_id: parent.id}])
+  end
+
+  def process_updates(parent, child, action_hash)
+    child.update_with_clone({definition: action_hash.dig(:definition)}, item) unless action_hash.dig(:definition).nil?
+    [:notation, :label, :extensible, :preferred_term, :synonym].each do |x|
+      puts "Not handling updates to #{x}" unless action_hash.dig(x).nil?
+    end
   end
 
   def process_custom_properties(parent, child, action_hash)
@@ -44,14 +59,16 @@ namespace :triple_store do
 
   def process_cli_action(parent, identifier, action_hash)
     action = action_hash.dig(:action)
+    child = Thesaurus::UnmanagedConcept.find(Uri.new(uri: action_hash.dig(:cli_uri)))
     if action == :update
-      tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri: action_hash.dig(:cli_uri)))
-      tc.update_with_clone({definition: action_hash.dig(:definition, :current)}, item) unless action_hash.dig(:definition, :current).nil?
-      process_custom_properties(parent, tc, action_hash)
+      new_child = process_updates(parent, child, action_hash)
+      process_custom_properties(parent, new_child, action_hash)
     elsif action == :create
-      new_tc = add_child(parent, action_hash)
+      new_child = add_child(parent, action_hash)
+      process_custom_properties(parent, new_child, action_hash)
     elsif action == :refer
-      new_tc = add_referenced_child(parent, action_hash)
+      new_child = add_referenced_child(parent, action_hash)
+      process_custom_properties(parent, new_child, action_hash)
     else
       puts "Errror CLI action"
     end
@@ -80,7 +97,7 @@ namespace :triple_store do
   end
 
   # Actual rake task
-  task :engine => :environment do
+  task :ct_engine => :environment do
     process
   end
 

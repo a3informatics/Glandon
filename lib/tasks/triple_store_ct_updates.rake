@@ -216,8 +216,8 @@ namespace :triple_store do
     properties.each {|k,v| @changes[current.identifier][k] = v} 
     pt = current.to_h.dig(:preferred_term, :label)
     @changes[current.identifier][:preferred_term] = pt unless pt.nil?
-    @changes[current.identifier][:items][curr_child.identifier][:preferred_term] = curr_child.label if pt.nil?
-    @changes[current.identifier][:synonyms] = current.synonyms_to_a unless curr_child.synonyms_to_a.empty?
+    @changes[current.identifier][:items][curr_child.identifier][:preferred_term] = current.label if pt.nil?
+    @changes[current.identifier][:synonyms] = current.synonyms_to_a unless current.synonyms_to_a.empty?
   end
 
   def item_different?(current, previous, curr_child, prev_child)
@@ -281,7 +281,8 @@ namespace :triple_store do
             warning: "***"
           }
         elsif prev_child.nil?
-          diff = previous.nil? ? true : item_new?(current, curr_child)
+          #diff = previous.nil? ? true : item_new?(current, curr_child)
+          diff = item_new?(current, curr_child)
           notes = previous.nil? ? "1st version of CL" : "No previous child"
           results << {
             uri: curr_uri_s, 
@@ -406,7 +407,7 @@ namespace :triple_store do
   # end
 
   # Actual rake task
-  task :read_ct_updates => :environment do
+  task :ct_updates => :environment do
     items = identify_updates
     identify_summary_changes(items)
     identify_detailed_changes(items)
