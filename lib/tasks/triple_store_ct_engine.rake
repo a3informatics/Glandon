@@ -73,6 +73,7 @@ namespace :triple_store do
   def add_referenced_child(parent, action_hash)
     uri = Uri.new(uri: action_hash[:uri])
     parent.add_referenced_children([{id: uri.to_id, context_id: parent.id}])
+    Thesaurus::UnmanagedConcept.find_full(uri)
   end
 
   def process_updates(parent, child, action_hash)
@@ -102,7 +103,7 @@ namespace :triple_store do
     end
   end
 
-  def process_cli_action(parent, identifier, action_hash)
+  def process_cli_action(parent, identifier, action_hash, parent_hash)
     action = action_hash.dig(:action)
     if action == :update
       child = Thesaurus::UnmanagedConcept.find_full(Uri.new(uri: action_hash.dig(:uri)))
@@ -112,8 +113,13 @@ namespace :triple_store do
       new_child = add_child(parent, action_hash)
       process_custom_properties(parent, new_child, action_hash)
     elsif action == :refer
-      if action_hash.dig(:subsets)
-        puts "Error: Subset item, not implemented"
+      if parent_hash.dig(:subsets)
+byebug
+        source = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: parent_hash.dig(:subset_of)))
+        subset = parent.is_ordered_objects
+        subset.add([Uri.new(uri: action_hash[:uri]).to_id], source)
+        new_child = Thesaurus::UnmanagedConcept.find_full(Uri.new(uri: action_hash[:uri]))
+        process_custom_properties(parent, new_child, action_hash)
       else
         new_child = add_referenced_child(parent, action_hash)
         process_custom_properties(parent, new_child, action_hash)
@@ -145,7 +151,7 @@ namespace :triple_store do
       puts "Error: CL action"
     end
     action_hash.dig(:items).each do |cli, cli_action_hash|
-      process_cli_action(item, cli, cli_action_hash)
+      process_cli_action(item, cli, cli_action_hash, action_hash)
     end
   end
 
