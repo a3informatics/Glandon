@@ -1,0 +1,12 @@
+<% if item.can_upgrade? %>
+
+  <% url = item.subset? 
+            upgrade_subset_thesauri_managed_concept_path(item) : 
+            upgrade_extension_thesauri_managed_concept_path(item) %>
+
+  <%= javascript_tag "const upgradeItemUrl = '#{ url }'; " %>
+
+  <%= render partial: "shared/context_menu/menu_item", :locals => { url: "#", id: "upgrade-button",
+      icon: "icon-upgrade", text: "Upgrade reference" } %>
+
+<% end %>
