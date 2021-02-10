@@ -2,9 +2,26 @@ namespace :triple_store do
 
   desc "Draft Updates"
 
+  def latest_version(identifier)
+    query_string = %{
+      SELECT DISTINCT ?s ?v WHERE         
+      {             
+        ?s rdf:type th:ManagedConcept .
+        ?s th:identifier "#{identifier}" .
+        ?s isoT:hasIdentifier ?si .
+        ?si isoI:hasScope/isoI:shortName "Sanofi" .
+        ?si isoI:version ?v .
+       } ORDER BY DESC(?v)
+    }
+    query_results = Sparql::Query.new.query(query_string, "", [:isoC, :isoI, :isoT, :isoR, :th])
+    items = query_results.by_object_set([:s, :v])
+    items.first[:s]
+  end
+
+
   def new_version(item)
     new_item = item.create_next_version
-    abort("Errors: new_version, #{new_item.errors.full_messages.to_sentence}") if new_item.errors.any?
+    #abort("Errors: new_version, #{new_item.errors.full_messages.to_sentence}") if new_item.errors.any?
   end
 
   def create_version(action_hash)
@@ -17,12 +34,18 @@ namespace :triple_store do
     pt = Thesaurus::PreferredTerm.where_only_or_create(action_hash[:preferred_term])
     params[:preferred_term] = pt.uri 
     params[:synonym] = []
-    action_hash[:synonym].each do |s|
-      synonym = Thesaurus::Synonym.where_only_or_create(s)
-      params[:synonym] << synonym.uri
+    if action_hash.key?(:synonym)
+      action_hash[:synonym].each do |s|
+        synonym = Thesaurus::Synonym.where_only_or_create(s)
+        params[:synonym] << synonym.uri
+      end
     end
-    new_child = IsoManagedV2.create(params)
+    new_child = Thesaurus::ManagedConcept.new(params)
+    new_child.set_initial(params[:identifier])
+    new_child.creation_date = new_child.last_change_date 
+    new_child.create_or_update(:create, true) if new_child.valid?(:create) && new_child.create_permitted?
     abort("Errors: create_version, #{new_child.errors.full_messages.to_sentence}") if new_child.errors.any?
+    new_child
   end
 
   def create_subset(master, action_hash)
@@ -49,20 +72,28 @@ namespace :triple_store do
 
   def add_referenced_child(parent, action_hash)
     uri = Uri.new(uri: action_hash[:uri])
-    parent.add_referenced_child([{id: uri.to_id, context_id: parent.id}])
+    parent.add_referenced_children([{id: uri.to_id, context_id: parent.id}])
   end
 
   def process_updates(parent, child, action_hash)
     [:definition, :notation, :label, :preferred_term, :synonym].each do |x|
+  begin
+      next if action_hash.dig(x).nil?
+      child = Thesaurus::UnmanagedConcept.find_full(child.uri)
       params = {}
       params[x] = action_hash.dig(x)
-      child.update_with_clone(params, item) unless action_hash.dig(x).nil?
+      params[x] = params[x].join(";") if x == :synonym 
+      child = child.update_with_clone(params, parent) 
+  rescue => e
+    byebug
+  end
     end
+    child
   end
 
   def process_custom_properties(parent, child, action_hash)
     return if action_hash.dig(:custom_properties).nil?        
-    child.load_custom_properties
+    child.load_custom_properties(parent)
     action_hash.dig(:custom_properties).each do |name, value|
       cp = child.custom_properties.property(name)
       params = {}
@@ -73,8 +104,8 @@ namespace :triple_store do
 
   def process_cli_action(parent, identifier, action_hash)
     action = action_hash.dig(:action)
-    child = Thesaurus::UnmanagedConcept.find(Uri.new(uri: action_hash.dig(:cli_uri)))
     if action == :update
+      child = Thesaurus::UnmanagedConcept.find_full(Uri.new(uri: action_hash.dig(:uri)))
       new_child = process_updates(parent, child, action_hash)
       process_custom_properties(parent, new_child, action_hash)
     elsif action == :create
@@ -93,14 +124,12 @@ namespace :triple_store do
   end
 
   def process_cl_action(identifier, action_hash)
+    item = nil
     return if action_hash.dig(:items).empty?
-
     puts "Action: #{identifier}"
-    
-    uri = Uri.new(uri: action_hash.dig(:cl_uri))
-    item = Thesaurus::ManagedConcept.find_minimum(uri)
     action = action_hash.dig(:action)
     if action == :new_version
+      uri = latest_version(identifier)
       item = Thesaurus::ManagedConcept.find_with_properties(uri)
       item = new_version(item)
     elsif action == :create
