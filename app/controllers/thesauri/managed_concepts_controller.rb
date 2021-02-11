@@ -78,11 +78,10 @@ class Thesauri::ManagedConceptsController < ManagedItemsController
     return true unless read_concept(protect_from_bad_id(params))
     @tc = @edit.item
     @tc.synonyms_and_preferred_terms
-    extension_of_uri = @tc.extension_of
-    @is_extending = !extension_of_uri.nil?
-    @is_extending_path = extension_of_uri.nil? ? "" : thesauri_managed_concept_path({id: extension_of_uri.to_id, managed_concept: {context_id: @context_id}})
+    @extended_tc = Thesaurus::ManagedConcept.find_minimum(@tc.extension_of.to_id)
     @close_path = history_thesauri_managed_concepts_path({managed_concept: {identifier: @tc.scoped_identifier, scope_id: @tc.scope}})
     @edit_tags_path = path_for(:edit_tags, @tc)
+    @upgradable = is_upgrade_allowed?(@tc, @extended_tc)
   end
 
   def edit_subset
@@ -95,6 +94,7 @@ class Thesauri::ManagedConceptsController < ManagedItemsController
     @subset = Thesaurus::Subset.find(@subset_mc.is_ordered_links)
     @close_path = history_thesauri_managed_concepts_path({managed_concept: {identifier: @subset_mc.scoped_identifier, scope_id: @subset_mc.scope}})
     @edit_tags_path = path_for(:edit_tags, @subset_mc)
+    @upgradable = is_upgrade_allowed?(@subset_mc, @source_mc)
   end
 
   def update
@@ -445,6 +445,36 @@ class Thesauri::ManagedConceptsController < ManagedItemsController
     render json: { }, status: 200
   end
 
+  def upgrade_extension
+    authorize Thesaurus, :edit?
+    tc = Thesaurus::ManagedConcept.find_full(protect_from_bad_id(params))
+    return true unless check_lock_for_item(tc)
+    old_reference = Thesaurus::ManagedConcept.find_minimum(tc.extends_links)
+    new_reference = old_reference.latest_version
+    tc = tc.upgrade_extension(new_reference)
+    if tc.errors.empty?
+      AuditTrail.create_item_event(current_user, tc, tc.audit_message(:upgraded))
+      render :json => {data: []}, :status => 200
+    else
+      render :json => {errors: tc.errors.full_messages}, :status => 422
+    end
+  end
+
+  def upgrade_subset
+    authorize Thesaurus, :edit?
+    tc = Thesaurus::ManagedConcept.find_full(protect_from_bad_id(params))
+    return true unless check_lock_for_item(tc)
+    old_reference = Thesaurus::ManagedConcept.find_minimum(tc.subsets_links)
+    new_reference = old_reference.latest_version
+    tc = tc.upgrade_subset(new_reference)
+    if tc.errors.empty?
+      AuditTrail.create_item_event(current_user, tc, tc.audit_message(:upgraded))
+      render :json => {data: []}, :status => 200
+    else
+      render :json => {errors: tc.errors.full_messages}, :status => 422
+    end
+  end
+
   def pair
     authorize Thesaurus, :edit?
     tc = Thesaurus::ManagedConcept.find_with_properties(protect_from_bad_id(params))
@@ -524,6 +554,10 @@ private
       extending_path: extending.nil? ? "" : thesauri_managed_concept_path(extending.to_id, { managed_concept: { context_id: context_id } }),
       extension_path: extension.nil? ? "" : thesauri_managed_concept_path(extension.to_id, { managed_concept: { context_id: context_id } })
     }
+  end
+
+  def is_upgrade_allowed?(object, source)
+    object.newer_source? && source.owned?
   end
 
   # Set the history path

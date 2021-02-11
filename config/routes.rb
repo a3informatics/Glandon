@@ -218,6 +218,8 @@ Rails.application.routes.draw do
         get :children_ranked
         post :pair
         post :unpair
+        put :upgrade_extension
+        put :upgrade_subset
       end
     end
     resources :unmanaged_concepts, only: [:show, :edit, :update, :destroy] do
