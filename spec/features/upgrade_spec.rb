@@ -180,7 +180,7 @@ describe "Upgrade Code Lists", type: :feature do
       wait_for_ajax 10 
 
       # Check first version not subsetted anymore
-      go_to_cl "Source CL", '0.1.0', action: :show 
+      go_to_cl @extension.has_identifier.identifier, '0.1.0', action: :show 
       context_menu_element_header :subsets 
       ui_in_modal do
         ui_check_table_info('subsets-index-table', 0, 0, 0)
@@ -188,7 +188,7 @@ describe "Upgrade Code Lists", type: :feature do
       end
 
       # Check new version now subsetted
-      go_to_cl "Source CL", '0.2.0', action: :show 
+      go_to_cl @extension.has_identifier.identifier, '0.2.0', action: :show 
       context_menu_element_header :subsets 
       ui_in_modal do
         ui_check_table_info('subsets-index-table', 1, 1, 1)
