@@ -669,6 +669,7 @@ describe Thesauri::ManagedConceptsController do
       expect(assigns(:subset).uri.to_id).to eq(sub_mc.is_ordered.uri.to_id)
       expect(assigns(:close_path)).to eq(history_thesauri_managed_concepts_path({managed_concept: {identifier: sub_mc.scoped_identifier, scope_id: sub_mc.scope}}))
       expect(assigns(:token)).to_not eq(nil)
+      expect(assigns(:upgradable)).to eq(false)
       expect(response).to render_template("edit_subset")
     end
 
@@ -777,10 +778,11 @@ describe Thesauri::ManagedConceptsController do
       tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001"))
       extended_tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C99079/V28#C99079"))
       get :edit_extension, params:{id: tc.id}
-      expect(assigns(:is_extending)).to eq(true)
-      expect(assigns(:is_extending_path)).to eq("/thesauri/managed_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzk5MDc5L1YyOCNDOTkwNzk=?managed_concept%5Bcontext_id%5D=")
+      expect(assigns(:tc).id).to eq(tc.id)
+      expect(assigns(:extended_tc).id).to eq(extended_tc.id)
       expect(assigns(:close_path)).to eq("/thesauri/managed_concepts/history?managed_concept%5Bidentifier%5D=A00001&managed_concept%5Bscope_id%5D=aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQUNNRQ%3D%3D")
       expect(assigns(:token)).to_not eq(nil)
+      expect(assigns(:upgradable)).to eq(false)
       expect(response).to render_template("edit_extension")
     end
 
@@ -816,6 +818,111 @@ describe Thesauri::ManagedConceptsController do
       actual = JSON.parse(response.body).deep_symbolize_keys[:errors]
       expect(actual[0]).to eq("The item is locked for editing by user: lock@example.com.")
       expect(AuditTrail.count).to eq(audit_count)
+    end
+
+  end
+
+  describe "upgrade extensions" do
+
+    login_curator
+
+    before :all do
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..34)
+      @lock_user = ua_add_user(email: "lock@example.com")
+      Token.delete_all
+    end
+
+    after :all do
+      ua_remove_user("lock@example.com")
+    end
+
+    it "upgrade extension" do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      tc_32 = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri:"http://www.cdisc.org/C99079/V32#C99079"))
+      item_1 = tc_32.create_extension
+      item_1 = Thesaurus::ManagedConcept.find_with_properties(item_1.uri)
+      token = Token.obtain(item_1, @user)
+      put :upgrade_extension, params:{id: item_1.id}
+      actual = check_good_json_response(response)
+      check_file_actual_expected(actual, sub_dir, "upgrade_extension_expected_1.yaml", equate_method: :hash_equal)
+    end
+
+    it "upgrade extension, lock error" do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      audit_count = AuditTrail.count
+      tc_32 = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri:"http://www.cdisc.org/C99079/V32#C99079"))
+      item_1 = tc_32.create_extension
+      item_1 = Thesaurus::ManagedConcept.find_with_properties(item_1.uri)
+      token = Token.obtain(item_1, @lock_user)
+      put :upgrade_extension, params:{id: item_1.id}
+      actual = check_error_json_response(response)
+      check_file_actual_expected(actual, sub_dir, "upgrade_extension_expected_2.yaml", equate_method: :hash_equal)
+      expect(AuditTrail.count).to eq(audit_count)
+    end
+
+  end
+
+    describe "upgrade subsets" do
+
+    login_curator
+
+    before :all do
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..34)
+      @lock_user = ua_add_user(email: "lock@example.com")
+      Token.delete_all
+    end
+
+    after :all do
+      ua_remove_user("lock@example.com")
+    end
+
+    it "upgrade subset" do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      tc_32 = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri:"http://www.cdisc.org/C99079/V32#C99079"))
+      item_1 = tc_32.create_subset
+      item_1 = Thesaurus::ManagedConcept.find_minimum(item_1.uri)
+      token = Token.obtain(item_1, @user)
+      put :upgrade_subset, params:{id: item_1.id}
+      actual = check_good_json_response(response)
+      check_file_actual_expected(actual, sub_dir, "upgrade_subset_expected_1.yaml", equate_method: :hash_equal)
+    end
+
+    it "upgrade subset, lock error" do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      audit_count = AuditTrail.count
+      tc_32 = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri:"http://www.cdisc.org/C99079/V32#C99079"))
+      item_1 = tc_32.create_subset
+      item_1 = Thesaurus::ManagedConcept.find_minimum(item_1.uri)
+      token = Token.obtain(item_1, @lock_user)
+      put :upgrade_extension, params:{id: item_1.id}
+      actual = check_error_json_response(response)
+      check_file_actual_expected(actual, sub_dir, "upgrade_subset_expected_2.yaml", equate_method: :hash_equal)
+      expect(AuditTrail.count).to eq(audit_count)
+    end
+
+    it "upgrade subset, bug" do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      tc = Thesaurus::ManagedConcept.create
+      make_standard(tc)
+      item_1 = tc.create_subset
+      item_1.update(is_ordered: Thesaurus::Subset.create(parent_uri: item_1.uri))
+      tc.create_next_version
+      item_1 = Thesaurus::ManagedConcept.find_minimum(item_1.uri)
+      token = Token.obtain(item_1, @user)
+      put :upgrade_subset, params:{id: item_1.id}
+      actual = check_good_json_response(response)
+      request.env['HTTP_ACCEPT'] = "application/json"
+      get :edit_subset, params:{id: item_1.id}, as: :js
+      expect(assigns(:subset_mc).id).to eq(item_1.id)
+      expect(assigns(:source_mc).id).to eq(item_1.subsets_links.to_id)
+      expect(assigns(:subset).uri.to_id).to eq(item_1.is_ordered_links.to_id)
+      expect(assigns(:token)).to_not eq(nil)
+      expect(assigns(:upgradable)).to eq(false)
+      expect(response).to render_template("edit_subset")
     end
 
   end

@@ -32,6 +32,10 @@
           <%= render partial: "shared/context_menu/menu_item", :locals => { url: "#change-notes-modal", id: "change-notes-button",
             icon: "icon-note", text: "Change notes", toggle: "modal" } %>
 
+          <% if @upgradable %>
+            <%= render partial: "shared/thesauri/managed_concepts/upgrade/upgrade_button", :locals => { item: @tc } %>
+          <% end %>
+
       <% end %>
 
     </div>

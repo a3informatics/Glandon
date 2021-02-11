@@ -2571,6 +2571,30 @@ describe "Thesaurus::ManagedConcept" do
 
   end
 
+  describe "Newer source?" do
+  
+    before :each do
+      load_files(schema_files, [])
+      load_data_file_into_triple_store("mdr_identification.ttl")
+      load_cdisc_term_versions(1..2)
+    end
+
+    it "newer source? I" do
+      tc_1 = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri:"http://www.cdisc.org/C49647/V1#C49647"))
+      item_1 = tc_1.create_extension
+      item_1 = Thesaurus::ManagedConcept.find_minimum(item_1.uri)
+      expect(item_1.newer_source?).to eq(true)
+    end
+
+    it "newer source? II" do
+      tc_1 = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri:"http://www.cdisc.org/C49499/V1#C49499"))
+      item_2 = tc_1.create_extension
+      item_2 = Thesaurus::ManagedConcept.find_minimum(item_2.uri)
+      expect(item_2.newer_source?).to eq(false)
+    end
+
+  end
+
   describe "dependency paths" do
 
     before :all  do
