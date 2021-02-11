@@ -822,6 +822,64 @@ describe Thesauri::ManagedConceptsController do
 
   end
 
+  describe "upgrade extensions" do
+
+    login_curator
+
+    before :all do
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..34)
+      @lock_user = ua_add_user(email: "lock@example.com")
+      Token.delete_all
+    end
+
+    after :all do
+      ua_remove_user("lock@example.com")
+    end
+
+    it "upgrade extension" do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      tc_32 = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri:"http://www.cdisc.org/C99079/V32#C99079"))
+      item_1 = tc_32.create_extension
+      item_1 = Thesaurus::ManagedConcept.find_with_properties(item_1.uri)
+      token = Token.obtain(item_1, @user)
+      put :upgrade_extension, params:{id: item_1.id}
+      actual = check_good_json_response(response)
+      check_file_actual_expected(actual, sub_dir, "upgrade_extension_expected_1.yaml", equate_method: :hash_equal)
+    end
+
+  end
+
+    describe "upgrade subsets" do
+
+    login_curator
+
+    before :all do
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..34)
+      @lock_user = ua_add_user(email: "lock@example.com")
+      Token.delete_all
+    end
+
+    after :all do
+      ua_remove_user("lock@example.com")
+    end
+
+    it "upgrade subset" do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      tc_32 = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri:"http://www.cdisc.org/C99079/V32#C99079"))
+      item_1 = tc_32.create_subset
+      item_1 = Thesaurus::ManagedConcept.find_minimum(item_1.uri)
+      token = Token.obtain(item_1, @user)
+      put :upgrade_subset, params:{id: item_1.id}
+      actual = check_good_json_response(response)
+      check_file_actual_expected(actual, sub_dir, "upgrade_subset_expected_1.yaml", equate_method: :hash_equal)
+    end
+
+  end
+
   describe "add children" do
 
     login_curator

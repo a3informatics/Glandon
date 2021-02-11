@@ -445,6 +445,36 @@ class Thesauri::ManagedConceptsController < ManagedItemsController
     render json: { }, status: 200
   end
 
+  def upgrade_extension
+    authorize Thesaurus, :edit?
+    tc = Thesaurus::ManagedConcept.find_full(protect_from_bad_id(params))
+    return true unless check_lock_for_item(tc)
+    old_reference = Thesaurus::ManagedConcept.find_minimum(tc.extends_links)
+    new_reference = old_reference.latest_version
+    tc = tc.upgrade_extension(new_reference)
+    if tc.errors.empty?
+      AuditTrail.create_item_event(current_user, tc, tc.audit_message(:upgraded))
+      render :json => {data: []}, :status => 200
+    else
+      render :json => {errors: tc.errors.full_messages}, :status => 422
+    end
+  end
+
+  def upgrade_subset
+    authorize Thesaurus, :edit?
+    tc = Thesaurus::ManagedConcept.find_full(protect_from_bad_id(params))
+    return true unless check_lock_for_item(tc)
+    old_reference = Thesaurus::ManagedConcept.find_minimum(tc.subsets_links)
+    new_reference = old_reference.latest_version
+    tc = tc.upgrade_subset(new_reference)
+    if tc.errors.empty?
+      AuditTrail.create_item_event(current_user, tc, tc.audit_message(:upgraded))
+      render :json => {data: []}, :status => 200
+    else
+      render :json => {errors: tc.errors.full_messages}, :status => 422
+    end
+  end
+
   def pair
     authorize Thesaurus, :edit?
     tc = Thesaurus::ManagedConcept.find_with_properties(protect_from_bad_id(params))
