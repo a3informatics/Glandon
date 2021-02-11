@@ -279,7 +279,7 @@ describe "Scenario 9 - Terminology Release, Clone, Impact and Upgrade", :type =>
       change_cdisc_version("2019-12-20")
 
       # Upgrade Terms
-      context_menu_element_header :upgrade
+      context_menu_element_header :upgrade_cls
       wait_for_ajax 20
       expect(page).to have_content("Upgrade Code Lists CLONE v0.1.0")
 
@@ -303,7 +303,7 @@ describe "Scenario 9 - Terminology Release, Clone, Impact and Upgrade", :type =>
       ui_check_table_cell("table-selection-overview", 3, 6, "0.2.0")
       ui_check_table_row_indicators("table-selection-overview", 3, 8, ["2 versions", "subset"])
 
-      context_menu_element_header :upgrade
+      context_menu_element_header :upgrade_cls
       wait_for_ajax 20
 
       # Upgrade Extension and Subset of Extension
@@ -412,7 +412,7 @@ describe "Scenario 9 - Terminology Release, Clone, Impact and Upgrade", :type =>
       change_cdisc_version("2019-12-20")
 
       # Upgrade Terms
-      context_menu_element_header :upgrade
+      context_menu_element_header :upgrade_cls
       wait_for_ajax 20
       click_row_contains("changes-cdisc-table", "Epoch")
       wait_for_ajax 10
