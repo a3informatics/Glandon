@@ -1,6 +1,6 @@
 namespace :triple_store do
 
-  desc "Draft Updates"
+  desc "Triple Store CT Engine"
 
   def latest_version(identifier)
     query_string = %{
@@ -17,7 +17,6 @@ namespace :triple_store do
     items = query_results.by_object_set([:s, :v])
     items.first[:s]
   end
-
 
   def new_version(item)
     new_item = item.create_next_version

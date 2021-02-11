@@ -1,37 +1,9 @@
 namespace :triple_store do
 
-  desc "Draft Updates"
+  desc "Triple Store CT Updates"
 
   @changes = {}
   @to_ttl = []
-
-  # Format results as a simple table
-  def display_results(items, labels, widths=[])
-    results = [labels]
-    results += items.map { |x| x.values }
-    max_lengths = results[0].map { |x| x.length }
-    unless widths.empty?
-      results.each_with_index do |x, j|
-        x.each_with_index do |e, i|
-          next if widths[i] == 0 
-          results[j][i]= "#{e.to_s[0..widths[i]-1]}[...]" if e.to_s.length > widths[i]
-        end
-      end
-    end
-    results.each do |x|
-      x.each_with_index do |e, i|
-        s = e.to_s.length
-        max_lengths[i] = s if s > max_lengths[i]
-      end
-    end
-    format = max_lengths.map {|y| "%#{y}s"}.join(" " * 3)
-    puts format % results[0]
-    puts format % max_lengths.map { |x| "-" * x }
-    results[1..-1].each do |x| 
-      puts format % x 
-    end
-    puts "\n\n"
-  end
 
   # Identify Updates
   def identify_updates
@@ -52,7 +24,7 @@ namespace :triple_store do
     }
     query_results = Sparql::Query.new.query(query_string, "", [:isoC, :isoI, :isoT, :isoR])
     items = query_results.by_object_set([:s, :l, :v, :i, :sv])
-    display_results(items, ["Uri", "Label", "Ver", "Identifier", "Semantic Ver"], [0, 75, 0, 0, 0])
+    display_results("Updates", items, ["Uri", "Label", "Ver", "Identifier", "Semantic Ver"], [0, 75, 0, 0, 0])
     items
   end
 
@@ -151,7 +123,7 @@ namespace :triple_store do
         difference: curr_children.count != curr_children.count || created.any? || deleted.any? ? "Y" : ""
       }
     end
-    display_results(results, ["Uri", "Current", "Previous", "Created", "Deleted", "Subsets", "Extends", "Difference"])
+    display_results("Changes - Summary", results, ["Uri", "Current", "Previous", "Created", "Deleted", "Subsets", "Extends", "Difference"])
     results
   end
 
@@ -280,10 +252,6 @@ namespace :triple_store do
 
   def identify_detailed_changes(items)
     items.each do |x| 
-      puts "\n"
-      puts "#{x[:i]}"
-      puts "=" * x[:i].length
-      puts ""
       results = []
       curr_children = identify_current_children(x[:s])
       prev_children = identify_previous_children(x[:s])
@@ -365,7 +333,7 @@ namespace :triple_store do
           warning: ""
         }
       end
-      display_results(results, ["Uri", "Different", "Checked", "Type", "Notes", "Warning"])
+      display_results("Detail: #{x[:i]}", results, ["Uri", "Different", "Checked", "Type", "Notes", "Warning"])
     end
   end
 
@@ -445,6 +413,9 @@ namespace :triple_store do
 
   # Actual rake task
   task :ct_updates => :environment do
+
+    include RakeDisplay
+
     items = identify_updates
     identify_summary_changes(items)
     identify_detailed_changes(items)
