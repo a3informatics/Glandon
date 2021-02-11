@@ -8,7 +8,7 @@
   :name: STUDYID
   :ct_and_format: ''
   :format: ''
-  :ct_reference: 
+  :ct_reference: []
   :description: Unique identifier for a study.
   :used: false
   :compliance:
@@ -20,6 +20,9 @@
   :classified_as:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Q0NmJiMzM3LTkyY2QtNDI1MC1iNTBjLTliZTUwNzlkNmFiMw==
     :label: Identifier
+  :notes: ''
+  :method: ''
+  :comment: ''
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19NSC9WMSNJR0RfRE9NQUlO
   :uri: http://www.cdisc.org/SDTM_IG_MH/V1#IGD_DOMAIN
   :ordinal: 2
@@ -29,7 +32,7 @@
   :name: DOMAIN
   :ct_and_format: ''
   :format: ''
-  :ct_reference: 
+  :ct_reference: []
   :description: Two-character abbreviation for the domain.
   :used: false
   :compliance:
@@ -41,6 +44,9 @@
   :classified_as:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Q0NmJiMzM3LTkyY2QtNDI1MC1iNTBjLTliZTUwNzlkNmFiMw==
     :label: Identifier
+  :notes: ''
+  :method: ''
+  :comment: ''
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19NSC9WMSNJR0RfVVNVQkpJRA==
   :uri: http://www.cdisc.org/SDTM_IG_MH/V1#IGD_USUBJID
   :ordinal: 3
@@ -50,7 +56,7 @@
   :name: USUBJID
   :ct_and_format: ''
   :format: ''
-  :ct_reference: 
+  :ct_reference: []
   :description: Identifier used to uniquely identify a subject across all studies
     for all applications or submissions involving the product.
   :used: false
@@ -63,6 +69,9 @@
   :classified_as:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Q0NmJiMzM3LTkyY2QtNDI1MC1iNTBjLTliZTUwNzlkNmFiMw==
     :label: Identifier
+  :notes: ''
+  :method: ''
+  :comment: ''
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19NSC9WMSNJR0RfTUhTRVE=
   :uri: http://www.cdisc.org/SDTM_IG_MH/V1#IGD_MHSEQ
   :ordinal: 4
@@ -72,7 +81,7 @@
   :name: MHSEQ
   :ct_and_format: ''
   :format: ''
-  :ct_reference: 
+  :ct_reference: []
   :description: Sequence Number given to ensure uniqueness of subject records within
     a domain. May be any valid number.
   :used: false
@@ -85,6 +94,9 @@
   :classified_as:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Q0NmJiMzM3LTkyY2QtNDI1MC1iNTBjLTliZTUwNzlkNmFiMw==
     :label: Identifier
+  :notes: ''
+  :method: ''
+  :comment: ''
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19NSC9WMSNJR0RfTUhHUlBJRA==
   :uri: http://www.cdisc.org/SDTM_IG_MH/V1#IGD_MHGRPID
   :ordinal: 5
@@ -94,7 +106,7 @@
   :name: MHGRPID
   :ct_and_format: ''
   :format: ''
-  :ct_reference: 
+  :ct_reference: []
   :description: Used to tie together a block of related records in a single domain
     for a subject.
   :used: false
@@ -107,6 +119,9 @@
   :classified_as:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Q0NmJiMzM3LTkyY2QtNDI1MC1iNTBjLTliZTUwNzlkNmFiMw==
     :label: Identifier
+  :notes: ''
+  :method: ''
+  :comment: ''
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19NSC9WMSNJR0RfTUhSRUZJRA==
   :uri: http://www.cdisc.org/SDTM_IG_MH/V1#IGD_MHREFID
   :ordinal: 6
@@ -116,7 +131,7 @@
   :name: MHREFID
   :ct_and_format: ''
   :format: ''
-  :ct_reference: 
+  :ct_reference: []
   :description: Internal or external medical history identifier.
   :used: false
   :compliance:
@@ -128,6 +143,9 @@
   :classified_as:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Q0NmJiMzM3LTkyY2QtNDI1MC1iNTBjLTliZTUwNzlkNmFiMw==
     :label: Identifier
+  :notes: ''
+  :method: ''
+  :comment: ''
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19NSC9WMSNJR0RfTUhTUElE
   :uri: http://www.cdisc.org/SDTM_IG_MH/V1#IGD_MHSPID
   :ordinal: 7
@@ -137,7 +155,7 @@
   :name: MHSPID
   :ct_and_format: ''
   :format: ''
-  :ct_reference: 
+  :ct_reference: []
   :description: 'Sponsor-defined reference number. Perhaps pre-printed on the CRF
     as an explicit line identifier or defined in the sponsor''s operational database.
     Example: Line number on a Medical History page.'
@@ -151,6 +169,9 @@
   :classified_as:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Q0NmJiMzM3LTkyY2QtNDI1MC1iNTBjLTliZTUwNzlkNmFiMw==
     :label: Identifier
+  :notes: ''
+  :method: ''
+  :comment: ''
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19NSC9WMSNJR0RfTUhURVJN
   :uri: http://www.cdisc.org/SDTM_IG_MH/V1#IGD_MHTERM
   :ordinal: 8
@@ -160,7 +181,7 @@
   :name: MHTERM
   :ct_and_format: ''
   :format: ''
-  :ct_reference: 
+  :ct_reference: []
   :description: Verbatim or preprinted CRF term for the medical condition or event.
   :used: false
   :compliance:
@@ -172,6 +193,9 @@
   :classified_as:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzY5MmNhZmJmLTY1OGEtNDNmMC05N2EyLWYwNDBlY2IxYTIwZA==
     :label: Topic
+  :notes: ''
+  :method: ''
+  :comment: ''
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19NSC9WMSNJR0RfTUhNT0RJRlk=
   :uri: http://www.cdisc.org/SDTM_IG_MH/V1#IGD_MHMODIFY
   :ordinal: 9
@@ -181,7 +205,7 @@
   :name: MHMODIFY
   :ct_and_format: ''
   :format: ''
-  :ct_reference: 
+  :ct_reference: []
   :description: If MHTERM is modified to facilitate coding, then MHMODIFY will contain
     the modified text.
   :used: false
@@ -194,6 +218,9 @@
   :classified_as:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzg2Y2Q2MWU2LWQ0OGMtNGU0Mi1iOTk0LWJlZTM1ZTIzNTFmZQ==
     :label: None
+  :notes: ''
+  :method: ''
+  :comment: ''
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19NSC9WMSNJR0RfTUhERUNPRA==
   :uri: http://www.cdisc.org/SDTM_IG_MH/V1#IGD_MHDECOD
   :ordinal: 10
@@ -203,7 +230,7 @@
   :name: MHDECOD
   :ct_and_format: ''
   :format: ''
-  :ct_reference: 
+  :ct_reference: []
   :description: Dictionary-derived text description of MHTERM or MHMODIFY. Equivalent
     to the Preferred Term (PT in MedDRA). The sponsor is expected to provide the dictionary
     name and version used to map the terms utilizing the define.xml external codelist
@@ -218,6 +245,9 @@
   :classified_as:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzg2Y2Q2MWU2LWQ0OGMtNGU0Mi1iOTk0LWJlZTM1ZTIzNTFmZQ==
     :label: None
+  :notes: ''
+  :method: ''
+  :comment: ''
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19NSC9WMSNJR0RfTUhDQVQ=
   :uri: http://www.cdisc.org/SDTM_IG_MH/V1#IGD_MHCAT
   :ordinal: 11
@@ -227,7 +257,7 @@
   :name: MHCAT
   :ct_and_format: ''
   :format: ''
-  :ct_reference: 
+  :ct_reference: []
   :description: 'Used to define a category of related records. Examples: CARDIAC or
     GENERAL'
   :used: false
@@ -240,6 +270,9 @@
   :classified_as:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzlmYjI5ZjhiLTUwNWEtNGM0Zi1iNTUwLTE3NWZiZmVjOTMyZA==
     :label: Grouping
+  :notes: ''
+  :method: ''
+  :comment: ''
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19NSC9WMSNJR0RfTUhTQ0FU
   :uri: http://www.cdisc.org/SDTM_IG_MH/V1#IGD_MHSCAT
   :ordinal: 12
@@ -249,7 +282,7 @@
   :name: MHSCAT
   :ct_and_format: ''
   :format: ''
-  :ct_reference: 
+  :ct_reference: []
   :description: A further categorization of the condition or event.
   :used: false
   :compliance:
@@ -261,6 +294,9 @@
   :classified_as:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzlmYjI5ZjhiLTUwNWEtNGM0Zi1iNTUwLTE3NWZiZmVjOTMyZA==
     :label: Grouping
+  :notes: ''
+  :method: ''
+  :comment: ''
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19NSC9WMSNJR0RfTUhQUkVTUA==
   :uri: http://www.cdisc.org/SDTM_IG_MH/V1#IGD_MHPRESP
   :ordinal: 13
@@ -271,7 +307,7 @@
   :ct_and_format: "(NY)"
   :format: ''
   :ct_reference:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19NSC9WMSNJR0RfTUhQUkVTUF9UTUMx
+  - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19NSC9WMSNJR0RfTUhQUkVTUF9UTUMx
     :uri: http://www.cdisc.org/SDTM_IG_MH/V1#IGD_MHPRESP_TMC1
     :rdf_type: http://www.assero.co.uk/BusinessOperational#TMcReference
     :label: NY
@@ -298,6 +334,9 @@
   :classified_as:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzRiYjc1NzhjLTY3MDUtNGQyZS05M2Q2LWI1Njk2MGQ5ZTIxZQ==
     :label: Record
+  :notes: ''
+  :method: ''
+  :comment: ''
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19NSC9WMSNJR0RfTUhPQ0NVUg==
   :uri: http://www.cdisc.org/SDTM_IG_MH/V1#IGD_MHOCCUR
   :ordinal: 14
@@ -308,7 +347,7 @@
   :ct_and_format: "(NY)"
   :format: ''
   :ct_reference:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19NSC9WMSNJR0RfTUhPQ0NVUl9UTUMx
+  - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19NSC9WMSNJR0RfTUhPQ0NVUl9UTUMx
     :uri: http://www.cdisc.org/SDTM_IG_MH/V1#IGD_MHOCCUR_TMC1
     :rdf_type: http://www.assero.co.uk/BusinessOperational#TMcReference
     :label: NY
@@ -335,6 +374,9 @@
   :classified_as:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzRiYjc1NzhjLTY3MDUtNGQyZS05M2Q2LWI1Njk2MGQ5ZTIxZQ==
     :label: Record
+  :notes: ''
+  :method: ''
+  :comment: ''
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19NSC9WMSNJR0RfTUhTVEFU
   :uri: http://www.cdisc.org/SDTM_IG_MH/V1#IGD_MHSTAT
   :ordinal: 15
@@ -345,7 +387,7 @@
   :ct_and_format: "(ND)"
   :format: ''
   :ct_reference:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19NSC9WMSNJR0RfTUhTVEFUX1RNQzE=
+  - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19NSC9WMSNJR0RfTUhTVEFUX1RNQzE=
     :uri: http://www.cdisc.org/SDTM_IG_MH/V1#IGD_MHSTAT_TMC1
     :rdf_type: http://www.assero.co.uk/BusinessOperational#TMcReference
     :label: ND
@@ -370,6 +412,9 @@
   :classified_as:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzRiYjc1NzhjLTY3MDUtNGQyZS05M2Q2LWI1Njk2MGQ5ZTIxZQ==
     :label: Record
+  :notes: ''
+  :method: ''
+  :comment: ''
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19NSC9WMSNJR0RfTUhSRUFTTkQ=
   :uri: http://www.cdisc.org/SDTM_IG_MH/V1#IGD_MHREASND
   :ordinal: 16
@@ -379,7 +424,7 @@
   :name: MHREASND
   :ct_and_format: ''
   :format: ''
-  :ct_reference: 
+  :ct_reference: []
   :description: Describes the reason data for a pre-specified condition was not collected.
     Used in conjunction with MHSTAT when value is NOT DONE.
   :used: false
@@ -392,6 +437,9 @@
   :classified_as:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzRiYjc1NzhjLTY3MDUtNGQyZS05M2Q2LWI1Njk2MGQ5ZTIxZQ==
     :label: Record
+  :notes: ''
+  :method: ''
+  :comment: ''
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19NSC9WMSNJR0RfTUhCT0RTWVM=
   :uri: http://www.cdisc.org/SDTM_IG_MH/V1#IGD_MHBODSYS
   :ordinal: 17
@@ -401,7 +449,7 @@
   :name: MHBODSYS
   :ct_and_format: ''
   :format: ''
-  :ct_reference: 
+  :ct_reference: []
   :description: Dictionary-derived. Body system or organ class that is involved in
     an event or measurement from a standard hierarchy (e.g., MedDRA). When using a
     multi-axial dictionary such as MedDRA, this should contain the SOC used for the
@@ -417,6 +465,9 @@
   :classified_as:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzRiYjc1NzhjLTY3MDUtNGQyZS05M2Q2LWI1Njk2MGQ5ZTIxZQ==
     :label: Record
+  :notes: ''
+  :method: ''
+  :comment: ''
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19NSC9WMSNJR0RfTUhEVEM=
   :uri: http://www.cdisc.org/SDTM_IG_MH/V1#IGD_MHDTC
   :ordinal: 18
@@ -426,7 +477,7 @@
   :name: MHDTC
   :ct_and_format: ISO 8601
   :format: ISO 8601
-  :ct_reference: 
+  :ct_reference: []
   :description: ''
   :used: false
   :compliance:
@@ -438,6 +489,9 @@
   :classified_as:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzJjM2ZmMzg2LWEwNjItNDdmNS1iNTk0LWVlZjdlYWQwMjI0Mw==
     :label: Timing
+  :notes: ''
+  :method: ''
+  :comment: ''
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19NSC9WMSNJR0RfTUhTVERUQw==
   :uri: http://www.cdisc.org/SDTM_IG_MH/V1#IGD_MHSTDTC
   :ordinal: 19
@@ -447,7 +501,7 @@
   :name: MHSTDTC
   :ct_and_format: ISO 8601
   :format: ISO 8601
-  :ct_reference: 
+  :ct_reference: []
   :description: ''
   :used: false
   :compliance:
@@ -459,6 +513,9 @@
   :classified_as:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzJjM2ZmMzg2LWEwNjItNDdmNS1iNTk0LWVlZjdlYWQwMjI0Mw==
     :label: Timing
+  :notes: ''
+  :method: ''
+  :comment: ''
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19NSC9WMSNJR0RfTUhFTkRUQw==
   :uri: http://www.cdisc.org/SDTM_IG_MH/V1#IGD_MHENDTC
   :ordinal: 20
@@ -468,7 +525,7 @@
   :name: MHENDTC
   :ct_and_format: ISO 8601
   :format: ISO 8601
-  :ct_reference: 
+  :ct_reference: []
   :description: ''
   :used: false
   :compliance:
@@ -480,6 +537,9 @@
   :classified_as:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzJjM2ZmMzg2LWEwNjItNDdmNS1iNTk0LWVlZjdlYWQwMjI0Mw==
     :label: Timing
+  :notes: ''
+  :method: ''
+  :comment: ''
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19NSC9WMSNJR0RfTUhEWQ==
   :uri: http://www.cdisc.org/SDTM_IG_MH/V1#IGD_MHDY
   :ordinal: 21
@@ -489,7 +549,7 @@
   :name: MHDY
   :ct_and_format: ''
   :format: ''
-  :ct_reference: 
+  :ct_reference: []
   :description: 1. Study day of medical history collection, measured as integer days.
     2. Algorithm for calculations must be relative to the sponsor-defined RFSTDTC
     variable in Demographics. This formula should be consistent across the submission.
@@ -503,6 +563,9 @@
   :classified_as:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzJjM2ZmMzg2LWEwNjItNDdmNS1iNTk0LWVlZjdlYWQwMjI0Mw==
     :label: Timing
+  :notes: ''
+  :method: ''
+  :comment: ''
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19NSC9WMSNJR0RfTUhFTlJG
   :uri: http://www.cdisc.org/SDTM_IG_MH/V1#IGD_MHENRF
   :ordinal: 22
@@ -513,7 +576,7 @@
   :ct_and_format: "(STENRF)"
   :format: ''
   :ct_reference:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19NSC9WMSNJR0RfTUhFTlJGX1RNQzE=
+  - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19NSC9WMSNJR0RfTUhFTlJGX1RNQzE=
     :uri: http://www.cdisc.org/SDTM_IG_MH/V1#IGD_MHENRF_TMC1
     :rdf_type: http://www.assero.co.uk/BusinessOperational#TMcReference
     :label: STENRF
@@ -541,6 +604,9 @@
   :classified_as:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzJjM2ZmMzg2LWEwNjItNDdmNS1iNTk0LWVlZjdlYWQwMjI0Mw==
     :label: Timing
+  :notes: ''
+  :method: ''
+  :comment: ''
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19NSC9WMSNJR0RfTUhFTlJUUFQ=
   :uri: http://www.cdisc.org/SDTM_IG_MH/V1#IGD_MHENRTPT
   :ordinal: 23
@@ -550,7 +616,7 @@
   :name: MHENRTPT
   :ct_and_format: BEFORE, AFTER, COINCIDENT, ONGOING, U
   :format: BEFORE, AFTER, COINCIDENT, ONGOING, U
-  :ct_reference: 
+  :ct_reference: []
   :description: Identifies the end of the event as being before or after the reference
     time point defined by variable MHENTPT.
   :used: false
@@ -563,6 +629,9 @@
   :classified_as:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzJjM2ZmMzg2LWEwNjItNDdmNS1iNTk0LWVlZjdlYWQwMjI0Mw==
     :label: Timing
+  :notes: ''
+  :method: ''
+  :comment: ''
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19NSC9WMSNJR0RfTUhFTlRQVA==
   :uri: http://www.cdisc.org/SDTM_IG_MH/V1#IGD_MHENTPT
   :ordinal: 24
@@ -572,7 +641,7 @@
   :name: MHENTPT
   :ct_and_format: ''
   :format: ''
-  :ct_reference: 
+  :ct_reference: []
   :description: 'Description or date/time in ISO 8601 character format of the reference
     point referred to by MHENRTPT. Examples: ''2003-12-25'' or ''VISIT 2''.'
   :used: false
@@ -585,3 +654,6 @@
   :classified_as:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzJjM2ZmMzg2LWEwNjItNDdmNS1iNTk0LWVlZjdlYWQwMjI0Mw==
     :label: Timing
+  :notes: ''
+  :method: ''
+  :comment: ''

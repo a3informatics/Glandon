@@ -3,7 +3,7 @@ import ManagedItemsPanel from 'shared/custom/iso_managed/managed_items_panel'
 
 import { $get } from 'shared/helpers/ajax'
 import { csvExportBtn, excelExportBtn } from 'shared/helpers/dt/utils'
-import { dtTrueFalseColumn } from 'shared/helpers/dt/dt_columns'
+import { dtBooleanColumn } from 'shared/helpers/dt/dt_columns'
 
 /**
  * Status Impact Modal module
@@ -163,6 +163,7 @@ export default class StatusImpactModal extends ModalView {
   _initPanel() {
 
     return new ManagedItemsPanel({
+      url: this.dataUrl,
       selector: this.selector,
       deferLoading: true,
       autoHeight: true,
@@ -172,7 +173,7 @@ export default class StatusImpactModal extends ModalView {
       ],
       addedColumns: [
         { data: 'registration_status' },
-        dtTrueFalseColumn( 'state_update_allowed', { orderable: false } )
+        dtBooleanColumn( 'state_update_allowed', { orderable: false } )
       ],
       tableOptions: {
         order: [[3, 'asc']]

@@ -6,7 +6,7 @@ import D3Actions from 'shared/helpers/d3/renderers/actions'
 
 import { renderWithFilledIconsLabels as renderStyledNodes } from 'shared/helpers/d3/renderers/nodes'
 import { cropText } from 'shared/helpers/strings' 
-import { managedConceptRef } from 'shared/ui/strings'
+import { managedItemRef } from 'shared/ui/strings'
 import { iconBtn } from 'shared/ui/buttons'
 import { alerts } from 'shared/ui/alerts'
 
@@ -280,7 +280,7 @@ export default class ImpactGraph extends ForceGraph {
         ${ node.rdfName } 
       </div>
       ${ node.isRoot ? '<div class="text-tiny"> <i>Source Node</i> </div>' : '' }
-      ${ managedConceptRef(node.data) }
+      ${ managedItemRef(node.data) }
     </div>`
 
     this.D3Tooltip.show( html )

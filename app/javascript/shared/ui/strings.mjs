@@ -1,35 +1,38 @@
 /*** Renderers for shared Strings ***/
 
+
 /**
- * Returns String representation of a Concept
+ * Returns String representation of an Iso Concept
  * @param {Object} c Concept data object, fields: (label, identifier)
  * @return {string} Concept as a string reference
  */
 function conceptRef(c) {
-  return `${c.label} (${c.identifier})`;
+  return `${ c.label } (${ c.identifier })`
 }
 
 /**
- * Returns String representation of an UnmangedConcept
- * @param {Object} uc UnmanagedConcept data object, fields: (notation || label, identifier)
- * @param {Object} mc ManagedConcept data object, fields: (notation || label, identifier, semantic_version)
- * @return {string} UnmanagedConcept as a string reference
+ * Returns String representation of a Managed Item
+ * @param {Object} mi Managed Item data object, fields: (notation || label, identifier, semantic_version)
+ * @return {string} Managed Item as a string reference
  */
-function unmanagedConceptRef(uc, mc) {
-  _handleNestedProperties(uc);
+function managedItemRef(mi) {
 
-  return `${uc.notation || uc.label} ${uc.identifier} <span class="text-xtiny">(${managedConceptRef(mc)})</span>`;
+  mi = _handleNestedProperties(mi)
+  return `${ mi.notation || mi.label } ${ mi.identifier } v${ mi.semantic_version }`
+
 }
 
 /**
- * Returns String representation of a ManagedConcept
- * @param {Object} mc ManagedConcept data object, fields: (notation || label, identifier, semantic_version)
- * @return {string} ManagedConcept as a string reference
+ * Returns String representation of an Unmanaged Item
+ * @param {Object} ui Unmanaged Item data object, fields: (notation || label, identifier)
+ * @param {Object} mi Managed Item data object, fields: (notation || label, identifier, semantic_version)
+ * @return {string} Unmanaged Item as a string reference
  */
-function managedConceptRef(mc) {
-  _handleNestedProperties(mc);
+function unmanagedItemRef(ui, mi) {
 
-  return `${mc.notation || mc.label} ${mc.identifier} v${mc.semantic_version}`;
+  ui = _handleNestedProperties(ui)
+  return `${ ui.notation || ui.label} ${ui.identifier } <span class="text-xtiny">(${ managedItemRef(mi) })</span>`
+
 }
 
 
@@ -42,14 +45,20 @@ function managedConceptRef(mc) {
  * @return {Object} transformed object with properties in base level
  */
 function _handleNestedProperties(data) {
-  if (data.has_identifier) {
-    data.semantic_version = data.has_identifier.semantic_version;
-    data.identifier = data.has_identifier.identifier;
-  }
+
+  if ( data.has_identifier ) 
+
+    return Object.assign( {}, data, {
+      semantic_version: data.has_identifier.semantic_version,
+      identifier: data.has_identifier.identifier
+    })
+  
+  return data 
+
 }
 
 export {
-  unmanagedConceptRef,
-  managedConceptRef,
+  unmanagedItemRef,
+  managedItemRef,
   conceptRef
 }

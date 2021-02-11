@@ -1,16 +1,19 @@
 import EditablePanel from 'shared/base/editable_panel'
 
+import ItemsPicker from 'shared/ui/items_picker/items_picker'
+
 import { $confirm } from 'shared/helpers/confirmable'
 import { alerts } from 'shared/ui/alerts'
 import { $post, $delete } from 'shared/helpers/ajax'
 import { jumpToRow, highlightRow } from 'shared/helpers/dt/utils'
 
-import { dtSDTMIGDomainEditColumns } from 'shared/helpers/dt/dt_column_collections'
+import { dtSDTMSDDomainEditColumns } from 'shared/helpers/dt/dt_column_collections'
 import { dtSDTMSDEditFields } from 'shared/helpers/dt/dt_field_collections'
 import { dtRowRemoveColumn } from 'shared/helpers/dt/dt_columns'
 
 import { getEditorSelectOptions } from 'shared/helpers/dt/dt_metadata'
 import { dtFieldsInit } from 'shared/helpers/dt/dt_fields'
+import { renameKey } from 'shared/helpers/objects'
 
 /**
  * SDTM Sponsor Domain Editor 
@@ -33,14 +36,14 @@ export default class SDTMSDEditor extends EditablePanel {
     onEdited = () => {}
   }) {
 
-    dtFieldsInit( ['truefalse'] );
+    dtFieldsInit( ['boolean', 'picker'] );
     
     super({
       selector,
       dataUrl: urls.data,
       updateUrl: urls.updateVar,
       param: "sdtm_sponsor_domain",
-      columns: dtSDTMIGDomainEditColumns(),
+      columns: dtSDTMSDDomainEditColumns(),
       fields: dtSDTMSDEditFields(),
       order: [[0, 'asc']],
       requiresMetadata: true,
@@ -93,17 +96,23 @@ export default class SDTMSDEditor extends EditablePanel {
 
     $confirm({
       dangerous: true,
-      callback: () => $delete({
-                        url: this.urls.removeVar,
-                        data: {
-                          [ this.param ]: {
-                            non_standard_var_id: dtRow.data().id
-                          }
-                        },
-                        done: () => this.onEdited(),
-                        always: () => this.refresh()
-                      })
-    });
+      callback: () => {
+
+        this._loading( true )
+
+        $delete({
+          url: this.urls.removeVar,
+          data: {
+            [ this.param ]: {
+              non_standard_var_id: dtRow.data().id
+            }
+          },
+          done: () => this.onEdited(),
+          always: () => this.refresh()
+        })
+
+      }
+    })
 
   }
 
@@ -153,6 +162,8 @@ export default class SDTMSDEditor extends EditablePanel {
       }).show()
     );
 
+setTimeout( () => console.log(this.rowDataToArray), 1500 )
+
   }
 
   /**
@@ -161,17 +172,18 @@ export default class SDTMSDEditor extends EditablePanel {
    */
   _preformatUpdateData(d) {
 
-    const updateData = Object.keys( d.data ).map( id =>
-      Object.assign( {}, { 
-          ...d.data[ id ], 
-          non_standard_var_id: id 
-      } )
-    )
+    let [ data ] = super._preformatUpdateData( d )
 
-    d.sdtm_sponsor_domain = { 
-      ...updateData[0]
-    }
+    // Map CT reference data objects to id value(s) only
+    if ( data.ct_reference ) 
+      data.ct_reference = data.ct_reference.map( item => item.reference.id )
 
+    // Rename id param to non_standard_var_id
+    data = renameKey( data, 'id', 'non_standard_var_id' )
+
+    d.sdtm_sponsor_domain = data
+
+    // Clear unused prop
     delete d.data;
 
   }
@@ -184,13 +196,12 @@ export default class SDTMSDEditor extends EditablePanel {
    */
   _postformatUpdatedData(_oldData, newData) {
 
-
     // Merge and update edited row data
     const editedRow = this.table.row( this.editor.modifier().row ),
-          mergedData = Object.assign( {}, editedRow.data(), newData[0] );
+          mergedData = Object.assign( {}, editedRow.data(), newData[0] )
 
-    editedRow.data( mergedData );
-    
+    editedRow.data( mergedData )
+
   }
 
   /**
@@ -221,10 +232,12 @@ export default class SDTMSDEditor extends EditablePanel {
    */
   _editable(modifier) {
 
-    const { standard } = this.table.row( modifier.row ).data(),
-          fieldName = this.table.column( modifier.column ).dataSrc()
+    const editableInAllVariables = [ 'used', 'notes', 'comment', 'method' ] 
 
-    return standard === false || fieldName === 'used';
+    const { standard } = this.table.row( modifier.row || modifier ).data(),
+          fieldName = this.table.column( modifier.column || modifier ).dataSrc()
+
+    return standard === false || editableInAllVariables.includes( fieldName )
 
   }
 
@@ -235,6 +248,29 @@ export default class SDTMSDEditor extends EditablePanel {
    */
   _removeNotAllowed(data) {
     return data.standard === true
+  }
+
+  /**
+   * Initializes Items Pickers to use in an Editable Panel
+   * @override super's _initPickers
+   */
+  _initPickers() {
+
+    super._initPickers()
+
+    // Initializes Terminology Reference Picker
+    this.editor.pickers[ 'refPicker' ] = new ItemsPicker({
+      id: 'sdtm-term-ref',
+      types: ['managed_concept'],
+      submitText: 'Submit selection',
+      emptyEnabled: true,
+      onShow: () => this.keysDisable(),
+      onHide: () => {
+        this.editor.close();
+        this.keysEnable();
+      }
+    })
+
   }
 
 

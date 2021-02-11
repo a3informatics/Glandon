@@ -1,0 +1,38 @@
+<% content_for :page_title do %> <%= "Show Managed Collection: #{@mc.has_identifier.identifier} (#{@mc.semantic_version})" %> <% end %>
+
+<%= javascript_pack_tag 'managed_collections/show' %>
+
+<% third_level_breadcrumb(:managed_collections, @mc, @close_path) %>
+
+<div class="row">
+  <%= render layout: "shared/headers/header_managed_item", :locals => {:item => @mc, :badge => "icon-collection"} do %>
+    <div class="actions-wrap">
+      <%= render partial: "shared/buttons/return", :locals => { url: @close_path } %>
+
+      <%= render layout: "shared/context_menu/menu", :locals => { id: "header-con-menu", color: "blue", side: "left"} do %>
+        <%= render partial: "shared/context_menu/menu_item", :locals => { url: @edit_tags_path, id: "edit-tags-button",
+          icon: "icon-tag", text: "Edit tags", disabled: @edit_tags_path.empty? } %>
+      <% end %>
+
+    </div>
+
+  <% end %>
+</div>
+
+<div class="row">
+  <div id="show-panel" class="col-md-12 card wide">
+
+    <div class="card-header">
+      Show: Managed Collection
+    </div>
+
+    <div class="card-content">
+      
+        <div class="loading-with-btns">
+          <%= render partial: 'shared/iso_managed/managed_items_panel', locals: { 
+              type_column: true, owner_column: true, data_url: @show_path } %>
+        </div>
+
+    </div>
+  </div>
+</div>

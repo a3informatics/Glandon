@@ -1,68 +1,71 @@
-import { termReferenceBtn } from 'shared/ui/buttons'
-import { managedConceptRef, unmanagedConceptRef } from 'shared/ui/strings'
+import { itemReferenceBtn } from 'shared/ui/buttons'
+import { managedItemRef, unmanagedItemRef } from 'shared/ui/strings'
+
 
 /*** Renderers for verious Collections ***/
 
+
 /**
- * Returns formatted collection of terminology references based on type
+ * Returns formatted collection of Item references based on type
  * @param {Array} data Array of items containing the show_path, reference and context parameters
  * @param {string} type Format type - 'display' for HTML, anything else for raw strings
  * @param {boolean} newTab Set true to open link in a new tab, optional [default = false]
  * @return {string} formatted HTML / text
  */
-function termReferences(data = [], type, newTab = false) {
+function itemReferences(data = [], type, newTab = false) {
 
   if ( !data || data.length < 1 )
     return ''
 
   return type === 'display' ? 
-    _termReferenceBtns(data, newTab) : 
-    _termReferenceStrings(data);
+    _itemReferenceBtns( data, newTab ) : 
+    _itemReferenceStrings( data )
 
 }
 
+
 /** Private **/
 
+
 /**
- * Returns HTMl for a collection of wrapped termReference buttons
+ * Returns HTMl for a collection of wrapped itemReference buttons
  * @param {Array} data Array of items containing the show_path, reference and context parameters
  * @param {boolean} newTab Set true to open link in a new tab, optional [default = false]
- * @return {string} formatted HTML
+ * @return {string} Formatted Item reference buttons HTML
  */
-function _termReferenceBtns(data = [], newTab = false) {
-  let html = '<div class="bg-labels-wrap">';
+function _itemReferenceBtns(data = [], newTab = false) {
 
   data = Array.isArray(data) ? data : [data]
 
-  for (const d of data) {
-    html += termReferenceBtn(d.show_path, d.reference, d.context, newTab);
-  }
+  const refButtons = data.map( item => 
+    itemReferenceBtn( item.show_path, item.reference, item.context, newTab ) 
+  )
 
-  html += '</div>'
+  return `<div class="bg-labels-wrap">
+          ${ refButtons.join(' ') }
+          </div>`
 
-  return html;
 }
 
 /**
  * Returns formatted text for a collection of terminology references separated by ;
  * @param {Array} data Array of items containing the show_path, reference and context parameters
- * @return {string} formatted text
+ * @return {string} Formatted item references as a string
  */
-function _termReferenceStrings(data = []) {
-  let texts = [];
+function _itemReferenceStrings(data = []) {
 
   data = Array.isArray(data) ? data : [data]
+ 
+  const refStrings = data.map( item =>
+    item.context ? 
+      unmanagedItemRef( item.reference, item.context ) :
+      managedItemRef( item.reference )
+  )
 
-  for (const d of data) {
-    if (d.context)
-      texts.push(unmanagedConceptRef(d.reference, d.context))
-    else
-      texts.push(managedConceptRef(d.reference))
-  }
+  return refStrings.join('; ')
 
-  return texts.join('; ');
 }
 
 export {
-  termReferences
+  itemReferences
 }

@@ -33,6 +33,12 @@ const rdfTypesMap = {
   },
 
   // Managed Item Types
+  MC: {
+    rdfType: 'http://www.assero.co.uk/BusinessOperational#Collection',
+    name: 'Managed Collection',
+    param: 'managed_collection',
+    url: '/managed_collections'
+  },
   BC: {
     rdfType: 'http://www.assero.co.uk/BiomedicalConcept#BiomedicalConceptInstance',
     name: 'Biomedical Concept',

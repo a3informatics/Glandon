@@ -1,4 +1,4 @@
-import { dtTrueFalseColumn, dtInlineEditColumn, dtTrueFalseEditColumn } from 'shared/helpers/dt/dt_columns'
+import { dtBooleanColumn as dtBoolColumn, dtInlineEditColumn, dtBooleanEditColumn } from 'shared/helpers/dt/dt_columns'
 
 
 /*** Columns ***/
@@ -51,7 +51,7 @@ function dtTextColumn(name, props = {}) {
  */
 function dtBooleanColumn(name, props = {}) {
 
-  return dtTrueFalseColumn( getName( name ), {
+  return dtBoolColumn( getName( name ), {
     className: 'text-center custom-property',
     defaultContent: '',
     ...props
@@ -82,7 +82,7 @@ function eColumnByDataType(datatype) {
       break;
 
     case 'boolean':
-      return (name, props) => dtTrueFalseEditColumn( getName( name ), {
+      return (name, props) => dtBooleanEditColumn( getName( name ), {
         className: 'editable inline custom-property text-center',
         editField: name,
         ...props
@@ -112,7 +112,7 @@ function fieldByDataType(datatype) {
       break;
 
     case 'boolean':
-      return (name, props) => dtField( 'truefalse', name, props );
+      return (name, props) => dtField( 'boolean', name, props );
       break;
 
   }

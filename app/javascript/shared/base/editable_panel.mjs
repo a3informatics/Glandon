@@ -151,6 +151,20 @@ export default class EditablePanel extends TablePanel {
     return this.table.settings()[0].aoColumns[column].editField;
   }
 
+  /**
+   * Enable the Editor Key & Click interaction
+   */
+  keysEnable() {
+    this.table.keys?.enable();
+  }
+
+  /**
+   * Disable the Editor Key & Click interaction
+   */
+  keysDisable() {
+    this.table.keys?.disable();
+  }
+
 
   /** Private **/
 
@@ -160,6 +174,7 @@ export default class EditablePanel extends TablePanel {
    * Used for table related listeners only
    */
   _setTableListeners() {
+    
     // Before editing - check _editable condition first
     this.editor.on( 'preOpen', () => {
 
@@ -222,18 +237,12 @@ export default class EditablePanel extends TablePanel {
 
     });
 
-    // Custom inline editing with no onBlur action event for Pickable fields, bugfix
-    this.table.on( 'click', 'td.editable.inline.pickable', e => {
+    // Custom inline editing with no onBlur action event for Pickable fields
+    this.table.on( 'dblclick', 'td.editable.pickable', e => {
 
-      e.detail === 2 && this.editor.inline( e.currentTarget, { onBlur: 'none' });
-
-    });
-
-    this.table.on( 'key', ( e, dt, key, cell ) => {
-
-      if ( $( cell.node() ).hasClass( 'editable inline pickable' ) )
-        this.editor.close()
-                   .inline( cell.node(), { onBlur: 'none' } );
+      const cell = this.table.cell( e.currentTarget )
+      if ( cell.count() )
+        this.editor.inline( cell.index() )
 
     });
 

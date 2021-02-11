@@ -19,31 +19,36 @@ function dtCLEditFields() {
  */
 function dtBCEditFields() {
   return [
-    { name: 'enabled', type: 'truefalse' },
-    { name: 'collect', type: 'truefalse' },
+    { name: 'enabled', type: 'boolean' },
+    { name: 'collect', type: 'boolean' },
     { name: 'question_text', data: 'has_complex_datatype.has_property.question_text', type: 'textarea' },
     { name: 'prompt_text', data: 'has_complex_datatype.has_property.prompt_text',  type: 'textarea' },
     { name: 'format', data: 'has_complex_datatype.has_property.format',  type: 'textarea' },
     { name: 'has_coded_value', data: 'has_complex_datatype.has_property.has_coded_value', type: 'picker',
-      pickerName: 'termPicker', compare: compareRefItems }
+      pickerName: 'refPicker', compare: compareRefItems }
   ]
 }
 
 /**
- * Editable Field definitions for a SDTMSD Editor table
+ * Editable Field definitions for a SDTM SD Editor table
  * Field of type 'select' must have options specified 
  * @return {Array} DataTables SDTM SD Edit column definitions collection
  */
 function dtSDTMSDEditFields() {
   return [
-    { name: 'used', type: 'truefalse' },
+    { name: 'used', type: 'boolean' },
     { name: 'name', type: 'textarea' },
     { name: 'label', type: 'textarea' },
     _selectField({ name: 'typed_as' }),     
     { name: 'format', type: 'textarea' },
+    { name: 'ct_reference', data: 'ct_reference', type: 'picker', 
+      pickerName: 'refPicker', compare: compareRefItems },
     _selectField({ name: 'classified_as' }),     
     { name: 'description', type: 'textarea' },
+    { name: 'notes', type: 'textarea' },
+    { name: 'comment', type: 'textarea' },
     _selectField({ name: 'compliance' }),  
+    { name: 'method', type: 'textarea' }
   ]
 }
 

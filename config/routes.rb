@@ -521,4 +521,17 @@ Rails.application.routes.draw do
     end
   end
 
+  # Managed Collections
+  resources :managed_collections do
+    member do
+      get :show_data
+      post :add
+      put :remove
+      put :remove_all
+    end
+    collection do
+      get :history
+    end
+  end
+
 end

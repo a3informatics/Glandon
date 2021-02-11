@@ -9,7 +9,7 @@
   :name: STUDYID
   :ct_and_format: ''
   :format: ''
-  :ct_reference: 
+  :ct_reference: []
   :description: Unique identifier for a study.
   :used: false
   :compliance:
@@ -21,6 +21,9 @@
   :classified_as:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Q0NmJiMzM3LTkyY2QtNDI1MC1iNTBjLTliZTUwNzlkNmFiMw==
     :label: Identifier
+  :notes: ''
+  :method: ''
+  :comment: ''
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19DTS9WMSNJR0RfRE9NQUlO
   :uri: http://www.cdisc.org/SDTM_IG_CM/V1#IGD_DOMAIN
   :ordinal: 2
@@ -30,7 +33,7 @@
   :name: DOMAIN
   :ct_and_format: ''
   :format: ''
-  :ct_reference: 
+  :ct_reference: []
   :description: Two-character abbreviation for the domain.
   :used: false
   :compliance:
@@ -42,6 +45,9 @@
   :classified_as:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Q0NmJiMzM3LTkyY2QtNDI1MC1iNTBjLTliZTUwNzlkNmFiMw==
     :label: Identifier
+  :notes: ''
+  :method: ''
+  :comment: ''
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19DTS9WMSNJR0RfVVNVQkpJRA==
   :uri: http://www.cdisc.org/SDTM_IG_CM/V1#IGD_USUBJID
   :ordinal: 3
@@ -51,7 +57,7 @@
   :name: USUBJID
   :ct_and_format: ''
   :format: ''
-  :ct_reference: 
+  :ct_reference: []
   :description: Identifier used to uniquely identify a subject across all studies
     for all applications or submissions involving the product.
   :used: false
@@ -64,6 +70,9 @@
   :classified_as:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Q0NmJiMzM3LTkyY2QtNDI1MC1iNTBjLTliZTUwNzlkNmFiMw==
     :label: Identifier
+  :notes: ''
+  :method: ''
+  :comment: ''
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19DTS9WMSNJR0RfQ01TRVE=
   :uri: http://www.cdisc.org/SDTM_IG_CM/V1#IGD_CMSEQ
   :ordinal: 4
@@ -73,7 +82,7 @@
   :name: CMSEQ
   :ct_and_format: ''
   :format: ''
-  :ct_reference: 
+  :ct_reference: []
   :description: Sequence Number given to ensure uniqueness of subject records within
     a domain. May be any valid number.
   :used: false
@@ -86,6 +95,9 @@
   :classified_as:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Q0NmJiMzM3LTkyY2QtNDI1MC1iNTBjLTliZTUwNzlkNmFiMw==
     :label: Identifier
+  :notes: ''
+  :method: ''
+  :comment: ''
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19DTS9WMSNJR0RfQ01HUlBJRA==
   :uri: http://www.cdisc.org/SDTM_IG_CM/V1#IGD_CMGRPID
   :ordinal: 5
@@ -95,7 +107,7 @@
   :name: CMGRPID
   :ct_and_format: ''
   :format: ''
-  :ct_reference: 
+  :ct_reference: []
   :description: Used to tie together a block of related records in a single domain
     for a subject.
   :used: false
@@ -108,6 +120,9 @@
   :classified_as:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Q0NmJiMzM3LTkyY2QtNDI1MC1iNTBjLTliZTUwNzlkNmFiMw==
     :label: Identifier
+  :notes: ''
+  :method: ''
+  :comment: ''
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19DTS9WMSNJR0RfQ01TUElE
   :uri: http://www.cdisc.org/SDTM_IG_CM/V1#IGD_CMSPID
   :ordinal: 6
@@ -117,7 +132,7 @@
   :name: CMSPID
   :ct_and_format: ''
   :format: ''
-  :ct_reference: 
+  :ct_reference: []
   :description: 'Sponsor-defined reference number. Examples: a number pre-printed
     on the CRF as an explicit line identifier or record identifier defined in the
     sponsor''s operational database. Example: line number on a concomitant medication
@@ -132,6 +147,9 @@
   :classified_as:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Q0NmJiMzM3LTkyY2QtNDI1MC1iNTBjLTliZTUwNzlkNmFiMw==
     :label: Identifier
+  :notes: ''
+  :method: ''
+  :comment: ''
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19DTS9WMSNJR0RfQ01UUlQ=
   :uri: http://www.cdisc.org/SDTM_IG_CM/V1#IGD_CMTRT
   :ordinal: 7
@@ -141,7 +159,7 @@
   :name: CMTRT
   :ct_and_format: ''
   :format: ''
-  :ct_reference: 
+  :ct_reference: []
   :description: Verbatim medication name that is either pre-printed or collected on
     a CRF.
   :used: false
@@ -154,6 +172,9 @@
   :classified_as:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzY5MmNhZmJmLTY1OGEtNDNmMC05N2EyLWYwNDBlY2IxYTIwZA==
     :label: Topic
+  :notes: ''
+  :method: ''
+  :comment: ''
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19DTS9WMSNJR0RfQ01NT0RJRlk=
   :uri: http://www.cdisc.org/SDTM_IG_CM/V1#IGD_CMMODIFY
   :ordinal: 8
@@ -163,7 +184,7 @@
   :name: CMMODIFY
   :ct_and_format: ''
   :format: ''
-  :ct_reference: 
+  :ct_reference: []
   :description: If CMTRT is modified to facilitate coding, then CMMODIFY will contain
     the modified text.
   :used: false
@@ -176,6 +197,9 @@
   :classified_as:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzg2Y2Q2MWU2LWQ0OGMtNGU0Mi1iOTk0LWJlZTM1ZTIzNTFmZQ==
     :label: None
+  :notes: ''
+  :method: ''
+  :comment: ''
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19DTS9WMSNJR0RfQ01ERUNPRA==
   :uri: http://www.cdisc.org/SDTM_IG_CM/V1#IGD_CMDECOD
   :ordinal: 9
@@ -185,7 +209,7 @@
   :name: CMDECOD
   :ct_and_format: ''
   :format: ''
-  :ct_reference: 
+  :ct_reference: []
   :description: Standardized or dictionary-derived text description of CMTRT or CMMODIFY.
     Equivalent to the generic medication name in WHO Drug. The sponsor is expected
     to provide the dictionary name and version used to map the terms utilizing the
@@ -201,6 +225,9 @@
   :classified_as:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzg2Y2Q2MWU2LWQ0OGMtNGU0Mi1iOTk0LWJlZTM1ZTIzNTFmZQ==
     :label: None
+  :notes: ''
+  :method: ''
+  :comment: ''
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19DTS9WMSNJR0RfQ01DQVQ=
   :uri: http://www.cdisc.org/SDTM_IG_CM/V1#IGD_CMCAT
   :ordinal: 10
@@ -210,7 +237,7 @@
   :name: CMCAT
   :ct_and_format: ''
   :format: ''
-  :ct_reference: 
+  :ct_reference: []
   :description: 'Used to define a category of medications/treatments. Examples: PRIOR,
     CONCOMITANT, ANTI-CANCER MEDICATION, or GENERAL CONMED.'
   :used: false
@@ -223,6 +250,9 @@
   :classified_as:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzlmYjI5ZjhiLTUwNWEtNGM0Zi1iNTUwLTE3NWZiZmVjOTMyZA==
     :label: Grouping
+  :notes: ''
+  :method: ''
+  :comment: ''
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19DTS9WMSNJR0RfQ01TQ0FU
   :uri: http://www.cdisc.org/SDTM_IG_CM/V1#IGD_CMSCAT
   :ordinal: 11
@@ -232,7 +262,7 @@
   :name: CMSCAT
   :ct_and_format: ''
   :format: ''
-  :ct_reference: 
+  :ct_reference: []
   :description: 'A further categorization of medications/ treatment. Examples: CHEMOTHERAPY,
     HORMONAL THERAPY, ALTERNATIVE THERAPY.'
   :used: false
@@ -245,6 +275,9 @@
   :classified_as:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzlmYjI5ZjhiLTUwNWEtNGM0Zi1iNTUwLTE3NWZiZmVjOTMyZA==
     :label: Grouping
+  :notes: ''
+  :method: ''
+  :comment: ''
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19DTS9WMSNJR0RfQ01QUkVTUA==
   :uri: http://www.cdisc.org/SDTM_IG_CM/V1#IGD_CMPRESP
   :ordinal: 12
@@ -255,7 +288,7 @@
   :ct_and_format: "(NY)"
   :format: ''
   :ct_reference:
-    :show_path: "/thesauri/managed_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzQyL1Y0I0M2Njc0Mg==?managed_concept%5Bcontext_id%5D="
+  - :show_path: "/thesauri/managed_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzQyL1Y0I0M2Njc0Mg==?managed_concept%5Bcontext_id%5D="
     :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19DTS9WMSNJR0RfQ01QUkVTUF9UTUMx
     :uri: http://www.cdisc.org/SDTM_IG_CM/V1#IGD_CMPRESP_TMC1
     :rdf_type: http://www.assero.co.uk/BusinessOperational#TMcReference
@@ -282,6 +315,9 @@
   :classified_as:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzRiYjc1NzhjLTY3MDUtNGQyZS05M2Q2LWI1Njk2MGQ5ZTIxZQ==
     :label: Record
+  :notes: ''
+  :method: ''
+  :comment: ''
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19DTS9WMSNJR0RfQ01PQ0NVUg==
   :uri: http://www.cdisc.org/SDTM_IG_CM/V1#IGD_CMOCCUR
   :ordinal: 13
@@ -292,7 +328,7 @@
   :ct_and_format: "(NY)"
   :format: ''
   :ct_reference:
-    :show_path: "/thesauri/managed_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzQyL1Y0I0M2Njc0Mg==?managed_concept%5Bcontext_id%5D="
+  - :show_path: "/thesauri/managed_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzQyL1Y0I0M2Njc0Mg==?managed_concept%5Bcontext_id%5D="
     :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19DTS9WMSNJR0RfQ01PQ0NVUl9UTUMx
     :uri: http://www.cdisc.org/SDTM_IG_CM/V1#IGD_CMOCCUR_TMC1
     :rdf_type: http://www.assero.co.uk/BusinessOperational#TMcReference
@@ -320,6 +356,9 @@
   :classified_as:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzRiYjc1NzhjLTY3MDUtNGQyZS05M2Q2LWI1Njk2MGQ5ZTIxZQ==
     :label: Record
+  :notes: ''
+  :method: ''
+  :comment: ''
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19DTS9WMSNJR0RfQ01TVEFU
   :uri: http://www.cdisc.org/SDTM_IG_CM/V1#IGD_CMSTAT
   :ordinal: 14
@@ -330,7 +369,7 @@
   :ct_and_format: "(ND)"
   :format: ''
   :ct_reference:
-    :show_path: "/thesauri/managed_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2Nzg5L1YxMyNDNjY3ODk=?managed_concept%5Bcontext_id%5D="
+  - :show_path: "/thesauri/managed_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2Nzg5L1YxMyNDNjY3ODk=?managed_concept%5Bcontext_id%5D="
     :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19DTS9WMSNJR0RfQ01TVEFUX1RNQzE=
     :uri: http://www.cdisc.org/SDTM_IG_CM/V1#IGD_CMSTAT_TMC1
     :rdf_type: http://www.assero.co.uk/BusinessOperational#TMcReference
@@ -357,6 +396,9 @@
   :classified_as:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzRiYjc1NzhjLTY3MDUtNGQyZS05M2Q2LWI1Njk2MGQ5ZTIxZQ==
     :label: Record
+  :notes: ''
+  :method: ''
+  :comment: ''
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19DTS9WMSNJR0RfQ01SRUFTTkQ=
   :uri: http://www.cdisc.org/SDTM_IG_CM/V1#IGD_CMREASND
   :ordinal: 15
@@ -366,7 +408,7 @@
   :name: CMREASND
   :ct_and_format: ''
   :format: ''
-  :ct_reference: 
+  :ct_reference: []
   :description: Describes the reason concomitant medication was not collected. Used
     in conjunction with CMSTAT when value is NOT DONE.
   :used: false
@@ -379,6 +421,9 @@
   :classified_as:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzRiYjc1NzhjLTY3MDUtNGQyZS05M2Q2LWI1Njk2MGQ5ZTIxZQ==
     :label: Record
+  :notes: ''
+  :method: ''
+  :comment: ''
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19DTS9WMSNJR0RfQ01JTkRD
   :uri: http://www.cdisc.org/SDTM_IG_CM/V1#IGD_CMINDC
   :ordinal: 16
@@ -388,7 +433,7 @@
   :name: CMINDC
   :ct_and_format: ''
   :format: ''
-  :ct_reference: 
+  :ct_reference: []
   :description: 'Denotes why a medication was taken or administered. Examples: NAUSEA,
     HYPERTENSION.'
   :used: false
@@ -401,6 +446,9 @@
   :classified_as:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzRiYjc1NzhjLTY3MDUtNGQyZS05M2Q2LWI1Njk2MGQ5ZTIxZQ==
     :label: Record
+  :notes: ''
+  :method: ''
+  :comment: ''
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19DTS9WMSNJR0RfQ01DTEFT
   :uri: http://www.cdisc.org/SDTM_IG_CM/V1#IGD_CMCLAS
   :ordinal: 17
@@ -410,7 +458,7 @@
   :name: CMCLAS
   :ct_and_format: ''
   :format: ''
-  :ct_reference: 
+  :ct_reference: []
   :description: Drug class. May be obtained from coding. When coding to a single class,
     populate with class value. If using a dictionary and coding to multiple classes,
     then follow assumption 4.1.2.8.3 or omit CMCLAS.
@@ -424,6 +472,9 @@
   :classified_as:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzg2Y2Q2MWU2LWQ0OGMtNGU0Mi1iOTk0LWJlZTM1ZTIzNTFmZQ==
     :label: None
+  :notes: ''
+  :method: ''
+  :comment: ''
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19DTS9WMSNJR0RfQ01DTEFTQ0Q=
   :uri: http://www.cdisc.org/SDTM_IG_CM/V1#IGD_CMCLASCD
   :ordinal: 18
@@ -433,7 +484,7 @@
   :name: CMCLASCD
   :ct_and_format: ''
   :format: ''
-  :ct_reference: 
+  :ct_reference: []
   :description: Class code corresponding to CMCLAS. Drug class. May be obtained from
     coding. When coding to a single class, populate with class code. If using a dictionary
     and coding to multiple classes, then follow assumption 4.1.2.8.3 or omit CMCLASCD.
@@ -447,6 +498,9 @@
   :classified_as:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzg2Y2Q2MWU2LWQ0OGMtNGU0Mi1iOTk0LWJlZTM1ZTIzNTFmZQ==
     :label: None
+  :notes: ''
+  :method: ''
+  :comment: ''
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19DTS9WMSNJR0RfQ01ET1NF
   :uri: http://www.cdisc.org/SDTM_IG_CM/V1#IGD_CMDOSE
   :ordinal: 19
@@ -456,7 +510,7 @@
   :name: CMDOSE
   :ct_and_format: ''
   :format: ''
-  :ct_reference: 
+  :ct_reference: []
   :description: Amount of CMTRT taken.
   :used: false
   :compliance:
@@ -468,6 +522,9 @@
   :classified_as:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzRiYjc1NzhjLTY3MDUtNGQyZS05M2Q2LWI1Njk2MGQ5ZTIxZQ==
     :label: Record
+  :notes: ''
+  :method: ''
+  :comment: ''
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19DTS9WMSNJR0RfQ01ET1NUWFQ=
   :uri: http://www.cdisc.org/SDTM_IG_CM/V1#IGD_CMDOSTXT
   :ordinal: 20
@@ -477,7 +534,7 @@
   :name: CMDOSTXT
   :ct_and_format: ''
   :format: ''
-  :ct_reference: 
+  :ct_reference: []
   :description: 'Dosing amounts or a range of dosing information collected in text
     form. Units may be stored in CMDOSU. Example: 200-400, 15-20.'
   :used: false
@@ -490,6 +547,9 @@
   :classified_as:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzRiYjc1NzhjLTY3MDUtNGQyZS05M2Q2LWI1Njk2MGQ5ZTIxZQ==
     :label: Record
+  :notes: ''
+  :method: ''
+  :comment: ''
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19DTS9WMSNJR0RfQ01ET1NV
   :uri: http://www.cdisc.org/SDTM_IG_CM/V1#IGD_CMDOSU
   :ordinal: 21
@@ -500,7 +560,7 @@
   :ct_and_format: "(UNIT)"
   :format: ''
   :ct_reference:
-    :show_path: "/thesauri/managed_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxNjIwL1YxMSNDNzE2MjA=?managed_concept%5Bcontext_id%5D="
+  - :show_path: "/thesauri/managed_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxNjIwL1YxMSNDNzE2MjA=?managed_concept%5Bcontext_id%5D="
     :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19DTS9WMSNJR0RfQ01ET1NVX1RNQzE=
     :uri: http://www.cdisc.org/SDTM_IG_CM/V1#IGD_CMDOSU_TMC1
     :rdf_type: http://www.assero.co.uk/BusinessOperational#TMcReference
@@ -526,6 +586,9 @@
   :classified_as:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzg2Y2Q2MWU2LWQ0OGMtNGU0Mi1iOTk0LWJlZTM1ZTIzNTFmZQ==
     :label: None
+  :notes: ''
+  :method: ''
+  :comment: ''
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19DTS9WMSNJR0RfQ01ET1NGUk0=
   :uri: http://www.cdisc.org/SDTM_IG_CM/V1#IGD_CMDOSFRM
   :ordinal: 22
@@ -536,7 +599,7 @@
   :ct_and_format: "(FRM)"
   :format: ''
   :ct_reference:
-    :show_path: "/thesauri/managed_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1YxMyNDNjY3MjY=?managed_concept%5Bcontext_id%5D="
+  - :show_path: "/thesauri/managed_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1YxMyNDNjY3MjY=?managed_concept%5Bcontext_id%5D="
     :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19DTS9WMSNJR0RfQ01ET1NGUk1fVE1DMQ==
     :uri: http://www.cdisc.org/SDTM_IG_CM/V1#IGD_CMDOSFRM_TMC1
     :rdf_type: http://www.assero.co.uk/BusinessOperational#TMcReference
@@ -562,6 +625,9 @@
   :classified_as:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzg2Y2Q2MWU2LWQ0OGMtNGU0Mi1iOTk0LWJlZTM1ZTIzNTFmZQ==
     :label: None
+  :notes: ''
+  :method: ''
+  :comment: ''
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19DTS9WMSNJR0RfQ01ET1NGUlE=
   :uri: http://www.cdisc.org/SDTM_IG_CM/V1#IGD_CMDOSFRQ
   :ordinal: 23
@@ -572,7 +638,7 @@
   :ct_and_format: "(FREQ)"
   :format: ''
   :ct_reference:
-    :show_path: "/thesauri/managed_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxMTEzL1Y2I0M3MTExMw==?managed_concept%5Bcontext_id%5D="
+  - :show_path: "/thesauri/managed_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxMTEzL1Y2I0M3MTExMw==?managed_concept%5Bcontext_id%5D="
     :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19DTS9WMSNJR0RfQ01ET1NGUlFfVE1DMQ==
     :uri: http://www.cdisc.org/SDTM_IG_CM/V1#IGD_CMDOSFRQ_TMC1
     :rdf_type: http://www.assero.co.uk/BusinessOperational#TMcReference
@@ -599,6 +665,9 @@
   :classified_as:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzg2Y2Q2MWU2LWQ0OGMtNGU0Mi1iOTk0LWJlZTM1ZTIzNTFmZQ==
     :label: None
+  :notes: ''
+  :method: ''
+  :comment: ''
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19DTS9WMSNJR0RfQ01ET1NUT1Q=
   :uri: http://www.cdisc.org/SDTM_IG_CM/V1#IGD_CMDOSTOT
   :ordinal: 24
@@ -608,7 +677,7 @@
   :name: CMDOSTOT
   :ct_and_format: ''
   :format: ''
-  :ct_reference: 
+  :ct_reference: []
   :description: Total daily dose of CMTRT using the units in CMDOSU. Total dose over
     a period other than day could be recorded in a separate Supplemental Qualifier
     variable. CMDOSTOT should be used in addition to CMDOSE, and not in place of it.
@@ -622,6 +691,9 @@
   :classified_as:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzRiYjc1NzhjLTY3MDUtNGQyZS05M2Q2LWI1Njk2MGQ5ZTIxZQ==
     :label: Record
+  :notes: ''
+  :method: ''
+  :comment: ''
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19DTS9WMSNJR0RfQ01ET1NSR00=
   :uri: http://www.cdisc.org/SDTM_IG_CM/V1#IGD_CMDOSRGM
   :ordinal: 25
@@ -631,7 +703,7 @@
   :name: CMDOSRGM
   :ct_and_format: ''
   :format: ''
-  :ct_reference: 
+  :ct_reference: []
   :description: 'Text description of the (intended) schedule or regimen for the Intervention.
     Examples: TWO WEEKS ON, TWO WEEKS OFF.'
   :used: false
@@ -644,6 +716,9 @@
   :classified_as:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzg2Y2Q2MWU2LWQ0OGMtNGU0Mi1iOTk0LWJlZTM1ZTIzNTFmZQ==
     :label: None
+  :notes: ''
+  :method: ''
+  :comment: ''
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19DTS9WMSNJR0RfQ01ST1VURQ==
   :uri: http://www.cdisc.org/SDTM_IG_CM/V1#IGD_CMROUTE
   :ordinal: 26
@@ -654,7 +729,7 @@
   :ct_and_format: "(ROUTE)"
   :format: ''
   :ct_reference:
-    :show_path: "/thesauri/managed_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI5L1Y0I0M2NjcyOQ==?managed_concept%5Bcontext_id%5D="
+  - :show_path: "/thesauri/managed_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI5L1Y0I0M2NjcyOQ==?managed_concept%5Bcontext_id%5D="
     :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19DTS9WMSNJR0RfQ01ST1VURV9UTUMx
     :uri: http://www.cdisc.org/SDTM_IG_CM/V1#IGD_CMROUTE_TMC1
     :rdf_type: http://www.assero.co.uk/BusinessOperational#TMcReference
@@ -680,6 +755,9 @@
   :classified_as:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzg2Y2Q2MWU2LWQ0OGMtNGU0Mi1iOTk0LWJlZTM1ZTIzNTFmZQ==
     :label: None
+  :notes: ''
+  :method: ''
+  :comment: ''
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19DTS9WMSNJR0RfQ01TVERUQw==
   :uri: http://www.cdisc.org/SDTM_IG_CM/V1#IGD_CMSTDTC
   :ordinal: 27
@@ -689,7 +767,7 @@
   :name: CMSTDTC
   :ct_and_format: ISO 8601
   :format: ISO 8601
-  :ct_reference: 
+  :ct_reference: []
   :description: ''
   :used: false
   :compliance:
@@ -701,6 +779,9 @@
   :classified_as:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzJjM2ZmMzg2LWEwNjItNDdmNS1iNTk0LWVlZjdlYWQwMjI0Mw==
     :label: Timing
+  :notes: ''
+  :method: ''
+  :comment: ''
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19DTS9WMSNJR0RfQ01FTkRUQw==
   :uri: http://www.cdisc.org/SDTM_IG_CM/V1#IGD_CMENDTC
   :ordinal: 28
@@ -710,7 +791,7 @@
   :name: CMENDTC
   :ct_and_format: ISO 8601
   :format: ISO 8601
-  :ct_reference: 
+  :ct_reference: []
   :description: ''
   :used: false
   :compliance:
@@ -722,6 +803,9 @@
   :classified_as:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzJjM2ZmMzg2LWEwNjItNDdmNS1iNTk0LWVlZjdlYWQwMjI0Mw==
     :label: Timing
+  :notes: ''
+  :method: ''
+  :comment: ''
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19DTS9WMSNJR0RfQ01TVERZ
   :uri: http://www.cdisc.org/SDTM_IG_CM/V1#IGD_CMSTDY
   :ordinal: 29
@@ -731,7 +815,7 @@
   :name: CMSTDY
   :ct_and_format: ''
   :format: ''
-  :ct_reference: 
+  :ct_reference: []
   :description: Study day of start of medication relative to the sponsor-defined RFSTDTC.
   :used: false
   :compliance:
@@ -743,6 +827,9 @@
   :classified_as:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzJjM2ZmMzg2LWEwNjItNDdmNS1iNTk0LWVlZjdlYWQwMjI0Mw==
     :label: Timing
+  :notes: ''
+  :method: ''
+  :comment: ''
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19DTS9WMSNJR0RfQ01FTkRZ
   :uri: http://www.cdisc.org/SDTM_IG_CM/V1#IGD_CMENDY
   :ordinal: 30
@@ -752,7 +839,7 @@
   :name: CMENDY
   :ct_and_format: ''
   :format: ''
-  :ct_reference: 
+  :ct_reference: []
   :description: Study day of end of medication relative to the sponsor-defined RFSTDTC.
   :used: false
   :compliance:
@@ -764,6 +851,9 @@
   :classified_as:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzJjM2ZmMzg2LWEwNjItNDdmNS1iNTk0LWVlZjdlYWQwMjI0Mw==
     :label: Timing
+  :notes: ''
+  :method: ''
+  :comment: ''
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19DTS9WMSNJR0RfQ01EVVI=
   :uri: http://www.cdisc.org/SDTM_IG_CM/V1#IGD_CMDUR
   :ordinal: 31
@@ -773,7 +863,7 @@
   :name: CMDUR
   :ct_and_format: ISO 8601
   :format: ISO 8601
-  :ct_reference: 
+  :ct_reference: []
   :description: Collected duration for a treatment episode. Used only if collected
     on the CRF and not derived from start and end date/times.
   :used: false
@@ -786,6 +876,9 @@
   :classified_as:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzJjM2ZmMzg2LWEwNjItNDdmNS1iNTk0LWVlZjdlYWQwMjI0Mw==
     :label: Timing
+  :notes: ''
+  :method: ''
+  :comment: ''
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19DTS9WMSNJR0RfQ01TVFJG
   :uri: http://www.cdisc.org/SDTM_IG_CM/V1#IGD_CMSTRF
   :ordinal: 32
@@ -796,7 +889,7 @@
   :ct_and_format: "(STENRF)"
   :format: ''
   :ct_reference:
-    :show_path: "/thesauri/managed_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI4L1Y0I0M2NjcyOA==?managed_concept%5Bcontext_id%5D="
+  - :show_path: "/thesauri/managed_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI4L1Y0I0M2NjcyOA==?managed_concept%5Bcontext_id%5D="
     :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19DTS9WMSNJR0RfQ01TVFJGX1RNQzE=
     :uri: http://www.cdisc.org/SDTM_IG_CM/V1#IGD_CMSTRF_TMC1
     :rdf_type: http://www.assero.co.uk/BusinessOperational#TMcReference
@@ -826,6 +919,9 @@
   :classified_as:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzJjM2ZmMzg2LWEwNjItNDdmNS1iNTk0LWVlZjdlYWQwMjI0Mw==
     :label: Timing
+  :notes: ''
+  :method: ''
+  :comment: ''
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19DTS9WMSNJR0RfQ01FTlJG
   :uri: http://www.cdisc.org/SDTM_IG_CM/V1#IGD_CMENRF
   :ordinal: 33
@@ -836,7 +932,7 @@
   :ct_and_format: "(STENRF)"
   :format: ''
   :ct_reference:
-    :show_path: "/thesauri/managed_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI4L1Y0I0M2NjcyOA==?managed_concept%5Bcontext_id%5D="
+  - :show_path: "/thesauri/managed_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI4L1Y0I0M2NjcyOA==?managed_concept%5Bcontext_id%5D="
     :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19DTS9WMSNJR0RfQ01FTlJGX1RNQzE=
     :uri: http://www.cdisc.org/SDTM_IG_CM/V1#IGD_CMENRF_TMC1
     :rdf_type: http://www.assero.co.uk/BusinessOperational#TMcReference
@@ -866,6 +962,9 @@
   :classified_as:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzJjM2ZmMzg2LWEwNjItNDdmNS1iNTk0LWVlZjdlYWQwMjI0Mw==
     :label: Timing
+  :notes: ''
+  :method: ''
+  :comment: ''
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19DTS9WMSNJR0RfQ01TVFJUUFQ=
   :uri: http://www.cdisc.org/SDTM_IG_CM/V1#IGD_CMSTRTPT
   :ordinal: 34
@@ -875,7 +974,7 @@
   :name: CMSTRTPT
   :ct_and_format: BEFORE, COINCIDENT, AFTER, U
   :format: BEFORE, COINCIDENT, AFTER, U
-  :ct_reference: 
+  :ct_reference: []
   :description: Identifies the start of the medication as being before or after the
     reference time point defined by variable CMSTTPT.
   :used: false
@@ -888,6 +987,9 @@
   :classified_as:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzJjM2ZmMzg2LWEwNjItNDdmNS1iNTk0LWVlZjdlYWQwMjI0Mw==
     :label: Timing
+  :notes: ''
+  :method: ''
+  :comment: ''
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19DTS9WMSNJR0RfQ01TVFRQVA==
   :uri: http://www.cdisc.org/SDTM_IG_CM/V1#IGD_CMSTTPT
   :ordinal: 35
@@ -897,7 +999,7 @@
   :name: CMSTTPT
   :ct_and_format: ''
   :format: ''
-  :ct_reference: 
+  :ct_reference: []
   :description: 'Description or date/time in ISO 8601 character format of the reference
     point referred to by CMSTRTPT. Examples: ''2003-12-15'' or ''VISIT 1''.'
   :used: false
@@ -910,6 +1012,9 @@
   :classified_as:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzJjM2ZmMzg2LWEwNjItNDdmNS1iNTk0LWVlZjdlYWQwMjI0Mw==
     :label: Timing
+  :notes: ''
+  :method: ''
+  :comment: ''
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19DTS9WMSNJR0RfQ01FTlJUUFQ=
   :uri: http://www.cdisc.org/SDTM_IG_CM/V1#IGD_CMENRTPT
   :ordinal: 36
@@ -919,7 +1024,7 @@
   :name: CMENRTPT
   :ct_and_format: BEFORE, COINCIDENT, AFTER, U
   :format: BEFORE, COINCIDENT, AFTER, U
-  :ct_reference: 
+  :ct_reference: []
   :description: Identifies the end of the medication as being before or after the
     reference time point defined by variable CMENTPT.
   :used: false
@@ -932,6 +1037,9 @@
   :classified_as:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzJjM2ZmMzg2LWEwNjItNDdmNS1iNTk0LWVlZjdlYWQwMjI0Mw==
     :label: Timing
+  :notes: ''
+  :method: ''
+  :comment: ''
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19DTS9WMSNJR0RfQ01FTlRQVA==
   :uri: http://www.cdisc.org/SDTM_IG_CM/V1#IGD_CMENTPT
   :ordinal: 37
@@ -941,7 +1049,7 @@
   :name: CMENTPT
   :ct_and_format: ''
   :format: ''
-  :ct_reference: 
+  :ct_reference: []
   :description: 'Description or date/time in ISO 8601 character format of the reference
     point referred to by CMENRTPT. Examples: ''2003-12-25'' or ''VISIT 2''.'
   :used: false
@@ -954,3 +1062,6 @@
   :classified_as:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzJjM2ZmMzg2LWEwNjItNDdmNS1iNTk0LWVlZjdlYWQwMjI0Mw==
     :label: Timing
+  :notes: ''
+  :method: ''
+  :comment: ''

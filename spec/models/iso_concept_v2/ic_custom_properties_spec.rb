@@ -338,37 +338,58 @@ describe IsoConceptV2::IcCustomProperties do
 
   end
 
-  # describe "clone custom properties" do
+  describe "context remove" do
 
-  #   before :each do
-  #     data_files = ["iso_namespace_fake.ttl", "iso_registration_authority_fake.ttl"]
-  #     load_files(schema_files, data_files)
-  #     allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
-  #   end
+    before :each do
+      data_files = ["iso_namespace_fake.ttl", "iso_registration_authority_fake.ttl"]
+      load_files(schema_files, data_files)
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
+    end
 
-  #   after :each do
-  #   end
+    after :each do
+    end
 
-  #   it "with context" do
-  #     object = IsoConceptV2.new(label: "Object 1", uri: Uri.new(uri: "http://www.example.com/A#object1"))
-  #     object.save
-  #     new_object = IsoConceptV2.new(label: "Object 2", uri: Uri.new(uri: "http://www.example.com/A#object2"))
-  #     new_object.save
-  #     create_definition_1
-  #     create_definition_2
-  #     context_1 = Uri.new(uri: "http://www.example.com/A#context1")
-  #     context_2 = Uri.new(uri: "http://www.example.com/A#context2")
-  #     cp_1 = create_value_array("Object 1 String", object, [context_1, context_2], @definition_1)
-  #     cp_2 = create_value_array(true, object, [context_1], @definition_2)
-  #     cp_3 = create_value_array(false, object, [context_2], @definition_2)
-  #     results = object.load_custom_properties(context_1)
-  #     check_file_actual_expected(results.to_h, sub_dir, "clone_custom_properties_expected_1a.yaml")
-  #     results = object.load_custom_properties(context_2)
-  #     check_file_actual_expected(results.to_h, sub_dir, "clone_custom_properties_expected_1b.yaml")
-  #     results = object.clone_custom_properties(new_object, context_2)
-  #     check_file_actual_expected(results.to_h, sub_dir, "clone_custom_properties_expected_1c.yaml")
-  #   end
+    it "simple case, ensure context deleted and value deleted, no further references" do
+      context = IsoConceptV2.create(label: "Context", uri: Uri.new(uri: "http://www.example.com/A#context"))
+      object = IsoConceptV2.create(label: "Object 1", uri: Uri.new(uri: "http://www.example.com/A#object1"))
+      create_definition_1
+      create_definition_2
+      object.create_default_custom_properties(context)
+      results = object.load_custom_properties(context)
+      cv_1 = results.items[0].uri
+      cv_2 = results.items[1].uri
+      check_file_actual_expected(results.to_h, sub_dir, "remove_context_expected_1.yaml")
+      results = object.remove_context(context)
+      expect(results.items).to eq([])
+      expect{CustomPropertyValue.find(cv_1)}.to raise_error(Errors::NotFoundError, "Failed to find http://www.assero.co.uk/CPV#1760cbb1-a370-41f6-a3b3-493c1d9c2238 in CustomPropertyValue.")
+      expect{CustomPropertyValue.find(cv_2)}.to raise_error(Errors::NotFoundError, "Failed to find http://www.assero.co.uk/CPV#4646b47a-4ae4-4f21-b5e2-565815c8cded in CustomPropertyValue.")
+    end
 
-  # end
+    it "simple case, ensure context deleted but value not deleted, further references" do
+      context_1 = IsoConceptV2.create(label: "Context 1", uri: Uri.new(uri: "http://www.example.com/A#context1"))
+      context_2 = IsoConceptV2.create(label: "Context 2", uri: Uri.new(uri: "http://www.example.com/A#context2"))
+      object = IsoConceptV2.create(label: "Object 1", uri: Uri.new(uri: "http://www.example.com/A#object1"))
+      create_definition_1
+      create_definition_2
+      object.create_default_custom_properties(context_1)
+      results = object.load_custom_properties(context_1)
+      cv_1 = results.items[0].uri
+      cv_2 = results.items[1].uri
+      results.items[0].add_link(:context, context_2.uri)
+      results.items[1].add_link(:context, context_2.uri)
+      results = object.load_custom_properties(context_1)
+      check_file_actual_expected(results.to_h, sub_dir, "remove_context_expected_2a.yaml")
+      results = object.load_custom_properties(context_2)
+      check_file_actual_expected(results.to_h, sub_dir, "remove_context_expected_2b.yaml")
+      results = object.remove_context(context_1)
+      results = object.load_custom_properties(context_1)
+      check_file_actual_expected(results.to_h, sub_dir, "remove_context_expected_2c.yaml")
+      results = object.load_custom_properties(context_2)
+      check_file_actual_expected(results.to_h, sub_dir, "remove_context_expected_2d.yaml")
+      expect(CustomPropertyValue.find(cv_1).uri).to eq(cv_1)
+      expect(CustomPropertyValue.find(cv_2).uri).to eq(cv_2)
+    end
+
+  end
 
 end

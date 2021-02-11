@@ -392,8 +392,10 @@ describe "Tags", :type => :feature do
     end
 
     it "view and attach tags on a SDTM Sponsor Domain" do
+      load_cdisc_term_versions(1..8)
 
       view_attach_detach_tags do
+
         click_navbar_sdtm_sponsor_domains
         wait_for_ajax 20
 
@@ -401,6 +403,22 @@ describe "Tags", :type => :feature do
         wait_for_ajax 20
         context_menu_element_v2('history', '0.1.0', :show)
         edit_tags 'SDTM Sponsor Domain'
+
+      end
+
+    end
+
+    it "view and attach tags on a Managed Collection" do
+      mc = ManagedCollection.create({identifier: 'TSTMC', label:'Test Managed Collection'})
+
+      view_attach_detach_tags do
+        click_navbar_mcs
+        wait_for_ajax 20
+
+        find(:xpath, '//tr[contains(.,"TSTMC")]/td/a').click
+        wait_for_ajax 20
+        context_menu_element_v2('history', '0.1.0', :show)
+        edit_tags 'TSTMC'
 
       end
 

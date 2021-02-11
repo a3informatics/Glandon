@@ -1,6 +1,6 @@
 import TablePanel from 'shared/base/table_panel'
 
-import { dtTrueFalseColumn, dtContextMenuColumn, dtDateTimeColumn } from 'shared/helpers/dt/dt_columns'
+import { dtBooleanColumn, dtContextMenuColumn, dtDateTimeColumn } from 'shared/helpers/dt/dt_columns'
 import { render as renderMenu } from 'shared/ui/context_menu'
 import { $confirm } from 'shared/helpers/confirmable'
 import { $delete } from 'shared/helpers/ajax'
@@ -179,7 +179,7 @@ export default class ReportsManager extends TablePanel {
       { data: 'label' },
       { render: (data, t, r, m) => r.parameters.length ? r.parameters[0].name : 'None' },
       dtDateTimeColumn('last_run'),
-      dtTrueFalseColumn( 'active', { orderable: false } ),
+      dtBooleanColumn( 'active', { orderable: false } ),
       dtContextMenuColumn( this._buildContextMenu.bind( this ) )
     ];
 

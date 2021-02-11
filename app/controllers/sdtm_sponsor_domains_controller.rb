@@ -42,7 +42,7 @@ class SdtmSponsorDomainsController < ManagedItemsController
       format.json do
         @sdtm_sponsor_domain = SdtmSponsorDomain.find_full(@sdtm_sponsor_domain.id)
         return true unless check_lock_for_item(@sdtm_sponsor_domain)
-        render :json => { data: @sdtm_sponsor_domain.get_children }, :status => 200
+        render :json => { data: variables_with_paths(@sdtm_sponsor_domain) }, :status => 200
       end
     end
   end
@@ -107,7 +107,7 @@ class SdtmSponsorDomainsController < ManagedItemsController
     if non_standard_variable.errors.empty?
       AuditTrail.update_item_event(current_user, sdtm_sponsor_domain, sdtm_sponsor_domain.audit_message(:updated)) if @lock.first_update?
       result = sdtm_sponsor_domain.get_children.find {|var| var[:id] == non_standard_variable.id}
-      render :json => {data: [result]}, :status => 200
+      render :json => {data: [add_tc_path_to_variable(result)]}, :status => 200
     else
       if non_standard_variable.errors.has_key? :base
         render :json => {:errors => non_standard_variable.errors.full_messages}, :status => 422 
@@ -175,7 +175,6 @@ class SdtmSponsorDomainsController < ManagedItemsController
     return true unless check_lock_for_item(sdtm_sponsor_domain)
     sdtm_sponsor_domain.diassociate_all
     AuditTrail.update_item_event(current_user, sdtm_sponsor_domain, "SDTM Sponsor Domain updated, all BCs associated were deleted.")
-    @lock.release 
     render :json => {data: []}, :status => 200
   end
 
@@ -190,7 +189,7 @@ private
   end
 
   def update_var_params
-    params.require(:sdtm_sponsor_domain).permit(:non_standard_var_id, :used, :name, :label, :typed_as, :format, :classified_as, :description, :compliance)
+    params.require(:sdtm_sponsor_domain).permit(:non_standard_var_id, :used, :name, :label, :typed_as, :format, :classified_as, :description, :compliance, :notes, :comment, :method, :ct_reference => [])
   end
 
   def bc_params
@@ -228,11 +227,23 @@ private
   # Add paths to terminology references
   def add_tc_paths_to_items(items)
     items = items.each do |x|
-      unless x[:ct_reference].nil?
-        x[:ct_reference].reverse_merge!({show_path: thesauri_managed_concept_path({id: x[:ct_reference][:reference][:id], managed_concept: {context_id: ""}}) })
+      unless x[:ct_reference].empty?
+        x[:ct_reference].each do |ct_reference|
+          ct_reference.reverse_merge!({show_path: thesauri_managed_concept_path({id: ct_reference[:reference][:id], managed_concept: {context_id: ""}}) })
+        end
       end
     end
     items
+  end
+
+  # Add show path to terminology references
+  def add_tc_path_to_variable(var)
+    unless var[:ct_reference].empty?
+      var[:ct_reference].each do |ct_reference|
+        ct_reference.reverse_merge!({show_path: thesauri_managed_concept_path({id: ct_reference[:reference][:id], managed_concept: {context_id: ""}}) })
+      end
+    end
+    var
   end
 
   def model_klass

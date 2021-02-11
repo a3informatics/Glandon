@@ -12,7 +12,9 @@
     index_sdtm_ig_domain_url = sdtm_ig_domains_path
     history_sdtm_ig_domain_url = history_sdtm_ig_domains_path(sdtm_ig_domain: {identifier: "miHistoryId", scope_id: "miScopeId"})
     index_sdtm_class_url = sdtm_classes_path
-    history_class_url = history_sdtm_classes_path(sdtm_class: {identifier: "miHistoryId", scope_id: "miScopeId"})
+    history_sdtm_class_url = history_sdtm_classes_path(sdtm_class: {identifier: "miHistoryId", scope_id: "miScopeId"})
+    index_sdtm_sd_url = sdtm_sponsor_domains_path
+    history_sdtm_sd_url = history_sdtm_sponsor_domains_path(sdtm_sponsor_domain: {identifier: "miHistoryId", scope_id: "miScopeId"})
 %>
 
 <%# Legacy url variables *** DEPRECATED *** %>
@@ -52,6 +54,10 @@
                           },
                           sdtm_class: {
                             index: '#{index_sdtm_class_url}',
-                            history:  '#{history_class_url}'
+                            history:  '#{history_sdtm_class_url}'
+                          },
+                          sdtm_sponsor_domain: {
+                            index: '#{index_sdtm_sd_url}',
+                            history:  '#{history_sdtm_sd_url}'
                           }
                         }"%>

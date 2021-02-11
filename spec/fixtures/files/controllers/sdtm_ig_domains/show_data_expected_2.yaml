@@ -9,7 +9,7 @@
   :name: STUDYID
   :ct_and_format: ''
   :format: ''
-  :ct_reference: 
+  :ct_reference: []
   :description: Unique identifier for a study.
   :used: false
   :compliance:
@@ -21,6 +21,9 @@
   :classified_as:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Q0NmJiMzM3LTkyY2QtNDI1MC1iNTBjLTliZTUwNzlkNmFiMw==
     :label: Identifier
+  :notes: ''
+  :method: ''
+  :comment: ''
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfRE9NQUlO
   :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_DOMAIN
   :ordinal: 2
@@ -30,7 +33,7 @@
   :name: DOMAIN
   :ct_and_format: ''
   :format: ''
-  :ct_reference: 
+  :ct_reference: []
   :description: Two-character abbreviation for the domain.
   :used: false
   :compliance:
@@ -42,6 +45,9 @@
   :classified_as:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Q0NmJiMzM3LTkyY2QtNDI1MC1iNTBjLTliZTUwNzlkNmFiMw==
     :label: Identifier
+  :notes: ''
+  :method: ''
+  :comment: ''
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfVVNVQkpJRA==
   :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_USUBJID
   :ordinal: 3
@@ -51,7 +57,7 @@
   :name: USUBJID
   :ct_and_format: ''
   :format: ''
-  :ct_reference: 
+  :ct_reference: []
   :description: Identifier used to uniquely identify a subject across all studies
     for all applications or submissions involving the product.
   :used: false
@@ -64,6 +70,9 @@
   :classified_as:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Q0NmJiMzM3LTkyY2QtNDI1MC1iNTBjLTliZTUwNzlkNmFiMw==
     :label: Identifier
+  :notes: ''
+  :method: ''
+  :comment: ''
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVTRVE=
   :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESEQ
   :ordinal: 4
@@ -73,7 +82,7 @@
   :name: AESEQ
   :ct_and_format: ''
   :format: ''
-  :ct_reference: 
+  :ct_reference: []
   :description: Sequence Number given to ensure uniqueness of subject records within
     a domain. May be any valid number.
   :used: false
@@ -86,6 +95,9 @@
   :classified_as:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Q0NmJiMzM3LTkyY2QtNDI1MC1iNTBjLTliZTUwNzlkNmFiMw==
     :label: Identifier
+  :notes: ''
+  :method: ''
+  :comment: ''
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVHUlBJRA==
   :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEGRPID
   :ordinal: 5
@@ -95,7 +107,7 @@
   :name: AEGRPID
   :ct_and_format: ''
   :format: ''
-  :ct_reference: 
+  :ct_reference: []
   :description: Used to tie together a block of related records in a single domain
     for a subject.
   :used: false
@@ -108,6 +120,9 @@
   :classified_as:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Q0NmJiMzM3LTkyY2QtNDI1MC1iNTBjLTliZTUwNzlkNmFiMw==
     :label: Identifier
+  :notes: ''
+  :method: ''
+  :comment: ''
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVSRUZJRA==
   :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEREFID
   :ordinal: 6
@@ -117,7 +132,7 @@
   :name: AEREFID
   :ct_and_format: ''
   :format: ''
-  :ct_reference: 
+  :ct_reference: []
   :description: Internal or external identifier such as a serial number on an SAE
     reporting form
   :used: false
@@ -130,6 +145,9 @@
   :classified_as:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Q0NmJiMzM3LTkyY2QtNDI1MC1iNTBjLTliZTUwNzlkNmFiMw==
     :label: Identifier
+  :notes: ''
+  :method: ''
+  :comment: ''
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVTUElE
   :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESPID
   :ordinal: 7
@@ -139,7 +157,7 @@
   :name: AESPID
   :ct_and_format: ''
   :format: ''
-  :ct_reference: 
+  :ct_reference: []
   :description: 'Sponsor-defined identifier. It may be pre-printed on the CRF as an
     explicit line identifier or defined in the sponsor''s operational database. Example:
     Line number on an Adverse Events page.'
@@ -153,6 +171,9 @@
   :classified_as:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Q0NmJiMzM3LTkyY2QtNDI1MC1iNTBjLTliZTUwNzlkNmFiMw==
     :label: Identifier
+  :notes: ''
+  :method: ''
+  :comment: ''
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVURVJN
   :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AETERM
   :ordinal: 8
@@ -162,7 +183,7 @@
   :name: AETERM
   :ct_and_format: ''
   :format: ''
-  :ct_reference: 
+  :ct_reference: []
   :description: Verbatim name of the event.
   :used: false
   :compliance:
@@ -174,6 +195,9 @@
   :classified_as:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzY5MmNhZmJmLTY1OGEtNDNmMC05N2EyLWYwNDBlY2IxYTIwZA==
     :label: Topic
+  :notes: ''
+  :method: ''
+  :comment: ''
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVNT0RJRlk=
   :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEMODIFY
   :ordinal: 9
@@ -183,7 +207,7 @@
   :name: AEMODIFY
   :ct_and_format: ''
   :format: ''
-  :ct_reference: 
+  :ct_reference: []
   :description: If AETERM is modified to facilitate coding, then AEMODIFY will contain
     the modified text.
   :used: false
@@ -196,6 +220,9 @@
   :classified_as:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzg2Y2Q2MWU2LWQ0OGMtNGU0Mi1iOTk0LWJlZTM1ZTIzNTFmZQ==
     :label: None
+  :notes: ''
+  :method: ''
+  :comment: ''
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVERUNPRA==
   :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEDECOD
   :ordinal: 10
@@ -205,7 +232,7 @@
   :name: AEDECOD
   :ct_and_format: ''
   :format: ''
-  :ct_reference: 
+  :ct_reference: []
   :description: Dictionary-derived text description of AETERM or AEMODIFY. Equivalent
     to the Preferred Term (PT in MedDRA). The sponsor is expected to provide the dictionary
     name and version used to map the terms utilizing the define.xml external codelist
@@ -220,6 +247,9 @@
   :classified_as:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzg2Y2Q2MWU2LWQ0OGMtNGU0Mi1iOTk0LWJlZTM1ZTIzNTFmZQ==
     :label: None
+  :notes: ''
+  :method: ''
+  :comment: ''
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVDQVQ=
   :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AECAT
   :ordinal: 11
@@ -229,7 +259,7 @@
   :name: AECAT
   :ct_and_format: ''
   :format: ''
-  :ct_reference: 
+  :ct_reference: []
   :description: 'Used to define a category of related records. Example: BLEEDING,
     NEUROPSYCHIATRIC.'
   :used: false
@@ -242,6 +272,9 @@
   :classified_as:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzlmYjI5ZjhiLTUwNWEtNGM0Zi1iNTUwLTE3NWZiZmVjOTMyZA==
     :label: Grouping
+  :notes: ''
+  :method: ''
+  :comment: ''
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVTQ0FU
   :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESCAT
   :ordinal: 12
@@ -251,7 +284,7 @@
   :name: AESCAT
   :ct_and_format: ''
   :format: ''
-  :ct_reference: 
+  :ct_reference: []
   :description: 'A further categorization of adverse event. Example: NEUROLOGIC.'
   :used: false
   :compliance:
@@ -263,6 +296,9 @@
   :classified_as:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzlmYjI5ZjhiLTUwNWEtNGM0Zi1iNTUwLTE3NWZiZmVjOTMyZA==
     :label: Grouping
+  :notes: ''
+  :method: ''
+  :comment: ''
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVQUkVTUA==
   :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEPRESP
   :ordinal: 13
@@ -273,7 +309,7 @@
   :ct_and_format: "(NY)"
   :format: ''
   :ct_reference:
-    :show_path: "/thesauri/managed_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzQyL1Y0I0M2Njc0Mg==?managed_concept%5Bcontext_id%5D="
+  - :show_path: "/thesauri/managed_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzQyL1Y0I0M2Njc0Mg==?managed_concept%5Bcontext_id%5D="
     :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVQUkVTUF9UTUMx
     :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEPRESP_TMC1
     :rdf_type: http://www.assero.co.uk/BusinessOperational#TMcReference
@@ -301,6 +337,9 @@
   :classified_as:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzRiYjc1NzhjLTY3MDUtNGQyZS05M2Q2LWI1Njk2MGQ5ZTIxZQ==
     :label: Record
+  :notes: ''
+  :method: ''
+  :comment: ''
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVCT0RTWVM=
   :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEBODSYS
   :ordinal: 14
@@ -310,7 +349,7 @@
   :name: AEBODSYS
   :ct_and_format: ''
   :format: ''
-  :ct_reference: 
+  :ct_reference: []
   :description: Dictionary derived. Body system or organ class used by the sponsor
     from the coding dictionary (e.g., MedDRA). When using a multi-axial dictionary
     such as MedDRA, this should contain the SOC used for the sponsor's analyses and
@@ -325,6 +364,9 @@
   :classified_as:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzRiYjc1NzhjLTY3MDUtNGQyZS05M2Q2LWI1Njk2MGQ5ZTIxZQ==
     :label: Record
+  :notes: ''
+  :method: ''
+  :comment: ''
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVMT0M=
   :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AELOC
   :ordinal: 15
@@ -335,7 +377,7 @@
   :ct_and_format: "(LOC)"
   :format: ''
   :ct_reference:
-    :show_path: "/thesauri/managed_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzc0NDU2L1Y4I0M3NDQ1Ng==?managed_concept%5Bcontext_id%5D="
+  - :show_path: "/thesauri/managed_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzc0NDU2L1Y4I0M3NDQ1Ng==?managed_concept%5Bcontext_id%5D="
     :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVMT0NfVE1DMQ==
     :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AELOC_TMC1
     :rdf_type: http://www.assero.co.uk/BusinessOperational#TMcReference
@@ -362,6 +404,9 @@
   :classified_as:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzRiYjc1NzhjLTY3MDUtNGQyZS05M2Q2LWI1Njk2MGQ5ZTIxZQ==
     :label: Record
+  :notes: ''
+  :method: ''
+  :comment: ''
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVTRVY=
   :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESEV
   :ordinal: 16
@@ -372,7 +417,7 @@
   :ct_and_format: "(AESEV)"
   :format: ''
   :ct_reference:
-    :show_path: "/thesauri/managed_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzY5L1Y0I0M2Njc2OQ==?managed_concept%5Bcontext_id%5D="
+  - :show_path: "/thesauri/managed_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzY5L1Y0I0M2Njc2OQ==?managed_concept%5Bcontext_id%5D="
     :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVTRVZfVE1DMQ==
     :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESEV_TMC1
     :rdf_type: http://www.assero.co.uk/BusinessOperational#TMcReference
@@ -399,6 +444,9 @@
   :classified_as:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzRiYjc1NzhjLTY3MDUtNGQyZS05M2Q2LWI1Njk2MGQ5ZTIxZQ==
     :label: Record
+  :notes: ''
+  :method: ''
+  :comment: ''
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVTRVI=
   :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESER
   :ordinal: 17
@@ -409,7 +457,7 @@
   :ct_and_format: "(NY)"
   :format: ''
   :ct_reference:
-    :show_path: "/thesauri/managed_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzQyL1Y0I0M2Njc0Mg==?managed_concept%5Bcontext_id%5D="
+  - :show_path: "/thesauri/managed_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzQyL1Y0I0M2Njc0Mg==?managed_concept%5Bcontext_id%5D="
     :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVTRVJfVE1DMQ==
     :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESER_TMC1
     :rdf_type: http://www.assero.co.uk/BusinessOperational#TMcReference
@@ -435,6 +483,9 @@
   :classified_as:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzRiYjc1NzhjLTY3MDUtNGQyZS05M2Q2LWI1Njk2MGQ5ZTIxZQ==
     :label: Record
+  :notes: ''
+  :method: ''
+  :comment: ''
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVBQ04=
   :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEACN
   :ordinal: 18
@@ -445,7 +496,7 @@
   :ct_and_format: "(ACN)"
   :format: ''
   :ct_reference:
-    :show_path: "/thesauri/managed_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzY3L1Y0I0M2Njc2Nw==?managed_concept%5Bcontext_id%5D="
+  - :show_path: "/thesauri/managed_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzY3L1Y0I0M2Njc2Nw==?managed_concept%5Bcontext_id%5D="
     :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVBQ05fVE1DMQ==
     :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEACN_TMC1
     :rdf_type: http://www.assero.co.uk/BusinessOperational#TMcReference
@@ -475,6 +526,9 @@
   :classified_as:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzRiYjc1NzhjLTY3MDUtNGQyZS05M2Q2LWI1Njk2MGQ5ZTIxZQ==
     :label: Record
+  :notes: ''
+  :method: ''
+  :comment: ''
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVBQ05PVEg=
   :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEACNOTH
   :ordinal: 19
@@ -484,7 +538,7 @@
   :name: AEACNOTH
   :ct_and_format: ''
   :format: ''
-  :ct_reference: 
+  :ct_reference: []
   :description: 'Describes other actions taken as a result of the event that are unrelated
     to dose adjustments of study treatment. Usually reported as free text. Example:
     ''TREATMENT UNBLINDED. PRIMARY CARE PHYSICIAN NOTIFIED.'''
@@ -498,6 +552,9 @@
   :classified_as:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzRiYjc1NzhjLTY3MDUtNGQyZS05M2Q2LWI1Njk2MGQ5ZTIxZQ==
     :label: Record
+  :notes: ''
+  :method: ''
+  :comment: ''
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVSRUw=
   :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEREL
   :ordinal: 20
@@ -507,7 +564,7 @@
   :name: AEREL
   :ct_and_format: ''
   :format: ''
-  :ct_reference: 
+  :ct_reference: []
   :description: Records the investigator's opinion as to the causality of the event
     to the treatment. ICH E2A and E2B examples include NOT RELATED, UNLIKELY RELATED,
     POSSIBLY RELATED, RELATED. Controlled Terminology may be defined in the future.
@@ -522,6 +579,9 @@
   :classified_as:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzRiYjc1NzhjLTY3MDUtNGQyZS05M2Q2LWI1Njk2MGQ5ZTIxZQ==
     :label: Record
+  :notes: ''
+  :method: ''
+  :comment: ''
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVSRUxOU1Q=
   :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AERELNST
   :ordinal: 21
@@ -531,7 +591,7 @@
   :name: AERELNST
   :ct_and_format: ''
   :format: ''
-  :ct_reference: 
+  :ct_reference: []
   :description: 'Records the investigator''s opinion as to whether the event may have
     been due to a treatment other than study drug. May be reported as free text. Example:
     ''MORE LIKELY RELATED TO ASPIRIN USE.''.'
@@ -545,6 +605,9 @@
   :classified_as:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzRiYjc1NzhjLTY3MDUtNGQyZS05M2Q2LWI1Njk2MGQ5ZTIxZQ==
     :label: Record
+  :notes: ''
+  :method: ''
+  :comment: ''
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVQQVRU
   :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEPATT
   :ordinal: 22
@@ -554,7 +617,7 @@
   :name: AEPATT
   :ct_and_format: ''
   :format: ''
-  :ct_reference: 
+  :ct_reference: []
   :description: 'Used to indicate the pattern of the event over time. Examples: INTERMITTENT,
     CONTINUOUS, SINGLE EVENT.'
   :used: false
@@ -567,6 +630,9 @@
   :classified_as:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzRiYjc1NzhjLTY3MDUtNGQyZS05M2Q2LWI1Njk2MGQ5ZTIxZQ==
     :label: Record
+  :notes: ''
+  :method: ''
+  :comment: ''
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVPVVQ=
   :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEOUT
   :ordinal: 23
@@ -577,7 +643,7 @@
   :ct_and_format: "(OUT)"
   :format: ''
   :ct_reference:
-    :show_path: "/thesauri/managed_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzY4L1Y0I0M2Njc2OA==?managed_concept%5Bcontext_id%5D="
+  - :show_path: "/thesauri/managed_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzY4L1Y0I0M2Njc2OA==?managed_concept%5Bcontext_id%5D="
     :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVPVVRfVE1DMQ==
     :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEOUT_TMC1
     :rdf_type: http://www.assero.co.uk/BusinessOperational#TMcReference
@@ -603,6 +669,9 @@
   :classified_as:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzRiYjc1NzhjLTY3MDUtNGQyZS05M2Q2LWI1Njk2MGQ5ZTIxZQ==
     :label: Record
+  :notes: ''
+  :method: ''
+  :comment: ''
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVTQ0FO
   :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESCAN
   :ordinal: 24
@@ -613,7 +682,7 @@
   :ct_and_format: "(NY)"
   :format: ''
   :ct_reference:
-    :show_path: "/thesauri/managed_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzQyL1Y0I0M2Njc0Mg==?managed_concept%5Bcontext_id%5D="
+  - :show_path: "/thesauri/managed_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzQyL1Y0I0M2Njc0Mg==?managed_concept%5Bcontext_id%5D="
     :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVTQ0FOX1RNQzE=
     :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESCAN_TMC1
     :rdf_type: http://www.assero.co.uk/BusinessOperational#TMcReference
@@ -639,6 +708,9 @@
   :classified_as:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzRiYjc1NzhjLTY3MDUtNGQyZS05M2Q2LWI1Njk2MGQ5ZTIxZQ==
     :label: Record
+  :notes: ''
+  :method: ''
+  :comment: ''
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVTQ09ORw==
   :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESCONG
   :ordinal: 25
@@ -649,7 +721,7 @@
   :ct_and_format: "(NY)"
   :format: ''
   :ct_reference:
-    :show_path: "/thesauri/managed_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzQyL1Y0I0M2Njc0Mg==?managed_concept%5Bcontext_id%5D="
+  - :show_path: "/thesauri/managed_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzQyL1Y0I0M2Njc0Mg==?managed_concept%5Bcontext_id%5D="
     :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVTQ09OR19UTUMx
     :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESCONG_TMC1
     :rdf_type: http://www.assero.co.uk/BusinessOperational#TMcReference
@@ -676,6 +748,9 @@
   :classified_as:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzRiYjc1NzhjLTY3MDUtNGQyZS05M2Q2LWI1Njk2MGQ5ZTIxZQ==
     :label: Record
+  :notes: ''
+  :method: ''
+  :comment: ''
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVTRElTQUI=
   :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESDISAB
   :ordinal: 26
@@ -686,7 +761,7 @@
   :ct_and_format: "(NY)"
   :format: ''
   :ct_reference:
-    :show_path: "/thesauri/managed_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzQyL1Y0I0M2Njc0Mg==?managed_concept%5Bcontext_id%5D="
+  - :show_path: "/thesauri/managed_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzQyL1Y0I0M2Njc0Mg==?managed_concept%5Bcontext_id%5D="
     :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVTRElTQUJfVE1DMQ==
     :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESDISAB_TMC1
     :rdf_type: http://www.assero.co.uk/BusinessOperational#TMcReference
@@ -712,6 +787,9 @@
   :classified_as:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzRiYjc1NzhjLTY3MDUtNGQyZS05M2Q2LWI1Njk2MGQ5ZTIxZQ==
     :label: Record
+  :notes: ''
+  :method: ''
+  :comment: ''
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVTRFRI
   :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESDTH
   :ordinal: 27
@@ -722,7 +800,7 @@
   :ct_and_format: "(NY)"
   :format: ''
   :ct_reference:
-    :show_path: "/thesauri/managed_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzQyL1Y0I0M2Njc0Mg==?managed_concept%5Bcontext_id%5D="
+  - :show_path: "/thesauri/managed_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzQyL1Y0I0M2Njc0Mg==?managed_concept%5Bcontext_id%5D="
     :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVTRFRIX1RNQzE=
     :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESDTH_TMC1
     :rdf_type: http://www.assero.co.uk/BusinessOperational#TMcReference
@@ -748,6 +826,9 @@
   :classified_as:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzRiYjc1NzhjLTY3MDUtNGQyZS05M2Q2LWI1Njk2MGQ5ZTIxZQ==
     :label: Record
+  :notes: ''
+  :method: ''
+  :comment: ''
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVTSE9TUA==
   :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESHOSP
   :ordinal: 28
@@ -758,7 +839,7 @@
   :ct_and_format: "(NY)"
   :format: ''
   :ct_reference:
-    :show_path: "/thesauri/managed_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzQyL1Y0I0M2Njc0Mg==?managed_concept%5Bcontext_id%5D="
+  - :show_path: "/thesauri/managed_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzQyL1Y0I0M2Njc0Mg==?managed_concept%5Bcontext_id%5D="
     :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVTSE9TUF9UTUMx
     :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESHOSP_TMC1
     :rdf_type: http://www.assero.co.uk/BusinessOperational#TMcReference
@@ -784,6 +865,9 @@
   :classified_as:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzRiYjc1NzhjLTY3MDUtNGQyZS05M2Q2LWI1Njk2MGQ5ZTIxZQ==
     :label: Record
+  :notes: ''
+  :method: ''
+  :comment: ''
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVTTElGRQ==
   :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESLIFE
   :ordinal: 29
@@ -794,7 +878,7 @@
   :ct_and_format: "(NY)"
   :format: ''
   :ct_reference:
-    :show_path: "/thesauri/managed_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzQyL1Y0I0M2Njc0Mg==?managed_concept%5Bcontext_id%5D="
+  - :show_path: "/thesauri/managed_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzQyL1Y0I0M2Njc0Mg==?managed_concept%5Bcontext_id%5D="
     :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVTTElGRV9UTUMx
     :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESLIFE_TMC1
     :rdf_type: http://www.assero.co.uk/BusinessOperational#TMcReference
@@ -820,6 +904,9 @@
   :classified_as:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzRiYjc1NzhjLTY3MDUtNGQyZS05M2Q2LWI1Njk2MGQ5ZTIxZQ==
     :label: Record
+  :notes: ''
+  :method: ''
+  :comment: ''
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVTT0Q=
   :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESOD
   :ordinal: 30
@@ -830,7 +917,7 @@
   :ct_and_format: "(NY)"
   :format: ''
   :ct_reference:
-    :show_path: "/thesauri/managed_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzQyL1Y0I0M2Njc0Mg==?managed_concept%5Bcontext_id%5D="
+  - :show_path: "/thesauri/managed_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzQyL1Y0I0M2Njc0Mg==?managed_concept%5Bcontext_id%5D="
     :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVTT0RfVE1DMQ==
     :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESOD_TMC1
     :rdf_type: http://www.assero.co.uk/BusinessOperational#TMcReference
@@ -856,6 +943,9 @@
   :classified_as:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzRiYjc1NzhjLTY3MDUtNGQyZS05M2Q2LWI1Njk2MGQ5ZTIxZQ==
     :label: Record
+  :notes: ''
+  :method: ''
+  :comment: ''
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVTTUlF
   :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESMIE
   :ordinal: 31
@@ -866,7 +956,7 @@
   :ct_and_format: "(NY)"
   :format: ''
   :ct_reference:
-    :show_path: "/thesauri/managed_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzQyL1Y0I0M2Njc0Mg==?managed_concept%5Bcontext_id%5D="
+  - :show_path: "/thesauri/managed_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzQyL1Y0I0M2Njc0Mg==?managed_concept%5Bcontext_id%5D="
     :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVTTUlFX1RNQzE=
     :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESMIE_TMC1
     :rdf_type: http://www.assero.co.uk/BusinessOperational#TMcReference
@@ -892,6 +982,9 @@
   :classified_as:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzRiYjc1NzhjLTY3MDUtNGQyZS05M2Q2LWI1Njk2MGQ5ZTIxZQ==
     :label: Record
+  :notes: ''
+  :method: ''
+  :comment: ''
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVDT05UUlQ=
   :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AECONTRT
   :ordinal: 32
@@ -902,7 +995,7 @@
   :ct_and_format: "(NY)"
   :format: ''
   :ct_reference:
-    :show_path: "/thesauri/managed_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzQyL1Y0I0M2Njc0Mg==?managed_concept%5Bcontext_id%5D="
+  - :show_path: "/thesauri/managed_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzQyL1Y0I0M2Njc0Mg==?managed_concept%5Bcontext_id%5D="
     :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVDT05UUlRfVE1DMQ==
     :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AECONTRT_TMC1
     :rdf_type: http://www.assero.co.uk/BusinessOperational#TMcReference
@@ -928,6 +1021,9 @@
   :classified_as:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzRiYjc1NzhjLTY3MDUtNGQyZS05M2Q2LWI1Njk2MGQ5ZTIxZQ==
     :label: Record
+  :notes: ''
+  :method: ''
+  :comment: ''
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVUT1hHUg==
   :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AETOXGR
   :ordinal: 33
@@ -937,7 +1033,7 @@
   :name: AETOXGR
   :ct_and_format: ''
   :format: ''
-  :ct_reference: 
+  :ct_reference: []
   :description: Toxicity grade according to a standard toxicity scale such as Common
     Terminology Criteria for Adverse Events v3.0 (CTCAE). Sponsor should specify name
     of the scale and version used in the metadata (see 6.2.1.1, Assumption 6c). If
@@ -953,6 +1049,9 @@
   :classified_as:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzRiYjc1NzhjLTY3MDUtNGQyZS05M2Q2LWI1Njk2MGQ5ZTIxZQ==
     :label: Record
+  :notes: ''
+  :method: ''
+  :comment: ''
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVTVERUQw==
   :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESTDTC
   :ordinal: 34
@@ -962,7 +1061,7 @@
   :name: AESTDTC
   :ct_and_format: ISO 8601
   :format: ISO 8601
-  :ct_reference: 
+  :ct_reference: []
   :description: ''
   :used: false
   :compliance:
@@ -974,6 +1073,9 @@
   :classified_as:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzJjM2ZmMzg2LWEwNjItNDdmNS1iNTk0LWVlZjdlYWQwMjI0Mw==
     :label: Timing
+  :notes: ''
+  :method: ''
+  :comment: ''
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVFTkRUQw==
   :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEENDTC
   :ordinal: 35
@@ -983,7 +1085,7 @@
   :name: AEENDTC
   :ct_and_format: ISO 8601
   :format: ISO 8601
-  :ct_reference: 
+  :ct_reference: []
   :description: ''
   :used: false
   :compliance:
@@ -995,6 +1097,9 @@
   :classified_as:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzJjM2ZmMzg2LWEwNjItNDdmNS1iNTk0LWVlZjdlYWQwMjI0Mw==
     :label: Timing
+  :notes: ''
+  :method: ''
+  :comment: ''
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVTVERZ
   :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESTDY
   :ordinal: 36
@@ -1004,7 +1109,7 @@
   :name: AESTDY
   :ct_and_format: ''
   :format: ''
-  :ct_reference: 
+  :ct_reference: []
   :description: Study day of start of adverse event relative to the sponsor-defined
     RFSTDTC.
   :used: false
@@ -1017,6 +1122,9 @@
   :classified_as:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzJjM2ZmMzg2LWEwNjItNDdmNS1iNTk0LWVlZjdlYWQwMjI0Mw==
     :label: Timing
+  :notes: ''
+  :method: ''
+  :comment: ''
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVFTkRZ
   :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEENDY
   :ordinal: 37
@@ -1026,7 +1134,7 @@
   :name: AEENDY
   :ct_and_format: ''
   :format: ''
-  :ct_reference: 
+  :ct_reference: []
   :description: Study day of end of event relative to the sponsor-defined RFSTDTC.
   :used: false
   :compliance:
@@ -1038,6 +1146,9 @@
   :classified_as:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzJjM2ZmMzg2LWEwNjItNDdmNS1iNTk0LWVlZjdlYWQwMjI0Mw==
     :label: Timing
+  :notes: ''
+  :method: ''
+  :comment: ''
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVEVVI=
   :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEDUR
   :ordinal: 38
@@ -1047,7 +1158,7 @@
   :name: AEDUR
   :ct_and_format: ISO 8601
   :format: ISO 8601
-  :ct_reference: 
+  :ct_reference: []
   :description: 'Collected duration and unit of an adverse event. Used only if collected
     on the CRF and not derived from start and end date/times. Example: P1DT2H (for
     1 day, 2 hours).'
@@ -1061,6 +1172,9 @@
   :classified_as:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzJjM2ZmMzg2LWEwNjItNDdmNS1iNTk0LWVlZjdlYWQwMjI0Mw==
     :label: Timing
+  :notes: ''
+  :method: ''
+  :comment: ''
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVFTlJG
   :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEENRF
   :ordinal: 39
@@ -1071,7 +1185,7 @@
   :ct_and_format: "(STENRF)"
   :format: ''
   :ct_reference:
-    :show_path: "/thesauri/managed_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI4L1Y0I0M2NjcyOA==?managed_concept%5Bcontext_id%5D="
+  - :show_path: "/thesauri/managed_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI4L1Y0I0M2NjcyOA==?managed_concept%5Bcontext_id%5D="
     :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVFTlJGX1RNQzE=
     :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEENRF_TMC1
     :rdf_type: http://www.assero.co.uk/BusinessOperational#TMcReference
@@ -1100,6 +1214,9 @@
   :classified_as:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzJjM2ZmMzg2LWEwNjItNDdmNS1iNTk0LWVlZjdlYWQwMjI0Mw==
     :label: Timing
+  :notes: ''
+  :method: ''
+  :comment: ''
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVFTlJUUFQ=
   :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEENRTPT
   :ordinal: 40
@@ -1109,7 +1226,7 @@
   :name: AEENRTPT
   :ct_and_format: BEFORE, AFTER, COINCIDENT, ONGOING, U
   :format: BEFORE, AFTER, COINCIDENT, ONGOING, U
-  :ct_reference: 
+  :ct_reference: []
   :description: Identifies the end of the event as being before or after the reference
     time point defined by variable AEENTPT.
   :used: false
@@ -1122,6 +1239,9 @@
   :classified_as:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzJjM2ZmMzg2LWEwNjItNDdmNS1iNTk0LWVlZjdlYWQwMjI0Mw==
     :label: Timing
+  :notes: ''
+  :method: ''
+  :comment: ''
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19BRS9WMSNJR0RfQUVFTlRQVA==
   :uri: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEENTPT
   :ordinal: 41
@@ -1131,7 +1251,7 @@
   :name: AEENTPT
   :ct_and_format: ''
   :format: ''
-  :ct_reference: 
+  :ct_reference: []
   :description: 'Description of date/time in ISO 8601 character format of the reference
     point referred to by AEENRTPT. Examples: ''2003-12-25'' or ''VISIT 2''.'
   :used: false
@@ -1144,3 +1264,6 @@
   :classified_as:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzJjM2ZmMzg2LWEwNjItNDdmNS1iNTk0LWVlZjdlYWQwMjI0Mw==
     :label: Timing
+  :notes: ''
+  :method: ''
+  :comment: ''

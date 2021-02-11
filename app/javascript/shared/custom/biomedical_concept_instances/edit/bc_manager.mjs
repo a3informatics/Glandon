@@ -104,8 +104,8 @@ export default class BCManager extends Cacheable {
         alerts.success('BC created successfully.');
         this.editBC(data.id);
       },
-      onShow: () => this.bcEditor.kDisable(),
-      onHide: () => this.bcEditor.kEnable()
+      onShow: () => this.bcEditor.keysDisable(),
+      onHide: () => this.bcEditor.keysEnable()
     });
 
     // Initialize an Items Picker instance for BCs to add to the Editor with
@@ -114,8 +114,8 @@ export default class BCManager extends Cacheable {
       types: ['biomedical_concept_instance'],
       submitText: 'Add to Editor',
       onSubmit: (s) => this.editBC( s.asIDsArray()[0] ),
-      onShow: () => this.bcEditor.kDisable(),
-      onHide: () => this.bcEditor.kEnable()
+      onShow: () => this.bcEditor.keysDisable(),
+      onHide: () => this.bcEditor.keysEnable()
     });
 
   }
