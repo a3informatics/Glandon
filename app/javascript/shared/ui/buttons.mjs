@@ -1,4 +1,4 @@
-import { managedConceptRef, unmanagedConceptRef } from 'shared/ui/strings'
+import { managedItemRef, unmanagedItemRef } from 'shared/ui/strings'
 import { renderIcon } from 'shared/ui/icons'
 
 /*** Renderers for Buttons ***/
@@ -66,19 +66,26 @@ function showBtn(url) {
 /**
  * Returns HTML for a button linking to an managed/unamanaged item
  * @param {string} url path to the item's history
- * @param {Object} item Unmanaged / Managed Concept data object
- * @param {Object} parent Optional Managed Concept data object
+ * @param {Object} item Unmanaged / Managed Item data object
+ * @param {Object} parent Optional Managed Item data object
  * @param {boolean} newTab Set true to open link in a new tab, optional [default = false]
  * @return {string} Reference link HTML
  */
-function termReferenceBtn(url, item, parent, newTab = false) {
-  const text = parent ? unmanagedConceptRef(item, parent) : managedConceptRef(item);
-  return `<a href='${url}' ${newTab ? 'target="_blank"' : ''} class='bg-label highlightable'>${text}</a> `;
+function itemReferenceBtn(url, item, parent, newTab = false) {
+
+  const text = parent ? 
+    unmanagedItemRef( item, parent ) : 
+    managedItemRef( item )
+
+  return `<a href='${ url }' ${ newTab ? 'target="_blank"' : '' } class='bg-label highlightable'>
+            ${ text }
+          </a> `
+
 }
 
 export {
   historyBtn,
-  termReferenceBtn,
+  itemReferenceBtn,
   showBtn,
   tokenTimeoutBtn,
   iconBtn

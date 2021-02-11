@@ -3,7 +3,7 @@ import TablePanel from 'shared/base/table_panel'
 import { $delete } from 'shared/helpers/ajax'
 import { $confirm } from 'shared/helpers/confirmable'
 
-import { dtTrueFalseColumn } from 'shared/helpers/dt/dt_columns'
+import { dtBooleanColumn } from 'shared/helpers/dt/dt_columns'
 import { iconBtn, showBtn } from 'shared/ui/buttons'
 
 /**
@@ -142,9 +142,9 @@ export default class ImportsManager extends TablePanel {
       { data: 'owner' },
       { data: 'identifier' },
       { data: 'input_file' },
-      dtTrueFalseColumn( 'complete', { orderable: false } ),
-      dtTrueFalseColumn( 'success', { orderable: false } ),
-      dtTrueFalseColumn( 'auto_load', { orderable: false } ),
+      dtBooleanColumn( 'complete', { orderable: false } ),
+      dtBooleanColumn( 'success', { orderable: false } ),
+      dtBooleanColumn( 'auto_load', { orderable: false } ),
       // Rendr show & delete Import buttons
       {
         orderable: false,

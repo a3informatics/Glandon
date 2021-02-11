@@ -1,7 +1,7 @@
 import CreateItemView from 'shared/base/create_item_view'
 
 import ItemsPicker from 'shared/ui/items_picker/items_picker'
-import { managedConceptRef } from 'shared/ui/strings'
+import { managedItemRef } from 'shared/ui/strings'
 
 /**
  * Create SDM Sponsor Domain Modal View
@@ -99,7 +99,7 @@ export default class CreateSDTMSDView extends CreateItemView {
    */
   _onSelectBase(item) {
 
-    this.form.find('#new-item-base').val( managedConceptRef(item) )
+    this.form.find('#new-item-base').val( managedItemRef(item) )
                                     .attr('data-id', item.id);
 
   }

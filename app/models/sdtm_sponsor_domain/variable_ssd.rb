@@ -7,11 +7,15 @@ class SdtmSponsorDomain::VariableSSD < SdtmIgDomain::Variable
   data_property :comment
   data_property :used
   data_property :notes
+  data_property :method
   object_property :typed_as, cardinality: :one, model_class: "IsoConceptSystem::Node", delete_exclude: true
   object_property :based_on_ig_variable, cardinality: :one, model_class: "SdtmIgDomain::Variable", delete_exclude: true
   object_property :classified_as, cardinality: :one, model_class: "IsoConceptSystem::Node", delete_exclude: true
 
   validates_with Validator::Field, attribute: :name, method: :valid_sdtm_variable_name?
+  validates_with Validator::Field, attribute: :notes, method: :valid_label?
+  validates_with Validator::Field, attribute: :method, method: :valid_label?
+  validates_with Validator::Field, attribute: :comment, method: :valid_label?
   validate :correct_prefix?
   validate :unique_name_in_domain?, on: :create
 
@@ -52,15 +56,6 @@ class SdtmSponsorDomain::VariableSSD < SdtmIgDomain::Variable
     @parent_for_validation.unique_name_in_domain?(self, self.name)
   end
 
-  # Toggle with clone. Toggles Used attribute, clone if there are multiple parents
-  # def toggle_with_clone(managed_ancestor)
-  #   if multiple_managed_ancestors?
-  #     update_with_clone(toggle_used, managed_ancestor)
-  #   else
-  #     self.update(toggle_used)
-  #   end
-  # end
-
   # Update with clone. Update the object. Clone if there are multiple parents.
   #
   # @param [Hash] params the params
@@ -69,8 +64,8 @@ class SdtmSponsorDomain::VariableSSD < SdtmIgDomain::Variable
   def update_with_clone(params, managed_ancestor)
     @parent_for_validation = managed_ancestor
     if self.standard?
-      if params.has_key? :used
-        super(params.slice(:used), managed_ancestor)
+      if valid_keys?(params)
+        super(params.slice(:used, :notes, :comment, :method), managed_ancestor)
       else 
         self.errors.add(:base, "The variable cannot be updated as it is a standard variable.")
         self
@@ -79,6 +74,21 @@ class SdtmSponsorDomain::VariableSSD < SdtmIgDomain::Variable
       return self unless name_change_valid?(params)
       super(params, managed_ancestor)
     end
+  end
+
+  # Update. Update the object with the specified properties if valid. Intercepts to handle the terminology
+  #
+  # @param [Hash] params a hash of properties to be updated
+  # @return [Object] returns the object. Not saved if errors are returned.
+  def update(params)
+    if params.key?(:ct_reference) 
+      self.ct_reference_objects
+      set = IsoConceptV2::CodedValueSetTmc.new(self.ct_reference, self)
+      set.update(params)
+      self.ct_reference = set.items
+      params.delete(:ct_reference)
+    end
+    super
   end
 
   # Delete. Delete the object. Clone if there are multiple parents.
@@ -109,6 +119,12 @@ class SdtmSponsorDomain::VariableSSD < SdtmIgDomain::Variable
   end
 
   private
+
+    # Check if params contain valid standard keys
+    def valid_keys?(params)
+      standard_keys = %i[used notes comment method]
+      (params.to_h.symbolize_keys.keys & standard_keys).any?
+    end
     
     # Check for an invalid name change
     def name_change_valid?(params)
@@ -116,11 +132,6 @@ class SdtmSponsorDomain::VariableSSD < SdtmIgDomain::Variable
       return true if params[:name] == self.name
       @parent_for_validation.unique_name_in_domain?(self, params[:name])
     end
-
-    # Toggle used
-    # def toggle_used
-    #   self.used == true ? {used: false} : {used: true}
-    # end
 
     # Variable is prefixed?
     def is_prefixed?

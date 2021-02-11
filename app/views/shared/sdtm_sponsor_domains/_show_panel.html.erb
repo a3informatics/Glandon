@@ -1,17 +1,22 @@
-<%= javascript_tag "let sdtmIGDomainShowDataUrl = '#{show_url}';" %>
+<%= javascript_tag "let sdtmSDDomainShowDataUrl = '#{show_url}';" %>
 
 <div class="table-cardstyle all-columns loading-with-btns">
   <table id="show" class="table">
     <thead>
       <tr>
         <th class="fit">Ordinal</th>
-        <th>Name</th>
-        <th>Label</th>
+        <th class="th-small">Name</th>
+        <th class="th-medium">Label</th>
         <th>Datatype</th>
-        <th>CT or Format</th>
+        <th class="th-medium">Format</th>
+        <th class="no-break">CT and Format</th>
+        <th class="th-medium">CT</th>
         <th>Role</th>
-        <th>Notes</th>
+        <th class="th-xwide">Description</th>
+        <th class="th-wide">Notes</th>
+        <th class="th-wide">Comment</th>
         <th>Core</th>
+        <th class="th-wide">Method</th>
       </tr>
     </thead>
   </table>

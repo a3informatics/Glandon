@@ -96,6 +96,7 @@ module D3GraphHelpers
 
   def click_action(action)
     find("#d3 .node-actions ##{ action_btn_map[action] }").click
+    sleep 0.3
   end
 
   def check_alert(text)

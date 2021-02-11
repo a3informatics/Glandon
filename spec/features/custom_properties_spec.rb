@@ -317,12 +317,12 @@ describe "Custom Properties", type: :feature  do
       show_custom_props 
 
       # Inline CP editing, text
-      ui_editor_select_by_location 1, 8, false, 'subset-table'
+      ui_editor_select_by_location 1, 8, table: 'subset-table'
       ui_editor_fill_inline 'crf_display_value', "Male CRF\n"
       check_cell_content 'subset-table', 1, 8, 'Male CRF'
 
       # Inline CP editing, boolean
-      ui_editor_select_by_location 1, 13, false, 'subset-table'
+      ui_editor_select_by_location 1, 13, table: 'subset-table'
       ui_press_key :arrow_left
       ui_press_key :return
       wait_for_ajax 10

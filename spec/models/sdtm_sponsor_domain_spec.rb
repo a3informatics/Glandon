@@ -23,6 +23,7 @@ describe SdtmSponsorDomain do
       load_data_file_into_triple_store("mdr_iso_concept_systems_migration_2.ttl")
       load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V1.ttl")
       load_data_file_into_triple_store("cdisc/sdtm_ig/SDTM_IG_V1.ttl")
+      load_cdisc_term_versions(1..8)
       allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
     end
 
@@ -51,7 +52,8 @@ describe SdtmSponsorDomain do
       actual = []
       item = SdtmSponsorDomain.find_full(Uri.new(uri:"http://www.s-cubed.dk/AAA/V1#SPD"))
       children = item.get_children
-      children.each {|x| actual << x.to_h}
+      children_sorted = children.each.sort_by {|x| x[:ordinal]} 
+      children_sorted.each {|x| actual << x.to_h}
       check_file_actual_expected(actual, sub_dir, "find_children.yaml", equate_method: :hash_equal)
     end
 
@@ -95,6 +97,31 @@ describe SdtmSponsorDomain do
       result = sponsor_domain.delete
       expect(result).to eq(1)
       expect(triple_store.triple_count).to eq(before_count)
+    end
+
+  end
+
+  describe "Get children Tests" do
+
+    before :each do
+      data_files = ["SDTM_Sponsor_Domain.ttl"]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..8)
+      load_data_file_into_triple_store("mdr_identification.ttl")
+      load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
+      load_data_file_into_triple_store("mdr_iso_concept_systems_migration_1.ttl")
+      load_data_file_into_triple_store("mdr_iso_concept_systems_migration_2.ttl")
+      load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V1.ttl")
+      load_data_file_into_triple_store("cdisc/sdtm_ig/SDTM_IG_V1.ttl")
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
+    end
+
+    it "allows an Sponsor Domain to get children (variables)" do
+      actual = []
+      item = SdtmSponsorDomain.find_full(Uri.new(uri:"http://www.s-cubed.dk/AAA/V1#SPD"))
+      children = item.get_children
+      children.each {|x| actual << x.to_h}
+      check_file_actual_expected(actual, sub_dir, "find_children.yaml", equate_method: :hash_equal)
     end
 
   end

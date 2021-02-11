@@ -226,7 +226,11 @@ class Form::Group::Normal < Form::Group
     end
 
     def add_item(params)
-      child = type_to_class[params[:type].to_sym].create(label: "Not set", ordinal: next_ordinal, parent_uri: self.uri)
+      if params[:type].to_sym == :question
+        child = type_to_class[params[:type].to_sym].create(label: "Not set", ordinal: next_ordinal, parent_uri: self.uri, format: "20", datatype: "string")
+      else
+        child = type_to_class[params[:type].to_sym].create(label: "Not set", ordinal: next_ordinal, parent_uri: self.uri)
+      end
       self.add_link(:has_item, child.uri)
       child
     end

@@ -1,0 +1,659 @@
+---
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19NSC9WMSNJR0RfU1RVRFlJRA==
+  :uri: http://www.cdisc.org/SDTM_IG_MH/V1#IGD_STUDYID
+  :ordinal: 1
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :standard: true
+  :label: Study Identifier
+  :name: STUDYID
+  :ct_and_format: ''
+  :format: ''
+  :ct_reference: []
+  :description: Unique identifier for a study.
+  :used: false
+  :compliance:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzUyMDcwMDg0LWNkZDMtNGJhOC04Mzc3LWY2NzBlNGIwMjc2Yw==
+    :label: Required
+  :typed_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2QyZjJiYmViLThmNzktNGZiMS1iMTkwLWRkODY0ZDI5ZjA4MA==
+    :label: Character
+  :classified_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Q0NmJiMzM3LTkyY2QtNDI1MC1iNTBjLTliZTUwNzlkNmFiMw==
+    :label: Identifier
+  :notes: ''
+  :method: ''
+  :comment: ''
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19NSC9WMSNJR0RfRE9NQUlO
+  :uri: http://www.cdisc.org/SDTM_IG_MH/V1#IGD_DOMAIN
+  :ordinal: 2
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :standard: true
+  :label: Domain Abbreviation
+  :name: DOMAIN
+  :ct_and_format: ''
+  :format: ''
+  :ct_reference: []
+  :description: Two-character abbreviation for the domain.
+  :used: false
+  :compliance:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzUyMDcwMDg0LWNkZDMtNGJhOC04Mzc3LWY2NzBlNGIwMjc2Yw==
+    :label: Required
+  :typed_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2QyZjJiYmViLThmNzktNGZiMS1iMTkwLWRkODY0ZDI5ZjA4MA==
+    :label: Character
+  :classified_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Q0NmJiMzM3LTkyY2QtNDI1MC1iNTBjLTliZTUwNzlkNmFiMw==
+    :label: Identifier
+  :notes: ''
+  :method: ''
+  :comment: ''
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19NSC9WMSNJR0RfVVNVQkpJRA==
+  :uri: http://www.cdisc.org/SDTM_IG_MH/V1#IGD_USUBJID
+  :ordinal: 3
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :standard: true
+  :label: Unique Subject Identifier
+  :name: USUBJID
+  :ct_and_format: ''
+  :format: ''
+  :ct_reference: []
+  :description: Identifier used to uniquely identify a subject across all studies
+    for all applications or submissions involving the product.
+  :used: false
+  :compliance:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzUyMDcwMDg0LWNkZDMtNGJhOC04Mzc3LWY2NzBlNGIwMjc2Yw==
+    :label: Required
+  :typed_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2QyZjJiYmViLThmNzktNGZiMS1iMTkwLWRkODY0ZDI5ZjA4MA==
+    :label: Character
+  :classified_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Q0NmJiMzM3LTkyY2QtNDI1MC1iNTBjLTliZTUwNzlkNmFiMw==
+    :label: Identifier
+  :notes: ''
+  :method: ''
+  :comment: ''
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19NSC9WMSNJR0RfTUhTRVE=
+  :uri: http://www.cdisc.org/SDTM_IG_MH/V1#IGD_MHSEQ
+  :ordinal: 4
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :standard: true
+  :label: Sequence Number
+  :name: MHSEQ
+  :ct_and_format: ''
+  :format: ''
+  :ct_reference: []
+  :description: Sequence Number given to ensure uniqueness of subject records within
+    a domain. May be any valid number.
+  :used: false
+  :compliance:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzUyMDcwMDg0LWNkZDMtNGJhOC04Mzc3LWY2NzBlNGIwMjc2Yw==
+    :label: Required
+  :typed_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzE3OGY4ZGJlLWMzYmEtNGRjMC04YTJhLTE4MDgxNjQ0YjRjNg==
+    :label: Numeric
+  :classified_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Q0NmJiMzM3LTkyY2QtNDI1MC1iNTBjLTliZTUwNzlkNmFiMw==
+    :label: Identifier
+  :notes: ''
+  :method: ''
+  :comment: ''
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19NSC9WMSNJR0RfTUhHUlBJRA==
+  :uri: http://www.cdisc.org/SDTM_IG_MH/V1#IGD_MHGRPID
+  :ordinal: 5
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :standard: true
+  :label: Group ID
+  :name: MHGRPID
+  :ct_and_format: ''
+  :format: ''
+  :ct_reference: []
+  :description: Used to tie together a block of related records in a single domain
+    for a subject.
+  :used: false
+  :compliance:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
+    :label: Permissible
+  :typed_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2QyZjJiYmViLThmNzktNGZiMS1iMTkwLWRkODY0ZDI5ZjA4MA==
+    :label: Character
+  :classified_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Q0NmJiMzM3LTkyY2QtNDI1MC1iNTBjLTliZTUwNzlkNmFiMw==
+    :label: Identifier
+  :notes: ''
+  :method: ''
+  :comment: ''
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19NSC9WMSNJR0RfTUhSRUZJRA==
+  :uri: http://www.cdisc.org/SDTM_IG_MH/V1#IGD_MHREFID
+  :ordinal: 6
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :standard: true
+  :label: Reference ID
+  :name: MHREFID
+  :ct_and_format: ''
+  :format: ''
+  :ct_reference: []
+  :description: Internal or external medical history identifier.
+  :used: false
+  :compliance:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
+    :label: Permissible
+  :typed_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2QyZjJiYmViLThmNzktNGZiMS1iMTkwLWRkODY0ZDI5ZjA4MA==
+    :label: Character
+  :classified_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Q0NmJiMzM3LTkyY2QtNDI1MC1iNTBjLTliZTUwNzlkNmFiMw==
+    :label: Identifier
+  :notes: ''
+  :method: ''
+  :comment: ''
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19NSC9WMSNJR0RfTUhTUElE
+  :uri: http://www.cdisc.org/SDTM_IG_MH/V1#IGD_MHSPID
+  :ordinal: 7
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :standard: true
+  :label: Sponsor-Defined Identifier
+  :name: MHSPID
+  :ct_and_format: ''
+  :format: ''
+  :ct_reference: []
+  :description: 'Sponsor-defined reference number. Perhaps pre-printed on the CRF
+    as an explicit line identifier or defined in the sponsor''s operational database.
+    Example: Line number on a Medical History page.'
+  :used: false
+  :compliance:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
+    :label: Permissible
+  :typed_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2QyZjJiYmViLThmNzktNGZiMS1iMTkwLWRkODY0ZDI5ZjA4MA==
+    :label: Character
+  :classified_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Q0NmJiMzM3LTkyY2QtNDI1MC1iNTBjLTliZTUwNzlkNmFiMw==
+    :label: Identifier
+  :notes: ''
+  :method: ''
+  :comment: ''
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19NSC9WMSNJR0RfTUhURVJN
+  :uri: http://www.cdisc.org/SDTM_IG_MH/V1#IGD_MHTERM
+  :ordinal: 8
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :standard: true
+  :label: Reported Term for the Medical History
+  :name: MHTERM
+  :ct_and_format: ''
+  :format: ''
+  :ct_reference: []
+  :description: Verbatim or preprinted CRF term for the medical condition or event.
+  :used: false
+  :compliance:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzUyMDcwMDg0LWNkZDMtNGJhOC04Mzc3LWY2NzBlNGIwMjc2Yw==
+    :label: Required
+  :typed_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2QyZjJiYmViLThmNzktNGZiMS1iMTkwLWRkODY0ZDI5ZjA4MA==
+    :label: Character
+  :classified_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzY5MmNhZmJmLTY1OGEtNDNmMC05N2EyLWYwNDBlY2IxYTIwZA==
+    :label: Topic
+  :notes: ''
+  :method: ''
+  :comment: ''
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19NSC9WMSNJR0RfTUhNT0RJRlk=
+  :uri: http://www.cdisc.org/SDTM_IG_MH/V1#IGD_MHMODIFY
+  :ordinal: 9
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :standard: true
+  :label: Modified Reported Term
+  :name: MHMODIFY
+  :ct_and_format: ''
+  :format: ''
+  :ct_reference: []
+  :description: If MHTERM is modified to facilitate coding, then MHMODIFY will contain
+    the modified text.
+  :used: false
+  :compliance:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
+    :label: Permissible
+  :typed_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2QyZjJiYmViLThmNzktNGZiMS1iMTkwLWRkODY0ZDI5ZjA4MA==
+    :label: Character
+  :classified_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzg2Y2Q2MWU2LWQ0OGMtNGU0Mi1iOTk0LWJlZTM1ZTIzNTFmZQ==
+    :label: None
+  :notes: ''
+  :method: ''
+  :comment: ''
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19NSC9WMSNJR0RfTUhERUNPRA==
+  :uri: http://www.cdisc.org/SDTM_IG_MH/V1#IGD_MHDECOD
+  :ordinal: 10
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :standard: true
+  :label: Dictionary-Derived Term
+  :name: MHDECOD
+  :ct_and_format: ''
+  :format: ''
+  :ct_reference: []
+  :description: Dictionary-derived text description of MHTERM or MHMODIFY. Equivalent
+    to the Preferred Term (PT in MedDRA). The sponsor is expected to provide the dictionary
+    name and version used to map the terms utilizing the define.xml external codelist
+    attributes
+  :used: false
+  :compliance:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
+    :label: Permissible
+  :typed_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2QyZjJiYmViLThmNzktNGZiMS1iMTkwLWRkODY0ZDI5ZjA4MA==
+    :label: Character
+  :classified_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzg2Y2Q2MWU2LWQ0OGMtNGU0Mi1iOTk0LWJlZTM1ZTIzNTFmZQ==
+    :label: None
+  :notes: ''
+  :method: ''
+  :comment: ''
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19NSC9WMSNJR0RfTUhDQVQ=
+  :uri: http://www.cdisc.org/SDTM_IG_MH/V1#IGD_MHCAT
+  :ordinal: 11
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :standard: true
+  :label: Category for Medical History
+  :name: MHCAT
+  :ct_and_format: ''
+  :format: ''
+  :ct_reference: []
+  :description: 'Used to define a category of related records. Examples: CARDIAC or
+    GENERAL'
+  :used: false
+  :compliance:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
+    :label: Permissible
+  :typed_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2QyZjJiYmViLThmNzktNGZiMS1iMTkwLWRkODY0ZDI5ZjA4MA==
+    :label: Character
+  :classified_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzlmYjI5ZjhiLTUwNWEtNGM0Zi1iNTUwLTE3NWZiZmVjOTMyZA==
+    :label: Grouping
+  :notes: ''
+  :method: ''
+  :comment: ''
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19NSC9WMSNJR0RfTUhTQ0FU
+  :uri: http://www.cdisc.org/SDTM_IG_MH/V1#IGD_MHSCAT
+  :ordinal: 12
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :standard: true
+  :label: Subcategory for Medical History
+  :name: MHSCAT
+  :ct_and_format: ''
+  :format: ''
+  :ct_reference: []
+  :description: A further categorization of the condition or event.
+  :used: false
+  :compliance:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
+    :label: Permissible
+  :typed_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2QyZjJiYmViLThmNzktNGZiMS1iMTkwLWRkODY0ZDI5ZjA4MA==
+    :label: Character
+  :classified_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzlmYjI5ZjhiLTUwNWEtNGM0Zi1iNTUwLTE3NWZiZmVjOTMyZA==
+    :label: Grouping
+  :notes: ''
+  :method: ''
+  :comment: ''
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19NSC9WMSNJR0RfTUhQUkVTUA==
+  :uri: http://www.cdisc.org/SDTM_IG_MH/V1#IGD_MHPRESP
+  :ordinal: 13
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :standard: true
+  :label: Medical History Event Pre-Specified
+  :name: MHPRESP
+  :ct_and_format: "(NY)"
+  :format: ''
+  :ct_reference:
+  - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19NSC9WMSNJR0RfTUhQUkVTUF9UTUMx
+    :uri: http://www.cdisc.org/SDTM_IG_MH/V1#IGD_MHPRESP_TMC1
+    :rdf_type: http://www.assero.co.uk/BusinessOperational#TMcReference
+    :label: NY
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :reference:
+      :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzQyL1Y0I0M2Njc0Mg==
+      :uri: http://www.cdisc.org/C66742/V4#C66742
+      :identifier: C66742
+      :label: No Yes Response
+      :notation: NY
+      :semantic_version: 2.0.0
+  :description: A value of 'Y' indicates that this medical history event was pre-specified
+    on the CRF. Values are null for spontaneously reported events (i.e., those collected
+    as free-text verbatim terms)
+  :used: false
+  :compliance:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
+    :label: Permissible
+  :typed_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2QyZjJiYmViLThmNzktNGZiMS1iMTkwLWRkODY0ZDI5ZjA4MA==
+    :label: Character
+  :classified_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzRiYjc1NzhjLTY3MDUtNGQyZS05M2Q2LWI1Njk2MGQ5ZTIxZQ==
+    :label: Record
+  :notes: ''
+  :method: ''
+  :comment: ''
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19NSC9WMSNJR0RfTUhPQ0NVUg==
+  :uri: http://www.cdisc.org/SDTM_IG_MH/V1#IGD_MHOCCUR
+  :ordinal: 14
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :standard: true
+  :label: Medical History Occurrence
+  :name: MHOCCUR
+  :ct_and_format: "(NY)"
+  :format: ''
+  :ct_reference:
+  - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19NSC9WMSNJR0RfTUhPQ0NVUl9UTUMx
+    :uri: http://www.cdisc.org/SDTM_IG_MH/V1#IGD_MHOCCUR_TMC1
+    :rdf_type: http://www.assero.co.uk/BusinessOperational#TMcReference
+    :label: NY
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :reference:
+      :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzQyL1Y0I0M2Njc0Mg==
+      :uri: http://www.cdisc.org/C66742/V4#C66742
+      :identifier: C66742
+      :label: No Yes Response
+      :notation: NY
+      :semantic_version: 2.0.0
+  :description: Used when the occurrence of specific medical history conditions is
+    solicited to indicate whether or not (Y/N) a medical condition (MHTERM) had ever
+    occurred. Values are null for spontaneously reported events.
+  :used: false
+  :compliance:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
+    :label: Permissible
+  :typed_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2QyZjJiYmViLThmNzktNGZiMS1iMTkwLWRkODY0ZDI5ZjA4MA==
+    :label: Character
+  :classified_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzRiYjc1NzhjLTY3MDUtNGQyZS05M2Q2LWI1Njk2MGQ5ZTIxZQ==
+    :label: Record
+  :notes: ''
+  :method: ''
+  :comment: ''
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19NSC9WMSNJR0RfTUhTVEFU
+  :uri: http://www.cdisc.org/SDTM_IG_MH/V1#IGD_MHSTAT
+  :ordinal: 15
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :standard: true
+  :label: Completion Status
+  :name: MHSTAT
+  :ct_and_format: "(ND)"
+  :format: ''
+  :ct_reference:
+  - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19NSC9WMSNJR0RfTUhTVEFUX1RNQzE=
+    :uri: http://www.cdisc.org/SDTM_IG_MH/V1#IGD_MHSTAT_TMC1
+    :rdf_type: http://www.assero.co.uk/BusinessOperational#TMcReference
+    :label: ND
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :reference:
+      :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2Nzg5L1YxMyNDNjY3ODk=
+      :uri: http://www.cdisc.org/C66789/V13#C66789
+      :identifier: C66789
+      :label: Not Done
+      :notation: ND
+      :semantic_version: 3.0.0
+  :description: The status indicates that the pre-specified question was not answered.
+  :used: false
+  :compliance:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
+    :label: Permissible
+  :typed_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2QyZjJiYmViLThmNzktNGZiMS1iMTkwLWRkODY0ZDI5ZjA4MA==
+    :label: Character
+  :classified_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzRiYjc1NzhjLTY3MDUtNGQyZS05M2Q2LWI1Njk2MGQ5ZTIxZQ==
+    :label: Record
+  :notes: ''
+  :method: ''
+  :comment: ''
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19NSC9WMSNJR0RfTUhSRUFTTkQ=
+  :uri: http://www.cdisc.org/SDTM_IG_MH/V1#IGD_MHREASND
+  :ordinal: 16
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :standard: true
+  :label: Reason Medical History Not Collected
+  :name: MHREASND
+  :ct_and_format: ''
+  :format: ''
+  :ct_reference: []
+  :description: Describes the reason data for a pre-specified condition was not collected.
+    Used in conjunction with MHSTAT when value is NOT DONE.
+  :used: false
+  :compliance:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
+    :label: Permissible
+  :typed_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2QyZjJiYmViLThmNzktNGZiMS1iMTkwLWRkODY0ZDI5ZjA4MA==
+    :label: Character
+  :classified_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzRiYjc1NzhjLTY3MDUtNGQyZS05M2Q2LWI1Njk2MGQ5ZTIxZQ==
+    :label: Record
+  :notes: ''
+  :method: ''
+  :comment: ''
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19NSC9WMSNJR0RfTUhCT0RTWVM=
+  :uri: http://www.cdisc.org/SDTM_IG_MH/V1#IGD_MHBODSYS
+  :ordinal: 17
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :standard: true
+  :label: Body System or Organ Class
+  :name: MHBODSYS
+  :ct_and_format: ''
+  :format: ''
+  :ct_reference: []
+  :description: Dictionary-derived. Body system or organ class that is involved in
+    an event or measurement from a standard hierarchy (e.g., MedDRA). When using a
+    multi-axial dictionary such as MedDRA, this should contain the SOC used for the
+    sponsor's analyses and summary tables which may not necessarily be the primary
+    SOC.
+  :used: false
+  :compliance:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
+    :label: Permissible
+  :typed_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2QyZjJiYmViLThmNzktNGZiMS1iMTkwLWRkODY0ZDI5ZjA4MA==
+    :label: Character
+  :classified_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzRiYjc1NzhjLTY3MDUtNGQyZS05M2Q2LWI1Njk2MGQ5ZTIxZQ==
+    :label: Record
+  :notes: ''
+  :method: ''
+  :comment: ''
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19NSC9WMSNJR0RfTUhEVEM=
+  :uri: http://www.cdisc.org/SDTM_IG_MH/V1#IGD_MHDTC
+  :ordinal: 18
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :standard: true
+  :label: Date/Time of History Collection
+  :name: MHDTC
+  :ct_and_format: ISO 8601
+  :format: ISO 8601
+  :ct_reference: []
+  :description: ''
+  :used: false
+  :compliance:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
+    :label: Permissible
+  :typed_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2QyZjJiYmViLThmNzktNGZiMS1iMTkwLWRkODY0ZDI5ZjA4MA==
+    :label: Character
+  :classified_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzJjM2ZmMzg2LWEwNjItNDdmNS1iNTk0LWVlZjdlYWQwMjI0Mw==
+    :label: Timing
+  :notes: ''
+  :method: ''
+  :comment: ''
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19NSC9WMSNJR0RfTUhTVERUQw==
+  :uri: http://www.cdisc.org/SDTM_IG_MH/V1#IGD_MHSTDTC
+  :ordinal: 19
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :standard: true
+  :label: Start Date/Time of Medical History Event
+  :name: MHSTDTC
+  :ct_and_format: ISO 8601
+  :format: ISO 8601
+  :ct_reference: []
+  :description: ''
+  :used: false
+  :compliance:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
+    :label: Permissible
+  :typed_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2QyZjJiYmViLThmNzktNGZiMS1iMTkwLWRkODY0ZDI5ZjA4MA==
+    :label: Character
+  :classified_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzJjM2ZmMzg2LWEwNjItNDdmNS1iNTk0LWVlZjdlYWQwMjI0Mw==
+    :label: Timing
+  :notes: ''
+  :method: ''
+  :comment: ''
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19NSC9WMSNJR0RfTUhFTkRUQw==
+  :uri: http://www.cdisc.org/SDTM_IG_MH/V1#IGD_MHENDTC
+  :ordinal: 20
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :standard: true
+  :label: End Date/Time of Medical History Event
+  :name: MHENDTC
+  :ct_and_format: ISO 8601
+  :format: ISO 8601
+  :ct_reference: []
+  :description: ''
+  :used: false
+  :compliance:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
+    :label: Permissible
+  :typed_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2QyZjJiYmViLThmNzktNGZiMS1iMTkwLWRkODY0ZDI5ZjA4MA==
+    :label: Character
+  :classified_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzJjM2ZmMzg2LWEwNjItNDdmNS1iNTk0LWVlZjdlYWQwMjI0Mw==
+    :label: Timing
+  :notes: ''
+  :method: ''
+  :comment: ''
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19NSC9WMSNJR0RfTUhEWQ==
+  :uri: http://www.cdisc.org/SDTM_IG_MH/V1#IGD_MHDY
+  :ordinal: 21
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :standard: true
+  :label: Study Day of History Collection
+  :name: MHDY
+  :ct_and_format: ''
+  :format: ''
+  :ct_reference: []
+  :description: 1. Study day of medical history collection, measured as integer days.
+    2. Algorithm for calculations must be relative to the sponsor-defined RFSTDTC
+    variable in Demographics. This formula should be consistent across the submission.
+  :used: false
+  :compliance:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
+    :label: Permissible
+  :typed_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzE3OGY4ZGJlLWMzYmEtNGRjMC04YTJhLTE4MDgxNjQ0YjRjNg==
+    :label: Numeric
+  :classified_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzJjM2ZmMzg2LWEwNjItNDdmNS1iNTk0LWVlZjdlYWQwMjI0Mw==
+    :label: Timing
+  :notes: ''
+  :method: ''
+  :comment: ''
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19NSC9WMSNJR0RfTUhFTlJG
+  :uri: http://www.cdisc.org/SDTM_IG_MH/V1#IGD_MHENRF
+  :ordinal: 22
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :standard: true
+  :label: End Relative to Reference Period
+  :name: MHENRF
+  :ct_and_format: "(STENRF)"
+  :format: ''
+  :ct_reference:
+  - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19NSC9WMSNJR0RfTUhFTlJGX1RNQzE=
+    :uri: http://www.cdisc.org/SDTM_IG_MH/V1#IGD_MHENRF_TMC1
+    :rdf_type: http://www.assero.co.uk/BusinessOperational#TMcReference
+    :label: STENRF
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :reference:
+      :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI4L1Y0I0M2NjcyOA==
+      :uri: http://www.cdisc.org/C66728/V4#C66728
+      :identifier: C66728
+      :label: Relation to Reference Period
+      :notation: STENRF
+      :semantic_version: 2.0.0
+  :description: Describes the end of the event relative to the sponsor-defined reference
+    period. The sponsor-defined reference period is a continuous period of time defined
+    by a discrete starting point and a discrete ending point (represented by RFSTDTC
+    and RFENDTC in Demographics)
+  :used: false
+  :compliance:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
+    :label: Permissible
+  :typed_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2QyZjJiYmViLThmNzktNGZiMS1iMTkwLWRkODY0ZDI5ZjA4MA==
+    :label: Character
+  :classified_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzJjM2ZmMzg2LWEwNjItNDdmNS1iNTk0LWVlZjdlYWQwMjI0Mw==
+    :label: Timing
+  :notes: ''
+  :method: ''
+  :comment: ''
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19NSC9WMSNJR0RfTUhFTlJUUFQ=
+  :uri: http://www.cdisc.org/SDTM_IG_MH/V1#IGD_MHENRTPT
+  :ordinal: 23
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :standard: true
+  :label: End Relative to Reference Time Point
+  :name: MHENRTPT
+  :ct_and_format: BEFORE, AFTER, COINCIDENT, ONGOING, U
+  :format: BEFORE, AFTER, COINCIDENT, ONGOING, U
+  :ct_reference: []
+  :description: Identifies the end of the event as being before or after the reference
+    time point defined by variable MHENTPT.
+  :used: false
+  :compliance:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
+    :label: Permissible
+  :typed_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2QyZjJiYmViLThmNzktNGZiMS1iMTkwLWRkODY0ZDI5ZjA4MA==
+    :label: Character
+  :classified_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzJjM2ZmMzg2LWEwNjItNDdmNS1iNTk0LWVlZjdlYWQwMjI0Mw==
+    :label: Timing
+  :notes: ''
+  :method: ''
+  :comment: ''
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvU0RUTV9JR19NSC9WMSNJR0RfTUhFTlRQVA==
+  :uri: http://www.cdisc.org/SDTM_IG_MH/V1#IGD_MHENTPT
+  :ordinal: 24
+  :rdf_type: http://www.assero.co.uk/Tabulation#SdtmDomainVariable
+  :standard: true
+  :label: End Reference Time Point
+  :name: MHENTPT
+  :ct_and_format: ''
+  :format: ''
+  :ct_reference: []
+  :description: 'Description or date/time in ISO 8601 character format of the reference
+    point referred to by MHENRTPT. Examples: ''2003-12-25'' or ''VISIT 2''.'
+  :used: false
+  :compliance:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2Y3ZDlkNGUxLWEwMGEtNDg3ZS04OWRiLWViZWNlOTEwYmEwZA==
+    :label: Permissible
+  :typed_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2QyZjJiYmViLThmNzktNGZiMS1iMTkwLWRkODY0ZDI5ZjA4MA==
+    :label: Character
+  :classified_as:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzJjM2ZmMzg2LWEwNjItNDdmNS1iNTk0LWVlZjdlYWQwMjI0Mw==
+    :label: Timing
+  :notes: ''
+  :method: ''
+  :comment: ''

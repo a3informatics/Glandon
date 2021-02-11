@@ -1,7 +1,7 @@
 import CreateItemView from 'shared/base/create_item_view'
 
 import ItemsPicker from 'shared/ui/items_picker/items_picker'
-import { managedConceptRef } from 'shared/ui/strings'
+import { managedItemRef } from 'shared/ui/strings'
 
 /**
  * Create Biomedical Concept Modal View
@@ -79,7 +79,7 @@ export default class CreateBCView extends CreateItemView {
    * @param {Object} template selected template data object
    */
   _onSelectTemplate(template) {
-    this.form.find('#new-item-template').val( managedConceptRef(template) )
+    this.form.find('#new-item-template').val( managedItemRef(template) )
                                       .attr('data-id', template.id);
   }
 
