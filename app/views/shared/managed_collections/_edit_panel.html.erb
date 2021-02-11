@@ -1,8 +1,14 @@
 <%= stylesheet_link_tag 'shared/table_select_simple' %>
 
 <% if local_assigns.fetch(:default_urls, true) %>
-  <%# TODO: Add default urls when implementing managed collections %>
-  <%#= javascript_tag "" %>
+
+  <%= javascript_tag "const managedCollectionsUrls = {
+                          data: '#{edit_managed_collection_path(@mc)}',
+                          add: '#{add_managed_collection_path(@mc)}',
+                          remove: '#{remove_managed_collection_path(@mc)}',
+                          removeAll: '#{ remove_all_managed_collection_path(@mc)}'
+                        } " %>
+
 <% end %>
 
 <div id="<%= local_assigns.fetch(:id, 'managed-collection') %>">

@@ -27,6 +27,9 @@
     when "AdamIgDataset", "AdamIg"
       header_path = "shared/headers/header_managed_item"
       locals = { item: item, badge: "icon-adam", with_tags: with_tags }
+    when "ManagedCollection"
+      header_path = "shared/headers/header_managed_item"
+      locals = { item: item, badge: "icon-collection", with_tags: with_tags }
     else 
       header_path = "shared/headers/header_managed_item"
       locals = { item: item, badge: "?", with_tags: with_tags }

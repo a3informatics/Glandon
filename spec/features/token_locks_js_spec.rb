@@ -283,6 +283,35 @@ describe "Token Locks", :type => :feature do
 
     end
 
+
+    it "locks a managed collection", js:true do
+
+      mc = ManagedCollection.create({identifier: 'TSTMC', label:'Test Managed Collection'})
+
+      in_browser(:one) do
+        ua_generic_login 'token_user_1@example.com'
+        click_navbar_mcs
+        wait_for_ajax(10)
+        find(:xpath, "//tr[contains(.,'TSTMC')]/td/a").click
+        wait_for_ajax(10)
+        context_menu_element_v2('history', '0.1.0', :edit)
+        wait_for_ajax(10)
+        expect(page).to have_content 'Managed Collection Editor'
+      end
+
+      in_browser(:two) do
+        ua_generic_login 'token_user_2@example.com'
+        click_navbar_mcs
+        wait_for_ajax(10)
+        find(:xpath, "//tr[contains(.,'TSTMC')]/td/a").click
+        wait_for_ajax(10)
+        context_menu_element_v2('history', '0.1.0', :edit)
+        wait_for_ajax(10)
+        expect(page).to have_content 'The item is locked for editing by user: token_user_1@example.com.'
+      end
+
+    end
+
   end
 
 end

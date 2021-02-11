@@ -39,13 +39,18 @@
             <tr>
               <th class="fit">Ordinal</th>
               <th class="fit">Used</th>
-              <th>Name</th>
-              <th>Label</th>
+              <th class="th-small">Name</th>
+              <th class="th-medium">Label</th>
               <th>Datatype</th>
-              <th class="no-break">CT or Format</th>
+              <th class="th-medium">Format</th>
+              <th class="no-break">CT and Format</th>
+              <th class="th-medium">CT</th>
               <th>Role</th>
-              <th>Notes</th>
+              <th class="th-xwide">Description</th>
+              <th class="th-wide">Notes</th>
+              <th class="th-wide">Comment</th>
               <th>Core</th>
+              <th class="th-wide">Method</th>
               <th class="fit"></th>
             </tr>
           </thead>
@@ -58,3 +63,7 @@
   </div>
 
 <%= render partial: "shared/help_dialogs/sdtm_editor_help", :locals => { title: "How to use SDTM Sponsor Domain Editor" } %>
+
+<%= render partial: "shared/items_picker/items_picker", locals: { id: "sdtm-term-ref",
+    description: "Find and select a Code List to reference. <br>
+                  <i> You can also submit an empty selection </i>".html_safe } %>

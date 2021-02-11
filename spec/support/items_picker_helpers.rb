@@ -34,6 +34,10 @@ module ItemsPickerHelpers
     sdtm_class: {
       pl: "SDTM Classes",
       s: "SDTM Class"
+    },
+    sdtm_sd: {
+      pl: "SDTM Sponsor Domains",
+      s: "SDTM Sponsor Domain"
     }
   }
 

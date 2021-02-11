@@ -74,7 +74,7 @@ export default class CustomPropsEditableHandler extends CustomPropsHandler {
 
       this.customProps.definitions.forEach(def => {
         if ( def.datatype === 'boolean' )
-          fieldsToInit.add('truefalse')
+          fieldsToInit.add('boolean')
       });
 
       dtFieldsInit( Array.from(fieldsToInit) );

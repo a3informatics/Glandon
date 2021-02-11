@@ -22,22 +22,45 @@ describe IsoConceptV2::CustomPropertySet do
        uri: {}
       },
       {id: nil,
-       label: "1",
+       label: "2",
        rdf_type: "http://www.assero.co.uk/ISO11179Concepts#Concept",
        uri: {}
       },
       {id: nil,
-       label: "1",
+       label: "3",
        rdf_type: "http://www.assero.co.uk/ISO11179Concepts#Concept",
        uri: {}
       }
     ]
     item = IsoConceptV2::CustomPropertySet.new
     item << IsoConceptV2.new(label: "1")
-    item << IsoConceptV2.new(label: "1")
-    item << IsoConceptV2.new(label: "1")
+    item << IsoConceptV2.new(label: "2")
+    item << IsoConceptV2.new(label: "3")
     expect(item.to_h).to eq(expected)
 	end
+
+  it "=" do
+    expected = [
+      {id: nil,
+       label: "1",
+       rdf_type: "http://www.assero.co.uk/ISO11179Concepts#Concept",
+       uri: {}
+      },
+      {id: nil,
+       label: "2",
+       rdf_type: "http://www.assero.co.uk/ISO11179Concepts#Concept",
+       uri: {}
+      },
+      {id: nil,
+       label: "3",
+       rdf_type: "http://www.assero.co.uk/ISO11179Concepts#Concept",
+       uri: {}
+      }
+    ]
+    item = IsoConceptV2::CustomPropertySet.new
+    item.items = [IsoConceptV2.new(label: "1"), IsoConceptV2.new(label: "2"), IsoConceptV2.new(label: "3")]
+    expect(item.to_h).to eq(expected)
+  end
 
   def create_definition_1
     @definition_1 = CustomPropertyDefinition.create(datatype: "string", label: "Name", 

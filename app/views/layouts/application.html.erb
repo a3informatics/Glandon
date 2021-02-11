@@ -332,6 +332,12 @@
                 </ul>
               </div>
               <% end %>
+              <% if link_group_on_role([IsoManaged]) %>
+                <div class="category-container collapsed">
+                <%= render partial: "shared/sidebar/menu_category", :locals => {:klass => ManagedCollection, link_id: "main_nav_mc",
+                  link_path: managed_collections_path, selected_cat: menu_category_title, icon_id: "icon-collection", category_title: "Managed Collections"} %>
+                </div>
+              <% end %>
             </div>
           </div>
         <% end %>
