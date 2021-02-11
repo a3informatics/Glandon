@@ -45,6 +45,41 @@ describe CustomPropertyValue do
     expect(item.errors.count).to eq(0)
   end
 
+  it "removes context" do
+    c_1 = Uri.new(uri: "http://www.assero.co.uk/Test#Context1")
+    c_2 = Uri.new(uri: "http://www.assero.co.uk/Test#Context2")
+    definition_1 = CustomPropertyDefinition.create(datatype: "string", label: "Name", 
+      description: "A description", default: "Default String",
+      custom_property_of: Uri.new(uri: "http://www.assero.co.uk/Test#UnmanagedConcept"), 
+      uri: Uri.new(uri: "http://www.assero.co.uk/Test#CVD1"))
+    item = CustomPropertyValue.create(value: "step 1", 
+      custom_property_defined_by: definition_1.uri,
+      applies_to: Uri.new(uri: "http://www.assero.co.uk/Test#Target1"),
+      uri: Uri.new(uri: "http://www.assero.co.uk/Test#A"),
+      context: [c_1])
+    result = item.remove_context(c_1)
+    expect(result).to eq(nil)
+    item = CustomPropertyValue.create(value: "step 1", 
+      custom_property_defined_by: definition_1.uri,
+      applies_to: Uri.new(uri: "http://www.assero.co.uk/Test#Target1"),
+      uri: Uri.new(uri: "http://www.assero.co.uk/Test#A"),
+      context: [c_1, c_2])
+    result = item.remove_context(c_1)
+    expect(result).to_not eq(nil)
+    item = CustomPropertyValue.find_full(item.uri) # Make sure definition read
+    check_file_actual_expected(result.to_h, sub_dir, "remove_context_expected_1.yaml")
+    tx = Sparql::Transaction.new
+    item = CustomPropertyValue.create(value: "step 1", 
+      custom_property_defined_by: definition_1.uri,
+      applies_to: Uri.new(uri: "http://www.assero.co.uk/Test#Target1"),
+      uri: Uri.new(uri: "http://www.assero.co.uk/Test#A"),
+      context: [c_1])
+    result = item.remove_context(c_1, tx)
+    expect(result).to eq(nil)
+    tx.execute
+    expect{CustomPropertyValue.find(item.uri)}.to raise_error(Errors::NotFoundError, "Failed to find http://www.assero.co.uk/Test#A in CustomPropertyValue.")
+  end
+
   it "updates and clones" do
     c_1 = Uri.new(uri: "http://www.assero.co.uk/Test#Context1")
     c_2 = Uri.new(uri: "http://www.assero.co.uk/Test#Context2")
@@ -129,6 +164,27 @@ describe CustomPropertyValue do
     expect(result.to_typed).to eq(false)
     result = CustomPropertyValue.find_children(value_4.uri)
     expect(result.to_typed).to eq(true)
+  end
+
+  it "updates and clones, bug check" do
+    c_1 = Uri.new(uri: "http://www.assero.co.uk/Test#Context1")
+    c_2 = Uri.new(uri: "http://www.assero.co.uk/Test#Context2")
+    c_3 = Uri.new(uri: "http://www.assero.co.uk/Test#Context3")
+    definition_1 = CustomPropertyDefinition.create(datatype: "string", label: "Name", 
+      description: "A description", default: "Default String",
+      custom_property_of: Uri.new(uri: "http://www.assero.co.uk/Test#UnmanagedConcept"), 
+      uri: Uri.new(uri: "http://www.assero.co.uk/Test#CVD1"))
+    item = CustomPropertyValue.create(value: "step 1", 
+      custom_property_defined_by: definition_1.uri,
+      applies_to: Uri.new(uri: "http://www.assero.co.uk/Test#Target1"),
+      uri: Uri.new(uri: "http://www.assero.co.uk/Test#A"),
+      context: [c_1, c_2])
+    item = CustomPropertyValue.find_full(item.uri) # Make sure definition read
+    result = item.update_and_clone({value: "step 2"}, c_2)
+    item = CustomPropertyValue.find_full(item.uri)
+    result = CustomPropertyValue.find_full(result.uri)
+    check_file_actual_expected(result.to_h, sub_dir, "update_and_clone_expected_2a.yaml")
+    check_file_actual_expected(item.to_h, sub_dir, "update_and_clone_expected_2b.yaml")
   end
 
   it "where unique" do
