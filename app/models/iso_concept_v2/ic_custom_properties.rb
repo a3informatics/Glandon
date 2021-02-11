@@ -103,6 +103,8 @@ class IsoConceptV2
     # @param [Sparql::Transaction] tx the transaction, defaults to nil
     # @return [IsoConceptV2::CustomPropertySet] class instance holding the set of properties
     def create_custom_properties(new_object, context=self, tx=nil)
+      no_transaction = tx.nil?
+      tx = self.transaction_begin if no_transaction
       context_uri = context.is_a?(Uri) ? context : context.uri
       definitions = self.class.find_custom_property_definitions
       return if definitions.empty?
@@ -114,6 +116,7 @@ class IsoConceptV2
         new_object.custom_properties << CustomPropertyValue.create(parent_uri: CustomPropertyValue.base_uri, transaction: tx, 
           value: value, custom_property_defined_by: definition.uri, applies_to: new_object.uri, context: [context_uri])
       end
+      self.transaction_execute if no_transaction
       new_object.custom_properties
     end
 
@@ -134,20 +137,25 @@ class IsoConceptV2
       self.custom_properties
     end
 
-    # # Clone Custom Properties. Clone the custom property values for this object and add to specified object
-    # #
-    # # @param [Object] new_object the new object to which properties are to be added
-    # # @param [Object] context the context, defaults to self
-    # # @return [IsoConceptV2::CustomPropertySet] class instance holding the set of properties
-    # def clone_custom_properties(new_object, context=self, tx=nil)
-    #   context_uri = context.is_a?(Uri) ? context : context.uri
-    #   properties = load_custom_properties(context)
-    #   properties.each do |property|
-    #     new_object.custom_properties << CustomPropertyValue.create(parent_uri: CustomPropertyValue.base_uri, transaction: tx, 
-    #       value: property.value, custom_property_defined_by: property.custom_property_defined_by.uri, applies_to: new_object.uri, context: [context_uri])
-    #   end
-    #   new_object.custom_properties
-    # end
+    # Remove. Remove a context from the properties.
+    #
+    # @param context [object] the context, defaults to self
+    # @param [Sparql::Transaction] tx the transaction, defaults to nil
+    # @return [IsoConceptV2::CustomPropertySet] class instance holding the set of properties. May have been deleted
+    def remove_context(context=self, tx=nil)
+      results = []
+      no_transaction = tx.nil?
+      tx = self.transaction_begin if no_transaction
+      context_uri = context.is_a?(Uri) ? context : context.uri
+      properties = self.load_custom_properties(context)
+      properties.each do |property|
+        results << property.remove_context(context_uri, tx)
+      end
+      self.custom_properties.clear
+      self.custom_properties.items = results.compact
+      self.transaction_execute if no_transaction
+      self.custom_properties
+    end
 
     # Load Custom Properties. Load the custom property values for this object, if any
     #

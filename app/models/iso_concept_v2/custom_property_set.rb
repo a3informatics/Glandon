@@ -21,6 +21,14 @@ class IsoConceptV2
       @items << item
     end
 
+    # =
+    #
+    # @param items [Array] array of the object to be set
+    # @return [Void] no return
+    def items=items
+      @items = items
+    end
+
     # To H
     #
     # @return [Hash] the object as a hash

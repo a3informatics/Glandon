@@ -15,19 +15,22 @@ class CustomPropertyValue < IsoContextualRelationship
   validates :value, presence: true, allow_blank: true
   validates_with Validator::Klass, property: :custom_property_defined_by, level: :uri
 
-  # Coded but not tested as not yet used
-  # # Add Context. Add a new context to the value.
-  # #
-  # # @param [Uri|Object] context the context object or uri
-  # # @param [Sparql::Transaction] tx the transaction if one is to be used, defaults to nil if none specified
-  # # @return [CustomPropertyValue] the updated object
-  # def add_context(context, tx=nil)
-  #   context_uri = context.is_a?(Uri) ? context : context.uri
-  #   self.transaction_set(tx) unless tx.nil?
-  #   self.context_push(context_uri)
-  #   self.save
-  #   self
-  # end
+  # Remove Context. Remove a context to the value. Delete if no contexts remain
+  #
+  # @param [Uri|Object] context the context object or uri
+  # @param [Sparql::Transaction] tx the transaction if one is to be used, defaults to nil if none specified
+  # @return [CustomPropertyValue] the updated object, nil if deleted
+  def remove_context(context, tx=nil)
+    context_uri = context.is_a?(Uri) ? context : context.uri
+    self.transaction_set(tx) unless tx.nil?
+    self.context_delete(context_uri)
+    if self.context.empty? 
+      self.delete
+      nil
+    else
+      self.save
+    end
+  end
 
   # Update And Clone
   #
@@ -44,8 +47,7 @@ class CustomPropertyValue < IsoContextualRelationship
       tx_exists = transaction_present?(params)
       tx = self.transaction_begin(params)
       context_uri = context.is_a?(Uri) ? context : context.uri
-      self.context_delete(context_uri)
-      self.save
+      self.remove_context(context_uri, tx)
       object = self.class.new(value: params[:value], custom_property_defined_by: self.custom_property_defined_by, 
         context: [context_uri], applies_to: self.applies_to, transaction: tx)
       object.uri = object.create_uri(self.class.base_uri)
