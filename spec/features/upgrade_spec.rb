@@ -192,7 +192,7 @@ describe "Upgrade Code Lists", type: :feature do
       context_menu_element_header :subsets 
       ui_in_modal do
         ui_check_table_info('subsets-index-table', 1, 1, 1)
-        ui_check_table_cell('subsets-index-table', 1, 1, @subset.has_identifier.identifier)
+        ui_check_table_cell('subsets-index-table', 1, 1, @subset2.has_identifier.identifier)
         click_on 'Close'
       end
     end
