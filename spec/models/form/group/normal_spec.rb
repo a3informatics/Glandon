@@ -419,7 +419,8 @@ describe Form::Group::Normal do
       normal_group.add_child({type: "question"})
       normal_group = Form::Group::Normal.find_full(form.has_group.first.uri)
       question = Form::Item::Question.find_full(normal_group.has_item.first.uri)
-      question.datatype = "float" 
+      question.datatype = "float"
+      question.format = "5.1"  
       question.question_text = "Question text 1"
       question.save
       normal_group = Form::Group::Normal.find_full(form.has_group.first.uri)
@@ -437,7 +438,8 @@ describe Form::Group::Normal do
       normal_group.add_child({type: "question"})
       normal_group = Form::Group::Normal.find_full(form.has_group.first.uri)
       question = Form::Item::Question.find_full(normal_group.has_item.first.uri)
-      question.datatype = "float" 
+      question.datatype = "float"
+      question.format = "5.1"   
       question.question_text = "Question text 1"
       question.save
       normal_group = Form::Group::Normal.find_full(form.has_group.first.uri)
@@ -451,7 +453,8 @@ describe Form::Group::Normal do
       normal_group.add_child({type: "question"})
       normal_group = Form::Group::Normal.find_full(form.has_group.first.uri)
       question = Form::Item::Question.find_full(normal_group.has_item.third.uri)
-      question.datatype = "float" 
+      question.datatype = "float"
+      question.format = "5.1"   
       question.question_text = "Question text 3"
       question.save
       normal_group = Form::Group::Normal.find_full(form.has_group.first.uri)
@@ -472,7 +475,8 @@ describe Form::Group::Normal do
       normal_group.add_child({type: "question"})
       normal_group = Form::Group::Normal.find_full(form.has_group.first.uri)
       question = Form::Item::Question.find_full(normal_group.has_item.first.uri)
-      question.datatype = "float" 
+      question.datatype = "float"
+      question.format = "5.1" 
       question.question_text = "Question text 1"
       question.save
       normal_group = Form::Group::Normal.find_full(form.has_group.first.uri)
@@ -486,7 +490,8 @@ describe Form::Group::Normal do
       normal_group.add_child({type: "question"})
       normal_group = Form::Group::Normal.find_full(form.has_group.first.uri)
       question = Form::Item::Question.find_full(normal_group.has_item.third.uri)
-      question.datatype = "float" 
+      question.datatype = "float"
+      question.format = "5.1"    
       question.question_text = "Question text 3"
       question.save
       normal_group = Form::Group::Normal.find_full(form.has_group.first.uri)
@@ -506,7 +511,8 @@ describe Form::Group::Normal do
       normal_group.add_child({type: "question"})
       normal_group = Form::Group::Normal.find_full(form.has_group.first.uri)
       question = Form::Item::Question.find_full(normal_group.has_item.first.uri)
-      question.datatype = "float" 
+      question.datatype = "float"
+      question.format = "5.1"    
       question.question_text = "Question text 1"
       question.save
       normal_group.add_child({type: "placeholder"})
@@ -518,7 +524,8 @@ describe Form::Group::Normal do
       normal_group.add_child({type: "question"})
       normal_group = Form::Group::Normal.find_full(form.has_group.first.uri)
       question = Form::Item::Question.find_full(normal_group.has_item.second.uri)
-      question.datatype = "float" 
+      question.datatype = "float"
+      question.format = "5.1" 
       question.question_text = "Question text 3"
       question.save
       normal_group = Form::Group::Normal.find_full(form.has_group.first.uri)
