@@ -891,6 +891,19 @@ describe Thesauri::ManagedConceptsController do
       check_file_actual_expected(actual, sub_dir, "upgrade_subset_expected_1.yaml", equate_method: :hash_equal)
     end
 
+    it "upgrade subset, lock error" do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      audit_count = AuditTrail.count
+      tc_32 = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri:"http://www.cdisc.org/C99079/V32#C99079"))
+      item_1 = tc_32.create_subset
+      item_1 = Thesaurus::ManagedConcept.find_minimum(item_1.uri)
+      token = Token.obtain(item_1, @lock_user)
+      put :upgrade_extension, params:{id: item_1.id}
+      actual = check_error_json_response(response)
+      check_file_actual_expected(actual, sub_dir, "upgrade_subset_expected_2.yaml", equate_method: :hash_equal)
+      expect(AuditTrail.count).to eq(audit_count)
+    end
+
   end
 
   describe "add children" do
