@@ -1,5 +1,7 @@
 import { $put } from 'shared/helpers/ajax'
 
+import { $confirm } from 'shared/helpers/confirmable'
+
 /**
  * Upgrade Handler
  * @description Allows to upgrade an item (Subset / Extension)
@@ -51,7 +53,15 @@ export default class UpgradeHandler {
    * The event listeners 
    */
   _setListeners() {
-    this.$button.click( () => this.upgrade() )
+
+    this.$button.click( () => 
+      $confirm({ 
+        subtitle: `The code list will be upgraded to the latest version of the source code list 
+                  (items removed from the source will be taken out of this code list as well)`,
+        callback: () => this.upgrade()
+      }) 
+    )
+
   }
 
   /**
