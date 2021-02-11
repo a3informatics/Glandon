@@ -20,7 +20,7 @@ class Thesaurus
       object.narrower = uris
       object.refers_to = uris
       object.save
-      subset.delete
+      #subset.delete # No reason to delete the subset at this point. 
       subset.add(uris.map{|x| x.to_id}, self) if uris.any?
       transaction_execute
       object

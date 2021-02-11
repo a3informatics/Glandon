@@ -904,6 +904,27 @@ describe Thesauri::ManagedConceptsController do
       expect(AuditTrail.count).to eq(audit_count)
     end
 
+    it "upgrade subset, bug" do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      tc = Thesaurus::ManagedConcept.create
+      make_standard(tc)
+      item_1 = tc.create_subset
+      item_1.update(is_ordered: Thesaurus::Subset.create(parent_uri: item_1.uri))
+      tc.create_next_version
+      item_1 = Thesaurus::ManagedConcept.find_minimum(item_1.uri)
+      token = Token.obtain(item_1, @user)
+      put :upgrade_subset, params:{id: item_1.id}
+      actual = check_good_json_response(response)
+      request.env['HTTP_ACCEPT'] = "application/json"
+      get :edit_subset, params:{id: item_1.id}, as: :js
+      expect(assigns(:subset_mc).id).to eq(item_1.id)
+      expect(assigns(:source_mc).id).to eq(item_1.subsets_links.to_id)
+      expect(assigns(:subset).uri.to_id).to eq(item_1.is_ordered_links.to_id)
+      expect(assigns(:token)).to_not eq(nil)
+      expect(assigns(:upgradable)).to eq(false)
+      expect(response).to render_template("edit_subset")
+    end
+
   end
 
   describe "add children" do
