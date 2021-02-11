@@ -1217,6 +1217,8 @@ describe "Thesaurus::UnmanagedConcept" do
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
       load_files(schema_files, data_files)
       allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
+      nv_destroy
+      nv_create(parent: '10', child: '456')
     end
 
     it "simple_to_h" do
@@ -1291,7 +1293,7 @@ describe "Thesaurus::UnmanagedConcept" do
 
   end
 
-  describe "update tests, custom properties" do
+  describe "update tests, custom properties, GLAN-1474, GLAN-1507" do
 
     before :all  do
       IsoHelpers.clear_cache
