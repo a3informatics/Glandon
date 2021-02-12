@@ -118,4 +118,42 @@ describe "Thesaurus::Subsets" do
 
   end
 
+  describe "Upgrades, bug" do
+  
+    before :each do
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
+      load_files(schema_files, data_files)
+      NameValue.destroy_all
+      NameValue.create(name: "thesaurus_parent_identifier", value: "123")
+      NameValue.create(name: "thesaurus_child_identifier", value: "456")
+    end
+
+    def make_standard(item)
+      IsoManagedHelpers.make_item_standard(item)
+    end
+
+    it "can upgrade a subset II" do
+      tc = Thesaurus::ManagedConcept.create
+      item_1 = tc.create_subset
+      item_1 = Thesaurus::ManagedConcept.find_minimum(item_1.id)
+      item_1.synonyms_and_preferred_terms
+      expect(item_1.subsets_links.to_s).to eq("http://www.acme-pharma.com/NP000123P/V1#NP000123P")
+      expect(item_1.is_ordered_objects).not_to be(nil)
+      expect(item_1.is_ordered_objects.members).to be(nil)
+      expect(item_1.narrower.count).to eq(0)
+      item_1 = Thesaurus::ManagedConcept.find_with_properties(item_1.id)
+      result = item_1.to_h
+      check_file_actual_expected(result, sub_dir, "upgrade_expected_2a.yaml", equate_method: :hash_equal)
+      make_standard(tc)
+      tc_2 = tc.create_next_version
+      tc_2 = Thesaurus::ManagedConcept.find_minimum(tc_2.id)
+      subset = Thesaurus::Subset.find(item_1.is_ordered_links)
+      item_2 = item_1.upgrade_subset(tc_2)
+      subset = Thesaurus::Subset.find(item_1.is_ordered.uri)
+      tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/NP000123P/V1#NP000123P"))
+      expect(tc.narrower.count).to eq(0)
+    end
+
+  end
+
 end
