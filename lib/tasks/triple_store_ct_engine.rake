@@ -1,3 +1,7 @@
+# Triple Store CT Engine Rake Task
+#
+# @author Dave Iberson-Hurst
+# @since 3.9.1
 namespace :triple_store do
 
   desc "Triple Store CT Engine"
@@ -164,11 +168,8 @@ byebug
     YAML.load_file(full_path)
   end
 
-  def process
-    ARGV.each { |a| task a.to_sym do ; end }
-    abort("A filename should be supplied") if ARGV.count == 1
-    abort("Only a single parameter (a filename) should be supplied") unless ARGV.count == 2
-    actions = read_actions(ARGV[1])
+  def process(filename)
+    actions = read_actions(filename)
     actions.each do |cl, cl_action_hash|
       process_cl_action(cl, cl_action_hash)
     end
@@ -176,7 +177,20 @@ byebug
 
   # Actual rake task
   task :ct_engine => :environment do
-    process
+    
+    include RakeConfirm
+
+    # Check
+    abort("Operation cancelled.") unless confirm_destructive
+
+    # Check argument
+    ARGV.each { |a| task a.to_sym do ; end }
+    abort("A filename should be supplied") if ARGV.count == 1
+    abort("Only a single parameter (a filename) should be supplied") unless ARGV.count == 2
+
+    # Process
+    process(ARGV[1])
+
   end
 
 end

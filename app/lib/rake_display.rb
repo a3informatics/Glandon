@@ -2,7 +2,7 @@
 #  To only be used for rake tasks.
 #
 # @author Dave Iberson-Hurst
-# @since 3.9.0
+# @since 3.9.1
 module RakeDisplay
 
   # Display title

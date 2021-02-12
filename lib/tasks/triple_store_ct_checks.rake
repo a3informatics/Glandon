@@ -1,3 +1,7 @@
+# Triple Store CT Checks Rake Task
+#
+# @author Dave Iberson-Hurst
+# @since 3.9.1
 namespace :triple_store do
 
   desc "Triple Store CT Checks"

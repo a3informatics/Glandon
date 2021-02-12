@@ -6,6 +6,10 @@ namespace :name_value do
   task :seed => :environment do
     
     include RakeDisplay
+    include RakeConfirm
+
+    # Check
+    abort("Operation cancelled.") unless confirm_destructive
 
     # Seed
     NameValue.destroy_all
