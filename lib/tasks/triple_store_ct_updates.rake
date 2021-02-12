@@ -360,60 +360,25 @@ namespace :triple_store do
     end
   end
 
-  def flatten_changes
-    results = []
+  def final_summary
     @changes.each do |cl, cl_entry|
+      results = []
       cl_entry[:items].each do |cli, cli_entry|
-        cli_entry.each do |entry|
-          record = {cl: cl, action: cl_entry[:cl_action], subsets: cl_entry[:subsets], extends: cl_entry[:extends], cli: cli }
-          entry.each { |k,v| record[k] = v }
-          results << record
+        record = {cli: cli, cli_action: cli_entry[:action]}
+        details = cli_entry.dup
+        text = []
+        details.except(:action, :uri).each { |k,v| text << "#{k}: #{v}" unless v.blank? }
+        record[:details] = text.any? ? text.first : ""
+        results << record
+        if text.length > 1
+          (1..text.length).each do |x|
+            results << {cli: "", cli_action: "", details: text[x]} unless text[x].nil?
+          end
         end
       end
+      display_results("#{cl} Changes. Action: #{cl_entry[:action]}, Subsets: #{cl_entry[:subsets]}, Extends: #{cl_entry[:extends]}", results, ["Item", "Item Action", "Notes"], [0, 0, 150])
     end
-    results
   end
-
-  # def items_to_ttl
-  #   @to_ttl.each do |x|
-  #     item = x[:item]
-  #     sparql = Sparql::Update.new
-  #     sparql.default_namespace(item.uri.namespace)
-  #     if x[:type] == :code_list 
-  #       item = adjust_cl(item)
-  #       item.serialize(sparql, true, true)
-  #     else
-  #       item = adjust_cli(item)
-  #       item.serialize(sparql)
-  #     end
-  #     sparql.to_file
-  #   end
-  # end
-  
-  # def adjust_cl(item)
-  #   uri = item.has_identifier.has_scope.uri
-  #   item.has_identifier.has_scope = uri
-  #   uri = item.has_state.by_authority.uri
-  #   item.has_state.by_authority = uri
-  #   item.refers_to = []
-  #   item.narrower.each_with_index do |child, index|
-  #     item.narrower[index] = adjust_cli(child)
-  #     item.narrower[index] = child.uri unless item_belongs?(child.uri, "narrower")
-  #     item.refers_to[index] = child.uri unless item.subsets.nil?
-  #     item.refers_to[index] = child.uri unless item.extends.nil? && item_belongs?(child.uri, "narrower")
-  #   end
-  #   item
-  # end
-
-  # def adjust_cli(item)
-  #   item = item.class.find_full(item.uri)
-  #   item.synonym.each_with_index do |syn, index|
-  #     next if item_belongs?(syn.uri, "synonym")
-  #     item.synonym[index] = syn.uri
-  #   end
-  #   item.preferred_term = item.preferred_term.uri unless item_belongs?(item.preferred_term.uri, "preferredTerm")
-  #   item
-  # end
 
   # Actual rake task
   task :ct_updates => :environment do
@@ -423,7 +388,7 @@ namespace :triple_store do
     items = identify_updates
     identify_summary_changes(items)
     identify_detailed_changes(items)
-    #items_to_ttl
+    final_summary
     write_results
   end
 
