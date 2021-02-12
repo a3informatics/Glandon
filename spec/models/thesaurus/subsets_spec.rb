@@ -83,7 +83,9 @@ describe "Thesaurus::Subsets" do
       result[:creation_date] = "2020-02-16T18:31:47+01:00"
       check_file_actual_expected(result, sub_dir, "upgrade_expected_1a.yaml", equate_method: :hash_equal)
       check_file_actual_expected(item_1.is_ordered_objects.list.map{|x| x.item.to_s}, sub_dir, "upgrade_list_expected_1a.yaml", equate_method: :hash_equal)
+      subset = Thesaurus::Subset.find(item_1.is_ordered.uri)
       item_2 = item_1.upgrade_subset(tc_34)
+      subset = Thesaurus::Subset.find(item_1.is_ordered.uri)
       item_2 = Thesaurus::ManagedConcept.find(item_2.uri)
       expect(item_2.narrower.count).to eq(2)
       result = item_2.to_h
@@ -94,7 +96,9 @@ describe "Thesaurus::Subsets" do
       check_file_actual_expected(result, sub_dir, "upgrade_expected_1b.yaml", equate_method: :hash_equal)
       check_file_actual_expected(item_2.is_ordered_objects.list.map{|x| x.item.to_s}, sub_dir, "upgrade_list_expected_1b.yaml", equate_method: :hash_equal)
       item_2.is_ordered_objects.add([uri_3.to_id], tc_32)
+      subset = Thesaurus::Subset.find(item_1.is_ordered.uri)
       item_3 = item_1.upgrade_subset(tc_45)
+      subset = Thesaurus::Subset.find(item_1.is_ordered.uri)
       item_3 = Thesaurus::ManagedConcept.find(item_3.uri)
       expect(item_3.narrower.count).to eq(3)
       result = item_3.to_h
