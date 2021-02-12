@@ -170,9 +170,22 @@ private
 
   # Add custom properties for children
   def custom_properties(parent)
-    parent.narrower.each do |c|
-      c.create_default_custom_properties(parent) if c.custom_properties?
+    parent.narrower.each do |child|      
+      add_default_custom_properties(child, parent) if child.custom_properties?
     end
+  end
+
+  # Add the custom propeties
+  def add_default_custom_properties(child, context)
+    context_uri = context.is_a?(Uri) ? context : context.uri
+    definitions = child.class.find_custom_property_definitions
+    return if definitions.empty?
+    child.custom_properties.clear
+    definitions.each do |definition|
+      child.custom_properties << CustomPropertyValue.new(value: definition.default, custom_property_defined_by: definition.uri, 
+        applies_to: child.uri, context: [context_uri])
+    end
+    child.custom_properties
   end
 
   # Parent Identifier

@@ -9,7 +9,7 @@ describe "Import::SponsorTermFormatTwo" do
   include ThesauriHelpers
   include NameValueHelpers
   include CdiscCtHelpers
-  
+
 	def sub_dir
     return "models/import/sponsor_term_format_two"
   end
@@ -202,7 +202,9 @@ describe "Import::SponsorTermFormatTwo" do
       setup
       @object.auto_load = false
       @object.save
+      base = triple_store.triple_count
       result = @object.import(params)
+      expect(base).to eq(triple_store.triple_count) # Auto load off, no load, thus no increase in triples GLAN-1505
       filename = "sponsor_term_format_two_#{@object.id}_load.ttl"
       copy_file_from_public_files("test", filename, sub_dir)
     #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_5b.ttl")
