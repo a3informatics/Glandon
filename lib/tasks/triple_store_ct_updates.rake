@@ -176,7 +176,8 @@ namespace :triple_store do
     if names.empty?
       definitions = Thesaurus::UnmanagedConcept.find_custom_property_definitions
       definitions.each do |definition|
-        @changes[current.identifier][:items][curr_child.identifier][:custom_properties][definition.label_to_variable] = definition.default
+        cp = CustomPropertyValue.new(value: definition.default, custom_property_defined_by: definition)
+        @changes[current.identifier][:items][curr_child.identifier][:custom_properties][definition.label] = cp.to_typed
       end
     else
       names.each do |name|
