@@ -1,5 +1,5 @@
-@A3VAL-1049
-Feature: Validation R3.8.0 - Test Execution for Test Plan A3VAL-1037
+@A3VAL-1052
+Feature: Test Execution for Test Plan A3VAL-1051
 
 	Background:
 		#@A3VAL-465
@@ -157,3 +157,52 @@ Feature: Validation R3.8.0 - Test Execution for Test Plan A3VAL-1037
 		When I click History on the index page for "Sanofi SN003059"     
 		Then I see the History page is displayed
 		And the state is "Standard" on the History page for "SN003059"
+	#The objective of the test is to demonstrate that when a user (curator) edits a (master) code list that has a subset (or extension) linked to it then the user can upgrade the subset (extension) to link to this new version when editing the subset/extension.
+	#1. user updates master code list
+	#2. then edits the linked subset
+	#3. then upgrade the draft subset to refer to latest version of master code list.
+	@A3VAL-1053
+	Scenario: Ability to move reference to master code list for Subsets and Extensions
+		When I access the "Code Lists" in the navigation bar
+		Then I see "Code Lists" Index page is displayed
+		When I click History on the index page for "MASTER CL - UPGRADE SUBSET TEST"     
+		Then I see the History page is displayed
+		When I click Show in context menu for the latest version of the "MASTER CL - UPGRADE SUBSET TEST" code list
+		Then I see the items in the "MASTER CL - UPGRADE SUBSET TEST" code list is displayed
+		When I click Subsets in the context menu
+		Then I see the subset "SUBSET UPGRADE TEST" being linked to the master code list
+		When I Close in the modal
+		And I click Return
+		Then I see the History page is displayed
+		When I click Edit in context menu for the latest version of the "MASTER CL - UPGRADE SUBSET TEST" code list
+		Then I see the items in the "MASTER CL - UPGRADE SUBSET TEST" code list is displayed
+		When I click "New item" button 
+		Then I see a new code list item
+		Then I fill in the following value for the new item
+		|SubmissionValue|PreferredTerm|Synonym|Definition|
+		|TERM 3|Term 3| |For demo|
+		When I click Return
+		And When I click Show in context menu for the latest version of the "MASTER CL - UPGRADE SUBSET TEST" code list
+		Then I see the items in the "MASTER CL - UPGRADE SUBSET TEST" code list is displayed
+		When I click Subsets in the context menu
+		Then no subsets are linked to the new versin of themaster code list
+		When I Close in the modal
+		And I access the "Code Lists" in the navigation bar
+		Then I see "Code Lists" Index page is displayed
+		When I click History on the index page for "NP004008P"     
+		Then I see the History page is displayed
+		When I click Edit in context menu for the latest version of the "NP004008P" code list
+		Then I see the items in the "NP004008P" code list is displayed
+		And the Source Code List dislpays 2 itmes
+		When I click Upgrade in the context menu
+		And click Yes in the modal
+		Then the Source Code List dislpays 3 itmes
+		When I access the "Code Lists" in the navigation bar
+		Then I see "Code Lists" Index page is displayed
+		When I click History on the index page for "MASTER CL - UPGRADE SUBSET TEST"     
+		Then I see the History page is displayed
+		When I click Show in context menu for the latest version of the "MASTER CL - UPGRADE SUBSET TEST" code list
+		Then I see the items in the "MASTER CL - UPGRADE SUBSET TEST" code list is displayed
+		When I click Subsets in the context menu
+		Then I see the subset "SUBSET UPGRADE TEST" being linked to the master code list
+		When I Close in the modal

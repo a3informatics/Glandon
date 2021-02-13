@@ -229,6 +229,8 @@ Then('I see a new code list item') do
   ui_editor_check_value 1, 3, 'Not Set'
   ui_editor_check_value 1, 5, 'Not Set'
   ui_editor_check_value 1, 6, 'None'
+  save_screen(TYPE)
+  wait_for_ajax(20) 
   end
 
 Then /I fill in the details for the code list ?(?:\(?(\w+)\)?.*)/ do |string, table|

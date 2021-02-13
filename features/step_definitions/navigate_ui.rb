@@ -93,8 +93,12 @@ When('I click {string} in context menu for {string}') do |string, string2|
  When('I click Edit in context menu for the latest version of the {string} code list') do |string|
   #ui_table_search("history", "Incomplete")
   context_menu_element_v2('history', 1, :edit)
-  
-    wait_for_ajax(20)
+  wait_for_ajax(20)
+end
+
+When('When I click Show in context menu for the latest version of the {string} code list') do |string|
+  context_menu_element_v2('history', 1, :show)
+  wait_for_ajax(20)
 end
  
  When('I click Delete in context menu for the latest version of the {string} code list') do |string|
