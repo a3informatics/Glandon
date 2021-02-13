@@ -16,7 +16,7 @@ namespace :triple_store do
       {
         ?s rdf:type #{Thesaurus::ManagedConcept.rdf_type.to_ref} .
         ?s isoT:creationDate ?cd .
-        FILTER (?cd > "2020-09-26T00:00:00+00:00"^^xsd:dateTime)
+        FILTER (?cd > "2020-09-26T00:00:00+00:00"^^xsd:dateTime || ?cd = "2016-01-01T00:00:00+00:00"^^xsd:dateTime)
         ?s isoT:hasState ?st .
         ?s isoT:hasIdentifier ?si .
         ?si isoI:hasScope/isoI:shortName "Sanofi" .

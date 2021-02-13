@@ -80,6 +80,15 @@ namespace :triple_store do
     params[:notation] = action_hash[:notation]
     params[:definition] = action_hash[:definition]
     params[:label] = action_hash[:label]
+    pt = Thesaurus::PreferredTerm.where_only_or_create(action_hash[:preferred_term])
+    params[:preferred_term] = pt.uri 
+    params[:synonym] = []
+    if action_hash.key?(:synonym)
+      action_hash[:synonym].each do |s|
+        synonym = Thesaurus::Synonym.where_only_or_create(s)
+        params[:synonym] << synonym.uri
+      end
+    end
     child = Thesaurus::UnmanagedConcept.create(params, parent)
     abort("Errors: add_child, #{child.errors.full_messages.to_sentence}") if child.errors.any?
     parent.add_link(:narrower, child.uri)
@@ -109,8 +118,7 @@ namespace :triple_store do
     child.load_custom_properties(parent)
     action_hash.dig(:custom_properties).each do |name, value|
       cp = child.custom_properties.property(name)
-      params = {}
-      params[name] = value
+      params = {value: value}
       cp.update_and_clone(params, parent)
     end
   end
