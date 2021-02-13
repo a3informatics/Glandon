@@ -173,20 +173,17 @@ namespace :triple_store do
   def custom_properties_build_new(current, curr_child, curr_child_cp)
     @changes[current.identifier][:items][curr_child.identifier] = { action: :action, uri: curr_child.uri.to_s, custom_properties: {} } unless @changes[current.identifier][:items].key?(curr_child.identifier)
     names = curr_child_cp.map{|x| x[:name]}.uniq
-    names.each do |name|
-      curr = curr_child_cp.find { |x| x[:name] == name }
-      @changes[current.identifier][:items][curr_child.identifier][:custom_properties][name] = curr[:value]
+    if names.empty?
+      definitions = Thesaurus::UnmanagedConcept.find_custom_property_definitions
+      definitions.each do |definition|
+        @changes[current.identifier][:items][curr_child.identifier][:custom_properties][definition.label_to_variable] = definition.default
+      end
+    else
+      names.each do |name|
+        curr = curr_child_cp.find { |x| x[:name] == name }
+        @changes[current.identifier][:items][curr_child.identifier][:custom_properties][name] = curr[:value]
+      end
     end
-
-    # definitions = curr_child.class.find_custom_property_definitions
-    # curr_child.custom_properties.clear
-    # definitions.each do |definition|
-    #   entry = curr_child_cp.find{ |x| x[:name] == definition.label}
-    #   value = entry.nil? ? definition.default : entry[:value]
-    #   item = CustomPropertyValue.new(value: value, custom_property_defined_by: definition.uri, applies_to: curr_child.uri, context: [current.uri])
-    #   item.uri = item.create_uri(CustomPropertyValue.base_uri)
-    #   curr_child.custom_properties << item
-    # end
   end
 
   def item_difference(current, curr_child, prev_child)
