@@ -22,6 +22,19 @@ namespace :triple_store do
     items.first[:s]
   end
 
+  def latest_item(parent, identifier)
+    query_string = %{
+      SELECT DISTINCT ?s WHERE         
+      {             
+        #{parent.uri.to_ref} th:narrower ?s .
+        ?s th:identifier "#{identifier}" .
+       }
+    }
+    query_results = Sparql::Query.new.query(query_string, "", [:isoC, :isoI, :isoT, :isoR, :th])
+    items = query_results.by_object(:s)
+    items.first
+  end
+
   def new_version(item)
     new_item = item.create_next_version
     #abort("Errors: new_version, #{new_item.errors.full_messages.to_sentence}") if new_item.errors.any?
@@ -105,12 +118,16 @@ namespace :triple_store do
   def process_cli_action(parent, identifier, action_hash, parent_hash)
     action = action_hash.dig(:action)
     if action == :update
-      child = Thesaurus::UnmanagedConcept.find_full(Uri.new(uri: action_hash.dig(:uri)))
+      child_uri = latest_item(parent, identifier)
+      puts "Child Uri update (U) #{action_hash.dig(:uri)} -> #{child_uri}" unless action_hash.dig(:uri) == child_uri.to_s
+      child = Thesaurus::UnmanagedConcept.find_full(child_uri)
       new_child = process_updates(parent, child, action_hash)
       process_custom_properties(parent, new_child, action_hash)
+      puts "Child updated (U): #{new_child.uri}"
     elsif action == :create
       new_child = add_child(parent, action_hash)
       process_custom_properties(parent, new_child, action_hash)
+      puts "Child created (C): #{new_child.uri}"
     elsif action == :refer
       if parent_hash.dig(:subsets)
         source = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: parent_hash.dig(:subset_of)))
@@ -118,19 +135,25 @@ namespace :triple_store do
         subset.add([Uri.new(uri: action_hash[:uri]).to_id], source)
         new_child = Thesaurus::UnmanagedConcept.find_full(Uri.new(uri: action_hash[:uri]))
         process_custom_properties(parent, new_child, action_hash)
+        puts "Child referenced (U Subset): #{new_child.uri}"
       else
         new_child = add_referenced_child(parent, action_hash)
         process_custom_properties(parent, new_child, action_hash)
+        puts "Child referenced (U Other): #{new_child.uri}"
       end
     elsif action == :remove
       if parent_hash.dig(:subsets)
         subset = parent.is_ordered_objects
         items = subset.ordered_list
-byebug
         item = items.find{ |x| x.item == Uri.new(uri: action_hash[:uri])}
         subset.remove([item.id])
+        puts "Child removed (R Subset): #{child_uri}"
       else
-        puts "Error: CLI remove action. Extends: #{parent_hash.dig(:extends)}. Uri: #{action_hash[:uri]}"
+        child_uri = latest_item(parent, identifier)
+        puts "Child URI update (R) #{action_hash.dig(:uri)} -> #{child_uri}" unless action_hash.dig(:uri) == child_uri.to_s
+        child = Thesaurus::UnmanagedConcept.find_full(child_uri)
+        child.delete_or_unlink(parent)
+        puts "Child removed (R Other): #{child_uri}"
       end  
     else
       puts "Error: CLI action"
@@ -146,14 +169,17 @@ byebug
       uri = latest_version(identifier)
       item = Thesaurus::ManagedConcept.find_with_properties(uri)
       item = new_version(item)
+      puts "Parent next version (N): #{uri} -> #{item.uri}"
     elsif action == :create
       if action_hash.dig(:subsets)
         master = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: action_hash.dig(:subset_of)))
         item = create_subset(master, action_hash)
+        puts "Parent created (C Subset): #{item.uri}"
       elsif action_hash.dig(:extends)
         puts "Errror: Trying to extend, not implemented"
       else
         item = create_version(action_hash)
+        puts "Parent created (C Other): #{item.uri}"
       end
     else
       puts "Error: CL action"
