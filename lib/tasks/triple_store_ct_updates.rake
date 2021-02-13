@@ -174,7 +174,7 @@ namespace :triple_store do
     @changes[current.identifier][:items][curr_child.identifier] = { action: :action, uri: curr_child.uri.to_s, custom_properties: {} } unless @changes[current.identifier][:items].key?(curr_child.identifier)
     names = curr_child_cp.map{|x| x[:name]}.uniq
     if names.empty?
-      definitions = Thesaurus::UnmanagedConcept.find_custom_property_definitions
+      definitions = Thesaurus::UnmanagedConcept.find_custom_property_definitions.sort_by! { |x| x.label }
       definitions.each do |definition|
         cp = CustomPropertyValue.new(value: definition.default, custom_property_defined_by: definition)
         @changes[current.identifier][:items][curr_child.identifier][:custom_properties][definition.label] = cp.to_typed
