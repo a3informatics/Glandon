@@ -255,7 +255,8 @@ namespace :triple_store do
   end
 
   def identify_detailed_changes(items)
-    items.each do |x| 
+    items.each do |x|
+      warning_count = 0
       results = []
       curr_children = identify_current_children(x[:s])
       prev_children = identify_previous_children(x[:s])
@@ -287,6 +288,7 @@ namespace :triple_store do
             notes: "Find failed",
             warning: "***"
           }
+          warning_count += 1
         elsif prev_child.nil?
           #diff = previous.nil? ? true : item_new?(current, curr_child)
           diff = item_new?(current, curr_child)
@@ -337,7 +339,7 @@ namespace :triple_store do
           warning: ""
         }
       end
-      display_results("Detail: #{x[:i]}", results, ["Uri", "Different", "Checked", "Type", "Notes", "Warning"])
+      display_results("Detail: #{x[:i]}, Warning Count: #{warning_count}", results, ["Uri", "Different", "Checked", "Type", "Notes", "Warning"])
     end
   end
 

@@ -54,16 +54,15 @@ namespace :triple_store do
     results = Hash.new { |h,k| h[k] = [] }
     errors = []
     cls = identify_code_lists(ARGV[1])
-byebug
     cls.each do |cl|
       version = { uri: cl[:s].to_s, label: cl[:l], version: cl[:v], identifier: cl[:i], submission: cl[:n], semantic_version: cl[:sv] }
-      items = inspect_code_list(cl[:s], cl[:i], cl[:n], , cl[:v])
+      items = inspect_code_list(cl[:s], cl[:i], cl[:n], cl[:v])
       version[:items] = items.map { |x| { uri: x[:cli].to_s, label: x[:l], identifier: x[:i], submission: x[:n]} }
       results[cl[:i]] << version
-      errors << { error: "item count mismatch for #{cl[:i]}"  } unless cl[:c].to_i == version[:items].count
+      errors << { error: "item count mismatch for #{cl[:i]}", version: "#{cl[:v]}", cl: "#{cl[:c]}", query: "#{version[:items].count}", difference: "#{cl[:c].to_i - version[:items].count}" } unless cl[:c].to_i == version[:items].count
     end
     write_data_as_yaml(results, "code_list_summary")
-    display_results("Errors", errors, ["Error"])
+    display_results("Errors", errors, ["Error", "Version", "Cl Count", "Query Count", "Difference"])
   end
 
 end
