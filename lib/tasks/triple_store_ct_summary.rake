@@ -49,15 +49,17 @@ namespace :triple_store do
     include RakeFile
 
     ARGV.each { |a| task a.to_sym do ; end }
-    abort("A short name$ should be supplied") if ARGV.count == 1
+    abort("A short name should be supplied") if ARGV.count == 1
     abort("Only a single parameter (a short name) should be supplied") unless ARGV.count == 2
     results = Hash.new { |h,k| h[k] = [] }
     errors = []
     cls = identify_code_lists(ARGV[1])
     cls.each do |cl|
-      version = { uri: cl[:s].to_s, label: cl[:l], version: cl[:v], identifier: cl[:i], submission: cl[:n], semantic_version: cl[:sv] }
+      #version = { uri: cl[:s].to_s, label: cl[:l], version: cl[:v], identifier: cl[:i], submission: cl[:n], semantic_version: cl[:sv] }
+      version = { label: cl[:l], version: cl[:v], identifier: cl[:i], submission: cl[:n], semantic_version: cl[:sv] }
       items = inspect_code_list(cl[:s], cl[:i], cl[:n], cl[:v])
-      version[:items] = items.map { |x| { uri: x[:cli].to_s, label: x[:l], identifier: x[:i], submission: x[:n]} }
+      #version[:items] = items.map { |x| { uri: x[:cli].to_s, label: x[:l], identifier: x[:i], submission: x[:n]} }
+      version[:items] = items.map { |x| { label: x[:l], identifier: x[:i], submission: x[:n]} }
       results[cl[:i]] << version
       errors << { error: "item count mismatch for #{cl[:i]}", version: "#{cl[:v]}", cl: "#{cl[:c]}", query: "#{version[:items].count}", difference: "#{cl[:c].to_i - version[:items].count}" } unless cl[:c].to_i == version[:items].count
     end

@@ -37,7 +37,8 @@ namespace :triple_store do
 
   def new_version(item)
     new_item = item.create_next_version
-    #abort("Errors: new_version, #{new_item.errors.full_messages.to_sentence}") if new_item.errors.any?
+    report_error("Errors: new_version, #{new_item.errors.full_messages.to_sentence}") if new_item.errors.any?
+    new_item
   end
 
   def create_version(action_hash)
@@ -60,15 +61,15 @@ namespace :triple_store do
     new_child.set_initial(params[:identifier])
     new_child.creation_date = new_child.last_change_date 
     new_child.create_or_update(:create, true) if new_child.valid?(:create) && new_child.create_permitted?
-    abort("Errors: create_version, #{new_child.errors.full_messages.to_sentence}") if new_child.errors.any?
+    report_error("Errors: create_version, #{new_child.errors.full_messages.to_sentence}") if new_child.errors.any?
     new_child
   end
 
   def create_subset(master, action_hash)
     new_mc = create_version(action_hash)
-    abort("Errors: create_subset, #{new_mc.errors.full_messages.to_sentence}") if new_mc.errors.any?
+    report_error("Errors: create_subset, #{new_mc.errors.full_messages.to_sentence}") if new_mc.errors.any?
     subset = Thesaurus::Subset.create(parent_uri: new_mc.uri)
-    abort("Errors: create_subset, #{subset.errors.full_messages.to_sentence}") if subset.errors.any?
+    report_error("Errors: create_subset, #{subset.errors.full_messages.to_sentence}") if subset.errors.any?
     new_mc.add_link(:is_ordered, subset.uri)
     new_mc.add_link(:subsets, master.uri)
     new_mc
@@ -90,7 +91,7 @@ namespace :triple_store do
       end
     end
     child = Thesaurus::UnmanagedConcept.create(params, parent)
-    abort("Errors: add_child, #{child.errors.full_messages.to_sentence}") if child.errors.any?
+    report_error("Errors: add_child, #{child.errors.full_messages.to_sentence}") if child.errors.any?
     parent.add_link(:narrower, child.uri)
     child
   end
@@ -127,15 +128,15 @@ namespace :triple_store do
     action = action_hash.dig(:action)
     if action == :update
       child_uri = latest_item(parent, identifier)
-      puts "Child Uri update (U) #{action_hash.dig(:uri)} -> #{child_uri}" unless action_hash.dig(:uri) == child_uri.to_s
+      report_normal "Child Uri update (U) #{action_hash.dig(:uri)} -> #{child_uri}" unless action_hash.dig(:uri) == child_uri.to_s
       child = Thesaurus::UnmanagedConcept.find_full(child_uri)
       new_child = process_updates(parent, child, action_hash)
       process_custom_properties(parent, new_child, action_hash)
-      puts "Child updated (U): #{new_child.uri}"
+      report_normal "Child updated (U): #{new_child.uri}"
     elsif action == :create
       new_child = add_child(parent, action_hash)
       process_custom_properties(parent, new_child, action_hash)
-      puts "Child created (C): #{new_child.uri}"
+      report_normal "Child created (C): #{new_child.uri}"
     elsif action == :refer
       if parent_hash.dig(:subsets)
         source = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: parent_hash.dig(:subset_of)))
@@ -143,11 +144,11 @@ namespace :triple_store do
         subset.add([Uri.new(uri: action_hash[:uri]).to_id], source)
         new_child = Thesaurus::UnmanagedConcept.find_full(Uri.new(uri: action_hash[:uri]))
         process_custom_properties(parent, new_child, action_hash)
-        puts "Child referenced (U Subset): #{new_child.uri}"
+        report_normal "Child referenced (U Subset): #{new_child.uri}"
       else
         new_child = add_referenced_child(parent, action_hash)
         process_custom_properties(parent, new_child, action_hash)
-        puts "Child referenced (U Other): #{new_child.uri}"
+        report_normal "Child referenced (U Other): #{new_child.uri}"
       end
     elsif action == :remove
       if parent_hash.dig(:subsets)
@@ -155,46 +156,65 @@ namespace :triple_store do
         items = subset.ordered_list
         item = items.find{ |x| x.item == Uri.new(uri: action_hash[:uri])}
         subset.remove([item.id])
-        puts "Child removed (R Subset): #{child_uri}"
+        report_normal "Child removed (R Subset): #{child_uri}"
       else
         child_uri = latest_item(parent, identifier)
-        puts "Child URI update (R) #{action_hash.dig(:uri)} -> #{child_uri}" unless action_hash.dig(:uri) == child_uri.to_s
+        report_normal "Child URI update (R) #{action_hash.dig(:uri)} -> #{child_uri}" unless action_hash.dig(:uri) == child_uri.to_s
         child = Thesaurus::UnmanagedConcept.find_full(child_uri)
         child.delete_or_unlink(parent)
-        puts "Child removed (R Other): #{child_uri}"
+        report_normal "Child removed (R Other): #{child_uri}"
       end  
     else
-      puts "Error: CLI action"
+      report_error "Error: CLI action"
     end
   end
 
   def process_cl_action(identifier, action_hash)
     item = nil
-    return if action_hash.dig(:items).empty?
-    puts "Action: #{identifier}"
+    return if no_items?(identifier, action_hash)
+    report_normal "Action: #{identifier}"
     action = action_hash.dig(:action)
     if action == :new_version
       uri = latest_version(identifier)
       item = Thesaurus::ManagedConcept.find_with_properties(uri)
       item = new_version(item)
-      puts "Parent next version (N): #{uri} -> #{item.uri}"
+      report_normal "Parent next version (N): #{uri} -> #{item.uri}"
     elsif action == :create
       if action_hash.dig(:subsets)
         master = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: action_hash.dig(:subset_of)))
         item = create_subset(master, action_hash)
-        puts "Parent created (C Subset): #{item.uri}"
+        report_normal "Parent created (C Subset): #{item.uri}"
       elsif action_hash.dig(:extends)
         puts "Errror: Trying to extend, not implemented"
       else
         item = create_version(action_hash)
-        puts "Parent created (C Other): #{item.uri}"
+        report_normal "Parent created (C Other): #{item.uri}"
       end
     else
-      puts "Error: CL action"
+      report_error "Error: CL action #{identifier}"
     end
     action_hash.dig(:items).each do |cli, cli_action_hash|
       process_cli_action(item, cli, cli_action_hash, action_hash)
     end
+  end
+
+  def no_items?(identifier, action_hash)
+    return false unless action_hash.dig(:items).empty?
+    report_warning "Warning: No items for #{identifier}."
+    true
+  end
+
+  def report_error(text)
+    abort(colourize(text, "red"))
+  end
+
+  def report_warning(text)
+    puts colourize(text, "yellow")
+    @warnings << {warning: text}
+  end
+
+  def report_normal(text)
+    puts text
   end
 
   def read_actions(filename)
@@ -203,6 +223,7 @@ namespace :triple_store do
   end
 
   def process(filename)
+    @warnings = []
     actions = read_actions(filename)
     actions.each do |cl, cl_action_hash|
       process_cl_action(cl, cl_action_hash)
@@ -213,6 +234,7 @@ namespace :triple_store do
   task :ct_engine => :environment do
     
     include RakeConfirm
+    include RakeDisplay
 
     # Check
     abort("Operation cancelled.") unless confirm_destructive
@@ -224,6 +246,10 @@ namespace :triple_store do
 
     # Process
     process(ARGV[1])
+
+    # Finish
+    display_results("Warnings", @warnings, ["Warning"])
+
 
   end
 
