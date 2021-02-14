@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe "Thesaurus::Subsets" do
+describe Thesaurus::Subsets do
 
   include DataHelpers
   include IsoManagedHelpers
@@ -142,8 +142,8 @@ describe "Thesaurus::Subsets" do
       expect(item_1.is_ordered_objects.members).to be(nil)
       expect(item_1.narrower.count).to eq(0)
       item_1 = Thesaurus::ManagedConcept.find_with_properties(item_1.id)
-      result = item_1.to_h
-      check_file_actual_expected(result, sub_dir, "upgrade_expected_2a.yaml", equate_method: :hash_equal)
+      fix_dates(item_1, sub_dir, "upgrade_expected_2a.yaml", :creation_date, :last_change_date)
+      check_file_actual_expected(item_1.to_h, sub_dir, "upgrade_expected_2a.yaml", equate_method: :hash_equal)
       make_standard(tc)
       tc_2 = tc.create_next_version
       tc_2 = Thesaurus::ManagedConcept.find_minimum(tc_2.id)
