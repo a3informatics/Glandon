@@ -167,13 +167,13 @@ describe "Import::SponsorTermFormatOne" do
       filename = "sponsor_term_format_one_#{@object.id}_load.ttl"
       #expect(public_file_exists?("test", filename)).to eq(true)
       copy_file_from_public_files("test", filename, sub_dir)
-    copy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_6.ttl")
+    #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_6.ttl")
       check_ttl_fix_v2(filename, "import_expected_6.ttl", {last_change_date: true})
       expect(@job.status).to eq("Complete")
       delete_data_file(sub_dir, filename)
       load_local_file_into_triple_store(sub_dir, "import_expected_6.ttl")
       actual = ct_custom_properties(Uri.new(uri: "http://www.s-cubed.dk/V2_III/V1#TH"))
-      check_file_actual_expected(actual, sub_dir, "custom_properties_expected_6.yaml", write_file: true)
+      check_file_actual_expected(actual, sub_dir, "custom_properties_expected_6.yaml")
     end
 
     it "import, no errors, version 2, short IV" do
@@ -191,7 +191,7 @@ describe "Import::SponsorTermFormatOne" do
       filename = "sponsor_term_format_one_#{@object.id}_load.ttl"
       public_file_exists?("test", filename)
       copy_file_from_public_files("test", filename, sub_dir)
-    copy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_8.ttl")
+    #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_8.ttl")
       check_ttl_fix_v2(filename, "import_expected_8.ttl", {last_change_date: true})
       expect(@job.status).to eq("Complete")
       delete_data_file(sub_dir, filename)
@@ -212,7 +212,7 @@ describe "Import::SponsorTermFormatOne" do
       filename = "sponsor_term_format_one_#{@object.id}_load.ttl"
       public_file_exists?("test", filename)
       copy_file_from_public_files("test", filename, sub_dir)
-    copy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_9.ttl")
+    #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_9.ttl")
       check_ttl_fix_v2(filename, "import_expected_9.ttl", {last_change_date: true})
       expect(@job.status).to eq("Complete")
       delete_data_file(sub_dir, filename)
@@ -232,7 +232,7 @@ describe "Import::SponsorTermFormatOne" do
       filename = "sponsor_term_format_one_#{@object.id}_load.ttl"
       public_file_exists?("test", filename)
       copy_file_from_public_files("test", filename, sub_dir)
-    copy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_22.ttl")
+    #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_22.ttl")
       check_ttl_fix_v2(filename, "import_expected_22.ttl", {last_change_date: true})
       expect(@job.status).to eq("Complete")
       delete_data_file(sub_dir, filename)
@@ -252,7 +252,7 @@ describe "Import::SponsorTermFormatOne" do
       filename = "sponsor_term_format_one_#{@object.id}_load.ttl"
       public_file_exists?("test", filename)
       copy_file_from_public_files("test", filename, sub_dir)
-    copy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_24a.ttl")
+    #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_24a.ttl")
       check_ttl_fix_v2(filename, "import_expected_24a.ttl", {last_change_date: true})
       expect(@job.status).to eq("Complete")
       delete_data_file(sub_dir, filename)
@@ -273,7 +273,7 @@ describe "Import::SponsorTermFormatOne" do
       filename = "sponsor_term_format_one_#{@object.id}_load.ttl"
       public_file_exists?("test", filename)
       copy_file_from_public_files("test", filename, sub_dir)
-    copy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_24b.ttl")
+    #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_24b.ttl")
       check_ttl_fix_v2(filename, "import_expected_24b.ttl", {last_change_date: true})
       expect(@job.status).to eq("Complete")
       delete_data_file(sub_dir, filename)
@@ -293,7 +293,7 @@ describe "Import::SponsorTermFormatOne" do
       filename = "sponsor_term_format_one_#{@object.id}_load.ttl"
       public_file_exists?("test", filename)
       copy_file_from_public_files("test", filename, sub_dir)
-    copy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_25a.ttl")
+    #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_25a.ttl")
       check_ttl_fix_v2(filename, "import_expected_25a.ttl", {last_change_date: true})
       expect(@job.status).to eq("Complete")
       delete_data_file(sub_dir, filename)
@@ -314,7 +314,7 @@ describe "Import::SponsorTermFormatOne" do
       filename = "sponsor_term_format_one_#{@object.id}_load.ttl"
       public_file_exists?("test", filename)
       copy_file_from_public_files("test", filename, sub_dir)
-    copy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_25b.ttl")
+    #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_25b.ttl")
       check_ttl_fix_v2(filename, "import_expected_25b.ttl", {last_change_date: true})
       expect(@job.status).to eq("Complete")
       delete_data_file(sub_dir, filename)
@@ -334,8 +334,8 @@ describe "Import::SponsorTermFormatOne" do
       filename = "sponsor_term_format_one_#{@object.id}_load.ttl"
       public_file_exists?("test", filename)
       copy_file_from_public_files("test", filename, sub_dir)
-    copy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_26a.ttl")
-    copy_file_from_public_files_rename("test", filename, sub_dir, "import_load_26a.ttl")
+    #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_26a.ttl")
+    #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_load_26a.ttl")
       check_ttl_fix_v2(filename, "import_expected_26a.ttl", {last_change_date: true})
       expect(@job.status).to eq("Complete")
       delete_data_file(sub_dir, filename)
@@ -356,7 +356,7 @@ describe "Import::SponsorTermFormatOne" do
       filename = "sponsor_term_format_one_#{@object.id}_load.ttl"
       public_file_exists?("test", filename)
       copy_file_from_public_files("test", filename, sub_dir)
-    copy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_26b.ttl")
+    #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_26b.ttl")
       check_ttl_fix_v2(filename, "import_expected_26b.ttl", {last_change_date: true})
       expect(@job.status).to eq("Complete")
       delete_data_file(sub_dir, filename)
@@ -376,7 +376,7 @@ describe "Import::SponsorTermFormatOne" do
       filename = "sponsor_term_format_one_#{@object.id}_load.ttl"
       public_file_exists?("test", filename)
       copy_file_from_public_files("test", filename, sub_dir)
-    copy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_30a.ttl")
+    #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_30a.ttl")
       check_ttl_fix_v2(filename, "import_expected_30a.ttl", {last_change_date: true})
       expect(@job.status).to eq("Complete")
       delete_data_file(sub_dir, filename)
@@ -396,7 +396,7 @@ describe "Import::SponsorTermFormatOne" do
       filename = "sponsor_term_format_one_#{@object.id}_load.ttl"
       public_file_exists?("test", filename)
       copy_file_from_public_files("test", filename, sub_dir)
-    copy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_31a.ttl")
+    #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_31a.ttl")
       check_ttl_fix_v2(filename, "import_expected_31a.ttl", {last_change_date: true})
       expect(@job.status).to eq("Complete")
       delete_data_file(sub_dir, filename)
@@ -416,7 +416,7 @@ describe "Import::SponsorTermFormatOne" do
       filename = "sponsor_term_format_one_#{@object.id}_load.ttl"
       public_file_exists?("test", filename)
       copy_file_from_public_files("test", filename, sub_dir)
-    copy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_32a.ttl")
+    #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_32a.ttl")
       check_ttl_fix_v2(filename, "import_expected_32a.ttl", {last_change_date: true})
       expect(@job.status).to eq("Complete")
       delete_data_file(sub_dir, filename)
@@ -436,7 +436,7 @@ describe "Import::SponsorTermFormatOne" do
       filename = "sponsor_term_format_one_#{@object.id}_load.ttl"
       public_file_exists?("test", filename)
       copy_file_from_public_files("test", filename, sub_dir)
-    copy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_33.ttl")
+    #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_33.ttl")
       check_ttl_fix_v2(filename, "import_expected_33.ttl", {last_change_date: true})
       expect(@job.status).to eq("Complete")
       delete_data_file(sub_dir, filename)
@@ -463,8 +463,8 @@ describe "Import::SponsorTermFormatOne" do
       filename = "sponsor_term_format_one_#{@object.id}_load.ttl"
       public_file_exists?("test", filename)
       copy_file_from_public_files("test", filename, sub_dir)
-    copy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_34a.ttl")
-    copy_file_from_public_files_rename("test", filename, sub_dir, "import_load_34a.ttl")
+    #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_34a.ttl")
+    #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_load_34a.ttl")
       check_ttl_fix_v2(filename, "import_expected_34a.ttl", {last_change_date: true})
       expect(@job.status).to eq("Complete")
       delete_data_file(sub_dir, filename)
@@ -485,7 +485,7 @@ describe "Import::SponsorTermFormatOne" do
       filename = "sponsor_term_format_one_#{@object.id}_load.ttl"
       public_file_exists?("test", filename)
       copy_file_from_public_files("test", filename, sub_dir)
-    copy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_34b.ttl")
+    #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_34b.ttl")
       check_ttl_fix_v2(filename, "import_expected_34b.ttl", {last_change_date: true})
       expect(@job.status).to eq("Complete")
       delete_data_file(sub_dir, filename)
@@ -505,8 +505,8 @@ describe "Import::SponsorTermFormatOne" do
       filename = "sponsor_term_format_one_#{@object.id}_load.ttl"
       public_file_exists?("test", filename)
       copy_file_from_public_files("test", filename, sub_dir)
-    copy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_35a.ttl")
-    copy_file_from_public_files_rename("test", filename, sub_dir, "import_load_35a.ttl")
+    #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_35a.ttl")
+    #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_load_35a.ttl")
       check_ttl_fix_v2(filename, "import_expected_35a.ttl", {last_change_date: true})
       expect(@job.status).to eq("Complete")
       delete_data_file(sub_dir, filename)
@@ -528,7 +528,7 @@ describe "Import::SponsorTermFormatOne" do
       filename = "sponsor_term_format_one_#{@object.id}_load.ttl"
       public_file_exists?("test", filename)
       copy_file_from_public_files("test", filename, sub_dir)
-    copy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_35b.ttl")
+    #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_35b.ttl")
       check_ttl_fix_v2(filename, "import_expected_35b.ttl", {last_change_date: true})
       expect(@job.status).to eq("Complete")
       delete_data_file(sub_dir, filename)
@@ -556,7 +556,7 @@ describe "Import::SponsorTermFormatOne" do
       filename = "sponsor_term_format_one_#{@object.id}_load.ttl"
       #expect(public_file_exists?("test", filename)).to eq(true)
       copy_file_from_public_files("test", filename, sub_dir)
-    copy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_10.ttl")
+    #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_10.ttl")
       check_ttl_fix_v2(filename, "import_expected_10.ttl", {last_change_date: true})
       expect(@job.status).to eq("Complete")
       delete_data_file(sub_dir, filename)
@@ -579,7 +579,7 @@ describe "Import::SponsorTermFormatOne" do
       filename = "sponsor_term_format_one_#{@object.id}_load.ttl"
       #expect(public_file_exists?("test", filename)).to eq(true)
       copy_file_from_public_files("test", filename, sub_dir)
-    copy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_11.ttl")
+    #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_11.ttl")
       check_ttl_fix_v2(filename, "import_expected_11.ttl", {last_change_date: true})
       expect(@job.status).to eq("Complete")
       delete_data_file(sub_dir, filename)
@@ -599,7 +599,7 @@ describe "Import::SponsorTermFormatOne" do
       filename = "sponsor_term_format_one_#{@object.id}_load.ttl"
       #expect(public_file_exists?("test", filename)).to eq(true)
       copy_file_from_public_files("test", filename, sub_dir)
-    copy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_12.ttl")
+    #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_12.ttl")
       check_ttl_fix_v2(filename, "import_expected_12.ttl", {last_change_date: true})
       expect(@job.status).to eq("Complete")
       delete_data_file(sub_dir, filename)
@@ -619,7 +619,7 @@ describe "Import::SponsorTermFormatOne" do
       filename = "sponsor_term_format_one_#{@object.id}_load.ttl"
       #expect(public_file_exists?("test", filename)).to eq(true)
       copy_file_from_public_files("test", filename, sub_dir)
-    copy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_14.ttl")
+    #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_14.ttl")
       check_ttl_fix_v2(filename, "import_expected_14.ttl", {last_change_date: true})
       expect(@job.status).to eq("Complete")
       delete_data_file(sub_dir, filename)
@@ -639,7 +639,7 @@ describe "Import::SponsorTermFormatOne" do
       filename = "sponsor_term_format_one_#{@object.id}_load.ttl"
       #expect(public_file_exists?("test", filename)).to eq(true)
       copy_file_from_public_files("test", filename, sub_dir)
-    copy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_15.ttl")
+    #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_15.ttl")
       check_ttl_fix_v2(filename, "import_expected_15.ttl", {last_change_date: true})
       expect(@job.status).to eq("Complete")
       delete_data_file(sub_dir, filename)
@@ -659,7 +659,7 @@ describe "Import::SponsorTermFormatOne" do
       filename = "sponsor_term_format_one_#{@object.id}_load.ttl"
       #expect(public_file_exists?("test", filename)).to eq(true)
       copy_file_from_public_files("test", filename, sub_dir)
-    copy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_16.ttl")
+    #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_16.ttl")
       check_ttl_fix_v2(filename, "import_expected_16.ttl", {last_change_date: true})
       expect(@job.status).to eq("Complete")
       delete_data_file(sub_dir, filename)
@@ -679,7 +679,7 @@ describe "Import::SponsorTermFormatOne" do
       filename = "sponsor_term_format_one_#{@object.id}_load.ttl"
       #expect(public_file_exists?("test", filename)).to eq(true)
       copy_file_from_public_files("test", filename, sub_dir)
-    copy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_17.ttl")
+    #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_17.ttl")
       check_ttl_fix_v2(filename, "import_expected_17.ttl", {last_change_date: true})
       expect(@job.status).to eq("Complete")
       delete_data_file(sub_dir, filename)
@@ -699,7 +699,7 @@ describe "Import::SponsorTermFormatOne" do
       filename = "sponsor_term_format_one_#{@object.id}_load.ttl"
       #expect(public_file_exists?("test", filename)).to eq(true)
       copy_file_from_public_files("test", filename, sub_dir)
-    copy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_18.ttl")
+    #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_18.ttl")
       check_ttl_fix_v2(filename, "import_expected_18.ttl", {last_change_date: true})
       expect(@job.status).to eq("Complete")
       delete_data_file(sub_dir, filename)
@@ -719,7 +719,7 @@ describe "Import::SponsorTermFormatOne" do
       filename = "sponsor_term_format_one_#{@object.id}_load.ttl"
       #expect(public_file_exists?("test", filename)).to eq(true)
       copy_file_from_public_files("test", filename, sub_dir)
-    copy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_20.ttl")
+    #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_20.ttl")
       check_ttl_fix_v2(filename, "import_expected_20.ttl", {last_change_date: true})
       expect(@job.status).to eq("Complete")
       delete_data_file(sub_dir, filename)
@@ -739,7 +739,7 @@ describe "Import::SponsorTermFormatOne" do
       filename = "sponsor_term_format_one_#{@object.id}_load.ttl"
       #expect(public_file_exists?("test", filename)).to eq(true)
       copy_file_from_public_files("test", filename, sub_dir)
-    copy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_21.ttl")
+    #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_21.ttl")
       check_ttl_fix_v2(filename, "import_expected_21.ttl", {last_change_date: true})
       expect(@job.status).to eq("Complete")
       delete_data_file(sub_dir, filename)
@@ -759,7 +759,7 @@ describe "Import::SponsorTermFormatOne" do
       filename = "sponsor_term_format_one_#{@object.id}_load.ttl"
       #expect(public_file_exists?("test", filename)).to eq(true)
       copy_file_from_public_files("test", filename, sub_dir)
-    copy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_23.ttl")
+    #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_23.ttl")
       check_ttl_fix_v2(filename, "import_expected_23.ttl", {last_change_date: true})
       expect(@job.status).to eq("Complete")
       delete_data_file(sub_dir, filename)
@@ -816,7 +816,7 @@ describe "Import::SponsorTermFormatOne" do
       filename = "sponsor_term_format_one_#{@object.id}_load.ttl"
       public_file_exists?("test", filename)
       copy_file_from_public_files("test", filename, sub_dir)
-    copy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_100.ttl")
+    #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_100.ttl")
       check_ttl_fix_v2(filename, "import_expected_100.ttl", {last_change_date: true})
       expect(@job.status).to eq("Complete")
       delete_data_file(sub_dir, filename)
