@@ -318,6 +318,10 @@ describe "Forms", :type => :feature do
           wait_for_ajax 10
           expect(page).to have_content 'contains invalid characters'
 
+          # Reset label button
+          click_on 'Reset'
+          expect( find_field('local_label').value ).to eq('Inch')
+
           fill_in 'local_label', with: 'New Inch'
           click_on 'Save changes'
           wait_for_ajax 10
