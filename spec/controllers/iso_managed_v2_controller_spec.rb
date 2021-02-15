@@ -428,6 +428,10 @@ describe IsoManagedV2Controller do
       load_cdisc_term_versions(1..2)
     end
 
+    after :all do
+      delete_all_public_files
+    end
+
     it 'ttl' do
       uri = Uri.new(uri: "http://www.cdisc.org/CT/V2#TH")
       get :export_ttl, params:{id: uri.to_id}
@@ -439,6 +443,50 @@ describe IsoManagedV2Controller do
       uri = Uri.new(uri: "http://www.cdisc.org/CT/V2#TH")
       get :export_json, params:{id: uri.to_id}
       expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200")
+    end
+
+  end
+
+  describe "Exports, BC and Form" do
+
+    login_content_admin
+
+    def sub_dir
+      return "controllers"
+    end
+
+    before :all do
+      data_files = ["forms/FN000150.ttl", "SDTM_Sponsor_Domain.ttl"]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..2)
+      load_data_file_into_triple_store("mdr_identification.ttl")
+      load_data_file_into_triple_store("biomedical_concept_templates.ttl")
+      load_data_file_into_triple_store("biomedical_concept_instances.ttl")
+    end
+
+    after :all do
+      delete_all_public_files
+    end
+
+    it 'ttl, BC' do
+      bci = BiomedicalConceptInstance.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
+      get :export_ttl, params:{id: bci.id}
+      expect(response.content_type).to eq("application/x-turtle")
+      expect(response.code).to eq("200")
+    end
+
+    it 'ttl, form' do
+      form = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F"))
+      get :export_ttl, params:{id: form.id}
+      expect(response.content_type).to eq("application/x-turtle")
+      expect(response.code).to eq("200")
+    end
+
+    it 'ttl, SDTM Sponsor Domain' do
+      sdtm_sponsor_domain = SdtmSponsorDomain.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/AAA/V1#SPD"))
+      get :export_ttl, params:{id: sdtm_sponsor_domain.id}
+      expect(response.content_type).to eq("application/x-turtle")
       expect(response.code).to eq("200")
     end
 
