@@ -1,4 +1,4 @@
-import * as d3 from 'd3-selection'
+import { selectAll } from 'd3-selection'
 
 import colors from 'shared/ui/colors'
 import { defaultProps } from 'shared/helpers/d3/renderers/nodes'
@@ -29,9 +29,8 @@ export default class D3Node {
    */
   findElement() {
 
-    this.el = d3.default.selectAll( '.node' )
-                        .filter( nd => this._nodeMatches( nd ) )
-                        .node();
+    this.el = selectAll( '.node' ).filter( nd => this._nodeMatches( nd ) )
+                                  .node();
 
   }
 
