@@ -283,6 +283,13 @@ export default class HistoryPanel extends TablePanel {
         text: "BC Associations", 
         endOffset: 1, 
         types: ["sdtm_sponsor_domain"] 
+      },
+      {
+        url: data.export_path, 
+        icon: "icon-download", 
+        text: "Export TTL", 
+        endOffset: 1, 
+        types: ["form", "biomedical_concept_instance"] 
       }
     ]
 
