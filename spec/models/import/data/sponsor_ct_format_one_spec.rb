@@ -291,7 +291,7 @@ describe "Import::SponsorTermFormatOne" do
         filename = "sponsor_term_format_one_#{@object.id}_load.ttl"
         #expect(public_file_exists?("test", filename)).to eq(true)
         copy_file_from_public_files("test", filename, sub_dir)
-      #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "CT_V3-0.ttl")
+      copy_file_from_public_files_rename("test", filename, sub_dir, "CT_V3-0.ttl")
         check_ttl_fix_v2(filename, "CT_V3-0.ttl", {last_change_date: true})
         expect(@job.status).to eq("Complete")
         delete_data_file(sub_dir, filename)
@@ -347,7 +347,7 @@ describe "Import::SponsorTermFormatOne" do
         filename = "sponsor_term_format_one_#{@object.id}_load.ttl"
         #expect(public_file_exists?("test", filename)).to eq(true)
         copy_file_from_public_files("test", filename, sub_dir)
-      #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "CT_V3-1.ttl")
+      copy_file_from_public_files_rename("test", filename, sub_dir, "CT_V3-1.ttl")
         check_ttl_fix_v2(filename, "CT_V3-1.ttl", {last_change_date: true})
         expect(@job.status).to eq("Complete")
         delete_data_file(sub_dir, filename)
@@ -638,10 +638,40 @@ describe "Import::SponsorTermFormatOne" do
       query_results.by_object_set([:cl, :s, :i, :n, :ordinal])
     end
 
+    def ranking_and_ordering(ct)
+      results = []
+      query_string = %Q{
+        SELECT ?cl ?s ?r ?i ?n ?ordinal
+        {
+          FILTER (?ordinal > 0)
+          ?m th:item ?s .
+          ?m th:rank ?r .
+          {
+            SELECT ?cl ?m (COUNT(?mid) as ?ordinal) WHERE {
+              #{ct.to_ref} th:isTopConceptReference/bo:reference ?cl .
+              ?cl th:isRanked/th:members/th:memberNext* ?mid . 
+              ?mid th:memberNext* ?m .
+            } 
+            GROUP BY ?cl ?m
+          }
+          ?s th:identifier ?i .
+          ?s th:notation ?n
+        } ORDER BY ?cl ?ordinal ?rank
+      }
+      query_results = Sparql::Query.new.query(query_string, "", [:th, :bo])
+      query_results.by_object_set([:cl, :s, :r, :i, :n, :ordinal])
+    end
+
     it "subset ordering analysis I" do
       ct_set.each_with_index do |v, index|
         results = subsets_and_ordering(v[:uri])
-        check_file_actual_expected(results.map{|x| {code_list: x[:cl].to_s, item: x[:s].to_s, identifier: x[:i], submission: x[:n], ordinal: x[:ordinal]}}, sub_dir, "subset_ordering_expected_#{index+1}.yaml", equate_method: :hash_equal, write_file: false)        
+        check_file_actual_expected(results.map{|x| {code_list: x[:cl].to_s, item: x[:s].to_s, identifier: x[:i], submission: x[:n], ordinal: x[:ordinal]}}, sub_dir, "subset_ordering_expected_#{index+1}.yaml", equate_method: :hash_equal, write_file: false)       end
+    end
+
+    it "rank ordering analysis I" do
+      ct_set.each_with_index do |v, index|
+        results = ranking_and_ordering(v[:uri])
+        check_file_actual_expected(results.map{|x| {code_list: x[:cl].to_s, item: x[:s].to_s, identifier: x[:i], submission: x[:n], ranks: x[:r], ordinal: x[:ordinal]}}, sub_dir, "rank_ordering_expected_#{index+1}.yaml", equate_method: :hash_equal, write_file: true)        
       end
     end
 
