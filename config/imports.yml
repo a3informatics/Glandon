@@ -2696,7 +2696,15 @@ defaults: &defaults
                   column: 12
           -
             label: "DISPLAY_ORDER"
-            actions:  []
+            actions:
+              -
+                method: set_property_with_custom
+                object: child
+                property: :custom_properties
+                mapping: 
+                  map: {}
+                additional:
+                  definition: Display Order
           -
             label: "RANK"
             actions:
@@ -2947,7 +2955,15 @@ defaults: &defaults
                   column: 12
           -
             label: "DISPLAY_ORDER"
-            actions:  []
+            actions:
+              -
+                method: set_property_with_custom
+                object: child
+                property: :custom_properties
+                mapping: 
+                  map: {}
+                additional:
+                  definition: Display Order
           -
             label: "RANK"
             actions:
