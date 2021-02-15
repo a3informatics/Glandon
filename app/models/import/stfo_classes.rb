@@ -534,7 +534,7 @@ module Import::STFOClasses
 
     def subset_list_equal?(subset)
       other = subset.list_uris.map {|x| x[:uri].to_s}
-      this = subset_list.map {|x| x.to_s}
+      this = subset_list.map {|x| x.uri.to_s}
       return other - this == [] && this - other == []
     rescue => e
       add_error("Exception in subset_list_equal?")
