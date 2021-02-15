@@ -137,13 +137,23 @@ module Import::STFOClasses
       self
     end
 
-    # Subset? Is the entry a subset code list?
+    # Subset? Is the entry a ranked code list?
     #
-    # @return [Boolean] true if a subset, false otherwise
+    # @return [Boolean] true if ranked, false otherwise
     def ranked?
       return false if self.narrower.empty?
       ranks = self.narrower.map {|child| child.respond_to?(:rank) ? child.rank : ""}.reject{|x| x.blank?}
       return false if ranks.empty?
+      true
+    end
+
+    # Subset? Is the entry a ordered code list?
+    #
+    # @return [Boolean] true if a ordered, false otherwise
+    def ordered?
+      return false if self.narrower.empty?
+      the_order = self.narrower.map {|child| child.custom_properties.property("Display Order").value}.reject{|x| x.blank?}
+      return false if the_order.empty?
       true
     end
 
@@ -189,6 +199,7 @@ module Import::STFOClasses
 
     def to_subset_of_extension(extensions)
       it_is_ranked = self.ranked? # Preserve
+      it_is_ordered = true # self.ordered? ... will force a subset to be ordered.
       new_narrower = []
       new_refers_to = []
       ext = extensions[self.identifier]
@@ -210,7 +221,7 @@ module Import::STFOClasses
       self.narrower = new_narrower
       self.refers_to = new_refers_to
       self.subsets = ext
-      self.add_ordering
+      self.add_ordering if it_is_ordered
       self.add_ranking if it_is_ranked
       self
     rescue => e
@@ -239,6 +250,7 @@ module Import::STFOClasses
     def to_cdisc_subset(ct, keep_identifier=false)
       return nil if !NciThesaurusUtility.c_code?(self.identifier)
       it_is_ranked = self.ranked? # Preserve
+      it_is_ordered = true # self.ordered? ... will force a subset to be ordered.
       ref_ct = reference(ct) # do early before identifier updated.
       new_narrower = []
       new_refers_to = []
@@ -259,7 +271,7 @@ module Import::STFOClasses
       self.narrower = new_narrower
       self.refers_to = new_refers_to
       self.subsets = ref_ct
-      self.add_ordering
+      self.add_ordering if it_is_ordered
       self.add_ranking if it_is_ranked
       self
     rescue => e
@@ -271,6 +283,7 @@ module Import::STFOClasses
       ref_ct = sponsor_ct.find{|x| x.identifier == self.identifier}
       return nil if ref_ct.nil?
       it_is_ranked = self.ranked? # Preserve
+      it_is_ordered = true # self.ordered? ... will force a subset to be ordered.
       new_narrower = []
       new_refers_to = []
       #self.identifier = Thesaurus::ManagedConcept.new_identifier
@@ -291,7 +304,7 @@ module Import::STFOClasses
       self.narrower = new_narrower
       self.refers_to = new_refers_to
       self.subsets = ref_ct
-      self.add_ordering
+      self.add_ordering if it_is_ordered
       self.add_ranking if it_is_ranked
       self
     rescue => e
@@ -303,6 +316,7 @@ module Import::STFOClasses
       refs = Thesaurus::ManagedConcept.where(identifier: self.identifier)
       return nil if refs.empty?
       it_is_ranked = self.ranked? # Preserve
+      it_is_ordered = true # self.ordered? ... will force a subset to be ordered.
       ref_ct = Thesaurus::ManagedConcept.find_full(refs.first.uri)
       tcs = Thesaurus::ManagedConcept.where(notation: self.notation)
       tc = tcs.empty? ? nil : tcs.first
@@ -325,7 +339,7 @@ module Import::STFOClasses
       self.narrower = new_narrower
       self.refers_to = new_refers_to
       self.subsets = ref_ct
-      self.add_ordering
+      self.add_ordering if it_is_ordered
       self.add_ranking if it_is_ranked
       self
     rescue => e
