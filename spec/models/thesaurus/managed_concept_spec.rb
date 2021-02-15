@@ -2446,41 +2446,41 @@ describe "Thesaurus::ManagedConcept" do
     it "extend a code list" do
       tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.sanofi.com/SN003055/V1#SN003055"))
       results = tc.find_custom_property_values
-      check_file_actual_expected(results, sub_dir, "create_extension_custom_property_expected_2a.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(results, sub_dir, "create_extension_custom_property_expected_2a.yaml", equate_method: :hash_equal)
       item = tc.create_extension
       item = Thesaurus::UnmanagedConcept.find(item.uri)
       results = item.children_pagination(count: 100, offset: 0)
-      check_file_actual_expected(results, sub_dir, "create_extension_custom_property_expected_2b.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(results, sub_dir, "create_extension_custom_property_expected_2b.yaml", equate_method: :hash_equal)
       results = item.find_custom_property_definitions_to_h
-      check_file_actual_expected(results, sub_dir, "create_extension_custom_property_expected_2c.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(results, sub_dir, "create_extension_custom_property_expected_2c.yaml", equate_method: :hash_equal)
       results = item.find_custom_property_values
-      check_file_actual_expected(results, sub_dir, "create_extension_custom_property_expected_2d.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(results, sub_dir, "create_extension_custom_property_expected_2d.yaml", equate_method: :hash_equal)
     end
 
     it "check preservation of custom properties after delete" do
       tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.sanofi.com/SN003055/V1#SN003055"))
       results = tc.find_custom_property_values
       before_count = triple_store.triple_count
-      check_file_actual_expected(results, sub_dir, "create_extension_custom_property_expected_3a.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(results, sub_dir, "create_extension_custom_property_expected_3a.yaml", equate_method: :hash_equal)
       item = tc.create_extension
       results = item.delete_or_unlink
       results = tc.find_custom_property_values
-      check_file_actual_expected(results, sub_dir, "create_extension_custom_property_expected_3a.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(results, sub_dir, "create_extension_custom_property_expected_3a.yaml", equate_method: :hash_equal)
       expect(triple_store.triple_count).to eq(before_count)
     end
       
     it "extend a code list" do
       tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C99079/V62#C99079"))
       results = tc.find_custom_property_values
-      check_file_actual_expected(results, sub_dir, "create_extension_custom_property_expected_4a.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(results, sub_dir, "create_extension_custom_property_expected_4a.yaml", equate_method: :hash_equal)
       item = tc.create_extension
       item = Thesaurus::UnmanagedConcept.find(item.uri)
       results = item.children_pagination(count: 100, offset: 0)
-      check_file_actual_expected(results, sub_dir, "create_extension_custom_property_expected_4b.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(results, sub_dir, "create_extension_custom_property_expected_4b.yaml", equate_method: :hash_equal)
       results = item.find_custom_property_definitions_to_h
-      check_file_actual_expected(results, sub_dir, "create_extension_custom_property_expected_4c.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(results, sub_dir, "create_extension_custom_property_expected_4c.yaml", equate_method: :hash_equal)
       results = item.find_custom_property_values
-      check_file_actual_expected(results, sub_dir, "create_extension_custom_property_expected_4d.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(results, sub_dir, "create_extension_custom_property_expected_4d.yaml", equate_method: :hash_equal)
     end
 
     it "delete draft code list" do
@@ -2522,7 +2522,7 @@ describe "Thesaurus::ManagedConcept" do
       new_tc = tc.create_next_version
       new_tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.sanofi.com/C100130/V4#C100130"))
       results = new_tc.find_custom_property_values
-      check_file_actual_expected(results, sub_dir, "delete_draft_code_list_custom_property_expected_1.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(results, sub_dir, "delete_draft_code_list_custom_property_expected_1.yaml", equate_method: :hash_equal)
       result = new_tc.delete_or_unlink
       expect(triple_store.triple_count).to eq(before_count)
     end
@@ -2531,11 +2531,11 @@ describe "Thesaurus::ManagedConcept" do
       allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
       tc = Thesaurus::ManagedConcept.find_with_properties(Uri.new(uri: "http://www.sanofi.com/C102589/V1#C102589"))
       results = tc.find_custom_property_values
-      check_file_actual_expected(results, sub_dir, "add_item_custom_property_expected_1a.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(results, sub_dir, "add_item_custom_property_expected_1a.yaml", equate_method: :hash_equal)
       new_tc = tc.create_next_version
       new_tc = Thesaurus::ManagedConcept.find_minimum(new_tc.uri)
       results = new_tc.find_custom_property_values
-      check_file_actual_expected(results, sub_dir, "add_item_custom_property_expected_1b.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(results, sub_dir, "add_item_custom_property_expected_1b.yaml", equate_method: :hash_equal)
     end
 
   end
