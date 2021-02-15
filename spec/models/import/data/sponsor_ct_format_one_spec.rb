@@ -378,7 +378,7 @@ describe "Import::SponsorTermFormatOne" do
 
   end
 
-  describe "Differences" do
+  describe "Differences, Statistics & Checks" do
 
     before :all do
       load_files(schema_files, [])
@@ -454,30 +454,6 @@ describe "Import::SponsorTermFormatOne" do
         results[cl[:identifier]] = {changes: item.changes(2), differences: item.differences}
       end
       check_file_actual_expected(results, sub_dir, "import_code_list_changes_expected_2.yaml", equate_method: :hash_equal, write_file: false)
-    end
-
-  end
-
-  describe "Final Statistics & Checks" do
-
-    before :all do
-      load_files(schema_files, [])
-      load_data_file_into_triple_store("mdr_sponsor_one_identification.ttl")
-      load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
-      load_data_file_into_triple_store("mdr_iso_concept_systems_migration_1.ttl")
-      load_data_file_into_triple_store("mdr_iso_concept_systems_process.ttl")
-      load_data_file_into_triple_store("sponsor_one/custom_property/custom_properties.ttl")
-      load_data_file_into_triple_store("sponsor_one/custom_property/custom_properties_migration_one.ttl")
-      load_cdisc_term_versions(1..62)
-      load_local_file_into_triple_store(sub_dir, "CT_V2-6.ttl")
-      load_local_file_into_triple_store(sub_dir, "CT_V3-0.ttl")
-      load_local_file_into_triple_store(sub_dir, "CT_V3-1.ttl")
-      delete_all_public_test_files
-      release_uris
-    end
-
-    after :all do
-      delete_all_public_test_files
     end
 
     def check_cls(code_lists, uri)
