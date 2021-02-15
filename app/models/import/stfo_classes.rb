@@ -210,6 +210,7 @@ module Import::STFOClasses
       self.refers_to = new_refers_to
       self.subsets = ext
       self.add_ordering
+      self.add_ranking if self.ranked?
       self
     rescue => e
       add_error("Exception in to_subset_of_extension, #{e}, identifier '#{self.identifier}'.")
