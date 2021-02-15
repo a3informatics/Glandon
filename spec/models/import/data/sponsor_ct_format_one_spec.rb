@@ -519,7 +519,7 @@ describe "Import::SponsorTermFormatOne" do
     end
 
     it "counts and ranks" do
-      {"2-6" => {uri: @uri_2_6, count: 215199}, "3-0" => {uri: @uri_3_0, count: 316639}, "3-1" => {uri: @uri_3_1, count: 325418}}.each do |version, data|
+      {"2-6" => {uri: @uri_2_6, count: 215199}, "3-0" => {uri: @uri_3_0, count: 316635}, "3-1" => {uri: @uri_3_1, count: 325418}}.each do |version, data|
         triples = th_triples_tree(data[:uri]) # Reading all triples as a test.
         expect(triples.count).to eq(data[:count])
       end
@@ -635,12 +635,12 @@ describe "Import::SponsorTermFormatOne" do
       query_results.by_object_set([:clid, :cln, :cliid, :clin])
     end
 
-    it "custom property analysis" do
+    it "custom property analysis I" do
       results = subsets_and_refers_to
       expect(results.empty?).to be(true)
     end
 
-    it "custom property analysis" do
+    it "custom property analysis II" do
       counts = [
         {cl: 803, cli: 22321},
         {cl: 1080, cli: 31929},
