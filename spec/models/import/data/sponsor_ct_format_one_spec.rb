@@ -635,6 +635,38 @@ describe "Import::SponsorTermFormatOne" do
       query_results.by_object_set([:clid, :cln, :cliid, :clin])
     end
 
+    def subsets_and_ordering(ct)
+      results = []
+      query_string = %Q{
+        SELECT ?cl ?s ?i ?n ?ordinal
+        {
+          FILTER (?ordinal > 0)
+          ?m th:item ?s
+          {
+            SELECT ?cl ?m (COUNT(?mid) as ?ordinal) WHERE {
+              #{ct.to_ref} th:isTopConceptReference/bo:reference ?cl .
+              ?cl th:subsets ?x .
+              ?cl th:isOrdered/th:members/th:memberNext* ?mid . 
+              ?mid th:memberNext* ?m .
+              ?m th:item ?e
+            } 
+            GROUP BY ?cl ?m
+          }
+          ?s th:identifier ?i .
+          ?s th:notation ?n
+        } ORDER BY ?cl ?ordinal
+      }
+      query_results = Sparql::Query.new.query(query_string, "", [:th, :bo])
+      query_results.by_object_set([:cl, :s, :i, :n, :ordinal])
+    end
+
+    it "subset ordering analysis I" do
+      ct_set.each_with_index do |v, index|
+        results = subsets_and_ordering(v[:uri])
+        check_file_actual_expected(results.map{|x| {code_list: x[:cl].to_s, item: x[:s].to_s, identifier: x[:i], submission: x[:n], ordinal: x[:ordinal]}}, sub_dir, "subset_ordering_expected_#{index+1}.yaml", equate_method: :hash_equal, write_file: false)        
+      end
+    end
+
     it "custom property analysis I" do
       results = subsets_and_refers_to
       expect(results.empty?).to be(true)
