@@ -442,6 +442,11 @@ describe "Import::SponsorTermFormatOne" do
         next if item.owner_short_name != "Sanofi"
         results[cl[:identifier]] = {changes: item.changes(2), differences: item.differences}
       end
+      # expected = read_yaml_file(sub_dir, "import_code_list_changes_expected_1.yaml")
+      # expected.each do |k, v|
+      #   actual = results[k]
+      #   byebug if actual != v 
+      # end
       check_file_actual_expected(results, sub_dir, "import_code_list_changes_expected_1.yaml", equate_method: :hash_equal, write_file: false)
     end
 
@@ -455,6 +460,11 @@ describe "Import::SponsorTermFormatOne" do
         next if item.owner_short_name != "Sanofi"
         results[cl[:identifier]] = {changes: item.changes(2), differences: item.differences}
       end
+      # expected = read_yaml_file(sub_dir, "import_code_list_changes_expected_1.yaml")
+      # expected.each do |k, v|
+      #   actual = results[k]
+      #   byebug if actual != v 
+      # end
       check_file_actual_expected(results, sub_dir, "import_code_list_changes_expected_2.yaml", equate_method: :hash_equal, write_file: false)
     end
 
@@ -616,7 +626,7 @@ describe "Import::SponsorTermFormatOne" do
     def subsets_and_ordering(ct)
       results = []
       query_string = %Q{
-        SELECT ?cl ?s ?i ?n ?ordinal
+        SELECT ?cl ?cln ?s ?i ?n ?ordinal
         {
           FILTER (?ordinal > 0)
           ?m th:item ?s
@@ -631,17 +641,18 @@ describe "Import::SponsorTermFormatOne" do
             GROUP BY ?cl ?m
           }
           ?s th:identifier ?i .
-          ?s th:notation ?n
+          ?s th:notation ?n .
+          ?cl th:notation ?cln .
         } ORDER BY ?cl ?ordinal
       }
       query_results = Sparql::Query.new.query(query_string, "", [:th, :bo])
-      query_results.by_object_set([:cl, :s, :i, :n, :ordinal])
+      query_results.by_object_set([:cl, :cln, :s, :i, :n, :ordinal])
     end
 
     def ranking_and_ordering(ct)
       results = []
       query_string = %Q{
-        SELECT ?cl ?s ?r ?i ?n ?ordinal
+        SELECT ?cl ?cln ?s ?r ?i ?n ?ordinal
         {
           FILTER (?ordinal > 0)
           ?m th:item ?s .
@@ -655,23 +666,25 @@ describe "Import::SponsorTermFormatOne" do
             GROUP BY ?cl ?m
           }
           ?s th:identifier ?i .
-          ?s th:notation ?n
+          ?s th:notation ?n .
+          ?cl th:notation ?cln .
         } ORDER BY ?cl ?ordinal ?rank
       }
       query_results = Sparql::Query.new.query(query_string, "", [:th, :bo])
-      query_results.by_object_set([:cl, :s, :r, :i, :n, :ordinal])
+      query_results.by_object_set([:cl, :cln, :s, :r, :i, :n, :ordinal])
     end
 
     it "subset ordering analysis I" do
       ct_set.each_with_index do |v, index|
         results = subsets_and_ordering(v[:uri])
-        check_file_actual_expected(results.map{|x| {code_list: x[:cl].to_s, item: x[:s].to_s, identifier: x[:i], submission: x[:n], ordinal: x[:ordinal]}}, sub_dir, "subset_ordering_expected_#{index+1}.yaml", equate_method: :hash_equal, write_file: false)       end
+        check_file_actual_expected(results.map{|x| {code_list: x[:cl].to_s, cl_submission: x[:cln], item: x[:s].to_s, identifier: x[:i], cli_submission: x[:n], ordinal: x[:ordinal]}}, sub_dir, "subset_ordering_expected_#{index+1}.yaml", equate_method: :hash_equal, write_file: false)       
+      end
     end
 
     it "rank ordering analysis I" do
       ct_set.each_with_index do |v, index|
         results = ranking_and_ordering(v[:uri])
-        check_file_actual_expected(results.map{|x| {code_list: x[:cl].to_s, item: x[:s].to_s, identifier: x[:i], submission: x[:n], ranks: x[:r], ordinal: x[:ordinal]}}, sub_dir, "rank_ordering_expected_#{index+1}.yaml", equate_method: :hash_equal, write_file: true)        
+        check_file_actual_expected(results.map{|x| {code_list: x[:cl].to_s, cl_submission: x[:cln], item: x[:s].to_s, identifier: x[:i], cli_submission: x[:n], ranks: x[:r], ordinal: x[:ordinal]}}, sub_dir, "rank_ordering_expected_#{index+1}.yaml", equate_method: :hash_equal, write_file: false)        
       end
     end
 
