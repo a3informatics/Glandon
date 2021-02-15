@@ -1,0 +1,1111 @@
+@prefix : <http://www.s-cubed.dk/AAA/V1#> .
+@prefix bd: <http://www.assero.co.uk/Tabulation#> .
+@prefix isoC: <http://www.assero.co.uk/ISO11179Concepts#> .
+@prefix isoT: <http://www.assero.co.uk/ISO11179Types#> .
+@prefix isoR: <http://www.assero.co.uk/ISO11179Registration#> .
+@prefix isoI: <http://www.assero.co.uk/ISO11179Identification#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+<http://www.s-cubed.dk/AAA/V1>
+	rdf:type owl:Ontology ;
+.
+:SPD
+	rdf:type bd:SdtmSponsorDomain ;
+	isoC:label "SDTM Sponsor Domain"^^xsd:string ;
+	isoT:hasState :SPD_RS ;
+	isoT:hasIdentifier :SPD_SI ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2020-12-15T08:19:09+01:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-12-15T08:19:09+01:00"^^xsd:dateTime ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "1"^^xsd:positiveInteger ;
+	bd:includesColumn :SPD_AESMIE ;
+	bd:includesColumn :SPD_AESER ;
+	bd:includesColumn :SPD_AEGRPID ;
+	bd:includesColumn :SPD_AECAT ;
+	bd:includesColumn :SPD_AESEV ;
+	bd:includesColumn :SPD_AESCONG ;
+	bd:includesColumn :SPD_DOMAIN ;
+	bd:includesColumn :SPD_AESTDTC ;
+	bd:includesColumn :SPD_AEENRF ;
+	bd:includesColumn :SPD_AESOD ;
+	bd:includesColumn :SPD_AECONTRT ;
+	bd:includesColumn :SPD_AEREFID ;
+	bd:includesColumn :SPD_AEREL ;
+	bd:includesColumn :SPD_AESDISAB ;
+	bd:includesColumn :SPD_AESCAT ;
+	bd:includesColumn :SPD_AEOUT ;
+	bd:includesColumn :SPD_AESTDY ;
+	bd:includesColumn :SPD_AESPID ;
+	bd:includesColumn :SPD_AEENRTPT ;
+	bd:includesColumn :SPD_AEPRESP ;
+	bd:includesColumn :SPD_AESHOSP ;
+	bd:includesColumn :SPD_AETERM ;
+	bd:includesColumn :SPD_AELOC ;
+	bd:includesColumn :SPD_AEPATT ;
+	bd:includesColumn :SPD_AESLIFE ;
+	bd:includesColumn :SPD_AEDUR ;
+	bd:includesColumn :SPD_AEDECOD ;
+	bd:includesColumn :SPD_AEMODIFY ;
+	bd:includesColumn :SPD_AESEQ ;
+	bd:includesColumn :SPD_AERELNST ;
+	bd:includesColumn :SPD_AESDTH ;
+	bd:includesColumn :SPD_AEBODSYS ;
+	bd:includesColumn :SPD_AEACNOTH ;
+	bd:includesColumn :SPD_AETOXGR ;
+	bd:includesColumn :SPD_AEENDY ;
+	bd:includesColumn :SPD_USUBJID ;
+	bd:includesColumn :SPD_AEENDTC ;
+	bd:includesColumn :SPD_AEACN ;
+	bd:includesColumn :SPD_AEENTPT ;
+	bd:includesColumn :SPD_STUDYID ;
+	bd:includesColumn :SPD_AESCAN ;
+	bd:prefix "AE"^^xsd:string ;
+	bd:structure "One record per adverse event per subject"^^xsd:string ;
+	bd:basedOnClass <http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL> ;
+.
+:SPD_RS
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Incomplete"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Incomplete"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
+.
+<http://www.assero.co.uk/RA#DUNS123456789>
+	rdf:type isoR:RegistrationAuthority ;
+	isoR:organizationIdentifier "123456789"^^xsd:string ;
+	isoR:internationalCodeDesignator "DUNS"^^xsd:string ;
+	isoR:owner "true"^^xsd:boolean ;
+	isoR:raNamespace <http://www.assero.co.uk/NS#SCUBED> ;
+.
+<http://www.assero.co.uk/NS#SCUBED>
+	rdf:type isoI:Namespace ;
+	isoI:shortName "S-cubed"^^xsd:string ;
+	isoI:name "S-cubed Aps"^^xsd:string ;
+	isoI:authority "www.s-cubed.dk"^^xsd:string ;
+.
+:SPD_SI
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "AAA"^^xsd:string ;
+	isoI:versionLabel ""^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
+	isoI:semanticVersion "0.1.0"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/NS#SCUBED> ;
+.
+:SPD_AESMIE
+	rdf:type bd:Column ;
+	isoC:label "Other Medically Important Serious Event"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "31"^^xsd:positiveInteger ;
+.
+:SPD_AESER
+	rdf:type bd:Column ;
+	isoC:label "Serious Event"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "17"^^xsd:positiveInteger ;
+.
+:SPD_AEGRPID
+	rdf:type bd:Column ;
+	isoC:label "Group ID"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "5"^^xsd:positiveInteger ;
+.
+:SPD_AECAT
+	rdf:type bd:Column ;
+	isoC:label "Category for Adverse Event"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "11"^^xsd:positiveInteger ;
+.
+:SPD_AESEV
+	rdf:type bd:Column ;
+	isoC:label "Severity/Intensity"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "16"^^xsd:positiveInteger ;
+.
+:SPD_AESCONG
+	rdf:type bd:Column ;
+	isoC:label "Congenital Anomaly or Birth Defect"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "25"^^xsd:positiveInteger ;
+.
+:SPD_DOMAIN
+	rdf:type bd:Column ;
+	isoC:label "Domain Abbreviation"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "2"^^xsd:positiveInteger ;
+.
+:SPD_AESTDTC
+	rdf:type bd:Column ;
+	isoC:label "Start Date/Time of Adverse Event"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "34"^^xsd:positiveInteger ;
+.
+:SPD_AEENRF
+	rdf:type bd:Column ;
+	isoC:label "End Relative to Reference Period"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "39"^^xsd:positiveInteger ;
+.
+:SPD_AESOD
+	rdf:type bd:Column ;
+	isoC:label "Occurred with Overdose"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "30"^^xsd:positiveInteger ;
+.
+:SPD_AECONTRT
+	rdf:type bd:Column ;
+	isoC:label "Concomitant or Additional Trtmnt Given"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "32"^^xsd:positiveInteger ;
+.
+:SPD_AEREFID
+	rdf:type bd:Column ;
+	isoC:label "Reference ID"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "6"^^xsd:positiveInteger ;
+.
+:SPD_AEREL
+	rdf:type bd:Column ;
+	isoC:label "Causality"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "20"^^xsd:positiveInteger ;
+.
+:SPD_AESDISAB
+	rdf:type bd:Column ;
+	isoC:label "Persist or Signif Disability/Incapacity"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "26"^^xsd:positiveInteger ;
+.
+:SPD_AESCAT
+	rdf:type bd:Column ;
+	isoC:label "Subcategory for Adverse Event"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "12"^^xsd:positiveInteger ;
+.
+:SPD_AEOUT
+	rdf:type bd:Column ;
+	isoC:label "Outcome of Adverse Event"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "23"^^xsd:positiveInteger ;
+.
+:SPD_AESTDY
+	rdf:type bd:Column ;
+	isoC:label "Study Day of Start of Adverse Event"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "36"^^xsd:positiveInteger ;
+.
+:SPD_AESPID
+	rdf:type bd:Column ;
+	isoC:label "Sponsor-Defined Identifier"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "7"^^xsd:positiveInteger ;
+.
+:SPD_AEENRTPT
+	rdf:type bd:Column ;
+	isoC:label "End Relative to Reference Time Point"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "40"^^xsd:positiveInteger ;
+.
+:SPD_AEPRESP
+	rdf:type bd:Column ;
+	isoC:label "Pre-Specified Adverse Event"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "13"^^xsd:positiveInteger ;
+.
+:SPD_AESHOSP
+	rdf:type bd:Column ;
+	isoC:label "Requires or Prolongs Hospitalization"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "28"^^xsd:positiveInteger ;
+.
+:SPD_AETERM
+	rdf:type bd:Column ;
+	isoC:label "Reported Term for the Adverse Event"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "8"^^xsd:positiveInteger ;
+.
+:SPD_AELOC
+	rdf:type bd:Column ;
+	isoC:label "Location of Event"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "15"^^xsd:positiveInteger ;
+.
+:SPD_AEPATT
+	rdf:type bd:Column ;
+	isoC:label "Pattern of Adverse Event"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "22"^^xsd:positiveInteger ;
+.
+:SPD_AESLIFE
+	rdf:type bd:Column ;
+	isoC:label "Is Life Threatening"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "29"^^xsd:positiveInteger ;
+.
+:SPD_AEDUR
+	rdf:type bd:Column ;
+	isoC:label "Duration of Adverse Event"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "38"^^xsd:positiveInteger ;
+.
+:SPD_AEDECOD
+	rdf:type bd:Column ;
+	isoC:label "Dictionary-Derived Term"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "10"^^xsd:positiveInteger ;
+.
+:SPD_AEMODIFY
+	rdf:type bd:Column ;
+	isoC:label "Modified Reported Term"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "9"^^xsd:positiveInteger ;
+.
+:SPD_AESEQ
+	rdf:type bd:Column ;
+	isoC:label "Sequence Number"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "4"^^xsd:positiveInteger ;
+.
+:SPD_AERELNST
+	rdf:type bd:Column ;
+	isoC:label "Relationship to Non-Study Treatment"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "21"^^xsd:positiveInteger ;
+.
+:SPD_AESDTH
+	rdf:type bd:Column ;
+	isoC:label "Results in Death"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "27"^^xsd:positiveInteger ;
+.
+:SPD_AEBODSYS
+	rdf:type bd:Column ;
+	isoC:label "Body System or Organ Class"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "14"^^xsd:positiveInteger ;
+.
+:SPD_AEACNOTH
+	rdf:type bd:Column ;
+	isoC:label "Other Action Taken"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "19"^^xsd:positiveInteger ;
+.
+:SPD_AETOXGR
+	rdf:type bd:Column ;
+	isoC:label "Standard Toxicity Grade"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "33"^^xsd:positiveInteger ;
+.
+:SPD_AEENDY
+	rdf:type bd:Column ;
+	isoC:label "Study Day of End of Adverse Event"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "37"^^xsd:positiveInteger ;
+.
+:SPD_USUBJID
+	rdf:type bd:Column ;
+	isoC:label "Unique Subject Identifier"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "3"^^xsd:positiveInteger ;
+.
+:SPD_AEENDTC
+	rdf:type bd:Column ;
+	isoC:label "End Date/Time of Adverse Event"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "35"^^xsd:positiveInteger ;
+.
+:SPD_AEACN
+	rdf:type bd:Column ;
+	isoC:label "Action Taken with Study Treatment"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "18"^^xsd:positiveInteger ;
+.
+:SPD_AEENTPT
+	rdf:type bd:Column ;
+	isoC:label "End Reference Time Point"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "41"^^xsd:positiveInteger ;
+.
+:SPD_STUDYID
+	rdf:type bd:Column ;
+	isoC:label "Study Identifier"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "1"^^xsd:positiveInteger ;
+.
+:SPD_AESCAN
+	rdf:type bd:Column ;
+	isoC:label "Involves Cancer"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "24"^^xsd:positiveInteger ;
+.
+<http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL>
+	rdf:type bd:SdtmClass ;
+	isoC:label "SDTM MODEL EVENTS"^^xsd:string ;
+	isoT:hasState <http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_RS> ;
+	isoT:hasIdentifier <http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_SI> ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2008-11-12T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2008-11-12T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "1"^^xsd:positiveInteger ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--STAT> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--SER> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--RELNST> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--ACNOTH> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--CAT> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--SLIFE> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--SDTH> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--REL> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--OCCUR> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_--STDTC> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_--EVLINT> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_--ELTM> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_--REFID> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_--ENDY> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_--ENRF> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_--TPTNUM> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--ACN> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--SMIE> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_--SPID> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--SEV> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_--ENRTPT> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--SDISAB> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--LOC> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--TOX> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_DOMAIN> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_--SEQ> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_--STDY> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_--TPTREF> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_VISITNUM> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--OUT> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_TAETORD> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--BODSYS> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--REASND> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_--DUR> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--TOXGR> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_--STRTPT> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_USUBJID> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_STUDYID> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--SCONG> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_--ENTPT> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_--TPT> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_VISITDY> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_--STRF> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--SCAN> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_--STTPT> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--PRESP> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--SHOSP> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--SCAT> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_--DTC> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--CONTRT> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_EPOCH> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--DECOD> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--TERM> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_--RFTDTC> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--PATT> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--MODIFY> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_--GRPID> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_VISIT> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--SOD> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_--DY> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_--ENDTC> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--STAT>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Completion Status"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "39"^^xsd:positiveInteger ;
+	bd:name "--STAT"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Used to indicate when a question about the occurrence of a pre-specified event was not answered. Should be null or have a value of NOT DONE."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
+	bd:isA <http://www.s-cubed.dk/CAR#bae7d5be70820ed56467bd9a63744e23b47bd711> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--SER>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Serious Event"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "44"^^xsd:positiveInteger ;
+	bd:name "--SER"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Is this is a serious event? Valid values are 'Y' and 'N'."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
+	bd:isA <http://www.s-cubed.dk/CAR#bc7845e67c63c354e69a957bab304d72da2f9fb7> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--RELNST>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Relationship to Non-Study Treatment"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "48"^^xsd:positiveInteger ;
+	bd:name "--RELNST"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "An opinion as to whether the event may have been due to a treatment other than study drug. Example: 'MORE LIKELY RELATED TO ASPIRIN USE.'"^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--ACNOTH>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Other Action Taken"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "46"^^xsd:positiveInteger ;
+	bd:name "--ACNOTH"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Describes other actions taken as a result of the event that are unrelated to dose adjustments of study treatment."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
+	bd:isA <http://www.s-cubed.dk/CAR#1baf5ac06f7430ac72727c2dfb3f152e07d9d5da> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--CAT>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Category"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "35"^^xsd:positiveInteger ;
+	bd:name "--CAT"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Used to define a category of topic-variable values. Examples: HEMATOLOGY, URINALYSIS, CHEMISTRY, HAMILTON DEPRESSION SCALE, SF36."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#9fb29f8b-505a-4c4f-b550-175fbfec932d> ;
+	bd:isA <http://www.s-cubed.dk/CAR#a3c686e711e4720f99b4562bb3dbaae7ab658cf2> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--SLIFE>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Is Life Threatening"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "56"^^xsd:positiveInteger ;
+	bd:name "--SLIFE"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Was the event life threatening? Valid values are 'Y' and 'N'."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--SDTH>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Results in Death"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "54"^^xsd:positiveInteger ;
+	bd:name "--SDTH"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Did the event result in death? Valid values are 'Y' and 'N'."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--REL>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Causality"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "47"^^xsd:positiveInteger ;
+	bd:name "--REL"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Records the investigator's opinion as to the causality of the event to the treatment. ICH E2A and E2B examples include NOT RELATED, UNLIKELY RELATED, POSSIBLY RELATED, RELATED."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--OCCUR>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Occurrence"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "38"^^xsd:positiveInteger ;
+	bd:name "--OCCUR"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Used to record whether a pre-specified event occurred when information about the occurrence of a specific event is solicited."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_--STDTC>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Start Date/Time of Observation"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "14"^^xsd:positiveInteger ;
+	bd:name "--STDTC"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Start date/time of an observation represented in IS0 8601 character format."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#2c3ff386-a062-47f5-b594-eef7ead02243> ;
+	bd:isA <http://www.s-cubed.dk/CAR#83c87956785cde43c109e30fcbd95cca63a18d38> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_--EVLINT>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Evaluation Interval"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "27"^^xsd:positiveInteger ;
+	bd:name "--EVLINT"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Evaluation interval associated with an observation such as a finding --TESTCD, represented in ISO 8601 character format. Example: -P2M to represent a period of the past 2 months as the evaluation interval for a question from a questionnaire such as SF-36."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#2c3ff386-a062-47f5-b594-eef7ead02243> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_--ELTM>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Planned Elapsed Time from Time Point Ref"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "22"^^xsd:positiveInteger ;
+	bd:name "--ELTM"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Planned Elapsed time in ISO 8601 character format relative to a planned fixed reference (--TPTREF) such as 'Previous Dose' or 'Previous Meal'. This variable is useful where there are repetitive measures. Not a clock time or a date/time variable, but an interval, represented as ISO duration."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#2c3ff386-a062-47f5-b594-eef7ead02243> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_--REFID>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Reference ID"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "6"^^xsd:positiveInteger ;
+	bd:name "--REFID"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Optional internal or external identifier such as lab specimen ID, or UUID for an ECG waveform or a medical image."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#d46bb337-92cd-4250-b50c-9be5079d6ab3> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_--ENDY>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Study Day of End of Observation"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "18"^^xsd:positiveInteger ;
+	bd:name "--ENDY"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Actual study day of end of observation expressed in integer days relative to the sponsor-defined RFSTDTC in Demographics."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#2c3ff386-a062-47f5-b594-eef7ead02243> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_--ENRF>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "End Relative to Reference Period"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "26"^^xsd:positiveInteger ;
+	bd:name "--ENRF"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Identifies the end of the observation as being before, during or after the sponsor-defined reference period. The sponsor-defined reference period is a continuous period of time defined by a discrete starting point and a discrete ending point represented by RFSTDTC and RFENDTC in Demographics."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#2c3ff386-a062-47f5-b594-eef7ead02243> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_--TPTNUM>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Planned Time Point Number"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "21"^^xsd:positiveInteger ;
+	bd:name "--TPTNUM"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Numeric version of planned time point used in sorting."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#2c3ff386-a062-47f5-b594-eef7ead02243> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--ACN>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Action Taken with Study Treatment"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "45"^^xsd:positiveInteger ;
+	bd:name "--ACN"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Describes changes made to the study treatment as a result of the event. Examples: DOSE INCREASED, DOSE NOT CHANGED."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
+	bd:isA <http://www.s-cubed.dk/CAR#485290959383eee39c093e50e84fdc851ac37a32> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--SMIE>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Other Medically Important Serious Event"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "58"^^xsd:positiveInteger ;
+	bd:name "--SMIE"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Do additional categories for seriousness apply? Valid values are 'Y' and 'N'."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_--SPID>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Sponsor ID"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "7"^^xsd:positiveInteger ;
+	bd:name "--SPID"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Sponsor-defined identifier. Example: pre-printed line identifier on a Concomitant Medications page."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#d46bb337-92cd-4250-b50c-9be5079d6ab3> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--SEV>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Severity/Intensity"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "43"^^xsd:positiveInteger ;
+	bd:name "--SEV"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Describes the severity or intensity of a particular finding. Examples: MILD, MODERATE, SEVERE."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
+	bd:isA <http://www.s-cubed.dk/CAR#de314fa0c9d9e359b633f2fdab4659c886fe5986> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_--ENRTPT>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "End Relative to Reference Time Point"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "30"^^xsd:positiveInteger ;
+	bd:name "--ENRTPT"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Identifies the end of the observation as being before or after the sponsor-defined reference time point defined by variable --ENTPT."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#2c3ff386-a062-47f5-b594-eef7ead02243> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--SDISAB>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Persist or Signif Disability/Incapacity"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "53"^^xsd:positiveInteger ;
+	bd:name "--SDISAB"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Did the event result in persistent or significant disability/incapacity? Valid values are 'Y' and 'N'."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--LOC>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Location of Event"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "42"^^xsd:positiveInteger ;
+	bd:name "--LOC"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Anatomical location of an intervention, such as an injection site. Example: RIGHT ARM for an injection."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
+	bd:isA <http://www.s-cubed.dk/CAR#d219c68101f532de10add2cf42fb9dbeca73d3be> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--TOX>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Toxicity"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "60"^^xsd:positiveInteger ;
+	bd:name "--TOX"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Description of toxicity quantified by --TOXGR such as NCI CTCAE Short Name. Examples: HYPERCALCEMIA, HYPOCALCEMIA. Sponsor should specify which scale and version is used in the Sponsor Comments column of the Define.xml document."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#86cd61e6-d48c-4e42-b994-bee35e2351fe> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_DOMAIN>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Domain Abbreviation"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "2"^^xsd:positiveInteger ;
+	bd:name "DOMAIN"^^xsd:string ;
+	bd:prefixed "false"^^xsd:boolean ;
+	bd:description "Two-character abbreviation for the domain."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#d46bb337-92cd-4250-b50c-9be5079d6ab3> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_--SEQ>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Sequence Number"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "4"^^xsd:positiveInteger ;
+	bd:name "--SEQ"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Sequence number to ensure uniqueness of records within a dataset for a subject (or within a parameter, in the case of the Trial Summary domain). May be any valid number (including decimals) and does not have to start at 1. Should be assigned to be in a consistent chronological order."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#d46bb337-92cd-4250-b50c-9be5079d6ab3> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_--STDY>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Study Day of Start of Observation"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "17"^^xsd:positiveInteger ;
+	bd:name "--STDY"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Actual study day of start of observation expressed in integer days relative to the sponsor-defined RFSTDTC in Demographics."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#2c3ff386-a062-47f5-b594-eef7ead02243> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_--TPTREF>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Time Point Reference"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "23"^^xsd:positiveInteger ;
+	bd:name "--TPTREF"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Description of the fixed reference point referred to by --ELTM, --TPTNUM, and --TPT. Examples: PREVIOUS DOSE, PREVIOUS MEAL."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#2c3ff386-a062-47f5-b594-eef7ead02243> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_VISITNUM>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Visit Number"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "8"^^xsd:positiveInteger ;
+	bd:name "VISITNUM"^^xsd:string ;
+	bd:prefixed "false"^^xsd:boolean ;
+	bd:description "Clinical encounter number. Numeric version of VISIT, used for sorting."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#2c3ff386-a062-47f5-b594-eef7ead02243> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--OUT>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Outcome of Event"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "50"^^xsd:positiveInteger ;
+	bd:name "--OUT"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Description of the outcome of an event. Examples: RECOVERED/RESOLVED, FATAL."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
+	bd:isA <http://www.s-cubed.dk/CAR#73a0f131076b513c16bfe3f4cff9ab8b765c9f23> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_TAETORD>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Planned Order of Elements within Arm"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "11"^^xsd:positiveInteger ;
+	bd:name "TAETORD"^^xsd:string ;
+	bd:prefixed "false"^^xsd:boolean ;
+	bd:description "Number that gives the order of the Element within the Arm."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#2c3ff386-a062-47f5-b594-eef7ead02243> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--BODSYS>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Body System or Organ Class"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "41"^^xsd:positiveInteger ;
+	bd:name "--BODSYS"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Body System or Organ Class that is involved for a finding from the standard hierarchy for dictionary-coded results. Example: MedDRA SOC."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--REASND>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Reason Not Done"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "40"^^xsd:positiveInteger ;
+	bd:name "--REASND"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Reason not done. Used in conjunction with --STAT when value is NOT DONE."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_--DUR>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Duration"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "19"^^xsd:positiveInteger ;
+	bd:name "--DUR"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Collected duration of an event, intervention, or finding represented in ISO 8601 character format. Used only if collected on the CRF and not derived."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#2c3ff386-a062-47f5-b594-eef7ead02243> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--TOXGR>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Toxicity Grade"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "61"^^xsd:positiveInteger ;
+	bd:name "--TOXGR"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Records toxicity grade using a standard toxicity scale (such as the NCI CTCAE). Sponsor should specify which scale and version is used in the Sponsor Comments column of the Define.xml document."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_--STRTPT>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Start Relative to Reference Time Point"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "28"^^xsd:positiveInteger ;
+	bd:name "--STRTPT"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Identifies the start of the observation as being before or after the sponsor-defined reference time point defined by variable --STTPT."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#2c3ff386-a062-47f5-b594-eef7ead02243> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_USUBJID>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Unique Subject Identifier"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "3"^^xsd:positiveInteger ;
+	bd:name "USUBJID"^^xsd:string ;
+	bd:prefixed "false"^^xsd:boolean ;
+	bd:description "Identifier used to uniquely identify a subject across all studies for all applications or submissions involving the product."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#d46bb337-92cd-4250-b50c-9be5079d6ab3> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_STUDYID>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Study Identifier"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "1"^^xsd:positiveInteger ;
+	bd:name "STUDYID"^^xsd:string ;
+	bd:prefixed "false"^^xsd:boolean ;
+	bd:description "Unique identifier for a study."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#d46bb337-92cd-4250-b50c-9be5079d6ab3> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--SCONG>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Congenital Anomaly or Birth Defect"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "52"^^xsd:positiveInteger ;
+	bd:name "--SCONG"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Was the event associated with congenital anomaly or birth defect? Valid values are 'Y' and 'N'."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_--ENTPT>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "End Reference Time Point"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "31"^^xsd:positiveInteger ;
+	bd:name "--ENTPT"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Description or date/time in ISO 8601 character format of the sponsor-defined reference point referred to by --ENRTPT. Examples: '2003-12-25' or 'VISIT 2'."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#2c3ff386-a062-47f5-b594-eef7ead02243> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_--TPT>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Planned Time Point Name"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "20"^^xsd:positiveInteger ;
+	bd:name "--TPT"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Text description of time when a measurement or observation should be taken as defined in the protocol. This may be represented as an elapsed time relative to a fixed reference point, such as time of last dose. See --TPTNUM and --TPTREF."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#2c3ff386-a062-47f5-b594-eef7ead02243> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_VISITDY>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Planned Study Day of Visit"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "10"^^xsd:positiveInteger ;
+	bd:name "VISITDY"^^xsd:string ;
+	bd:prefixed "false"^^xsd:boolean ;
+	bd:description "Planned study day of the visit based upon RFSTDTC in Demographics."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#2c3ff386-a062-47f5-b594-eef7ead02243> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_--STRF>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Start Relative to Reference Period"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "25"^^xsd:positiveInteger ;
+	bd:name "--STRF"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Identifies the start of the observation as being before, during, or after the sponsor-defined reference period. The sponsor-defined reference period is a continuous period of time defined by a discrete starting point and a discrete ending point represented by RFSTDTC and RFENDTC in Demographics."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#2c3ff386-a062-47f5-b594-eef7ead02243> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--SCAN>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Involves Cancer"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "51"^^xsd:positiveInteger ;
+	bd:name "--SCAN"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Was the event associated with the development of cancer? Valid values are 'Y' and 'N'."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_--STTPT>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Start Reference Time Point"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "29"^^xsd:positiveInteger ;
+	bd:name "--STTPT"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Description or date/time in ISO 8601 character format of the sponsor-defined reference point referred to by --STRTPT. Examples: '2003-12-15' or 'VISIT 1'."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#2c3ff386-a062-47f5-b594-eef7ead02243> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--PRESP>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Pre-specified"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "37"^^xsd:positiveInteger ;
+	bd:name "--PRESP"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Used when a specific intervention is pre-specified on a CRF. Values should be 'Y' or null."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--SHOSP>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Requires or Prolongs Hospitalization"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "55"^^xsd:positiveInteger ;
+	bd:name "--SHOSP"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Did the event require or prolong hospitalization? Valid values are 'Y' and 'N'."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
+	bd:isA <http://www.s-cubed.dk/CAR#3239c890f4b1b44ea81233e5766557a1008c0b6b> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--SCAT>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Subcategory"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "36"^^xsd:positiveInteger ;
+	bd:name "--SCAT"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Used to define a further categorization of --CAT values."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#9fb29f8b-505a-4c4f-b550-175fbfec932d> ;
+	bd:isA <http://www.s-cubed.dk/CAR#479a67983e739413da55faf0dc509f83fd5dea64> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_--DTC>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Date/Time of Collection"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "13"^^xsd:positiveInteger ;
+	bd:name "--DTC"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Collection date and time of an observation represented in IS0 8601 character format."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#2c3ff386-a062-47f5-b594-eef7ead02243> ;
+	bd:isA <http://www.s-cubed.dk/CAR#232daabe4ca2dfdb32645c572b1d34ddb4fe9995> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--CONTRT>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Concomitant or Additional Trtmnt Given"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "59"^^xsd:positiveInteger ;
+	bd:name "--CONTRT"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Was another treatment given because of the occurrence of the event? Valid values are 'Y' and 'N'."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_EPOCH>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Epoch"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "12"^^xsd:positiveInteger ;
+	bd:name "EPOCH"^^xsd:string ;
+	bd:prefixed "false"^^xsd:boolean ;
+	bd:description "Epoch associated with the Element in the planned sequence of Elements for the ARM to which the subject was assigned"^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#2c3ff386-a062-47f5-b594-eef7ead02243> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--DECOD>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Dictionary-Derived Term"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "34"^^xsd:positiveInteger ;
+	bd:name "--DECOD"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Standardized or dictionary-derived name of the topic variable, --TRT, or the modified topic variable (--MODIFY), if applicable. Equivalent to the generic drug name in WHO Drug, or a term in SNOMED, ICD9, or other published or sponsor-defined dictionaries."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#86cd61e6-d48c-4e42-b994-bee35e2351fe> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--TERM>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Reported Term"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "32"^^xsd:positiveInteger ;
+	bd:name "--TERM"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Topic variable for an event observation, which is the verbatim or pre-specified name of the event."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#692cafbf-658a-43f0-97a2-f040ecb1a20d> ;
+	bd:isA <http://www.s-cubed.dk/CAR#2a4eb8036d87ab68656ba5b80bbf77123f088904> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_--RFTDTC>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Date/Time of Reference Time Point"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "24"^^xsd:positiveInteger ;
+	bd:name "--RFTDTC"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Date/time for a fixed reference time point defined by --TPTREF in ISO 8601 character format."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#2c3ff386-a062-47f5-b594-eef7ead02243> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--PATT>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Pattern of Event"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "49"^^xsd:positiveInteger ;
+	bd:name "--PATT"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Used to indicate the pattern of the event over time. Examples: INTERMITTENT, CONTINUOUS, SINGLE EVENT."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
+	bd:isA <http://www.s-cubed.dk/CAR#1fff6a31661b491fc40cc9c1ad7fe5e479cb7500> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--MODIFY>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Modified Reported Term"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "33"^^xsd:positiveInteger ;
+	bd:name "--MODIFY"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "If the value for --TRT is modified for coding purposes, then the modified text is placed here."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#86cd61e6-d48c-4e42-b994-bee35e2351fe> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_--GRPID>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Group ID"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "5"^^xsd:positiveInteger ;
+	bd:name "--GRPID"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Optional group identifier, used to link together a block of related records within a subject in a domain. Also used to link together a block of related records in the Trial Summary dataset (Section 3.4)."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#d46bb337-92cd-4250-b50c-9be5079d6ab3> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_VISIT>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Visit Name"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "9"^^xsd:positiveInteger ;
+	bd:name "VISIT"^^xsd:string ;
+	bd:prefixed "false"^^xsd:boolean ;
+	bd:description "1. Protocol-defined description of clinical encounter. 2. May be used in addition to VISITNUM and/or VISITDY."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#2c3ff386-a062-47f5-b594-eef7ead02243> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL_--SOD>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Occurred with Overdose"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "57"^^xsd:positiveInteger ;
+	bd:name "--SOD"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Did the event occur with an overdose? Valid values are 'Y' and 'N'."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_--DY>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Study Day of Visit/Collection/Exam"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "16"^^xsd:positiveInteger ;
+	bd:name "--DY"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Actual study day of visit/collection/exam expressed in integer days relative to the sponsor-defined RFSTDTC in Demographics."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#2c3ff386-a062-47f5-b594-eef7ead02243> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_ALL/V1#CL_--ENDTC>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "End Date/Time of Observation"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "15"^^xsd:positiveInteger ;
+	bd:name "--ENDTC"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "End date/time of the observation represented in IS0 8601 character format."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#2c3ff386-a062-47f5-b594-eef7ead02243> ;
+	bd:isA <http://www.s-cubed.dk/CAR#71c54c70967ea84127e4bd588bd627ec0e581dfb> ;
+.

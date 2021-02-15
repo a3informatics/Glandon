@@ -10,6 +10,10 @@ describe "SDTM Sponsor Domains", :type => :feature do
   include ItemsPickerHelpers
   include TokenHelpers
 
+  def sub_dir
+    return "features/biomedical_concepts"
+  end
+
   before :all do
     ua_create
   end
@@ -77,6 +81,19 @@ describe "SDTM Sponsor Domains", :type => :feature do
       ui_check_table_cell("show", 1, 3, "Location of Event")
       ui_check_table_cell("show", 1, 6, "(LOC)")
       ui_check_table_cell("show", 1, 7, "LOC C74456 v1.0.0")
+    end
+
+    it "history allows ttl to be exported", js:true do
+      click_navbar_sdtm_sponsor_domains
+      wait_for_ajax 10
+      find(:xpath, "//tr[contains(.,'SDTM Sponsor Domain')]/td/a", :text => 'History').click
+      wait_for_ajax 10
+      expect(page).to have_content 'Version History of \'AAA\''
+      context_menu_element_v2('history', "SDTM Sponsor Domain", :export_ttl)
+      file = download_content
+    # write_text_file_2(file, sub_dir, "sdtm_sd_export_ttl_expected.ttl")
+      expected = read_text_file_2(sub_dir, "sdtm_sd_export_ttl_expected.ttl")
+      expect(file).to eq(expected)
     end
 
   end
