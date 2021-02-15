@@ -188,6 +188,7 @@ module Import::STFOClasses
     end
 
     def to_subset_of_extension(extensions)
+      it_is_ranked = self.ranked? # Preserve
       new_narrower = []
       new_refers_to = []
       ext = extensions[self.identifier]
@@ -210,7 +211,7 @@ module Import::STFOClasses
       self.refers_to = new_refers_to
       self.subsets = ext
       self.add_ordering
-      self.add_ranking if self.ranked?
+      self.add_ranking if it_is_ranked
       self
     rescue => e
       add_error("Exception in to_subset_of_extension, #{e}, identifier '#{self.identifier}'.")
@@ -237,6 +238,7 @@ module Import::STFOClasses
 
     def to_cdisc_subset(ct, keep_identifier=false)
       return nil if !NciThesaurusUtility.c_code?(self.identifier)
+      it_is_ranked = self.ranked? # Preserve
       ref_ct = reference(ct) # do early before identifier updated.
       new_narrower = []
       new_refers_to = []
@@ -258,7 +260,7 @@ module Import::STFOClasses
       self.refers_to = new_refers_to
       self.subsets = ref_ct
       self.add_ordering
-      self.add_ranking if self.ranked?
+      self.add_ranking if it_is_ranked
       self
     rescue => e
       add_error("Exception in to_cdisc_subset, #{e}, identifier '#{self.identifier}'.")
@@ -268,6 +270,7 @@ module Import::STFOClasses
     def to_sponsor_subset(sponsor_ct)
       ref_ct = sponsor_ct.find{|x| x.identifier == self.identifier}
       return nil if ref_ct.nil?
+      it_is_ranked = self.ranked? # Preserve
       new_narrower = []
       new_refers_to = []
       #self.identifier = Thesaurus::ManagedConcept.new_identifier
@@ -289,7 +292,7 @@ module Import::STFOClasses
       self.refers_to = new_refers_to
       self.subsets = ref_ct
       self.add_ordering
-      self.add_ranking if self.ranked?
+      self.add_ranking if it_is_ranked
       self
     rescue => e
       add_error("Exception in to_sponsor_subset, #{e}, identifier '#{self.identifier}'.")
@@ -299,6 +302,7 @@ module Import::STFOClasses
     def to_existing_subset
       refs = Thesaurus::ManagedConcept.where(identifier: self.identifier)
       return nil if refs.empty?
+      it_is_ranked = self.ranked? # Preserve
       ref_ct = Thesaurus::ManagedConcept.find_full(refs.first.uri)
       tcs = Thesaurus::ManagedConcept.where(notation: self.notation)
       tc = tcs.empty? ? nil : tcs.first
@@ -322,7 +326,7 @@ module Import::STFOClasses
       self.refers_to = new_refers_to
       self.subsets = ref_ct
       self.add_ordering
-      self.add_ranking if self.ranked?
+      self.add_ranking if it_is_ranked
       self
     rescue => e
       add_error("Exception in to_existing_subset, #{e}, identifier '#{self.identifier}'.")

@@ -173,7 +173,7 @@ describe "Import::SponsorTermFormatOne" do
       delete_data_file(sub_dir, filename)
       load_local_file_into_triple_store(sub_dir, "import_expected_6.ttl")
       actual = ct_custom_properties(Uri.new(uri: "http://www.s-cubed.dk/V2_III/V1#TH"))
-      check_file_actual_expected(actual, sub_dir, "custom_properties_expected_6.yaml")
+      check_file_actual_expected(actual, sub_dir, "custom_properties_expected_6.yaml", write_file: true)
     end
 
     it "import, no errors, version 2, short IV" do
