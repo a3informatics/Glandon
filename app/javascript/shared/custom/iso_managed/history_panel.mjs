@@ -289,7 +289,7 @@ export default class HistoryPanel extends TablePanel {
         icon: "icon-download", 
         text: "Export TTL", 
         endOffset: 1, 
-        types: ["form", "biomedical_concept_instance"] 
+        types: ["form", "biomedical_concept_instance", "sdtm_sponsor_domain"] 
       }
     ]
 
