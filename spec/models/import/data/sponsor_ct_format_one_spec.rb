@@ -65,6 +65,7 @@ describe "Import::SponsorTermFormatOne" do
       load_data_file_into_triple_store("mdr_iso_concept_systems_process.ttl")
       load_data_file_into_triple_store("sponsor_one/custom_property/custom_properties.ttl")
       load_data_file_into_triple_store("sponsor_one/custom_property/custom_properties_migration_one.ttl")
+      load_data_file_into_triple_store("sponsor_one/custom_property/custom_properties_migration_two.ttl")
       load_cdisc_term_versions(1..66)
       Import.destroy_all
       delete_all_public_test_files
@@ -236,7 +237,7 @@ describe "Import::SponsorTermFormatOne" do
         filename = "sponsor_term_format_one_#{@object.id}_load.ttl"
         #expect(public_file_exists?("test", filename)).to eq(true)
         copy_file_from_public_files("test", filename, sub_dir)
-      #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "CT_V2-6.ttl")
+      copy_file_from_public_files_rename("test", filename, sub_dir, "CT_V2-6.ttl")
         check_ttl_fix_v2(filename, "CT_V2-6.ttl", {last_change_date: true})
         expect(@job.status).to eq("Complete")
         delete_data_file(sub_dir, filename)
@@ -388,6 +389,7 @@ describe "Import::SponsorTermFormatOne" do
       load_data_file_into_triple_store("mdr_iso_concept_systems_process.ttl")
       load_data_file_into_triple_store("sponsor_one/custom_property/custom_properties.ttl")
       load_data_file_into_triple_store("sponsor_one/custom_property/custom_properties_migration_one.ttl")
+      load_data_file_into_triple_store("sponsor_one/custom_property/custom_properties_migration_two.ttl")
       load_cdisc_term_versions(1..66)
       load_local_file_into_triple_store(sub_dir, "CT_V2-6.ttl")
       load_local_file_into_triple_store(sub_dir, "CT_V3-0.ttl")
