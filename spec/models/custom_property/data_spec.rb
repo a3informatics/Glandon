@@ -119,7 +119,7 @@ describe CustomPropertyDefinition do
     sparql.default_namespace(results.first.uri.namespace)
     results.each{|x| x.to_sparql(sparql, true)}
     full_path = sparql.to_file
-  copy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "custom_properties_migration_two.ttl")
+  #Xcopy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "custom_properties_migration_two.ttl")
   end
 
 end
