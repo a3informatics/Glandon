@@ -2317,11 +2317,13 @@ describe "Thesaurus::ManagedConcept" do
       tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00002/V1#A00002"))
       expect(tc.narrower.count).to eq(2)
       result = tc.find_custom_property_values
+      result.each { |x| x.each {|k, v| v[:id] = "replaced for test" if v.is_a?(Hash) } } # CP definitions not returned in consistent order 
       check_thesaurus_concept_actual_expected(result.sort_by{|x| x[:item_id]}, sub_dir, "add_referenced_children_custom_property_expected_2a.yaml")
       tc.add_referenced_children(tc.full_contexts([tc_3.uri.to_id]))
       tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00002/V1#A00002"))
       expect(tc.narrower.count).to eq(3)
       result = tc.find_custom_property_values
+      result.each { |x| x.each {|k, v| v[:id] = "replaced for test" if v.is_a?(Hash) } } # CP definitions not returned in consistent order 
       check_thesaurus_concept_actual_expected(result.sort_by{|x| x[:item_id]}, sub_dir, "add_referenced_children_custom_property_expected_2b.yaml")
     end
 
