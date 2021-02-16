@@ -279,11 +279,11 @@ describe "Custom Properties", type: :feature  do
       show_custom_props
       check_table_headers('source-table', cl_sponsor_cps_columns)
 
-      check_cell_content('source-table', 1, C_CRF_DISPLAY_VALUE, 'Male') 
+      check_cell_content('source-table', 1, C_CRF_DISPLAY_VALUE, 'Moderate') 
       check_cell_content('source-table', 1, C_COL_ADAM_STAGE, false)
       check_cell_content('source-table', 1, C_COL_DC_STAGE, true)
       check_cell_content('source-table', 1, C_COL_ED_USE, false)
-      check_cell_content('source-table', 1, C_COL_SDTM_STAGE, false)
+      check_cell_content('source-table', 1, C_COL_SDTM_STAGE, true)
 
       hide_custom_props
       check_table_headers('source-table', cl_standard_columns)
@@ -297,12 +297,12 @@ describe "Custom Properties", type: :feature  do
       show_custom_props
       check_table_headers('subset-table', cl_sponsor_cps_columns)
 
-      # Check CP values copied from Source Code List 
-      check_cell_content('subset-table', 1, C_CRF_DISPLAY_VALUE, 'Male') 
-      check_cell_content('subset-table', 1, C_COL_ADAM_STAGE, false)
-      check_cell_content('subset-table', 1, C_COL_DC_STAGE, true)
-      check_cell_content('subset-table', 1, C_COL_ED_USE, false)
-      check_cell_content('subset-table', 1, C_COL_SDTM_STAGE, false)
+      # Check CP values copied from Source Code Lis. Columns are +1 because of ordinal column in posiiton 1
+      check_cell_content('subset-table', 1, C_CRF_DISPLAY_VALUE + 1, 'Moderate') 
+      check_cell_content('subset-table', 1, C_COL_ADAM_STAGE + 1, false)
+      check_cell_content('subset-table', 1, C_COL_DC_STAGE + 1, true)
+      check_cell_content('subset-table', 1, C_COL_ED_USE + 1, false)
+      check_cell_content('subset-table', 1, C_COL_SDTM_STAGE + 1, true)
 
       hide_custom_props
       check_table_headers('subset-table', cl_standard_columns)
@@ -328,9 +328,9 @@ describe "Custom Properties", type: :feature  do
       show_custom_props 
 
       # Inline CP editing, text
-      ui_editor_select_by_location 1, C_SPONSOR_SYNONYM, table: 'subset-table'
+      ui_editor_select_by_location 1, 8, table: 'subset-table'
       ui_editor_fill_inline 'crf_display_value', "Male CRF\n"
-      check_cell_content 'subset-table', 1, C_SPONSOR_SYNONYM, 'Male CRF'
+      check_cell_content 'subset-table', 1, 8, 'Male CRF'
 
       # Inline CP editing, boolean
       ui_editor_select_by_location 1, C_COL_SDTM_STAGE, table: 'subset-table'
@@ -346,7 +346,7 @@ describe "Custom Properties", type: :feature  do
       go_to_codelist 'C100130', 'Sanofi', '3.0.0', :edit
 
       show_custom_props
-      ui_check_table_info 'editor', 1, C_COL_DC_STAGE, 69 
+      ui_check_table_info 'editor', 1, 10, 69 
       # Check CPs copied from prev version 
       check_cell_content('editor', 1, C_CRF_DISPLAY_VALUE, 'Biological Maternal Half Sister') 
       check_cell_content('editor', 1, C_COL_ADAM_STAGE, false)
