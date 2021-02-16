@@ -10,7 +10,7 @@ module Sparql
     #
     # @return [Integer] count of triples
     def triple_count
-      Sparql::Query.new.query("SELECT (COUNT(?s) as ?count) WHERE {?s ?p ?o}", "", []).by_object(:count).first.to_i
+      Sparql::Query.new.query("SELECT (COUNT(*) as ?count) WHERE {?s ?p ?o}", "", []).by_object(:count).first.to_i
     end
 
     # Ask? Simple triples exist

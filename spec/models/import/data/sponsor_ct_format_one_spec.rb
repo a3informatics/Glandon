@@ -65,6 +65,7 @@ describe "Import::SponsorTermFormatOne" do
       load_data_file_into_triple_store("mdr_iso_concept_systems_process.ttl")
       load_data_file_into_triple_store("sponsor_one/custom_property/custom_properties.ttl")
       load_data_file_into_triple_store("sponsor_one/custom_property/custom_properties_migration_one.ttl")
+      load_data_file_into_triple_store("sponsor_one/custom_property/custom_properties_migration_two.ttl")
       load_cdisc_term_versions(1..66)
       Import.destroy_all
       delete_all_public_test_files
@@ -378,7 +379,7 @@ describe "Import::SponsorTermFormatOne" do
 
   end
 
-  describe "Differences" do
+  describe "Differences, Statistics & Checks" do
 
     before :all do
       load_files(schema_files, [])
@@ -388,6 +389,7 @@ describe "Import::SponsorTermFormatOne" do
       load_data_file_into_triple_store("mdr_iso_concept_systems_process.ttl")
       load_data_file_into_triple_store("sponsor_one/custom_property/custom_properties.ttl")
       load_data_file_into_triple_store("sponsor_one/custom_property/custom_properties_migration_one.ttl")
+      load_data_file_into_triple_store("sponsor_one/custom_property/custom_properties_migration_two.ttl")
       load_cdisc_term_versions(1..66)
       load_local_file_into_triple_store(sub_dir, "CT_V2-6.ttl")
       load_local_file_into_triple_store(sub_dir, "CT_V3-0.ttl")
@@ -440,6 +442,11 @@ describe "Import::SponsorTermFormatOne" do
         next if item.owner_short_name != "Sanofi"
         results[cl[:identifier]] = {changes: item.changes(2), differences: item.differences}
       end
+      # expected = read_yaml_file(sub_dir, "import_code_list_changes_expected_1.yaml")
+      # expected.each do |k, v|
+      #   actual = results[k]
+      #   byebug if actual != v 
+      # end
       check_file_actual_expected(results, sub_dir, "import_code_list_changes_expected_1.yaml", equate_method: :hash_equal, write_file: false)
     end
 
@@ -453,31 +460,12 @@ describe "Import::SponsorTermFormatOne" do
         next if item.owner_short_name != "Sanofi"
         results[cl[:identifier]] = {changes: item.changes(2), differences: item.differences}
       end
+      # expected = read_yaml_file(sub_dir, "import_code_list_changes_expected_1.yaml")
+      # expected.each do |k, v|
+      #   actual = results[k]
+      #   byebug if actual != v 
+      # end
       check_file_actual_expected(results, sub_dir, "import_code_list_changes_expected_2.yaml", equate_method: :hash_equal, write_file: false)
-    end
-
-  end
-
-  describe "Final Statistics & Checks" do
-
-    before :all do
-      load_files(schema_files, [])
-      load_data_file_into_triple_store("mdr_sponsor_one_identification.ttl")
-      load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
-      load_data_file_into_triple_store("mdr_iso_concept_systems_migration_1.ttl")
-      load_data_file_into_triple_store("mdr_iso_concept_systems_process.ttl")
-      load_data_file_into_triple_store("sponsor_one/custom_property/custom_properties.ttl")
-      load_data_file_into_triple_store("sponsor_one/custom_property/custom_properties_migration_one.ttl")
-      load_cdisc_term_versions(1..62)
-      load_local_file_into_triple_store(sub_dir, "CT_V2-6.ttl")
-      load_local_file_into_triple_store(sub_dir, "CT_V3-0.ttl")
-      load_local_file_into_triple_store(sub_dir, "CT_V3-1.ttl")
-      delete_all_public_test_files
-      release_uris
-    end
-
-    after :all do
-      delete_all_public_test_files
     end
 
     def check_cls(code_lists, uri)
@@ -519,7 +507,7 @@ describe "Import::SponsorTermFormatOne" do
     end
 
     it "counts and ranks" do
-      {"2-6" => {uri: @uri_2_6, count: 215199}, "3-0" => {uri: @uri_3_0, count: 316639}, "3-1" => {uri: @uri_3_1, count: 325418}}.each do |version, data|
+      {"2-6" => {uri: @uri_2_6, count: 215199}, "3-0" => {uri: @uri_3_0, count: 316635}, "3-1" => {uri: @uri_3_1, count: 325418}}.each do |version, data|
         triples = th_triples_tree(data[:uri]) # Reading all triples as a test.
         expect(triples.count).to eq(data[:count])
       end
@@ -635,12 +623,77 @@ describe "Import::SponsorTermFormatOne" do
       query_results.by_object_set([:clid, :cln, :cliid, :clin])
     end
 
-    it "custom property analysis" do
+    def subsets_and_ordering(ct)
+      results = []
+      query_string = %Q{
+        SELECT ?cl ?cln ?s ?i ?n ?ordinal
+        {
+          FILTER (?ordinal > 0)
+          ?m th:item ?s
+          {
+            SELECT ?cl ?m (COUNT(?mid) as ?ordinal) WHERE {
+              #{ct.to_ref} th:isTopConceptReference/bo:reference ?cl .
+              ?cl th:subsets ?x .
+              ?cl th:isOrdered/th:members/th:memberNext* ?mid . 
+              ?mid th:memberNext* ?m .
+              ?m th:item ?e
+            } 
+            GROUP BY ?cl ?m
+          }
+          ?s th:identifier ?i .
+          ?s th:notation ?n .
+          ?cl th:notation ?cln .
+        } ORDER BY ?cl ?ordinal
+      }
+      query_results = Sparql::Query.new.query(query_string, "", [:th, :bo])
+      query_results.by_object_set([:cl, :cln, :s, :i, :n, :ordinal])
+    end
+
+    def ranking_and_ordering(ct)
+      results = []
+      query_string = %Q{
+        SELECT ?cl ?cln ?s ?r ?i ?n ?ordinal
+        {
+          FILTER (?ordinal > 0)
+          ?m th:item ?s .
+          ?m th:rank ?r .
+          {
+            SELECT ?cl ?m (COUNT(?mid) as ?ordinal) WHERE {
+              #{ct.to_ref} th:isTopConceptReference/bo:reference ?cl .
+              ?cl th:isRanked/th:members/th:memberNext* ?mid . 
+              ?mid th:memberNext* ?m .
+            } 
+            GROUP BY ?cl ?m
+          }
+          ?s th:identifier ?i .
+          ?s th:notation ?n .
+          ?cl th:notation ?cln .
+        } ORDER BY ?cl ?ordinal ?rank
+      }
+      query_results = Sparql::Query.new.query(query_string, "", [:th, :bo])
+      query_results.by_object_set([:cl, :cln, :s, :r, :i, :n, :ordinal])
+    end
+
+    it "subset ordering analysis I" do
+      ct_set.each_with_index do |v, index|
+        results = subsets_and_ordering(v[:uri])
+        check_file_actual_expected(results.map{|x| {code_list: x[:cl].to_s, cl_submission: x[:cln], item: x[:s].to_s, identifier: x[:i], cli_submission: x[:n], ordinal: x[:ordinal]}}, sub_dir, "subset_ordering_expected_#{index+1}.yaml", equate_method: :hash_equal, write_file: false)       
+      end
+    end
+
+    it "rank ordering analysis I" do
+      ct_set.each_with_index do |v, index|
+        results = ranking_and_ordering(v[:uri])
+        check_file_actual_expected(results.map{|x| {code_list: x[:cl].to_s, cl_submission: x[:cln], item: x[:s].to_s, identifier: x[:i], cli_submission: x[:n], ranks: x[:r], ordinal: x[:ordinal]}}, sub_dir, "rank_ordering_expected_#{index+1}.yaml", equate_method: :hash_equal, write_file: false)        
+      end
+    end
+
+    it "custom property analysis I" do
       results = subsets_and_refers_to
       expect(results.empty?).to be(true)
     end
 
-    it "custom property analysis" do
+    it "custom property analysis II" do
       counts = [
         {cl: 803, cli: 22321},
         {cl: 1080, cli: 31929},

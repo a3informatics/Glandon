@@ -95,12 +95,17 @@ module D3GraphHelpers
   end
 
   def click_action(action)
+    sleep 0.2
     find("#d3 .node-actions ##{ action_btn_map[action] }").click
-    sleep 0.3
   end
 
   def check_alert(text)
     expect( find('#graph-alerts') ).to have_content( text )
+  end
+
+  def graph_press_key(key, with_key = nil)
+    ui_press_key(key, with_key)
+    sleep 0.1
   end
 
 end

@@ -21,6 +21,15 @@ describe "Custom Properties", type: :feature  do
     ua_logoff
   end
 
+  # Columns
+  C_CRF_DISPLAY_VALUE = 7
+  C_DISPLAY_ORDER = 8
+  C_SPONSOR_SYNONYM = 9
+  C_COL_ADAM_STAGE = 10
+  C_COL_DC_STAGE = 11 
+  C_COL_ED_USE = 12 
+  C_COL_SDTM_STAGE = 13 
+
   describe "Show Custom Properties, Curator user", type: :feature, js:true do
 
     before :all do
@@ -31,6 +40,7 @@ describe "Custom Properties", type: :feature  do
       load_data_file_into_triple_store("mdr_iso_concept_systems_process.ttl")
       load_data_file_into_triple_store("sponsor_one/custom_property/custom_properties.ttl")
       load_data_file_into_triple_store("sponsor_one/custom_property/custom_properties_migration_one.ttl")
+      load_data_file_into_triple_store("sponsor_one/custom_property/custom_properties_migration_two.ttl")
       load_data_file_into_triple_store("sponsor_one/ct/CT_V2-6.ttl")
       load_cdisc_term_versions(1..45)
       ua_create
@@ -62,11 +72,11 @@ describe "Custom Properties", type: :feature  do
       check_cell_content('children', 1, 1, 'C96658')
       check_cell_content('children', 1, 2, 'SISTER, BIOLOGICAL MATERNAL HALF')
       check_cell_content('children', 1, 6, 'SDTM')
-      check_cell_content('children', 1, 7, 'Biological Maternal Half Sister') # CRF Display Value
-      check_cell_content('children', 1, 8, '') # Synonym
-      check_cell_content('children', 1, 9, false)  # Adam stage
-      check_cell_content('children', 1, 10, true) # DC stage
-      check_cell_content('children', 1, 11, true) # SDTM stage
+      check_cell_content('children', 1, C_CRF_DISPLAY_VALUE, 'Biological Maternal Half Sister') 
+      check_cell_content('children', 1, C_SPONSOR_SYNONYM, '') 
+      check_cell_content('children', 1, C_COL_ADAM_STAGE, false)  
+      check_cell_content('children', 1, C_COL_DC_STAGE, true) 
+      check_cell_content('children', 1, C_COL_ED_USE, true) 
 
       # Hide CPs
       hide_custom_props
@@ -78,7 +88,7 @@ describe "Custom Properties", type: :feature  do
 
       # Check CP Columns
       check_table_headers('children', cl_sponsor_cps_columns)
-      check_cell_content('children', 1, 7, 'Biological Maternal Half Sister') # CRF Display Value
+      check_cell_content('children', 1, C_CRF_DISPLAY_VALUE, 'Biological Maternal Half Sister') # CRF Display Value
     end
 
   end
@@ -93,6 +103,7 @@ describe "Custom Properties", type: :feature  do
       load_data_file_into_triple_store("mdr_iso_concept_systems_process.ttl")
       load_data_file_into_triple_store("sponsor_one/custom_property/custom_properties.ttl")
       load_data_file_into_triple_store("sponsor_one/custom_property/custom_properties_migration_one.ttl")
+      load_data_file_into_triple_store("sponsor_one/custom_property/custom_properties_migration_two.ttl")
       load_data_file_into_triple_store("sponsor_one/ct/CT_V2-6.ttl")
       load_data_file_into_triple_store("sponsor_one/ct/CT_V3-0.ttl")
       load_data_file_into_triple_store("sponsor_one/ct/CT_V3-1.ttl")
@@ -131,19 +142,19 @@ describe "Custom Properties", type: :feature  do
       show_custom_props
 
       # Check default values are set 
-      check_cell_content('editor', 1, 7, '') 
-      check_cell_content('editor', 1, 9, false)
-      check_cell_content('editor', 1, 10, false)
-      check_cell_content('editor', 1, 11, false)
-      check_cell_content('editor', 1, 12, false)
+      check_cell_content('editor', 1, C_CRF_DISPLAY_VALUE, '') 
+      check_cell_content('editor', 1, C_COL_ADAM_STAGE, false)
+      check_cell_content('editor', 1, C_COL_DC_STAGE, false)
+      check_cell_content('editor', 1, C_COL_ED_USE, false)
+      check_cell_content('editor', 1, C_COL_SDTM_STAGE, false)
 
       # Inline editing of CPs, text
-      ui_editor_select_by_location(1, 7)
+      ui_editor_select_by_location(1, C_CRF_DISPLAY_VALUE)
       ui_editor_fill_inline("crf_display_value", "Some CRF value\n")
-      check_cell_content('editor', 1, 7, 'Some CRF value')
+      check_cell_content('editor', 1, C_CRF_DISPLAY_VALUE, 'Some CRF value')
       ui_press_key :return 
       ui_editor_fill_inline("crf_display_value", "Changed CRF\t")
-      check_cell_content('editor', 1, 7, 'Changed CRF')
+      check_cell_content('editor', 1, C_CRF_DISPLAY_VALUE, 'Changed CRF')
 
       # Inline editing of CPs, text, input validation
       ui_editor_select_by_content('Changed CRF')
@@ -152,18 +163,18 @@ describe "Custom Properties", type: :feature  do
       ui_press_key :escape
 
       # Inline editing of CPs, booleans
-      ui_editor_select_by_location(1, 9)
+      ui_editor_select_by_location(1, C_COL_ADAM_STAGE)
       ui_press_key :arrow_right
       ui_press_key :return
       wait_for_ajax 10
-      check_cell_content('editor', 1, 9, true)
+      check_cell_content('editor', 1, C_COL_ADAM_STAGE, true)
 
       ui_press_key :tab
       ui_press_key :return
       ui_press_key :arrow_left
       ui_press_key :return
       wait_for_ajax 10
-      check_cell_content('editor', 1, 9, true)
+      check_cell_content('editor', 1, C_COL_ADAM_STAGE, true)
     end
 
     it "allows to add and edit Referenced Items with Custom Properties, CL Editor" do
@@ -178,34 +189,34 @@ describe "Custom Properties", type: :feature  do
 
       # Check default values copied from source 
       show_custom_props
-      check_cell_content('editor', 1, 7, 'Biological Uncle') 
-      check_cell_content('editor', 1, 9, false)
-      check_cell_content('editor', 1, 10, true)
-      check_cell_content('editor', 1, 11, false) # ed_use is a missing value in source CL - check it set to default (false)
-      check_cell_content('editor', 1, 12, true)
+      check_cell_content('editor', 1, C_CRF_DISPLAY_VALUE, 'Biological Uncle') 
+      check_cell_content('editor', 1, C_COL_ADAM_STAGE, false)
+      check_cell_content('editor', 1, C_COL_DC_STAGE, true)
+      check_cell_content('editor', 1, C_COL_ED_USE, false) # ed_use is a missing value in source CL - check it set to default (false)
+      check_cell_content('editor', 1, C_COL_SDTM_STAGE, true)
 
       # Edit Referenced CPs, text
-      ui_editor_select_by_location(1, 7)
+      ui_editor_select_by_location(1, C_CRF_DISPLAY_VALUE)
       ui_editor_fill_inline("crf_display_value", "Some CRF value\n")
       wait_for_ajax 10 
-      check_cell_content('editor', 1, 7, 'Some CRF value')
+      check_cell_content('editor', 1, C_CRF_DISPLAY_VALUE, 'Some CRF value')
 
       ui_press_key :return
       ui_editor_fill_inline("crf_display_value", "Another CRF value\t")
-      check_cell_content('editor', 1, 7, 'Another CRF value')
+      check_cell_content('editor', 1, C_CRF_DISPLAY_VALUE, 'Another CRF value')
 
       # Edit Referenced CPs, boolean
-      ui_editor_select_by_location(2, 10)
+      ui_editor_select_by_location(2, C_COL_DC_STAGE)
       ui_press_key :arrow_right
       ui_press_key :return
       wait_for_ajax 10 
-      check_cell_content('editor', 2, 9, false)
+      check_cell_content('editor', 2, C_COL_ADAM_STAGE, false)
 
-      ui_editor_select_by_location(2, 11)
+      ui_editor_select_by_location(2, C_COL_ED_USE)
       ui_press_key :arrow_left
       ui_press_key :return
       wait_for_ajax 10 
-      check_cell_content('editor', 2, 11, true)
+      check_cell_content('editor', 2, C_COL_ED_USE, true)
 
       # Check referenced items standard fields cannot be edited 
       ui_editor_select_by_location(2, 2)
@@ -237,16 +248,16 @@ describe "Custom Properties", type: :feature  do
       ui_check_table_info 'editor', 1, 3, 3
 
       # Inline CP editing, text
-      ui_editor_select_by_location 3, 7
+      ui_editor_select_by_location 3, C_CRF_DISPLAY_VALUE
       ui_editor_fill_inline 'crf_display_value', "Screening CRF\n"
-      check_cell_content 'editor', 3, 7, 'Screening CRF'
+      check_cell_content 'editor', 3, C_CRF_DISPLAY_VALUE, 'Screening CRF'
 
       # Inline CP editing, boolean
-      ui_editor_select_by_location 3, 11
+      ui_editor_select_by_location 3, C_COL_ED_USE
       ui_press_key :arrow_right
       ui_press_key :return
       wait_for_ajax 10
-      check_cell_content 'editor', 3, 11, true
+      check_cell_content 'editor', 3, C_COL_ED_USE, true
     end
 
     ### Code List Subset
@@ -268,11 +279,11 @@ describe "Custom Properties", type: :feature  do
       show_custom_props
       check_table_headers('source-table', cl_sponsor_cps_columns)
 
-      check_cell_content('source-table', 1, 7, 'Male') 
-      check_cell_content('source-table', 1, 9, false)
-      check_cell_content('source-table', 1, 10, true)
-      check_cell_content('source-table', 1, 11, false)
-      check_cell_content('source-table', 1, 12, false)
+      check_cell_content('source-table', 1, C_CRF_DISPLAY_VALUE, 'Moderate') 
+      check_cell_content('source-table', 1, C_COL_ADAM_STAGE, false)
+      check_cell_content('source-table', 1, C_COL_DC_STAGE, true)
+      check_cell_content('source-table', 1, C_COL_ED_USE, false)
+      check_cell_content('source-table', 1, C_COL_SDTM_STAGE, true)
 
       hide_custom_props
       check_table_headers('source-table', cl_standard_columns)
@@ -286,12 +297,12 @@ describe "Custom Properties", type: :feature  do
       show_custom_props
       check_table_headers('subset-table', cl_sponsor_cps_columns)
 
-      # Check CP values copied from Source Code List 
-      check_cell_content('subset-table', 1, 8, 'Male') 
-      check_cell_content('subset-table', 1, 10, false)
-      check_cell_content('subset-table', 1, 11, true)
-      check_cell_content('subset-table', 1, 12, false)
-      check_cell_content('subset-table', 1, 13, false)
+      # Check CP values copied from Source Code Lis. Columns are +1 because of ordinal column in posiiton 1
+      check_cell_content('subset-table', 1, C_CRF_DISPLAY_VALUE + 1, 'Moderate') 
+      check_cell_content('subset-table', 1, C_COL_ADAM_STAGE + 1, false)
+      check_cell_content('subset-table', 1, C_COL_DC_STAGE + 1, true)
+      check_cell_content('subset-table', 1, C_COL_ED_USE + 1, false)
+      check_cell_content('subset-table', 1, C_COL_SDTM_STAGE + 1, true)
 
       hide_custom_props
       check_table_headers('subset-table', cl_standard_columns)
@@ -322,11 +333,11 @@ describe "Custom Properties", type: :feature  do
       check_cell_content 'subset-table', 1, 8, 'Male CRF'
 
       # Inline CP editing, boolean
-      ui_editor_select_by_location 1, 13, table: 'subset-table'
+      ui_editor_select_by_location 1, C_COL_SDTM_STAGE, table: 'subset-table'
       ui_press_key :arrow_left
       ui_press_key :return
       wait_for_ajax 10
-      check_cell_content 'subset-table', 1, 13, true
+      check_cell_content 'subset-table', 1, C_COL_SDTM_STAGE, true
     end
 
     ### Bugs 
@@ -337,11 +348,11 @@ describe "Custom Properties", type: :feature  do
       show_custom_props
       ui_check_table_info 'editor', 1, 10, 69 
       # Check CPs copied from prev version 
-      check_cell_content('editor', 1, 7, 'Biological Maternal Half Sister') 
-      check_cell_content('editor', 1, 9, false)
-      check_cell_content('editor', 1, 10, true)
-      check_cell_content('editor', 1, 11, false)
-      check_cell_content('editor', 1, 12, true)
+      check_cell_content('editor', 1, C_CRF_DISPLAY_VALUE, 'Biological Maternal Half Sister') 
+      check_cell_content('editor', 1, C_COL_ADAM_STAGE, false)
+      check_cell_content('editor', 1, C_COL_DC_STAGE, true)
+      check_cell_content('editor', 1, C_COL_ED_USE, false)
+      check_cell_content('editor', 1, C_COL_SDTM_STAGE, true)
     end
 
     it "Extending a CDISC Code List, CP default values bug, should be a model/controller test not feature" do 
@@ -356,11 +367,11 @@ describe "Custom Properties", type: :feature  do
 
       # Check default values picked up from other sponsor Code Lists
       show_custom_props
-      check_cell_content('editor', 2, 7, '') 
-      check_cell_content('editor', 2, 9, false)
-      check_cell_content('editor', 2, 10, false)
-      check_cell_content('editor', 2, 11, false) 
-      check_cell_content('editor', 2, 12, false)
+      check_cell_content('editor', 2, C_CRF_DISPLAY_VALUE, '') 
+      check_cell_content('editor', 2, C_COL_ADAM_STAGE, false)
+      check_cell_content('editor', 2, C_COL_DC_STAGE, false)
+      check_cell_content('editor', 2, C_COL_ED_USE, false) 
+      check_cell_content('editor', 2, C_COL_SDTM_STAGE, false)
 
       # Delete Extension 
       click_link 'Sanofi, C99079E'
@@ -380,11 +391,11 @@ describe "Custom Properties", type: :feature  do
 
       # Check default values picked up from other sponsor Code Lists
       show_custom_props
-      check_cell_content('editor', 2, 7, '') 
-      check_cell_content('editor', 2, 9, false)
-      check_cell_content('editor', 2, 10, false)
-      check_cell_content('editor', 2, 11, false) 
-      check_cell_content('editor', 2, 12, false)
+      check_cell_content('editor', 2, C_CRF_DISPLAY_VALUE, '') 
+      check_cell_content('editor', 2, C_COL_ADAM_STAGE, false)
+      check_cell_content('editor', 2, C_COL_DC_STAGE, false)
+      check_cell_content('editor', 2, C_COL_ED_USE, false) 
+      check_cell_content('editor', 2, C_COL_SDTM_STAGE, false)
     end 
 
     it "Attempting to extend a specific Sanofi CL freezes server, FIXED" do

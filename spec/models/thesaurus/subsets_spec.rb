@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe "Thesaurus::Subsets" do
+describe Thesaurus::Subsets do
 
   include DataHelpers
   include IsoManagedHelpers
@@ -83,7 +83,9 @@ describe "Thesaurus::Subsets" do
       result[:creation_date] = "2020-02-16T18:31:47+01:00"
       check_file_actual_expected(result, sub_dir, "upgrade_expected_1a.yaml", equate_method: :hash_equal)
       check_file_actual_expected(item_1.is_ordered_objects.list.map{|x| x.item.to_s}, sub_dir, "upgrade_list_expected_1a.yaml", equate_method: :hash_equal)
+      subset = Thesaurus::Subset.find(item_1.is_ordered.uri)
       item_2 = item_1.upgrade_subset(tc_34)
+      subset = Thesaurus::Subset.find(item_1.is_ordered.uri)
       item_2 = Thesaurus::ManagedConcept.find(item_2.uri)
       expect(item_2.narrower.count).to eq(2)
       result = item_2.to_h
@@ -94,7 +96,9 @@ describe "Thesaurus::Subsets" do
       check_file_actual_expected(result, sub_dir, "upgrade_expected_1b.yaml", equate_method: :hash_equal)
       check_file_actual_expected(item_2.is_ordered_objects.list.map{|x| x.item.to_s}, sub_dir, "upgrade_list_expected_1b.yaml", equate_method: :hash_equal)
       item_2.is_ordered_objects.add([uri_3.to_id], tc_32)
+      subset = Thesaurus::Subset.find(item_1.is_ordered.uri)
       item_3 = item_1.upgrade_subset(tc_45)
+      subset = Thesaurus::Subset.find(item_1.is_ordered.uri)
       item_3 = Thesaurus::ManagedConcept.find(item_3.uri)
       expect(item_3.narrower.count).to eq(3)
       result = item_3.to_h
@@ -110,6 +114,44 @@ describe "Thesaurus::Subsets" do
       expect(tc_34.narrower.count).to eq(8)
       tc_45 = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C99079/V45#C99079"))
       expect(tc_45.narrower.count).to eq(10)
+    end
+
+  end
+
+  describe "Upgrades, bug" do
+  
+    before :each do
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
+      load_files(schema_files, data_files)
+      NameValue.destroy_all
+      NameValue.create(name: "thesaurus_parent_identifier", value: "123")
+      NameValue.create(name: "thesaurus_child_identifier", value: "456")
+    end
+
+    def make_standard(item)
+      IsoManagedHelpers.make_item_standard(item)
+    end
+
+    it "can upgrade a subset II" do
+      tc = Thesaurus::ManagedConcept.create
+      item_1 = tc.create_subset
+      item_1 = Thesaurus::ManagedConcept.find_minimum(item_1.id)
+      item_1.synonyms_and_preferred_terms
+      expect(item_1.subsets_links.to_s).to eq("http://www.acme-pharma.com/NP000123P/V1#NP000123P")
+      expect(item_1.is_ordered_objects).not_to be(nil)
+      expect(item_1.is_ordered_objects.members).to be(nil)
+      expect(item_1.narrower.count).to eq(0)
+      item_1 = Thesaurus::ManagedConcept.find_with_properties(item_1.id)
+      fix_dates(item_1, sub_dir, "upgrade_expected_2a.yaml", :creation_date, :last_change_date)
+      check_file_actual_expected(item_1.to_h, sub_dir, "upgrade_expected_2a.yaml", equate_method: :hash_equal)
+      make_standard(tc)
+      tc_2 = tc.create_next_version
+      tc_2 = Thesaurus::ManagedConcept.find_minimum(tc_2.id)
+      subset = Thesaurus::Subset.find(item_1.is_ordered_links)
+      item_2 = item_1.upgrade_subset(tc_2)
+      subset = Thesaurus::Subset.find(item_1.is_ordered.uri)
+      tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/NP000123P/V1#NP000123P"))
+      expect(tc.narrower.count).to eq(0)
     end
 
   end

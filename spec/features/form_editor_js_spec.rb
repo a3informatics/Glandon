@@ -70,15 +70,15 @@ describe "Forms", :type => :feature do
       check_node('Unit', :question, true)
       check_node('Height (Pilot)', :form, false)
 
-      ui_press_key :right
+      graph_press_key :right
       check_node('Inch', :tuc_ref, true)
 
-      ui_press_key :left
+      graph_press_key :left
       check_node('Inch', :tuc_ref, false)
       check_node('Unit', :question, true)
 
-      ui_press_key :up
-      ui_press_key :up
+      graph_press_key :up
+      graph_press_key :up
       check_node('Unit', :question, false)
       check_node('Placeholder 2', :placeholder, true)
     end
@@ -118,21 +118,21 @@ describe "Forms", :type => :feature do
 
       find_node('Height (Pilot)').drag_to find_node('Unit')
       expect( page.all('g.node').count ).to be < nodes
-      ui_press_key 'c'
+      graph_press_key 'c'
       check_node_count 9
 
       # Collapse all
-      ui_press_key 'C'
+      graph_press_key 'C'
       check_node_count 1
       check_node('Height (Pilot)', :form)
 
       # Expand all
-      ui_press_key 'E'
+      graph_press_key 'E'
       check_node_count 9
 
       # Collapse all except
       find_node('Completion status').click
-      ui_press_key 'X'
+      graph_press_key 'X'
       check_node_count 7
     end
 
@@ -163,10 +163,10 @@ describe "Forms", :type => :feature do
       check_node_count 2, 'g.node.search-match'
 
       # Focuses and selects node on Enter press
-      ui_press_key :enter
+      graph_press_key :enter
       check_node_count 1, 'g.node.selected.search-match'
       check_node( 'Height (Pilot)', :form, true )
-      ui_press_key :enter
+      graph_press_key :enter
       check_node_count 1, 'g.node.selected.search-match'
       check_node( 'Height', :question, true )
 
@@ -189,9 +189,9 @@ describe "Forms", :type => :feature do
 
       # Space Key press collapse/expand
       find_node('Not Set').click
-      ui_press_key :space
+      graph_press_key :space
       check_node_count 2
-      ui_press_key :space
+      graph_press_key :space
       check_node_count 9
     end
 
@@ -203,30 +203,30 @@ describe "Forms", :type => :feature do
       check_actions_not_present([:remove, :common, :restore])
 
       fill_in 'd3-search', with: 'Question 1'
-      ui_press_key :enter
+      graph_press_key :enter
       find('#d3-clear-search').click
 
       check_actions([:edit, :add_child, :move_up, :remove])
       check_actions_not_present([:common, :restore])
 
       fill_in 'd3-search', with: 'Common Group'
-      ui_press_key :enter
+      graph_press_key :enter
       find('#d3-clear-search').click
 
       check_node('Common Group', :common_group, true)
       check_actions([:edit, :move_up])
       check_actions_not_present([:add_child, :remove, :common, :restore])
 
-      ui_press_key :right
+      graph_press_key :right
       check_actions([:restore, :move_up])
       check_actions_not_present([:add_child, :remove, :common, :edit])
 
       find_node( 'Systolic Blood Pressure (BC C' ).click
-      ui_press_key :right
+      graph_press_key :right
       check_actions([:move_up])
       check_actions_not_present([:add_child, :restore, :common, :remove, :edit])
 
-      ui_press_key :down
+      graph_press_key :down
       check_actions([:move_up, :edit, :common])
       check_actions_not_present([:add_child, :restore, :remove])
     end
@@ -235,8 +235,8 @@ describe "Forms", :type => :feature do
       edit_form('FN000120')
 
       find_node('19. Adequately plan').click
-      ui_press_key :right
-      ui_press_key :right
+      graph_press_key :right
+      graph_press_key :right
 
       click_action :edit
 
@@ -255,7 +255,7 @@ describe "Forms", :type => :feature do
 
       fill_in 'd3-search', with: 'supine'
       check_node_count 1, 'g.node.search-match'
-      ui_press_key :enter
+      graph_press_key :enter
       click_action :edit
 
       ui_in_modal do
@@ -267,8 +267,8 @@ describe "Forms", :type => :feature do
         end
       end
 
-      ui_press_key :left
-      ui_press_key :left
+      graph_press_key :left
+      graph_press_key :left
       check_node('Common Group', :common_group, true)
 
     end
@@ -302,7 +302,7 @@ describe "Forms", :type => :feature do
       end
 
       find_node('Unit').click
-      ui_press_key :right
+      graph_press_key :right
       click_action :edit
 
       # Field validation
@@ -342,9 +342,9 @@ describe "Forms", :type => :feature do
         end
       end
 
-      ui_press_key :down
-      ui_press_key :down
-      ui_press_key 'e'
+      graph_press_key :down
+      graph_press_key :down
+      graph_press_key 'e'
 
       ui_in_modal do
         within( find('#generic-editor') ) do
@@ -373,7 +373,7 @@ describe "Forms", :type => :feature do
 
       check_alert 'Node updated successfully'
       check_node('Height Q', :question, true)
-      ui_press_key 'e'
+      graph_press_key 'e'
 
       ui_in_modal do
         within( find('#generic-editor') ) do
@@ -402,11 +402,10 @@ describe "Forms", :type => :feature do
       wait_for_ajax 10
 
       check_alert 'Added successfully.'
-      ui_press_key 'c' # Center graph
+      graph_press_key 'c'# Center graph
       expect( node_count ).to eq( nodes + 1 )
 
       click_action :add_child
-
       # Add Mapping
       expect( all('#d3 .node-actions a.option').count ).to eq 7
       find(:xpath, '//div[@id="d3"]//a[@id="mapping"]').click
@@ -414,16 +413,16 @@ describe "Forms", :type => :feature do
       wait_for_ajax 10
 
       check_alert 'Added successfully.'
-      ui_press_key 'c' # Center graph
+      graph_press_key 'c' # Center graph
       expect( node_count ).to eq( nodes + 2 )
 
       # Add Common Group
-      ui_press_key :left
+      graph_press_key :left
       click_action :add_child
       find(:xpath, '//div[@id="d3"]//a[@id="common_group"]').click
 
       wait_for_ajax 10
-      ui_press_key 'e'
+      graph_press_key 'e'
 
       ui_in_modal do
         fill_in 'label', with: 'Common Group 1'
@@ -431,7 +430,7 @@ describe "Forms", :type => :feature do
       end
 
       # Prevents adding duplicate common group
-      ui_press_key :left
+      graph_press_key :left
       click_action :add_child
       find(:xpath, '//div[@id="d3"]//a[@id="common_group"]').click
 
@@ -445,7 +444,7 @@ describe "Forms", :type => :feature do
 
       # Add BCs to a Group
       find_node('Height (Pilot)').click
-      ui_press_key :right
+      graph_press_key :right
 
       click_action :add_child
       find(:xpath, '//div[@id="d3"]//a[@id="bc_group"]').click
@@ -459,23 +458,23 @@ describe "Forms", :type => :feature do
       # Check BC added correctly
       find_node('Weight').click
       check_node( 'Weight', :bc, true )
-      ui_press_key :right
+      graph_press_key :right
       check_node( '--ORRES', :bc_property, true )
-      ui_press_key :up
+      graph_press_key :up
       check_node( '--DTC', :bc_property, true )
-      ui_press_key :down
-      ui_press_key :down
+      graph_press_key :down
+      graph_press_key :down
       check_node( '--ORRESU', :bc_property, true )
-      ui_press_key :right
+      graph_press_key :right
       check_node( 'Kilogram', :tuc_ref, true )
-      ui_press_key :down
+      graph_press_key :down
       check_node( 'Pound', :tuc_ref, true )
 
       nodes = node_count
 
       # Add TUCs to a Question
       fill_in 'd3-search', with: 'Completion status'
-      ui_press_key :enter
+      graph_press_key :enter
       click_action :add_child
       find(:xpath, '//div[@id="d3"]//a[@id="tuc_reference"]').click
 
@@ -488,7 +487,7 @@ describe "Forms", :type => :feature do
       check_alert 'Added successfully.'
 
       # Check TUCs added correctly
-      ui_press_key :right
+      graph_press_key :right
 
       expect( node_count ).to eq( nodes + 3 )
 
@@ -501,7 +500,7 @@ describe "Forms", :type => :feature do
       edit_form('CRF TEST 1')
 
       fill_in 'd3-search', with: 'Question 3'
-      ui_press_key :enter
+      graph_press_key :enter
 
       # Move Question
       click_action :move_down
@@ -512,36 +511,36 @@ describe "Forms", :type => :feature do
       wait_for_ajax 10
       check_alert 'Moved successfully'
 
-      ui_press_key :up
-      ui_press_key :down
+      graph_press_key :up
+      graph_press_key :down
       check_node('Question 3', :question, true)
 
-      ui_press_key(:up, :shift) # Key shortcut
+      graph_press_key(:up, :shift) # Key shortcut
       wait_for_ajax 10
       check_alert 'Moved successfully'
 
-      ui_press_key(:up, :shift) # Key shortcut
+      graph_press_key(:up, :shift) # Key shortcut
       check_alert 'Cannot move Node up'
       check_node('Question 3', :question, true)
 
       # Move Group
       fill_in 'd3-search', with: 'Q Repeating Group'
-      ui_press_key :enter
+      graph_press_key :enter
       find('#d3-clear-search').click
 
-      ui_press_key(:down, :shift) # Key shortcut
+      graph_press_key(:down, :shift) # Key shortcut
       check_alert 'Cannot move Node down'
 
       click_action :move_up
       wait_for_ajax 10
       check_alert 'Moved successfully'
 
-      ui_press_key :down
+      graph_press_key :down
       check_node('Q Group', :normal_group, true)
-      ui_press_key :up
+      graph_press_key :up
       check_node('Q Repeating Group', :normal_group, true)
 
-      ui_press_key(:down, :shift)
+      graph_press_key(:down, :shift)
       wait_for_ajax 10
       check_alert 'Moved successfully'
 
@@ -550,21 +549,21 @@ describe "Forms", :type => :feature do
 
       # Prevents moving Common Group
       fill_in 'd3-search', with: 'common'
-      ui_press_key :enter
+      graph_press_key :enter
 
       click_action :move_down
       check_alert 'This Node cannot be moved'
 
-      ui_press_key :down
+      graph_press_key :down
       click_action :move_up
       wait_for_ajax 10
       check_alert 'Attempting to move up past the first node'
 
       # Move TUC Ref
-      ui_press_key :up
-      ui_press_key :right
-      ui_press_key :down
-      ui_press_key :right
+      graph_press_key :up
+      graph_press_key :right
+      graph_press_key :down
+      graph_press_key :right
 
       click_action :move_up
       wait_for_ajax 10
@@ -574,7 +573,7 @@ describe "Forms", :type => :feature do
       wait_for_ajax 10
       check_alert 'Cannot move Node up'
 
-      ui_press_key(:down, :shift)
+      graph_press_key(:down, :shift)
       wait_for_ajax 10
       check_alert 'Moved successfully'
     end
@@ -583,7 +582,7 @@ describe "Forms", :type => :feature do
       edit_form('FN000150')
 
       fill_in 'd3-search', with: 'Mother'
-      ui_press_key :enter
+      graph_press_key :enter
 
       nodes = node_count
 
@@ -598,7 +597,7 @@ describe "Forms", :type => :feature do
       check_node('Completion status', :question, true) # Check parent selected after deletion
 
       # Delete Question with 3 TUC Ref children
-      ui_press_key :delete
+      graph_press_key :delete
       ui_confirmation_dialog(true)
       wait_for_ajax 10
 
@@ -619,7 +618,7 @@ describe "Forms", :type => :feature do
 
       # Delete BC
       find_node('Weight').click
-      ui_press_key :delete
+      graph_press_key :delete
       ui_confirmation_dialog(true)
       wait_for_ajax 10
 
@@ -672,7 +671,7 @@ describe "Forms", :type => :feature do
       click_action :add_child
       find(:xpath, '//div[@id="d3"]//a[@id="common_group"]').click
       wait_for_ajax 10
-      ui_press_key 'e'
+      graph_press_key 'e'
 
       ui_in_modal do
         fill_in 'label', with: 'Common Group'
@@ -684,8 +683,8 @@ describe "Forms", :type => :feature do
       find_node('Weight').click
 
       # Make common
-      ui_press_key :right
-      ui_press_key :down
+      graph_press_key :right
+      graph_press_key :down
       click_action :common
       wait_for_ajax 20
       check_alert 'Node updated successfully'
@@ -705,9 +704,9 @@ describe "Forms", :type => :feature do
       sleep 0.5
 
       find_node('Common Group').click
-      ui_press_key :right
-      ui_press_key :right
-      ui_press_key :down
+      graph_press_key :right
+      graph_press_key :right
+      graph_press_key :down
 
       check_node('Pound', :tuc_ref, true)
 
@@ -715,14 +714,14 @@ describe "Forms", :type => :feature do
       click_action :move_up
       wait_for_ajax 10
       check_alert 'Moved successfully'
-      ui_press_key :left
-      ui_press_key :right
+      graph_press_key :left
+      graph_press_key :right
       check_node('Pound', :tuc_ref, true)
       click_action :move_down
       wait_for_ajax 10
       check_alert 'Moved successfully'
 
-      ui_press_key :left
+      graph_press_key :left
 
       click_button 'collapse-except-graph' # Collapse nodes except selected
       sleep 0.5
@@ -734,8 +733,8 @@ describe "Forms", :type => :feature do
 
       # Make common
       find_node('Height').click
-      ui_press_key :right
-      ui_press_key :up
+      graph_press_key :right
+      graph_press_key :up
 
       click_action :common
       wait_for_ajax 20
@@ -745,7 +744,7 @@ describe "Forms", :type => :feature do
       check_node_count( 3, 'g.node.disabled' ) # Common nodes have the disabled css class
 
       fill_in 'd3-search', with: 'Common Group'
-      ui_press_key :enter
+      graph_press_key :enter
       find('#d3-clear-search').click
 
       click_button 'collapse-except-graph' # Collapse nodes except selected
@@ -756,10 +755,10 @@ describe "Forms", :type => :feature do
       refresh_editor
 
       fill_in 'd3-search', with: 'Common Group'
-      ui_press_key :enter
+      graph_press_key :enter
       find('#d3-clear-search').click
 
-      ui_press_key :right
+      graph_press_key :right
       click_action :restore
       wait_for_ajax 20
 
@@ -767,20 +766,20 @@ describe "Forms", :type => :feature do
       check_node_count( 2, 'g.node.disabled' ) # Common nodes have the disabled css class
 
       fill_in 'd3-search', with: 'Weight'
-      ui_press_key :enter
+      graph_press_key :enter
       find('#d3-clear-search').click
 
-      ui_press_key :right
-      ui_press_key :down
-      ui_press_key :right
-      ui_press_key :down
+      graph_press_key :right
+      graph_press_key :down
+      graph_press_key :right
+      graph_press_key :down
       check_node('Pound', :tuc_ref, true)
 
       fill_in 'd3-search', with: 'Common Group'
-      ui_press_key :enter
+      graph_press_key :enter
       find('#d3-clear-search').click
 
-      ui_press_key :right
+      graph_press_key :right
       click_action :restore
       wait_for_ajax 20
 
@@ -795,8 +794,8 @@ describe "Forms", :type => :feature do
       edit_form('TSTFORM')
 
       find_node('Weight').click
-      ui_press_key :right
-      ui_press_key :up
+      graph_press_key :right
+      graph_press_key :up
       click_action :common
       wait_for_ajax 20
 
@@ -824,29 +823,30 @@ describe "Forms", :type => :feature do
       click_action :remove
       ui_confirmation_dialog true
       wait_for_ajax 10
+      sleep 0.3 # Graph redraw
 
       check_node_count( 2, 'g.node.disabled' ) # Common nodes have the disabled css class
 
       fill_in 'd3-search', with: 'Height'
-      ui_press_key :enter
-      find('#d3-clear-search').click
+      graph_press_key :enter
       click_action :remove
       ui_confirmation_dialog true
       wait_for_ajax 10
+      sleep 0.3 # Graph redraw
 
       fill_in 'd3-search', with: 'BMI'
-      ui_press_key :enter
-      find('#d3-clear-search').click
+      graph_press_key :enter
       click_action :remove
       ui_confirmation_dialog true
       wait_for_ajax 10
+      sleep 0.3 # Graph redraw
 
       fill_in 'd3-search', with: 'Systolic'
-      ui_press_key :enter
-      find('#d3-clear-search').click
+      graph_press_key :enter
       click_action :remove
       ui_confirmation_dialog true
       wait_for_ajax 10
+      sleep 0.3 # Graph redraw
 
       # Check new node count
       check_node_count 3
@@ -858,7 +858,7 @@ describe "Forms", :type => :feature do
       edit_form('TSTFORM')
 
       find_node('Test Form').click
-      ui_press_key :right
+      graph_press_key :right
 
       click_action :add_child
       find(:xpath, '//div[@id="d3"]//a[@id="bc_group"]').click
@@ -868,9 +868,9 @@ describe "Forms", :type => :feature do
       ], 'node-add-child' )
 
       fill_in 'd3-search', with: 'Weight'
-      ui_press_key :enter
+      graph_press_key :enter
       find('#d3-clear-search').click
-      ui_press_key :right
+      graph_press_key :right
 
       check_actions([:edit, :move_up, :move_down, :common])
       click_action :edit
@@ -908,7 +908,7 @@ describe "Forms", :type => :feature do
         check_alert 'The edit lock has timed out.'
 
         # Prevents Updating a Node
-        ui_press_key :right
+        graph_press_key :right
         click_action :edit
 
         ui_in_modal do
@@ -926,8 +926,8 @@ describe "Forms", :type => :feature do
         check_alert 'The edit lock has timed out.'
 
         # Prevents Removing a Node
-        ui_press_key :right
-        ui_press_key :right
+        graph_press_key :right
+        graph_press_key :right
         click_action :remove
         ui_confirmation_dialog true
         wait_for_ajax 10
@@ -1094,7 +1094,7 @@ describe "Forms", :type => :feature do
       end
 
       find_node('Unit').click
-      ui_press_key :right
+      graph_press_key :right
       click_action :edit
 
       # Field validation
@@ -1134,9 +1134,9 @@ describe "Forms", :type => :feature do
         end
       end
 
-      ui_press_key :down
-      ui_press_key :down
-      ui_press_key 'e'
+      graph_press_key :down
+      graph_press_key :down
+      graph_press_key 'e'
 
       ui_in_modal do
         within( find('#generic-editor') ) do
@@ -1165,7 +1165,7 @@ describe "Forms", :type => :feature do
 
       check_alert 'Node updated successfully'
       check_node('Height Q', :question, true)
-      ui_press_key 'e'
+      graph_press_key 'e'
 
       ui_in_modal do
         within( find('#generic-editor') ) do
@@ -1194,7 +1194,7 @@ describe "Forms", :type => :feature do
       wait_for_ajax 10
 
       check_alert 'Added successfully.'
-      ui_press_key 'c' # Center graph
+      graph_press_key 'c' # Center graph
       expect( node_count ).to eq( nodes + 1 )
 
       click_action :add_child
@@ -1206,16 +1206,16 @@ describe "Forms", :type => :feature do
       wait_for_ajax 10
 
       check_alert 'Added successfully.'
-      ui_press_key 'c' # Center graph
+      graph_press_key 'c' # Center graph
       expect( node_count ).to eq( nodes + 2 )
 
       # Add Common Group
-      ui_press_key :left
+      graph_press_key :left
       click_action :add_child
       find(:xpath, '//div[@id="d3"]//a[@id="common_group"]').click
 
       wait_for_ajax 10
-      ui_press_key 'e'
+      graph_press_key 'e'
 
       ui_in_modal do
         fill_in 'label', with: 'Common Group 1'
@@ -1223,7 +1223,7 @@ describe "Forms", :type => :feature do
       end
 
       # Prevents adding duplicate common group
-      ui_press_key :left
+      graph_press_key :left
       click_action :add_child
       find(:xpath, '//div[@id="d3"]//a[@id="common_group"]').click
 
@@ -1237,7 +1237,7 @@ describe "Forms", :type => :feature do
 
       # Add BCs to a Group
       find_node('Height (Pilot)').click
-      ui_press_key :right
+      graph_press_key :right
 
       click_action :add_child
       find(:xpath, '//div[@id="d3"]//a[@id="bc_group"]').click
@@ -1251,23 +1251,23 @@ describe "Forms", :type => :feature do
       # Check BC added correctly
       find_node('Weight').click
       check_node( 'Weight', :bc, true )
-      ui_press_key :right
+      graph_press_key :right
       check_node( '--ORRES', :bc_property, true )
-      ui_press_key :up
+      graph_press_key :up
       check_node( '--DTC', :bc_property, true )
-      ui_press_key :down
-      ui_press_key :down
+      graph_press_key :down
+      graph_press_key :down
       check_node( '--ORRESU', :bc_property, true )
-      ui_press_key :right
+      graph_press_key :right
       check_node( 'Kilogram', :tuc_ref, true )
-      ui_press_key :down
+      graph_press_key :down
       check_node( 'Pound', :tuc_ref, true )
 
       nodes = node_count
 
       # Add TUCs to a Question
       fill_in 'd3-search', with: 'Completion status'
-      ui_press_key :enter
+      graph_press_key :enter
       click_action :add_child
       find(:xpath, '//div[@id="d3"]//a[@id="tuc_reference"]').click
 
@@ -1280,7 +1280,7 @@ describe "Forms", :type => :feature do
       check_alert 'Added successfully.'
 
       # Check TUCs added correctly
-      ui_press_key :right
+      graph_press_key :right
 
       expect( node_count ).to eq( nodes + 3 )
 
@@ -1293,7 +1293,7 @@ describe "Forms", :type => :feature do
       edit_form('CRF TEST 1')
 
       fill_in 'd3-search', with: 'Question 3'
-      ui_press_key :enter
+      graph_press_key :enter
 
       # Move Question
       click_action :move_down
@@ -1304,36 +1304,36 @@ describe "Forms", :type => :feature do
       wait_for_ajax 10
       check_alert 'Moved successfully'
 
-      ui_press_key :up
-      ui_press_key :down
+      graph_press_key :up
+      graph_press_key :down
       check_node('Question 3', :question, true)
 
-      ui_press_key(:up, :shift) # Key shortcut
+      graph_press_key(:up, :shift) # Key shortcut
       wait_for_ajax 10
       check_alert 'Moved successfully'
 
-      ui_press_key(:up, :shift) # Key shortcut
+      graph_press_key(:up, :shift) # Key shortcut
       check_alert 'Cannot move Node up'
       check_node('Question 3', :question, true)
 
       # Move Group
       fill_in 'd3-search', with: 'Q Repeating Group'
-      ui_press_key :enter
+      graph_press_key :enter
       find('#d3-clear-search').click
 
-      ui_press_key(:down, :shift) # Key shortcut
+      graph_press_key(:down, :shift) # Key shortcut
       check_alert 'Cannot move Node down'
 
       click_action :move_up
       wait_for_ajax 10
       check_alert 'Moved successfully'
 
-      ui_press_key :down
+      graph_press_key :down
       check_node('Q Group', :normal_group, true)
-      ui_press_key :up
+      graph_press_key :up
       check_node('Q Repeating Group', :normal_group, true)
 
-      ui_press_key(:down, :shift)
+      graph_press_key(:down, :shift)
       wait_for_ajax 10
       check_alert 'Moved successfully'
 
@@ -1342,21 +1342,21 @@ describe "Forms", :type => :feature do
 
       # Prevents moving Common Group
       fill_in 'd3-search', with: 'common'
-      ui_press_key :enter
+      graph_press_key :enter
 
       click_action :move_down
       check_alert 'This Node cannot be moved'
 
-      ui_press_key :down
+      graph_press_key :down
       click_action :move_up
       wait_for_ajax 10
       check_alert 'Attempting to move up past the first node'
 
       # Move TUC Ref
-      ui_press_key :up
-      ui_press_key :right
-      ui_press_key :down
-      ui_press_key :right
+      graph_press_key :up
+      graph_press_key :right
+      graph_press_key :down
+      graph_press_key :right
 
       click_action :move_up
       wait_for_ajax 10
@@ -1366,7 +1366,7 @@ describe "Forms", :type => :feature do
       wait_for_ajax 10
       check_alert 'Cannot move Node up'
 
-      ui_press_key(:down, :shift)
+      graph_press_key(:down, :shift)
       wait_for_ajax 10
       check_alert 'Moved successfully'
     end
@@ -1375,7 +1375,7 @@ describe "Forms", :type => :feature do
       edit_form('FN000150')
 
       fill_in 'd3-search', with: 'Mother'
-      ui_press_key :enter
+      graph_press_key :enter
 
       nodes = node_count
 
@@ -1390,7 +1390,7 @@ describe "Forms", :type => :feature do
       check_node('Completion status', :question, true) # Check parent selected after deletion
 
       # Delete Question with 3 TUC Ref children
-      ui_press_key :delete
+      graph_press_key :delete
       ui_confirmation_dialog(true)
       wait_for_ajax 10
 
@@ -1411,7 +1411,7 @@ describe "Forms", :type => :feature do
 
       # Delete BC
       find_node('Weight').click
-      ui_press_key :delete
+      graph_press_key :delete
       ui_confirmation_dialog(true)
       wait_for_ajax 10
 

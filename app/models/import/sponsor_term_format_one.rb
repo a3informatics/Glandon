@@ -38,7 +38,7 @@ class Import::SponsorTermFormatOne < Import
     merge_reader_data(readers)
     
     # Temp code
-    add_error("Errors on read: #{self.errors.full_messages}") if self.errors.any?
+    puts colourize("Errors on read: #{self.errors.full_messages}", "red") if self.errors.any?
 
     # Correct code
     results = add_parent(params)
@@ -122,8 +122,9 @@ private
         ref = child.to_extension(@th, @fixes)
       elsif child.future_referenced?(@th)
         add_log("Future Reference Sponsor detected: #{child.identifier}")
-        child.update_identifier(child.identifier)
-        ref = child
+        #child.update_identifier(child.identifier)
+        #ref = child
+        ref = child.to_sponsor
       elsif child.subset_of_extension?(@extensions)
         add_log("Subset of extension detected: #{child.identifier}")
         ref = child.to_subset_of_extension(@extensions)
@@ -250,13 +251,13 @@ private
     object.errors.add(:base, msg)
   end
 
-  # Add error
+  # Add log
   def add_log(msg)
     #puts colourize("#{msg}", "blue")
     ConsoleLogger.info(self.class.name, "add_log", msg)
   end
 
-  # Add error
+  # Add warning
   def add_warning(msg)
     puts colourize("#{msg}", "yellow")
     ConsoleLogger.info(self.class.name, "add_warning", msg)
