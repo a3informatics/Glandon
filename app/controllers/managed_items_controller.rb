@@ -46,6 +46,8 @@ private
     case action
       when :impact 
         return impact_iso_managed_v2_path(object)
+      when :export_ttl 
+        return export_ttl_iso_managed_v2_path(object)
       else
         return ""
     end

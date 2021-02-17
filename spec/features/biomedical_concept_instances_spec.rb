@@ -68,6 +68,21 @@ describe "Biomedical Concept Instances", :type => :feature do
       ui_check_table_cell("history", 1, 7, "Incomplete")
     end
 
+    it "history allows ttl to be exported", js:true do
+      click_navbar_bc
+      wait_for_ajax 10
+      expect(page).to have_content 'Index: Biomedical Concepts'
+      ui_table_search('index', 'Height')
+      find(:xpath, "//tr[contains(.,'HEIGHT')]/td/a", :text => 'History').click
+      wait_for_ajax 10
+      expect(page).to have_content 'Version History of \'HEIGHT\''
+      context_menu_element_v2('history', 'HEIGHT', :export_ttl)
+      file = download_content
+    # write_text_file_2(file, sub_dir, "bc_export_ttl_expected.ttl")
+      expected = read_text_file_2(sub_dir, "bc_export_ttl_expected.ttl")
+      expect(file).to eq(expected)
+    end
+
     it "history allows the show page to be viewed (REQ-MDR-BC-010)" do
       click_navbar_bc
       wait_for_ajax 10
