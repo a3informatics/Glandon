@@ -101,6 +101,9 @@ Before do
     #load_data_file_into_triple_store("sponsor_one/ct/CT_V3-0.ttl")
     # load_data_file_into_triple_store("sponsor_one/ct/CT_V3-1.ttl")
     load_data_file_into_triple_store("sponsor_one/custom_property/custom_properties.ttl")
+    load_data_file_into_triple_store("sponsor_one/custom_property/custom_properties_migration_one.ttl")
+    load_data_file_into_triple_store("sponsor_one/custom_property/custom_properties_migration_two.ttl")
+
 
     load_cdisc_term_versions(1..LST_VERSION)
     load_data_file_into_triple_store("cdisc/ct/changes/change_instructions_v47.ttl")

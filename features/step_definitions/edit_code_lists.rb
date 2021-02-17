@@ -59,120 +59,87 @@ When('I edit the following custom properties for {string}:') do |string, table|
       ui_editor_select_by_location(1, 7)
       ui_editor_fill_inline 'crf_display_value', "#{hash['CRFDisplayValue']}\n"
       ui_editor_select_by_location(1, 8)
+      ui_editor_fill_inline 'display_order', "#{hash['DisplayOrder']}\n"
+      ui_editor_select_by_location(1, 9)
       ui_editor_fill_inline 'synonym_sponsor', "#{hash['SynonymSponsor']}\n"
       
-      if get_cell_bool_value('editor', 1, 9)
-          if "#{hash['ADaMStage']}" == 'true'
-            ui_editor_select_by_location(1, 9)
-            check_cell_content('editor', 1, 9, true)
-            #ui_check_table_cell_icon 'editor',1, 1, 'sel-filled'
-            end
-          if "#{hash['ADaMStage']}" == 'false'
-            ui_editor_select_by_location(1, 9)
-              ui_press_key :enter 
-              ui_press_key :arrow_right
-              wait_for_ajax 10
-              ui_press_key :enter
-              wait_for_ajax 10
-              check_cell_content('editor', 1, 9, false)
-             #ui_check_table_cell_icon 'editor', 1, 1, 'times-circle'
-            end
-          else
-          if "#{hash['ADaMStage']}" == 'true'
-            ui_editor_select_by_location(1, 9)
-              ui_press_key :enter 
-              ui_press_key :arrow_right
-              wait_for_ajax 10
-              ui_press_key :enter
-              wait_for_ajax 10
-            check_cell_content('editor', 1, 9, true)
-            #ui_check_table_cell_icon 'editor',1, 1, 'sel-filled'
-            end
-          if "#{hash['ADaMStage']}" == 'false'
-              ui_editor_select_by_location(1, 9)
-              check_cell_content('editor', 1, 9, false)
-             #ui_check_table_cell_icon 'editor', 1, 1, 'times-circle'
-            end
-        end
-      
       if get_cell_bool_value('editor', 1, 10)
-          if "#{hash['DCStage']}" == 'true'
+          if "#{hash['ADaMStage']}" == 'true'
             ui_editor_select_by_location(1, 10)
-            check_cell_content('editor', 1, 10, true) 
-            #ui_check_table_cell_icon 'editor', 1, 1, 'sel-filled'
+            check_cell_content('editor', 1, 10, true)
+            #ui_check_table_cell_icon 'editor',1, 1, 'sel-filled'
             end
-          if "#{hash['DCStage']}" == 'false'
-              ui_editor_select_by_location(1, 10)
+          if "#{hash['ADaMStage']}" == 'false'
+            ui_editor_select_by_location(1, 10)
               ui_press_key :enter 
               ui_press_key :arrow_right
               wait_for_ajax 10
               ui_press_key :enter
               wait_for_ajax 10
               check_cell_content('editor', 1, 10, false)
+             #ui_check_table_cell_icon 'editor', 1, 1, 'times-circle'
+            end
+          else
+          if "#{hash['ADaMStage']}" == 'true'
+            ui_editor_select_by_location(1, 10)
+              ui_press_key :enter 
+              ui_press_key :arrow_right
+              wait_for_ajax 10
+              ui_press_key :enter
+              wait_for_ajax 10
+            check_cell_content('editor', 1, 10, true)
+            #ui_check_table_cell_icon 'editor',1, 1, 'sel-filled'
+            end
+          if "#{hash['ADaMStage']}" == 'false'
+              ui_editor_select_by_location(1, 10)
+              check_cell_content('editor', 1, 10, false)
+             #ui_check_table_cell_icon 'editor', 1, 1, 'times-circle'
+            end
+        end
+      
+      if get_cell_bool_value('editor', 1, 11)
+          if "#{hash['DCStage']}" == 'true'
+            ui_editor_select_by_location(1, 11)
+            check_cell_content('editor', 1, 11, true) 
+            #ui_check_table_cell_icon 'editor', 1, 1, 'sel-filled'
+            end
+          if "#{hash['DCStage']}" == 'false'
+              ui_editor_select_by_location(1, 11)
+              ui_press_key :enter 
+              ui_press_key :arrow_right
+              wait_for_ajax 10
+              ui_press_key :enter
+              wait_for_ajax 10
+              check_cell_content('editor', 1, 11, false)
               #ui_check_table_cell_icon 'editor', 1, 1, 'times-circle'
             end
           else
             if "#{hash['DCStage']}" == 'true'
-              ui_editor_select_by_location(1, 10)
+              ui_editor_select_by_location(1, 11)
               ui_press_key :enter 
               ui_press_key :arrow_right
               wait_for_ajax 10
               ui_press_key :enter
               wait_for_ajax 10
-              check_cell_content('editor', 1, 10, true) 
+              check_cell_content('editor', 1, 11, true) 
             #ui_check_table_cell_icon 'editor', 1, 1, 'sel-filled'
             end
           if "#{hash['DCStage']}" == 'false'
-              ui_editor_select_by_location(1, 10)
+              ui_editor_select_by_location(1, 11)
               
-              check_cell_content('editor', 1, 10, false)
+              check_cell_content('editor', 1, 11, false)
               #ui_check_table_cell_icon 'editor', 1, 1, 'times-circle'
             end
       end
 
-      if get_cell_bool_value('editor', 1, 11)
-
-          if "#{hash['EDUse']}" == 'true'
-            ui_editor_select_by_location(1, 11)
-            check_cell_content('editor', 1, 11, true) 
-            #ui_check_table_cell_icon 'editor', 1, 1, 'sel-filled'
-            end
-          if "#{hash['EDUse']}" == 'false'
-              ui_editor_select_by_location(1, 11)
-              ui_press_key :enter 
-              ui_press_key :arrow_right
-              wait_for_ajax 10
-              ui_press_key :enter
-              wait_for_ajax 10
-              check_cell_content('editor', 1, 11, false)
-              #ui_check_table_cell_icon 'editor', 1, 1, 'times-circle'
-            end
-          else
-            if "#{hash['EDUse']}" == 'true'
-            ui_editor_select_by_location(1, 11)
-            ui_press_key :enter 
-              ui_press_key :arrow_right
-              wait_for_ajax 10
-              ui_press_key :enter
-              wait_for_ajax 10
-            check_cell_content('editor', 1, 11, true) 
-            #ui_check_table_cell_icon 'editor', 1, 1, 'sel-filled'
-            end
-          if "#{hash['EDUse']}" == 'false'
-              ui_editor_select_by_location(1, 11)
-              check_cell_content('editor', 1, 11, false)
-              #ui_check_table_cell_icon 'editor', 1, 1, 'times-circle'
-            end
-        end
-
       if get_cell_bool_value('editor', 1, 12)
 
-          if "#{hash['SDTMStage']}" == 'true' 
+          if "#{hash['EDUse']}" == 'true'
             ui_editor_select_by_location(1, 12)
-            check_cell_content('editor', 1, 12, true)
+            check_cell_content('editor', 1, 12, true) 
             #ui_check_table_cell_icon 'editor', 1, 1, 'sel-filled'
             end
-          if "#{hash['SDTMStage']}" == 'false'
+          if "#{hash['EDUse']}" == 'false'
               ui_editor_select_by_location(1, 12)
               ui_press_key :enter 
               ui_press_key :arrow_right
@@ -180,24 +147,59 @@ When('I edit the following custom properties for {string}:') do |string, table|
               ui_press_key :enter
               wait_for_ajax 10
               check_cell_content('editor', 1, 12, false)
+              #ui_check_table_cell_icon 'editor', 1, 1, 'times-circle'
+            end
+          else
+            if "#{hash['EDUse']}" == 'true'
+            ui_editor_select_by_location(1, 12)
+            ui_press_key :enter 
+              ui_press_key :arrow_right
+              wait_for_ajax 10
+              ui_press_key :enter
+              wait_for_ajax 10
+            check_cell_content('editor', 1, 12, true) 
+            #ui_check_table_cell_icon 'editor', 1, 1, 'sel-filled'
+            end
+          if "#{hash['EDUse']}" == 'false'
+              ui_editor_select_by_location(1, 12)
+              check_cell_content('editor', 1, 12, false)
+              #ui_check_table_cell_icon 'editor', 1, 1, 'times-circle'
+            end
+        end
+
+      if get_cell_bool_value('editor', 1, 13)
+
+          if "#{hash['SDTMStage']}" == 'true' 
+            ui_editor_select_by_location(1, 13)
+            check_cell_content('editor', 1, 13, true)
+            #ui_check_table_cell_icon 'editor', 1, 1, 'sel-filled'
+            end
+          if "#{hash['SDTMStage']}" == 'false'
+              ui_editor_select_by_location(1, 13)
+              ui_press_key :enter 
+              ui_press_key :arrow_right
+              wait_for_ajax 10
+              ui_press_key :enter
+              wait_for_ajax 10
+              check_cell_content('editor', 1, 13, false)
               #ui_check_table_cell_icon 'editor', 1, 1, 'times-circle'
             end
 
       else
         if "#{hash['SDTMStage']}" == 'true' 
-            ui_editor_select_by_location(1, 12)
+            ui_editor_select_by_location(1, 13)
             ui_press_key :enter 
               ui_press_key :arrow_right
               wait_for_ajax 10
               ui_press_key :enter
               wait_for_ajax 10
-            check_cell_content('editor', 1, 12, true)
+            check_cell_content('editor', 1, 13, true)
             #ui_check_table_cell_icon 'editor', 1, 1, 'sel-filled'
             end
           if "#{hash['SDTMStage']}" == 'false'
-              ui_editor_select_by_location(1, 12)
+              ui_editor_select_by_location(1, 13)
               
-              check_cell_content('editor', 1, 12, false)
+              check_cell_content('editor', 1, 13, false)
               #ui_check_table_cell_icon 'editor', 1, 1, 'times-circle'
             end
       end
@@ -221,119 +223,86 @@ Then('I fill in the following value for the new item') do |table|
       ui_editor_select_by_location(1, 7)
       ui_editor_fill_inline 'crf_display_value', "#{hash['CRFDisplayValue']}\n"
       ui_editor_select_by_location(1, 8)
+      ui_editor_fill_inline 'display_order', "#{hash['DisplayOrder']}\n"
+      ui_editor_select_by_location(1, 9)
       ui_editor_fill_inline 'synonym_sponsor', "#{hash['SynonymSponsor']}\n"
-      if get_cell_bool_value('editor', 1, 9)
+      if get_cell_bool_value('editor', 1, 10)
           if "#{hash['ADaMStage']}" == 'true'
-            ui_editor_select_by_location(1, 9)
-            check_cell_content('editor', 1, 9, true)
+            ui_editor_select_by_location(1, 10)
+            check_cell_content('editor', 1, 10, true)
             #ui_check_table_cell_icon 'editor',1, 1, 'sel-filled'
             end
           if "#{hash['ADaMStage']}" == 'false'
-            ui_editor_select_by_location(1, 9)
+            ui_editor_select_by_location(1, 10)
               ui_press_key :enter 
               ui_press_key :arrow_right
               wait_for_ajax 10
               ui_press_key :enter
               wait_for_ajax 10
-              check_cell_content('editor', 1, 9, false)
+              check_cell_content('editor', 1, 10, false)
              #ui_check_table_cell_icon 'editor', 1, 1, 'times-circle'
             end
           else
           if "#{hash['ADaMStage']}" == 'true'
-            ui_editor_select_by_location(1, 9)
+            ui_editor_select_by_location(1, 10)
               ui_press_key :enter 
               ui_press_key :arrow_right
               wait_for_ajax 10
               ui_press_key :enter
               wait_for_ajax 10
-            check_cell_content('editor', 1, 9, true)
+            check_cell_content('editor', 1, 10, true)
             #ui_check_table_cell_icon 'editor',1, 1, 'sel-filled'
             end
           if "#{hash['ADaMStage']}" == 'false'
-              ui_editor_select_by_location(1, 9)
-              check_cell_content('editor', 1, 9, false)
+              ui_editor_select_by_location(1, 10)
+              check_cell_content('editor', 1, 10, false)
              #ui_check_table_cell_icon 'editor', 1, 1, 'times-circle'
             end
         end
       
-      if get_cell_bool_value('editor', 1, 10)
+      if get_cell_bool_value('editor', 1, 11)
           if "#{hash['DCStage']}" == 'true'
-            ui_editor_select_by_location(1, 10)
-            check_cell_content('editor', 1, 10, true) 
+            ui_editor_select_by_location(1, 11)
+            check_cell_content('editor', 1, 11, true) 
             #ui_check_table_cell_icon 'editor', 1, 1, 'sel-filled'
             end
           if "#{hash['DCStage']}" == 'false'
-              ui_editor_select_by_location(1, 10)
+              ui_editor_select_by_location(1, 11)
               ui_press_key :enter 
               ui_press_key :arrow_right
               wait_for_ajax 10
               ui_press_key :enter
               wait_for_ajax 10
-              check_cell_content('editor', 1, 10, false)
+              check_cell_content('editor', 1, 11, false)
               #ui_check_table_cell_icon 'editor', 1, 1, 'times-circle'
             end
           else
             if "#{hash['DCStage']}" == 'true'
-              ui_editor_select_by_location(1, 10)
+              ui_editor_select_by_location(1, 11)
               ui_press_key :enter 
               ui_press_key :arrow_right
               wait_for_ajax 10
               ui_press_key :enter
               wait_for_ajax 10
-              check_cell_content('editor', 1, 10, true) 
+              check_cell_content('editor', 1, 11, true) 
             #ui_check_table_cell_icon 'editor', 1, 1, 'sel-filled'
             end
           if "#{hash['DCStage']}" == 'false'
-              ui_editor_select_by_location(1, 10)
+              ui_editor_select_by_location(1, 11)
               
-              check_cell_content('editor', 1, 10, false)
+              check_cell_content('editor', 1, 11, false)
               #ui_check_table_cell_icon 'editor', 1, 1, 'times-circle'
             end
       end
 
-      if get_cell_bool_value('editor', 1, 11)
-
-          if "#{hash['EDUse']}" == 'true'
-            ui_editor_select_by_location(1, 11)
-            check_cell_content('editor', 1, 11, true) 
-            #ui_check_table_cell_icon 'editor', 1, 1, 'sel-filled'
-            end
-          if "#{hash['EDUse']}" == 'false'
-              ui_editor_select_by_location(1, 11)
-              ui_press_key :enter 
-              ui_press_key :arrow_right
-              wait_for_ajax 10
-              ui_press_key :enter
-              wait_for_ajax 10
-              check_cell_content('editor', 1, 11, false)
-              #ui_check_table_cell_icon 'editor', 1, 1, 'times-circle'
-            end
-          else
-            if "#{hash['EDUse']}" == 'true'
-            ui_editor_select_by_location(1, 11)
-            ui_press_key :enter 
-              ui_press_key :arrow_right
-              wait_for_ajax 10
-              ui_press_key :enter
-              wait_for_ajax 10
-            check_cell_content('editor', 1, 11, true) 
-            #ui_check_table_cell_icon 'editor', 1, 1, 'sel-filled'
-            end
-          if "#{hash['EDUse']}" == 'false'
-              ui_editor_select_by_location(1, 11)
-              check_cell_content('editor', 1, 11, false)
-              #ui_check_table_cell_icon 'editor', 1, 1, 'times-circle'
-            end
-        end
-
       if get_cell_bool_value('editor', 1, 12)
 
-          if "#{hash['SDTMStage']}" == 'true' 
+          if "#{hash['EDUse']}" == 'true'
             ui_editor_select_by_location(1, 12)
-            check_cell_content('editor', 1, 12, true)
+            check_cell_content('editor', 1, 12, true) 
             #ui_check_table_cell_icon 'editor', 1, 1, 'sel-filled'
             end
-          if "#{hash['SDTMStage']}" == 'false'
+          if "#{hash['EDUse']}" == 'false'
               ui_editor_select_by_location(1, 12)
               ui_press_key :enter 
               ui_press_key :arrow_right
@@ -341,24 +310,59 @@ Then('I fill in the following value for the new item') do |table|
               ui_press_key :enter
               wait_for_ajax 10
               check_cell_content('editor', 1, 12, false)
+              #ui_check_table_cell_icon 'editor', 1, 1, 'times-circle'
+            end
+          else
+            if "#{hash['EDUse']}" == 'true'
+            ui_editor_select_by_location(1, 12)
+            ui_press_key :enter 
+              ui_press_key :arrow_right
+              wait_for_ajax 10
+              ui_press_key :enter
+              wait_for_ajax 10
+            check_cell_content('editor', 1, 12, true) 
+            #ui_check_table_cell_icon 'editor', 1, 1, 'sel-filled'
+            end
+          if "#{hash['EDUse']}" == 'false'
+              ui_editor_select_by_location(1, 12)
+              check_cell_content('editor', 1, 12, false)
+              #ui_check_table_cell_icon 'editor', 1, 1, 'times-circle'
+            end
+        end
+
+      if get_cell_bool_value('editor', 1, 13)
+
+          if "#{hash['SDTMStage']}" == 'true' 
+            ui_editor_select_by_location(1, 13)
+            check_cell_content('editor', 1, 13, true)
+            #ui_check_table_cell_icon 'editor', 1, 1, 'sel-filled'
+            end
+          if "#{hash['SDTMStage']}" == 'false'
+              ui_editor_select_by_location(1, 13)
+              ui_press_key :enter 
+              ui_press_key :arrow_right
+              wait_for_ajax 10
+              ui_press_key :enter
+              wait_for_ajax 10
+              check_cell_content('editor', 1, 13, false)
               #ui_check_table_cell_icon 'editor', 1, 1, 'times-circle'
             end
 
       else
         if "#{hash['SDTMStage']}" == 'true' 
-            ui_editor_select_by_location(1, 12)
+            ui_editor_select_by_location(1, 13)
             ui_press_key :enter 
               ui_press_key :arrow_right
               wait_for_ajax 10
               ui_press_key :enter
               wait_for_ajax 10
-            check_cell_content('editor', 1, 12, true)
+            check_cell_content('editor', 1, 13, true)
             #ui_check_table_cell_icon 'editor', 1, 1, 'sel-filled'
             end
           if "#{hash['SDTMStage']}" == 'false'
-              ui_editor_select_by_location(1, 12)
+              ui_editor_select_by_location(1, 13)
               
-              check_cell_content('editor', 1, 12, false)
+              check_cell_content('editor', 1, 13, false)
               #ui_check_table_cell_icon 'editor', 1, 1, 'times-circle'
             end
       end

@@ -223,7 +223,7 @@ end
 
 Then('I see a new code list item') do
   ui_table_search('editor', 'Not Set')
- # pause
+ pause
   ui_press_key :enter
   ui_editor_check_value 1, 2, 'Not Set'
   ui_editor_check_value 1, 3, 'Not Set'
@@ -261,11 +261,18 @@ Then('I see Preferred Term is {string}') do |string|
   save_screen(TYPE)
 end
 
-Then('I see Sponsor Synonym is {string}') do |string|
+Then('I see Display Order is {string}') do |string|
   ui_editor_check_value 1, 8, string
   wait_for_ajax(20)
   save_screen(TYPE)
 end
+
+Then('I see Sponsor Synonym is {string}') do |string|
+  ui_editor_check_value 1, 9, string
+  wait_for_ajax(20)
+  save_screen(TYPE)
+end
+
 
 Then('I see Synonyms is empty') do
   ui_editor_check_value 1, 4, ""
@@ -317,28 +324,29 @@ Then('the following types of attributes for the code list is displayed:') do |ta
       check_cell_content('editor', 1, 4, "#{hash['Synonyms']}") 
       check_cell_content('editor', 1, 5, "#{hash['Definition']}")
       check_cell_content('editor', 1, 6, "#{hash['Tags']}")
-      check_cell_content('editor', 1, 7, "#{hash['CRFDisplayValue']}") # CRF Display Value
-      check_cell_content('editor', 1, 8, "#{hash['SynonymSponsor']}")
+      check_cell_content('editor', 1, 7, "#{hash['CRFDisplayValue']}")
+      check_cell_content('editor', 1, 8, "#{hash['DisplayOrder']}") # CRF Display Value
+      check_cell_content('editor', 1, 9, "#{hash['SynonymSponsor']}")
 
       if hash['ADaMStage'] == 'false'  # Adam stage
-         check_cell_content('editor', 1, 9, false)  # Adam stage
+         check_cell_content('editor', 1, 10, false)  # Adam stage
       else 
-         check_cell_content('editor', 1, 9, true)
+         check_cell_content('editor', 1, 10, true)
       end
       if hash['DCStage'] == 'false'
-         check_cell_content('editor', 1, 10, false) # DC stage
+         check_cell_content('editor', 1, 11, false) # DC stage
       else
-         check_cell_content('editor', 1, 10, true) # DC stage
+         check_cell_content('editor', 1, 11, true) # DC stage
       end
       if hash['EDUse'] == 'false'
-         check_cell_content('editor', 1, 11, false) # ED Use
+         check_cell_content('editor', 1, 12, false) # ED Use
       else
-         check_cell_content('editor', 1, 11, true) # ED Use
+         check_cell_content('editor', 1, 12, true) # ED Use
       end
       if hash['SDTMStage'] == 'false'
-         check_cell_content('editor', 1, 12, false) # SDTM stage
+         check_cell_content('editor', 1, 13, false) # SDTM stage
       else
-         check_cell_content('editor', 1, 12, true) # SDTM stage
+         check_cell_content('editor', 1, 13, true) # SDTM stage
       end
     end
     wait_for_ajax(20)
@@ -356,22 +364,23 @@ Then('I see the following attributes for {string} of 2019 Release 1:') do |strin
       check_cell_content('children', 1, 5, "#{hash['Definition']}")
       check_cell_content('children', 1, 6, "#{hash['Tags']}")
       check_cell_content('children', 1, 7, "#{hash['CRFDisplayValue']}")# CRF Display Value
-      check_cell_content('children', 1, 8, "#{hash['SynonymSponsor']}") # Sponsor synonym
+      check_cell_content('children', 1, 8, "#{hash['DisplayOrder']}")
+      check_cell_content('children', 1, 9, "#{hash['SynonymSponsor']}") # Sponsor synonym
       
       if hash['ADaMStage'] == 'false'  # Adam stage
-         check_cell_content('children', 1, 9, false)  # Adam stage
+         check_cell_content('children', 1, 10, false)  # Adam stage
       else 
-         check_cell_content('children', 1, 9, true)
+         check_cell_content('children', 1, 10, true)
       end
       if hash['DCStage'] == 'false'
-         check_cell_content('children', 1, 10, false) # DC stage
+         check_cell_content('children', 1, 11, false) # DC stage
       else
-         check_cell_content('children', 1, 10, true) # DC stage
+         check_cell_content('children', 1, 11, true) # DC stage
       end
       if hash['SDTMStage'] == 'false'
-         check_cell_content('children', 1, 12, false) # SDTM stage
+         check_cell_content('children', 1, 13, false) # SDTM stage
       else
-         check_cell_content('children', 1, 12, true) # SDTM stage
+         check_cell_content('children', 1, 13, true) # SDTM stage
       end
     else
       check_cell_content('children', 1, 1, "#{hash['Identifier']}")
@@ -381,22 +390,23 @@ Then('I see the following attributes for {string} of 2019 Release 1:') do |strin
       check_cell_content('children', 1, 5, "#{hash['Definition']}")
       check_cell_content('children', 1, 6, "#{hash['Tags']}")
       check_cell_content('children', 1, 7, "#{hash['CRFDisplayValue']}") # CRF Display Value
-      check_cell_content('children', 1, 8, "#{hash['SynonymSponsor']}") # Sponsor synonym
+      check_cell_content('children', 1, 8, "#{hash['DisplayOrder']}")
+      check_cell_content('children', 1, 9, "#{hash['SynonymSponsor']}") # Sponsor synonym
       
       if hash['ADaMStage'] == 'false'  # Adam stage
-         check_cell_content('children', 1, 9, false)  # Adam stage
+         check_cell_content('children', 1, 10, false)  # Adam stage
       else 
-         check_cell_content('children', 1, 9, true)
+         check_cell_content('children', 1, 10, true)
       end
       if hash['DCStage'] == 'false'
-         check_cell_content('children', 1, 10, false) # DC stage
+         check_cell_content('children', 1, 11, false) # DC stage
       else
-         check_cell_content('children', 1, 10, true) # DC stage
+         check_cell_content('children', 1, 11, true) # DC stage
       end
       if hash['SDTMStage'] == 'false'
-         check_cell_content('children', 1, 11, false) # SDTM stage
+         check_cell_content('children', 1, 12, false) # SDTM stage
       else
-         check_cell_content('children', 1, 11, true) # SDTM stage
+         check_cell_content('children', 1, 12, true) # SDTM stage
       end
     end
   end
