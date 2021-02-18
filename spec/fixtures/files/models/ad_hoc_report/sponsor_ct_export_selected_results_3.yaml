@@ -12,7 +12,7 @@ ACN:
   - U; Unknown
   - U; Unknown
   - ''
-  - ''
+  - text
   - Unknown
   - '6'
   - '6'
@@ -32,7 +32,7 @@ ACN:
   - NA; Not Applicable
   - NA; Not Applicable
   - ''
-  - ''
+  - text
   - Not Applicable
   - '7'
   - '7'
@@ -52,7 +52,7 @@ ACN:
   - ''
   - ''
   - ''
-  - ''
+  - text
   - Drug Interrupted
   - '3'
   - '3'
@@ -72,7 +72,7 @@ ACN:
   - ''
   - ''
   - ''
-  - ''
+  - text
   - Drug Withdrawn
   - '4'
   - '4'
@@ -92,7 +92,7 @@ ACN:
   - ''
   - ''
   - ''
-  - ''
+  - text
   - Dose Increased
   - '5'
   - '5'
@@ -112,7 +112,7 @@ ACN:
   - ''
   - ''
   - ''
-  - ''
+  - text
   - Dose Not Changed
   - '1'
   - '1'
@@ -132,7 +132,7 @@ ACN:
   - ''
   - ''
   - ''
-  - ''
+  - text
   - Dose Reduced
   - '2'
   - '2'
@@ -152,7 +152,7 @@ ACN:
   - Many; Several
   - Many; Several
   - ''
-  - ''
+  - text
   - ''
   - ''
   - '8'
@@ -172,7 +172,7 @@ AERELA:
   - Many; Several
   - Many; Several
   - ''
-  - ''
+  - text
   - ''
   - ''
   - '5'
@@ -191,7 +191,7 @@ AERELA:
   - ''
   - ''
   - ''
-  - ''
+  - text
   - Not Related
   - '1'
   - '1'
@@ -210,7 +210,7 @@ AERELA:
   - ''
   - ''
   - ''
-  - ''
+  - text
   - Possibly Related
   - '3'
   - '3'
@@ -229,7 +229,7 @@ AERELA:
   - ''
   - ''
   - ''
-  - ''
+  - text
   - Related
   - '4'
   - '4'
@@ -248,7 +248,7 @@ AERELA:
   - ''
   - ''
   - ''
-  - ''
+  - text
   - Unlikely Related
   - '2'
   - '2'
@@ -269,7 +269,7 @@ AERELDEV_01:
   - ''
   - A characteristic used to qualify the adverse event as clearly not related to the
     study treatment.
-  - ''
+  - text
   - Not Related
   - '2'
   - '1'
@@ -288,7 +288,7 @@ AERELDEV_01:
   - ''
   - ''
   - A characteristic used to qualify the adverse event as related to the study treatment.
-  - ''
+  - text
   - Related
   - '1'
   - '2'
@@ -308,7 +308,7 @@ AGEGRPE:
   - ''
   - ''
   - ''
-  - ''
+  - text
   - ''
   - ''
   - '6'
@@ -327,7 +327,7 @@ AGEGRPE:
   - ''
   - ''
   - ''
-  - ''
+  - text
   - ''
   - ''
   - '5'
@@ -346,7 +346,7 @@ AGEGRPE:
   - ''
   - ''
   - ''
-  - ''
+  - text
   - ''
   - ''
   - '7'
@@ -365,7 +365,7 @@ AGEGRPE:
   - ''
   - ''
   - ''
-  - ''
+  - text
   - ''
   - ''
   - '8'
@@ -384,7 +384,7 @@ AGEGRPE:
   - ''
   - ''
   - ''
-  - ''
+  - text
   - ''
   - ''
   - '1'
@@ -403,7 +403,7 @@ AGEGRPE:
   - ''
   - ''
   - ''
-  - ''
+  - text
   - ''
   - ''
   - '4'
@@ -422,7 +422,7 @@ AGEGRPE:
   - ''
   - ''
   - ''
-  - ''
+  - text
   - ''
   - ''
   - '3'
@@ -441,7 +441,7 @@ AGEGRPE:
   - ''
   - ''
   - ''
-  - ''
+  - text
   - ''
   - ''
   - '2'
@@ -460,7 +460,7 @@ AGEGRPE:
   - ''
   - ''
   - ''
-  - ''
+  - text
   - ''
   - ''
   - '9'
@@ -480,7 +480,7 @@ AGEGRPPN:
   - ''
   - ''
   - ''
-  - ''
+  - integer
   - ''
   - ''
   - '2'
@@ -499,7 +499,7 @@ AGEGRPPN:
   - ''
   - ''
   - ''
-  - ''
+  - integer
   - ''
   - ''
   - '3'
@@ -518,7 +518,7 @@ AGEGRPPN:
   - ''
   - ''
   - ''
-  - ''
+  - integer
   - ''
   - ''
   - '1'
@@ -537,7 +537,7 @@ AGEGRPPN:
   - ''
   - ''
   - ''
-  - ''
+  - integer
   - ''
   - ''
   - '4'
@@ -556,7 +556,7 @@ AGEGRPPN:
   - ''
   - ''
   - ''
-  - ''
+  - integer
   - ''
   - ''
   - '5'
@@ -577,7 +577,7 @@ NORMEDN:
   - ''
   - ''
   - ''
-  - ''
+  - integer
   - ''
   - ''
   - '1'
@@ -597,7 +597,7 @@ NORMEDN:
   - ''
   - ''
   - ''
-  - ''
+  - integer
   - ''
   - ''
   - '4'
@@ -617,7 +617,7 @@ NORMEDN:
   - ''
   - ''
   - ''
-  - ''
+  - integer
   - ''
   - ''
   - '5'
@@ -637,7 +637,7 @@ NORMEDN:
   - ''
   - ''
   - ''
-  - ''
+  - integer
   - ''
   - ''
   - '3'
@@ -657,7 +657,7 @@ NORMEDN:
   - ''
   - ''
   - ''
-  - ''
+  - integer
   - ''
   - ''
   - '2'
@@ -678,7 +678,7 @@ SEVRS:
   - '3'
   - '3'
   - ''
-  - ''
+  - text
   - Major
   - '4'
   - '4'
@@ -698,7 +698,7 @@ SEVRS:
   - 1; Low
   - 1; Low
   - ''
-  - ''
+  - text
   - Minor
   - '2'
   - '2'
@@ -718,7 +718,7 @@ SEVRS:
   - U; UNK; Unknown
   - U; UNK; Unknown
   - ''
-  - ''
+  - text
   - Unknown
   - '6'
   - '6'
@@ -738,7 +738,7 @@ SEVRS:
   - ''
   - ''
   - ''
-  - ''
+  - text
   - Moderate
   - '3'
   - '3'
@@ -758,7 +758,7 @@ SEVRS:
   - ''
   - ''
   - ''
-  - ''
+  - text
   - Mild
   - '1'
   - '1'
@@ -778,7 +778,7 @@ SEVRS:
   - ''
   - ''
   - ''
-  - ''
+  - text
   - Severe
   - '5'
   - '5'
@@ -798,7 +798,7 @@ SHIFT2N:
   - ''
   - ''
   - ''
-  - ''
+  - integer
   - ''
   - ''
   - '1'
@@ -817,7 +817,7 @@ SHIFT2N:
   - ''
   - ''
   - ''
-  - ''
+  - integer
   - ''
   - ''
   - '2'
@@ -842,7 +842,7 @@ TOXGR_01:
     symptoms; or is of marginal clinical relevance; or consists of clinical or diagnostic
     observations alone; or for which intervention is not indicated; or for which only
     non-prescription intervention is indicated."
-  - ''
+  - integer
   - Grade 1
   - '1'
   - '1'
@@ -866,7 +866,7 @@ TOXGR_01:
     intervention (e.g. packing, cautery) is indicated; or that limits instrumental
     activities of daily living (ADLs, e.g., shopping, laundry, transportation, or
     ability to conduct finances)."
-  - ''
+  - integer
   - Grade 2
   - '2'
   - '2'
@@ -895,7 +895,7 @@ TOXGR_01:
     or limitation of self care activities of daily living (ADLs, e.g., getting in
     and out of bed, dressing, eating, getting around inside, bathing, or using the
     toilet)."
-  - ''
+  - integer
   - Grade 3
   - '3'
   - '3'
@@ -919,7 +919,7 @@ TOXGR_01:
     which urgent intervention is indicated; that puts the patient at risk of death
     at the time of the event if immediate intervention is not undertaken; or that
     causes blindness or deafness."
-  - ''
+  - integer
   - Grade 4
   - '4'
   - '4'
@@ -940,7 +940,7 @@ TOXGR_01:
   - Death Related to Adverse Event
   - Death Related to Adverse Event
   - "(Synonym 1 NCI) The termination of life as a result of an adverse event. (NCI)"
-  - ''
+  - integer
   - Grade 5
   - '5'
   - '5'
@@ -964,7 +964,7 @@ TOXGRN:
   - ''
   - ''
   - ''
-  - ''
+  - text
   - ''
   - '1'
   - '1'
@@ -987,7 +987,7 @@ TOXGRN:
   - ''
   - ''
   - ''
-  - ''
+  - integer
   - ''
   - '2'
   - '2'
@@ -1010,7 +1010,7 @@ TOXGRN:
   - ''
   - ''
   - ''
-  - ''
+  - integer
   - ''
   - '3'
   - '3'
@@ -1033,7 +1033,7 @@ TOXGRN:
   - ''
   - ''
   - ''
-  - ''
+  - integer
   - ''
   - '4'
   - '4'
@@ -1056,7 +1056,7 @@ TOXGRN:
   - ''
   - ''
   - ''
-  - ''
+  - integer
   - ''
   - '5'
   - '5'
@@ -1079,11 +1079,1368 @@ TOXGRN:
   - ''
   - ''
   - ''
-  - ''
+  - integer
   - ''
   - '6'
   - '6'
   - 'false'
   - 'false'
   - 'true'
+  - ''
+LBPARMN:
+- - Laboratory Parameter Numeric
+  - LBPARMN
+  - 'true'
+  - Numeric representing analysis parameter name given to the parameter that analyzes
+    laboratory tests in standard units including Albumin, Creatine Kinase, Glucose,
+    etc.
+  - SN000938
+  - S008915
+  - '24009'
+  - Direct Bilirubin and Total Bilirubin PCSA
+  - ''
+  - ''
+  - ''
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - ''
+- - Laboratory Parameter Numeric
+  - LBPARMN
+  - 'true'
+  - Numeric representing analysis parameter name given to the parameter that analyzes
+    laboratory tests in standard units including Albumin, Creatine Kinase, Glucose,
+    etc.
+  - SN000938
+  - S008916
+  - '24008'
+  - ALT and Total Bilirubin PCSA
+  - ''
+  - ''
+  - ''
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - ''
+- - Laboratory Parameter Numeric
+  - LBPARMN
+  - 'true'
+  - Numeric representing analysis parameter name given to the parameter that analyzes
+    laboratory tests in standard units including Albumin, Creatine Kinase, Glucose,
+    etc.
+  - SN000938
+  - S008917
+  - '23007'
+  - Urate (umol/L)
+  - ''
+  - ''
+  - ''
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - ''
+- - Laboratory Parameter Numeric
+  - LBPARMN
+  - 'true'
+  - Numeric representing analysis parameter name given to the parameter that analyzes
+    laboratory tests in standard units including Albumin, Creatine Kinase, Glucose,
+    etc.
+  - SN000938
+  - S008919
+  - '21006'
+  - Triglycerides (mmol/L)
+  - ''
+  - ''
+  - ''
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - ''
+- - Laboratory Parameter Numeric
+  - LBPARMN
+  - 'true'
+  - Numeric representing analysis parameter name given to the parameter that analyzes
+    laboratory tests in standard units including Albumin, Creatine Kinase, Glucose,
+    etc.
+  - SN000938
+  - S008921
+  - '22001'
+  - Sodium (mmol/L)
+  - ''
+  - ''
+  - ''
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - ''
+- - Laboratory Parameter Numeric
+  - LBPARMN
+  - 'true'
+  - Numeric representing analysis parameter name given to the parameter that analyzes
+    laboratory tests in standard units including Albumin, Creatine Kinase, Glucose,
+    etc.
+  - SN000938
+  - S008923
+  - '22002'
+  - Potassium (mmol/L)
+  - ''
+  - ''
+  - ''
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - ''
+- - Laboratory Parameter Numeric
+  - LBPARMN
+  - 'true'
+  - Numeric representing analysis parameter name given to the parameter that analyzes
+    laboratory tests in standard units including Albumin, Creatine Kinase, Glucose,
+    etc.
+  - SN000938
+  - S008925
+  - '11007'
+  - Platelets (10^9/L)
+  - ''
+  - ''
+  - ''
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - ''
+- - Laboratory Parameter Numeric
+  - LBPARMN
+  - 'true'
+  - Numeric representing analysis parameter name given to the parameter that analyzes
+    laboratory tests in standard units including Albumin, Creatine Kinase, Glucose,
+    etc.
+  - SN000938
+  - S008927
+  - '31001'
+  - pH
+  - ''
+  - ''
+  - ''
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - ''
+- - Laboratory Parameter Numeric
+  - LBPARMN
+  - 'true'
+  - Numeric representing analysis parameter name given to the parameter that analyzes
+    laboratory tests in standard units including Albumin, Creatine Kinase, Glucose,
+    etc.
+  - SN000938
+  - S008928
+  - '12002'
+  - Neutrophils (10^9/L)
+  - ''
+  - ''
+  - ''
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - ''
+- - Laboratory Parameter Numeric
+  - LBPARMN
+  - 'true'
+  - Numeric representing analysis parameter name given to the parameter that analyzes
+    laboratory tests in standard units including Albumin, Creatine Kinase, Glucose,
+    etc.
+  - SN000938
+  - S008930
+  - '12004'
+  - Monocytes (10^9/L)
+  - ''
+  - ''
+  - ''
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - ''
+- - Laboratory Parameter Numeric
+  - LBPARMN
+  - 'true'
+  - Numeric representing analysis parameter name given to the parameter that analyzes
+    laboratory tests in standard units including Albumin, Creatine Kinase, Glucose,
+    etc.
+  - SN000938
+  - S008932
+  - '12003'
+  - Lymphocytes (10^9/L)
+  - ''
+  - ''
+  - ''
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - ''
+- - Laboratory Parameter Numeric
+  - LBPARMN
+  - 'true'
+  - Numeric representing analysis parameter name given to the parameter that analyzes
+    laboratory tests in standard units including Albumin, Creatine Kinase, Glucose,
+    etc.
+  - SN000938
+  - S008934
+  - '21010'
+  - Lipase (IU/L)
+  - ''
+  - ''
+  - ''
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - ''
+- - Laboratory Parameter Numeric
+  - LBPARMN
+  - 'true'
+  - Numeric representing analysis parameter name given to the parameter that analyzes
+    laboratory tests in standard units including Albumin, Creatine Kinase, Glucose,
+    etc.
+  - SN000938
+  - S008936
+  - '12001'
+  - Leukocytes (WBC) (10^9/L)
+  - ''
+  - ''
+  - ''
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - ''
+- - Laboratory Parameter Numeric
+  - LBPARMN
+  - 'true'
+  - Numeric representing analysis parameter name given to the parameter that analyzes
+    laboratory tests in standard units including Albumin, Creatine Kinase, Glucose,
+    etc.
+  - SN000938
+  - S008938
+  - '22006'
+  - Calcium, Ionized (mmol/L)
+  - ''
+  - ''
+  - ''
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - ''
+- - Laboratory Parameter Numeric
+  - LBPARMN
+  - 'true'
+  - Numeric representing analysis parameter name given to the parameter that analyzes
+    laboratory tests in standard units including Albumin, Creatine Kinase, Glucose,
+    etc.
+  - SN000938
+  - S008940
+  - '21013'
+  - High Sensitivity C Reactive Protein (mg/L)
+  - ''
+  - ''
+  - ''
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - ''
+- - Laboratory Parameter Numeric
+  - LBPARMN
+  - 'true'
+  - Numeric representing analysis parameter name given to the parameter that analyzes
+    laboratory tests in standard units including Albumin, Creatine Kinase, Glucose,
+    etc.
+  - SN000938
+  - S008941
+  - '11001'
+  - Hemoglobin (g/L)
+  - ''
+  - ''
+  - ''
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - ''
+- - Laboratory Parameter Numeric
+  - LBPARMN
+  - 'true'
+  - Numeric representing analysis parameter name given to the parameter that analyzes
+    laboratory tests in standard units including Albumin, Creatine Kinase, Glucose,
+    etc.
+  - SN000938
+  - S008943
+  - '21002'
+  - Hemoglobin A1C (%)
+  - ''
+  - ''
+  - ''
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - ''
+- - Laboratory Parameter Numeric
+  - LBPARMN
+  - 'true'
+  - Numeric representing analysis parameter name given to the parameter that analyzes
+    laboratory tests in standard units including Albumin, Creatine Kinase, Glucose,
+    etc.
+  - SN000938
+  - S008944
+  - '11002'
+  - Hematocrit (v/v)
+  - ''
+  - ''
+  - ''
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - ''
+- - Laboratory Parameter Numeric
+  - LBPARMN
+  - 'true'
+  - Numeric representing analysis parameter name given to the parameter that analyzes
+    laboratory tests in standard units including Albumin, Creatine Kinase, Glucose,
+    etc.
+  - SN000938
+  - S008946
+  - '21001'
+  - Glucose (mmol/L)
+  - ''
+  - ''
+  - ''
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - ''
+- - Laboratory Parameter Numeric
+  - LBPARMN
+  - 'true'
+  - Numeric representing analysis parameter name given to the parameter that analyzes
+    laboratory tests in standard units including Albumin, Creatine Kinase, Glucose,
+    etc.
+  - SN000938
+  - S008948
+  - '23003'
+  - GFR from Creatinine Adjusted for BSA (mL/min/1.73m2) (MDRD Equation)
+  - ''
+  - ''
+  - ''
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - ''
+- - Laboratory Parameter Numeric
+  - LBPARMN
+  - 'true'
+  - Numeric representing analysis parameter name given to the parameter that analyzes
+    laboratory tests in standard units including Albumin, Creatine Kinase, Glucose,
+    etc.
+  - SN000938
+  - S008949
+  - '23004'
+  - GFR from Creatinine Adjusted for BSA (mL/min/1.73m2) (Bedside Schwartz Formula)
+  - ''
+  - ''
+  - ''
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - ''
+- - Laboratory Parameter Numeric
+  - LBPARMN
+  - 'true'
+  - Numeric representing analysis parameter name given to the parameter that analyzes
+    laboratory tests in standard units including Albumin, Creatine Kinase, Glucose,
+    etc.
+  - SN000938
+  - S008950
+  - '11006'
+  - Erythrocytes (RBC) (10^12/L)
+  - ''
+  - ''
+  - ''
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - ''
+- - Laboratory Parameter Numeric
+  - LBPARMN
+  - 'true'
+  - Numeric representing analysis parameter name given to the parameter that analyzes
+    laboratory tests in standard units including Albumin, Creatine Kinase, Glucose,
+    etc.
+  - SN000938
+  - S008952
+  - '12006'
+  - Eosinophils (10^9/L)
+  - ''
+  - ''
+  - ''
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - ''
+- - Laboratory Parameter Numeric
+  - LBPARMN
+  - 'true'
+  - Numeric representing analysis parameter name given to the parameter that analyzes
+    laboratory tests in standard units including Albumin, Creatine Kinase, Glucose,
+    etc.
+  - SN000938
+  - S008954
+  - '23001'
+  - Creatinine (umol/L)
+  - ''
+  - ''
+  - ''
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - ''
+- - Laboratory Parameter Numeric
+  - LBPARMN
+  - 'true'
+  - Numeric representing analysis parameter name given to the parameter that analyzes
+    laboratory tests in standard units including Albumin, Creatine Kinase, Glucose,
+    etc.
+  - SN000938
+  - S008956
+  - '23002'
+  - Creatinine Clearance (mL/min) (Cokcroft-Gault Equation)
+  - ''
+  - ''
+  - ''
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - ''
+- - Laboratory Parameter Numeric
+  - LBPARMN
+  - 'true'
+  - Numeric representing analysis parameter name given to the parameter that analyzes
+    laboratory tests in standard units including Albumin, Creatine Kinase, Glucose,
+    etc.
+  - SN000938
+  - S008957
+  - '21009'
+  - Creatine Kinase (CK) (IU/L)
+  - ''
+  - ''
+  - ''
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - ''
+- - Laboratory Parameter Numeric
+  - LBPARMN
+  - 'true'
+  - Numeric representing analysis parameter name given to the parameter that analyzes
+    laboratory tests in standard units including Albumin, Creatine Kinase, Glucose,
+    etc.
+  - SN000938
+  - S008959
+  - '21003'
+  - Cholesterol (mmol/L)
+  - ''
+  - ''
+  - ''
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - ''
+- - Laboratory Parameter Numeric
+  - LBPARMN
+  - 'true'
+  - Numeric representing analysis parameter name given to the parameter that analyzes
+    laboratory tests in standard units including Albumin, Creatine Kinase, Glucose,
+    etc.
+  - SN000938
+  - S008961
+  - '22003'
+  - Chloride (mmol/L)
+  - ''
+  - ''
+  - ''
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - ''
+- - Laboratory Parameter Numeric
+  - LBPARMN
+  - 'true'
+  - Numeric representing analysis parameter name given to the parameter that analyzes
+    laboratory tests in standard units including Albumin, Creatine Kinase, Glucose,
+    etc.
+  - SN000938
+  - S008963
+  - '22005'
+  - Calcium (mmol/L)
+  - ''
+  - ''
+  - ''
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - ''
+- - Laboratory Parameter Numeric
+  - LBPARMN
+  - 'true'
+  - Numeric representing analysis parameter name given to the parameter that analyzes
+    laboratory tests in standard units including Albumin, Creatine Kinase, Glucose,
+    etc.
+  - SN000938
+  - S008965
+  - '21012'
+  - C Reactive Protein (mg/L)
+  - ''
+  - ''
+  - ''
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - ''
+- - Laboratory Parameter Numeric
+  - LBPARMN
+  - 'true'
+  - Numeric representing analysis parameter name given to the parameter that analyzes
+    laboratory tests in standard units including Albumin, Creatine Kinase, Glucose,
+    etc.
+  - SN000938
+  - S008969
+  - '24005'
+  - Total Bilirubin (umol/L)
+  - ''
+  - ''
+  - ''
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - ''
+- - Laboratory Parameter Numeric
+  - LBPARMN
+  - 'true'
+  - Numeric representing analysis parameter name given to the parameter that analyzes
+    laboratory tests in standard units including Albumin, Creatine Kinase, Glucose,
+    etc.
+  - SN000938
+  - S008971
+  - '22004'
+  - Bicarbonate (mmol/L)
+  - ''
+  - ''
+  - ''
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - ''
+- - Laboratory Parameter Numeric
+  - LBPARMN
+  - 'true'
+  - Numeric representing analysis parameter name given to the parameter that analyzes
+    laboratory tests in standard units including Albumin, Creatine Kinase, Glucose,
+    etc.
+  - SN000938
+  - S008973
+  - '12005'
+  - Basophils (10^9/L)
+  - ''
+  - ''
+  - ''
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - ''
+- - Laboratory Parameter Numeric
+  - LBPARMN
+  - 'true'
+  - Numeric representing analysis parameter name given to the parameter that analyzes
+    laboratory tests in standard units including Albumin, Creatine Kinase, Glucose,
+    etc.
+  - SN000938
+  - S008975
+  - '24002'
+  - Aspartate Aminotransferase (AST) (IU/L)
+  - ''
+  - ''
+  - ''
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - ''
+- - Laboratory Parameter Numeric
+  - LBPARMN
+  - 'true'
+  - Numeric representing analysis parameter name given to the parameter that analyzes
+    laboratory tests in standard units including Albumin, Creatine Kinase, Glucose,
+    etc.
+  - SN000938
+  - S008977
+  - '21011'
+  - Amylase (IU/L)
+  - ''
+  - ''
+  - ''
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - ''
+- - Laboratory Parameter Numeric
+  - LBPARMN
+  - 'true'
+  - Numeric representing analysis parameter name given to the parameter that analyzes
+    laboratory tests in standard units including Albumin, Creatine Kinase, Glucose,
+    etc.
+  - SN000938
+  - S008979
+  - '24003'
+  - Alkaline Phosphatase (IU/L)
+  - ''
+  - ''
+  - ''
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - ''
+- - Laboratory Parameter Numeric
+  - LBPARMN
+  - 'true'
+  - Numeric representing analysis parameter name given to the parameter that analyzes
+    laboratory tests in standard units including Albumin, Creatine Kinase, Glucose,
+    etc.
+  - SN000938
+  - S008981
+  - '21008'
+  - Albumin (g/L)
+  - ''
+  - ''
+  - ''
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - ''
+- - Laboratory Parameter Numeric
+  - LBPARMN
+  - 'true'
+  - Numeric representing analysis parameter name given to the parameter that analyzes
+    laboratory tests in standard units including Albumin, Creatine Kinase, Glucose,
+    etc.
+  - SN000938
+  - S008983
+  - '24001'
+  - Alanine Aminotransferase (ALT) (IU/L)
+  - ''
+  - ''
+  - ''
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - ''
+- - Laboratory Parameter Numeric
+  - LBPARMN
+  - 'true'
+  - Numeric representing analysis parameter name given to the parameter that analyzes
+    laboratory tests in standard units including Albumin, Creatine Kinase, Glucose,
+    etc.
+  - SN000938
+  - S008985
+  - '21004'
+  - HDL Cholesterol (mmol/L)
+  - ''
+  - ''
+  - ''
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - ''
+- - Laboratory Parameter Numeric
+  - LBPARMN
+  - 'true'
+  - Numeric representing analysis parameter name given to the parameter that analyzes
+    laboratory tests in standard units including Albumin, Creatine Kinase, Glucose,
+    etc.
+  - SN000938
+  - S008987
+  - '21014'
+  - Creatine Kinase (CK) ULN Ratio
+  - ''
+  - ''
+  - ''
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - ''
+- - Laboratory Parameter Numeric
+  - LBPARMN
+  - 'true'
+  - Numeric representing analysis parameter name given to the parameter that analyzes
+    laboratory tests in standard units including Albumin, Creatine Kinase, Glucose,
+    etc.
+  - SN000938
+  - S008988
+  - '21015'
+  - C Reactive Protein ULN Ratio
+  - ''
+  - ''
+  - ''
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - ''
+- - Laboratory Parameter Numeric
+  - LBPARMN
+  - 'true'
+  - Numeric representing analysis parameter name given to the parameter that analyzes
+    laboratory tests in standard units including Albumin, Creatine Kinase, Glucose,
+    etc.
+  - SN000938
+  - S008989
+  - '24013'
+  - Total Bilirubin ULN Ratio
+  - ''
+  - ''
+  - ''
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - ''
+- - Laboratory Parameter Numeric
+  - LBPARMN
+  - 'true'
+  - Numeric representing analysis parameter name given to the parameter that analyzes
+    laboratory tests in standard units including Albumin, Creatine Kinase, Glucose,
+    etc.
+  - SN000938
+  - S008990
+  - '24011'
+  - Aspartate Aminotransferase (AST) ULN Ratio
+  - ''
+  - ''
+  - ''
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - ''
+- - Laboratory Parameter Numeric
+  - LBPARMN
+  - 'true'
+  - Numeric representing analysis parameter name given to the parameter that analyzes
+    laboratory tests in standard units including Albumin, Creatine Kinase, Glucose,
+    etc.
+  - SN000938
+  - S008991
+  - '24012'
+  - Alkaline Phosphatase ULN Ratio
+  - ''
+  - ''
+  - ''
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - ''
+- - Laboratory Parameter Numeric
+  - LBPARMN
+  - 'true'
+  - Numeric representing analysis parameter name given to the parameter that analyzes
+    laboratory tests in standard units including Albumin, Creatine Kinase, Glucose,
+    etc.
+  - SN000938
+  - S008992
+  - '24010'
+  - Alanine Aminotransferase (ALT) ULN Ratio
+  - ''
+  - ''
+  - ''
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - ''
+- - Laboratory Parameter Numeric
+  - LBPARMN
+  - 'true'
+  - Numeric representing analysis parameter name given to the parameter that analyzes
+    laboratory tests in standard units including Albumin, Creatine Kinase, Glucose,
+    etc.
+  - SN000938
+  - S008993
+  - '11003'
+  - Ery. Mean Corpuscular Volume (fL)
+  - ''
+  - ''
+  - ''
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - ''
+- - Laboratory Parameter Numeric
+  - LBPARMN
+  - 'true'
+  - Numeric representing analysis parameter name given to the parameter that analyzes
+    laboratory tests in standard units including Albumin, Creatine Kinase, Glucose,
+    etc.
+  - SN000938
+  - S008994
+  - '11004'
+  - Ery. Mean Corpuscular HGB Concentration (g/L)
+  - ''
+  - ''
+  - ''
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - ''
+- - Laboratory Parameter Numeric
+  - LBPARMN
+  - 'true'
+  - Numeric representing analysis parameter name given to the parameter that analyzes
+    laboratory tests in standard units including Albumin, Creatine Kinase, Glucose,
+    etc.
+  - SN000938
+  - S008996
+  - '11005'
+  - Ery. Mean Corpuscular Hemoglobin (pg)
+  - ''
+  - ''
+  - ''
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - ''
+- - Laboratory Parameter Numeric
+  - LBPARMN
+  - 'true'
+  - Numeric representing analysis parameter name given to the parameter that analyzes
+    laboratory tests in standard units including Albumin, Creatine Kinase, Glucose,
+    etc.
+  - SN000938
+  - S008998
+  - '11008'
+  - Prothrombin Time (sec)
+  - ''
+  - ''
+  - ''
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - ''
+- - Laboratory Parameter Numeric
+  - LBPARMN
+  - 'true'
+  - Numeric representing analysis parameter name given to the parameter that analyzes
+    laboratory tests in standard units including Albumin, Creatine Kinase, Glucose,
+    etc.
+  - SN000938
+  - S008999
+  - '11009'
+  - Activated Partial Thromboplastin Time (sec)
+  - ''
+  - ''
+  - ''
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - ''
+- - Laboratory Parameter Numeric
+  - LBPARMN
+  - 'true'
+  - Numeric representing analysis parameter name given to the parameter that analyzes
+    laboratory tests in standard units including Albumin, Creatine Kinase, Glucose,
+    etc.
+  - SN000938
+  - S009000
+  - '11010'
+  - Erythrocyte Sedimentation Rate (mm/h)
+  - ''
+  - ''
+  - ''
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - ''
+- - Laboratory Parameter Numeric
+  - LBPARMN
+  - 'true'
+  - Numeric representing analysis parameter name given to the parameter that analyzes
+    laboratory tests in standard units including Albumin, Creatine Kinase, Glucose,
+    etc.
+  - SN000938
+  - S009001
+  - '21005'
+  - LDL Cholesterol (mmol/L)
+  - ''
+  - ''
+  - ''
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - ''
+- - Laboratory Parameter Numeric
+  - LBPARMN
+  - 'true'
+  - Numeric representing analysis parameter name given to the parameter that analyzes
+    laboratory tests in standard units including Albumin, Creatine Kinase, Glucose,
+    etc.
+  - SN000938
+  - S009003
+  - '21007'
+  - Protein (g/L)
+  - ''
+  - ''
+  - ''
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - ''
+- - Laboratory Parameter Numeric
+  - LBPARMN
+  - 'true'
+  - Numeric representing analysis parameter name given to the parameter that analyzes
+    laboratory tests in standard units including Albumin, Creatine Kinase, Glucose,
+    etc.
+  - SN000938
+  - S009005
+  - '22007'
+  - Phosphate (mmol/L)
+  - ''
+  - ''
+  - ''
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - ''
+- - Laboratory Parameter Numeric
+  - LBPARMN
+  - 'true'
+  - Numeric representing analysis parameter name given to the parameter that analyzes
+    laboratory tests in standard units including Albumin, Creatine Kinase, Glucose,
+    etc.
+  - SN000938
+  - S009007
+  - '22008'
+  - Magnesium (mmol/L)
+  - ''
+  - ''
+  - ''
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - ''
+- - Laboratory Parameter Numeric
+  - LBPARMN
+  - 'true'
+  - Numeric representing analysis parameter name given to the parameter that analyzes
+    laboratory tests in standard units including Albumin, Creatine Kinase, Glucose,
+    etc.
+  - SN000938
+  - S009009
+  - '23006'
+  - Urea (mmol/L)
+  - ''
+  - ''
+  - ''
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - ''
+- - Laboratory Parameter Numeric
+  - LBPARMN
+  - 'true'
+  - Numeric representing analysis parameter name given to the parameter that analyzes
+    laboratory tests in standard units including Albumin, Creatine Kinase, Glucose,
+    etc.
+  - SN000938
+  - S009011
+  - '24004'
+  - Lactate Dehydrogenase (IU/L)
+  - ''
+  - ''
+  - ''
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - ''
+- - Laboratory Parameter Numeric
+  - LBPARMN
+  - 'true'
+  - Numeric representing analysis parameter name given to the parameter that analyzes
+    laboratory tests in standard units including Albumin, Creatine Kinase, Glucose,
+    etc.
+  - SN000938
+  - S009013
+  - '24006'
+  - Direct Bilirubin (umol/L)
+  - ''
+  - ''
+  - ''
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - ''
+- - Laboratory Parameter Numeric
+  - LBPARMN
+  - 'true'
+  - Numeric representing analysis parameter name given to the parameter that analyzes
+    laboratory tests in standard units including Albumin, Creatine Kinase, Glucose,
+    etc.
+  - SN000938
+  - S009015
+  - '24007'
+  - Direct Bilirubin/Total Bilirubin Ratio
+  - ''
+  - ''
+  - ''
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - ''
+- - Laboratory Parameter Numeric
+  - LBPARMN
+  - 'true'
+  - Numeric representing analysis parameter name given to the parameter that analyzes
+    laboratory tests in standard units including Albumin, Creatine Kinase, Glucose,
+    etc.
+  - SN000938
+  - S013405
+  - '23005'
+  - Urea Nitrogen (mmol/L)
+  - ''
+  - ''
+  - ''
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - ''
+POEM9R:
+- - Patient-Oriented Eczema Measure Questionnaire Test Results
+  - POEM9R
+  - 'false'
+  - Patient-Oriented Eczema Measure Questionnaire results.
+  - SN000924
+  - S008577
+  - '0'
+  - No days
+  - ''
+  - ''
+  - ''
+  - integer
+  - No days
+  - '1'
+  - ''
+  - 'false'
+  - 'false'
+  - 'false'
+  - ''
+- - Patient-Oriented Eczema Measure Questionnaire Test Results
+  - POEM9R
+  - 'false'
+  - Patient-Oriented Eczema Measure Questionnaire results.
+  - SN000924
+  - S008578
+  - '1'
+  - 1-2 days
+  - ''
+  - ''
+  - ''
+  - integer
+  - 1-2 days
+  - '2'
+  - ''
+  - 'false'
+  - 'false'
+  - 'false'
+  - ''
+- - Patient-Oriented Eczema Measure Questionnaire Test Results
+  - POEM9R
+  - 'false'
+  - Patient-Oriented Eczema Measure Questionnaire results.
+  - SN000924
+  - S008579
+  - '2'
+  - 3-4 days
+  - ''
+  - ''
+  - ''
+  - integer
+  - 3-4 days
+  - '3'
+  - ''
+  - 'false'
+  - 'false'
+  - 'false'
+  - ''
+- - Patient-Oriented Eczema Measure Questionnaire Test Results
+  - POEM9R
+  - 'false'
+  - Patient-Oriented Eczema Measure Questionnaire results.
+  - SN000924
+  - S008580
+  - '3'
+  - 5-6 days
+  - ''
+  - ''
+  - ''
+  - integer
+  - 5-6 days
+  - '4'
+  - ''
+  - 'false'
+  - 'false'
+  - 'false'
+  - ''
+- - Patient-Oriented Eczema Measure Questionnaire Test Results
+  - POEM9R
+  - 'false'
+  - Patient-Oriented Eczema Measure Questionnaire results.
+  - SN000924
+  - S008581
+  - '4'
+  - Every day
+  - ''
+  - ''
+  - ''
+  - integer
+  - Every day
+  - '5'
+  - ''
+  - 'false'
+  - 'false'
+  - 'false'
   - ''

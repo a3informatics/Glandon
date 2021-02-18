@@ -12,7 +12,7 @@ ACN_01:
   - NA; Not Applicable
   - NA; Not Applicable
   - Determination of a value is not relevant in the current context. (NCI)
-  - ''
+  - text
   - Not Applicable
   - '6'
   - ''
@@ -33,7 +33,7 @@ ACN_01:
   - ''
   - An indication that a medication schedule was modified by temporarily terminating
     a prescribed regimen of medication. (NCI)
-  - ''
+  - text
   - Drug Interrupted
   - '3'
   - ''
@@ -54,7 +54,7 @@ ACN_01:
   - ''
   - An indication that a medication schedule was modified through termination of a
     prescribed regimen of medication. (NCI)
-  - ''
+  - text
   - Drug Withdrawn
   - '4'
   - ''
@@ -75,7 +75,7 @@ ACN_01:
   - ''
   - An indication that a medication schedule was modified by addition; either by changing
     the frequency, strength or amount. (NCI)
-  - ''
+  - text
   - Dose Increased
   - '5'
   - ''
@@ -95,7 +95,7 @@ ACN_01:
   - ''
   - ''
   - An indication that a medication schedule was maintained. (NCI)
-  - ''
+  - text
   - Dose Not Changed
   - '1'
   - ''
@@ -116,7 +116,7 @@ ACN_01:
   - ''
   - An indication that a medication schedule was modified by subtraction, either by
     changing the frequency, strength or amount. (NCI)
-  - ''
+  - text
   - Dose Reduced
   - '2'
   - ''
@@ -137,7 +137,7 @@ ACN_03:
   - NA; Not Applicable
   - NA; Not Applicable
   - Determination of a value is not relevant in the current context. (NCI)
-  - ''
+  - text
   - Not Applicable
   - '1'
   - ''
@@ -158,7 +158,7 @@ ACN_03:
   - ''
   - An indication that a medication schedule was modified through termination of a
     prescribed regimen of medication. (NCI)
-  - ''
+  - text
   - Drug Withdrawn
   - '2'
   - ''
@@ -178,7 +178,7 @@ AERELA:
   - Many; Several
   - Many; Several
   - ''
-  - ''
+  - text
   - ''
   - '5'
   - ''
@@ -197,7 +197,7 @@ AERELA:
   - ''
   - ''
   - ''
-  - ''
+  - text
   - Not Related
   - '1'
   - '1'
@@ -216,7 +216,7 @@ AERELA:
   - ''
   - ''
   - ''
-  - ''
+  - text
   - Possibly Related
   - '3'
   - '3'
@@ -235,7 +235,7 @@ AERELA:
   - ''
   - ''
   - ''
-  - ''
+  - text
   - Related
   - '4'
   - '4'
@@ -254,7 +254,7 @@ AERELA:
   - ''
   - ''
   - ''
-  - ''
+  - text
   - Unlikely Related
   - '2'
   - '2'
@@ -274,7 +274,7 @@ SUAM_01:
   - ''
   - ''
   - A response indicating that amount of the pack of substance used is one or two.
-  - ''
+  - text
   - 1 or 2
   - '1'
   - ''
@@ -294,7 +294,7 @@ SUAM_01:
   - ''
   - A response indicating that amount of the pack of substance used is greater than
     two.
-  - ''
+  - text
   - Greater Than 2
   - '2'
   - ''
@@ -314,7 +314,7 @@ LOC_01:
   - Thigh
   - Thigh
   - A part of the lower limb, located between hip and knee. (NCI)
-  - ''
+  - text
   - Thigh
   - '1'
   - ''
@@ -334,7 +334,7 @@ LOC_01:
   - Buttock
   - Either of the fleshy mounds in the rear pelvic area of the human body formed by
     the gluteal muscles.
-  - ''
+  - text
   - Buttock
   - '2'
   - ''
@@ -354,7 +354,7 @@ LOC_01:
   - Arm; Brachium; Upper Arm
   - "(Synonym 1 for C32141 ARM) The portion of the upper extremity between the shoulder
     and the elbow."
-  - ''
+  - text
   - Upper Arm
   - '3'
   - ''
@@ -375,7 +375,7 @@ RACEC:
   - ''
   - ''
   - ''
-  - ''
+  - text
   - African American
   - ''
   - ''
@@ -395,7 +395,7 @@ RACEC:
   - ''
   - ''
   - ''
-  - ''
+  - text
   - Black
   - ''
   - ''
@@ -415,7 +415,7 @@ RACEC:
   - ''
   - ''
   - ''
-  - ''
+  - text
   - Black Central American
   - ''
   - ''
@@ -435,7 +435,7 @@ RACEC:
   - ''
   - ''
   - ''
-  - ''
+  - text
   - Black South American
   - ''
   - ''
@@ -455,7 +455,7 @@ RACEC:
   - ''
   - ''
   - ''
-  - ''
+  - text
   - White Central American
   - ''
   - ''
@@ -475,7 +475,7 @@ RACEC:
   - ''
   - ''
   - ''
-  - ''
+  - text
   - White South American
   - ''
   - ''
@@ -495,7 +495,7 @@ RACEC:
   - ''
   - ''
   - ''
-  - ''
+  - text
   - Asian American
   - ''
   - ''
@@ -515,7 +515,7 @@ RACEC:
   - ''
   - ''
   - ''
-  - ''
+  - text
   - Black or African American
   - ''
   - ''
@@ -535,7 +535,7 @@ RACEC:
   - Other
   - Other
   - ''
-  - ''
+  - text
   - Other
   - ''
   - ''
@@ -555,7 +555,7 @@ RACEC:
   - U; Unknown
   - U; Unknown
   - ''
-  - ''
+  - text
   - Unknown
   - ''
   - ''
@@ -575,7 +575,7 @@ RACEC:
   - ''
   - ''
   - ''
-  - ''
+  - text
   - Alaska Native
   - ''
   - ''
@@ -595,7 +595,7 @@ RACEC:
   - ''
   - ''
   - ''
-  - ''
+  - text
   - Native Hawaiian or Other Pacific Islander
   - ''
   - ''
@@ -615,7 +615,7 @@ RACEC:
   - ''
   - ''
   - ''
-  - ''
+  - text
   - African Caribbean
   - ''
   - ''
@@ -635,7 +635,7 @@ RACEC:
   - ''
   - ''
   - ''
-  - ''
+  - text
   - American Indian or Alaska Native
   - ''
   - ''
@@ -655,7 +655,7 @@ RACEC:
   - ''
   - ''
   - ''
-  - ''
+  - text
   - Asian
   - ''
   - ''
@@ -675,7 +675,7 @@ RACEC:
   - ''
   - ''
   - ''
-  - ''
+  - text
   - White
   - ''
   - ''
@@ -695,7 +695,7 @@ RACEC:
   - ''
   - ''
   - ''
-  - ''
+  - text
   - Asian Indian
   - ''
   - ''
@@ -715,7 +715,7 @@ RACEC:
   - ''
   - ''
   - ''
-  - ''
+  - text
   - African
   - ''
   - ''
@@ -735,7 +735,7 @@ RACEC:
   - ''
   - ''
   - ''
-  - ''
+  - text
   - Chinese
   - ''
   - ''
@@ -755,7 +755,7 @@ RACEC:
   - ''
   - ''
   - ''
-  - ''
+  - text
   - Japanese
   - ''
   - ''
@@ -775,7 +775,7 @@ RACEC:
   - ''
   - ''
   - ''
-  - ''
+  - text
   - Filipino
   - ''
   - ''
@@ -795,7 +795,7 @@ RACEC:
   - ''
   - ''
   - ''
-  - ''
+  - text
   - Korean
   - ''
   - ''
@@ -815,7 +815,7 @@ RACEC:
   - ''
   - ''
   - ''
-  - ''
+  - text
   - Vietnamese
   - ''
   - ''
@@ -835,7 +835,7 @@ RACEC:
   - ''
   - ''
   - ''
-  - ''
+  - text
   - Laotian
   - ''
   - ''
@@ -855,7 +855,7 @@ RACEC:
   - ''
   - ''
   - ''
-  - ''
+  - text
   - Hmong
   - ''
   - ''
@@ -875,7 +875,7 @@ RACEC:
   - ''
   - ''
   - ''
-  - ''
+  - text
   - Cambodian
   - ''
   - ''
@@ -895,7 +895,7 @@ RACEC:
   - ''
   - ''
   - ''
-  - ''
+  - text
   - Thai
   - ''
   - ''
@@ -915,7 +915,7 @@ RACEC:
   - ''
   - ''
   - ''
-  - ''
+  - text
   - Micronesian
   - ''
   - ''
@@ -935,7 +935,7 @@ RACEC:
   - ''
   - ''
   - ''
-  - ''
+  - text
   - Polynesian
   - ''
   - ''
@@ -955,7 +955,7 @@ RACEC:
   - ''
   - ''
   - ''
-  - ''
+  - text
   - Melanesian
   - ''
   - ''
@@ -975,7 +975,7 @@ RACEC:
   - ''
   - ''
   - ''
-  - ''
+  - text
   - Pakistani
   - ''
   - ''
@@ -995,7 +995,7 @@ RACEC:
   - ''
   - ''
   - ''
-  - ''
+  - text
   - Bangladeshi
   - ''
   - ''
@@ -1015,7 +1015,7 @@ RACEC:
   - ''
   - ''
   - ''
-  - ''
+  - text
   - Sri Lankan
   - ''
   - ''
@@ -1035,7 +1035,7 @@ RACEC:
   - ''
   - ''
   - ''
-  - ''
+  - text
   - Bhutanese
   - ''
   - ''
@@ -1055,7 +1055,7 @@ RACEC:
   - ''
   - ''
   - ''
-  - ''
+  - text
   - Burmese
   - ''
   - ''
@@ -1075,7 +1075,7 @@ RACEC:
   - ''
   - ''
   - ''
-  - ''
+  - text
   - Taiwanese
   - ''
   - ''
@@ -1095,7 +1095,7 @@ RACEC:
   - ''
   - ''
   - ''
-  - ''
+  - text
   - Indonesian
   - ''
   - ''
@@ -1115,7 +1115,7 @@ RACEC:
   - ''
   - ''
   - ''
-  - ''
+  - text
   - Malaysian
   - ''
   - ''
@@ -1135,7 +1135,7 @@ RACEC:
   - ''
   - ''
   - ''
-  - ''
+  - text
   - Okinawan
   - ''
   - ''
@@ -1155,7 +1155,7 @@ RACEC:
   - ''
   - ''
   - ''
-  - ''
+  - text
   - Iwo Jiman
   - ''
   - ''
@@ -1175,7 +1175,7 @@ RACEC:
   - ''
   - ''
   - ''
-  - ''
+  - text
   - Maldivian
   - ''
   - ''
@@ -1195,7 +1195,7 @@ RACEC:
   - ''
   - ''
   - ''
-  - ''
+  - text
   - Nepalese
   - ''
   - ''
@@ -1215,7 +1215,7 @@ RACEC:
   - ''
   - ''
   - ''
-  - ''
+  - text
   - Singaporean
   - ''
   - ''
@@ -1235,7 +1235,7 @@ RACEC:
   - ''
   - ''
   - ''
-  - ''
+  - text
   - Malagasy
   - ''
   - ''
@@ -1255,7 +1255,7 @@ RACEC:
   - ''
   - ''
   - ''
-  - ''
+  - text
   - Barbadian
   - ''
   - ''
@@ -1275,7 +1275,7 @@ RACEC:
   - ''
   - ''
   - ''
-  - ''
+  - text
   - Dominica Islander
   - ''
   - ''
@@ -1295,7 +1295,7 @@ RACEC:
   - ''
   - ''
   - ''
-  - ''
+  - text
   - Haitian
   - ''
   - ''
@@ -1315,7 +1315,7 @@ RACEC:
   - ''
   - ''
   - ''
-  - ''
+  - text
   - Jamaican
   - ''
   - ''
@@ -1335,7 +1335,7 @@ RACEC:
   - ''
   - ''
   - ''
-  - ''
+  - text
   - Tobagoan
   - ''
   - ''
@@ -1355,7 +1355,7 @@ RACEC:
   - ''
   - ''
   - ''
-  - ''
+  - text
   - Trinidadian
   - ''
   - ''
@@ -1375,7 +1375,7 @@ RACEC:
   - ''
   - ''
   - ''
-  - ''
+  - text
   - West Indian
   - ''
   - ''
@@ -1395,7 +1395,7 @@ RACEC:
   - ''
   - ''
   - ''
-  - ''
+  - text
   - Botswanan
   - ''
   - ''
@@ -1415,7 +1415,7 @@ RACEC:
   - ''
   - ''
   - ''
-  - ''
+  - text
   - Ethiopian
   - ''
   - ''
@@ -1435,7 +1435,7 @@ RACEC:
   - ''
   - ''
   - ''
-  - ''
+  - text
   - Liberian
   - ''
   - ''
@@ -1455,7 +1455,7 @@ RACEC:
   - ''
   - ''
   - ''
-  - ''
+  - text
   - Namibian
   - ''
   - ''
@@ -1475,7 +1475,7 @@ RACEC:
   - ''
   - ''
   - ''
-  - ''
+  - text
   - Nigerian
   - ''
   - ''
@@ -1495,7 +1495,7 @@ RACEC:
   - ''
   - ''
   - ''
-  - ''
+  - text
   - Zairean
   - ''
   - ''
@@ -1515,7 +1515,7 @@ RACEC:
   - ''
   - ''
   - ''
-  - ''
+  - text
   - European
   - ''
   - ''
@@ -1535,7 +1535,7 @@ RACEC:
   - ''
   - ''
   - ''
-  - ''
+  - text
   - Russian
   - ''
   - ''
@@ -1555,7 +1555,7 @@ RACEC:
   - ''
   - ''
   - ''
-  - ''
+  - text
   - Mongolian
   - ''
   - ''
@@ -1575,7 +1575,7 @@ RACEC:
   - ''
   - ''
   - ''
-  - ''
+  - text
   - Arab
   - ''
   - ''
@@ -1595,7 +1595,7 @@ RACEC:
   - ''
   - ''
   - ''
-  - ''
+  - text
   - American Indian
   - ''
   - ''
@@ -1615,7 +1615,7 @@ RACEC:
   - ''
   - ''
   - ''
-  - ''
+  - text
   - Greenland Eskimo
   - ''
   - ''
@@ -1635,7 +1635,7 @@ RACEC:
   - ''
   - ''
   - ''
-  - ''
+  - text
   - Inupiat Eskimo
   - ''
   - ''
@@ -1655,7 +1655,7 @@ RACEC:
   - ''
   - ''
   - ''
-  - ''
+  - text
   - Siberian Eskimo
   - ''
   - ''
@@ -1675,7 +1675,7 @@ RACEC:
   - ''
   - ''
   - ''
-  - ''
+  - text
   - Yupik Eskimo
   - ''
   - ''
@@ -1695,7 +1695,7 @@ RACEC:
   - ''
   - ''
   - ''
-  - ''
+  - text
   - Central American Indian
   - ''
   - ''
@@ -1715,7 +1715,7 @@ RACEC:
   - ''
   - ''
   - ''
-  - ''
+  - text
   - South American Indian
   - ''
   - ''
@@ -1735,7 +1735,7 @@ RACEC:
   - ''
   - ''
   - ''
-  - ''
+  - text
   - Dominican
   - ''
   - ''
@@ -1755,7 +1755,7 @@ RACEC:
   - ''
   - ''
   - ''
-  - ''
+  - text
   - Bahamian
   - ''
   - ''
@@ -1775,7 +1775,7 @@ RACEC:
   - ''
   - ''
   - ''
-  - ''
+  - text
   - Caribbean Indian
   - ''
   - ''
@@ -1795,7 +1795,7 @@ RACEC:
   - ''
   - ''
   - ''
-  - ''
+  - text
   - Mediterranean
   - ''
   - ''
@@ -1815,7 +1815,7 @@ RACEC:
   - ''
   - ''
   - ''
-  - ''
+  - text
   - North Coast of Africa
   - ''
   - ''
@@ -1835,7 +1835,7 @@ RACEC:
   - ''
   - ''
   - ''
-  - ''
+  - text
   - Northern European
   - ''
   - ''
@@ -1855,7 +1855,7 @@ RACEC:
   - ''
   - ''
   - ''
-  - ''
+  - text
   - White Caribbean
   - ''
   - ''
@@ -1875,7 +1875,7 @@ RACEC:
   - ''
   - ''
   - ''
-  - ''
+  - text
   - Western European
   - ''
   - ''
@@ -1895,7 +1895,7 @@ RACEC:
   - ''
   - ''
   - ''
-  - ''
+  - text
   - Eastern European
   - ''
   - ''
@@ -1915,7 +1915,7 @@ RACEC:
   - ''
   - ''
   - ''
-  - ''
+  - text
   - Middle Eastern
   - ''
   - ''
@@ -1936,7 +1936,7 @@ TRTEST:
   - Absolute Change From Nadir
   - Absolute Change From Nadir
   - ''
-  - ''
+  - text
   - Absolute Change from Nadir
   - ''
   - ''
@@ -1956,7 +1956,7 @@ TRTEST:
   - New Tumor Confirmed
   - New Tumor Confirmed
   - ''
-  - ''
+  - text
   - New Tumor Confirmation
   - ''
   - ''
@@ -1976,7 +1976,7 @@ TRTEST:
   - Sum Diameters of Non Lymph Node Tumors
   - Sum Diameters of Non Lymph Node Tumors
   - ''
-  - ''
+  - text
   - Sum of Diameters of Non Lymph Node Tumors
   - ''
   - ''
@@ -1996,7 +1996,7 @@ TRTEST:
   - Absolute Change Nadir in Sum of Diam
   - Absolute Change Nadir in Sum of Diam
   - ''
-  - ''
+  - text
   - Absolute Change from Nadir in Sum of Diameter
   - ''
   - ''
@@ -2016,7 +2016,7 @@ TRTEST:
   - Percent Change Baseline in Sum of Area
   - Percent Change Baseline in Sum of Area
   - ''
-  - ''
+  - text
   - Percent Change from Baseline in Sum of Area
   - ''
   - ''
@@ -2036,7 +2036,7 @@ TRTEST:
   - Percent Change Baseline in Sum of Diam
   - Percent Change Baseline in Sum of Diam
   - ''
-  - ''
+  - text
   - Percent Change from Baseline in Sum of Diameter
   - ''
   - ''
@@ -2056,7 +2056,7 @@ TRTEST:
   - Percent Change Baseline Sum Longest Diam
   - Percent Change Baseline Sum Longest Diam
   - ''
-  - ''
+  - text
   - Percent Change from Baseline in Sum of Longest Diameter
   - ''
   - ''
@@ -2076,7 +2076,7 @@ TRTEST:
   - Percent Change Baseline in Sum of Volume
   - Percent Change Baseline in Sum of Volume
   - ''
-  - ''
+  - text
   - Percent Change from Baseline in Sum of Volume
   - ''
   - ''
@@ -2096,7 +2096,7 @@ TRTEST:
   - Percent Change Nadir in Sum of Diam
   - Percent Change Nadir in Sum of Diam
   - ''
-  - ''
+  - text
   - Percent Change from Nadir in Sum of Diameter
   - ''
   - ''
@@ -2116,7 +2116,7 @@ TRTEST:
   - Percent Change Nadir in Sum Longest Diam
   - Percent Change Nadir in Sum Longest Diam
   - ''
-  - ''
+  - text
   - Percent Change from Nadir in Sum of Longest Diameter
   - ''
   - ''
@@ -2136,7 +2136,7 @@ TRTEST:
   - Lesion Failure Indicator
   - Lesion Failure Indicator
   - ''
-  - ''
+  - text
   - Lesion Failure Indicator
   - ''
   - ''
@@ -2156,7 +2156,7 @@ TRTEST:
   - Lesion Revascularization Indicator
   - Lesion Revascularization Indicator
   - ''
-  - ''
+  - text
   - Lesion Revascularization Indicator
   - ''
   - ''
@@ -2176,7 +2176,7 @@ TRTEST:
   - Lesion Success Indicator
   - Lesion Success Indicator
   - ''
-  - ''
+  - text
   - Lesion Success Indicator
   - ''
   - ''
@@ -2196,7 +2196,7 @@ TRTEST:
   - Limb Failure Indicator
   - Limb Failure Indicator
   - ''
-  - ''
+  - text
   - Limb Failure Indicator
   - ''
   - ''
@@ -2216,7 +2216,7 @@ TRTEST:
   - Lesion Revas Ischemia Indicator
   - Lesion Revas Ischemia Indicator
   - ''
-  - ''
+  - text
   - Lesion Revas Ischemia Indicator
   - ''
   - ''
@@ -2236,7 +2236,7 @@ TRTEST:
   - Lesion Revas Clinical Indicator
   - Lesion Revas Clinical Indicator
   - ''
-  - ''
+  - text
   - Lesion Revas Clinical Indicator
   - ''
   - ''
@@ -2256,7 +2256,7 @@ TRTEST:
   - Vessel Failure Indicator
   - Vessel Failure Indicator
   - ''
-  - ''
+  - text
   - Vessel Failure Indicator
   - ''
   - ''
@@ -2276,7 +2276,7 @@ TRTEST:
   - Vessel Patency Indicator
   - Vessel Patency Indicator
   - ''
-  - ''
+  - text
   - Vessel Patency Indicator
   - ''
   - ''
@@ -2296,7 +2296,7 @@ TRTEST:
   - Vessel Revascularization Indicator
   - Vessel Revascularization Indicator
   - ''
-  - ''
+  - text
   - Vessel Revascularization Indicator
   - ''
   - ''
@@ -2316,7 +2316,7 @@ TRTEST:
   - Area
   - Area
   - ''
-  - ''
+  - text
   - Area
   - ''
   - ''
@@ -2336,7 +2336,7 @@ TRTEST:
   - Diameter
   - Diameter
   - ''
-  - ''
+  - text
   - Diameter
   - ''
   - ''
@@ -2356,7 +2356,7 @@ TRTEST:
   - Volume
   - Volume
   - ''
-  - ''
+  - text
   - Volume
   - ''
   - ''
@@ -2376,7 +2376,7 @@ TRTEST:
   - Short Axis
   - Short Axis
   - ''
-  - ''
+  - text
   - Short Axis
   - ''
   - ''
@@ -2396,7 +2396,7 @@ TRTEST:
   - Average Metabolic Standard Uptake Value
   - Average Metabolic Standard Uptake Value
   - ''
-  - ''
+  - text
   - Average Metabolic Standard Uptake Value
   - ''
   - ''
@@ -2416,7 +2416,7 @@ TRTEST:
   - Percent Change From Baseline
   - Percent Change From Baseline
   - ''
-  - ''
+  - text
   - Percent Change from Baseline
   - ''
   - ''
@@ -2436,7 +2436,7 @@ TRTEST:
   - Percent Change From Nadir
   - Percent Change From Nadir
   - ''
-  - ''
+  - text
   - Percent Change from Nadir
   - ''
   - ''
@@ -2456,7 +2456,7 @@ TRTEST:
   - Radiodensity
   - Radiodensity
   - ''
-  - ''
+  - text
   - Radiodensity
   - ''
   - ''
@@ -2476,7 +2476,7 @@ TRTEST:
   - Sum of Area; Sum of Products of Perpendicular Diameters
   - Sum of Area; Sum of Products of Perpendicular Diameters
   - ''
-  - ''
+  - text
   - Sum of Areas
   - ''
   - ''
@@ -2496,7 +2496,7 @@ TRTEST:
   - Sum of Diameter
   - Sum of Diameter
   - ''
-  - ''
+  - text
   - Sum of Diameters
   - ''
   - ''
@@ -2516,7 +2516,7 @@ TRTEST:
   - Sum of Longest Diameter
   - Sum of Longest Diameter
   - ''
-  - ''
+  - text
   - Sum of Longest Diameters
   - ''
   - ''
@@ -2536,7 +2536,7 @@ TRTEST:
   - Sum of Longest Perpendicular
   - Sum of Longest Perpendicular
   - ''
-  - ''
+  - text
   - Sum of Longest Perpendiculars
   - ''
   - ''
@@ -2556,7 +2556,7 @@ TRTEST:
   - Sum of Viable Diameter
   - Sum of Viable Diameter
   - ''
-  - ''
+  - text
   - Sum of Viable Diameters
   - ''
   - ''
@@ -2576,7 +2576,7 @@ TRTEST:
   - Sum of Volume
   - Sum of Volume
   - ''
-  - ''
+  - text
   - Sum of Volumes
   - ''
   - ''
@@ -2596,7 +2596,7 @@ TRTEST:
   - Tumor State
   - Tumor State
   - ''
-  - ''
+  - text
   - Tumor Status
   - ''
   - ''
@@ -2616,7 +2616,7 @@ TRTEST:
   - Viable Diameter
   - Viable Diameter
   - ''
-  - ''
+  - text
   - Viable Tumor Diameter
   - ''
   - ''
@@ -2636,7 +2636,7 @@ TRTEST:
   - Longest Diameter
   - Longest Diameter
   - ''
-  - ''
+  - text
   - Longest Diameter
   - ''
   - ''
@@ -2656,7 +2656,7 @@ TRTEST:
   - Longest Perpendicular
   - Longest Perpendicular
   - ''
-  - ''
+  - text
   - Longest Perpendicular
   - ''
   - ''
@@ -2676,7 +2676,7 @@ TRTEST:
   - ''
   - ''
   - ''
-  - ''
+  - text
   - Tumor Results All
   - ''
   - ''
@@ -2696,7 +2696,7 @@ TRTEST:
   - Number of Bone Lesions
   - Number of Bone Lesions
   - ''
-  - ''
+  - text
   - Number of Bone Lesions
   - ''
   - ''
@@ -2716,7 +2716,7 @@ NSA-16 TESTCD:
   - NSA01-Prolonged Time to Respond
   - NSA01-Prolonged Time to Respond
   - ''
-  - ''
+  - text
   - ''
   - ''
   - ''
@@ -2735,7 +2735,7 @@ NSA-16 TESTCD:
   - NSA01-Restricted Speech Quantity
   - NSA01-Restricted Speech Quantity
   - ''
-  - ''
+  - text
   - ''
   - ''
   - ''
@@ -2754,7 +2754,7 @@ NSA-16 TESTCD:
   - NSA01-Impoverished Speech Content
   - NSA01-Impoverished Speech Content
   - ''
-  - ''
+  - text
   - ''
   - ''
   - ''
@@ -2773,7 +2773,7 @@ NSA-16 TESTCD:
   - NSA01-Inarticulate Speech
   - NSA01-Inarticulate Speech
   - ''
-  - ''
+  - text
   - ''
   - ''
   - ''
@@ -2792,7 +2792,7 @@ NSA-16 TESTCD:
   - 'NSA01-Emotion: Reduced Range'
   - 'NSA01-Emotion: Reduced Range'
   - ''
-  - ''
+  - text
   - ''
   - ''
   - ''
@@ -2811,7 +2811,7 @@ NSA-16 TESTCD:
   - NSA01-Affect Reduce Modulation Intensity
   - NSA01-Affect Reduce Modulation Intensity
   - ''
-  - ''
+  - text
   - ''
   - ''
   - ''
@@ -2830,7 +2830,7 @@ NSA-16 TESTCD:
   - 'NSA01-Affect: Reduced Display on Demand'
   - 'NSA01-Affect: Reduced Display on Demand'
   - ''
-  - ''
+  - text
   - ''
   - ''
   - ''
@@ -2849,7 +2849,7 @@ NSA-16 TESTCD:
   - NSA01-Reduced Social Drive
   - NSA01-Reduced Social Drive
   - ''
-  - ''
+  - text
   - ''
   - ''
   - ''
@@ -2868,7 +2868,7 @@ NSA-16 TESTCD:
   - NSA01-Poor Rapport With Interviewer
   - NSA01-Poor Rapport With Interviewer
   - ''
-  - ''
+  - text
   - ''
   - ''
   - ''
@@ -2887,7 +2887,7 @@ NSA-16 TESTCD:
   - NSA01-Interest Emotional/Phys Intimacy
   - NSA01-Interest Emotional/Phys Intimacy
   - ''
-  - ''
+  - text
   - ''
   - ''
   - ''
@@ -2906,7 +2906,7 @@ NSA-16 TESTCD:
   - NSA01-Poor Grooming and Hygiene
   - NSA01-Poor Grooming and Hygiene
   - ''
-  - ''
+  - text
   - ''
   - ''
   - ''
@@ -2925,7 +2925,7 @@ NSA-16 TESTCD:
   - NSA01-Reduced Sense of Purpose
   - NSA01-Reduced Sense of Purpose
   - ''
-  - ''
+  - text
   - ''
   - ''
   - ''
@@ -2944,7 +2944,7 @@ NSA-16 TESTCD:
   - NSA01-Reduced Interests
   - NSA01-Reduced Interests
   - ''
-  - ''
+  - text
   - ''
   - ''
   - ''
@@ -2963,7 +2963,7 @@ NSA-16 TESTCD:
   - NSA01-Reduced Daily Activity
   - NSA01-Reduced Daily Activity
   - ''
-  - ''
+  - text
   - ''
   - ''
   - ''
@@ -2982,7 +2982,7 @@ NSA-16 TESTCD:
   - NSA01-Reduced Expressive Gestures
   - NSA01-Reduced Expressive Gestures
   - ''
-  - ''
+  - text
   - ''
   - ''
   - ''
@@ -3001,7 +3001,7 @@ NSA-16 TESTCD:
   - NSA01-Slowed Movements
   - NSA01-Slowed Movements
   - ''
-  - ''
+  - text
   - ''
   - ''
   - ''
@@ -3020,7 +3020,7 @@ NSA-16 TESTCD:
   - NSA01-Global Negative Symptoms Rating
   - NSA01-Global Negative Symptoms Rating
   - ''
-  - ''
+  - text
   - ''
   - ''
   - ''
@@ -3039,7 +3039,7 @@ NSA-16 TESTCD:
   - NSA01-Global Neg Symptom Rating-Severity
   - NSA01-Global Neg Symptom Rating-Severity
   - ''
-  - ''
+  - text
   - ''
   - ''
   - ''
@@ -3058,7 +3058,7 @@ NSA-16 TESTCD:
   - NSA01-Global Level of Functioning
   - NSA01-Global Level of Functioning
   - ''
-  - ''
+  - text
   - ''
   - ''
   - ''
@@ -3078,7 +3078,7 @@ COWS TESTCD:
   - COWS1-Resting Pulse Rate
   - COWS1-Resting Pulse Rate
   - ''
-  - ''
+  - text
   - ''
   - ''
   - ''
@@ -3097,7 +3097,7 @@ COWS TESTCD:
   - COWS1-Sweating
   - COWS1-Sweating
   - ''
-  - ''
+  - text
   - ''
   - ''
   - ''
@@ -3116,7 +3116,7 @@ COWS TESTCD:
   - COWS1-Restlessness
   - COWS1-Restlessness
   - ''
-  - ''
+  - text
   - ''
   - ''
   - ''
@@ -3135,7 +3135,7 @@ COWS TESTCD:
   - COWS1-Pupil Size
   - COWS1-Pupil Size
   - ''
-  - ''
+  - text
   - ''
   - ''
   - ''
@@ -3154,7 +3154,7 @@ COWS TESTCD:
   - COWS1-Bone or Joint Aches
   - COWS1-Bone or Joint Aches
   - ''
-  - ''
+  - text
   - ''
   - ''
   - ''
@@ -3173,7 +3173,7 @@ COWS TESTCD:
   - COWS1-Runny Nose or Tearing
   - COWS1-Runny Nose or Tearing
   - ''
-  - ''
+  - text
   - ''
   - ''
   - ''
@@ -3192,7 +3192,7 @@ COWS TESTCD:
   - COWS1-GI Upset
   - COWS1-GI Upset
   - ''
-  - ''
+  - text
   - ''
   - ''
   - ''
@@ -3211,7 +3211,7 @@ COWS TESTCD:
   - COWS1-Tremor
   - COWS1-Tremor
   - ''
-  - ''
+  - text
   - ''
   - ''
   - ''
@@ -3230,7 +3230,7 @@ COWS TESTCD:
   - COWS1-Yawning
   - COWS1-Yawning
   - ''
-  - ''
+  - text
   - ''
   - ''
   - ''
@@ -3249,7 +3249,7 @@ COWS TESTCD:
   - COWS1-Anxiety or Irritability
   - COWS1-Anxiety or Irritability
   - ''
-  - ''
+  - text
   - ''
   - ''
   - ''
@@ -3268,7 +3268,7 @@ COWS TESTCD:
   - COWS1-Gooseflesh Skin
   - COWS1-Gooseflesh Skin
   - ''
-  - ''
+  - text
   - ''
   - ''
   - ''
@@ -3287,7 +3287,7 @@ COWS TESTCD:
   - COWS1-Resting Pulse Rate Beats/minute
   - COWS1-Resting Pulse Rate Beats/minute
   - ''
-  - ''
+  - text
   - ''
   - ''
   - ''
@@ -3306,7 +3306,7 @@ COWS TESTCD:
   - COWS1-Total Score
   - COWS1-Total Score
   - ''
-  - ''
+  - text
   - ''
   - ''
   - ''
@@ -3327,7 +3327,7 @@ OUT:
   - U; Unknown
   - U; Unknown
   - ''
-  - ''
+  - text
   - Unknown
   - '6'
   - '6'
@@ -3347,7 +3347,7 @@ OUT:
   - 5; FATAL; Grade 5
   - 5; FATAL; Grade 5
   - ''
-  - ''
+  - text
   - Fatal
   - '5'
   - '5'
@@ -3367,7 +3367,7 @@ OUT:
   - ''
   - ''
   - ''
-  - ''
+  - text
   - Not Recovered or Not Resolved
   - '4'
   - '4'
@@ -3387,7 +3387,7 @@ OUT:
   - ''
   - ''
   - ''
-  - ''
+  - text
   - Recovered or Resolved with Sequelae
   - '2'
   - '2'
@@ -3407,7 +3407,7 @@ OUT:
   - ''
   - ''
   - ''
-  - ''
+  - text
   - Recovering or Resolving
   - '3'
   - '3'
@@ -3427,7 +3427,7 @@ OUT:
   - ''
   - ''
   - ''
-  - ''
+  - text
   - Recovered or Resolved
   - '1'
   - '1'
@@ -3448,7 +3448,7 @@ AESEV:
   - 1; Grade 1
   - 1; Grade 1
   - ''
-  - ''
+  - text
   - Mild
   - '1'
   - '1'
@@ -3468,7 +3468,7 @@ AESEV:
   - 2; Grade 2
   - 2; Grade 2
   - ''
-  - ''
+  - text
   - Moderate
   - '2'
   - '2'
@@ -3488,10 +3488,465 @@ AESEV:
   - 3; Grade 3
   - 3; Grade 3
   - ''
-  - ''
+  - text
   - Severe
   - '3'
   - '3'
+  - 'true'
+  - 'true'
+  - 'true'
+  - ''
+AGEGRPEN:
+- - Age Group (EudraCT) Numeric
+  - AGEGRPEN
+  - 'false'
+  - Numeric - Age category used for EudraCT demographics table.
+  - SN000019
+  - S000118
+  - '1'
+  - IN UTERO
+  - ''
+  - ''
+  - ''
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - ''
+- - Age Group (EudraCT) Numeric
+  - AGEGRPEN
+  - 'false'
+  - Numeric - Age category used for EudraCT demographics table.
+  - SN000019
+  - S000126
+  - '2'
+  - PRETERM NEWBORN - GESTATIONAL AGEP < 37 WKS
+  - ''
+  - ''
+  - ''
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - ''
+- - Age Group (EudraCT) Numeric
+  - AGEGRPEN
+  - 'false'
+  - Numeric - Age category used for EudraCT demographics table.
+  - SN000019
+  - S000131
+  - '3'
+  - NEWBORNS (0-27 DAYS)
+  - ''
+  - ''
+  - ''
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - ''
+- - Age Group (EudraCT) Numeric
+  - AGEGRPEN
+  - 'false'
+  - Numeric - Age category used for EudraCT demographics table.
+  - SN000019
+  - S000134
+  - '4'
+  - INFANTS AND TODDLERS (28 DAYS - 23 MONTHS)
+  - ''
+  - ''
+  - ''
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - ''
+- - Age Group (EudraCT) Numeric
+  - AGEGRPEN
+  - 'false'
+  - Numeric - Age category used for EudraCT demographics table.
+  - SN000019
+  - S000135
+  - '5'
+  - CHILDREN (2-11 YEARS)
+  - ''
+  - ''
+  - ''
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - ''
+- - Age Group (EudraCT) Numeric
+  - AGEGRPEN
+  - 'false'
+  - Numeric - Age category used for EudraCT demographics table.
+  - SN000019
+  - S000136
+  - '6'
+  - ADOLESCENTS (12-17 YEARS)
+  - ''
+  - ''
+  - ''
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - ''
+- - Age Group (EudraCT) Numeric
+  - AGEGRPEN
+  - 'false'
+  - Numeric - Age category used for EudraCT demographics table.
+  - SN000019
+  - S000137
+  - '7'
+  - FROM 18 - 64 YEARS
+  - ''
+  - ''
+  - ''
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - ''
+- - Age Group (EudraCT) Numeric
+  - AGEGRPEN
+  - 'false'
+  - Numeric - Age category used for EudraCT demographics table.
+  - SN000019
+  - S000138
+  - '8'
+  - FROM 65 - 84 YEARS
+  - ''
+  - ''
+  - ''
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - ''
+- - Age Group (EudraCT) Numeric
+  - AGEGRPEN
+  - 'false'
+  - Numeric - Age category used for EudraCT demographics table.
+  - SN000019
+  - S000139
+  - '9'
+  - 85 YEARS AND OVER
+  - ''
+  - ''
+  - ''
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - ''
+RACEN:
+- - Race Numeric
+  - RACEN
+  - 'false'
+  - Numeric - Terminology codelist used to identify the race of an individual within
+    the Clinical Data Interchange Standards Consortium Study Data Tabulation Model.
+  - SN000517
+  - S000222
+  - '5'
+  - AMERICAN INDIAN OR ALASKA NATIVE
+  - ''
+  - ''
+  - ''
+  - integer
+  - ''
+  - '1'
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - ''
+- - Race Numeric
+  - RACEN
+  - 'false'
+  - Numeric - Terminology codelist used to identify the race of an individual within
+    the Clinical Data Interchange Standards Consortium Study Data Tabulation Model.
+  - SN000517
+  - S000249
+  - '1'
+  - WHITE
+  - ''
+  - ''
+  - ''
+  - integer
+  - ''
+  - '5'
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - ''
+- - Race Numeric
+  - RACEN
+  - 'false'
+  - Numeric - Terminology codelist used to identify the race of an individual within
+    the Clinical Data Interchange Standards Consortium Study Data Tabulation Model.
+  - SN000517
+  - S002996
+  - '2'
+  - BLACK OR AFRICAN AMERICAN
+  - ''
+  - ''
+  - ''
+  - integer
+  - ''
+  - '3'
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - ''
+- - Race Numeric
+  - RACEN
+  - 'false'
+  - Numeric - Terminology codelist used to identify the race of an individual within
+    the Clinical Data Interchange Standards Consortium Study Data Tabulation Model.
+  - SN000517
+  - S002997
+  - '3'
+  - ASIAN
+  - ''
+  - ''
+  - ''
+  - integer
+  - ''
+  - '2'
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - ''
+- - Race Numeric
+  - RACEN
+  - 'false'
+  - Numeric - Terminology codelist used to identify the race of an individual within
+    the Clinical Data Interchange Standards Consortium Study Data Tabulation Model.
+  - SN000517
+  - S002998
+  - '4'
+  - NATIVE HAWAIIAN OR OTHER PACIFIC ISLANDER
+  - ''
+  - ''
+  - ''
+  - integer
+  - ''
+  - '4'
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - ''
+- - Race Numeric
+  - RACEN
+  - 'false'
+  - Numeric - Terminology codelist used to identify the race of an individual within
+    the Clinical Data Interchange Standards Consortium Study Data Tabulation Model.
+  - SN000517
+  - S002999
+  - '7'
+  - MULTIPLE
+  - ''
+  - ''
+  - ''
+  - integer
+  - ''
+  - '7'
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - ''
+- - Race Numeric
+  - RACEN
+  - 'false'
+  - Numeric - Terminology codelist used to identify the race of an individual within
+    the Clinical Data Interchange Standards Consortium Study Data Tabulation Model.
+  - SN000517
+  - S003000
+  - '8'
+  - UNKNOWN
+  - ''
+  - ''
+  - ''
+  - integer
+  - ''
+  - '8'
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - ''
+MRS01R:
+- - Modified Rankin Scale Questionnaire Result
+  - MRS01R
+  - 'false'
+  - Terminology to collect the modified rankin scale questionnaire results.
+  - SN000641
+  - S004898
+  - '0'
+  - No symptoms at all
+  - ''
+  - ''
+  - ''
+  - integer
+  - 0-No symptoms at all
+  - ''
+  - ''
+  - 'true'
+  - 'true'
+  - 'true'
+  - ''
+- - Modified Rankin Scale Questionnaire Result
+  - MRS01R
+  - 'false'
+  - Terminology to collect the modified rankin scale questionnaire results.
+  - SN000641
+  - S004899
+  - '1'
+  - No significant disability despite symptoms; able to carry out all usual duties
+    and activities
+  - ''
+  - ''
+  - ''
+  - integer
+  - 1-No significant disability despite symptoms; able to carry out all usual duties
+    and activities
+  - ''
+  - ''
+  - 'true'
+  - 'true'
+  - 'true'
+  - ''
+- - Modified Rankin Scale Questionnaire Result
+  - MRS01R
+  - 'false'
+  - Terminology to collect the modified rankin scale questionnaire results.
+  - SN000641
+  - S004900
+  - '2'
+  - Slight disability; unable to carry out all previous activities, but able to look
+    after own affairs without assistance
+  - ''
+  - ''
+  - ''
+  - integer
+  - 2-Slight disability; unable to carry out all previous activities, but able to
+    look after own affairs without assistance
+  - ''
+  - ''
+  - 'true'
+  - 'true'
+  - 'true'
+  - ''
+- - Modified Rankin Scale Questionnaire Result
+  - MRS01R
+  - 'false'
+  - Terminology to collect the modified rankin scale questionnaire results.
+  - SN000641
+  - S004901
+  - '3'
+  - Moderate disability; requiring some help, but able to walk without assistance
+  - ''
+  - ''
+  - ''
+  - integer
+  - 3-Moderate disability; requiring some help, but able to walk without assistance
+  - ''
+  - ''
+  - 'true'
+  - 'true'
+  - 'true'
+  - ''
+- - Modified Rankin Scale Questionnaire Result
+  - MRS01R
+  - 'false'
+  - Terminology to collect the modified rankin scale questionnaire results.
+  - SN000641
+  - S004902
+  - '4'
+  - Moderately severe disability; unable to walk without assistance and unable to
+    attend to own bodily needs without assistance
+  - ''
+  - ''
+  - ''
+  - integer
+  - 4-Moderately severe disability; unable to walk without assistance and unable to
+    attend to own bodily needs without assistance
+  - ''
+  - ''
+  - 'true'
+  - 'true'
+  - 'true'
+  - ''
+- - Modified Rankin Scale Questionnaire Result
+  - MRS01R
+  - 'false'
+  - Terminology to collect the modified rankin scale questionnaire results.
+  - SN000641
+  - S004903
+  - '5'
+  - Severe disability; bedridden, incontinent and requiring constant nursing care
+    and attention
+  - ''
+  - ''
+  - ''
+  - integer
+  - 5-Severe disability; bedridden, incontinent and requiring constant nursing care
+    and attention
+  - ''
+  - ''
+  - 'true'
+  - 'true'
+  - 'true'
+  - ''
+- - Modified Rankin Scale Questionnaire Result
+  - MRS01R
+  - 'false'
+  - Terminology to collect the modified rankin scale questionnaire results.
+  - SN000641
+  - S004904
+  - '6'
+  - Dead
+  - ''
+  - ''
+  - ''
+  - integer
+  - 6-Dead
+  - ''
+  - ''
   - 'true'
   - 'true'
   - 'true'
