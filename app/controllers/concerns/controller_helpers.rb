@@ -55,7 +55,7 @@ private
     if !current_user.is_only_community?
       result[:compare_path] = path_for(:compare, object)
     end
-    if object.owned?
+    if object.owned? && edit && object.edit?
       result[:clone_path] = path_for(:clone, object)
     end
     if object.registered? && object.owned? && (latest_item || object.has_state.is_or_has_been_released?) && edit
