@@ -15,6 +15,11 @@ RSpec.describe AdHocReport, type: :model do
   #   return "models/import/data/sponsor_one/ct"
   # end
 
+  C_CL_NOTATION = 1
+  C_CL_CODE_COL = 4
+  C_CLI_CODE_COL = 5
+  C_RANK_COL = 14
+
   def save_selected_results(results, filename, items, write_file)
     selected_results = {}
     full_results = key_data(results)
@@ -27,8 +32,8 @@ RSpec.describe AdHocReport, type: :model do
   def extract_ranks(rows)
     results = Hash.new {|h,k| h[k] = []}
     rows[:data].each do |row|
-      next if row[11].empty?
-      results[row[2]] << {item: row[5], rank: row[11]}
+      next if row[C_RANK_COL].empty? # <<< Important, the rank column. Might change!
+      results[row[C_CL_NOTATION]] << {item: row[C_CLI_CODE_COL], rank: row[C_RANK_COL]}
     end
     results
   end
@@ -36,7 +41,7 @@ RSpec.describe AdHocReport, type: :model do
   def key_data(rows)
     results = Hash.new {|h,k| h[k] = []}
     rows[:data].each do |row| 
-      results[row[2]] << row
+      results[row[C_CL_NOTATION]] << row
     end
     results
   end
@@ -205,6 +210,8 @@ RSpec.describe AdHocReport, type: :model do
       load_data_file_into_triple_store("mdr_iso_concept_systems_migration_1.ttl")
       load_data_file_into_triple_store("mdr_iso_concept_systems_process.ttl")
       load_data_file_into_triple_store("sponsor_one/custom_property/custom_properties.ttl")
+      load_data_file_into_triple_store("sponsor_one/custom_property/custom_properties_migration_one.ttl")
+      load_data_file_into_triple_store("sponsor_one/custom_property/custom_properties_migration_two.ttl")
       load_data_file_into_triple_store("sponsor_one/ct/CT_V2-6.ttl")
       load_data_file_into_triple_store("sponsor_one/ct/CT_V3-0.ttl")
       load_data_file_into_triple_store("sponsor_one/ct/CT_V3-1.ttl")
