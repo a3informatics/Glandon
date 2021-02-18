@@ -469,6 +469,25 @@ export default class GenericEditor extends ModalView {
 
   }
 
+  /**
+   * Render a small button with onClick handler
+   * @param {string} text Button text
+   * @param {function} onClick Function to execute on button click
+   * @param {string} css CSS classes to apply to button elemenet
+   * @return {JQuery Element} Styled button for appending to DOM
+   */
+  _button({
+    text,
+    onClick = () => {},
+    css = 'white'
+  }) {
+    
+    return $( '<button>' ).click( () => onClick() )
+                          .addClass( `btn btn-xs ${ css }`)
+                          .text( text )
+
+  }
+
 
   /** Utilities **/
 
