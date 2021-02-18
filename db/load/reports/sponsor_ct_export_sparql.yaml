@@ -145,6 +145,13 @@ SELECT ?clln ?clc ?clsn ?cle ?cld ?clid ?cldt ?code ?decode ?svalue (GROUP_CONCA
       ?ext6 isoC:customPropertyDefinedBy/isoC:label "Synonym Sponsor" .
       ?ext6 isoC:value ?synonym_sponsor .   
 
+      ?cli th:preferredTerm/isoC:label ?pt .
+      BIND (IF(STRENDS(?clsn, "TESTCD"), true, false) as ?testcd)
+      BIND (IF(?testcd, ?pt, "") AS ?decode1)
+      BIND (IF(?testcd = false && ?svalue = ?crfdv && ?dc_stage = "true", ?pt, ?crfdv) AS ?decode2)
+      BIND (IF(?testcd = false && ?svalue = ?crfdv && ?dc_stage = "false", ?pt, ?pt) AS ?decode3)
+      { BIND (?decode1 as ?decode) } UNION { BIND (?decode2 as ?decode) } UNION { BIND (?decode3 as ?decode) }
+
       OPTIONAL
       {
         ?cli ^isoC:appliesTo ?ext7 .
@@ -182,7 +189,6 @@ SELECT ?clln ?clc ?clsn ?cle ?cld ?clid ?cldt ?code ?decode ?svalue (GROUP_CONCA
     ?cl th:definition ?cld .
     ?cl th:preferredTerm/isoC:label ?clln .
     ?cli th:identifier ?code .  
-    ?cli th:preferredTerm/isoC:label ?decode .
     ?cli th:notation ?svalue .
     BIND (IF(regex(?svalue, "^[0-9]+$"), "integer", "text") as ?cldt) 
     ?cli th:definition ?clid .
@@ -212,6 +218,13 @@ SELECT ?clln ?clc ?clsn ?cle ?cld ?clid ?cldt ?code ?decode ?svalue (GROUP_CONCA
     ?ext6 isoC:customPropertyDefinedBy/isoC:label "Synonym Sponsor" .
     ?ext6 isoC:value ?synonym_sponsor .   
 
+    ?cli th:preferredTerm/isoC:label ?pt .
+    BIND (IF(STRENDS(?clsn, "TESTCD"), true, false) as ?testcd)
+    BIND (IF(?testcd, ?pt, "") AS ?decode1)
+    BIND (IF(?testcd = false && ?svalue = ?crfdv && ?dc_stage = "true", ?pt, ?crfdv) AS ?decode2)
+    BIND (IF(?testcd = false && ?svalue = ?crfdv && ?dc_stage = "false", ?pt, ?pt) AS ?decode3)
+    { BIND (?decode1 as ?decode) } UNION { BIND (?decode2 as ?decode) } UNION { BIND (?decode3 as ?decode) }
+    
     OPTIONAL
     {
       ?cli ^isoC:appliesTo ?ext7 .
