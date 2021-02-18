@@ -89,7 +89,7 @@ describe "SDTM IG Domains", :type => :feature do
       ui_check_table_cell("show", 5, 3, "Group ID")
     end
 
-    it "show page allows to download SDTM IG Domain as CSV" do
+    it "show page allows to export SDTM IG Domain as CSV" do
       click_navbar_ig_domain
       wait_for_ajax 10
       ui_table_search('index', 'SDTM IG AE')
@@ -104,7 +104,6 @@ describe "SDTM IG Domains", :type => :feature do
     # write_text_file_2(file, sub_dir, "sdtm_ig_domain_csv_expected.csv")
       expected = read_text_file_2(sub_dir, "sdtm_ig_domain_csv_expected.csv")
     end
-
 
   end
 
