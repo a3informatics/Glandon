@@ -233,10 +233,11 @@ RSpec.describe AdHocReport, type: :model do
       job.start("Rspec test", "Starting...") {report.execute([Uri.new(uri: "http://www.sanofi.com/2019_Release_1/V1#TH").to_id])}
       results = AdHocReportFiles.read("sponsor_ct_export_results_1.yaml")
       expect(results[:data].count).to eq(22321) 
-      save_selected_results(results, "sponsor_ct_export_selected_results_1.yaml", ["ACN_01", "ACN_03", "AERELA","SUAM_01", "LOC_01", "RACEC", "TRTEST", "NSA-16 TESTCD", "COWS TESTCD", "OUT", "AESEV", "AGEGRPEN", "RACEN", "MRS01R"], false)
+      save_selected_results(results, "sponsor_ct_export_selected_results_1.yaml", ["ACN_01", "ACN_03", "AERELA","SUAM_01", "LOC_01", "RACEC", "TRTEST", "NSA-16 TESTCD", "COWS TESTCD", "OUT", "AESEV", "AGEGRPEN", "RACEN", "MRS01R"], true)
       ranks = extract_ranks(results)
       check_file_actual_expected(ranks, sub_dir, "sponsor_ct_export_rank_results_1.yaml", equate_method: :hash_equal)
       expect(ranks.count).to eq(44)
+      write_yaml_file(key_data(results), sub_dir, "sponsor_ct_export_full_results_1.yaml")
     end
   
     it "executes an sponsor CT export report, 2020 R1", :ad_hoc_report => 'slow' do
@@ -250,10 +251,11 @@ RSpec.describe AdHocReport, type: :model do
       full_path = File.join(AdHocReportFiles.dir_path, "sponsor_ct_export_results_2.yaml")
       results = AdHocReportFiles.read("sponsor_ct_export_results_2.yaml")
       expect(results[:data].count).to eq(31929) 
-      save_selected_results(results, "sponsor_ct_export_selected_results_2.yaml", ["ACN_01", "ACN_03", "AERELA", "SUAM_01", "LOC_01", "RACEC", "TRTEST", "NSA-16 TESTCD", "COWS TESTCD", "OUT", "AESEV", "AGEGRPEN", "RACEN", "KPSSR_01"], false)
+      save_selected_results(results, "sponsor_ct_export_selected_results_2.yaml", ["ACN_01", "ACN_03", "AERELA", "SUAM_01", "LOC_01", "RACEC", "TRTEST", "NSA-16 TESTCD", "COWS TESTCD", "OUT", "AESEV", "AGEGRPEN", "RACEN", "KPSSR_01"], true)
       ranks = extract_ranks(results)
       check_file_actual_expected(ranks, sub_dir, "sponsor_ct_export_rank_results_2.yaml", equate_method: :hash_equal)
       expect(ranks.count).to eq(47)
+      write_yaml_file(key_data(results), sub_dir, "sponsor_ct_export_full_results_2.yaml")
     end
   
     it "executes an sponsor CT export report, 2020 R2", :ad_hoc_report => 'slow' do
@@ -267,10 +269,11 @@ RSpec.describe AdHocReport, type: :model do
       full_path = File.join(AdHocReportFiles.dir_path, "sponsor_ct_export_results_3.yaml")
       results = AdHocReportFiles.read("sponsor_ct_export_results_3.yaml")
       expect(results[:data].count).to eq(32780) 
-      save_selected_results(results, "sponsor_ct_export_selected_results_3.yaml", ["ACN", "AERELA", "AERELDEV_01", "AGEGRPE", "AGEGRPPN", "NORMEDN", "SEVRS", "SHIFT2N", "TOXGR_01", "TOXGRN", "LBPARMN", "POEM9R", "NORMEDN"], false)
+      save_selected_results(results, "sponsor_ct_export_selected_results_3.yaml", ["ACN", "AERELA", "AERELDEV_01", "AGEGRPE", "AGEGRPPN", "NORMEDN", "SEVRS", "SHIFT2N", "TOXGR_01", "TOXGRN", "LBPARMN", "POEM9R", "NORMEDN"], true)
       ranks = extract_ranks(results)
       check_file_actual_expected(ranks, sub_dir, "sponsor_ct_export_rank_results_3.yaml", equate_method: :hash_equal)
       expect(ranks.count).to eq(30)
+      write_yaml_file(key_data(results), sub_dir, "sponsor_ct_export_full_results_3.yaml")
     end
   
   end
@@ -325,6 +328,52 @@ RSpec.describe AdHocReport, type: :model do
       ranks = extract_ranks(results)
       check_file_actual_expected(ranks, sub_dir, "sponsor_ct_export_subsets_rank_results_2.yaml", equate_method: :hash_equal)
       expect(ranks.count).to eq(3)
+    end
+  
+  end
+
+  describe "Sponsor Export Checks" do
+    
+    before :all do
+      load_files(schema_files, [])
+    end
+
+    after :all do
+    end
+
+    it "202 R2 Compare" do
+      ignore_col = [4, 5]
+      boolean_col = [false, false, true, false, false, false, false, false, false, false, false, false, false, false, true, true, true, true, false]
+      actual_map = [0, 1, 2, 3, 4, 5, 6, 7, 8, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
+      export = read_yaml_file(sub_dir, "sponsor_ct_export_full_results_3.yaml")
+      spreadsheet = read_yaml_file(sub_dir, "full_spreadsheet_export_3-1.yaml")
+      spreadsheet.each do |cl, rows|
+        begin
+          actual_cl = export[cl]
+          rows.each do |row|
+            actual_row = actual_cl.find{ |r| r[6].strip == row[6].strip }
+            puts "Error, cl: #{cl}, failed to match #{row[6]}" if actual_row.nil?
+            next if actual_row.nil?      
+            row.each_with_index do |cell, index|
+              next if ignore_col.include?(index)
+              actual_index = actual_map[index]
+              cell_value = boolean_col[index] ? row[index].to_bool : row[index]
+              begin
+                actual_value = boolean_col[index] ? actual_row[actual_index].to_bool : actual_row[actual_index]
+              rescue => e
+                byebug
+              end
+              cell_value = "" if cell_value.nil?
+              actual_value = "" if actual_value.nil?
+              next if index == 7 # Temp
+              byebug if cell_value != actual_value && index == 12
+              puts "Error, cl: #{actual_row[4]}, cli: #{actual_row[5]}, col: #{index+1}, SS: '#{cell_value}' v A: '#{actual_value}'" if cell_value != actual_value
+            end
+          end
+        rescue => e
+          byebug
+        end
+      end  
     end
   
   end

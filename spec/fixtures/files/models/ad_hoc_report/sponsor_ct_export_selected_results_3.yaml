@@ -11,7 +11,7 @@ ACN:
   - Unknown
   - U; Unknown
   - U; Unknown
-  - ''
+  - Not known, not observed, not recorded, or refused. (NCI)
   - text
   - Unknown
   - '6'
@@ -19,7 +19,7 @@ ACN:
   - 'true'
   - 'true'
   - 'true'
-  - ''
+  - 'false'
 - - Action Taken with Study Treatment
   - ACN
   - 'false'
@@ -31,7 +31,7 @@ ACN:
   - Not Applicable
   - NA; Not Applicable
   - NA; Not Applicable
-  - ''
+  - Determination of a value is not relevant in the current context. (NCI)
   - text
   - Not Applicable
   - '7'
@@ -39,7 +39,7 @@ ACN:
   - 'true'
   - 'true'
   - 'true'
-  - ''
+  - 'false'
 - - Action Taken with Study Treatment
   - ACN
   - 'false'
@@ -51,7 +51,8 @@ ACN:
   - Drug Interrupted
   - ''
   - ''
-  - ''
+  - An indication that a medication schedule was modified by temporarily terminating
+    a prescribed regimen of medication. (NCI)
   - text
   - Drug Interrupted
   - '3'
@@ -59,7 +60,7 @@ ACN:
   - 'true'
   - 'true'
   - 'true'
-  - ''
+  - 'false'
 - - Action Taken with Study Treatment
   - ACN
   - 'false'
@@ -71,7 +72,8 @@ ACN:
   - Drug Withdrawn
   - ''
   - ''
-  - ''
+  - An indication that a medication schedule was modified through termination of a
+    prescribed regimen of medication. (NCI)
   - text
   - Drug Withdrawn
   - '4'
@@ -79,7 +81,7 @@ ACN:
   - 'true'
   - 'true'
   - 'true'
-  - ''
+  - 'false'
 - - Action Taken with Study Treatment
   - ACN
   - 'false'
@@ -91,7 +93,8 @@ ACN:
   - Dose Increased
   - ''
   - ''
-  - ''
+  - An indication that a medication schedule was modified by addition; either by changing
+    the frequency, strength or amount. (NCI)
   - text
   - Dose Increased
   - '5'
@@ -99,7 +102,7 @@ ACN:
   - 'true'
   - 'true'
   - 'true'
-  - ''
+  - 'false'
 - - Action Taken with Study Treatment
   - ACN
   - 'false'
@@ -111,7 +114,7 @@ ACN:
   - Dose Not Changed
   - ''
   - ''
-  - ''
+  - An indication that a medication schedule was maintained. (NCI)
   - text
   - Dose Not Changed
   - '1'
@@ -119,7 +122,7 @@ ACN:
   - 'true'
   - 'true'
   - 'true'
-  - ''
+  - 'false'
 - - Action Taken with Study Treatment
   - ACN
   - 'false'
@@ -131,7 +134,8 @@ ACN:
   - Dose Reduced
   - ''
   - ''
-  - ''
+  - An indication that a medication schedule was modified by subtraction, either by
+    changing the frequency, strength or amount. (NCI)
   - text
   - Dose Reduced
   - '2'
@@ -139,7 +143,7 @@ ACN:
   - 'true'
   - 'true'
   - 'true'
-  - ''
+  - 'false'
 - - Action Taken with Study Treatment
   - ACN
   - 'false'
@@ -151,7 +155,7 @@ ACN:
   - Many
   - Many; Several
   - Many; Several
-  - ''
+  - More than one. (NCI)
   - text
   - ''
   - ''
@@ -159,7 +163,7 @@ ACN:
   - 'false'
   - 'true'
   - 'true'
-  - ''
+  - 'false'
 AERELA:
 - - Relationship to Study Treatment
   - AERELA
@@ -171,7 +175,7 @@ AERELA:
   - Many
   - Many; Several
   - Many; Several
-  - ''
+  - More than one. (NCI)
   - text
   - ''
   - ''
@@ -179,7 +183,7 @@ AERELA:
   - 'false'
   - 'true'
   - 'true'
-  - ''
+  - 'false'
 - - Relationship to Study Treatment
   - AERELA
   - 'false'
@@ -190,7 +194,8 @@ AERELA:
   - Not Related
   - ''
   - ''
-  - ''
+  - A characteristic used to qualify the adverse event as clearly not related to the
+    study treatment.
   - text
   - Not Related
   - '1'
@@ -198,7 +203,7 @@ AERELA:
   - 'true'
   - 'true'
   - 'true'
-  - ''
+  - 'false'
 - - Relationship to Study Treatment
   - AERELA
   - 'false'
@@ -209,7 +214,8 @@ AERELA:
   - Possibly Related
   - ''
   - ''
-  - ''
+  - A characteristic indicating that an adverse event may be related to the study
+    treatment.
   - text
   - Possibly Related
   - '3'
@@ -217,7 +223,7 @@ AERELA:
   - 'true'
   - 'true'
   - 'true'
-  - ''
+  - 'false'
 - - Relationship to Study Treatment
   - AERELA
   - 'false'
@@ -228,7 +234,7 @@ AERELA:
   - Related
   - ''
   - ''
-  - ''
+  - A characteristic used to qualify the adverse event as related to the study treatment.
   - text
   - Related
   - '4'
@@ -236,7 +242,7 @@ AERELA:
   - 'true'
   - 'true'
   - 'true'
-  - ''
+  - 'false'
 - - Relationship to Study Treatment
   - AERELA
   - 'false'
@@ -247,7 +253,8 @@ AERELA:
   - Unlikely Related
   - ''
   - ''
-  - ''
+  - A characteristic used to qualify the adverse event as unlikely related to the
+    study treatment.
   - text
   - Unlikely Related
   - '2'
@@ -255,7 +262,7 @@ AERELA:
   - 'true'
   - 'true'
   - 'true'
-  - ''
+  - 'false'
 AERELDEV_01:
 - - Relationship to Device Subset 01
   - AERELDEV_01
@@ -276,7 +283,7 @@ AERELDEV_01:
   - 'true'
   - 'true'
   - 'false'
-  - ''
+  - 'false'
 - - Relationship to Device Subset 01
   - AERELDEV_01
   - 'false'
@@ -295,7 +302,7 @@ AERELDEV_01:
   - 'true'
   - 'true'
   - 'false'
-  - ''
+  - 'false'
 AGEGRPE:
 - - Age Group (EudraCT)
   - AGEGRPE
@@ -307,7 +314,7 @@ AGEGRPE:
   - ADOLESCENTS (12-17 YEARS)
   - ''
   - ''
-  - ''
+  - Adolescents (12-17 years).
   - text
   - ''
   - ''
@@ -315,7 +322,7 @@ AGEGRPE:
   - 'false'
   - 'false'
   - 'true'
-  - ''
+  - 'false'
 - - Age Group (EudraCT)
   - AGEGRPE
   - 'false'
@@ -326,7 +333,7 @@ AGEGRPE:
   - CHILDREN (2-11 YEARS)
   - ''
   - ''
-  - ''
+  - Children (2-11 years).
   - text
   - ''
   - ''
@@ -334,7 +341,7 @@ AGEGRPE:
   - 'false'
   - 'false'
   - 'true'
-  - ''
+  - 'false'
 - - Age Group (EudraCT)
   - AGEGRPE
   - 'false'
@@ -345,7 +352,7 @@ AGEGRPE:
   - FROM 18 - 64 YEARS
   - ''
   - ''
-  - ''
+  - Adults (18-64 years).
   - text
   - ''
   - ''
@@ -353,7 +360,7 @@ AGEGRPE:
   - 'false'
   - 'false'
   - 'true'
-  - ''
+  - 'false'
 - - Age Group (EudraCT)
   - AGEGRPE
   - 'false'
@@ -364,7 +371,7 @@ AGEGRPE:
   - FROM 65 - 84 YEARS
   - ''
   - ''
-  - ''
+  - Adults (65-84 years).
   - text
   - ''
   - ''
@@ -372,7 +379,7 @@ AGEGRPE:
   - 'false'
   - 'false'
   - 'true'
-  - ''
+  - 'false'
 - - Age Group (EudraCT)
   - AGEGRPE
   - 'false'
@@ -383,7 +390,7 @@ AGEGRPE:
   - IN UTERO
   - ''
   - ''
-  - ''
+  - Fetus.
   - text
   - ''
   - ''
@@ -391,7 +398,7 @@ AGEGRPE:
   - 'false'
   - 'false'
   - 'true'
-  - ''
+  - 'false'
 - - Age Group (EudraCT)
   - AGEGRPE
   - 'false'
@@ -402,7 +409,7 @@ AGEGRPE:
   - INFANTS AND TODDLERS (28 DAYS - 23 MONTHS)
   - ''
   - ''
-  - ''
+  - Infants and toddlers (28 days - 23 months).
   - text
   - ''
   - ''
@@ -410,7 +417,7 @@ AGEGRPE:
   - 'false'
   - 'false'
   - 'true'
-  - ''
+  - 'false'
 - - Age Group (EudraCT)
   - AGEGRPE
   - 'false'
@@ -421,7 +428,7 @@ AGEGRPE:
   - NEWBORNS (0-27 DAYS)
   - ''
   - ''
-  - ''
+  - Newborns (0-27 days).
   - text
   - ''
   - ''
@@ -429,7 +436,7 @@ AGEGRPE:
   - 'false'
   - 'false'
   - 'true'
-  - ''
+  - 'false'
 - - Age Group (EudraCT)
   - AGEGRPE
   - 'false'
@@ -440,7 +447,7 @@ AGEGRPE:
   - PRETERM NEWBORN - GESTATIONAL AGEP < 37 WKS
   - ''
   - ''
-  - ''
+  - Preterm newborn infants (gestational age <37 wks).
   - text
   - ''
   - ''
@@ -448,7 +455,7 @@ AGEGRPE:
   - 'false'
   - 'false'
   - 'true'
-  - ''
+  - 'false'
 - - Age Group (EudraCT)
   - AGEGRPE
   - 'false'
@@ -459,7 +466,7 @@ AGEGRPE:
   - 85 YEARS AND OVER
   - ''
   - ''
-  - ''
+  - Adults (85 years and over).
   - text
   - ''
   - ''
@@ -467,7 +474,7 @@ AGEGRPE:
   - 'false'
   - 'false'
   - 'true'
-  - ''
+  - 'false'
 AGEGRPPN:
 - - Age Group (Pediatric) Numeric
   - AGEGRPPN
@@ -479,7 +486,7 @@ AGEGRPPN:
   - INFANTS
   - ''
   - ''
-  - ''
+  - A numeric value, two, that indicate 28 days/1 month to 23 months old.
   - integer
   - ''
   - ''
@@ -487,7 +494,7 @@ AGEGRPPN:
   - 'false'
   - 'false'
   - 'true'
-  - ''
+  - 'false'
 - - Age Group (Pediatric) Numeric
   - AGEGRPPN
   - 'false'
@@ -498,7 +505,7 @@ AGEGRPPN:
   - YOUNGER CHILDREN
   - ''
   - ''
-  - ''
+  - A numeric value, three, that indicate 24 months/2 years to <6 years old.
   - integer
   - ''
   - ''
@@ -506,7 +513,7 @@ AGEGRPPN:
   - 'false'
   - 'false'
   - 'true'
-  - ''
+  - 'false'
 - - Age Group (Pediatric) Numeric
   - AGEGRPPN
   - 'false'
@@ -517,7 +524,7 @@ AGEGRPPN:
   - NEONATES
   - ''
   - ''
-  - ''
+  - A numeric value, one, that indicate birth/0 to 27 days old.
   - integer
   - ''
   - ''
@@ -525,7 +532,7 @@ AGEGRPPN:
   - 'false'
   - 'false'
   - 'true'
-  - ''
+  - 'false'
 - - Age Group (Pediatric) Numeric
   - AGEGRPPN
   - 'false'
@@ -536,7 +543,7 @@ AGEGRPPN:
   - OLDER CHILDREN
   - ''
   - ''
-  - ''
+  - A numeric value, four, that indicate 6 to <12 years old.
   - integer
   - ''
   - ''
@@ -544,7 +551,7 @@ AGEGRPPN:
   - 'false'
   - 'false'
   - 'true'
-  - ''
+  - 'false'
 - - Age Group (Pediatric) Numeric
   - AGEGRPPN
   - 'false'
@@ -555,7 +562,7 @@ AGEGRPPN:
   - ADOLESCENTS
   - ''
   - ''
-  - ''
+  - A numeric value, five, that indicate 12 to 16/18 years old.
   - integer
   - ''
   - ''
@@ -563,7 +570,7 @@ AGEGRPPN:
   - 'false'
   - 'false'
   - 'true'
-  - ''
+  - 'false'
 NORMEDN:
 - - Normalized Identifier Numeric
   - NORMEDN
@@ -576,7 +583,8 @@ NORMEDN:
   - No worsening as compared to the baseline pcsa status
   - ''
   - ''
-  - ''
+  - A numeric value of 0 indicating that all PCSA on treatment are equal to or less
+    than PCSA at baseline.
   - integer
   - ''
   - ''
@@ -584,7 +592,7 @@ NORMEDN:
   - 'false'
   - 'false'
   - 'true'
-  - ''
+  - 'false'
 - - Normalized Identifier Numeric
   - NORMEDN
   - 'false'
@@ -596,7 +604,9 @@ NORMEDN:
   - Never returned to baseline pcsa status
   - ''
   - ''
-  - ''
+  - A numeric value of 3 indicating that there is an on treatment PCSA higher than
+    the baseline PCSA, and neither the last value on treatment or the last after max
+    on treatment during the follow up are equal to or less than PCSA at baseline.
   - integer
   - ''
   - ''
@@ -604,7 +614,7 @@ NORMEDN:
   - 'false'
   - 'false'
   - 'true'
-  - ''
+  - 'false'
 - - Normalized Identifier Numeric
   - NORMEDN
   - 'false'
@@ -616,7 +626,9 @@ NORMEDN:
   - No assessment after elevation
   - ''
   - ''
-  - ''
+  - A numeric value of 4 indicating that there is an on treatment PCSA higher than
+    the baseline PCSA, but after the last max on treatment PCSA there are no other
+    values.
   - integer
   - ''
   - ''
@@ -624,7 +636,7 @@ NORMEDN:
   - 'false'
   - 'false'
   - 'true'
-  - ''
+  - 'false'
 - - Normalized Identifier Numeric
   - NORMEDN
   - 'false'
@@ -636,7 +648,9 @@ NORMEDN:
   - Returned to baseline pcsa status after last imp dose
   - ''
   - ''
-  - ''
+  - A numeric value of 2 indicating that there is an on treatment PCSA higher than
+    the baseline PCSA, but the last after max on treatment PCSA during the follow-up
+    period is equal to or less than PCSA at baseline.
   - integer
   - ''
   - ''
@@ -644,7 +658,7 @@ NORMEDN:
   - 'false'
   - 'false'
   - 'true'
-  - ''
+  - 'false'
 - - Normalized Identifier Numeric
   - NORMEDN
   - 'false'
@@ -656,7 +670,9 @@ NORMEDN:
   - Returned to baseline pcsa status before last imp dose
   - ''
   - ''
-  - ''
+  - A numeric value of 1 indicating that there is an on treatment PCSA higher than
+    the baseline PCSA, but the PCSA of the last value on treatment is equal to or
+    less than PCSA at baseline.
   - integer
   - ''
   - ''
@@ -664,7 +680,7 @@ NORMEDN:
   - 'false'
   - 'false'
   - 'true'
-  - ''
+  - 'false'
 SEVRS:
 - - Severity Response
   - SEVRS
@@ -677,7 +693,8 @@ SEVRS:
   - Major
   - '3'
   - '3'
-  - ''
+  - Major disease manifestations with major-as or more important complications than
+    principal diagnosis, and non emergency life support procedures.
   - text
   - Major
   - '4'
@@ -685,7 +702,7 @@ SEVRS:
   - 'true'
   - 'true'
   - 'true'
-  - ''
+  - 'false'
 - - Severity Response
   - SEVRS
   - 'true'
@@ -697,7 +714,8 @@ SEVRS:
   - Minor
   - 1; Low
   - 1; Low
-  - ''
+  - Asymptomatic disease with none or very minor complication, and non invasis diagnostic
+    or minor therapeutic.
   - text
   - Minor
   - '2'
@@ -705,7 +723,7 @@ SEVRS:
   - 'true'
   - 'true'
   - 'true'
-  - ''
+  - 'false'
 - - Severity Response
   - SEVRS
   - 'true'
@@ -717,7 +735,7 @@ SEVRS:
   - Unknown
   - U; UNK; Unknown
   - U; UNK; Unknown
-  - ''
+  - Not known, not observed, not recorded, or refused. (NCI)
   - text
   - Unknown
   - '6'
@@ -725,7 +743,7 @@ SEVRS:
   - 'true'
   - 'true'
   - 'true'
-  - ''
+  - 'false'
 - - Severity Response
   - SEVRS
   - 'true'
@@ -737,7 +755,7 @@ SEVRS:
   - Moderate
   - ''
   - ''
-  - ''
+  - Middling or intermediate in degree, quality or extent.
   - text
   - Moderate
   - '3'
@@ -745,7 +763,7 @@ SEVRS:
   - 'true'
   - 'true'
   - 'true'
-  - ''
+  - 'false'
 - - Severity Response
   - SEVRS
   - 'true'
@@ -757,7 +775,7 @@ SEVRS:
   - Mild
   - ''
   - ''
-  - ''
+  - Slight or minor in degree, quality or extent.
   - text
   - Mild
   - '1'
@@ -765,7 +783,7 @@ SEVRS:
   - 'true'
   - 'true'
   - 'true'
-  - ''
+  - 'false'
 - - Severity Response
   - SEVRS
   - 'true'
@@ -777,7 +795,7 @@ SEVRS:
   - Severe
   - ''
   - ''
-  - ''
+  - Intensely bad or major in degree, quality or extent.
   - text
   - Severe
   - '5'
@@ -785,7 +803,7 @@ SEVRS:
   - 'true'
   - 'true'
   - 'true'
-  - ''
+  - 'false'
 SHIFT2N:
 - - Shift of Normality from Baseline Numeric
   - SHIFT2N
@@ -797,7 +815,7 @@ SHIFT2N:
   - Abnormal to Normal
   - ''
   - ''
-  - ''
+  - A numeric value that indicate a shift from Abnormal at baseline to Normal.
   - integer
   - ''
   - ''
@@ -805,7 +823,7 @@ SHIFT2N:
   - 'false'
   - 'false'
   - 'true'
-  - ''
+  - 'false'
 - - Shift of Normality from Baseline Numeric
   - SHIFT2N
   - 'true'
@@ -816,7 +834,7 @@ SHIFT2N:
   - Normal/Missing to Abnormal
   - ''
   - ''
-  - ''
+  - A numeric value that indicate a shift from Normal or Missing at baseline to Abnormal.
   - integer
   - ''
   - ''
@@ -824,7 +842,7 @@ SHIFT2N:
   - 'false'
   - 'false'
   - 'true'
-  - ''
+  - 'false'
 TOXGR_01:
 - - Common Terminology Criteria for Adverse Events Subset 01
   - TOXGR_01
@@ -849,7 +867,7 @@ TOXGR_01:
   - 'true'
   - 'false'
   - 'true'
-  - ''
+  - 'false'
 - - Common Terminology Criteria for Adverse Events Subset 01
   - TOXGR_01
   - 'false'
@@ -873,7 +891,7 @@ TOXGR_01:
   - 'true'
   - 'false'
   - 'true'
-  - ''
+  - 'false'
 - - Common Terminology Criteria for Adverse Events Subset 01
   - TOXGR_01
   - 'false'
@@ -902,7 +920,7 @@ TOXGR_01:
   - 'true'
   - 'false'
   - 'true'
-  - ''
+  - 'false'
 - - Common Terminology Criteria for Adverse Events Subset 01
   - TOXGR_01
   - 'false'
@@ -926,7 +944,7 @@ TOXGR_01:
   - 'true'
   - 'false'
   - 'true'
-  - ''
+  - 'false'
 - - Common Terminology Criteria for Adverse Events Subset 01
   - TOXGR_01
   - 'false'
@@ -947,7 +965,7 @@ TOXGR_01:
   - 'true'
   - 'false'
   - 'true'
-  - ''
+  - 'false'
 TOXGRN:
 - - Common Terminology Criteria for Adverse Events Numeric
   - TOXGRN
@@ -963,7 +981,8 @@ TOXGRN:
   - No Abnormality
   - ''
   - ''
-  - ''
+  - Numeric value 1, that indicate no abnormality is universally defined as absence
+    of Adverse Events or within normal limits or values.
   - text
   - ''
   - '1'
@@ -971,7 +990,7 @@ TOXGRN:
   - 'false'
   - 'false'
   - 'true'
-  - ''
+  - 'false'
 - - Common Terminology Criteria for Adverse Events Numeric
   - TOXGRN
   - 'false'
@@ -986,7 +1005,10 @@ TOXGRN:
   - Mild Adverse Event
   - ''
   - ''
-  - ''
+  - Numeric value 2, that indicate an asymptomatic adverse event or involves mild
+    or minor symptoms; or is of marginal clinical relevance; or consists of clinical
+    or diagnostic observations alone; or for which intervention is not indicated;
+    or for which only non-prescription intervention is indicated.
   - integer
   - ''
   - '2'
@@ -994,7 +1016,7 @@ TOXGRN:
   - 'false'
   - 'false'
   - 'true'
-  - ''
+  - 'false'
 - - Common Terminology Criteria for Adverse Events Numeric
   - TOXGRN
   - 'false'
@@ -1009,7 +1031,10 @@ TOXGRN:
   - Moderate Adverse Event
   - ''
   - ''
-  - ''
+  - Numeric value 3, that indicate an adverse event for which only minimal, local,
+    or noninvasive intervention (e.g. packing, cautery) is indicated; or that limits
+    instrumental activities of daily living (ADLs, e.g., shopping, laundry, transportation,
+    or ability to conduct finances).
   - integer
   - ''
   - '3'
@@ -1017,7 +1042,7 @@ TOXGRN:
   - 'false'
   - 'false'
   - 'true'
-  - ''
+  - 'false'
 - - Common Terminology Criteria for Adverse Events Numeric
   - TOXGRN
   - 'false'
@@ -1032,7 +1057,15 @@ TOXGRN:
   - Severe Adverse Event
   - ''
   - ''
-  - ''
+  - Numeric value 4, that indicate an adverse event that is medically significant
+    but not life-threatening; or for which inpatient care or prolongation of hospitalization
+    are indicated; or that is an important medical event that does not result in hospitalization,
+    but may jeopardize the patient or may require intervention either to prevent hospitalization,
+    to prevent the AE from becoming life-threatening or causing death; or that is
+    disabling; or that results in persistent or significant disability, incapacity,
+    or limitation of self care activities of daily living (ADLs, e.g., getting in
+    and out of bed, dressing, eating, getting around inside, bathing, or using the
+    toilet).
   - integer
   - ''
   - '4'
@@ -1040,7 +1073,7 @@ TOXGRN:
   - 'false'
   - 'false'
   - 'true'
-  - ''
+  - 'false'
 - - Common Terminology Criteria for Adverse Events Numeric
   - TOXGRN
   - 'false'
@@ -1055,7 +1088,10 @@ TOXGRN:
   - Life Threatening Adverse Event
   - ''
   - ''
-  - ''
+  - Numeric value 5, that indicate an adverse event that has life-threatening consequences;
+    for which urgent intervention is indicated; that puts the patient at risk of death
+    at the time of the event if immediate intervention is not undertaken; or that
+    causes blindness or deafness.
   - integer
   - ''
   - '5'
@@ -1063,7 +1099,7 @@ TOXGRN:
   - 'false'
   - 'false'
   - 'true'
-  - ''
+  - 'false'
 - - Common Terminology Criteria for Adverse Events Numeric
   - TOXGRN
   - 'false'
@@ -1078,7 +1114,8 @@ TOXGRN:
   - Death Related to Adverse Event
   - ''
   - ''
-  - ''
+  - Numeric value 6, that indicate the termination of life as a result of an adverse
+    event. (NCI)
   - integer
   - ''
   - '6'
@@ -1086,7 +1123,7 @@ TOXGRN:
   - 'false'
   - 'false'
   - 'true'
-  - ''
+  - 'false'
 LBPARMN:
 - - Laboratory Parameter Numeric
   - LBPARMN
@@ -1100,7 +1137,8 @@ LBPARMN:
   - Direct Bilirubin and Total Bilirubin PCSA
   - ''
   - ''
-  - ''
+  - 'A numeric representing analysis parameter for the combined laboratory test: Direct
+    Bilirubin and Bilirubin Potentially Clinically Significant Abnormalities.'
   - integer
   - ''
   - ''
@@ -1108,7 +1146,7 @@ LBPARMN:
   - 'false'
   - 'false'
   - 'true'
-  - ''
+  - 'false'
 - - Laboratory Parameter Numeric
   - LBPARMN
   - 'true'
@@ -1121,7 +1159,8 @@ LBPARMN:
   - ALT and Total Bilirubin PCSA
   - ''
   - ''
-  - ''
+  - 'A numeric representing analysis parameter for the combined laboratory test: Alanine
+    Aminotransferase and Bilirubin Potentially Clinically Significant Abnormalities.'
   - integer
   - ''
   - ''
@@ -1129,7 +1168,7 @@ LBPARMN:
   - 'false'
   - 'false'
   - 'true'
-  - ''
+  - 'false'
 - - Laboratory Parameter Numeric
   - LBPARMN
   - 'true'
@@ -1142,7 +1181,8 @@ LBPARMN:
   - Urate (umol/L)
   - ''
   - ''
-  - ''
+  - 'A numeric representing analysis parameter for the laboratory test: Urate in standard
+    unit umol/L.'
   - integer
   - ''
   - ''
@@ -1150,7 +1190,7 @@ LBPARMN:
   - 'false'
   - 'false'
   - 'true'
-  - ''
+  - 'false'
 - - Laboratory Parameter Numeric
   - LBPARMN
   - 'true'
@@ -1163,7 +1203,8 @@ LBPARMN:
   - Triglycerides (mmol/L)
   - ''
   - ''
-  - ''
+  - 'A numeric representing analysis parameter for the laboratory test: Triglycerides
+    in standard unit mmol/L.'
   - integer
   - ''
   - ''
@@ -1171,7 +1212,7 @@ LBPARMN:
   - 'false'
   - 'false'
   - 'true'
-  - ''
+  - 'false'
 - - Laboratory Parameter Numeric
   - LBPARMN
   - 'true'
@@ -1184,7 +1225,8 @@ LBPARMN:
   - Sodium (mmol/L)
   - ''
   - ''
-  - ''
+  - 'A numeric representing analysis parameter for the laboratory test: Sodium in
+    standard unit mmol/L.'
   - integer
   - ''
   - ''
@@ -1192,7 +1234,7 @@ LBPARMN:
   - 'false'
   - 'false'
   - 'true'
-  - ''
+  - 'false'
 - - Laboratory Parameter Numeric
   - LBPARMN
   - 'true'
@@ -1205,7 +1247,8 @@ LBPARMN:
   - Potassium (mmol/L)
   - ''
   - ''
-  - ''
+  - 'A numeric representing analysis parameter for the laboratory test: Potassium
+    in standard unit mmol/L.'
   - integer
   - ''
   - ''
@@ -1213,7 +1256,7 @@ LBPARMN:
   - 'false'
   - 'false'
   - 'true'
-  - ''
+  - 'false'
 - - Laboratory Parameter Numeric
   - LBPARMN
   - 'true'
@@ -1226,7 +1269,8 @@ LBPARMN:
   - Platelets (10^9/L)
   - ''
   - ''
-  - ''
+  - 'A numeric representing analysis parameter for the laboratory test: Platelets
+    in standard unit 10^9/L.'
   - integer
   - ''
   - ''
@@ -1234,7 +1278,7 @@ LBPARMN:
   - 'false'
   - 'false'
   - 'true'
-  - ''
+  - 'false'
 - - Laboratory Parameter Numeric
   - LBPARMN
   - 'true'
@@ -1247,7 +1291,7 @@ LBPARMN:
   - pH
   - ''
   - ''
-  - ''
+  - 'A numeric representing analysis parameter for the laboratory test: pH.'
   - integer
   - ''
   - ''
@@ -1255,7 +1299,7 @@ LBPARMN:
   - 'false'
   - 'false'
   - 'true'
-  - ''
+  - 'false'
 - - Laboratory Parameter Numeric
   - LBPARMN
   - 'true'
@@ -1268,7 +1312,8 @@ LBPARMN:
   - Neutrophils (10^9/L)
   - ''
   - ''
-  - ''
+  - 'A numeric representing analysis parameter for the laboratory test: Neutrophils
+    in standard unit 10^9/L.'
   - integer
   - ''
   - ''
@@ -1276,7 +1321,7 @@ LBPARMN:
   - 'false'
   - 'false'
   - 'true'
-  - ''
+  - 'false'
 - - Laboratory Parameter Numeric
   - LBPARMN
   - 'true'
@@ -1289,7 +1334,8 @@ LBPARMN:
   - Monocytes (10^9/L)
   - ''
   - ''
-  - ''
+  - 'A numeric representing analysis parameter for the laboratory test: Monocytes
+    in standard unit 10^9/L.'
   - integer
   - ''
   - ''
@@ -1297,7 +1343,7 @@ LBPARMN:
   - 'false'
   - 'false'
   - 'true'
-  - ''
+  - 'false'
 - - Laboratory Parameter Numeric
   - LBPARMN
   - 'true'
@@ -1310,7 +1356,8 @@ LBPARMN:
   - Lymphocytes (10^9/L)
   - ''
   - ''
-  - ''
+  - 'A numeric representing analysis parameter for the laboratory test: Lymphocytes
+    in standard unit 10^9/L.'
   - integer
   - ''
   - ''
@@ -1318,7 +1365,7 @@ LBPARMN:
   - 'false'
   - 'false'
   - 'true'
-  - ''
+  - 'false'
 - - Laboratory Parameter Numeric
   - LBPARMN
   - 'true'
@@ -1331,7 +1378,8 @@ LBPARMN:
   - Lipase (IU/L)
   - ''
   - ''
-  - ''
+  - 'A numeric representing analysis parameter for the laboratory test: Lipase in
+    standard unit IU/L.'
   - integer
   - ''
   - ''
@@ -1339,7 +1387,7 @@ LBPARMN:
   - 'false'
   - 'false'
   - 'true'
-  - ''
+  - 'false'
 - - Laboratory Parameter Numeric
   - LBPARMN
   - 'true'
@@ -1352,7 +1400,8 @@ LBPARMN:
   - Leukocytes (WBC) (10^9/L)
   - ''
   - ''
-  - ''
+  - 'A numeric representing analysis parameter for the laboratory test: Leukocytes
+    in standard unit 10^9/L.'
   - integer
   - ''
   - ''
@@ -1360,7 +1409,7 @@ LBPARMN:
   - 'false'
   - 'false'
   - 'true'
-  - ''
+  - 'false'
 - - Laboratory Parameter Numeric
   - LBPARMN
   - 'true'
@@ -1373,7 +1422,8 @@ LBPARMN:
   - Calcium, Ionized (mmol/L)
   - ''
   - ''
-  - ''
+  - 'A numeric representing analysis parameter for the laboratory test: Ionized Calcium
+    in standard unit mmol/L.'
   - integer
   - ''
   - ''
@@ -1381,7 +1431,7 @@ LBPARMN:
   - 'false'
   - 'false'
   - 'true'
-  - ''
+  - 'false'
 - - Laboratory Parameter Numeric
   - LBPARMN
   - 'true'
@@ -1394,7 +1444,8 @@ LBPARMN:
   - High Sensitivity C Reactive Protein (mg/L)
   - ''
   - ''
-  - ''
+  - 'A numeric representing analysis parameter for the laboratory test: High Sensitivity
+    C Reactive Protein in standard unit mg/L.'
   - integer
   - ''
   - ''
@@ -1402,7 +1453,7 @@ LBPARMN:
   - 'false'
   - 'false'
   - 'true'
-  - ''
+  - 'false'
 - - Laboratory Parameter Numeric
   - LBPARMN
   - 'true'
@@ -1415,7 +1466,8 @@ LBPARMN:
   - Hemoglobin (g/L)
   - ''
   - ''
-  - ''
+  - 'A numeric representing analysis parameter for the laboratory test: Hemoglobin
+    in standard unit g/L.'
   - integer
   - ''
   - ''
@@ -1423,7 +1475,7 @@ LBPARMN:
   - 'false'
   - 'false'
   - 'true'
-  - ''
+  - 'false'
 - - Laboratory Parameter Numeric
   - LBPARMN
   - 'true'
@@ -1436,7 +1488,8 @@ LBPARMN:
   - Hemoglobin A1C (%)
   - ''
   - ''
-  - ''
+  - 'A numeric representing analysis parameter for the laboratory test: Hemoglobin
+    A1C in standard unit %.'
   - integer
   - ''
   - ''
@@ -1444,7 +1497,7 @@ LBPARMN:
   - 'false'
   - 'false'
   - 'true'
-  - ''
+  - 'false'
 - - Laboratory Parameter Numeric
   - LBPARMN
   - 'true'
@@ -1457,7 +1510,8 @@ LBPARMN:
   - Hematocrit (v/v)
   - ''
   - ''
-  - ''
+  - 'A numeric representing analysis parameter for the laboratory test: Hematocrit
+    in standard unit v/v.'
   - integer
   - ''
   - ''
@@ -1465,7 +1519,7 @@ LBPARMN:
   - 'false'
   - 'false'
   - 'true'
-  - ''
+  - 'false'
 - - Laboratory Parameter Numeric
   - LBPARMN
   - 'true'
@@ -1478,7 +1532,8 @@ LBPARMN:
   - Glucose (mmol/L)
   - ''
   - ''
-  - ''
+  - 'A numeric representing analysis parameter for the laboratory test: Glucose in
+    standard unit mmol/L.'
   - integer
   - ''
   - ''
@@ -1486,7 +1541,7 @@ LBPARMN:
   - 'false'
   - 'false'
   - 'true'
-  - ''
+  - 'false'
 - - Laboratory Parameter Numeric
   - LBPARMN
   - 'true'
@@ -1499,7 +1554,9 @@ LBPARMN:
   - GFR from Creatinine Adjusted for BSA (mL/min/1.73m2) (MDRD Equation)
   - ''
   - ''
-  - ''
+  - 'A numeric representing analysis parameter for the laboratory test: GFR from Creatinine
+    Adjusted for BSA in standard unit mL/min/1.73m2 using Modification of Diet in
+    Renal Disease Equation.'
   - integer
   - ''
   - ''
@@ -1507,7 +1564,7 @@ LBPARMN:
   - 'false'
   - 'false'
   - 'true'
-  - ''
+  - 'false'
 - - Laboratory Parameter Numeric
   - LBPARMN
   - 'true'
@@ -1520,7 +1577,8 @@ LBPARMN:
   - GFR from Creatinine Adjusted for BSA (mL/min/1.73m2) (Bedside Schwartz Formula)
   - ''
   - ''
-  - ''
+  - 'A numeric representing analysis parameter for the laboratory test: GFR from Creatinine
+    Adjusted for BSA in standard unit mL/min/1.73m2 using Bedside Schwartz Formula.'
   - integer
   - ''
   - ''
@@ -1528,7 +1586,7 @@ LBPARMN:
   - 'false'
   - 'false'
   - 'true'
-  - ''
+  - 'false'
 - - Laboratory Parameter Numeric
   - LBPARMN
   - 'true'
@@ -1541,7 +1599,8 @@ LBPARMN:
   - Erythrocytes (RBC) (10^12/L)
   - ''
   - ''
-  - ''
+  - 'A numeric representing analysis parameter for the laboratory test: Erythrocytes
+    in standard unit 10^12/L.'
   - integer
   - ''
   - ''
@@ -1549,7 +1608,7 @@ LBPARMN:
   - 'false'
   - 'false'
   - 'true'
-  - ''
+  - 'false'
 - - Laboratory Parameter Numeric
   - LBPARMN
   - 'true'
@@ -1562,7 +1621,8 @@ LBPARMN:
   - Eosinophils (10^9/L)
   - ''
   - ''
-  - ''
+  - 'A numeric representing analysis parameter for the laboratory test: Eosinophils
+    in standard unit 10^9/L.'
   - integer
   - ''
   - ''
@@ -1570,7 +1630,7 @@ LBPARMN:
   - 'false'
   - 'false'
   - 'true'
-  - ''
+  - 'false'
 - - Laboratory Parameter Numeric
   - LBPARMN
   - 'true'
@@ -1583,7 +1643,8 @@ LBPARMN:
   - Creatinine (umol/L)
   - ''
   - ''
-  - ''
+  - 'A numeric representing analysis parameter for the laboratory test: Creatinine
+    in standard unit umol/L.'
   - integer
   - ''
   - ''
@@ -1591,7 +1652,7 @@ LBPARMN:
   - 'false'
   - 'false'
   - 'true'
-  - ''
+  - 'false'
 - - Laboratory Parameter Numeric
   - LBPARMN
   - 'true'
@@ -1604,7 +1665,8 @@ LBPARMN:
   - Creatinine Clearance (mL/min) (Cokcroft-Gault Equation)
   - ''
   - ''
-  - ''
+  - 'A numeric representing analysis parameter for the laboratory test: Creatinine
+    Clearance in standard unit mL/min using Cokcroft-Gault Equation.'
   - integer
   - ''
   - ''
@@ -1612,7 +1674,7 @@ LBPARMN:
   - 'false'
   - 'false'
   - 'true'
-  - ''
+  - 'false'
 - - Laboratory Parameter Numeric
   - LBPARMN
   - 'true'
@@ -1625,7 +1687,8 @@ LBPARMN:
   - Creatine Kinase (CK) (IU/L)
   - ''
   - ''
-  - ''
+  - 'A numeric representing analysis parameter for the laboratory test: Creatine Kinease
+    in standard unit IU/L.'
   - integer
   - ''
   - ''
@@ -1633,7 +1696,7 @@ LBPARMN:
   - 'false'
   - 'false'
   - 'true'
-  - ''
+  - 'false'
 - - Laboratory Parameter Numeric
   - LBPARMN
   - 'true'
@@ -1646,7 +1709,8 @@ LBPARMN:
   - Cholesterol (mmol/L)
   - ''
   - ''
-  - ''
+  - 'A numeric representing analysis parameter for the laboratory test: Cholesterol
+    in standard unit mmol/L.'
   - integer
   - ''
   - ''
@@ -1654,7 +1718,7 @@ LBPARMN:
   - 'false'
   - 'false'
   - 'true'
-  - ''
+  - 'false'
 - - Laboratory Parameter Numeric
   - LBPARMN
   - 'true'
@@ -1667,7 +1731,8 @@ LBPARMN:
   - Chloride (mmol/L)
   - ''
   - ''
-  - ''
+  - 'A numeric representing analysis parameter for the laboratory test: Chloride in
+    standard unit mmol/L.'
   - integer
   - ''
   - ''
@@ -1675,7 +1740,7 @@ LBPARMN:
   - 'false'
   - 'false'
   - 'true'
-  - ''
+  - 'false'
 - - Laboratory Parameter Numeric
   - LBPARMN
   - 'true'
@@ -1688,7 +1753,8 @@ LBPARMN:
   - Calcium (mmol/L)
   - ''
   - ''
-  - ''
+  - 'A numeric representing analysis parameter for the laboratory test: Calcium in
+    standard unit mmol/L.'
   - integer
   - ''
   - ''
@@ -1696,7 +1762,7 @@ LBPARMN:
   - 'false'
   - 'false'
   - 'true'
-  - ''
+  - 'false'
 - - Laboratory Parameter Numeric
   - LBPARMN
   - 'true'
@@ -1709,7 +1775,8 @@ LBPARMN:
   - C Reactive Protein (mg/L)
   - ''
   - ''
-  - ''
+  - 'A numeric representing analysis parameter for the laboratory test: C Reactive
+    Protein in standard unit mg/L.'
   - integer
   - ''
   - ''
@@ -1717,7 +1784,7 @@ LBPARMN:
   - 'false'
   - 'false'
   - 'true'
-  - ''
+  - 'false'
 - - Laboratory Parameter Numeric
   - LBPARMN
   - 'true'
@@ -1730,7 +1797,8 @@ LBPARMN:
   - Total Bilirubin (umol/L)
   - ''
   - ''
-  - ''
+  - 'A numeric representing analysis parameter for the laboratory test: Total Bilirubin
+    in standard unit umol/L.'
   - integer
   - ''
   - ''
@@ -1738,7 +1806,7 @@ LBPARMN:
   - 'false'
   - 'false'
   - 'true'
-  - ''
+  - 'false'
 - - Laboratory Parameter Numeric
   - LBPARMN
   - 'true'
@@ -1751,7 +1819,8 @@ LBPARMN:
   - Bicarbonate (mmol/L)
   - ''
   - ''
-  - ''
+  - 'A numeric representing analysis parameter for the laboratory test: Bicarbonate
+    in standard unit mmol/L.'
   - integer
   - ''
   - ''
@@ -1759,7 +1828,7 @@ LBPARMN:
   - 'false'
   - 'false'
   - 'true'
-  - ''
+  - 'false'
 - - Laboratory Parameter Numeric
   - LBPARMN
   - 'true'
@@ -1772,7 +1841,8 @@ LBPARMN:
   - Basophils (10^9/L)
   - ''
   - ''
-  - ''
+  - 'A numeric representing analysis parameter for the laboratory test: Basophils
+    in standard unit 10^9/L.'
   - integer
   - ''
   - ''
@@ -1780,7 +1850,7 @@ LBPARMN:
   - 'false'
   - 'false'
   - 'true'
-  - ''
+  - 'false'
 - - Laboratory Parameter Numeric
   - LBPARMN
   - 'true'
@@ -1793,7 +1863,8 @@ LBPARMN:
   - Aspartate Aminotransferase (AST) (IU/L)
   - ''
   - ''
-  - ''
+  - 'A numeric representing analysis parameter for the laboratory test: Aspartate
+    Aminotransferase in standard unit IU/L.'
   - integer
   - ''
   - ''
@@ -1801,7 +1872,7 @@ LBPARMN:
   - 'false'
   - 'false'
   - 'true'
-  - ''
+  - 'false'
 - - Laboratory Parameter Numeric
   - LBPARMN
   - 'true'
@@ -1814,7 +1885,8 @@ LBPARMN:
   - Amylase (IU/L)
   - ''
   - ''
-  - ''
+  - 'A numeric representing analysis parameter for the laboratory test: Amylase in
+    standard unit IU/L.'
   - integer
   - ''
   - ''
@@ -1822,7 +1894,7 @@ LBPARMN:
   - 'false'
   - 'false'
   - 'true'
-  - ''
+  - 'false'
 - - Laboratory Parameter Numeric
   - LBPARMN
   - 'true'
@@ -1835,7 +1907,8 @@ LBPARMN:
   - Alkaline Phosphatase (IU/L)
   - ''
   - ''
-  - ''
+  - 'A numeric representing analysis parameter for the laboratory test: Alkaline Phosphatase
+    in standard unit IU/L.'
   - integer
   - ''
   - ''
@@ -1843,7 +1916,7 @@ LBPARMN:
   - 'false'
   - 'false'
   - 'true'
-  - ''
+  - 'false'
 - - Laboratory Parameter Numeric
   - LBPARMN
   - 'true'
@@ -1856,7 +1929,8 @@ LBPARMN:
   - Albumin (g/L)
   - ''
   - ''
-  - ''
+  - 'A numeric representing analysis parameter for the laboratory test: Albumin in
+    standard unit g/L.'
   - integer
   - ''
   - ''
@@ -1864,7 +1938,7 @@ LBPARMN:
   - 'false'
   - 'false'
   - 'true'
-  - ''
+  - 'false'
 - - Laboratory Parameter Numeric
   - LBPARMN
   - 'true'
@@ -1877,7 +1951,8 @@ LBPARMN:
   - Alanine Aminotransferase (ALT) (IU/L)
   - ''
   - ''
-  - ''
+  - 'A numeric representing analysis parameter for the laboratory test: Alanine Aminotransferase
+    in standard unit IU/L.'
   - integer
   - ''
   - ''
@@ -1885,7 +1960,7 @@ LBPARMN:
   - 'false'
   - 'false'
   - 'true'
-  - ''
+  - 'false'
 - - Laboratory Parameter Numeric
   - LBPARMN
   - 'true'
@@ -1898,7 +1973,8 @@ LBPARMN:
   - HDL Cholesterol (mmol/L)
   - ''
   - ''
-  - ''
+  - 'A numeric representing analysis parameter for the laboratory test: HDL Cholesterol
+    in standard unit mmol/L.'
   - integer
   - ''
   - ''
@@ -1906,7 +1982,7 @@ LBPARMN:
   - 'false'
   - 'false'
   - 'true'
-  - ''
+  - 'false'
 - - Laboratory Parameter Numeric
   - LBPARMN
   - 'true'
@@ -1919,7 +1995,8 @@ LBPARMN:
   - Creatine Kinase (CK) ULN Ratio
   - ''
   - ''
-  - ''
+  - 'A numeric representing analysis parameter for the laboratory test ULN Ratio:
+    Creatine Kinease ULN Ratio.'
   - integer
   - ''
   - ''
@@ -1927,7 +2004,7 @@ LBPARMN:
   - 'false'
   - 'false'
   - 'true'
-  - ''
+  - 'false'
 - - Laboratory Parameter Numeric
   - LBPARMN
   - 'true'
@@ -1940,7 +2017,8 @@ LBPARMN:
   - C Reactive Protein ULN Ratio
   - ''
   - ''
-  - ''
+  - 'A numeric representing analysis parameter for the laboratory test ULN Ratio:
+    C Reactive Protein ULN Ratio.'
   - integer
   - ''
   - ''
@@ -1948,7 +2026,7 @@ LBPARMN:
   - 'false'
   - 'false'
   - 'true'
-  - ''
+  - 'false'
 - - Laboratory Parameter Numeric
   - LBPARMN
   - 'true'
@@ -1961,7 +2039,8 @@ LBPARMN:
   - Total Bilirubin ULN Ratio
   - ''
   - ''
-  - ''
+  - 'A numeric representing analysis parameter for the laboratory test ULN Ratio:
+    Bilirubin ULN Ratio.'
   - integer
   - ''
   - ''
@@ -1969,7 +2048,7 @@ LBPARMN:
   - 'false'
   - 'false'
   - 'true'
-  - ''
+  - 'false'
 - - Laboratory Parameter Numeric
   - LBPARMN
   - 'true'
@@ -1982,7 +2061,8 @@ LBPARMN:
   - Aspartate Aminotransferase (AST) ULN Ratio
   - ''
   - ''
-  - ''
+  - 'A numeric representing analysis parameter for the laboratory test ULN Ratio:
+    Aspartate Aminotransferase ULN Ratio.'
   - integer
   - ''
   - ''
@@ -1990,7 +2070,7 @@ LBPARMN:
   - 'false'
   - 'false'
   - 'true'
-  - ''
+  - 'false'
 - - Laboratory Parameter Numeric
   - LBPARMN
   - 'true'
@@ -2003,7 +2083,8 @@ LBPARMN:
   - Alkaline Phosphatase ULN Ratio
   - ''
   - ''
-  - ''
+  - 'A numeric representing analysis parameter for the laboratory test ULN Ratio:
+    Alkaline Phosphatase ULN Ratio.'
   - integer
   - ''
   - ''
@@ -2011,7 +2092,7 @@ LBPARMN:
   - 'false'
   - 'false'
   - 'true'
-  - ''
+  - 'false'
 - - Laboratory Parameter Numeric
   - LBPARMN
   - 'true'
@@ -2024,7 +2105,8 @@ LBPARMN:
   - Alanine Aminotransferase (ALT) ULN Ratio
   - ''
   - ''
-  - ''
+  - 'A numeric representing analysis parameter for the laboratory test ULN Ratio:
+    Alanine Aminotransferase ULN Ratio.'
   - integer
   - ''
   - ''
@@ -2032,7 +2114,7 @@ LBPARMN:
   - 'false'
   - 'false'
   - 'true'
-  - ''
+  - 'false'
 - - Laboratory Parameter Numeric
   - LBPARMN
   - 'true'
@@ -2045,7 +2127,8 @@ LBPARMN:
   - Ery. Mean Corpuscular Volume (fL)
   - ''
   - ''
-  - ''
+  - 'A numeric representing analysis parameter for the laboratory test: Ery. Mean
+    Corpuscular Volume in standard unit fL.'
   - integer
   - ''
   - ''
@@ -2053,7 +2136,7 @@ LBPARMN:
   - 'false'
   - 'false'
   - 'true'
-  - ''
+  - 'false'
 - - Laboratory Parameter Numeric
   - LBPARMN
   - 'true'
@@ -2066,7 +2149,8 @@ LBPARMN:
   - Ery. Mean Corpuscular HGB Concentration (g/L)
   - ''
   - ''
-  - ''
+  - 'A numeric representing analysis parameter for the laboratory test: Ery. Mean
+    Corpuscular HGB Concentration in standard unit g/L.'
   - integer
   - ''
   - ''
@@ -2074,7 +2158,7 @@ LBPARMN:
   - 'false'
   - 'false'
   - 'true'
-  - ''
+  - 'false'
 - - Laboratory Parameter Numeric
   - LBPARMN
   - 'true'
@@ -2087,7 +2171,8 @@ LBPARMN:
   - Ery. Mean Corpuscular Hemoglobin (pg)
   - ''
   - ''
-  - ''
+  - 'A numeric representing analysis parameter for the laboratory test: Ery. Mean
+    Corpuscular Hemoglobin in standard unit pg.'
   - integer
   - ''
   - ''
@@ -2095,7 +2180,7 @@ LBPARMN:
   - 'false'
   - 'false'
   - 'true'
-  - ''
+  - 'false'
 - - Laboratory Parameter Numeric
   - LBPARMN
   - 'true'
@@ -2108,7 +2193,8 @@ LBPARMN:
   - Prothrombin Time (sec)
   - ''
   - ''
-  - ''
+  - 'A numeric representing analysis parameter for the laboratory test: Prothrombin
+    Time in standard unit sec.'
   - integer
   - ''
   - ''
@@ -2116,7 +2202,7 @@ LBPARMN:
   - 'false'
   - 'false'
   - 'true'
-  - ''
+  - 'false'
 - - Laboratory Parameter Numeric
   - LBPARMN
   - 'true'
@@ -2129,7 +2215,8 @@ LBPARMN:
   - Activated Partial Thromboplastin Time (sec)
   - ''
   - ''
-  - ''
+  - 'A numeric representing analysis parameter for the laboratory test: Activated
+    Partial Thromboplastin Time in standard unit sec.'
   - integer
   - ''
   - ''
@@ -2137,7 +2224,7 @@ LBPARMN:
   - 'false'
   - 'false'
   - 'true'
-  - ''
+  - 'false'
 - - Laboratory Parameter Numeric
   - LBPARMN
   - 'true'
@@ -2150,7 +2237,8 @@ LBPARMN:
   - Erythrocyte Sedimentation Rate (mm/h)
   - ''
   - ''
-  - ''
+  - 'A numeric representing analysis parameter for the laboratory test: Erythrocyte
+    Sedimentation Rate in standard unit mm/h.'
   - integer
   - ''
   - ''
@@ -2158,7 +2246,7 @@ LBPARMN:
   - 'false'
   - 'false'
   - 'true'
-  - ''
+  - 'false'
 - - Laboratory Parameter Numeric
   - LBPARMN
   - 'true'
@@ -2171,7 +2259,8 @@ LBPARMN:
   - LDL Cholesterol (mmol/L)
   - ''
   - ''
-  - ''
+  - 'A numeric representing analysis parameter for the laboratory test: LDL Cholesterol
+    in standard unit mmol/L.'
   - integer
   - ''
   - ''
@@ -2179,7 +2268,7 @@ LBPARMN:
   - 'false'
   - 'false'
   - 'true'
-  - ''
+  - 'false'
 - - Laboratory Parameter Numeric
   - LBPARMN
   - 'true'
@@ -2192,7 +2281,8 @@ LBPARMN:
   - Protein (g/L)
   - ''
   - ''
-  - ''
+  - 'A numeric representing analysis parameter for the laboratory test: Protein in
+    standard unit g/L.'
   - integer
   - ''
   - ''
@@ -2200,7 +2290,7 @@ LBPARMN:
   - 'false'
   - 'false'
   - 'true'
-  - ''
+  - 'false'
 - - Laboratory Parameter Numeric
   - LBPARMN
   - 'true'
@@ -2213,7 +2303,8 @@ LBPARMN:
   - Phosphate (mmol/L)
   - ''
   - ''
-  - ''
+  - 'A numeric representing analysis parameter for the laboratory test: Phosphate
+    in standard unit mmol/L.'
   - integer
   - ''
   - ''
@@ -2221,7 +2312,7 @@ LBPARMN:
   - 'false'
   - 'false'
   - 'true'
-  - ''
+  - 'false'
 - - Laboratory Parameter Numeric
   - LBPARMN
   - 'true'
@@ -2234,7 +2325,8 @@ LBPARMN:
   - Magnesium (mmol/L)
   - ''
   - ''
-  - ''
+  - 'A numeric representing analysis parameter for the laboratory test: Magnesium
+    in standard unit mmol/L.'
   - integer
   - ''
   - ''
@@ -2242,7 +2334,7 @@ LBPARMN:
   - 'false'
   - 'false'
   - 'true'
-  - ''
+  - 'false'
 - - Laboratory Parameter Numeric
   - LBPARMN
   - 'true'
@@ -2255,7 +2347,8 @@ LBPARMN:
   - Urea (mmol/L)
   - ''
   - ''
-  - ''
+  - 'A numeric representing analysis parameter for the laboratory test: Urea in standard
+    unit mmol/L.'
   - integer
   - ''
   - ''
@@ -2263,7 +2356,7 @@ LBPARMN:
   - 'false'
   - 'false'
   - 'true'
-  - ''
+  - 'false'
 - - Laboratory Parameter Numeric
   - LBPARMN
   - 'true'
@@ -2276,7 +2369,8 @@ LBPARMN:
   - Lactate Dehydrogenase (IU/L)
   - ''
   - ''
-  - ''
+  - 'A numeric representing analysis parameter for the laboratory test: Lactate Dehydrogenase
+    in standard unit IU/L.'
   - integer
   - ''
   - ''
@@ -2284,7 +2378,7 @@ LBPARMN:
   - 'false'
   - 'false'
   - 'true'
-  - ''
+  - 'false'
 - - Laboratory Parameter Numeric
   - LBPARMN
   - 'true'
@@ -2297,7 +2391,8 @@ LBPARMN:
   - Direct Bilirubin (umol/L)
   - ''
   - ''
-  - ''
+  - 'A numeric representing analysis parameter for the laboratory test: Direct Bilirubin
+    in standard unit umol/L.'
   - integer
   - ''
   - ''
@@ -2305,7 +2400,7 @@ LBPARMN:
   - 'false'
   - 'false'
   - 'true'
-  - ''
+  - 'false'
 - - Laboratory Parameter Numeric
   - LBPARMN
   - 'true'
@@ -2318,7 +2413,8 @@ LBPARMN:
   - Direct Bilirubin/Total Bilirubin Ratio
   - ''
   - ''
-  - ''
+  - 'A numeric representing analysis parameter for the laboratory test Ratio: Direct
+    Bilirubin/Total Bilirubin Ratio.'
   - integer
   - ''
   - ''
@@ -2326,7 +2422,7 @@ LBPARMN:
   - 'false'
   - 'false'
   - 'true'
-  - ''
+  - 'false'
 - - Laboratory Parameter Numeric
   - LBPARMN
   - 'true'
@@ -2339,7 +2435,8 @@ LBPARMN:
   - Urea Nitrogen (mmol/L)
   - ''
   - ''
-  - ''
+  - 'A numeric representing analysis parameter for the laboratory test: Urea Nitrogen
+    in standard unit mmol/L.'
   - integer
   - ''
   - ''
@@ -2347,7 +2444,7 @@ LBPARMN:
   - 'false'
   - 'false'
   - 'true'
-  - ''
+  - 'false'
 POEM9R:
 - - Patient-Oriented Eczema Measure Questionnaire Test Results
   - POEM9R
@@ -2359,7 +2456,7 @@ POEM9R:
   - No days
   - ''
   - ''
-  - ''
+  - Numerical result corresponding to no days.
   - integer
   - No days
   - '1'
@@ -2367,7 +2464,7 @@ POEM9R:
   - 'false'
   - 'false'
   - 'false'
-  - ''
+  - 'false'
 - - Patient-Oriented Eczema Measure Questionnaire Test Results
   - POEM9R
   - 'false'
@@ -2378,7 +2475,7 @@ POEM9R:
   - 1-2 days
   - ''
   - ''
-  - ''
+  - Numerical result corresponding to 1 to 2 days.
   - integer
   - 1-2 days
   - '2'
@@ -2386,7 +2483,7 @@ POEM9R:
   - 'false'
   - 'false'
   - 'false'
-  - ''
+  - 'false'
 - - Patient-Oriented Eczema Measure Questionnaire Test Results
   - POEM9R
   - 'false'
@@ -2397,7 +2494,7 @@ POEM9R:
   - 3-4 days
   - ''
   - ''
-  - ''
+  - Numerical result corresponding to 3 to 4 days.
   - integer
   - 3-4 days
   - '3'
@@ -2405,7 +2502,7 @@ POEM9R:
   - 'false'
   - 'false'
   - 'false'
-  - ''
+  - 'false'
 - - Patient-Oriented Eczema Measure Questionnaire Test Results
   - POEM9R
   - 'false'
@@ -2416,7 +2513,7 @@ POEM9R:
   - 5-6 days
   - ''
   - ''
-  - ''
+  - Numerical result corresponding to 5 to 6 days.
   - integer
   - 5-6 days
   - '4'
@@ -2424,7 +2521,7 @@ POEM9R:
   - 'false'
   - 'false'
   - 'false'
-  - ''
+  - 'false'
 - - Patient-Oriented Eczema Measure Questionnaire Test Results
   - POEM9R
   - 'false'
@@ -2435,7 +2532,7 @@ POEM9R:
   - Every day
   - ''
   - ''
-  - ''
+  - Numerical result corresponding to every day.
   - integer
   - Every day
   - '5'
@@ -2443,4 +2540,4 @@ POEM9R:
   - 'false'
   - 'false'
   - 'false'
-  - ''
+  - 'false'

@@ -74,10 +74,10 @@ PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
 PREFIX skos: <http://www.w3.org/2004/02/skos/core#> 
   
-SELECT ?clln ?clc ?clsn ?cle ?cld ?clid ?cldt ?code ?decode ?svalue (GROUP_CONCAT(DISTINCT ?clisyn;separator="; ") as ?synonym) ?synonym_sponsor ?crfdv ?displayorder ?rank ?dc_stage ?sdtm_stage ?adam_stage WHERE  
+SELECT ?clln ?clc ?clsn ?cle ?cld ?clid ?cldt ?code ?decode ?svalue (GROUP_CONCAT(DISTINCT ?clisyn;separator="; ") as ?synonym) ?synonym_sponsor ?crfdv ?displayorder ?rank ?dc_stage ?sdtm_stage ?adam_stage ?ed_use WHERE  
 {
   {
-    SELECT ?clln ?clc ?clsn ?cle ?cld ?clid ?cldt ?code ?decode ?svalue ?clisyn ?synonym_sponsor ?crfdv ?displayorder ?rank ?dc_stage ?sdtm_stage ?adam_stage WHERE  
+    SELECT ?clln ?clc ?clsn ?cle ?cld ?clid ?cldt ?code ?decode ?svalue ?clisyn ?synonym_sponsor ?crfdv ?displayorder ?rank ?dc_stage ?sdtm_stage ?adam_stage ?ed_use WHERE  
     {
       VALUES ?s {[[[parameter_1]]]}
       ?s th:isTopConceptReference/bo:reference ?cl .
@@ -108,6 +108,7 @@ SELECT ?clln ?clc ?clsn ?cle ?cld ?clid ?cldt ?code ?decode ?svalue (GROUP_CONCA
       {
         FILTER (NOT EXISTS {?cl th:pairedWith ?y} && NOT EXISTS {?cl ^th:pairedWith ?z})
         ?cl th:narrower ?cli .
+        ?cli th:definition ?clid .
         ?cli th:identifier ?code .  
       }
 
@@ -157,7 +158,7 @@ SELECT ?clln ?clc ?clsn ?cle ?cld ?clid ?cldt ?code ?decode ?svalue (GROUP_CONCA
         ?cli ^isoC:appliesTo ?ext7 .
         ?ext7 isoC:context ?cl . 
         ?ext7 isoC:customPropertyDefinedBy/isoC:label "ED Use" .
-        ?ext7 isoC:value ?synonym_sponsor .   
+        ?ext7 isoC:value ?ed_use .   
       }
 
       OPTIONAL {?cli th:synonym/isoC:label ?clisyn .}
@@ -230,7 +231,7 @@ SELECT ?clln ?clc ?clsn ?cle ?cld ?clid ?cldt ?code ?decode ?svalue (GROUP_CONCA
       ?cli ^isoC:appliesTo ?ext7 .
       ?ext7 isoC:context ?cl . 
       ?ext7 isoC:customPropertyDefinedBy/isoC:label "ED Use" .
-      ?ext7 isoC:value ?synonym_sponsor .   
+      ?ext7 isoC:value ?ed_use .   
     }
 
     OPTIONAL 
@@ -240,5 +241,5 @@ SELECT ?clln ?clc ?clsn ?cle ?cld ?clid ?cldt ?code ?decode ?svalue (GROUP_CONCA
       ?rank_member th:rank ?rank 
     }
   }
-} GROUP BY ?clln ?clc ?clsn ?cle ?cld ?clid ?cldt ?code ?decode ?svalue ?synonym_sponsor ?crfdv ?displayorder ?rank ?dc_stage ?sdtm_stage ?adam_stage ORDER BY ?clc ?code ?displayorder ?rank'
+} GROUP BY ?clln ?clc ?clsn ?cle ?cld ?clid ?cldt ?code ?decode ?svalue ?synonym_sponsor ?crfdv ?displayorder ?rank ?dc_stage ?sdtm_stage ?adam_stage ?ed_use ORDER BY ?clc ?code ?displayorder ?rank'
 :type: Ad Hoc Report Definition
