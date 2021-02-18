@@ -101,8 +101,7 @@ describe "SDTM IG Domains", :type => :feature do
       click_on 'CSV'
 
       file = download_content
-    # write_text_file_2(file, sub_dir, "sdtm_ig_domain_csv_expected.csv")
-      expected = read_text_file_2(sub_dir, "sdtm_ig_domain_csv_expected.csv")
+      check_file_actual_expected(file, sub_dir, "sdtm_ig_domain_csv_expected.csv")
     end
 
   end
