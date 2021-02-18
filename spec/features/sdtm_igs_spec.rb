@@ -8,6 +8,10 @@ describe "SDTM IGs", :type => :feature do
   include UiHelpers
   include WaitForAjaxHelper
 
+  def sub_dir 
+    "features/sdtm_igs"
+  end 
+
   describe "Basic Operations, curator", :type => :feature, js:true do
 
     before :all do
@@ -66,6 +70,20 @@ describe "SDTM IGs", :type => :feature do
       ui_check_table_info("show", 1, 10, 48)
       ui_check_table_cell("show", 5, 2, "Tumor/Lesion Results")
       ui_check_table_cell("show", 5, 1, "SDTM IG TR")
+    end
+    
+    it "show page allows to export SDTM IG Domain as CSV" do
+      click_navbar_ig
+      wait_for_ajax 10
+      find(:xpath, "//tr[contains(.,'SDTM IG')]/td/a", :text => 'History').click
+      wait_for_ajax 10
+      expect(page).to have_content 'Version History of \'SDTM IG\''
+      context_menu_element('history', 4, 'SDTM IG', :show)
+      wait_for_ajax 10
+      click_on 'CSV'
+
+      file = download_content
+      check_file_actual_expected(file, sub_dir, "sdtm_ig_csv_expected.csv")
     end
 
   end
