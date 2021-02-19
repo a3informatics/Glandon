@@ -1,0 +1,41 @@
+---
+:CVTESTCD:
+  :RVEF_E: 
+    :column: 10
+    :reason: 'Definition set to null in CDISC 2017-06-30 version. Corrected in the 2018-03-30 version.'
+:CVTEST:
+  :Right Ventricular Ejection Fraction, Est: 
+    :column: 10
+    :reason: 'Definition set to null in CDISC 2017-06-30 version. Corrected in the 2018-03-30 version.'
+:ECOG1R_01:
+  :1: 
+    :column: 10
+    :reason: 'Definition in the subset is different to the master. Subset values cannot deviate.'
+:CESCAT_01:
+  :ADMINISTRATION SITE: 
+    :column: 10
+    :reason: 'Definition in the subset is different to the master. Subset values cannot deviate.'
+:TRTRSN_02:
+  :RADIO-SENSITIZER: 
+    :column: 10
+    :reason: 'Definition in the subset is different to the master. Subset values cannot deviate.'
+:TINDTP:
+  :SCREENING:
+    :column: 10
+    :reason: 'Small difference in the definiton. (Clinicaltrials.gov) v (ClinicalTrials.gov)'
+:LBTESTCD:
+  :CHCMR:
+    :column: 10
+    :reason: 'Definition set to null in CDISC 2017-06-30 version. Corrected in the 2017-12-22 version.'
+:LBTEST:
+  :Ret. Corpuscular HGB Concentration Mean:
+    :column: 10
+    :reason: 'Definition set to null in CDISC 2017-06-30 version. Corrected in the 2017-12-22 version.'
+:TRTEST:
+  :Sum of Products of Perpendicular Diam:
+    :column: 7
+    :reason: "CDISC submission value for C132261 different but is over 40 characters 'Sum of Products of Perpendicular Diameters'"
+:UNIT:
+  :day:
+    :column: 7
+    :reason: "CDISC submission value for C25301 different 'DAYS' not 'day'"

@@ -341,10 +341,11 @@ RSpec.describe AdHocReport, type: :model do
     after :all do
     end
 
-    it "202 R2 Compare" do
+    it "2020 R2 Compare" do
       ignore_col = [4, 5]
       boolean_col = [false, false, true, false, false, false, false, false, false, false, false, false, false, false, true, true, true, true, false]
       actual_map = [0, 1, 2, 3, 4, 5, 6, 7, 8, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
+      known_issues = read_yaml_file(sub_dir, "sponsor_ct_export_known_issues_3.yaml")
       export = read_yaml_file(sub_dir, "sponsor_ct_export_full_results_3.yaml")
       spreadsheet = read_yaml_file(sub_dir, "full_spreadsheet_export_3-1.yaml")
       spreadsheet.each do |cl, rows|
@@ -352,22 +353,36 @@ RSpec.describe AdHocReport, type: :model do
           actual_cl = export[cl]
           rows.each do |row|
             actual_row = actual_cl.find{ |r| r[6].strip == row[6].strip }
-            puts "Error, cl: #{cl}, failed to match #{row[6]}" if actual_row.nil?
-            next if actual_row.nil?      
+            if actual_row.nil? 
+              issue = known_issues.dig(cl.to_sym, row[6].to_sym)
+              if issue.nil? || issue[:column] != 7
+                puts colourize("\nError, cl: #{cl}, failed to match item '#{row[6]}' in the code list.", "red")
+              else
+                puts colourize("\nWarning, cl: #{cl}, failed to match item '#{row[6]}' in the code list.\nReason: #{issue[:reason]}", "yellow")
+              end
+              next
+            end
+            #next if actual_row.nil?      
             row.each_with_index do |cell, index|
               next if ignore_col.include?(index)
               actual_index = actual_map[index]
-              cell_value = boolean_col[index] ? row[index].to_bool : row[index]
-              begin
-                actual_value = boolean_col[index] ? actual_row[actual_index].to_bool : actual_row[actual_index]
-              rescue => e
-                byebug
-              end
+              cell_value = row[index]
+              actual_value = actual_row[actual_index]
               cell_value = "" if cell_value.nil?
               actual_value = "" if actual_value.nil?
-              next if index == 7 # Temp
-              byebug if cell_value != actual_value && index == 12
-              puts "Error, cl: #{actual_row[4]}, cli: #{actual_row[5]}, col: #{index+1}, SS: '#{cell_value}' v A: '#{actual_value}'" if cell_value != actual_value
+              cell_value = boolean_col[index] ? cell_value.strip.to_bool : cell_value.strip
+              actual_value = boolean_col[index] ? actual_value.strip.to_bool : actual_value.strip
+              next if index == 7 # Decode issue, mapping
+              next if cell_value != actual_value && index == 9 && actual_value == 'Not defined.' # Definitions cannot be empty
+              next if cell_value != actual_value && index == 8 && row[index] == actual_row[9] # Synonyms and the use of the custom property
+              next if cell_value != actual_value && index == 12 && row[0].include?("Subset") # Subsets have order
+              next if cell_value != actual_value && index == 10 && cell_value == 'text' && actual_value == 'integer' # Datatype issue
+              issue = known_issues.dig(cl.to_sym, row[6].to_sym)
+              if issue.nil? || issue[:column] != index + 1
+                puts colourize("\nError, cl: #{actual_row[4]}, cli: #{actual_row[5]}, col: #{index+1}, SS: '#{cell_value}' v A: '#{actual_value}'", "red") if cell_value != actual_value
+              else
+                puts colourize("\nWarning, cl: #{actual_row[4]}, cli: #{actual_row[5]}, col: #{index+1}, SS: '#{cell_value}' v A: '#{actual_value}'.\nReason: #{issue[:reason]}", "yellow")
+              end
             end
           end
         rescue => e

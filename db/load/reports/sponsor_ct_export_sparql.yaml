@@ -114,7 +114,7 @@ SELECT ?clln ?clc ?clsn ?cle ?cld ?clid ?cldt ?code ?decode ?svalue (GROUP_CONCA
 
       ?cli th:preferredTerm/isoC:label ?decode .
       ?cli th:notation ?svalue .
-      BIND (IF(regex(?svalue, "^[0-9]+$"), "integer", "text") as ?cldt) 
+      BIND (IF(regex(?svalue, "^-?[0-9]+$"), "integer", "text") as ?cldt) 
 
       ?cli ^isoC:appliesTo ?ext1 .
       ?ext1 isoC:context ?cl . 
@@ -191,7 +191,7 @@ SELECT ?clln ?clc ?clsn ?cle ?cld ?clid ?cldt ?code ?decode ?svalue (GROUP_CONCA
     ?cl th:preferredTerm/isoC:label ?clln .
     ?cli th:identifier ?code .  
     ?cli th:notation ?svalue .
-    BIND (IF(regex(?svalue, "^[0-9]+$"), "integer", "text") as ?cldt) 
+    BIND (IF(regex(?svalue, "^-?[0-9]+$"), "integer", "text") as ?cldt) 
     ?cli th:definition ?clid .
 
     ?cli ^isoC:appliesTo ?ext1 .
