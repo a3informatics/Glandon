@@ -98,49 +98,6 @@ RSpec.describe AdHocReport, type: :model do
 
   end
 
-  describe "Sponsor Extension Tests" do
-    
-    before :all do
-      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
-      load_files(schema_files, data_files)
-      load_cdisc_term_versions(CdiscCtHelpers.version_range)
-      load_data_file_into_triple_store("sponsor_one/ct/CT_V2-6.ttl") 
-      load_data_file_into_triple_store("sponsor_one/ct/CT_V3-0.ttl") 
-      AdHocReport.delete_all
-      delete_all_public_files
-    end
-
-    after :all do
-      delete_all_public_files
-    end
-
-    it "executes an extension count report I", :ad_hoc_report => 'slow' do
-      copy_report_to_public_files("extension_count_sparql.yaml", "test")
-      job = Background.create
-      report = AdHocReport.new
-      report.background_id = job.id
-      report.sparql_file = "extension_count_sparql.yaml"
-      report.results_file = "extension_count_results_1.yaml"
-      job.start("Rspec test", "Starting...") {report.execute([Uri.new(uri: "http://www.sanofi.com/2019_Release_1/V1#TH").to_id])}
-      results = AdHocReportFiles.read("extension_count_results_1.yaml")
-      check_file_actual_expected(results, sub_dir, "extension_count_expected_1.yaml", equate_method: :hash_equal)
-    end
-
-
-    it "executes an extension count report II", :ad_hoc_report => 'slow' do
-      copy_report_to_public_files("extension_count_sparql.yaml", "test")
-      job = Background.create
-      report = AdHocReport.new
-      report.background_id = job.id
-      report.sparql_file = "extension_count_sparql.yaml"
-      report.results_file = "extension_count_results_2.yaml"
-      job.start("Rspec test", "Starting...") {report.execute([Uri.new(uri: "http://www.sanofi.com/2020_Release_1/V1#TH").to_id])}
-      results = AdHocReportFiles.read("extension_count_results_2.yaml")
-      check_file_actual_expected(results, sub_dir, "extension_count_expected_2.yaml", equate_method: :hash_equal)
-    end
-  
-  end
-
   describe "Change Instructions Export Tests" do
 
     def load_versions(range)
@@ -269,35 +226,13 @@ RSpec.describe AdHocReport, type: :model do
       full_path = File.join(AdHocReportFiles.dir_path, "sponsor_ct_export_results_3.yaml")
       results = AdHocReportFiles.read("sponsor_ct_export_results_3.yaml")
       expect(results[:data].count).to eq(32780) 
-      save_selected_results(results, "sponsor_ct_export_selected_results_3.yaml", ["ACN", "AERELA", "AERELDEV_01", "AGEGRPE", "AGEGRPPN", "NORMEDN", "SEVRS", "SHIFT2N", "TOXGR_01", "TOXGRN", "LBPARMN", "POEM9R", "NORMEDN"], true)
+      save_selected_results(results, "sponsor_ct_export_selected_results_3.yaml", ["ACN", "AERELA", "AERELDEV_01", "AGEGRPE", "AGEGRPPN", "NORMEDN", "SEVRS", "SHIFT2N", "TOXGR_01", "TOXGRN", "LBPARMN", "POEM9R", "NORMEDN"], false)
       ranks = extract_ranks(results)
       check_file_actual_expected(ranks, sub_dir, "sponsor_ct_export_rank_results_3.yaml", equate_method: :hash_equal)
       expect(ranks.count).to eq(30)
-    write_yaml_file(key_data(results), sub_dir, "sponsor_ct_export_full_results_3.yaml")
+    #Xwrite_yaml_file(key_data(results), sub_dir, "sponsor_ct_export_full_results_3.yaml")
     end
   
-  end
-
-  describe "Export Subsets Tests" do
-    
-    before :all do
-      load_files(schema_files, [])
-      load_all_cdisc_term_versions
-      load_data_file_into_triple_store("mdr_sponsor_one_identification.ttl")
-      load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
-      load_data_file_into_triple_store("mdr_iso_concept_systems_migration_1.ttl")
-      load_data_file_into_triple_store("mdr_iso_concept_systems_process.ttl")
-      load_data_file_into_triple_store("sponsor_one/ct/CT_V2-6.ttl")
-      load_data_file_into_triple_store("sponsor_one/ct/CT_V3-0.ttl")
-      #load_data_file_into_triple_store("sponsor_one/ct/CT_V3-1.ttl")
-      AdHocReport.delete_all
-      delete_all_public_files
-    end
-
-    after :all do
-      delete_all_public_files
-    end
-
     it "executes an sponsor CT export subsets report 2019", :ad_hoc_report => 'slow' do
       copy_report_to_public_files("sponsor_ct_export_subsets_sparql.yaml", "test")
       job = Background.create
@@ -328,6 +263,31 @@ RSpec.describe AdHocReport, type: :model do
       ranks = extract_ranks(results)
       check_file_actual_expected(ranks, sub_dir, "sponsor_ct_export_subsets_rank_results_2.yaml", equate_method: :hash_equal)
       expect(ranks.count).to eq(3)
+    end
+  
+    it "executes an extension count report I", :ad_hoc_report => 'slow' do
+      copy_report_to_public_files("extension_count_sparql.yaml", "test")
+      job = Background.create
+      report = AdHocReport.new
+      report.background_id = job.id
+      report.sparql_file = "extension_count_sparql.yaml"
+      report.results_file = "extension_count_results_1.yaml"
+      job.start("Rspec test", "Starting...") {report.execute([Uri.new(uri: "http://www.sanofi.com/2019_Release_1/V1#TH").to_id])}
+      results = AdHocReportFiles.read("extension_count_results_1.yaml")
+      check_file_actual_expected(results, sub_dir, "extension_count_expected_1.yaml", equate_method: :hash_equal)
+    end
+
+
+    it "executes an extension count report II", :ad_hoc_report => 'slow' do
+      copy_report_to_public_files("extension_count_sparql.yaml", "test")
+      job = Background.create
+      report = AdHocReport.new
+      report.background_id = job.id
+      report.sparql_file = "extension_count_sparql.yaml"
+      report.results_file = "extension_count_results_2.yaml"
+      job.start("Rspec test", "Starting...") {report.execute([Uri.new(uri: "http://www.sanofi.com/2020_Release_1/V1#TH").to_id])}
+      results = AdHocReportFiles.read("extension_count_results_2.yaml")
+      check_file_actual_expected(results, sub_dir, "extension_count_expected_2.yaml", equate_method: :hash_equal)
     end
   
   end
