@@ -860,7 +860,7 @@ TOXGR_01:
     symptoms; or is of marginal clinical relevance; or consists of clinical or diagnostic
     observations alone; or for which intervention is not indicated; or for which only
     non-prescription intervention is indicated."
-  - integer
+  - text
   - Grade 1
   - '1'
   - '1'
@@ -884,7 +884,7 @@ TOXGR_01:
     intervention (e.g. packing, cautery) is indicated; or that limits instrumental
     activities of daily living (ADLs, e.g., shopping, laundry, transportation, or
     ability to conduct finances)."
-  - integer
+  - text
   - Grade 2
   - '2'
   - '2'
@@ -913,7 +913,7 @@ TOXGR_01:
     or limitation of self care activities of daily living (ADLs, e.g., getting in
     and out of bed, dressing, eating, getting around inside, bathing, or using the
     toilet)."
-  - integer
+  - text
   - Grade 3
   - '3'
   - '3'
@@ -937,7 +937,7 @@ TOXGR_01:
     which urgent intervention is indicated; that puts the patient at risk of death
     at the time of the event if immediate intervention is not undertaken; or that
     causes blindness or deafness."
-  - integer
+  - text
   - Grade 4
   - '4'
   - '4'
@@ -958,7 +958,7 @@ TOXGR_01:
   - Death Related to Adverse Event
   - Death Related to Adverse Event
   - "(Synonym 1 NCI) The termination of life as a result of an adverse event. (NCI)"
-  - integer
+  - text
   - Grade 5
   - '5'
   - '5'

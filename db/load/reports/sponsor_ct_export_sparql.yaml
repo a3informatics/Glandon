@@ -114,7 +114,9 @@ SELECT ?clln ?clc ?clsn ?cle ?cld ?clid ?cldt ?code ?decode ?svalue (GROUP_CONCA
 
       ?cli th:preferredTerm/isoC:label ?decode .
       ?cli th:notation ?svalue .
-      BIND (IF(regex(?svalue, "^-?[0-9]+$"), "integer", "text") as ?cldt) 
+
+      BIND (?clsn NOT IN ( "BDI0216R", "BDI0218R", "TOXGR", "JNTASMTS", "GLASGWTS", "KFSS15R", "KFSS13R", "KFSS12R", "KFSS17R", "KFSS18R", "KFSS14R", "KFSS16R", "KFSS11R", "SF12103R", "SF12101R", "SF12102R", "SF12104R", "SF12105R", "SF12106R", "SF36301R", "SF36302R", "SF36303R", "SF36304R", "SF36305R", "SF36306R", "SF36307R", "SF36308R", "SF36309R" ) as ?dt_ok)
+      BIND (IF(regex(?svalue, "^-?[0-9]+$") && ?dt_ok, "integer", "text") as ?cldt) 
 
       ?cli ^isoC:appliesTo ?ext1 .
       ?ext1 isoC:context ?cl . 
@@ -191,7 +193,10 @@ SELECT ?clln ?clc ?clsn ?cle ?cld ?clid ?cldt ?code ?decode ?svalue (GROUP_CONCA
     ?cl th:preferredTerm/isoC:label ?clln .
     ?cli th:identifier ?code .  
     ?cli th:notation ?svalue .
-    BIND (IF(regex(?svalue, "^-?[0-9]+$"), "integer", "text") as ?cldt) 
+
+    BIND (?clsn NOT IN ( "TOXGR_01" ) as ?dt_ok)
+    BIND (IF(regex(?svalue, "^-?[0-9]+$") && ?dt_ok, "integer", "text") as ?cldt) 
+
     ?cli th:definition ?clid .
 
     ?cli ^isoC:appliesTo ?ext1 .
