@@ -301,7 +301,32 @@ RSpec.describe AdHocReport, type: :model do
     after :all do
     end
 
+    def decode_column(index)
+      return "" if index < 0
+      %W(CODELIST_LONG_NAME  CODELIST_SHORT_NAME CODELIST_EXTENSIBLE CODELIST_DEFINITION CODELIST_CODE CODE  SUBMISSION_VALUE  DECODE  SYNONYM CODE_DEFINITION DATA_TYPE CRF_DISPLAY_VALUE DISPLAY_ORDER RANK  DC_STAGE  SDTM_STAGE  ADAM_STAGE  INACTIVE_F)[index]
+    end
+
+    def check_value(cl, cl_sub, cli, cli_sub, index, ss_value, actual_value)
+      return if ss_value == actual_value
+      report_error(cl, cl_sub, cli, cli_sub, index, ss_value, actual_value, "Data mismatch")
+    end
+
+    def report_error(cl, cl_sub, cli, cli_sub, index, ss_value, actual_value, reason)
+      column = decode_column(index)
+      puts colourize("\nError, cl: #{cl} (#{cl_sub}), cli: #{cli} (#{cli_sub}), column: #{column}, reason: #{reason}.\nSource v Actual Comparison:", "red") 
+      puts Diffy::Diff.new("#{ss_value}\n", "#{actual_value}\n") 
+      @results[:errors] << { cl: cl, cl_sub: cl_sub, cli: cli, cli_sub: cli_sub, column: column, reason: reason, diff: Diffy::Diff.new("#{ss_value}\n", "#{actual_value}\n").to_s(:text)}
+    end
+
+    def report_warning(cl, cl_sub, cli, cli_sub, index, ss_value, actual_value, reason)
+      column = decode_column(index)
+      puts colourize("\nWarning, cl: #{cl} (#{cl_sub}), cli: #{cli} (#{cli_sub}), column: #{column}.\nReason: #{reason}", "yellow")
+      @results[:warnings] << { cl: cl, cl_sub: cl_sub, cli: cli, cli_sub: cli_sub, column: column, reason: reason, diff: Diffy::Diff.new("#{ss_value}\n", "#{actual_value}\n").to_s(:text)}
+    end
+
     def full_compare(version, with_decode=true)
+      @results = {warnings: [], errors: []}
+      Diffy::Diff.default_format = :color
       version_map = {"1": "2-6", "2": "3-0", "3": "3-1"}
       dt_cl = {}
       ignore_col = [4, 5]
@@ -313,13 +338,14 @@ RSpec.describe AdHocReport, type: :model do
       spreadsheet.each do |cl, rows|
         actual_cl = export[cl]
         rows.each do |row|
-          actual_row = actual_cl.find{ |r| r[6].strip == row[6].strip }
+          ss_cli_sub = row[6].to_s.strip
+          actual_row = actual_cl.find{ |r| r[6].to_s.strip == ss_cli_sub }
           if actual_row.nil? 
-            issue = known_issues.dig(cl.to_sym, row[6].to_sym)
+            issue = known_issues.dig(cl.to_sym, ss_cli_sub.to_sym)
             if issue.nil? || issue[:column] != 7
-              puts colourize("\nError, cl: #{cl}, failed to match item '#{row[6]}' in the code list.", "red")
+              report_error(cl, "", "", "", -1, "", "", "Failed to match item '#{row[6]}' in the code list.")
             else
-              puts colourize("\nWarning, cl: #{cl}, failed to match item '#{row[6]}' in the code list.\nReason: #{issue[:reason]}", "yellow")
+              report_warning(cl, "", "", "", -1, "", "", "Failed to match item '#{row[6]}' in the code list. Permitted exception: #{issue[:reason]}")
             end
             next
           end
@@ -327,8 +353,8 @@ RSpec.describe AdHocReport, type: :model do
           row.each_with_index do |cell, index|
             next if ignore_col.include?(index)
             actual_index = actual_map[index]
-            cell_value = row[index]
-            actual_value = actual_row[actual_index]
+            cell_value = row[index].to_s
+            actual_value = actual_row[actual_index].to_s
             cell_value = "" if cell_value.nil?
             actual_value = "" if actual_value.nil?
             cell_value = boolean_col[index] ? cell_value.strip.to_bool : cell_value.strip
@@ -338,42 +364,55 @@ RSpec.describe AdHocReport, type: :model do
             next if cell_value != actual_value && index == 8 && row[index] == actual_row[9] # Synonyms and the use of the custom property
             next if cell_value != actual_value && index == 12 && row[0].include?("Subset") # Subsets have order
             if cell_value != actual_value && index == 10 # Datatype issue
-              dt_cl[cl] = cl
+              dt_cl[cl] = { cl: actual_row[4], cl_sub: actual_row[1] }
             end
-            issue = known_issues.dig(cl.to_sym, row[6].to_sym)
+            if cell_value != actual_value && index == 9 # truncated definition
+              if actual_value.start_with?(cell_value)
+                report_warning(actual_row[4], actual_row[1], actual_row[5], actual_row[6], index, cell_value, actual_value, "Truncated definition.")
+                next
+              end
+            end
+            issue = known_issues.dig(cl.to_sym, ss_cli_sub.to_sym)
             if issue.nil? || issue[:column] != index + 1
-              puts colourize("\nError, cl: #{actual_row[4]}, cli: #{actual_row[5]}, col: #{index+1}, SS: '#{cell_value}' v A: '#{actual_value}'", "red") if cell_value != actual_value
+              check_value(actual_row[4], actual_row[1], actual_row[5], actual_row[6], index, cell_value, actual_value)
             else
-              puts colourize("\nWarning, cl: #{actual_row[4]}, cli: #{actual_row[5]}, col: #{index+1}, SS: '#{cell_value}' v A: '#{actual_value}'.\nReason: #{issue[:reason]}", "yellow")
+              report_warning(actual_row[4], actual_row[1], actual_row[5], actual_row[6], index, cell_value, actual_value, issue[:reason])
             end
           end
         end
       end  
-      puts colourize("\nDatatype CLs: #{dt_cl.keys}", "red") if dt_cl.keys.any?
+      dt_cl.keys.each { |x| report_error(x[:cl], x[:cl_sub], "", "", -1, "", "", "Datatype mismatch.") }
+      @results
     end
 
     it "2019 R1 Compare, no decode" do
-      full_compare("1", false)
+      results = full_compare("1", false)
+      check_file_actual_expected(results, sub_dir, "export_checks_no_decode_expected_1.yaml", equate_method: :hash_equal)
     end
   
     it "2020 R1 Compare, no decode" do
-      full_compare("2", false)
+      results = full_compare("2", false)
+      check_file_actual_expected(results, sub_dir, "export_checks_no_decode_expected_2.yaml", equate_method: :hash_equal)
     end
 
     it "2020 R2 Compare, no decode" do
-      full_compare("3", false)
+      results = full_compare("3", false)
+      check_file_actual_expected(results, sub_dir, "export_checks_no_decode_expected_3.yaml", equate_method: :hash_equal)
     end
 
     it "2019 R1 Compare, decode" do
-      full_compare("1")
+      results = full_compare("1")
+      check_file_actual_expected(results, sub_dir, "export_checks_decode_expected_1.yaml", equate_method: :hash_equal)
     end
   
     it "2020 R1 Compare, decode" do
-      full_compare("2")
+      results = full_compare("2")
+      check_file_actual_expected(results, sub_dir, "export_checks_decode_expected_2.yaml", equate_method: :hash_equal)
     end
 
     it "2020 R2 Compare, decode" do
-      full_compare("3")
+      results = full_compare("3")
+      check_file_actual_expected(results, sub_dir, "export_checks_decode_expected_3.yaml", equate_method: :hash_equal)
     end
 
   end

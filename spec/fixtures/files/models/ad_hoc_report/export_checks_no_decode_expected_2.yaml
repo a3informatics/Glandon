@@ -1,0 +1,344 @@
+---
+:warnings:
+- :cl: SN000710
+  :cl_sub: DSCBWHOR_01
+  :cli: S001999
+  :cli_sub: STUDY NURSE
+  :column: CODE_DEFINITION
+  :reason: Truncated definition.
+  :diff: |
+    -
+    +A professional healthcare provider who has graduated from a nursing program, and who is involved in the study.
+- :cl: SN000583
+  :cl_sub: TRTRSN_02
+  :cli: S003012
+  :cli_sub: RADIO-SENSITIZER
+  :column: CODE_DEFINITION
+  :reason: Truncated definition.
+  :diff: |
+    -
+    +An agent that makes tumor cells more sensitive to radiation therapy.
+- :cl: SN000583
+  :cl_sub: TRTRSN_02
+  :cli: S003013
+  :cli_sub: RE-INDUCTION
+  :column: CODE_DEFINITION
+  :reason: Truncated definition.
+  :diff: |
+    -
+    +Treatment administered after a relapse of cancer.
+- :cl: SN002031
+  :cl_sub: CMSCAT_02
+  :cli: S003105
+  :cli_sub: NON-STUDY VACCINES
+  :column: CODE_DEFINITION
+  :reason: Truncated definition.
+  :diff: |
+    -
+    +A subcategory used to retrieve information regarding vaccines not specified by the study protocol.
+- :cl: SN002031
+  :cl_sub: CMSCAT_02
+  :cli: S004825
+  :cli_sub: DIPHTHERIA VACCINE
+  :column: CODE_DEFINITION
+  :reason: Truncated definition.
+  :diff: |
+    -
+    +A subcategory used to retrieve information regarding vaccine that protects against Diphtheria.
+- :cl: SN002031
+  :cl_sub: CMSCAT_02
+  :cli: S004827
+  :cli_sub: PNEUMOCOCCAL VACCINE
+  :column: CODE_DEFINITION
+  :reason: Truncated definition.
+  :diff: |
+    -
+    +A subcategory used to retrieve information regarding vaccine that prevents infection by the bacterium Streptococcus pneumoniae.
+- :cl: SN002031
+  :cl_sub: CMSCAT_02
+  :cli: S004829
+  :cli_sub: LICENSED DENGUE VACCINE
+  :column: CODE_DEFINITION
+  :reason: Truncated definition.
+  :diff: |
+    -
+    +A subcategory used to retrieve information regarding licensed vaccine that protects against Dengue.
+:errors:
+- :cl: C101847
+  :cl_sub: CVTESTCD
+  :cli: C135381
+  :cli_sub: RVEF_E
+  :column: CODE_DEFINITION
+  :reason: Data mismatch
+  :diff: |
+    -A visual estimation of the percent or fraction of the volume of blood ejected from the right ventricle during right ventricular systole.
+    +null
+- :cl: C101846
+  :cl_sub: CVTEST
+  :cli: C135381
+  :cli_sub: Right Ventricular Ejection Fraction, Est
+  :column: CODE_DEFINITION
+  :reason: Data mismatch
+  :diff: |
+    -A visual estimation of the percent or fraction of the volume of blood ejected from the right ventricle during right ventricular systole.
+    +null
+- :cl: C115304
+  :cl_sub: FTCAT
+  :cli: S010124
+  :cli_sub: HANDHELD DYNAMOMETRY
+  :column: CODE_DEFINITION
+  :reason: Data mismatch
+  :diff: |
+    -Handheld Dynamometer (HHD) (Andrews, A. W., Thomas, M. T., Bohannon, R. W. (1996) Normative values for isometric muscle force measurements obtained with hand-held dynamometers. Physical Therapy, 76, 248–259., Macfarlane TS, Larson CA, Stiller C. Lower extremity muscle strength in 6- to 8-year-old children using hand-held dynamometry. Pediatric Physical Therapy. 2008; 20: 128-136., andBohannon RW. Reference values for extremity muscle strength obtained by hand-held dynamometry from adults aged 20 to 79 years. Arch Phys Med Rehabil. 1997; 78: 26-32.).
+    +Handheld Dynamometer (HHD) (Andrews, A. W., Thomas, M. T., Bohannon, R. W. (1996) Normative values for isometric muscle force measurements obtained with hand-held dynamometers. Physical Therapy, 76, 248-259., Macfarlane TS, Larson CA, Stiller C. Lower extremity muscle strength in 6- to 8-year-old children using hand-held dynamometry. Pediatric Physical Therapy. 2008; 20: 128-136., andBohannon RW. Reference values for extremity muscle strength obtained by hand-held dynamometry from adults aged 20 to 79 years. Arch Phys Med Rehabil. 1997; 78: 26-32.).
+- :cl: C66727
+  :cl_sub: NCOMPLT_10
+  :cli: C41331
+  :cli_sub: ADVERSE EVENT
+  :column: CODELIST_EXTENSIBLE
+  :reason: Data mismatch
+  :diff: |
+    -false
+    +true
+- :cl: C66727
+  :cl_sub: NCOMPLT_10
+  :cli: C35571
+  :cli_sub: PROGRESSIVE DISEASE
+  :column: CODELIST_EXTENSIBLE
+  :reason: Data mismatch
+  :diff: |
+    -false
+    +true
+- :cl: C66727
+  :cl_sub: NCOMPLT_10
+  :cli: C48226
+  :cli_sub: LACK OF EFFICACY
+  :column: CODELIST_EXTENSIBLE
+  :reason: Data mismatch
+  :diff: |
+    -false
+    +true
+- :cl: C66727
+  :cl_sub: NCOMPLT_10
+  :cli: S001277
+  :cli_sub: POOR COMPLIANCE TO PROTOCOL
+  :column: CODELIST_EXTENSIBLE
+  :reason: Data mismatch
+  :diff: |
+    -false
+    +true
+- :cl: C66727
+  :cl_sub: NCOMPLT_10
+  :cli: C49634
+  :cli_sub: WITHDRAWAL BY SUBJECT
+  :column: CODELIST_EXTENSIBLE
+  :reason: Data mismatch
+  :diff: |
+    -false
+    +true
+- :cl: SN000701
+  :cl_sub: DURU
+  :cli: C25301
+  :cli_sub: DAYS
+  :column: SYNONYM
+  :reason: Data mismatch
+  :diff: |
+    -
+    +Day
+- :cl: SN000701
+  :cl_sub: DURU
+  :cli: C25301
+  :cli_sub: DAYS
+  :column: CODE_DEFINITION
+  :reason: Data mismatch
+  :diff: |
+    -A unit of measurement of time equal to 24 hours.
+    +The time for Earth to make a complete rotation on its axis; ordinarily divided into twenty-four hours. This also refers to a specific day. (NCI)
+- :cl: SN000701
+  :cl_sub: DURU
+  :cli: C25529
+  :cli_sub: HOURS
+  :column: CODE_DEFINITION
+  :reason: Data mismatch
+  :diff: |
+    -A unit of measurement of time equal to 60 minutes.
+    +A unit measure of time equal to 3,600 seconds or 60 minutes. It is approximately 1/24 of a median day. (NCI)
+- :cl: SN000701
+  :cl_sub: DURU
+  :cli: C48154
+  :cli_sub: min
+  :column: CODE_DEFINITION
+  :reason: Data mismatch
+  :diff: |
+    -A unit of measurement of time equal to 60 seconds.
+    +A unit measure of time equal to 60 seconds.(NCI)
+- :cl: SN000193
+  :cl_sub: ECOG1R_01
+  :cli: S002089
+  :cli_sub: '1'
+  :column: CODE_DEFINITION
+  :reason: Data mismatch
+  :diff: |
+    -(Synonym 1 NCI) Restricted in physically strenuous activity but ambulatory and able to carry out work of a light or (Synonym 1 NCI) sedentary nature, e.g., light house work, office work.
+    +(Synonym 1 NCI) Restricted in physically strenuous activity but ambulatory and able to carry out work of a light or sedentary nature, e.g., light house work, office work.
+- :cl: C65047
+  :cl_sub: LBTESTCD
+  :cli: C138970
+  :cli_sub: CHCMR
+  :column: CODE_DEFINITION
+  :reason: Data mismatch
+  :diff: |
+    -An indirect measurement of the average concentration of hemoglobin per reticulocyte in a biological specimen, calculated as the ratio of hemoglobin to hematocrit.
+    +null
+- :cl: C67154
+  :cl_sub: LBTEST
+  :cli: C138970
+  :cli_sub: Ret. Corpuscular HGB Concentration Mean
+  :column: CODE_DEFINITION
+  :reason: Data mismatch
+  :diff: |
+    -An indirect measurement of the average concentration of hemoglobin per reticulocyte in a biological specimen, calculated as the ratio of hemoglobin to hematocrit.
+    +null
+- :cl: C67154
+  :cl_sub: LBTEST_01
+  :cli: S014048
+  :cli_sub: ADV Viral Load
+  :column: CODELIST_EXTENSIBLE
+  :reason: Data mismatch
+  :diff: |
+    -true
+    +false
+- :cl: C67154
+  :cl_sub: LBTEST_01
+  :cli: S014049
+  :cli_sub: BKV Viral Load
+  :column: CODELIST_EXTENSIBLE
+  :reason: Data mismatch
+  :diff: |
+    -true
+    +false
+- :cl: C67154
+  :cl_sub: LBTEST_01
+  :cli: S014050
+  :cli_sub: CMV Viral Load
+  :column: CODELIST_EXTENSIBLE
+  :reason: Data mismatch
+  :diff: |
+    -true
+    +false
+- :cl: C67154
+  :cl_sub: LBTEST_01
+  :cli: S014051
+  :cli_sub: EBV Viral Load
+  :column: CODELIST_EXTENSIBLE
+  :reason: Data mismatch
+  :diff: |
+    -true
+    +false
+- :cl: C67154
+  :cl_sub: LBTEST_01
+  :cli: S014052
+  :cli_sub: HAV Viral Load
+  :column: CODELIST_EXTENSIBLE
+  :reason: Data mismatch
+  :diff: |
+    -true
+    +false
+- :cl: C67154
+  :cl_sub: LBTEST_01
+  :cli: S014053
+  :cli_sub: HBV Viral Load
+  :column: CODELIST_EXTENSIBLE
+  :reason: Data mismatch
+  :diff: |
+    -true
+    +false
+- :cl: C67154
+  :cl_sub: LBTEST_01
+  :cli: S014054
+  :cli_sub: HCV Viral Load
+  :column: CODELIST_EXTENSIBLE
+  :reason: Data mismatch
+  :diff: |
+    -true
+    +false
+- :cl: C67154
+  :cl_sub: LBTEST_01
+  :cli: S014055
+  :cli_sub: HIV Viral Load
+  :column: CODELIST_EXTENSIBLE
+  :reason: Data mismatch
+  :diff: |
+    -true
+    +false
+- :cl: C67154
+  :cl_sub: LBTEST_01
+  :cli: S014056
+  :cli_sub: Influenza A H1N1 Viral Load
+  :column: CODELIST_EXTENSIBLE
+  :reason: Data mismatch
+  :diff: |
+    -true
+    +false
+- :cl: C67154
+  :cl_sub: LBTEST_01
+  :cli: S014057
+  :cli_sub: Influenza A Viral Load
+  :column: CODELIST_EXTENSIBLE
+  :reason: Data mismatch
+  :diff: |
+    -true
+    +false
+- :cl: SN001929
+  :cl_sub: VSLPARM
+  :cli: C25298
+  :cli_sub: Systolic Blood Pressure
+  :column: CODE_DEFINITION
+  :reason: Data mismatch
+  :diff: |
+    -The maximum blood pressure in the systemic arterial circulation during the cardiac cycle.
+    +The blood pressure during the contraction of the left ventricle of the heart. (NCI)
+- :cl: SN001929
+  :cl_sub: VSLPARM
+  :cli: C25299
+  :cli_sub: Diastolic Blood Pressure
+  :column: CODE_DEFINITION
+  :reason: Data mismatch
+  :diff: |
+    -The minimum blood pressure in the systemic arterial circulation during the cardiac cycle.
+    +The blood pressure after the contraction of the heart while the chambers of the heart refill with blood. (NCI)
+- :cl: SN000797
+  :cl_sub: MHSCAT
+  :cli: S007127
+  :cli_sub: PNEUMOCOCCAL INFECTION
+  :column: CODE_DEFINITION
+  :reason: Data mismatch
+  :diff: |
+    -Infection caused by the bacterium Streptococcus pneumoniae. S. pneumoniae is a common member of the bacterial flora colonizing the nose and throat of 5–10% of healthy adults and 20–40% of healthy children. However, it is also the cause of significant disease being a leading cause of pneumonia, bacterial meningitis, and sepsis.
+    +Infection caused by the bacterium Streptococcus pneumoniae. S. pneumoniae is a common member of the bacterial flora colonizing the nose and throat of 5-10% of healthy adults and 20-40% of healthy children. However, it is also the cause of significant disease being a leading cause of pneumonia, bacterial meningitis, and sepsis.
+- :cl: SN000697
+  :cl_sub: CESCAT_01
+  :cli: S000038
+  :cli_sub: ADMINISTRATION SITE
+  :column: CODE_DEFINITION
+  :reason: Data mismatch
+  :diff: |
+    -Body site at which a pharmaceutical product is administered.
+    +Particular site on which the administration of treatment performed.
+- :cl: C66736
+  :cl_sub: TINDTP
+  :cli: C48262
+  :cli_sub: SCREENING
+  :column: CODE_DEFINITION
+  :reason: Data mismatch
+  :diff: |
+    -A type of study designed to assess or examine methods of identifying a condition (or risk factors for a condition) in people who are not yet known to have the condition (or risk factor). (Clinicaltrials.gov)
+    +A type of study designed to assess or examine methods of identifying a condition (or risk factors for a condition) in people who are not yet known to have the condition (or risk factor). (ClinicalTrials.gov)
+- :cl: TRTEST
+  :cl_sub: ''
+  :cli: ''
+  :cli_sub: ''
+  :column: ''
+  :reason: Failed to match item 'Sum of Products of Perpendicular Diam' in the code
+    list.
+  :diff: ''
