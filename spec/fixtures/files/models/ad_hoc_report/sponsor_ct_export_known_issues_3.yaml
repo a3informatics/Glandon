@@ -39,3 +39,10 @@
   :day:
     :column: 7
     :reason: "CDISC submission value for C25301 different 'DAYS' not 'day'"
+:VSLPARM:
+  :Systolic Blood Pressure:
+    :column: 10
+    :reason: "Using an earlier definition and not the definition in the version of the CT referenced."
+  :Diastolic Blood Pressure:
+    :column: 10
+    :reason: "Using an earlier definition and not the definition in the version of the CT referenced."

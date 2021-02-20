@@ -400,17 +400,17 @@ RSpec.describe AdHocReport, type: :model do
       check_file_actual_expected(results, sub_dir, "export_checks_no_decode_expected_3.yaml", equate_method: :hash_equal)
     end
 
-    it "2019 R1 Compare, decode" do
+    it "2019 R1 Compare, decode", :ad_hoc_report => 'slow' do
       results = full_compare("1")
       check_file_actual_expected(results, sub_dir, "export_checks_decode_expected_1.yaml", equate_method: :hash_equal)
     end
   
-    it "2020 R1 Compare, decode" do
+    it "2020 R1 Compare, decode", :ad_hoc_report => 'slow' do
       results = full_compare("2")
       check_file_actual_expected(results, sub_dir, "export_checks_decode_expected_2.yaml", equate_method: :hash_equal)
     end
 
-    it "2020 R2 Compare, decode" do
+    it "2020 R2 Compare, decode", :ad_hoc_report => 'slow' do
       results = full_compare("3")
       check_file_actual_expected(results, sub_dir, "export_checks_decode_expected_3.yaml", equate_method: :hash_equal)
     end
