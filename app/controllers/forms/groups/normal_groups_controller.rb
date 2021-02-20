@@ -18,7 +18,11 @@ class Forms::Groups::NormalGroupsController < ManagedItemsController
       AuditTrail.update_item_event(current_user, form, form.audit_message(:updated)) if @lock.first_update?
       render :json => {data: normal.to_h, ids: form.modified_uris_as_ids}, :status => 200
     else
-      render :json => {:fieldErrors => format_editor_errors(normal.errors)}, :status => 200
+      if normal.errors.has_key? :base
+        render :json => {:errors => normal.errors.full_messages}, :status => 422 
+      else 
+        render :json => {:fieldErrors => format_editor_errors(normal.errors)}, :status => 422
+      end
     end
   end
 

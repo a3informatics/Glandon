@@ -1,5 +1,5 @@
 import TabsLayout from 'shared/ui/tabs_layout'
-import ImpactGraph from './impact_graph.mjs'
+import ImpactGraph from './impact_graph'
 import ManagedItemsPanel from '../managed_items_panel'
 
 import { csvExportBtn, excelExportBtn } from 'shared/helpers/dt/utils'

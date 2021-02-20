@@ -7,22 +7,6 @@ describe "Thesauri Clone", :type => :feature do
   include WaitForAjaxHelper
   include UiHelpers
 
-  before :all do
-    load_files(schema_files, [])
-    load_cdisc_term_versions(1..62)
-    load_data_file_into_triple_store("mdr_sponsor_one_identification.ttl")
-    load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
-    load_data_file_into_triple_store("mdr_iso_concept_systems_migration_1.ttl")
-    load_data_file_into_triple_store("mdr_iso_concept_systems_process.ttl")
-    load_data_file_into_triple_store("sponsor_one/ct/CT_V2-6.ttl")
-
-    ua_create
-  end
-
-  before :each do
-    ua_curator_login
-  end
-
   after :each do
     ua_logoff
   end
@@ -33,6 +17,22 @@ describe "Thesauri Clone", :type => :feature do
 
   describe "Clone Terminology", :type => :feature do
 
+    before :all do
+      load_files(schema_files, [])
+      load_cdisc_term_versions(1..62)
+      load_data_file_into_triple_store("mdr_sponsor_one_identification.ttl")
+      load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
+      load_data_file_into_triple_store("mdr_iso_concept_systems_migration_1.ttl")
+      load_data_file_into_triple_store("mdr_iso_concept_systems_process.ttl")
+      load_data_file_into_triple_store("sponsor_one/ct/CT_V2-6.ttl")
+  
+      ua_create
+    end
+  
+    before :each do
+      ua_curator_login
+    end
+  
     it "allows to clone a sponsor terminology", js: true do
       click_navbar_terminology
       wait_for_ajax 10
@@ -82,7 +82,32 @@ describe "Thesauri Clone", :type => :feature do
       expect(page).to have_content "Label contains invalid characters and Has identifier - identifier - contains invalid characters"
     end
 
-    it "does not allow to clone a non-owned terminology", js: true do
+  end
+
+  describe "Clone Terminology, access", :type => :feature do
+
+    before :all do
+      load_files(schema_files, [])
+      load_cdisc_term_versions(1..2)
+      load_data_file_into_triple_store("mdr_sponsor_one_identification.ttl")
+      load_data_file_into_triple_store("sponsor_one/ct/CT_V2-6.ttl")
+  
+      ua_create
+    end
+  
+    it "does not allow to clone a non-owned terminology, curator", js: true do
+      ua_curator_login
+
+      click_navbar_cdisc_terminology
+      wait_for_ajax 20
+      Capybara.ignore_hidden_elements = false
+      expect(page).to_not have_link("Clone")
+      Capybara.ignore_hidden_elements = true
+    end
+
+    it "does not allow to clone a terminology, reader", js: true do
+      ua_reader_login
+
       click_navbar_cdisc_terminology
       wait_for_ajax 20
       Capybara.ignore_hidden_elements = false

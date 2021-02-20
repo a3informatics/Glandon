@@ -22,7 +22,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-11-12T18:19:20+01:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2021-02-18T12:58:50+01:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bc:hasItem :BCI_BCI1 ;
 	bc:hasItem :BCI_BCI2 ;
@@ -407,7 +407,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-11-12T18:19:20+01:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2021-02-18T12:58:51+01:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bc:hasItem <http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI1> ;
 	bc:hasItem <http://www.s-cubed.dk/WEIGHT/V1#BCI_BCI2> ;
@@ -770,7 +770,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-11-12T18:19:21+01:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2021-02-18T12:58:52+01:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bc:hasItem <http://www.s-cubed.dk/BMI/V1#BCI_BCI1> ;
 	bc:hasItem <http://www.s-cubed.dk/BMI/V1#BCI_BCI2> ;
@@ -1096,7 +1096,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-11-12T18:19:21+01:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2021-02-18T12:58:53+01:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bc:hasItem <http://www.s-cubed.dk/RACE/V1#BCI_BCI1> ;
 	bc:hasItem <http://www.s-cubed.dk/RACE/V1#BCI_BCI2> ;
@@ -1355,16 +1355,17 @@
 	rdf:type bc:ComplexDatatype ;
 	isoC:label "CD"^^xsd:string ;
 	bc:isComplexDatatype <http://www.s-cubed.dk/CDT#CD> ;
-	bc:hasProperty <http://www.s-cubed.dk/RACE/V1#BCI_BCI9_BCCDTCD_BCPvalue> ;
+	bc:hasProperty <http://www.s-cubed.dk/RACE/V1#BCI_BCI9_BCCDTCD_BCPcode> ;
 .
-<http://www.s-cubed.dk/RACE/V1#BCI_BCI9_BCCDTCD_BCPvalue>
+<http://www.s-cubed.dk/RACE/V1#BCI_BCI9_BCCDTCD_BCPcode>
 	rdf:type bc:PropertyX ;
-	isoC:label "value"^^xsd:string ;
+	isoC:label "code"^^xsd:string ;
 	bc:questionText ""^^xsd:string ;
 	bc:promptText ""^^xsd:string ;
 	bc:format ""^^xsd:string ;
 	bc:alias "--REASND"^^xsd:string ;
 	bc:isA <http://www.s-cubed.dk/CAR#52b30e2515e4fa778a3ab77470f0b096877a26c2> ;
+	bc:isComplexDatatypeProperty <http://www.s-cubed.dk/CDT#CD_code> ;
 .
 <http://www.s-cubed.dk/RACE/V1#BCI_BCI10>
 	rdf:type bc:Item ;
@@ -1476,7 +1477,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-11-12T18:19:21+01:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2021-02-18T12:58:54+01:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bc:hasItem <http://www.s-cubed.dk/SEX/V1#BCI_BCI1> ;
 	bc:hasItem <http://www.s-cubed.dk/SEX/V1#BCI_BCI2> ;
@@ -1735,16 +1736,17 @@
 	rdf:type bc:ComplexDatatype ;
 	isoC:label "CD"^^xsd:string ;
 	bc:isComplexDatatype <http://www.s-cubed.dk/CDT#CD> ;
-	bc:hasProperty <http://www.s-cubed.dk/SEX/V1#BCI_BCI9_BCCDTCD_BCPvalue> ;
+	bc:hasProperty <http://www.s-cubed.dk/SEX/V1#BCI_BCI9_BCCDTCD_BCPcode> ;
 .
-<http://www.s-cubed.dk/SEX/V1#BCI_BCI9_BCCDTCD_BCPvalue>
+<http://www.s-cubed.dk/SEX/V1#BCI_BCI9_BCCDTCD_BCPcode>
 	rdf:type bc:PropertyX ;
-	isoC:label "value"^^xsd:string ;
+	isoC:label "code"^^xsd:string ;
 	bc:questionText ""^^xsd:string ;
 	bc:promptText ""^^xsd:string ;
 	bc:format ""^^xsd:string ;
 	bc:alias "--REASND"^^xsd:string ;
 	bc:isA <http://www.s-cubed.dk/CAR#52b30e2515e4fa778a3ab77470f0b096877a26c2> ;
+	bc:isComplexDatatypeProperty <http://www.s-cubed.dk/CDT#CD_code> ;
 .
 <http://www.s-cubed.dk/SEX/V1#BCI_BCI10>
 	rdf:type bc:Item ;
@@ -1823,7 +1825,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-11-12T18:19:22+01:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2021-02-18T12:58:54+01:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bc:hasItem <http://www.s-cubed.dk/AGE/V1#BCI_BCI1> ;
 	bc:hasItem <http://www.s-cubed.dk/AGE/V1#BCI_BCI2> ;
@@ -2149,7 +2151,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-11-12T18:19:22+01:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2021-02-18T12:58:55+01:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bc:hasItem <http://www.s-cubed.dk/ETHNICITY/V1#BCI_BCI1> ;
 	bc:hasItem <http://www.s-cubed.dk/ETHNICITY/V1#BCI_BCI2> ;
@@ -2408,16 +2410,17 @@
 	rdf:type bc:ComplexDatatype ;
 	isoC:label "CD"^^xsd:string ;
 	bc:isComplexDatatype <http://www.s-cubed.dk/CDT#CD> ;
-	bc:hasProperty <http://www.s-cubed.dk/ETHNICITY/V1#BCI_BCI9_BCCDTCD_BCPvalue> ;
+	bc:hasProperty <http://www.s-cubed.dk/ETHNICITY/V1#BCI_BCI9_BCCDTCD_BCPcode> ;
 .
-<http://www.s-cubed.dk/ETHNICITY/V1#BCI_BCI9_BCCDTCD_BCPvalue>
+<http://www.s-cubed.dk/ETHNICITY/V1#BCI_BCI9_BCCDTCD_BCPcode>
 	rdf:type bc:PropertyX ;
-	isoC:label "value"^^xsd:string ;
+	isoC:label "code"^^xsd:string ;
 	bc:questionText ""^^xsd:string ;
 	bc:promptText ""^^xsd:string ;
 	bc:format ""^^xsd:string ;
 	bc:alias "--REASND"^^xsd:string ;
 	bc:isA <http://www.s-cubed.dk/CAR#52b30e2515e4fa778a3ab77470f0b096877a26c2> ;
+	bc:isComplexDatatypeProperty <http://www.s-cubed.dk/CDT#CD_code> ;
 .
 <http://www.s-cubed.dk/ETHNICITY/V1#BCI_BCI10>
 	rdf:type bc:Item ;
@@ -2496,7 +2499,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-11-12T18:19:23+01:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2021-02-18T12:58:57+01:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bc:hasItem <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI1> ;
 	bc:hasItem <http://www.s-cubed.dk/SYSBP/V1#BCI_BCI2> ;
@@ -2936,7 +2939,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-11-12T18:19:23+01:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2021-02-18T12:58:58+01:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bc:hasItem <http://www.s-cubed.dk/DIABP/V1#BCI_BCI1> ;
 	bc:hasItem <http://www.s-cubed.dk/DIABP/V1#BCI_BCI2> ;
@@ -3376,7 +3379,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-11-12T18:19:23+01:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2021-02-18T12:58:59+01:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bc:hasItem <http://www.s-cubed.dk/HR/V1#BCI_BCI1> ;
 	bc:hasItem <http://www.s-cubed.dk/HR/V1#BCI_BCI2> ;
@@ -3790,7 +3793,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-11-12T18:19:24+01:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2021-02-18T12:59:00+01:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bc:hasItem <http://www.s-cubed.dk/TEMP/V1#BCI_BCI1> ;
 	bc:hasItem <http://www.s-cubed.dk/TEMP/V1#BCI_BCI2> ;
@@ -4230,7 +4233,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-11-12T18:19:24+01:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2021-02-18T12:59:01+01:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bc:hasItem <http://www.s-cubed.dk/HBA1C/V1#BCI_BCI1> ;
 	bc:hasItem <http://www.s-cubed.dk/HBA1C/V1#BCI_BCI2> ;
@@ -4567,7 +4570,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-11-12T18:19:25+01:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2021-02-18T12:59:01+01:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bc:hasItem <http://www.s-cubed.dk/AE/V1#BCI_BCI1> ;
 	bc:hasItem <http://www.s-cubed.dk/AE/V1#BCI_BCI2> ;
@@ -4926,7 +4929,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-11-12T18:19:25+01:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2021-02-18T12:59:02+01:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bc:hasItem <http://www.s-cubed.dk/INTP/V1#BCI_BCI1> ;
 	bc:hasItem <http://www.s-cubed.dk/INTP/V1#BCI_BCI2> ;
@@ -5185,16 +5188,17 @@
 	rdf:type bc:ComplexDatatype ;
 	isoC:label "CD"^^xsd:string ;
 	bc:isComplexDatatype <http://www.s-cubed.dk/CDT#CD> ;
-	bc:hasProperty <http://www.s-cubed.dk/INTP/V1#BCI_BCI9_BCCDTCD_BCPvalue> ;
+	bc:hasProperty <http://www.s-cubed.dk/INTP/V1#BCI_BCI9_BCCDTCD_BCPcode> ;
 .
-<http://www.s-cubed.dk/INTP/V1#BCI_BCI9_BCCDTCD_BCPvalue>
+<http://www.s-cubed.dk/INTP/V1#BCI_BCI9_BCCDTCD_BCPcode>
 	rdf:type bc:PropertyX ;
-	isoC:label "value"^^xsd:string ;
+	isoC:label "code"^^xsd:string ;
 	bc:questionText ""^^xsd:string ;
 	bc:promptText ""^^xsd:string ;
 	bc:format ""^^xsd:string ;
 	bc:alias "--REASND"^^xsd:string ;
 	bc:isA <http://www.s-cubed.dk/CAR#52b30e2515e4fa778a3ab77470f0b096877a26c2> ;
+	bc:isComplexDatatypeProperty <http://www.s-cubed.dk/CDT#CD_code> ;
 .
 <http://www.s-cubed.dk/INTP/V1#BCI_BCI10>
 	rdf:type bc:Item ;
