@@ -89,9 +89,9 @@ export default class IPRenderer {
 
     const { param } = type
 
-    $( '<div>' ).addClass( 'tab-wrap closed' )
-                .attr( 'id', `selector-${ param }` )
-                .attr( 'data-tab', `tab-${ param }` ) 
+    return $( '<div>' ).addClass( 'tab-wrap closed' )
+                       .attr( 'id', `selector-${ param }` )
+                       .attr( 'data-tab', `tab-${ param }` ) 
 
   }
 
