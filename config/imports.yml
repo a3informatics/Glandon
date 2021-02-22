@@ -458,6 +458,7 @@ defaults: &defaults
                     - Special-Purpose
                     - Relationship
                     - Trial Design
+                    - Study Reference
                 -
                   column: 4
                   method: column_not_blank?
@@ -680,6 +681,7 @@ defaults: &defaults
                     - Special-Purpose
                     - Relationship
                     - Trial Design
+                    - Study Reference
                 -
                   column: 4
                   method: column_not_blank?

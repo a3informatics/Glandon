@@ -49,6 +49,8 @@
 	bo:hasManaged :M_R22 ;
 	bo:hasManaged :M_R23 ;
 	bo:hasManaged :M_R24 ;
+	bo:hasManaged :M_R25 ;
+	bo:hasManaged :M_R26 ;
 .
 :M_RS
 	rdf:type isoR:RegistrationState ;
@@ -261,6 +263,22 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "24"^^xsd:positiveInteger ;
 	bo:reference <http://www.cdisc.org/SDTM_MODEL_DR/V6#CL> ;
+.
+:M_R25
+	rdf:type bo:Reference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "25"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/SDTM_MODEL_DI/V6#CL> ;
+.
+:M_R26
+	rdf:type bo:Reference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "26"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/SDTM_MODEL_OI/V6#CL> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V6#CL>
 	rdf:type bd:SdtmClass ;
@@ -4850,4 +4868,238 @@
 	bd:description "Sponsor-defined identifier for the device. It must be unique for each tracked unit of the device under study, and can be at whatever level of granularity the device should be identified (e.g., model or serial number, combination of identifiers) as defined in DI."^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#d46bb337-92cd-4250-b50c-9be5079d6ab3> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_DI/V6#CL>
+	rdf:type bd:SdtmClass ;
+	isoC:label "DI"^^xsd:string ;
+	isoT:hasState <http://www.cdisc.org/SDTM_MODEL_DI/V6#CL_RS> ;
+	isoT:hasIdentifier <http://www.cdisc.org/SDTM_MODEL_DI/V6#CL_SI> ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2018-11-20T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2018-11-20T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "1"^^xsd:positiveInteger ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_DI/V6#CL_STUDYID> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_DI/V6#CL_DOMAIN> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_DI/V6#CL_SPDEVID> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_DI/V6#CL_DISEQ> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_DI/V6#CL_DIPARMCD> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_DI/V6#CL_DIPARM> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_DI/V6#CL_DIVAL> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_DI/V6#CL_RS>
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_DI/V6#CL_SI>
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "SDTM MODEL DI"^^xsd:string ;
+	isoI:versionLabel "2018-11-20 Release"^^xsd:string ;
+	isoI:version "6"^^xsd:positiveInteger ;
+	isoI:semanticVersion "1.7.0"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_DI/V6#CL_STUDYID>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Study Identifier"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "1"^^xsd:positiveInteger ;
+	bd:name "STUDYID"^^xsd:string ;
+	bd:prefixed "false"^^xsd:boolean ;
+	bd:description "Unique identifier for a study."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#d46bb337-92cd-4250-b50c-9be5079d6ab3> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_DI/V6#CL_DOMAIN>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Domain Abbreviation"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "2"^^xsd:positiveInteger ;
+	bd:name "DOMAIN"^^xsd:string ;
+	bd:prefixed "false"^^xsd:boolean ;
+	bd:description "2-character abbreviation for the domain, which must be \"DI\"."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#d46bb337-92cd-4250-b50c-9be5079d6ab3> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_DI/V6#CL_SPDEVID>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Sponsor Device Identifier"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "3"^^xsd:positiveInteger ;
+	bd:name "SPDEVID"^^xsd:string ;
+	bd:prefixed "false"^^xsd:boolean ;
+	bd:description "Sponsor-defined identifier for the device."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#d46bb337-92cd-4250-b50c-9be5079d6ab3> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_DI/V6#CL_DISEQ>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Sequence Number"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "4"^^xsd:positiveInteger ;
+	bd:name "DISEQ"^^xsd:string ;
+	bd:prefixed "false"^^xsd:boolean ;
+	bd:description "Sequence number given to ensure uniqueness within a parameter within a device (SPDEVID)."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#d46bb337-92cd-4250-b50c-9be5079d6ab3> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_DI/V6#CL_DIPARMCD>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Device Identifier Element Short Name"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "5"^^xsd:positiveInteger ;
+	bd:name "DIPARMCD"^^xsd:string ;
+	bd:prefixed "false"^^xsd:boolean ;
+	bd:description "Short name of the identifier characteristic of the device."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#692cafbf-658a-43f0-97a2-f040ecb1a20d> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_DI/V6#CL_DIPARM>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Device Identifier Element Name"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "6"^^xsd:positiveInteger ;
+	bd:name "DIPARM"^^xsd:string ;
+	bd:prefixed "false"^^xsd:boolean ;
+	bd:description "Name of the identifier characteristic of the device."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#86cd61e6-d48c-4e42-b994-bee35e2351fe> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_DI/V6#CL_DIVAL>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Device Identifier Element Value"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "7"^^xsd:positiveInteger ;
+	bd:name "DIVAL"^^xsd:string ;
+	bd:prefixed "false"^^xsd:boolean ;
+	bd:description "Value for the parameter."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4e516e50-4563-4412-aa8d-6e7740d99444> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_OI/V6#CL>
+	rdf:type bd:SdtmClass ;
+	isoC:label "OI"^^xsd:string ;
+	isoT:hasState <http://www.cdisc.org/SDTM_MODEL_OI/V6#CL_RS> ;
+	isoT:hasIdentifier <http://www.cdisc.org/SDTM_MODEL_OI/V6#CL_SI> ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2018-11-20T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2018-11-20T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "1"^^xsd:positiveInteger ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_OI/V6#CL_STUDYID> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_OI/V6#CL_DOMAIN> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_OI/V6#CL_NHOID> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_OI/V6#CL_OISEQ> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_OI/V6#CL_OIPARMCD> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_OI/V6#CL_OIPARM> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_OI/V6#CL_OIVAL> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_OI/V6#CL_RS>
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_OI/V6#CL_SI>
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "SDTM MODEL OI"^^xsd:string ;
+	isoI:versionLabel "2018-11-20 Release"^^xsd:string ;
+	isoI:version "6"^^xsd:positiveInteger ;
+	isoI:semanticVersion "1.7.0"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_OI/V6#CL_STUDYID>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Study Identifier"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "1"^^xsd:positiveInteger ;
+	bd:name "STUDYID"^^xsd:string ;
+	bd:prefixed "false"^^xsd:boolean ;
+	bd:description "Unique identifier for a study."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#d46bb337-92cd-4250-b50c-9be5079d6ab3> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_OI/V6#CL_DOMAIN>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Domain Abbreviation"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "2"^^xsd:positiveInteger ;
+	bd:name "DOMAIN"^^xsd:string ;
+	bd:prefixed "false"^^xsd:boolean ;
+	bd:description "2-character abbreviation for the domain, which must be \"OI\"."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#d46bb337-92cd-4250-b50c-9be5079d6ab3> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_OI/V6#CL_NHOID>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Non-Host Organism Identifier"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "3"^^xsd:positiveInteger ;
+	bd:name "NHOID"^^xsd:string ;
+	bd:prefixed "false"^^xsd:boolean ;
+	bd:description "Sponsor-defined identifier for a non-host organism."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#d46bb337-92cd-4250-b50c-9be5079d6ab3> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_OI/V6#CL_OISEQ>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Sequence Number"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "4"^^xsd:positiveInteger ;
+	bd:name "OISEQ"^^xsd:string ;
+	bd:prefixed "false"^^xsd:boolean ;
+	bd:description "Sequence number given to ensure uniqueness within a parameter within an organism (NHOID)."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#d46bb337-92cd-4250-b50c-9be5079d6ab3> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_OI/V6#CL_OIPARMCD>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Non-Host Organism ID Element Short Name"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "5"^^xsd:positiveInteger ;
+	bd:name "OIPARMCD"^^xsd:string ;
+	bd:prefixed "false"^^xsd:boolean ;
+	bd:description "Short name of the taxon being described."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#692cafbf-658a-43f0-97a2-f040ecb1a20d> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_OI/V6#CL_OIPARM>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Non-Host Organism ID Element Name"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "6"^^xsd:positiveInteger ;
+	bd:name "OIPARM"^^xsd:string ;
+	bd:prefixed "false"^^xsd:boolean ;
+	bd:description "Name of the taxon being described."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#86cd61e6-d48c-4e42-b994-bee35e2351fe> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_OI/V6#CL_OIVAL>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Non-Host Organism ID Element Value"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "7"^^xsd:positiveInteger ;
+	bd:name "OIVAL"^^xsd:string ;
+	bd:prefixed "false"^^xsd:boolean ;
+	bd:description "Value for the taxon in OIPARMCD/OIPARM for the organism identified by NHOID."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4e516e50-4563-4412-aa8d-6e7740d99444> ;
 .
