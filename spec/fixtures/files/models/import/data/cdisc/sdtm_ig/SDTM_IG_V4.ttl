@@ -29503,6 +29503,7 @@
 	bd:includesColumn <http://www.cdisc.org/SDTM_IG_OI/V4#IGD_OIVAL> ;
 	bd:prefix "OI"^^xsd:string ;
 	bd:structure "One record per taxon per non-host organism"^^xsd:string ;
+	bd:basedOnClass <http://www.cdisc.org/SDTM_MODEL_OI/V6#CL> ;
 .
 <http://www.cdisc.org/SDTM_IG_OI/V4#IGD_RS>
 	rdf:type isoR:RegistrationState ;
@@ -29534,6 +29535,7 @@
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
+	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_OI/V6#CL_STUDYID> ;
 .
 <http://www.cdisc.org/SDTM_IG_OI/V4#IGD_DOMAIN>
 	rdf:type bd:SdtmDomainVariable ;
@@ -29545,6 +29547,7 @@
 	bd:format "OI"^^xsd:string ;
 	bd:ctAndFormat "OI"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
+	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_OI/V6#CL_DOMAIN> ;
 .
 <http://www.cdisc.org/SDTM_IG_OI/V4#IGD_NHOID>
 	rdf:type bd:SdtmDomainVariable ;
@@ -29556,6 +29559,7 @@
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
+	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_OI/V6#CL_NHOID> ;
 .
 <http://www.cdisc.org/SDTM_IG_OI/V4#IGD_OISEQ>
 	rdf:type bd:SdtmDomainVariable ;
@@ -29567,6 +29571,7 @@
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
+	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_OI/V6#CL_OISEQ> ;
 .
 <http://www.cdisc.org/SDTM_IG_OI/V4#IGD_OIPARMCD>
 	rdf:type bd:SdtmDomainVariable ;
@@ -29578,6 +29583,7 @@
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
+	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_OI/V6#CL_OIPARMCD> ;
 .
 <http://www.cdisc.org/SDTM_IG_OI/V4#IGD_OIPARM>
 	rdf:type bd:SdtmDomainVariable ;
@@ -29589,6 +29595,7 @@
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
+	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_OI/V6#CL_OIPARM> ;
 .
 <http://www.cdisc.org/SDTM_IG_OI/V4#IGD_OIVAL>
 	rdf:type bd:SdtmDomainVariable ;
@@ -29600,4 +29607,5 @@
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
+	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_OI/V6#CL_OIVAL> ;
 .
