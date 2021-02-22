@@ -118,7 +118,7 @@ const iconTypes = { 
    * @param {string} params.owner owner name for color override of cdisc items
    * @return {string} rendered icon HTML
    */
-  renderIcon(type, params) {
+  renderIcon(type, params = {}) {
 
     let size = params.size || "text-xnormal",
         iconParams = this.typeIconMap( type, params ),
@@ -141,7 +141,7 @@ const iconTypes = { 
    * @param {string} params.owner owner name for color override of cdisc items
    * @return {string} rendered icon badge HTML
    */
-  renderIconBadge(type, params) {
+  renderIconBadge(type, params = {}) {
 
     let size = params.size || "small",
         iconParams = this.typeIconMap( type, params )
