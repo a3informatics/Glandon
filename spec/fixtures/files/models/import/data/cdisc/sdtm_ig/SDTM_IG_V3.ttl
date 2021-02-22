@@ -18036,6 +18036,7 @@
 	bd:includesColumn <http://www.cdisc.org/SDTM_IG_APDM/V3#IGD_DMDTC> ;
 	bd:prefix "APDM"^^xsd:string ;
 	bd:structure ""^^xsd:string ;
+	bd:basedOnClass <http://www.cdisc.org/SDTM_MODEL_APDM/V3#CL> ;
 .
 <http://www.cdisc.org/SDTM_IG_APDM/V3#IGD_RS>
 	rdf:type isoR:RegistrationState ;
@@ -18067,6 +18068,7 @@
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
+	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_APDM/V3#CL_STUDYID> ;
 .
 <http://www.cdisc.org/SDTM_IG_APDM/V3#IGD_DOMAIN>
 	rdf:type bd:SdtmDomainVariable ;
@@ -18079,6 +18081,7 @@
 	bd:ctAndFormat "(DOMAIN)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
 	bd:ctReference <http://www.cdisc.org/SDTM_IG_APDM/V3#IGD_DOMAIN_TMC1> ;
+	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_APDM/V3#CL_DOMAIN> ;
 .
 <http://www.cdisc.org/SDTM_IG_APDM/V3#IGD_DOMAIN_TMC1>
 	rdf:type bo:TMcReference ;
@@ -18099,6 +18102,7 @@
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
+	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_APDM/V3#CL_APID> ;
 .
 <http://www.cdisc.org/SDTM_IG_APDM/V3#IGD_RSUBJID>
 	rdf:type bd:SdtmDomainVariable ;
@@ -18110,6 +18114,7 @@
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#046f6c24-9eaf-4f60-8390-f36328c82ec4> ;
+	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_APDM/V3#CL_RSUBJID> ;
 .
 <http://www.cdisc.org/SDTM_IG_APDM/V3#IGD_RDEVID>
 	rdf:type bd:SdtmDomainVariable ;
@@ -18121,6 +18126,7 @@
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
+	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_APDM/V3#CL_RDEVID> ;
 .
 <http://www.cdisc.org/SDTM_IG_APDM/V3#IGD_SREL>
 	rdf:type bd:SdtmDomainVariable ;
@@ -18132,6 +18138,7 @@
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
+	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_APDM/V3#CL_SREL> ;
 .
 <http://www.cdisc.org/SDTM_IG_APDM/V3#IGD_DTHDTC>
 	rdf:type bd:SdtmDomainVariable ;
@@ -18143,6 +18150,7 @@
 	bd:format "ISO 8601"^^xsd:string ;
 	bd:ctAndFormat "ISO 8601"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
+	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_APDM/V3#CL_DTHDTC> ;
 .
 <http://www.cdisc.org/SDTM_IG_APDM/V3#IGD_DTHFL>
 	rdf:type bd:SdtmDomainVariable ;
@@ -18155,6 +18163,7 @@
 	bd:ctAndFormat "(NY)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:ctReference <http://www.cdisc.org/SDTM_IG_APDM/V3#IGD_DTHFL_TMC1> ;
+	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_APDM/V3#CL_DTHFL> ;
 .
 <http://www.cdisc.org/SDTM_IG_APDM/V3#IGD_DTHFL_TMC1>
 	rdf:type bo:TMcReference ;
@@ -18175,6 +18184,7 @@
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
+	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_APDM/V3#CL_INVNAM> ;
 .
 <http://www.cdisc.org/SDTM_IG_APDM/V3#IGD_BRTHDTC>
 	rdf:type bd:SdtmDomainVariable ;
@@ -18186,6 +18196,7 @@
 	bd:format "ISO 8601"^^xsd:string ;
 	bd:ctAndFormat "ISO 8601"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
+	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_APDM/V3#CL_BRTHDTC> ;
 .
 <http://www.cdisc.org/SDTM_IG_APDM/V3#IGD_AGE>
 	rdf:type bd:SdtmDomainVariable ;
@@ -18197,6 +18208,7 @@
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
+	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_APDM/V3#CL_AGE> ;
 .
 <http://www.cdisc.org/SDTM_IG_APDM/V3#IGD_AGEU>
 	rdf:type bd:SdtmDomainVariable ;
@@ -18209,6 +18221,7 @@
 	bd:ctAndFormat "(AGEU)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:ctReference <http://www.cdisc.org/SDTM_IG_APDM/V3#IGD_AGEU_TMC1> ;
+	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_APDM/V3#CL_AGEU> ;
 .
 <http://www.cdisc.org/SDTM_IG_APDM/V3#IGD_AGEU_TMC1>
 	rdf:type bo:TMcReference ;
@@ -18230,6 +18243,7 @@
 	bd:ctAndFormat "(SEX)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:ctReference <http://www.cdisc.org/SDTM_IG_APDM/V3#IGD_SEX_TMC1> ;
+	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_APDM/V3#CL_SEX> ;
 .
 <http://www.cdisc.org/SDTM_IG_APDM/V3#IGD_SEX_TMC1>
 	rdf:type bo:TMcReference ;
@@ -18251,6 +18265,7 @@
 	bd:ctAndFormat "(RACE)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:ctReference <http://www.cdisc.org/SDTM_IG_APDM/V3#IGD_RACE_TMC1> ;
+	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_APDM/V3#CL_RACE> ;
 .
 <http://www.cdisc.org/SDTM_IG_APDM/V3#IGD_RACE_TMC1>
 	rdf:type bo:TMcReference ;
@@ -18272,6 +18287,7 @@
 	bd:ctAndFormat "(ETHNIC)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:ctReference <http://www.cdisc.org/SDTM_IG_APDM/V3#IGD_ETHNIC_TMC1> ;
+	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_APDM/V3#CL_ETHNIC> ;
 .
 <http://www.cdisc.org/SDTM_IG_APDM/V3#IGD_ETHNIC_TMC1>
 	rdf:type bo:TMcReference ;
@@ -18293,6 +18309,7 @@
 	bd:ctAndFormat "(COUNTRY)"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:ctReference <http://www.cdisc.org/SDTM_IG_APDM/V3#IGD_COUNTRY_TMC1> ;
+	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_APDM/V3#CL_COUNTRY> ;
 .
 <http://www.cdisc.org/SDTM_IG_APDM/V3#IGD_COUNTRY_TMC1>
 	rdf:type bo:TMcReference ;
@@ -18313,6 +18330,7 @@
 	bd:format "ISO 8601"^^xsd:string ;
 	bd:ctAndFormat "ISO 8601"^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
+	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_APDM/V3#CL_DMDTC> ;
 .
 <http://www.cdisc.org/SDTM_IG_RELSUB/V3#IGD>
 	rdf:type bd:SdtmDomain ;

@@ -157,6 +157,7 @@ puts colourize("***** Error finding variable: #{variable.name} *****", "red") if
     return "#{SdtmModel.identifier} #{prefix}" if the_class == "SDTM TRIAL DESIGN"
     return "#{SdtmModel.identifier} #{prefix}" if the_class == "SDTM RELATIONSHIPS"
     return "#{SdtmModel.identifier} #{prefix}" if the_class == "SDTM STUDY REFERENCE"
+    return "#{SdtmModel.identifier} #{prefix}" if the_class == "SDTM ASSOCIATED PERSONS"
     the_class
   end
 
