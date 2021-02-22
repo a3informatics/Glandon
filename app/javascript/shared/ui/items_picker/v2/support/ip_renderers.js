@@ -43,7 +43,7 @@ export default class IPRenderer {
    */
   static _typesAsTabs(types) {
 
-    return types.map( this._tabOption )
+    return types.map( type => this._tabOption(type) )
                 .reduce( (html, tab) => html.add( tab ) )
 
   }
@@ -55,7 +55,7 @@ export default class IPRenderer {
    */
   static _typesAsTabContents(types) {
 
-    return types.map( this._tabContent )
+    return types.map( type => this._tabContent(type) )
                 .reduce( (html, tabWrap) => html.add( tabWrap ) )
 
   }
