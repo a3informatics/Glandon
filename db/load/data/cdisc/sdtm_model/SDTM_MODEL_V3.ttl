@@ -43,6 +43,8 @@
 	bo:hasManaged :M_R16 ;
 	bo:hasManaged :M_R17 ;
 	bo:hasManaged :M_R18 ;
+	bo:hasManaged :M_R19 ;
+	bo:hasManaged :M_R20 ;
 .
 :M_RS
 	rdf:type isoR:RegistrationState ;
@@ -206,6 +208,22 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "18"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/SDTM_MODEL_APRELSUB/V3#CL> ;
+.
+:M_R19
+	rdf:type bo:Reference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "19"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/SDTM_MODEL_APDM/V3#CL> ;
+.
+:M_R20
+	rdf:type bo:Reference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "20"^^xsd:positiveInteger ;
 	bo:reference <http://www.cdisc.org/SDTM_MODEL_RELSUB/V3#CL> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_EVENTS/V3#CL>
@@ -3466,6 +3484,336 @@
 	bd:description "Identifier for a single associated person, a group of associated persons, or a pool of associated persons."^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#86cd61e6-d48c-4e42-b994-bee35e2351fe> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_APRELSUB/V3#CL>
+	rdf:type bd:SdtmClass ;
+	isoC:label "APRELSUB"^^xsd:string ;
+	isoT:hasState <http://www.cdisc.org/SDTM_MODEL_APRELSUB/V3#CL_RS> ;
+	isoT:hasIdentifier <http://www.cdisc.org/SDTM_MODEL_APRELSUB/V3#CL_SI> ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2013-11-26T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2013-11-26T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "1"^^xsd:positiveInteger ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_APRELSUB/V3#CL_STUDYID> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_APRELSUB/V3#CL_APID> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_APRELSUB/V3#CL_RSUBJID> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_APRELSUB/V3#CL_RDEVID> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_APRELSUB/V3#CL_SREL> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_APRELSUB/V3#CL_RS>
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_APRELSUB/V3#CL_SI>
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "SDTM MODEL APRELSUB"^^xsd:string ;
+	isoI:versionLabel "2013-11-26 Release"^^xsd:string ;
+	isoI:version "3"^^xsd:positiveInteger ;
+	isoI:semanticVersion "1.4.0"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_APRELSUB/V3#CL_STUDYID>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Study Identifier"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "1"^^xsd:positiveInteger ;
+	bd:name "STUDYID"^^xsd:string ;
+	bd:prefixed "false"^^xsd:boolean ;
+	bd:description "Unique identifier for a study."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#d46bb337-92cd-4250-b50c-9be5079d6ab3> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_APRELSUB/V3#CL_APID>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Associated Persons Identifier"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "2"^^xsd:positiveInteger ;
+	bd:name "APID"^^xsd:string ;
+	bd:prefixed "false"^^xsd:boolean ;
+	bd:description "Identifier for a single associated person, a group of associated persons, or a pool of associated persons. If APID identifies a pool, POOLDEF records must exist for each associated person."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#d46bb337-92cd-4250-b50c-9be5079d6ab3> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_APRELSUB/V3#CL_RSUBJID>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Related Subject or Pool Identifier"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "3"^^xsd:positiveInteger ;
+	bd:name "RSUBJID"^^xsd:string ;
+	bd:prefixed "false"^^xsd:boolean ;
+	bd:description "Identifier for a related subject or pool of subjects. RSUBJID may be populated with the USUBJID of the related subject or the POOLID of the related pool. \nRSUBJID will be null for data about associated persons who are related to the study but not to any study subjects."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#d46bb337-92cd-4250-b50c-9be5079d6ab3> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_APRELSUB/V3#CL_RDEVID>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Related Device Identifier"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "4"^^xsd:positiveInteger ;
+	bd:name "RDEVID"^^xsd:string ;
+	bd:prefixed "false"^^xsd:boolean ;
+	bd:description "Identifier for a related device. RDEVID will be populated with the SPDEVID of the related device."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#d46bb337-92cd-4250-b50c-9be5079d6ab3> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_APRELSUB/V3#CL_SREL>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Subject, Device, or Study Relationship"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "5"^^xsd:positiveInteger ;
+	bd:name "SREL"^^xsd:string ;
+	bd:prefixed "false"^^xsd:boolean ;
+	bd:description "If RSUBJID is populated, describes the relationship of the associated person(s) identified in APID to the subject or pool identified in RSUBJID.\nIf RDEVID is populated, describes the relationship of the associated person(s) identified in APID to the subject or pool identified in RDEVID.\nIf RSUBJID and RDEVID are null, SREL describes the relationship of the associated person(s) identified in APID to the study identified in STUDYID."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_APDM/V3#CL>
+	rdf:type bd:SdtmClass ;
+	isoC:label "APDM"^^xsd:string ;
+	isoT:hasState <http://www.cdisc.org/SDTM_MODEL_APDM/V3#CL_RS> ;
+	isoT:hasIdentifier <http://www.cdisc.org/SDTM_MODEL_APDM/V3#CL_SI> ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2013-11-26T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2013-11-26T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "1"^^xsd:positiveInteger ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_APDM/V3#CL_STUDYID> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_APDM/V3#CL_DOMAIN> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_APDM/V3#CL_APID> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_APDM/V3#CL_RSUBJID> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_APDM/V3#CL_RDEVID> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_APDM/V3#CL_SREL> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_APDM/V3#CL_DTHDTC> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_APDM/V3#CL_DTHFL> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_APDM/V3#CL_INVNAM> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_APDM/V3#CL_BRTHDTC> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_APDM/V3#CL_AGE> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_APDM/V3#CL_AGEU> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_APDM/V3#CL_SEX> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_APDM/V3#CL_RACE> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_APDM/V3#CL_ETHNIC> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_APDM/V3#CL_COUNTRY> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_APDM/V3#CL_DMDTC> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_APDM/V3#CL_RS>
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_APDM/V3#CL_SI>
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "SDTM MODEL APDM"^^xsd:string ;
+	isoI:versionLabel "2013-11-26 Release"^^xsd:string ;
+	isoI:version "3"^^xsd:positiveInteger ;
+	isoI:semanticVersion "1.4.0"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_APDM/V3#CL_STUDYID>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Study Identifier"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "1"^^xsd:positiveInteger ;
+	bd:name "STUDYID"^^xsd:string ;
+	bd:prefixed "false"^^xsd:boolean ;
+	bd:description "Unique identifier for a study"^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#d46bb337-92cd-4250-b50c-9be5079d6ab3> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_APDM/V3#CL_DOMAIN>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Domain Abbreviation"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "2"^^xsd:positiveInteger ;
+	bd:name "DOMAIN"^^xsd:string ;
+	bd:prefixed "false"^^xsd:boolean ;
+	bd:description "Four-character abbreviation for the domain."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#d46bb337-92cd-4250-b50c-9be5079d6ab3> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_APDM/V3#CL_APID>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Associated Persons Identifier"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "3"^^xsd:positiveInteger ;
+	bd:name "APID"^^xsd:string ;
+	bd:prefixed "false"^^xsd:boolean ;
+	bd:description "Identifier for a single associated person, a group of associated persons, or a pool of associated persons. If APID identifies a pool, POOLDEF records must exist for each associated person."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#692cafbf-658a-43f0-97a2-f040ecb1a20d> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_APDM/V3#CL_RSUBJID>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Related Subject"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "4"^^xsd:positiveInteger ;
+	bd:name "RSUBJID"^^xsd:string ;
+	bd:prefixed "false"^^xsd:boolean ;
+	bd:description "Identifier for a related subject or pool of subjects. RSUBJID may be populated with the USUBJID of the related subject or the POOLID of the related pool. \nRSUBJID will be null for data about associated persons who are related to the study but not to any study subjects."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_APDM/V3#CL_RDEVID>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Related Device"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "5"^^xsd:positiveInteger ;
+	bd:name "RDEVID"^^xsd:string ;
+	bd:prefixed "false"^^xsd:boolean ;
+	bd:description "Identifier for a related device. RDEVID will be populated with the SPDEVID of the related device"^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_APDM/V3#CL_SREL>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Subject, Device or Study Relationship"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "6"^^xsd:positiveInteger ;
+	bd:name "SREL"^^xsd:string ;
+	bd:prefixed "false"^^xsd:boolean ;
+	bd:description "If RSUBJID is populated, describes the relationship of the associated person(s) identified in APID to the subject or pool identified in RSUBJID.\nIf RDEVID is populated, describes the relationship of the associated person(s) identified in APID to the device identified in RDEVID. \nIf RSUBJID and RDEVID are null, SREL describes the relationship of the associated person(s) identified in APID to the study identified in STUDYID."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_APDM/V3#CL_DTHDTC>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Date/Time of Death"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "7"^^xsd:positiveInteger ;
+	bd:name "DTHDTC"^^xsd:string ;
+	bd:prefixed "false"^^xsd:boolean ;
+	bd:description "Date/time of death for any associated person who died, in ISO 8601 format. Should represent the date/time that is captured in the trial database."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_APDM/V3#CL_DTHFL>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Associated Persons Death Flag"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "8"^^xsd:positiveInteger ;
+	bd:name "DTHFL"^^xsd:string ;
+	bd:prefixed "false"^^xsd:boolean ;
+	bd:description "Indicates the associated person died. Should be Y or null. Should be populated if collected, even when the death date is unknown."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_APDM/V3#CL_INVNAM>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Investigator Name"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "9"^^xsd:positiveInteger ;
+	bd:name "INVNAM"^^xsd:string ;
+	bd:prefixed "false"^^xsd:boolean ;
+	bd:description "Name of the Investigator for the site."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#bf2ac4b3-6323-44e4-8796-447e81f2fd83> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_APDM/V3#CL_BRTHDTC>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Date/Time of Birth"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "10"^^xsd:positiveInteger ;
+	bd:name "BRTHDTC"^^xsd:string ;
+	bd:prefixed "false"^^xsd:boolean ;
+	bd:description "Date/time of birth of the associated person."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_APDM/V3#CL_AGE>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Age"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "11"^^xsd:positiveInteger ;
+	bd:name "AGE"^^xsd:string ;
+	bd:prefixed "false"^^xsd:boolean ;
+	bd:description "Age of associated person expressed in AGEU."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_APDM/V3#CL_AGEU>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Age Units"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "12"^^xsd:positiveInteger ;
+	bd:name "AGEU"^^xsd:string ;
+	bd:prefixed "false"^^xsd:boolean ;
+	bd:description "Units associated with AGE."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#bf2ac4b3-6323-44e4-8796-447e81f2fd83> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_APDM/V3#CL_SEX>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Sex"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "13"^^xsd:positiveInteger ;
+	bd:name "SEX"^^xsd:string ;
+	bd:prefixed "false"^^xsd:boolean ;
+	bd:description "Sex of the associated person."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_APDM/V3#CL_RACE>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Race"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "14"^^xsd:positiveInteger ;
+	bd:name "RACE"^^xsd:string ;
+	bd:prefixed "false"^^xsd:boolean ;
+	bd:description "Race of the associated person."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_APDM/V3#CL_ETHNIC>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Ethnicity"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "15"^^xsd:positiveInteger ;
+	bd:name "ETHNIC"^^xsd:string ;
+	bd:prefixed "false"^^xsd:boolean ;
+	bd:description "The ethnicity of the associated person."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_APDM/V3#CL_COUNTRY>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Country"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "16"^^xsd:positiveInteger ;
+	bd:name "COUNTRY"^^xsd:string ;
+	bd:prefixed "false"^^xsd:boolean ;
+	bd:description "Country of the investigational site in which the study was conducted."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_APDM/V3#CL_DMDTC>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Date/Time of Collection"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "17"^^xsd:positiveInteger ;
+	bd:name "DMDTC"^^xsd:string ;
+	bd:prefixed "false"^^xsd:boolean ;
+	bd:description "Date/time of demographic data collection."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#2c3ff386-a062-47f5-b594-eef7ead02243> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_RELSUB/V3#CL>
 	rdf:type bd:SdtmClass ;
