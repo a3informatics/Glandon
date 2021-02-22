@@ -52,7 +52,7 @@ export default class TabsLayout {
    * @static
    */
   static onTabSwitch(tabId, action) {
-    $(`${tabId}`).off('tab-switch').on('tab-switch', (e, optionId) => action(optionId) );
+    $(tabId).off('tab-switch').on('tab-switch', (e, optionId) => action(optionId) );
   }
 
 

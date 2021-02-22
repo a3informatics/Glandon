@@ -71,6 +71,8 @@ export default class ItemsPicker extends ModalView {
     if ( types )
       this.setTypes( types )
 
+    this._setListeners()
+
   }
 
 
@@ -205,6 +207,18 @@ export default class ItemsPicker extends ModalView {
   /*** Private ***/
 
 
+  _setListeners() {
+
+    this.modal.on( 'renderComplete', () => {
+
+      TabsLayout.initialize( this.$tabs )
+      TabsLayout.onTabSwitch( this.$tabs, tab => console.log('switched ', tab) )
+
+    })
+
+  }
+
+
   /**
    * Render all Picker content
    */
@@ -213,9 +227,9 @@ export default class ItemsPicker extends ModalView {
     let content = IPRenderer.renderTabs( this.types )
 
     this.$content.html( content )
+    
     this._options.rerender = false
-
-    TabsLayout.initialize('#items-picker-tabs')
+    this.dispatchEvent( 'renderComplete' )
 
   }
 
@@ -254,6 +268,14 @@ export default class ItemsPicker extends ModalView {
    */
   get $content() {
     return this.modal.find( '.modal-body' )
+  }
+
+  /**
+   * Get the Picker tabs element
+   * @return {JQuery Element} Picker tabs element
+   */
+  get $tabs() {
+    return this.$content.find( '#items-picker-tabs' )
   }
 
 

@@ -19,12 +19,14 @@ export default class IPRenderer {
     const tabsLayout = $( '<div>' ).addClass( 'tabs-layout text-small' )
                                    .attr( 'id', 'items-picker-tabs' ),
 
-          tabsWrap = $( '<div>' ).addClass( 'tabs-sel' ),
+          tabOptionsWrap = $( '<div>' ).addClass( 'tabs-sel' ),
 
-          tabs = this._typesAsTabs( types )
+          tabs = this._typesAsTabs( types ),
+          
+          tabWraps = this._typesAsTabContents( types )
 
-    tabsWrap.append( tabs )
-    tabsLayout.append( tabsWrap )
+    tabOptionsWrap.append( tabs )
+    tabsLayout.append( tabOptionsWrap ).append( tabWraps )
   
     return tabsLayout
 
@@ -41,8 +43,20 @@ export default class IPRenderer {
    */
   static _typesAsTabs(types) {
 
-    return types.map( type => this._typeAsTab( type ) )
+    return types.map( this._tabOption )
                 .reduce( (html, tab) => html.add( tab ) )
+
+  }
+
+  /**
+   * Render Picker tab content wrappers from given types
+   * @param {array} types Item types to render as tabs, must be from RdfTypesMap
+   * @return {JQuery Element} Tab content elements for appending to the DOM 
+   */
+  static _typesAsTabContents(types) {
+
+    return types.map( this._tabContent )
+                .reduce( (html, tabWrap) => html.add( tabWrap ) )
 
   }
 
@@ -51,7 +65,7 @@ export default class IPRenderer {
    * @param {object} type Item type definition, must be from RdfTypesMap
    * @return {JQuery Element} Tab option element for appending to the DOM 
    */
-  static _typeAsTab(type) {
+  static _tabOption(type) {
 
     const { rdfType, name, param } = type 
 
@@ -63,6 +77,21 @@ export default class IPRenderer {
                        .attr( 'id', id )
                        .text( tabName )
                        .prepend( icon )
+
+  }
+
+  /**
+   * Render a single Picker tab wrap element
+   * @param {object} type Item type definition, must be from RdfTypesMap
+   * @return {JQuery Element} Tab content element for appending to the DOM 
+   */
+  static _tabContent(type) {
+
+    const { param } = type
+
+    $( '<div>' ).addClass( 'tab-wrap closed' )
+                .attr( 'id', `selector-${ param }` )
+                .attr( 'data-tab', `tab-${ param }` ) 
 
   }
 
