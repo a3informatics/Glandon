@@ -1,5 +1,3 @@
-import TabsLayout from 'shared/ui/tabs_layout'
-import { rdfTypesMap } from 'shared/helpers/rdf_types'
 import { iconTypes as icons } from 'shared/ui/icons'
 
 /**
@@ -10,25 +8,51 @@ import { iconTypes as icons } from 'shared/ui/icons'
 export default class IPRenderer {
 
   /**
-   * Render Picker tabs (layout)
-   * @param {array} types Item types to render as tabs, must be from RdfTypesMap
-   * @return {JQuery Element} Tab layout element with rendered Tabs (layout) for appending to the DOM 
+   * Create new IP Renderer instance 
+   * @param {string} selector Unique Items Picker selector
    */
-  static renderTabs(types) {
+  constructor(selector) {
+    this.content = $( selector )
+  }
 
-    const tabsLayout = $( '<div>' ).addClass( 'tabs-layout text-small' )
-                                   .attr( 'id', 'items-picker-tabs' ),
+  /**
+   * Render the tabs layout in the Picker 
+   * @param {array} types Item types to render as tabs, must be from RdfTypesMap
+   * @return {IPRenderer} Current IPRenderer instnace (for chaining) 
+   */
+  renderTabs(types) {
 
-          tabOptionsWrap = $( '<div>' ).addClass( 'tabs-sel' ),
+    this.$tabs.html( this._tabsLayout( types ) ) 
 
-          tabs = this._typesAsTabs( types ),
-          
-          tabWraps = this._typesAsTabContents( types )
+    return this 
 
-    tabOptionsWrap.append( tabs )
-    tabsLayout.append( tabOptionsWrap ).append( tabWraps )
-  
-    return tabsLayout
+  }
+
+  /**
+   * Render the description in the Picker 
+   * @param {string} description Description to render 
+   * @return {IPRenderer} Current IPRenderer instnace (for chaining) 
+   */
+  renderDescription(description) {
+
+    this.content.find( '#items-picker-description' )
+                .text( description )
+
+    return this 
+
+  }
+
+  /**
+   * Render text in submit button in the Picker 
+   * @param {string} submitText Submit button text to render 
+   * @return {IPRenderer} Current IPRenderer instnace (for chaining) 
+   */
+  renderSubmitText(submitText) {
+
+    this.content.find( '#items-picker-submit' )
+                .text( submitText )
+
+    return this 
 
   }
 
@@ -36,12 +60,35 @@ export default class IPRenderer {
   /*** Private ***/
 
 
+  /*** Tabs ***/
+
+
+  /**
+   * Render Picker tabs layout
+   * @param {array} types Item types to render as tabs, must be from RdfTypesMap
+   * @return {JQuery Element} Tab layout element with rendered tabs layout for appending to the DOM 
+   */
+  _tabsLayout(types) {
+
+    const tabOptionsWrap = $( '<div>' ).addClass( 'tabs-sel' ),
+
+          tabs = this._typesAsTabs( types ),
+          
+          tabWraps = this._typesAsTabContents( types )
+
+    tabOptionsWrap.append( tabs )
+                  .add( tabWraps )
+  
+    return tabOptionsWrap
+
+  }
+
   /**
    * Render Picker tab options from given types
    * @param {array} types Item types to render as tabs, must be from RdfTypesMap
    * @return {JQuery Element} Tab options elements for appending to the DOM 
    */
-  static _typesAsTabs(types) {
+  _typesAsTabs(types) {
 
     return types.map( type => this._tabOption(type) )
                 .reduce( (html, tab) => html.add( tab ) )
@@ -53,7 +100,7 @@ export default class IPRenderer {
    * @param {array} types Item types to render as tabs, must be from RdfTypesMap
    * @return {JQuery Element} Tab content elements for appending to the DOM 
    */
-  static _typesAsTabContents(types) {
+  _typesAsTabContents(types) {
 
     return types.map( type => this._tabContent(type) )
                 .reduce( (html, tabWrap) => html.add( tabWrap ) )
@@ -65,7 +112,7 @@ export default class IPRenderer {
    * @param {object} type Item type definition, must be from RdfTypesMap
    * @return {JQuery Element} Tab option element for appending to the DOM 
    */
-  static _tabOption(type) {
+  _tabOption(type) {
 
     const { rdfType, name, param } = type 
 
@@ -85,7 +132,7 @@ export default class IPRenderer {
    * @param {object} type Item type definition, must be from RdfTypesMap
    * @return {JQuery Element} Tab content element for appending to the DOM 
    */
-  static _tabContent(type) {
+  _tabContent(type) {
 
     const { param } = type
 
@@ -93,6 +140,19 @@ export default class IPRenderer {
                        .attr( 'id', `selector-${ param }` )
                        .attr( 'data-tab', `tab-${ param }` ) 
 
+  }
+
+
+
+  /*** Getters ***/
+
+
+  /**
+   * Get the Picker tabs element
+   * @return {JQuery Element} Picker tabs element
+   */
+  get $tabs() {
+    return this.content.find( '#items-picker-tabs' )
   }
 
 
@@ -104,7 +164,7 @@ export default class IPRenderer {
    * @param {string} name Tab name to pluralize
    * @return {string} Tab name in plural 
    */
-  static _pluralize(name) {
+  _pluralize(name) {
 
     if ( name === 'Terminology' )
       return 'Terminologies'

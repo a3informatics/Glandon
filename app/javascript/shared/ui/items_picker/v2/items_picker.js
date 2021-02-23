@@ -64,6 +64,7 @@ export default class ItemsPicker extends ModalView {
         onSubmit, onShow, onHide 
       },
       _options: {
+        renderer: new IPRenderer( this.selector ),
         rerender: true 
       }
     })
@@ -149,8 +150,7 @@ export default class ItemsPicker extends ModalView {
     if ( newDescription ) {
     
       this.strings.description = newDescription
-      // Should call renderer
-      this.dispatchEvent( 'descriptionChanged', newDescription )
+      this._Renderer.renderDescription( newDescription )
 
     } 
 
@@ -168,8 +168,7 @@ export default class ItemsPicker extends ModalView {
     if ( newSubmitText ) {
     
       this.strings.submit = newSubmitText
-      // Should call renderer
-      this.dispatchEvent( 'submitTextChanged', newSubmitText )
+      this._Renderer.renderSubmitText( newSubmitText )
 
     } 
 
@@ -207,29 +206,34 @@ export default class ItemsPicker extends ModalView {
   /*** Private ***/
 
 
+  /**
+   * Set Picker related event listeners & handlers
+   */
   _setListeners() {
 
     this.modal.on( 'renderComplete', () => {
 
-      TabsLayout.initialize( this.$tabs )
-      TabsLayout.onTabSwitch( this.$tabs, tab => console.log('switched ', tab) )
+      const tabsLayout = this._Renderer.$tabs
+
+      TabsLayout.initialize( tabsLayout )
+      TabsLayout.onTabSwitch( tabsLayout, tab => console.log('switched ', tab) )
 
     })
 
   }
-
 
   /**
    * Render all Picker content
    */
   _renderAll() {
 
-    let content = IPRenderer.renderTabs( this.types )
+    this._Renderer.renderDescription( this.strings.description )
+                  .renderSubmitText( this.strings.submit )
+                  .renderTabs( this.types )
 
-    this.$content.html( content )
+    this._dispatchEvent( 'renderComplete' )
     
     this._options.rerender = false
-    this.dispatchEvent( 'renderComplete' )
 
   }
 
@@ -242,7 +246,7 @@ export default class ItemsPicker extends ModalView {
    * @param {string} eventName Name of the custom event 
    * @param {any} args Any args to pass into the handler 
    */
-  dispatchEvent(eventName, ...args) {
+  _dispatchEvent(eventName, ...args) {
     this.modal.trigger( eventName, args )
   }
 
@@ -259,23 +263,15 @@ export default class ItemsPicker extends ModalView {
   }
 
 
-  /*** Elements ***/
+  /*** Getters ***/
 
-
+  
   /**
-   * Get the content element in which the Picker dynamic content gets rendered
-   * @return {JQuery Element} Dynamic content wrapper element 
+   * Get the current Renderer instance 
+   * @return {IPRenderer} 
    */
-  get $content() {
-    return this.modal.find( '.modal-body' )
-  }
-
-  /**
-   * Get the Picker tabs element
-   * @return {JQuery Element} Picker tabs element
-   */
-  get $tabs() {
-    return this.$content.find( '#items-picker-tabs' )
+  get _Renderer() {
+    return this._options.renderer
   }
 
 
