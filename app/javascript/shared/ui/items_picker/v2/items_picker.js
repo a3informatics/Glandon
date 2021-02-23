@@ -65,7 +65,7 @@ export default class ItemsPicker extends ModalView {
       },
       _options: {
         renderer: new IPRenderer( this.selector ),
-        rerender: true 
+        buildRequired: true 
       }
     })
 
@@ -111,7 +111,7 @@ export default class ItemsPicker extends ModalView {
   destroy() {
 
     // Set to state before init 
-    this._options.rerender = true
+    this._options.buildRequired = true
     return this 
 
   }
@@ -134,7 +134,7 @@ export default class ItemsPicker extends ModalView {
 
     }
     else 
-      IPHelper.onError({ debugMessage: 'The specified Items Picker types are incorrect.' })
+      IPHelper.onError({ debug: 'The specified Items Picker types are invalid.' })
 
     return this 
 
@@ -207,6 +207,49 @@ export default class ItemsPicker extends ModalView {
 
 
   /**
+   * Build and render Picker contents (init)
+   */
+  _build() {
+
+    // Init tabs 
+    this._renderAll()
+    this._options.buildRequired = false
+
+  }
+
+  /**
+   * Submit the current selection - call the onSubmit callback, selection accessor passed as first arg
+   */
+  _submit() {
+
+    // const { submitEmpty, hideOnSubmit } = this.options
+
+    // // Do not submit an empty selection
+    // if ( !submitEmpty && this.selectionView.selectionEmpty )
+    //   return
+
+    // if ( this.onSubmit )
+    //   this.onSubmit( this.selectionView.getSelection() )
+
+    // if ( hideOnSubmit )
+    //   this.hide()
+
+  }
+
+  /**
+   * Render all Picker contents
+   */
+  _renderAll() {
+
+    this._Renderer.renderDescription( this.strings.description )
+                  .renderSubmitText( this.strings.submit )
+                  .renderTabs( this.types )
+
+    this._dispatchEvent( 'renderComplete' )
+
+  }
+
+  /**
    * Set Picker related event listeners & handlers
    */
   _setListeners() {
@@ -219,21 +262,6 @@ export default class ItemsPicker extends ModalView {
       TabsLayout.onTabSwitch( tabsLayout, tab => console.log('switched ', tab) )
 
     })
-
-  }
-
-  /**
-   * Render all Picker content
-   */
-  _renderAll() {
-
-    this._Renderer.renderDescription( this.strings.description )
-                  .renderSubmitText( this.strings.submit )
-                  .renderTabs( this.types )
-
-    this._dispatchEvent( 'renderComplete' )
-    
-    this._options.rerender = false
 
   }
 
@@ -251,15 +279,22 @@ export default class ItemsPicker extends ModalView {
   }
 
   /**
-   * On Picker show event handler, renders contents if required
+   * On Picker show event handler, build if required
    */
   _onShow() {
 
-    if ( this._options.rerender )
-      this._renderAll()
+    if ( this._options.buildRequired )
+      this._build()
 
     this.events.onShow()
 
+  }
+
+  /**
+   * On Picker hide event handler
+   */
+  _onHide() {
+    this.events.onHide() 
   }
 
 

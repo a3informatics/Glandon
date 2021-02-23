@@ -34,16 +34,16 @@ export default class IPHelper {
 
   /**
    * Call on a Picker error occurs 
-   * @param {string} uiMessage Message to show to the user 
-   * @param {string} debugMessage Message to show in the console for debugging pruposes, optional 
+   * @param {string} uiMsg Message to show to the user 
+   * @param {string} debug Message to show in the console for debugging pruposes, optional 
    */
   static onError({
-    uiMessage = 'An error occurred in the Items Picker module.',
-    debugMessage
+    uiMsg = 'An error occurred in the Items Picker module.',
+    debug
   } = {}) {
 
-    alerts.error( uiMessage )
-    debugMessage && console.error( debugMessage )
+    alerts.error( uiMsg )
+    debug && console.error( debug )
 
   }
 
