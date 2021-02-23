@@ -746,6 +746,72 @@
 - :uri: http://www.cdisc.org/SDTM_MODEL_ALL/V7#CL_RELMIDS
   :name: RELMIDS
   :classified_as: Timing
+- :uri: http://www.cdisc.org/SDTM_MODEL_APDM/V3#CL_AGE
+  :name: AGE
+  :classified_as: Record
+- :uri: http://www.cdisc.org/SDTM_MODEL_APDM/V3#CL_AGEU
+  :name: AGEU
+  :classified_as: Variable
+- :uri: http://www.cdisc.org/SDTM_MODEL_APDM/V3#CL_APID
+  :name: APID
+  :classified_as: Topic
+- :uri: http://www.cdisc.org/SDTM_MODEL_APDM/V3#CL_BRTHDTC
+  :name: BRTHDTC
+  :classified_as: Record
+- :uri: http://www.cdisc.org/SDTM_MODEL_APDM/V3#CL_COUNTRY
+  :name: COUNTRY
+  :classified_as: Record
+- :uri: http://www.cdisc.org/SDTM_MODEL_APDM/V3#CL_DMDTC
+  :name: DMDTC
+  :classified_as: Timing
+- :uri: http://www.cdisc.org/SDTM_MODEL_APDM/V3#CL_DOMAIN
+  :name: DOMAIN
+  :classified_as: Identifier
+- :uri: http://www.cdisc.org/SDTM_MODEL_APDM/V3#CL_DTHDTC
+  :name: DTHDTC
+  :classified_as: Record
+- :uri: http://www.cdisc.org/SDTM_MODEL_APDM/V3#CL_DTHFL
+  :name: DTHFL
+  :classified_as: Record
+- :uri: http://www.cdisc.org/SDTM_MODEL_APDM/V3#CL_ETHNIC
+  :name: ETHNIC
+  :classified_as: Record
+- :uri: http://www.cdisc.org/SDTM_MODEL_APDM/V3#CL_INVNAM
+  :name: INVNAM
+  :classified_as: Variable
+- :uri: http://www.cdisc.org/SDTM_MODEL_APDM/V3#CL_RACE
+  :name: RACE
+  :classified_as: Record
+- :uri: http://www.cdisc.org/SDTM_MODEL_APDM/V3#CL_RDEVID
+  :name: RDEVID
+  :classified_as: Record
+- :uri: http://www.cdisc.org/SDTM_MODEL_APDM/V3#CL_RSUBJID
+  :name: RSUBJID
+  :classified_as: Record
+- :uri: http://www.cdisc.org/SDTM_MODEL_APDM/V3#CL_SEX
+  :name: SEX
+  :classified_as: Record
+- :uri: http://www.cdisc.org/SDTM_MODEL_APDM/V3#CL_SREL
+  :name: SREL
+  :classified_as: Record
+- :uri: http://www.cdisc.org/SDTM_MODEL_APDM/V3#CL_STUDYID
+  :name: STUDYID
+  :classified_as: Identifier
+- :uri: http://www.cdisc.org/SDTM_MODEL_APRELSUB/V3#CL_APID
+  :name: APID
+  :classified_as: Identifier
+- :uri: http://www.cdisc.org/SDTM_MODEL_APRELSUB/V3#CL_RDEVID
+  :name: RDEVID
+  :classified_as: Identifier
+- :uri: http://www.cdisc.org/SDTM_MODEL_APRELSUB/V3#CL_RSUBJID
+  :name: RSUBJID
+  :classified_as: Identifier
+- :uri: http://www.cdisc.org/SDTM_MODEL_APRELSUB/V3#CL_SREL
+  :name: SREL
+  :classified_as: Record
+- :uri: http://www.cdisc.org/SDTM_MODEL_APRELSUB/V3#CL_STUDYID
+  :name: STUDYID
+  :classified_as: Identifier
 - :uri: http://www.cdisc.org/SDTM_MODEL_CO/V1#CL_CODTC
   :name: CODTC
   :classified_as: Timing
@@ -2321,6 +2387,9 @@
 - :uri: http://www.cdisc.org/SDTM_MODEL_FINDINGS/V2#CL_--NRIND
   :name: "--NRIND"
   :classified_as: None
+- :uri: http://www.cdisc.org/SDTM_MODEL_FINDINGS/V2#CL_--OBJ
+  :name: "--OBJ"
+  :classified_as: Record
 - :uri: http://www.cdisc.org/SDTM_MODEL_FINDINGS/V2#CL_--ORNRHI
   :name: "--ORNRHI"
   :classified_as: None
@@ -2468,6 +2537,9 @@
 - :uri: http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_--NRIND
   :name: "--NRIND"
   :classified_as: None
+- :uri: http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_--OBJ
+  :name: "--OBJ"
+  :classified_as: Record
 - :uri: http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_--ORNRHI
   :name: "--ORNRHI"
   :classified_as: None
@@ -2633,6 +2705,9 @@
 - :uri: http://www.cdisc.org/SDTM_MODEL_FINDINGS/V4#CL_--NRIND
   :name: "--NRIND"
   :classified_as: None
+- :uri: http://www.cdisc.org/SDTM_MODEL_FINDINGS/V4#CL_--OBJ
+  :name: "--OBJ"
+  :classified_as: Record
 - :uri: http://www.cdisc.org/SDTM_MODEL_FINDINGS/V4#CL_--ORNRHI
   :name: "--ORNRHI"
   :classified_as: None
@@ -2813,6 +2888,9 @@
 - :uri: http://www.cdisc.org/SDTM_MODEL_FINDINGS/V5#CL_--NRIND
   :name: "--NRIND"
   :classified_as: None
+- :uri: http://www.cdisc.org/SDTM_MODEL_FINDINGS/V5#CL_--OBJ
+  :name: "--OBJ"
+  :classified_as: Record
 - :uri: http://www.cdisc.org/SDTM_MODEL_FINDINGS/V5#CL_--ORNRHI
   :name: "--ORNRHI"
   :classified_as: None
@@ -3122,6 +3200,9 @@
 - :uri: http://www.cdisc.org/SDTM_MODEL_FINDINGS/V7#CL_--NRIND
   :name: "--NRIND"
   :classified_as: Variable
+- :uri: http://www.cdisc.org/SDTM_MODEL_FINDINGS/V7#CL_--OBJ
+  :name: "--OBJ"
+  :classified_as: Record
 - :uri: http://www.cdisc.org/SDTM_MODEL_FINDINGS/V7#CL_--ORNRHI
   :name: "--ORNRHI"
   :classified_as: Variable
