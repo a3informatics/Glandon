@@ -1,10 +1,11 @@
 import ModalView from 'shared/base/modal_view'
-
 import TabsLayout from 'shared/ui/tabs_layout'
 
-import IPHelper from './support/ip_helpers'
-import IPRenderer from './support/ip_renderers'
+import IPHelper from './support/ip_helper'
+import IPRenderer from './support/ip_renderer'
 
+import { rdfTypesMap } from 'shared/helpers/rdf_types'
+import ManagedSelector from './selectors/ip_managed_selector'
 
 /**
  * Items Picker
@@ -63,7 +64,7 @@ export default class ItemsPicker extends ModalView {
       events: {
         onSubmit, onShow, onHide 
       },
-      _options: {
+      _config: {
         renderer: new IPRenderer( this.selector ),
         buildRequired: true 
       }
@@ -111,7 +112,7 @@ export default class ItemsPicker extends ModalView {
   destroy() {
 
     // Set to state before init 
-    this._options.buildRequired = true
+    this._config.buildRequired = true
     return this 
 
   }
@@ -207,17 +208,6 @@ export default class ItemsPicker extends ModalView {
 
 
   /**
-   * Build and render Picker contents (init)
-   */
-  _build() {
-
-    // Init tabs 
-    this._renderAll()
-    this._options.buildRequired = false
-
-  }
-
-  /**
    * Submit the current selection - call the onSubmit callback, selection accessor passed as first arg
    */
   _submit() {
@@ -233,6 +223,18 @@ export default class ItemsPicker extends ModalView {
 
     // if ( hideOnSubmit )
     //   this.hide()
+
+  }
+
+  /**
+   * Build and render Picker contents (init)
+   */
+  _build() {
+
+    // Init tabs 
+    this._initSelectors()
+    this._renderAll()
+    this._config.buildRequired = false
 
   }
 
@@ -259,9 +261,45 @@ export default class ItemsPicker extends ModalView {
       const tabsLayout = this._Renderer.$tabs
 
       TabsLayout.initialize( tabsLayout )
-      TabsLayout.onTabSwitch( tabsLayout, tab => console.log('switched ', tab) )
+      TabsLayout.onTabSwitch( tabsLayout, tab => 
+        this._selectors[ IPHelper.idToType(tab) ].show() 
+      )
 
     })
+
+  }
+
+
+  /*** Selectors ***/
+
+
+  /**
+   * Clear and initialize the Item Selectors 
+   */
+  _initSelectors() {
+    
+    this._selectors = {}
+
+    for ( const type of this.types ) {
+      this._selectors[ type.param ] = this._newSelector( type ) 
+    }
+
+  }
+
+  /**
+   * Creates a new Managed / Unmanaged Selector based on given type
+   * @param {Object} params.type Item type definition
+   */
+  _newSelector(type) {
+
+    if ( type === rdfTypesMap.TH_CLI )
+      return 
+
+    else 
+      return new ManagedSelector({
+        type,
+        options: this.options
+      })
 
   }
 
@@ -283,7 +321,7 @@ export default class ItemsPicker extends ModalView {
    */
   _onShow() {
 
-    if ( this._options.buildRequired )
+    if ( this._config.buildRequired )
       this._build()
 
     this.events.onShow()
@@ -306,7 +344,7 @@ export default class ItemsPicker extends ModalView {
    * @return {IPRenderer} 
    */
   get _Renderer() {
-    return this._options.renderer
+    return this._config.renderer
   }
 
 
