@@ -36,6 +36,7 @@ describe "Import CDISC SDTM Implementation Guide Data" do
     load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V5.ttl")
     load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V6.ttl")
     load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V7.ttl")
+    load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_Class_extra.ttl")
     load_cdisc_term_versions(CdiscCtHelpers.version_range)
     setup
   end

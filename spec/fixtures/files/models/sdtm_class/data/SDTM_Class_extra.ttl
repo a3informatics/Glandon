@@ -1,0 +1,118 @@
+@prefix : <http://www.s-cubed.dk/SDTM_CLASS_EXTRA/V1#> .
+@prefix bd: <http://www.assero.co.uk/Tabulation#> .
+@prefix isoC: <http://www.assero.co.uk/ISO11179Concepts#> .
+@prefix isoT: <http://www.assero.co.uk/ISO11179Types#> .
+@prefix isoR: <http://www.assero.co.uk/ISO11179Registration#> .
+@prefix isoI: <http://www.assero.co.uk/ISO11179Identification#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+<http://www.s-cubed.dk/SDTM_CLASS_EXTRA/V1>
+	rdf:type owl:Ontology ;
+.
+:CL
+	rdf:type bd:SdtmClass ;
+	isoC:label "SDTM Class Extra"^^xsd:string ;
+	isoT:hasState :CL_RS ;
+	isoT:hasIdentifier :CL_SI ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2021-02-23T12:40:03+01:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2021-02-23T12:40:03+01:00"^^xsd:dateTime ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "1"^^xsd:positiveInteger ;
+	bd:includesColumn <http://www.s-cubed.dk/SDTM_MODEL_EXTRA/V1#M_--EVDTYP> ;
+	bd:includesColumn <http://www.s-cubed.dk/SDTM_MODEL_EXTRA/V1#M_--AGENT> ;
+	bd:includesColumn <http://www.s-cubed.dk/SDTM_MODEL_EXTRA/V1#M_--CONCU> ;
+	bd:includesColumn <http://www.s-cubed.dk/SDTM_MODEL_EXTRA/V1#M_--CONC> ;
+	bd:includesColumn <http://www.s-cubed.dk/SDTM_MODEL_EXTRA/V1#M_--BEATNO> ;
+.
+:CL_RS
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Incomplete"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Incomplete"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
+.
+:CL_SI
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "SDTM CLASS EXTRA"^^xsd:string ;
+	isoI:versionLabel ""^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
+	isoI:semanticVersion "0.1.0"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/NS#SCUBED> ;
+.
+<http://www.s-cubed.dk/SDTM_MODEL_EXTRA/V1#M_--EVDTYP>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "SDTM Class Variable 1"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "1"^^xsd:positiveInteger ;
+	bd:name "--EVDTYP"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Class Variable description 1"^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#86cd61e6-d48c-4e42-b994-bee35e2351fe> ;
+.
+<http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080>
+	rdf:type isoC:ConceptSystemNode ;
+	isoC:prefLabel "Character"^^xsd:string ;
+	isoC:description "Character datatype"^^xsd:string ;
+.
+<http://www.assero.co.uk/CSN#86cd61e6-d48c-4e42-b994-bee35e2351fe>
+	rdf:type isoC:ConceptSystemNode ;
+	isoC:prefLabel "None"^^xsd:string ;
+	isoC:description "No role assigned"^^xsd:string ;
+.
+<http://www.s-cubed.dk/SDTM_MODEL_EXTRA/V1#M_--AGENT>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "SDTM Class Variable 2"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "2"^^xsd:positiveInteger ;
+	bd:name "--AGENT"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Class Variable description 2"^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#86cd61e6-d48c-4e42-b994-bee35e2351fe> ;
+.
+<http://www.s-cubed.dk/SDTM_MODEL_EXTRA/V1#M_--CONCU>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "SDTM Class Variable 3"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "3"^^xsd:positiveInteger ;
+	bd:name "--CONCU"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Class Variable description 3"^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#86cd61e6-d48c-4e42-b994-bee35e2351fe> ;
+.
+<http://www.s-cubed.dk/SDTM_MODEL_EXTRA/V1#M_--CONC>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "SDTM Class Variable 4"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "4"^^xsd:positiveInteger ;
+	bd:name "--CONC"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Class Variable description 4"^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#86cd61e6-d48c-4e42-b994-bee35e2351fe> ;
+.
+<http://www.s-cubed.dk/SDTM_MODEL_EXTRA/V1#M_--BEATNO>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "SDTM Class Variable 5"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "5"^^xsd:positiveInteger ;
+	bd:name "--BEATNO"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Class Variable description 5"^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#86cd61e6-d48c-4e42-b994-bee35e2351fe> ;
+.
