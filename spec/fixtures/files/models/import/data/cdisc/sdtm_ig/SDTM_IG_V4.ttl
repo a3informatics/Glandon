@@ -27022,6 +27022,7 @@
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
+	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V5#CL_--OBJ> ;
 .
 <http://www.cdisc.org/SDTM_IG_FA/V4#IGD_FACAT>
 	rdf:type bd:SdtmDomainVariable ;
@@ -27577,6 +27578,7 @@
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
+	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V5#CL_--OBJ> ;
 .
 <http://www.cdisc.org/SDTM_IG_SR/V4#IGD_SRCAT>
 	rdf:type bd:SdtmDomainVariable ;

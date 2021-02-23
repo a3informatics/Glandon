@@ -1990,6 +1990,7 @@
 	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V7#CL_--REPNUM> ;
 	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V7#CL_--RSTIND> ;
 	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V7#CL_--RSTMOD> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V7#CL_--OBJ> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V7#CL_RS>
 	rdf:type isoR:RegistrationState ;
@@ -2715,6 +2716,17 @@
 	bd:name "--RSTMOD"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "A description of whether the restraint was physical and/or chemical. Not to be used with human clinical trials."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_FINDINGS/V7#CL_--OBJ>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Object of the Observation"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "126"^^xsd:positiveInteger ;
+	bd:name "--OBJ"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Used in domains modeled as Findings About Events or Findings About Interventions. Describes the event or intervention whose property is being measured in --TESTCD/--TEST. Example: an event of vomiting which has findings, where --OBJ=\"VOMIT\" and the volume of VOMIT is being measured where --TESTCD=\"VOLUME\"."^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
 .

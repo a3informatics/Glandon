@@ -12324,7 +12324,7 @@
 	bd:includesColumn <http://www.cdisc.org/SDTM_IG_FA/V3#IGD_FASPID> ;
 	bd:includesColumn <http://www.cdisc.org/SDTM_IG_FA/V3#IGD_FATESTCD> ;
 	bd:includesColumn <http://www.cdisc.org/SDTM_IG_FA/V3#IGD_FATEST> ;
-	bd:includesColumn <http://www.cdisc.org/SDTM_IG_FA/V2#IGD_FAOBJ> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_IG_FA/V3#IGD_FAOBJ> ;
 	bd:includesColumn <http://www.cdisc.org/SDTM_IG_FA/V3#IGD_FACAT> ;
 	bd:includesColumn <http://www.cdisc.org/SDTM_IG_FA/V3#IGD_FASCAT> ;
 	bd:includesColumn <http://www.cdisc.org/SDTM_IG_FA/V3#IGD_FAORRES> ;
@@ -12447,6 +12447,18 @@
 	bo:ordinal "1"^^xsd:positiveInteger ;
 	bo:reference <http://www.cdisc.org/C101833/V33#C101833> ;
 	bo:context <http://www.cdisc.org/CT/V36#TH> ;
+.
+<http://www.cdisc.org/SDTM_IG_FA/V3#IGD_FAOBJ>
+	rdf:type bd:SdtmDomainVariable ;
+	isoC:label "Object of the Observation"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "9"^^xsd:positiveInteger ;
+	bd:name "FAOBJ"^^xsd:string ;
+	bd:description "Used to describe the object or focal point of the findings observation that is represented by --TEST. Examples: the term (such as Acne) describing a clinical sign or symptom that is being measured by a Severity test, or an event such as VOMIT where the volume of Vomit is being measured by a VOLUME test."^^xsd:string ;
+	bd:format ""^^xsd:string ;
+	bd:ctAndFormat ""^^xsd:string ;
+	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
+	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_--OBJ> ;
 .
 <http://www.cdisc.org/SDTM_IG_FA/V3#IGD_FACAT>
 	rdf:type bd:SdtmDomainVariable ;
@@ -12943,6 +12955,7 @@
 	bd:format ""^^xsd:string ;
 	bd:ctAndFormat ""^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
+	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_--OBJ> ;
 .
 <http://www.cdisc.org/SDTM_IG_SR/V3#IGD_SRCAT>
 	rdf:type bd:SdtmDomainVariable ;

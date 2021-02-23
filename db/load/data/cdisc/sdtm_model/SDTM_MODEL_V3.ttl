@@ -1305,6 +1305,7 @@
 	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_--STINT> ;
 	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_--ENINT> ;
 	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_ALL/V3#CL_--DETECT> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_--OBJ> ;
 	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_--TESTCD> ;
 	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_--TEST> ;
 	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_--MODIFY> ;
@@ -1378,11 +1379,22 @@
 	isoI:semanticVersion "1.4.0"^^xsd:string ;
 	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
 .
+<http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_--OBJ>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Object of the Observation"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "40"^^xsd:positiveInteger ;
+	bd:name "--OBJ"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Used in domains modeled as Findings About Events or Findings About Interventions. Describes the event or intervention whose property is being measured in --TESTCD/--TEST. Example: an event of vomiting which has findings, where --OBJ = \"VOMIT\" and the volume of VOMIT is being measured where --TESTCD = \"VOLUME\"."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
+.
 <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V3#CL_--TESTCD>
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Short Name of Measurement, Test or Examination"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "40"^^xsd:positiveInteger ;
+	bd:ordinal "41"^^xsd:positiveInteger ;
 	bd:name "--TESTCD"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Short character value for --TEST used as a column name when converting a dataset from a vertical format to a horizontal format. The short value can be up to 8 characters. Examples: PLAT, SYSBP, RRMIN, EYEEXAM."^^xsd:string ;
@@ -1394,7 +1406,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Name of Measurement, Test or Examination"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "41"^^xsd:positiveInteger ;
+	bd:ordinal "42"^^xsd:positiveInteger ;
 	bd:name "--TEST"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Long name For --TESTCD. Examples: Platelet, Systolic Blood Pressure, Summary (Min) RR Duration, Eye Examination."^^xsd:string ;
@@ -1405,7 +1417,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Modified Term"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "42"^^xsd:positiveInteger ;
+	bd:ordinal "43"^^xsd:positiveInteger ;
 	bd:name "--MODIFY"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "If the value of --ORRES is modified for coding purposes, then the modified text is placed here."^^xsd:string ;
@@ -1416,7 +1428,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Measurement, Test or Examination Detail"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "43"^^xsd:positiveInteger ;
+	bd:ordinal "44"^^xsd:positiveInteger ;
 	bd:name "--TSTDTL"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Further description of --TESTCD and --TEST. Example: \"The percentage of cells with +1 intensity of staining\" when MITESTCD = TTF1."^^xsd:string ;
@@ -1427,7 +1439,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Category"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "44"^^xsd:positiveInteger ;
+	bd:ordinal "45"^^xsd:positiveInteger ;
 	bd:name "--CAT"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Used to define a category of topic-variable values. Examples: HEMATOLOGY, URINALYSIS, CHEMISTRY, HAMILTON DEPRESSION SCALE, SF36, MICRO ARRAY, EGFR MUTATION ANALYSIS"^^xsd:string ;
@@ -1439,7 +1451,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Subcategory"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "45"^^xsd:positiveInteger ;
+	bd:ordinal "46"^^xsd:positiveInteger ;
 	bd:name "--SCAT"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Used to define a further categorization of --CAT values. Example: DIFFERENTIAL."^^xsd:string ;
@@ -1451,7 +1463,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Position of Subject During Observation"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "46"^^xsd:positiveInteger ;
+	bd:ordinal "47"^^xsd:positiveInteger ;
 	bd:name "--POS"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Position of the subject during a measurement or examination. Examples: SUPINE, STANDING, SITTING."^^xsd:string ;
@@ -1463,7 +1475,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Body System or Organ Class"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "47"^^xsd:positiveInteger ;
+	bd:ordinal "48"^^xsd:positiveInteger ;
 	bd:name "--BODSYS"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Body System or Organ Class that is involved for a finding from the standard hierarchy for dictionary-coded results. Example: MedDRA SOC."^^xsd:string ;
@@ -1474,7 +1486,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Result or Finding in Original Units"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "48"^^xsd:positiveInteger ;
+	bd:ordinal "49"^^xsd:positiveInteger ;
 	bd:name "--ORRES"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Result of the measurement or finding as originally received or collected. Examples: 120, <1, POS."^^xsd:string ;
@@ -1486,7 +1498,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Original Units"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "49"^^xsd:positiveInteger ;
+	bd:ordinal "50"^^xsd:positiveInteger ;
 	bd:name "--ORRESU"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Unit for --ORRES. Examples: IN, LB, kg/L."^^xsd:string ;
@@ -1498,7 +1510,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Normal Range Lower Limit-Original Units"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "50"^^xsd:positiveInteger ;
+	bd:ordinal "51"^^xsd:positiveInteger ;
 	bd:name "--ORNRLO"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Lower end of normal range or reference range for results stored in --ORRES."^^xsd:string ;
@@ -1509,7 +1521,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Normal Range Upper Limit-Original Units"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "51"^^xsd:positiveInteger ;
+	bd:ordinal "52"^^xsd:positiveInteger ;
 	bd:name "--ORNRHI"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Upper end of normal range or reference range for results stored in --ORRES."^^xsd:string ;
@@ -1520,7 +1532,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Result or Finding in Standard Format"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "52"^^xsd:positiveInteger ;
+	bd:ordinal "53"^^xsd:positiveInteger ;
 	bd:name "--STRESC"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Contains the result value for all findings, copied or derived from --ORRES in a standard format or in standard units. --STRESC should store all results or findings in character format; if results are numeric, they should also be stored in numeric format in --STRESN. For example, if various tests have results \"NONE\", \"NEG\", and \"NEGATIVE\" in --ORRES and these results effectively have the same meaning, they could be represented in standard format in --STRESC as \"NEGATIVE\"."^^xsd:string ;
@@ -1531,7 +1543,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Numeric Result/Finding in Standard Units"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "53"^^xsd:positiveInteger ;
+	bd:ordinal "54"^^xsd:positiveInteger ;
 	bd:name "--STRESN"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Used for continuous or numeric results or findings in standard format; copied in numeric format from --STRESC. --STRESN should store all numeric test results or findings."^^xsd:string ;
@@ -1542,7 +1554,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Standard Units"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "54"^^xsd:positiveInteger ;
+	bd:ordinal "55"^^xsd:positiveInteger ;
 	bd:name "--STRESU"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Standardized units used for --STRESC and --STRESN. Example: mol/L."^^xsd:string ;
@@ -1553,7 +1565,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Normal Range Lower Limit-Standard Units"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "55"^^xsd:positiveInteger ;
+	bd:ordinal "56"^^xsd:positiveInteger ;
 	bd:name "--STNRLO"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Lower end of normal range or reference range for standardized results (e.g., --STRESC, --STRESN) represented in standardized units (--STRESU)."^^xsd:string ;
@@ -1564,7 +1576,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Normal Range Upper Limit-Standard Units"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "56"^^xsd:positiveInteger ;
+	bd:ordinal "57"^^xsd:positiveInteger ;
 	bd:name "--STNRHI"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Upper end of normal range or reference range for standardized results (e.g., --STRESC, --STRESN) represented in standardized units (--STRESU)."^^xsd:string ;
@@ -1575,7 +1587,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Normal Range for Character Results"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "57"^^xsd:positiveInteger ;
+	bd:ordinal "58"^^xsd:positiveInteger ;
 	bd:name "--STNRC"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Normal range or reference range for results stored in --STRESC that are character in ordinal or categorical scale. Example: Negative to Trace."^^xsd:string ;
@@ -1586,7 +1598,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Normal/Reference Range Indicator"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "58"^^xsd:positiveInteger ;
+	bd:ordinal "59"^^xsd:positiveInteger ;
 	bd:name "--NRIND"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Used to indicate the value is outside the normal range or reference range. May be defined by --ORNRLO and --ORNRHI or other objective criteria. Examples: Y, N; HIGH, LOW; NORMAL; ABNORMAL."^^xsd:string ;
@@ -1597,7 +1609,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Result Category"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "59"^^xsd:positiveInteger ;
+	bd:ordinal "60"^^xsd:positiveInteger ;
 	bd:name "--RESCAT"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Used to categorize the result of a finding. Example: MALIGNANT or BENIGN for tumor findings. RESISTANCE VARIANT for genetic variation."^^xsd:string ;
@@ -1608,7 +1620,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Completion Status"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "60"^^xsd:positiveInteger ;
+	bd:ordinal "61"^^xsd:positiveInteger ;
 	bd:name "--STAT"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Used to indicate that a question was not asked or a test was not done, or a test was attempted but did not generate a result. Should be null or have a value of NOT DONE."^^xsd:string ;
@@ -1620,7 +1632,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Reason Not Done"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "61"^^xsd:positiveInteger ;
+	bd:ordinal "62"^^xsd:positiveInteger ;
 	bd:name "--REASND"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Reason not done. Used in conjunction with --STAT when value is NOT DONE."^^xsd:string ;
@@ -1631,7 +1643,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "External File Path"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "62"^^xsd:positiveInteger ;
+	bd:ordinal "63"^^xsd:positiveInteger ;
 	bd:name "--XFN"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Filename for an external file, such as one for an ECG waveform or a medical image."^^xsd:string ;
@@ -1642,7 +1654,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Laboratory/Vendor Name"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "63"^^xsd:positiveInteger ;
+	bd:ordinal "64"^^xsd:positiveInteger ;
 	bd:name "--NAM"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Name or identifier of the vendor (e.g., laboratory) that provided the test results."^^xsd:string ;
@@ -1653,7 +1665,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "LOINC Code"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "64"^^xsd:positiveInteger ;
+	bd:ordinal "65"^^xsd:positiveInteger ;
 	bd:name "--LOINC"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Logical Observation Identifiers Names and Codes (LOINC) code for the topic variable such as a lab test."^^xsd:string ;
@@ -1664,7 +1676,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Specimen Material Type"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "65"^^xsd:positiveInteger ;
+	bd:ordinal "66"^^xsd:positiveInteger ;
 	bd:name "--SPEC"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Defines the type of specimen used for a measurement. Examples: SERUM, PLASMA, URINE, DNA, RNA."^^xsd:string ;
@@ -1676,7 +1688,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Anatomical Region"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "66"^^xsd:positiveInteger ;
+	bd:ordinal "67"^^xsd:positiveInteger ;
 	bd:name "--ANTREG"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Defines the specific anatomical or biological region of a tissue, organ specimen or the region from which the specimen is obtained, as defined in the protocol, such as a section or part of what is described in the --SPEC variable. Examples: CORTEX, MEDULLA, MUCOSA"^^xsd:string ;
@@ -1687,7 +1699,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Specimen Condition"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "67"^^xsd:positiveInteger ;
+	bd:ordinal "68"^^xsd:positiveInteger ;
 	bd:name "--SPCCND"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Defines the condition of the specimen. Example: CLOUDY."^^xsd:string ;
@@ -1698,7 +1710,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Specimen Usability for the Test"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "68"^^xsd:positiveInteger ;
+	bd:ordinal "69"^^xsd:positiveInteger ;
 	bd:name "--SPCUFL"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Describes the usability of the specimen for the test. The value will be N if the specimen is not usable, and null if the specimen is usable."^^xsd:string ;
@@ -1709,7 +1721,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Location Used for the Measurement"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "69"^^xsd:positiveInteger ;
+	bd:ordinal "70"^^xsd:positiveInteger ;
 	bd:name "--LOC"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Anatomical location of the subject relevant to the collection of the measurement. Examples: RECTAL for temperature, ARM for blood pressure."^^xsd:string ;
@@ -1721,7 +1733,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Laterality"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "70"^^xsd:positiveInteger ;
+	bd:ordinal "71"^^xsd:positiveInteger ;
 	bd:name "--LAT"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Qualifier for anatomical location or specimen further detailing laterality. Examples: RIGHT, LEFT, BILATERAL"^^xsd:string ;
@@ -1733,7 +1745,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Directionality"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "71"^^xsd:positiveInteger ;
+	bd:ordinal "72"^^xsd:positiveInteger ;
 	bd:name "--DIR"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Qualifier for anatomical location or specimen further detailing directionality. Examples: ANTERIOR, LOWER, PROXIMAL"^^xsd:string ;
@@ -1745,7 +1757,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Portion or Totality"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "72"^^xsd:positiveInteger ;
+	bd:ordinal "73"^^xsd:positiveInteger ;
 	bd:name "--PORTOT"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Qualifier for anatomical location or specimen further detailing the distribution, which means arrangement of, apportioning of. . Examples: ENTIRE, SINGLE, SEGMENT, MANY."^^xsd:string ;
@@ -1756,7 +1768,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Method of Test or Examination"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "73"^^xsd:positiveInteger ;
+	bd:ordinal "74"^^xsd:positiveInteger ;
 	bd:name "--METHOD"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Method of the test or examination. Examples: EIA (Enzyme Immunoassay), ELECTROPHORESIS, DIPSTICK"^^xsd:string ;
@@ -1768,7 +1780,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Run ID"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "74"^^xsd:positiveInteger ;
+	bd:ordinal "75"^^xsd:positiveInteger ;
 	bd:name "--RUNID"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "A unique identifier for a particular run of a test on a particular batch of samples."^^xsd:string ;
@@ -1779,7 +1791,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Analysis Method"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "75"^^xsd:positiveInteger ;
+	bd:ordinal "76"^^xsd:positiveInteger ;
 	bd:name "--ANMETH"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Analysis method applied to obtain a summarized result. Analysis method describes the method of secondary processing applied to a complex observation result (e.g. an image or a genetic sequence)."^^xsd:string ;
@@ -1790,7 +1802,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Lead Identified to Collect Measurements"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "76"^^xsd:positiveInteger ;
+	bd:ordinal "77"^^xsd:positiveInteger ;
 	bd:name "--LEAD"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Lead or leads identified to capture the measurement for a test from an instrument. Examples: LEAD I, LEAD V2, LEAD CM5."^^xsd:string ;
@@ -1801,7 +1813,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Consciousness State"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "77"^^xsd:positiveInteger ;
+	bd:ordinal "78"^^xsd:positiveInteger ;
 	bd:name "--CSTATE"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "The consciousness state of the subject at the time of measurement. Examples: CONSCIOUS, SEMI-CONSCIOUS, UNCONSCIOUS"^^xsd:string ;
@@ -1812,7 +1824,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Baseline Flag"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "78"^^xsd:positiveInteger ;
+	bd:ordinal "79"^^xsd:positiveInteger ;
 	bd:name "--BLFL"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Indicator used to identify a baseline value. Should be Y or null."^^xsd:string ;
@@ -1823,7 +1835,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Fasting Status"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "79"^^xsd:positiveInteger ;
+	bd:ordinal "80"^^xsd:positiveInteger ;
 	bd:name "--FAST"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Indicator used to identify fasting status. Valid values include Y, N, U or null if not relevant."^^xsd:string ;
@@ -1834,7 +1846,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Derived Flag"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "80"^^xsd:positiveInteger ;
+	bd:ordinal "81"^^xsd:positiveInteger ;
 	bd:name "--DRVFL"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Used to indicate a derived record (e.g., a record that represents the average of other records such as a computed baseline). Should be Y or null."^^xsd:string ;
@@ -1845,7 +1857,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Evaluator"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "81"^^xsd:positiveInteger ;
+	bd:ordinal "82"^^xsd:positiveInteger ;
 	bd:name "--EVAL"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Role of the person who provided the evaluation. Used only for results that are subjective (e.g., assigned by a person or a group). Examples: ADJUDICATION COMMITTEE, INDEPENDENT ASSESSOR, RADIOLOGIST."^^xsd:string ;
@@ -1857,7 +1869,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Evaluator Identifier"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "82"^^xsd:positiveInteger ;
+	bd:ordinal "83"^^xsd:positiveInteger ;
 	bd:name "--EVALID"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Used to distinguish multiple evaluators with the same role recorded in --EVAL. Examples: RADIOLOGIST1 or RADIOLOGIST2"^^xsd:string ;
@@ -1868,7 +1880,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Accepted Record Flag"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "83"^^xsd:positiveInteger ;
+	bd:ordinal "84"^^xsd:positiveInteger ;
 	bd:name "--ACPTFL"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "In cases where more than one assessor provides an evaluation of a result or response, this flag identifies the record that is considered, by an independent assessor, to be the accepted evaluation. Expected to be Y or null."^^xsd:string ;
@@ -1879,7 +1891,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Toxicity"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "84"^^xsd:positiveInteger ;
+	bd:ordinal "85"^^xsd:positiveInteger ;
 	bd:name "--TOX"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Description of toxicity quantified by --TOXGR such as NCI CTCAE Short Name. Examples: HYPERCALCEMIA, HYPOCALCEMIA. Sponsor should specify which scale and version is used in the Sponsor Comments column of the Define-XML document."^^xsd:string ;
@@ -1890,7 +1902,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Toxicity Grade"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "85"^^xsd:positiveInteger ;
+	bd:ordinal "86"^^xsd:positiveInteger ;
 	bd:name "--TOXGR"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Records toxicity grade using a standard toxicity scale (such as the NCI CTCAE). Sponsor should specify which scale and version is used in the Sponsor Comments column of the Define data definition document. Example: 2."^^xsd:string ;
@@ -1901,7 +1913,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Severity"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "86"^^xsd:positiveInteger ;
+	bd:ordinal "87"^^xsd:positiveInteger ;
 	bd:name "--SEV"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Describes the severity or intensity of a particular finding. Examples: MILD, MODERATE, SEVERE."^^xsd:string ;
@@ -1913,7 +1925,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Relationship to Death"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "87"^^xsd:positiveInteger ;
+	bd:ordinal "88"^^xsd:positiveInteger ;
 	bd:name "--DTHREL"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Describes the relationship of a particular finding to the death of a subject. Examples: Y, N or U."^^xsd:string ;
@@ -1924,7 +1936,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Lower Limit of Quantitation"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "88"^^xsd:positiveInteger ;
+	bd:ordinal "89"^^xsd:positiveInteger ;
 	bd:name "--LLOQ"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Indicates the lower limit of quantitation for an assay. Units will be those used for --STRESU."^^xsd:string ;
@@ -1935,7 +1947,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Upper Limit of Quantitation"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "89"^^xsd:positiveInteger ;
+	bd:ordinal "90"^^xsd:positiveInteger ;
 	bd:name "--ULOQ"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Indicates the upper limit of quantitation for an assay. Units will be those used for --STRESU."^^xsd:string ;
@@ -1946,7 +1958,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Exclude from Statistics"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "90"^^xsd:positiveInteger ;
+	bd:ordinal "91"^^xsd:positiveInteger ;
 	bd:name "--EXCLFL"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Indicates whether the values in the result variables for this record should be excluded from summary statistical calculations such as Mean, Standard Deviation, and Count (and others). Expected to be Y or null. --EXCLFL should not be used when --STAT is NOT DONE. Not to be used with human clinical trials."^^xsd:string ;
@@ -1957,7 +1969,7 @@
 	rdf:type bd:SdtmClassVariable ;
 	isoC:label "Reason for Exclusion from Statistics"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
-	bd:ordinal "91"^^xsd:positiveInteger ;
+	bd:ordinal "92"^^xsd:positiveInteger ;
 	bd:name "--REASEX"^^xsd:string ;
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "Reason excluded from statistics. Used in conjunction with --EXCLFL when its value is Y. Not to be used with human clinical trials"^^xsd:string ;

@@ -253,6 +253,7 @@ defaults: &defaults
                     - Interventions-General
                     - Findings
                     - Findings-General
+                    - Findings About-General
                 -
                   column: 3
                   method: column_blank?
@@ -474,6 +475,8 @@ defaults: &defaults
                     - Interventions-General
                     - Findings
                     - Findings-General
+                    - Findings About
+                    - Findings About-General
                 -
                   column: 4
                   method: column_blank?
@@ -698,6 +701,7 @@ defaults: &defaults
                     - Interventions-General
                     - Findings
                     - Findings-General
+                    - Findings About
                 -
                   column: 4
                   method: column_blank?
