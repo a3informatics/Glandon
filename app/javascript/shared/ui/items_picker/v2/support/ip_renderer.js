@@ -1,4 +1,5 @@
 import { iconTypes as icons } from 'shared/ui/icons'
+import IPHelper from './ip_helper'
 
 /**
  * Items Picker Renderer
@@ -12,7 +13,7 @@ export default class IPRenderer {
    * @param {string} selector Unique Items Picker selector
    */
   constructor(selector) {
-    this.content = $( selector )
+    this.selector = selector
   }
 
   /**
@@ -75,11 +76,9 @@ export default class IPRenderer {
           tabs = this._typesAsTabs( types ),
           
           tabWraps = this._typesAsTabContents( types )
-
-    tabOptionsWrap.append( tabs )
-                  .add( tabWraps )
   
-    return tabOptionsWrap
+    return tabOptionsWrap.append( tabs )
+                         .add( tabWraps )
 
   }
 
@@ -116,7 +115,7 @@ export default class IPRenderer {
 
     const { rdfType, name, param } = type 
 
-    const id = `tab-${ param }`,
+    const id = IPHelper.typeToTabId( type ),
           tabName = this._pluralize( name ),
           icon = icons.renderIcon( rdfType, { size: 'text-large' } )
           
@@ -137,8 +136,8 @@ export default class IPRenderer {
     const { param } = type
 
     return $( '<div>' ).addClass( 'tab-wrap closed' )
-                       .attr( 'id', `selector-${ param }` )
-                       .attr( 'data-tab', `tab-${ param }` ) 
+                       .attr( 'id', IPHelper.typeToSelectorId( type ) )
+                       .attr( 'data-tab', IPHelper.typeToTabId( type ) ) 
 
   }
 
@@ -153,6 +152,10 @@ export default class IPRenderer {
    */
   get $tabs() {
     return this.content.find( '#items-picker-tabs' )
+  }
+
+  get content() {
+    return $( this.selector ) 
   }
 
 

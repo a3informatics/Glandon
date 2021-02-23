@@ -47,4 +47,16 @@ export default class IPHelper {
 
   }
 
+  static typeToSelectorId(type) { 
+    return `selector-${ type.param }` 
+  }
+
+  static typeToTabId(type) {
+    return `tab-${ type.param }`
+  }
+
+  static idToType(id) {
+    return id.split('-')[1]
+  }
+
 }
