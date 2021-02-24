@@ -1,0 +1,351 @@
+@prefix : <http://www.s-cubed.dk/AAA/V1#> .
+@prefix bd: <http://www.assero.co.uk/Tabulation#> .
+@prefix isoC: <http://www.assero.co.uk/ISO11179Concepts#> .
+@prefix isoT: <http://www.assero.co.uk/ISO11179Types#> .
+@prefix isoR: <http://www.assero.co.uk/ISO11179Registration#> .
+@prefix isoI: <http://www.assero.co.uk/ISO11179Identification#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+<http://www.s-cubed.dk/AAA/V1>
+	rdf:type owl:Ontology ;
+.
+:SPD
+	rdf:type bd:SdtmSponsorDomain ;
+	isoC:label "SDTM Sponsor Domain"^^xsd:string ;
+	isoT:hasState :SPD_RS ;
+	isoT:hasIdentifier :SPD_SI ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2020-12-15T08:19:09+01:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2020-12-15T08:19:09+01:00"^^xsd:dateTime ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "1"^^xsd:positiveInteger ;
+	bd:includesColumn :SPD_AESMIE ;
+	bd:includesColumn :SPD_AESER ;
+	bd:includesColumn :SPD_AEGRPID ;
+	bd:includesColumn :SPD_AECAT ;
+	bd:includesColumn :SPD_AESEV ;
+	bd:includesColumn :SPD_AESCONG ;
+	bd:includesColumn :SPD_DOMAIN ;
+	bd:includesColumn :SPD_AESTDTC ;
+	bd:includesColumn :SPD_AEENRF ;
+	bd:includesColumn :SPD_AESOD ;
+	bd:includesColumn :SPD_AECONTRT ;
+	bd:includesColumn :SPD_AEREFID ;
+	bd:includesColumn :SPD_AEREL ;
+	bd:includesColumn :SPD_AESDISAB ;
+	bd:includesColumn :SPD_AESCAT ;
+	bd:includesColumn :SPD_AEOUT ;
+	bd:includesColumn :SPD_AESTDY ;
+	bd:includesColumn :SPD_AESPID ;
+	bd:includesColumn :SPD_AEENRTPT ;
+	bd:includesColumn :SPD_AEPRESP ;
+	bd:includesColumn :SPD_AESHOSP ;
+	bd:includesColumn :SPD_AETERM ;
+	bd:includesColumn :SPD_AELOC ;
+	bd:includesColumn :SPD_AEPATT ;
+	bd:includesColumn :SPD_AESLIFE ;
+	bd:includesColumn :SPD_AEDUR ;
+	bd:includesColumn :SPD_AEDECOD ;
+	bd:includesColumn :SPD_AEMODIFY ;
+	bd:includesColumn :SPD_AESEQ ;
+	bd:includesColumn :SPD_AERELNST ;
+	bd:includesColumn :SPD_AESDTH ;
+	bd:includesColumn :SPD_AEBODSYS ;
+	bd:includesColumn :SPD_AEACNOTH ;
+	bd:includesColumn :SPD_AETOXGR ;
+	bd:includesColumn :SPD_AEENDY ;
+	bd:includesColumn :SPD_USUBJID ;
+	bd:includesColumn :SPD_AEENDTC ;
+	bd:includesColumn :SPD_AEACN ;
+	bd:includesColumn :SPD_AEENTPT ;
+	bd:includesColumn :SPD_STUDYID ;
+	bd:includesColumn :SPD_AESCAN ;
+	bd:prefix "AE"^^xsd:string ;
+	bd:structure "One record per adverse event per subject"^^xsd:string ;
+	bd:basedOnClass <http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL> ;
+.
+:SPD_RS
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Incomplete"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Incomplete"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
+.
+<http://www.assero.co.uk/RA#DUNS123456789>
+	rdf:type isoR:RegistrationAuthority ;
+	isoR:organizationIdentifier "123456789"^^xsd:string ;
+	isoR:internationalCodeDesignator "DUNS"^^xsd:string ;
+	isoR:owner "true"^^xsd:boolean ;
+	isoR:raNamespace <http://www.assero.co.uk/NS#SCUBED> ;
+.
+<http://www.assero.co.uk/NS#SCUBED>
+	rdf:type isoI:Namespace ;
+	isoI:shortName "S-cubed"^^xsd:string ;
+	isoI:name "S-cubed Aps"^^xsd:string ;
+	isoI:authority "www.s-cubed.dk"^^xsd:string ;
+.
+:SPD_SI
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "AAA"^^xsd:string ;
+	isoI:versionLabel ""^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
+	isoI:semanticVersion "0.1.0"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/NS#SCUBED> ;
+.
+:SPD_AESMIE
+	rdf:type bd:Column ;
+	isoC:label "Other Medically Important Serious Event"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "31"^^xsd:positiveInteger ;
+.
+:SPD_AESER
+	rdf:type bd:Column ;
+	isoC:label "Serious Event"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "17"^^xsd:positiveInteger ;
+.
+:SPD_AEGRPID
+	rdf:type bd:Column ;
+	isoC:label "Group ID"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "5"^^xsd:positiveInteger ;
+.
+:SPD_AECAT
+	rdf:type bd:Column ;
+	isoC:label "Category for Adverse Event"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "11"^^xsd:positiveInteger ;
+.
+:SPD_AESEV
+	rdf:type bd:Column ;
+	isoC:label "Severity/Intensity"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "16"^^xsd:positiveInteger ;
+.
+:SPD_AESCONG
+	rdf:type bd:Column ;
+	isoC:label "Congenital Anomaly or Birth Defect"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "25"^^xsd:positiveInteger ;
+.
+:SPD_DOMAIN
+	rdf:type bd:Column ;
+	isoC:label "Domain Abbreviation"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "2"^^xsd:positiveInteger ;
+.
+:SPD_AESTDTC
+	rdf:type bd:Column ;
+	isoC:label "Start Date/Time of Adverse Event"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "34"^^xsd:positiveInteger ;
+.
+:SPD_AEENRF
+	rdf:type bd:Column ;
+	isoC:label "End Relative to Reference Period"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "39"^^xsd:positiveInteger ;
+.
+:SPD_AESOD
+	rdf:type bd:Column ;
+	isoC:label "Occurred with Overdose"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "30"^^xsd:positiveInteger ;
+.
+:SPD_AECONTRT
+	rdf:type bd:Column ;
+	isoC:label "Concomitant or Additional Trtmnt Given"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "32"^^xsd:positiveInteger ;
+.
+:SPD_AEREFID
+	rdf:type bd:Column ;
+	isoC:label "Reference ID"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "6"^^xsd:positiveInteger ;
+.
+:SPD_AEREL
+	rdf:type bd:Column ;
+	isoC:label "Causality"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "20"^^xsd:positiveInteger ;
+.
+:SPD_AESDISAB
+	rdf:type bd:Column ;
+	isoC:label "Persist or Signif Disability/Incapacity"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "26"^^xsd:positiveInteger ;
+.
+:SPD_AESCAT
+	rdf:type bd:Column ;
+	isoC:label "Subcategory for Adverse Event"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "12"^^xsd:positiveInteger ;
+.
+:SPD_AEOUT
+	rdf:type bd:Column ;
+	isoC:label "Outcome of Adverse Event"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "23"^^xsd:positiveInteger ;
+.
+:SPD_AESTDY
+	rdf:type bd:Column ;
+	isoC:label "Study Day of Start of Adverse Event"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "36"^^xsd:positiveInteger ;
+.
+:SPD_AESPID
+	rdf:type bd:Column ;
+	isoC:label "Sponsor-Defined Identifier"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "7"^^xsd:positiveInteger ;
+.
+:SPD_AEENRTPT
+	rdf:type bd:Column ;
+	isoC:label "End Relative to Reference Time Point"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "40"^^xsd:positiveInteger ;
+.
+:SPD_AEPRESP
+	rdf:type bd:Column ;
+	isoC:label "Pre-Specified Adverse Event"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "13"^^xsd:positiveInteger ;
+.
+:SPD_AESHOSP
+	rdf:type bd:Column ;
+	isoC:label "Requires or Prolongs Hospitalization"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "28"^^xsd:positiveInteger ;
+.
+:SPD_AETERM
+	rdf:type bd:Column ;
+	isoC:label "Reported Term for the Adverse Event"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "8"^^xsd:positiveInteger ;
+.
+:SPD_AELOC
+	rdf:type bd:Column ;
+	isoC:label "Location of Event"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "15"^^xsd:positiveInteger ;
+.
+:SPD_AEPATT
+	rdf:type bd:Column ;
+	isoC:label "Pattern of Adverse Event"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "22"^^xsd:positiveInteger ;
+.
+:SPD_AESLIFE
+	rdf:type bd:Column ;
+	isoC:label "Is Life Threatening"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "29"^^xsd:positiveInteger ;
+.
+:SPD_AEDUR
+	rdf:type bd:Column ;
+	isoC:label "Duration of Adverse Event"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "38"^^xsd:positiveInteger ;
+.
+:SPD_AEDECOD
+	rdf:type bd:Column ;
+	isoC:label "Dictionary-Derived Term"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "10"^^xsd:positiveInteger ;
+.
+:SPD_AEMODIFY
+	rdf:type bd:Column ;
+	isoC:label "Modified Reported Term"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "9"^^xsd:positiveInteger ;
+.
+:SPD_AESEQ
+	rdf:type bd:Column ;
+	isoC:label "Sequence Number"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "4"^^xsd:positiveInteger ;
+.
+:SPD_AERELNST
+	rdf:type bd:Column ;
+	isoC:label "Relationship to Non-Study Treatment"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "21"^^xsd:positiveInteger ;
+.
+:SPD_AESDTH
+	rdf:type bd:Column ;
+	isoC:label "Results in Death"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "27"^^xsd:positiveInteger ;
+.
+:SPD_AEBODSYS
+	rdf:type bd:Column ;
+	isoC:label "Body System or Organ Class"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "14"^^xsd:positiveInteger ;
+.
+:SPD_AEACNOTH
+	rdf:type bd:Column ;
+	isoC:label "Other Action Taken"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "19"^^xsd:positiveInteger ;
+.
+:SPD_AETOXGR
+	rdf:type bd:Column ;
+	isoC:label "Standard Toxicity Grade"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "33"^^xsd:positiveInteger ;
+.
+:SPD_AEENDY
+	rdf:type bd:Column ;
+	isoC:label "Study Day of End of Adverse Event"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "37"^^xsd:positiveInteger ;
+.
+:SPD_USUBJID
+	rdf:type bd:Column ;
+	isoC:label "Unique Subject Identifier"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "3"^^xsd:positiveInteger ;
+.
+:SPD_AEENDTC
+	rdf:type bd:Column ;
+	isoC:label "End Date/Time of Adverse Event"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "35"^^xsd:positiveInteger ;
+.
+:SPD_AEACN
+	rdf:type bd:Column ;
+	isoC:label "Action Taken with Study Treatment"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "18"^^xsd:positiveInteger ;
+.
+:SPD_AEENTPT
+	rdf:type bd:Column ;
+	isoC:label "End Reference Time Point"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "41"^^xsd:positiveInteger ;
+.
+:SPD_STUDYID
+	rdf:type bd:Column ;
+	isoC:label "Study Identifier"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "1"^^xsd:positiveInteger ;
+.
+:SPD_AESCAN
+	rdf:type bd:Column ;
+	isoC:label "Involves Cancer"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "24"^^xsd:positiveInteger ;
+.

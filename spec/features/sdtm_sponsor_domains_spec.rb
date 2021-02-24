@@ -11,7 +11,7 @@ describe "SDTM Sponsor Domains", :type => :feature do
   include TokenHelpers
 
   def sub_dir
-    return "features/biomedical_concepts"
+    return "features/sdtm_sponsor_domains"
   end
 
   before :all do
