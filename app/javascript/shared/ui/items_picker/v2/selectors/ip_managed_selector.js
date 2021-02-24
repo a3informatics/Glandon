@@ -1,6 +1,9 @@
 import IPHelper from '../support/ip_helper'
 import IPSRenderer from './support/ip_selector_renderer'
 
+import PickerPanel from './panels/ip_panel'
+
+
 /**
  * Managed Selector (Items Picker) 
  * @description Managed Items Selector for version-based selection of managed item types 
@@ -15,21 +18,10 @@ export default class ManagedSelector {
    * @param {Object} params.options ItemsPicker options object 
    */
   constructor({
-    type, 
+    type,
     options
   }) {
-
-    // Validate type 
-    if ( !IPHelper.validateTypes([ type ]) ) {
-
-      IPHelper.onError({ 
-        debug: `Invalid item type: ${ JSON.stringify( type ) }` 
-      })
-      return 
-
-    }
-
-    // Init instance
+     
     const selector = '#' + IPHelper.typeToSelectorId( type )
 
     Object.assign( this, {
@@ -37,7 +29,7 @@ export default class ManagedSelector {
       type, 
       options,
       _config: {
-        rendered: false,
+        buildRequired: true,
         renderer: new IPSRenderer( selector )
       }
     })
@@ -49,10 +41,8 @@ export default class ManagedSelector {
    */
   show() {
 
-    console.log(`Showing ${ this.type.param }`)
-
-    if ( !this._config.rendered )
-      this._render()
+    if ( this._config.buildRequired )
+      this._build()
   
   }
 
@@ -60,21 +50,28 @@ export default class ManagedSelector {
    * Destroy Selector, clear from DOM
    */
   destroy() {
+
     // Remove from DOM etc
+    this._config.buildRequired = true 
+
   }
 
 
   /*** Private ***/
 
+
   /**
-   * Render all Selector contents 
+   * Build, render and initialize Selector 
    */
-  _render() {
+  _build() {
 
     this._Renderer.renderManagedSelector( this.type )
-    this._config.rendered = true 
-
     this._initialize()
+
+    // Load index table data automatically 
+    this.index.load()
+
+    this._config.buildRequired = false 
 
   }
 
@@ -83,12 +80,10 @@ export default class ManagedSelector {
    */
   _initialize() {
 
-    $( this.selector ).find( '#index' ).DataTable({
-      columns: [
-        {
-          title: 'Test 1'
-        }
-      ]
+    this.index = new PickerPanel({
+      selector: this.selector,
+      type: this.type,
+      tableId: 'index'
     })
 
   }
