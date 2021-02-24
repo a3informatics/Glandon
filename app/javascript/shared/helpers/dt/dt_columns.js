@@ -73,6 +73,7 @@ function dtTagsColumn(opts = {}) {
 function dtIndicatorsColumn(filter) {
   return {
     data: "indicators",
+    orderable: false,
     // width: "90px",
     render: (data, type, r, m) => renderIndicators(data, type, filter)
   }
