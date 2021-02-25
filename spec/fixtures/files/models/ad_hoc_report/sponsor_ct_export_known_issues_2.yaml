@@ -1,0 +1,95 @@
+---
+:FTCAT:
+   :HANDHELD DYNAMOMETRY: 
+     :column: 10
+     :reason: 'Special Excel v text character comparison. Definitions are the same.'
+:MHSCAT:
+   :PNEUMOCOCCAL INFECTION: 
+     :column: 10
+     :reason: 'Special Excel v text character comparison. Definitions are the same.'
+:ECOG1R_01:
+  :1: 
+    :column: 10
+    :reason: 'Definition in the subset is different to the master. Subset values cannot deviate.'
+:CVTESTCD:
+  :RVEF_E: 
+    :column: 10
+    :reason: 'Definition set to null in CDISC 2017-06-30 version. Corrected in the 2018-03-30 version.'
+:CVTEST:
+  :Right Ventricular Ejection Fraction, Est: 
+    :column: 10
+    :reason: 'Definition set to null in CDISC 2017-06-30 version. Corrected in the 2018-03-30 version.'
+:CESCAT_01:
+  :ADMINISTRATION SITE: 
+    :column: 10
+    :reason: 'Definition in the subset is different to the master. Subset values cannot deviate.'
+:TINDTP:
+  :SCREENING:
+    :column: 10
+    :reason: 'Small difference in the definiton. (Clinicaltrials.gov) v (ClinicalTrials.gov)'
+:LBTESTCD:
+  :CHCMR:
+    :column: 10
+    :reason: 'Definition set to null in CDISC 2017-06-30 version. Corrected in the 2017-12-22 version.'
+:LBTEST:
+  :Ret. Corpuscular HGB Concentration Mean:
+    :column: 10
+#     :reason: 'Definition set to null in CDISC 2017-06-30 version. Corrected in the 2017-12-22 version.'
+:TRTEST:
+  :Sum of Products of Perpendicular Diam:
+    :column: 7
+    :reason: "CDISC submission value for C132261 different but is over 40 characters 'Sum of Products of Perpendicular Diameters'"
+:NCOMPLT_10:
+  :ADVERSE EVENT:
+    :column: 3
+    :reason: "Subset cannot be extensible."
+  :PROGRESSIVE DISEASE:
+    :column: 3
+    :reason: "Subset cannot be extensible."
+  :LACK OF EFFICACY:
+    :column: 3
+    :reason: "Subset cannot be extensible."
+  :POOR COMPLIANCE TO PROTOCOL:
+    :column: 3
+    :reason: "Subset cannot be extensible."
+  :WITHDRAWAL BY SUBJECT:
+    :column: 3
+    :reason: "Subset cannot be extensible."
+:LBTEST_01:
+  :ADV Viral Load:
+    :column: 3
+    :reason: "Subset cannot be extensible."
+  :BKV Viral Load:
+    :column: 3
+    :reason: "Subset cannot be extensible."
+  :CMV Viral Load:
+    :column: 3
+    :reason: "Subset cannot be extensible."
+  :EBV Viral Load:
+    :column: 3
+    :reason: "Subset cannot be extensible."
+  :HAV Viral Load:
+    :column: 3
+    :reason: "Subset cannot be extensible."
+  :HBV Viral Load:
+    :column: 3
+    :reason: "Subset cannot be extensible."
+  :HCV Viral Load:
+    :column: 3
+    :reason: "Subset cannot be extensible."
+  :HIV Viral Load:
+    :column: 3
+    :reason: "Subset cannot be extensible."
+  :Influenza A H1N1 Viral Load:
+    :column: 3
+    :reason: "Subset cannot be extensible."
+  :Influenza A Viral Load:
+    :column: 3
+    :reason: "Subset cannot be extensible."
+:VSLPARM:
+  :Systolic Blood Pressure:
+    :column: 10
+    :reason: "Using an earlier definition and not the definition in the version of the CT referenced."
+  :Diastolic Blood Pressure:
+    :column: 10
+    :reason: "Using an earlier definition and not the definition in the version of the CT referenced."
