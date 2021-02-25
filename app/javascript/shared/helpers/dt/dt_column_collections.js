@@ -72,7 +72,7 @@ function dtSimpleHistoryColumns() {
       title: 'State', 
       data: 'has_state.registration_status' 
     },
-    dtIndicatorsColumn()
+    dtIndicatorsColumn({ opts: { className: 'fit' } })
   ]
   
 }

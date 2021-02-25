@@ -70,14 +70,15 @@ function dtTagsColumn(opts = {}) {
 /**
  * Returns column definition for the indicators column
  * @param {object} filter Filters to be applied to indicator data, optional
+ * @param {object} opts Additional column options
  * @return {object} DataTables indicators column definition
  */
-function dtIndicatorsColumn(filter) {
+function dtIndicatorsColumn({ filter, opts = {} } = {}) {
   return {
     data: "indicators",
     orderable: false,
-    // width: "90px",
-    render: (data, type, r, m) => renderIndicators(data, type, filter)
+    render: (data, type, r, m) => renderIndicators(data, type, filter),
+    ...opts
   }
 }
 

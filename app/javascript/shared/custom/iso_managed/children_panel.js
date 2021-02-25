@@ -78,7 +78,7 @@ export default class ChildrenPanel extends CustomPropsTablePanel {
 
     options.columns = [
         ...options.columns,
-        dtIndicatorsColumn({ withoutVersions: true }),
+        dtIndicatorsColumn({ filter: { withoutVersions: true } }),
         dtButtonColumn('show')
     ];
 

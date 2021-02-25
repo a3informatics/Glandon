@@ -41,8 +41,19 @@ function makeMCChildrenUrl(url, itemData) {
   return url.replace('miClId', itemData.id);
 }
 
+/**
+ * Encode an object into query string and attach to given base url
+ * @param {string} url Base url 
+ * @param {Object} data Data object to be encoded into url
+ * @return {string} Encoded url
+ */
+function encodeDataToUrl(url, data) {
+  return url + '?' + $.param( data )
+} 
+
 export {
   thSearchUrlFromMIS,
   makeHistoryUrl,
-  makeMCChildrenUrl
+  makeMCChildrenUrl,
+  encodeDataToUrl
 }
