@@ -172,7 +172,7 @@ export default class PickerPanel {
 
     return customBtn({
         text: 'Refresh',
-        action: () => this.destroy()
+        action: () => this.load()
       })
 
   }
