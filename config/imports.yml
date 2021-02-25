@@ -238,6 +238,7 @@ defaults: &defaults
                     - Special-Purpose
                     - Relationship
                     - Trial Design
+                    - Associated Persons
                 -
                   column: 3
                   method: column_not_blank?
@@ -252,6 +253,7 @@ defaults: &defaults
                     - Interventions-General
                     - Findings
                     - Findings-General
+                    - Findings About-General
                 -
                   column: 3
                   method: column_blank?
@@ -458,6 +460,7 @@ defaults: &defaults
                     - Special-Purpose
                     - Relationship
                     - Trial Design
+                    - Study Reference
                 -
                   column: 4
                   method: column_not_blank?
@@ -472,6 +475,8 @@ defaults: &defaults
                     - Interventions-General
                     - Findings
                     - Findings-General
+                    - Findings About
+                    - Findings About-General
                 -
                   column: 4
                   method: column_blank?
@@ -680,6 +685,7 @@ defaults: &defaults
                     - Special-Purpose
                     - Relationship
                     - Trial Design
+                    - Study Reference
                 -
                   column: 4
                   method: column_not_blank?
@@ -695,6 +701,7 @@ defaults: &defaults
                     - Interventions-General
                     - Findings
                     - Findings-General
+                    - Findings About
                 -
                   column: 4
                   method: column_blank?

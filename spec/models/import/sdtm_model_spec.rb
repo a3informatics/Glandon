@@ -39,7 +39,7 @@ describe Import::SdtmModel do
     delete_all_public_test_files
   end
 
-  it "returns the configuation" do
+  it "returns the configuration" do
     expected =
     {
       description: "Import of CDISC SDTM Model",
@@ -111,6 +111,21 @@ describe Import::SdtmModel do
     copy_file_from_public_files("test", filename, sub_dir)
   #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_4.ttl")
     check_ttl(filename, "import_expected_4.ttl")
+    expect(@job.status).to eq("Complete")
+    delete_data_file(sub_dir, filename)
+  end
+
+  it "import, no errors" do
+    full_path = test_file_path(sub_dir, "import_input_5.xlsx")
+    params = {version: "1", date: "2018-11-20", files: [full_path], version_label: "1.1.1", label: "SDTM Model", semantic_version: "1.1.1", job: @job}
+    result = @object.import(params)
+    filename = "cdisc_sdtm_model_#{@object.id}_errors.yml"
+    public_file_does_not_exist?("test", filename)
+    filename = "cdisc_sdtm_model_#{@object.id}_load.ttl"
+    expect(public_file_exists?("test", filename)).to eq(true)
+    copy_file_from_public_files("test", filename, sub_dir)
+  #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_5.ttl")
+    check_ttl(filename, "import_expected_5.ttl")
     expect(@job.status).to eq("Complete")
     delete_data_file(sub_dir, filename)
   end

@@ -46,7 +46,7 @@ describe Import::SdtmIg do
     delete_all_public_test_files
   end
 
-  it "returns the configuation" do
+  it "returns the configuration" do
     expected =
     {
       description: "Import of CDISC SDTM Implementation Guide",
@@ -62,7 +62,7 @@ describe Import::SdtmIg do
 
   it "import, no errors - WILL CURRENTLY FAIL - Fails in overall run, passes in isolation" do
     full_path = test_file_path(sub_dir, "import_input_1.xlsx")
-    params = {version: "1", date: "2020-01-01", files: [full_path], version_label: "1.1.1", label: "SDTM Implememntation Giude", 
+    params = {version: "1", date: "2020-01-01", files: [full_path], version_label: "1.1.1", label: "SDTM Implementation Guide", 
       semantic_version: "1.1.1", job: @job, ct: Uri.new(uri: "http://www.cdisc.org/CT/V60#TH"), 
       model: Uri.new(uri: "http://www.cdisc.org/SDTM_MODEL/V7#M")}
     result = @object.import(params)
