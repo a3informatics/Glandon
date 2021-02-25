@@ -4,6 +4,7 @@
 @prefix isoT: <http://www.assero.co.uk/ISO11179Types#> .
 @prefix isoR: <http://www.assero.co.uk/ISO11179Registration#> .
 @prefix isoI: <http://www.assero.co.uk/ISO11179Identification#> .
+@prefix bo: <http://www.assero.co.uk/BusinessOperational#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
@@ -104,248 +105,818 @@
 	isoI:hasScope <http://www.assero.co.uk/NS#SCUBED> ;
 .
 :SPD_AESMIE
-	rdf:type bd:Column ;
+	rdf:type bd:SdtmSponsorDomainVariable ;
 	isoC:label "Other Medically Important Serious Event"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
 	bd:ordinal "31"^^xsd:positiveInteger ;
+	bd:name "AESMIE"^^xsd:string ;
+	bd:description "Do additional categories for seriousness apply?"^^xsd:string ;
+	bd:format ""^^xsd:string ;
+	bd:ctAndFormat "(NY)"^^xsd:string ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
+	bd:ctReference <http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESMIE_TMC1> ;
+	bd:comment ""^^xsd:string ;
+	bd:used "true"^^xsd:boolean ;
+	bd:notes ""^^xsd:string ;
+	bd:method ""^^xsd:string ;
+	bd:basedOnIgVariable <http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESMIE> ;
+.
+<http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESMIE_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "NY"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 :SPD_AESER
-	rdf:type bd:Column ;
+	rdf:type bd:SdtmSponsorDomainVariable ;
 	isoC:label "Serious Event"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
 	bd:ordinal "17"^^xsd:positiveInteger ;
+	bd:name "AESER"^^xsd:string ;
+	bd:description "Is this a serious event?"^^xsd:string ;
+	bd:format ""^^xsd:string ;
+	bd:ctAndFormat "(NY)"^^xsd:string ;
+	bd:compliance <http://www.assero.co.uk/CSN#046f6c24-9eaf-4f60-8390-f36328c82ec4> ;
+	bd:ctReference <http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESER_TMC1> ;
+	bd:comment ""^^xsd:string ;
+	bd:used "true"^^xsd:boolean ;
+	bd:notes ""^^xsd:string ;
+	bd:method ""^^xsd:string ;
+	bd:basedOnIgVariable <http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESER> ;
+.
+<http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESER_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "NY"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 :SPD_AEGRPID
-	rdf:type bd:Column ;
+	rdf:type bd:SdtmSponsorDomainVariable ;
 	isoC:label "Group ID"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
 	bd:ordinal "5"^^xsd:positiveInteger ;
+	bd:name "AEGRPID"^^xsd:string ;
+	bd:description "Used to tie together a block of related records in a single domain for a subject."^^xsd:string ;
+	bd:format ""^^xsd:string ;
+	bd:ctAndFormat ""^^xsd:string ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
+	bd:comment ""^^xsd:string ;
+	bd:used "true"^^xsd:boolean ;
+	bd:notes ""^^xsd:string ;
+	bd:method ""^^xsd:string ;
+	bd:basedOnIgVariable <http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEGRPID> ;
 .
 :SPD_AECAT
-	rdf:type bd:Column ;
+	rdf:type bd:SdtmSponsorDomainVariable ;
 	isoC:label "Category for Adverse Event"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
 	bd:ordinal "11"^^xsd:positiveInteger ;
+	bd:name "AECAT"^^xsd:string ;
+	bd:description "Used to define a category of related records. Example: BLEEDING, NEUROPSYCHIATRIC."^^xsd:string ;
+	bd:format ""^^xsd:string ;
+	bd:ctAndFormat ""^^xsd:string ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
+	bd:comment ""^^xsd:string ;
+	bd:used "true"^^xsd:boolean ;
+	bd:notes ""^^xsd:string ;
+	bd:method ""^^xsd:string ;
+	bd:basedOnIgVariable <http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AECAT> ;
 .
 :SPD_AESEV
-	rdf:type bd:Column ;
+	rdf:type bd:SdtmSponsorDomainVariable ;
 	isoC:label "Severity/Intensity"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
 	bd:ordinal "16"^^xsd:positiveInteger ;
+	bd:name "AESEV"^^xsd:string ;
+	bd:description "The severity or intensity of the event. Examples: MILD, MODERATE, SEVERE."^^xsd:string ;
+	bd:format ""^^xsd:string ;
+	bd:ctAndFormat "(AESEV)"^^xsd:string ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
+	bd:ctReference <http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESEV_TMC1> ;
+	bd:comment ""^^xsd:string ;
+	bd:used "true"^^xsd:boolean ;
+	bd:notes ""^^xsd:string ;
+	bd:method ""^^xsd:string ;
+	bd:basedOnIgVariable <http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESEV> ;
+.
+<http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESEV_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "AESEV"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66769/V4#C66769> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 :SPD_AESCONG
-	rdf:type bd:Column ;
+	rdf:type bd:SdtmSponsorDomainVariable ;
 	isoC:label "Congenital Anomaly or Birth Defect"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
 	bd:ordinal "25"^^xsd:positiveInteger ;
+	bd:name "AESCONG"^^xsd:string ;
+	bd:description "Was the serious event associated with congenital anomaly or birth defect?"^^xsd:string ;
+	bd:format ""^^xsd:string ;
+	bd:ctAndFormat "(NY)"^^xsd:string ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
+	bd:ctReference <http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESCONG_TMC1> ;
+	bd:comment ""^^xsd:string ;
+	bd:used "true"^^xsd:boolean ;
+	bd:notes ""^^xsd:string ;
+	bd:method ""^^xsd:string ;
+	bd:basedOnIgVariable <http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESCONG> ;
+.
+<http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESCONG_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "NY"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 :SPD_DOMAIN
-	rdf:type bd:Column ;
+	rdf:type bd:SdtmSponsorDomainVariable ;
 	isoC:label "Domain Abbreviation"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
 	bd:ordinal "2"^^xsd:positiveInteger ;
+	bd:name "DOMAIN"^^xsd:string ;
+	bd:description "Two-character abbreviation for the domain."^^xsd:string ;
+	bd:format ""^^xsd:string ;
+	bd:ctAndFormat ""^^xsd:string ;
+	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
+	bd:comment ""^^xsd:string ;
+	bd:used "true"^^xsd:boolean ;
+	bd:notes ""^^xsd:string ;
+	bd:method ""^^xsd:string ;
+	bd:basedOnIgVariable <http://www.cdisc.org/SDTM_IG_AE/V1#IGD_DOMAIN> ;
 .
 :SPD_AESTDTC
-	rdf:type bd:Column ;
+	rdf:type bd:SdtmSponsorDomainVariable ;
 	isoC:label "Start Date/Time of Adverse Event"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
 	bd:ordinal "34"^^xsd:positiveInteger ;
+	bd:name "AESTDTC"^^xsd:string ;
+	bd:description ""^^xsd:string ;
+	bd:format "ISO 8601"^^xsd:string ;
+	bd:ctAndFormat "ISO 8601"^^xsd:string ;
+	bd:compliance <http://www.assero.co.uk/CSN#046f6c24-9eaf-4f60-8390-f36328c82ec4> ;
+	bd:comment ""^^xsd:string ;
+	bd:used "true"^^xsd:boolean ;
+	bd:notes ""^^xsd:string ;
+	bd:method ""^^xsd:string ;
+	bd:basedOnIgVariable <http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESTDTC> ;
 .
 :SPD_AEENRF
-	rdf:type bd:Column ;
+	rdf:type bd:SdtmSponsorDomainVariable ;
 	isoC:label "End Relative to Reference Period"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
 	bd:ordinal "39"^^xsd:positiveInteger ;
+	bd:name "AEENRF"^^xsd:string ;
+	bd:description "Describes the end of the event relative to the sponsor-defined reference period. The sponsor-defined reference period is a continuous period of time defined by a discrete starting point (RFSTDTC) and a discrete ending point (RFENDTC) of the trial."^^xsd:string ;
+	bd:format ""^^xsd:string ;
+	bd:ctAndFormat "(STENRF)"^^xsd:string ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
+	bd:ctReference <http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEENRF_TMC1> ;
+	bd:comment ""^^xsd:string ;
+	bd:used "true"^^xsd:boolean ;
+	bd:notes ""^^xsd:string ;
+	bd:method ""^^xsd:string ;
+	bd:basedOnIgVariable <http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEENRF> ;
+.
+<http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEENRF_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "STENRF"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66728/V4#C66728> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 :SPD_AESOD
-	rdf:type bd:Column ;
+	rdf:type bd:SdtmSponsorDomainVariable ;
 	isoC:label "Occurred with Overdose"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
 	bd:ordinal "30"^^xsd:positiveInteger ;
+	bd:name "AESOD"^^xsd:string ;
+	bd:description "Did the serious event occur with an overdose?"^^xsd:string ;
+	bd:format ""^^xsd:string ;
+	bd:ctAndFormat "(NY)"^^xsd:string ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
+	bd:ctReference <http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESOD_TMC1> ;
+	bd:comment ""^^xsd:string ;
+	bd:used "true"^^xsd:boolean ;
+	bd:notes ""^^xsd:string ;
+	bd:method ""^^xsd:string ;
+	bd:basedOnIgVariable <http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESOD> ;
+.
+<http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESOD_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "NY"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 :SPD_AECONTRT
-	rdf:type bd:Column ;
+	rdf:type bd:SdtmSponsorDomainVariable ;
 	isoC:label "Concomitant or Additional Trtmnt Given"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
 	bd:ordinal "32"^^xsd:positiveInteger ;
+	bd:name "AECONTRT"^^xsd:string ;
+	bd:description "Was another treatment given because of the occurrence of the event?"^^xsd:string ;
+	bd:format ""^^xsd:string ;
+	bd:ctAndFormat "(NY)"^^xsd:string ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
+	bd:ctReference <http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AECONTRT_TMC1> ;
+	bd:comment ""^^xsd:string ;
+	bd:used "true"^^xsd:boolean ;
+	bd:notes ""^^xsd:string ;
+	bd:method ""^^xsd:string ;
+	bd:basedOnIgVariable <http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AECONTRT> ;
+.
+<http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AECONTRT_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "NY"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 :SPD_AEREFID
-	rdf:type bd:Column ;
+	rdf:type bd:SdtmSponsorDomainVariable ;
 	isoC:label "Reference ID"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
 	bd:ordinal "6"^^xsd:positiveInteger ;
+	bd:name "AEREFID"^^xsd:string ;
+	bd:description "Internal or external identifier such as a serial number on an SAE reporting form"^^xsd:string ;
+	bd:format ""^^xsd:string ;
+	bd:ctAndFormat ""^^xsd:string ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
+	bd:comment ""^^xsd:string ;
+	bd:used "true"^^xsd:boolean ;
+	bd:notes ""^^xsd:string ;
+	bd:method ""^^xsd:string ;
+	bd:basedOnIgVariable <http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEREFID> ;
 .
 :SPD_AEREL
-	rdf:type bd:Column ;
+	rdf:type bd:SdtmSponsorDomainVariable ;
 	isoC:label "Causality"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
 	bd:ordinal "20"^^xsd:positiveInteger ;
+	bd:name "AEREL"^^xsd:string ;
+	bd:description "Records the investigator's opinion as to the causality of the event to the treatment. ICH E2A and E2B examples include NOT RELATED, UNLIKELY RELATED, POSSIBLY RELATED, RELATED. Controlled Terminology may be defined in the future. Check with regulatory authority for population of this variable"^^xsd:string ;
+	bd:format ""^^xsd:string ;
+	bd:ctAndFormat ""^^xsd:string ;
+	bd:compliance <http://www.assero.co.uk/CSN#046f6c24-9eaf-4f60-8390-f36328c82ec4> ;
+	bd:comment ""^^xsd:string ;
+	bd:used "true"^^xsd:boolean ;
+	bd:notes ""^^xsd:string ;
+	bd:method ""^^xsd:string ;
+	bd:basedOnIgVariable <http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEREL> ;
 .
 :SPD_AESDISAB
-	rdf:type bd:Column ;
+	rdf:type bd:SdtmSponsorDomainVariable ;
 	isoC:label "Persist or Signif Disability/Incapacity"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
 	bd:ordinal "26"^^xsd:positiveInteger ;
+	bd:name "AESDISAB"^^xsd:string ;
+	bd:description "Did the serious event result in persistent or significant disability/incapacity?"^^xsd:string ;
+	bd:format ""^^xsd:string ;
+	bd:ctAndFormat "(NY)"^^xsd:string ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
+	bd:ctReference <http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESDISAB_TMC1> ;
+	bd:comment ""^^xsd:string ;
+	bd:used "true"^^xsd:boolean ;
+	bd:notes ""^^xsd:string ;
+	bd:method ""^^xsd:string ;
+	bd:basedOnIgVariable <http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESDISAB> ;
+.
+<http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESDISAB_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "NY"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 :SPD_AESCAT
-	rdf:type bd:Column ;
+	rdf:type bd:SdtmSponsorDomainVariable ;
 	isoC:label "Subcategory for Adverse Event"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
 	bd:ordinal "12"^^xsd:positiveInteger ;
+	bd:name "AESCAT"^^xsd:string ;
+	bd:description "A further categorization of adverse event. Example: NEUROLOGIC."^^xsd:string ;
+	bd:format ""^^xsd:string ;
+	bd:ctAndFormat ""^^xsd:string ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
+	bd:comment ""^^xsd:string ;
+	bd:used "true"^^xsd:boolean ;
+	bd:notes ""^^xsd:string ;
+	bd:method ""^^xsd:string ;
+	bd:basedOnIgVariable <http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESCAT> ;
 .
 :SPD_AEOUT
-	rdf:type bd:Column ;
+	rdf:type bd:SdtmSponsorDomainVariable ;
 	isoC:label "Outcome of Adverse Event"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
 	bd:ordinal "23"^^xsd:positiveInteger ;
+	bd:name "AEOUT"^^xsd:string ;
+	bd:description "Description of the outcome of an event."^^xsd:string ;
+	bd:format ""^^xsd:string ;
+	bd:ctAndFormat "(OUT)"^^xsd:string ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
+	bd:ctReference <http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEOUT_TMC1> ;
+	bd:comment ""^^xsd:string ;
+	bd:used "true"^^xsd:boolean ;
+	bd:notes ""^^xsd:string ;
+	bd:method ""^^xsd:string ;
+	bd:basedOnIgVariable <http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEOUT> ;
+.
+<http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEOUT_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "OUT"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66768/V4#C66768> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 :SPD_AESTDY
-	rdf:type bd:Column ;
+	rdf:type bd:SdtmSponsorDomainVariable ;
 	isoC:label "Study Day of Start of Adverse Event"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
 	bd:ordinal "36"^^xsd:positiveInteger ;
+	bd:name "AESTDY"^^xsd:string ;
+	bd:description "Study day of start of adverse event relative to the sponsor-defined RFSTDTC."^^xsd:string ;
+	bd:format ""^^xsd:string ;
+	bd:ctAndFormat ""^^xsd:string ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
+	bd:comment ""^^xsd:string ;
+	bd:used "true"^^xsd:boolean ;
+	bd:notes ""^^xsd:string ;
+	bd:method ""^^xsd:string ;
+	bd:basedOnIgVariable <http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESTDY> ;
 .
 :SPD_AESPID
-	rdf:type bd:Column ;
+	rdf:type bd:SdtmSponsorDomainVariable ;
 	isoC:label "Sponsor-Defined Identifier"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
 	bd:ordinal "7"^^xsd:positiveInteger ;
+	bd:name "AESPID"^^xsd:string ;
+	bd:description "Sponsor-defined identifier. It may be pre-printed on the CRF as an explicit line identifier or defined in the sponsor's operational database. Example: Line number on an Adverse Events page."^^xsd:string ;
+	bd:format ""^^xsd:string ;
+	bd:ctAndFormat ""^^xsd:string ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
+	bd:comment ""^^xsd:string ;
+	bd:used "true"^^xsd:boolean ;
+	bd:notes ""^^xsd:string ;
+	bd:method ""^^xsd:string ;
+	bd:basedOnIgVariable <http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESPID> ;
 .
 :SPD_AEENRTPT
-	rdf:type bd:Column ;
+	rdf:type bd:SdtmSponsorDomainVariable ;
 	isoC:label "End Relative to Reference Time Point"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
 	bd:ordinal "40"^^xsd:positiveInteger ;
+	bd:name "AEENRTPT"^^xsd:string ;
+	bd:description "Identifies the end of the event as being before or after the reference time point defined by variable AEENTPT."^^xsd:string ;
+	bd:format "BEFORE, AFTER, COINCIDENT, ONGOING, U"^^xsd:string ;
+	bd:ctAndFormat "BEFORE, AFTER, COINCIDENT, ONGOING, U"^^xsd:string ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
+	bd:comment ""^^xsd:string ;
+	bd:used "true"^^xsd:boolean ;
+	bd:notes ""^^xsd:string ;
+	bd:method ""^^xsd:string ;
+	bd:basedOnIgVariable <http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEENRTPT> ;
 .
 :SPD_AEPRESP
-	rdf:type bd:Column ;
+	rdf:type bd:SdtmSponsorDomainVariable ;
 	isoC:label "Pre-Specified Adverse Event"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
 	bd:ordinal "13"^^xsd:positiveInteger ;
+	bd:name "AEPRESP"^^xsd:string ;
+	bd:description "A value of 'Y' indicates that this adverse event was pre-specified on the CRF. Values are null for spontaneously reported events (i.e., those collected as free-text verbatim terms)"^^xsd:string ;
+	bd:format ""^^xsd:string ;
+	bd:ctAndFormat "(NY)"^^xsd:string ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
+	bd:ctReference <http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEPRESP_TMC1> ;
+	bd:comment ""^^xsd:string ;
+	bd:used "true"^^xsd:boolean ;
+	bd:notes ""^^xsd:string ;
+	bd:method ""^^xsd:string ;
+	bd:basedOnIgVariable <http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEPRESP> ;
+.
+<http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEPRESP_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "NY"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 :SPD_AESHOSP
-	rdf:type bd:Column ;
+	rdf:type bd:SdtmSponsorDomainVariable ;
 	isoC:label "Requires or Prolongs Hospitalization"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
 	bd:ordinal "28"^^xsd:positiveInteger ;
+	bd:name "AESHOSP"^^xsd:string ;
+	bd:description "Did the serious event require or prolong hospitalization?"^^xsd:string ;
+	bd:format ""^^xsd:string ;
+	bd:ctAndFormat "(NY)"^^xsd:string ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
+	bd:ctReference <http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESHOSP_TMC1> ;
+	bd:comment ""^^xsd:string ;
+	bd:used "true"^^xsd:boolean ;
+	bd:notes ""^^xsd:string ;
+	bd:method ""^^xsd:string ;
+	bd:basedOnIgVariable <http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESHOSP> ;
+.
+<http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESHOSP_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "NY"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 :SPD_AETERM
-	rdf:type bd:Column ;
+	rdf:type bd:SdtmSponsorDomainVariable ;
 	isoC:label "Reported Term for the Adverse Event"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
 	bd:ordinal "8"^^xsd:positiveInteger ;
+	bd:name "AETERM"^^xsd:string ;
+	bd:description "Verbatim name of the event."^^xsd:string ;
+	bd:format ""^^xsd:string ;
+	bd:ctAndFormat ""^^xsd:string ;
+	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
+	bd:comment ""^^xsd:string ;
+	bd:used "true"^^xsd:boolean ;
+	bd:notes ""^^xsd:string ;
+	bd:method ""^^xsd:string ;
+	bd:basedOnIgVariable <http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AETERM> ;
 .
 :SPD_AELOC
-	rdf:type bd:Column ;
+	rdf:type bd:SdtmSponsorDomainVariable ;
 	isoC:label "Location of Event"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
 	bd:ordinal "15"^^xsd:positiveInteger ;
+	bd:name "AELOC"^^xsd:string ;
+	bd:description "Describes anatomical location relevant for the event (e.g., LEFT ARM for skin rash)."^^xsd:string ;
+	bd:format ""^^xsd:string ;
+	bd:ctAndFormat "(LOC)"^^xsd:string ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
+	bd:ctReference <http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AELOC_TMC1> ;
+	bd:comment ""^^xsd:string ;
+	bd:used "true"^^xsd:boolean ;
+	bd:notes ""^^xsd:string ;
+	bd:method ""^^xsd:string ;
+	bd:basedOnIgVariable <http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AELOC> ;
+.
+<http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AELOC_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "LOC"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C74456/V8#C74456> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 :SPD_AEPATT
-	rdf:type bd:Column ;
+	rdf:type bd:SdtmSponsorDomainVariable ;
 	isoC:label "Pattern of Adverse Event"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
 	bd:ordinal "22"^^xsd:positiveInteger ;
+	bd:name "AEPATT"^^xsd:string ;
+	bd:description "Used to indicate the pattern of the event over time. Examples: INTERMITTENT, CONTINUOUS, SINGLE EVENT."^^xsd:string ;
+	bd:format ""^^xsd:string ;
+	bd:ctAndFormat ""^^xsd:string ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
+	bd:comment ""^^xsd:string ;
+	bd:used "true"^^xsd:boolean ;
+	bd:notes ""^^xsd:string ;
+	bd:method ""^^xsd:string ;
+	bd:basedOnIgVariable <http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEPATT> ;
 .
 :SPD_AESLIFE
-	rdf:type bd:Column ;
+	rdf:type bd:SdtmSponsorDomainVariable ;
 	isoC:label "Is Life Threatening"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
 	bd:ordinal "29"^^xsd:positiveInteger ;
+	bd:name "AESLIFE"^^xsd:string ;
+	bd:description "Was the serious event life threatening?"^^xsd:string ;
+	bd:format ""^^xsd:string ;
+	bd:ctAndFormat "(NY)"^^xsd:string ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
+	bd:ctReference <http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESLIFE_TMC1> ;
+	bd:comment ""^^xsd:string ;
+	bd:used "true"^^xsd:boolean ;
+	bd:notes ""^^xsd:string ;
+	bd:method ""^^xsd:string ;
+	bd:basedOnIgVariable <http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESLIFE> ;
+.
+<http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESLIFE_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "NY"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 :SPD_AEDUR
-	rdf:type bd:Column ;
+	rdf:type bd:SdtmSponsorDomainVariable ;
 	isoC:label "Duration of Adverse Event"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
 	bd:ordinal "38"^^xsd:positiveInteger ;
+	bd:name "AEDUR"^^xsd:string ;
+	bd:description "Collected duration and unit of an adverse event. Used only if collected on the CRF and not derived from start and end date/times. Example: P1DT2H (for 1 day, 2 hours)."^^xsd:string ;
+	bd:format "ISO 8601"^^xsd:string ;
+	bd:ctAndFormat "ISO 8601"^^xsd:string ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
+	bd:comment ""^^xsd:string ;
+	bd:used "true"^^xsd:boolean ;
+	bd:notes ""^^xsd:string ;
+	bd:method ""^^xsd:string ;
+	bd:basedOnIgVariable <http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEDUR> ;
 .
 :SPD_AEDECOD
-	rdf:type bd:Column ;
+	rdf:type bd:SdtmSponsorDomainVariable ;
 	isoC:label "Dictionary-Derived Term"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
 	bd:ordinal "10"^^xsd:positiveInteger ;
+	bd:name "AEDECOD"^^xsd:string ;
+	bd:description "Dictionary-derived text description of AETERM or AEMODIFY. Equivalent to the Preferred Term (PT in MedDRA). The sponsor is expected to provide the dictionary name and version used to map the terms utilizing the define.xml external codelist attributes"^^xsd:string ;
+	bd:format ""^^xsd:string ;
+	bd:ctAndFormat ""^^xsd:string ;
+	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
+	bd:comment ""^^xsd:string ;
+	bd:used "true"^^xsd:boolean ;
+	bd:notes ""^^xsd:string ;
+	bd:method ""^^xsd:string ;
+	bd:basedOnIgVariable <http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEDECOD> ;
 .
 :SPD_AEMODIFY
-	rdf:type bd:Column ;
+	rdf:type bd:SdtmSponsorDomainVariable ;
 	isoC:label "Modified Reported Term"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
 	bd:ordinal "9"^^xsd:positiveInteger ;
+	bd:name "AEMODIFY"^^xsd:string ;
+	bd:description "If AETERM is modified to facilitate coding, then AEMODIFY will contain the modified text."^^xsd:string ;
+	bd:format ""^^xsd:string ;
+	bd:ctAndFormat ""^^xsd:string ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
+	bd:comment ""^^xsd:string ;
+	bd:used "true"^^xsd:boolean ;
+	bd:notes ""^^xsd:string ;
+	bd:method ""^^xsd:string ;
+	bd:basedOnIgVariable <http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEMODIFY> ;
 .
 :SPD_AESEQ
-	rdf:type bd:Column ;
+	rdf:type bd:SdtmSponsorDomainVariable ;
 	isoC:label "Sequence Number"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
 	bd:ordinal "4"^^xsd:positiveInteger ;
+	bd:name "AESEQ"^^xsd:string ;
+	bd:description "Sequence Number given to ensure uniqueness of subject records within a domain. May be any valid number."^^xsd:string ;
+	bd:format ""^^xsd:string ;
+	bd:ctAndFormat ""^^xsd:string ;
+	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
+	bd:comment ""^^xsd:string ;
+	bd:used "true"^^xsd:boolean ;
+	bd:notes ""^^xsd:string ;
+	bd:method ""^^xsd:string ;
+	bd:basedOnIgVariable <http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESEQ> ;
 .
 :SPD_AERELNST
-	rdf:type bd:Column ;
+	rdf:type bd:SdtmSponsorDomainVariable ;
 	isoC:label "Relationship to Non-Study Treatment"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
 	bd:ordinal "21"^^xsd:positiveInteger ;
+	bd:name "AERELNST"^^xsd:string ;
+	bd:description "Records the investigator's opinion as to whether the event may have been due to a treatment other than study drug. May be reported as free text. Example: 'MORE LIKELY RELATED TO ASPIRIN USE.'."^^xsd:string ;
+	bd:format ""^^xsd:string ;
+	bd:ctAndFormat ""^^xsd:string ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
+	bd:comment ""^^xsd:string ;
+	bd:used "true"^^xsd:boolean ;
+	bd:notes ""^^xsd:string ;
+	bd:method ""^^xsd:string ;
+	bd:basedOnIgVariable <http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AERELNST> ;
 .
 :SPD_AESDTH
-	rdf:type bd:Column ;
+	rdf:type bd:SdtmSponsorDomainVariable ;
 	isoC:label "Results in Death"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
 	bd:ordinal "27"^^xsd:positiveInteger ;
+	bd:name "AESDTH"^^xsd:string ;
+	bd:description "Did the serious event result in death?"^^xsd:string ;
+	bd:format ""^^xsd:string ;
+	bd:ctAndFormat "(NY)"^^xsd:string ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
+	bd:ctReference <http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESDTH_TMC1> ;
+	bd:comment ""^^xsd:string ;
+	bd:used "true"^^xsd:boolean ;
+	bd:notes ""^^xsd:string ;
+	bd:method ""^^xsd:string ;
+	bd:basedOnIgVariable <http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESDTH> ;
+.
+<http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESDTH_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "NY"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 :SPD_AEBODSYS
-	rdf:type bd:Column ;
+	rdf:type bd:SdtmSponsorDomainVariable ;
 	isoC:label "Body System or Organ Class"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
 	bd:ordinal "14"^^xsd:positiveInteger ;
+	bd:name "AEBODSYS"^^xsd:string ;
+	bd:description "Dictionary derived. Body system or organ class used by the sponsor from the coding dictionary (e.g., MedDRA). When using a multi-axial dictionary such as MedDRA, this should contain the SOC used for the sponsor's analyses and summary tables which may not necessarily be the primary SOC."^^xsd:string ;
+	bd:format ""^^xsd:string ;
+	bd:ctAndFormat ""^^xsd:string ;
+	bd:compliance <http://www.assero.co.uk/CSN#046f6c24-9eaf-4f60-8390-f36328c82ec4> ;
+	bd:comment ""^^xsd:string ;
+	bd:used "true"^^xsd:boolean ;
+	bd:notes ""^^xsd:string ;
+	bd:method ""^^xsd:string ;
+	bd:basedOnIgVariable <http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEBODSYS> ;
 .
 :SPD_AEACNOTH
-	rdf:type bd:Column ;
+	rdf:type bd:SdtmSponsorDomainVariable ;
 	isoC:label "Other Action Taken"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
 	bd:ordinal "19"^^xsd:positiveInteger ;
+	bd:name "AEACNOTH"^^xsd:string ;
+	bd:description "Describes other actions taken as a result of the event that are unrelated to dose adjustments of study treatment. Usually reported as free text. Example: 'TREATMENT UNBLINDED. PRIMARY CARE PHYSICIAN NOTIFIED.'"^^xsd:string ;
+	bd:format ""^^xsd:string ;
+	bd:ctAndFormat ""^^xsd:string ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
+	bd:comment ""^^xsd:string ;
+	bd:used "true"^^xsd:boolean ;
+	bd:notes ""^^xsd:string ;
+	bd:method ""^^xsd:string ;
+	bd:basedOnIgVariable <http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEACNOTH> ;
 .
 :SPD_AETOXGR
-	rdf:type bd:Column ;
+	rdf:type bd:SdtmSponsorDomainVariable ;
 	isoC:label "Standard Toxicity Grade"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
 	bd:ordinal "33"^^xsd:positiveInteger ;
+	bd:name "AETOXGR"^^xsd:string ;
+	bd:description "Toxicity grade according to a standard toxicity scale such as Common Terminology Criteria for Adverse Events v3.0 (CTCAE). Sponsor should specify name of the scale and version used in the metadata (see 6.2.1.1, Assumption 6c). If value is from a numeric scale, represent only the number (e.g., '2' and not 'Grade 2')."^^xsd:string ;
+	bd:format ""^^xsd:string ;
+	bd:ctAndFormat ""^^xsd:string ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
+	bd:comment ""^^xsd:string ;
+	bd:used "true"^^xsd:boolean ;
+	bd:notes ""^^xsd:string ;
+	bd:method ""^^xsd:string ;
+	bd:basedOnIgVariable <http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AETOXGR> ;
 .
 :SPD_AEENDY
-	rdf:type bd:Column ;
+	rdf:type bd:SdtmSponsorDomainVariable ;
 	isoC:label "Study Day of End of Adverse Event"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
 	bd:ordinal "37"^^xsd:positiveInteger ;
+	bd:name "AEENDY"^^xsd:string ;
+	bd:description "Study day of end of event relative to the sponsor-defined RFSTDTC."^^xsd:string ;
+	bd:format ""^^xsd:string ;
+	bd:ctAndFormat ""^^xsd:string ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
+	bd:comment ""^^xsd:string ;
+	bd:used "true"^^xsd:boolean ;
+	bd:notes ""^^xsd:string ;
+	bd:method ""^^xsd:string ;
+	bd:basedOnIgVariable <http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEENDY> ;
 .
 :SPD_USUBJID
-	rdf:type bd:Column ;
+	rdf:type bd:SdtmSponsorDomainVariable ;
 	isoC:label "Unique Subject Identifier"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
 	bd:ordinal "3"^^xsd:positiveInteger ;
+	bd:name "USUBJID"^^xsd:string ;
+	bd:description "Identifier used to uniquely identify a subject across all studies for all applications or submissions involving the product."^^xsd:string ;
+	bd:format ""^^xsd:string ;
+	bd:ctAndFormat ""^^xsd:string ;
+	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
+	bd:comment ""^^xsd:string ;
+	bd:used "true"^^xsd:boolean ;
+	bd:notes ""^^xsd:string ;
+	bd:method ""^^xsd:string ;
+	bd:basedOnIgVariable <http://www.cdisc.org/SDTM_IG_AE/V1#IGD_USUBJID> ;
 .
 :SPD_AEENDTC
-	rdf:type bd:Column ;
+	rdf:type bd:SdtmSponsorDomainVariable ;
 	isoC:label "End Date/Time of Adverse Event"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
 	bd:ordinal "35"^^xsd:positiveInteger ;
+	bd:name "AEENDTC"^^xsd:string ;
+	bd:description ""^^xsd:string ;
+	bd:format "ISO 8601"^^xsd:string ;
+	bd:ctAndFormat "ISO 8601"^^xsd:string ;
+	bd:compliance <http://www.assero.co.uk/CSN#046f6c24-9eaf-4f60-8390-f36328c82ec4> ;
+	bd:comment ""^^xsd:string ;
+	bd:used "true"^^xsd:boolean ;
+	bd:notes ""^^xsd:string ;
+	bd:method ""^^xsd:string ;
+	bd:basedOnIgVariable <http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEENDTC> ;
 .
 :SPD_AEACN
-	rdf:type bd:Column ;
+	rdf:type bd:SdtmSponsorDomainVariable ;
 	isoC:label "Action Taken with Study Treatment"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
 	bd:ordinal "18"^^xsd:positiveInteger ;
+	bd:name "AEACN"^^xsd:string ;
+	bd:description "Describes changes to the study treatment as a result of the event. AEACN is specifically for the relationship to study treatment. AEACNOTH is for actions unrelated to dose adjustments of study treatment. Examples of AEACN values include ICH E2B values: DRUG WITHDRAWN, DOSE REDUCED, DOSE INCREASED, DOSE NOT CHANGED, UNKNOWN or NOT APPLICABLE"^^xsd:string ;
+	bd:format ""^^xsd:string ;
+	bd:ctAndFormat "(ACN)"^^xsd:string ;
+	bd:compliance <http://www.assero.co.uk/CSN#046f6c24-9eaf-4f60-8390-f36328c82ec4> ;
+	bd:ctReference <http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEACN_TMC1> ;
+	bd:comment ""^^xsd:string ;
+	bd:used "true"^^xsd:boolean ;
+	bd:notes ""^^xsd:string ;
+	bd:method ""^^xsd:string ;
+	bd:basedOnIgVariable <http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEACN> ;
+.
+<http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEACN_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "ACN"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66767/V4#C66767> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .
 :SPD_AEENTPT
-	rdf:type bd:Column ;
+	rdf:type bd:SdtmSponsorDomainVariable ;
 	isoC:label "End Reference Time Point"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
 	bd:ordinal "41"^^xsd:positiveInteger ;
+	bd:name "AEENTPT"^^xsd:string ;
+	bd:description "Description of date/time in ISO 8601 character format of the reference point referred to by AEENRTPT. Examples: '2003-12-25' or 'VISIT 2'."^^xsd:string ;
+	bd:format ""^^xsd:string ;
+	bd:ctAndFormat ""^^xsd:string ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
+	bd:comment ""^^xsd:string ;
+	bd:used "true"^^xsd:boolean ;
+	bd:notes ""^^xsd:string ;
+	bd:method ""^^xsd:string ;
+	bd:basedOnIgVariable <http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEENTPT> ;
 .
 :SPD_STUDYID
-	rdf:type bd:Column ;
+	rdf:type bd:SdtmSponsorDomainVariable ;
 	isoC:label "Study Identifier"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
 	bd:ordinal "1"^^xsd:positiveInteger ;
+	bd:name "STUDYID"^^xsd:string ;
+	bd:description "Unique identifier for a study."^^xsd:string ;
+	bd:format ""^^xsd:string ;
+	bd:ctAndFormat ""^^xsd:string ;
+	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
+	bd:comment ""^^xsd:string ;
+	bd:used "true"^^xsd:boolean ;
+	bd:notes ""^^xsd:string ;
+	bd:method ""^^xsd:string ;
+	bd:basedOnIgVariable <http://www.cdisc.org/SDTM_IG_AE/V1#IGD_STUDYID> ;
 .
 :SPD_AESCAN
-	rdf:type bd:Column ;
+	rdf:type bd:SdtmSponsorDomainVariable ;
 	isoC:label "Involves Cancer"^^xsd:string ;
 	bd:rule ""^^xsd:string ;
 	bd:ordinal "24"^^xsd:positiveInteger ;
+	bd:name "AESCAN"^^xsd:string ;
+	bd:description "Was the serious event associated with the development of cancer?"^^xsd:string ;
+	bd:format ""^^xsd:string ;
+	bd:ctAndFormat "(NY)"^^xsd:string ;
+	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
+	bd:ctReference <http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESCAN_TMC1> ;
+	bd:comment ""^^xsd:string ;
+	bd:used "true"^^xsd:boolean ;
+	bd:notes ""^^xsd:string ;
+	bd:method ""^^xsd:string ;
+	bd:basedOnIgVariable <http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESCAN> ;
+.
+<http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AESCAN_TMC1>
+	rdf:type bo:TMcReference ;
+	isoC:label "NY"^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742> ;
+	bo:context <http://www.cdisc.org/CT/V13#TH> ;
 .

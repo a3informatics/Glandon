@@ -3,6 +3,8 @@ class SdtmSponsorDomain < SdtmIgDomain
   configure rdf_type: "http://www.assero.co.uk/Tabulation#SdtmSponsorDomain",
             uri_suffix: "SPD"
 
+  object_property_class :includes_column, model_class: "SdtmSponsorDomain::VariableSSD"
+
   include Tabulation::Ordinal
 
   # Clone. Clone the Sponsor SDTM Domain
