@@ -64,8 +64,14 @@ function dtSimpleHistoryColumns() {
   
   return [
     dtVersionColumn(),
-    { data: "has_identifier.version_label" },
-    { data: "has_state.registration_status" },
+    { 
+      title: 'Version Label',
+      data: 'has_identifier.version_label' 
+    },
+    {
+      title: 'State', 
+      data: 'has_state.registration_status' 
+    },
     dtIndicatorsColumn()
   ]
   

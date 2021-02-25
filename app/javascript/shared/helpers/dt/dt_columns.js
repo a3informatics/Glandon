@@ -47,6 +47,8 @@ function dtDateTimeColumn(name) {
  */
 function dtVersionColumn() {
   return {
+    title: 'Version',
+    className: 'fit',
     render: (data, type, r, m) => type === "display" ? r.has_identifier.semantic_version : r.has_identifier.version
   }
 }
