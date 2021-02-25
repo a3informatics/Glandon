@@ -393,9 +393,7 @@ export default class TablePanel {
       processing: true,
       autoWidth: false,
       language: {
-        infoFiltered: '',
-        emptyTable: 'No data.',
-        processing: renderSpinner( 'small' )
+        emptyTable: 'No data.'
       },
       buttons: [...this.buttons]
     }
@@ -405,6 +403,12 @@ export default class TablePanel {
 
     if ( this.tableOptions ) // Merge with custom options
       Object.assign( opts, this.tableOptions );
+
+    // Language options that cannot be overridden 
+    Object.assign( opts.language, {
+      infoFiltered: '',
+      processing: renderSpinner( 'small' )
+    })
 
     return opts;
 

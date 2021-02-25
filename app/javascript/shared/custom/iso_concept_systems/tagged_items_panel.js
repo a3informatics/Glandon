@@ -1,7 +1,6 @@
 import ModalView from 'shared/base/modal_view'
 
 import ManagedItemsPanel from 'shared/custom/iso_managed/managed_items_panel'
-import { renderSpinner } from 'shared/ui/spinners'
 
 /**
  * Tagged Items Panel module
@@ -69,9 +68,7 @@ export default class TaggedItemsPanel extends ModalView {
         scrollY: '350px',
         scrollCollapse: true,
         language: {
-          infoFiltered: '',
-          emptyTable: 'No items with the selected tag were found.',
-          processing: renderSpinner( 'small' )
+          emptyTable: 'No items with the selected tag were found.'
         }
       }
     });
