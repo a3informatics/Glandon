@@ -448,7 +448,7 @@ describe IsoManagedV2Controller do
 
   end
 
-  describe "Exports, BC and Form" do
+  describe "Exports, BC, Form and SDTM Sponsor Domain" do
 
     login_content_admin
 
@@ -488,6 +488,8 @@ describe IsoManagedV2Controller do
       get :export_ttl, params:{id: sdtm_sponsor_domain.id}
       expect(response.content_type).to eq("application/x-turtle")
       expect(response.code).to eq("200")
+      data = response.body
+      check_file_actual_expected(data, sub_dir, "export_ttl_expected_1.yaml", equate_method: :hash_equal)
     end
 
   end
