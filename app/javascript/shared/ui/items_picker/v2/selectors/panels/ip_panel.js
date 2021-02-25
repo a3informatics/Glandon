@@ -49,7 +49,7 @@ export default class PickerPanel {
    * Destroy Picker Panel instance
    */
   destroy() {
-
+    this.sp.destroy()
   }
 
   /**
@@ -80,9 +80,33 @@ export default class PickerPanel {
 
   }
   
-  
+
   /*** Getters ***/
 
+
+  /**
+   * Get the columns for this Picker Panel type
+   * @return {array} DT Column definitions collection 
+   */
+  get _columns() {
+
+    switch ( this.tableId ) {
+
+      case 'index':
+        if ( this.type === types.TH_CL )
+          return dtCLIndexColumns()
+
+        return dtIndexColumns() 
+
+      case 'history':
+        return dtSimpleHistoryColumns()
+
+      case 'children':
+        return dtSimpleChildrenColumns()
+
+    }
+
+  }
 
   /**
    * Get data url for this Picker Panel type 
@@ -141,30 +165,6 @@ export default class PickerPanel {
   }
 
   /**
-   * Get the columns for this Picker Panel type
-   * @return {array} DT Column definitions collection 
-   */
-  get _columns() {
-
-    switch ( this.tableId ) {
-
-      case 'index':
-        if ( this.type === types.TH_CL )
-          return dtCLIndexColumns()
-
-        return dtIndexColumns() 
-
-      case 'history':
-        return dtSimpleHistoryColumns()
-
-      case 'children':
-        return dtSimpleChildrenColumns()
-
-    }
-
-  }
-
-  /**
    * Get the custom DT button for data refresh
    * @return {object} DT Button definition 
    */
@@ -172,7 +172,7 @@ export default class PickerPanel {
 
     return customBtn({
         text: 'Refresh',
-        action: () => this.load()
+        action: () => this.destroy()
       })
 
   }

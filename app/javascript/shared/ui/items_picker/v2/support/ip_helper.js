@@ -47,14 +47,32 @@ export default class IPHelper {
 
   }
 
+  /**
+   * Convert type to Selector ID (serves as tab-wrapper id too)
+   * @param {object} type RDF type definition object 
+   * @return {string} Selector ID 
+   * @static
+   */
   static typeToSelectorId(type) { 
     return `selector-${ type.param }` 
   }
 
+  /**
+   * Convert type to Tab ID (serves as tab-option id)
+   * @param {object} type RDF type definition object 
+   * @return {string} Tab ID 
+   * @static
+   */
   static typeToTabId(type) {
     return `tab-${ type.param }`
   }
 
+  /**
+   * Convert a Tab or Selector ID to type object
+   * @param {string} type Tab ID or Selector id string 
+   * @return {object} RDF type definition object 
+   * @static
+   */
   static idToType(id) {
     return id.split('-')[1]
   }
