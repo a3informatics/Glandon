@@ -131,7 +131,7 @@ export default class PickerPanel extends Cacheable {
 
     $( this.selector ).unbind()
     this.sp.destroy()
-    
+
   }
 
   /**
@@ -304,7 +304,7 @@ export default class PickerPanel extends Cacheable {
         return url 
 
       case 'history':
-        const baseUrl = url + '/history',
+        const baseUrl = url + '/historyyy',
               urlData = { [this._param]: { 
                 identifier: this.data.identifier,
                 scope_id: this.data.scope_id
@@ -390,7 +390,8 @@ export default class PickerPanel extends Cacheable {
         extraColumns: this._columns,
         buttons: [ this._dtRefreshBtn ],
         tableOptions: this._tableOpts,
-        loadCallback: () => this._onDataLoaded()
+        loadCallback: () => this._onDataLoaded(),
+        errorCallback: () => this._loading( false )
       },
       showSelectionInfo: false,
       onSelect: s => this._dispatchEvent( 'selected', s ),
