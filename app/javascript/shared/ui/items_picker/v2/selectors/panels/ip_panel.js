@@ -64,21 +64,28 @@ export default class PickerPanel extends Cacheable {
   }
 
   /**
-   * Load / reload data in panel 
+   * Load data in panel 
    * @return {PickerPanel} this instance (for chaining)
    */
   load() {
 
-    if ( this._canFetch ) {
+    if ( this._canFetch && !this.isProcessing ) {
     
       const cached = this._getFromCache( this._dataUrl )
 
+      // Render data from cache 
       if ( cached )
         this.sp._render( cached, true )
-      else  
+
+      // Load data from server  
+      else  {
+
+        this._loading( true )
         this.sp.loadData( this._dataUrl )
 
-    } 
+      }
+
+    }
 
     return this 
 
@@ -155,12 +162,17 @@ export default class PickerPanel extends Cacheable {
    */
   _onDataLoaded() {
 
+    // Cache loaded data
     const url = this._dataUrl,
           data = this.sp.rowDataToArray
 
     this._saveToCache( url, data, true )
 
+    // Data loaded callback
     this.events.onLoad()
+
+    // Update loading state
+    this._loading( false )
 
   }
 
@@ -239,6 +251,7 @@ export default class PickerPanel extends Cacheable {
 
     return customBtn({
       text: 'Refresh',
+      name: 'refresh',
       action: () => this.refresh()
     })
 
@@ -309,6 +322,20 @@ export default class PickerPanel extends Cacheable {
       return ( this.data?.identifier && this.data?.scope_id ) 
 
     return true 
+
+  }
+
+  /**
+   * Set the Panel's loading state 
+   * does not control the table loading animation, only additional stuff (e.g. table buttons)
+   * @param {boolean} enable Target loading state
+   */
+  _loading(enable) {
+
+    if ( enable )
+      this.sp.table.buttons().disable()
+    else 
+      this.sp.table.buttons().enable()
 
   }
 
