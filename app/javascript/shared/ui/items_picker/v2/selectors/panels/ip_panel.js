@@ -259,6 +259,10 @@ export default class PickerPanel extends Cacheable {
 
   }
 
+  /**
+   * Get the empty message for this Picker Panel type 
+   * @return {string} table empty message 
+   */
   get _emptyMsg() {
 
     switch ( this.tableId ) {
