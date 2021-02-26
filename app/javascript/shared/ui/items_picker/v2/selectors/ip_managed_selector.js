@@ -52,7 +52,10 @@ export default class ManagedSelector {
    */
   destroy() {
 
-    // Remove from DOM etc
+    this.indexPanel.destroy()
+    this.historyPanel.destroy() 
+    $( this.selector ).empty() 
+    
     this._config.buildRequired = true 
 
   }
@@ -84,9 +87,7 @@ export default class ManagedSelector {
     this.indexPanel = new PickerPanel({
       selector: this.selector,
       type: this.type,
-      tableId: 'index',
-      onSelect: s => this._onIndexSelect( s.data() ),
-      onDeselect: s => this._onIndexDeselect( s.data() )
+      tableId: 'index'
     })
 
     this.historyPanel = new PickerPanel({
@@ -95,10 +96,23 @@ export default class ManagedSelector {
       tableId: 'history'
     })
 
+    this._setPanelListeners()
+
   }
 
 
   /*** Events ***/
+
+
+  _setPanelListeners() {
+
+    this.indexPanel.on( 'selected', s => this._onIndexSelect(s.data()) )
+                   .on( 'deselected', s => this._onIndexDeselect(s.data()) )
+                   .on( 'refresh', () => this.historyPanel.clear( true ) )
+
+    this.historyPanel.on( 'loadingStateChanged', isLoading => this._loading( isLoading ) )
+
+  }
 
 
   /**
@@ -108,13 +122,13 @@ export default class ManagedSelector {
   _onIndexSelect(selected) {
 
     this.historyPanel.setData( selected[0] )
-                .load() 
+                     .load() 
 
   }
 
   /**
    * On Index Panel item deselected event, clear history panel
-   * @param {array} deselected Deelected item data 
+   * @param {array} deselected Deselected item data 
    */
   _onIndexDeselect(deselected) {
     this.historyPanel.clear()

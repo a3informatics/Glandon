@@ -20,29 +20,18 @@ export default class PickerPanel extends Cacheable {
    * @param {string} params.selector Unique selector string of the wrapping element 
    * @param {Object} params.type Selector type, must an entry be from the RdfTypesMap
    * @param {string} params.tableId Specifies type of the table and its id - index / history / children  
-   * @param {function} params.onLoad On data load callback
-   * @param {function} params.onSelect On item(s) selected callback
-   * @param {function} params.onDeselect On item(s) deselected callback
    */
   constructor({
     selector, 
     type,
-    tableId,
-    onLoad = () => {}, 
-    onSelect = () => {}, 
-    onDeselect = () => {}
+    tableId
   }) {
 
     super()
 
     Object.assign( this, {
       type, tableId,
-      selector: `${ selector } #${ tableId }`,
-      events: {
-        onLoad,
-        onSelect,
-        onDeselect
-      }
+      selector: `${ selector } #${ tableId }`
     })
 
     this._initPanel()
@@ -69,7 +58,7 @@ export default class PickerPanel extends Cacheable {
    */
   load() {
 
-    if ( this._canFetch && !this.isProcessing ) {
+    if ( this._canFetch ) {
     
       const cached = this._getFromCache( this._dataUrl )
 
@@ -97,8 +86,14 @@ export default class PickerPanel extends Cacheable {
    */
   refresh() {
 
-    this._clearCache()
-    this.load()
+    if ( this._canFetch ) {
+
+      this._removeFromCache( this._dataUrl )
+
+      this.load()
+          ._dispatchEvent( 'refresh' )
+    
+    }
 
     return this 
 
@@ -106,12 +101,16 @@ export default class PickerPanel extends Cacheable {
 
   /**
    * Clear (empty) panel
+   * @param {boolean} clearCache Specify if cache should be cleared too, optional
    * @return {PickerPanel} this instance (for chaining)
    */
-  clear() {
+  clear(clearCache = false) {
 
     this.sp.clear()
     this.data = undefined 
+
+    if ( clearCache )
+      this._clearCache()
 
     return this 
 
@@ -129,7 +128,24 @@ export default class PickerPanel extends Cacheable {
    * Destroy Picker Panel instance
    */
   destroy() {
+
+    $( this.selector ).unbind()
     this.sp.destroy()
+    
+  }
+
+  /**
+   * Add a custom event listener to the panel
+   * @warning Do not use names of events that are used in the DataTables API 
+   * @param {string} eventName Name of custom event. Available events: selected, deselected, dataLoaded, loadingStateChanged, refresh
+   * @param {function} handler Event handler function
+   * @return {PickerPanel} this instance (for chaining)
+   */
+  on(eventName, handler = () => {}) {
+
+    $( this.selector ).on( eventName, (e, ...args) => handler(...args) )
+    return this 
+
   }
 
 
@@ -156,9 +172,19 @@ export default class PickerPanel extends Cacheable {
 
   /*** Events ***/
 
+
+  /**
+   * Dispatches a custom Panel event 
+   * @warning Do not use names of events that are used in the DataTables API 
+   * @param {string} eventName Name of the custom event 
+   * @param {any} args Any args to pass into the handler 
+   */
+  _dispatchEvent(eventName, ...args) {
+    $( this.selector ).trigger( eventName, args )
+  }
   
   /**
-   * On data loaded callback, cache data 
+   * On data loaded callback, caches fetched data 
    */
   _onDataLoaded() {
 
@@ -168,11 +194,11 @@ export default class PickerPanel extends Cacheable {
 
     this._saveToCache( url, data, true )
 
-    // Data loaded callback
-    this.events.onLoad()
-
     // Update loading state
     this._loading( false )
+
+    // Data loaded event
+    this._dispatchEvent( 'dataLoaded' )
 
   }
 
@@ -318,6 +344,9 @@ export default class PickerPanel extends Cacheable {
    */
   get _canFetch() {
 
+    if ( this.sp.isProcessing )
+      return false 
+
     if ( this.tableId === 'history' )
       return ( this.data?.identifier && this.data?.scope_id ) 
 
@@ -336,6 +365,9 @@ export default class PickerPanel extends Cacheable {
       this.sp.table.buttons().disable()
     else 
       this.sp.table.buttons().enable()
+
+    // Loading state changed event
+    this._dispatchEvent( 'loadingStateChanged', enable )
 
   }
 
@@ -361,8 +393,8 @@ export default class PickerPanel extends Cacheable {
         loadCallback: () => this._onDataLoaded()
       },
       showSelectionInfo: false,
-      onSelect: s => this.events.onSelect(s),
-      onDeselect: s => this.events.onDeselect(s)
+      onSelect: s => this._dispatchEvent( 'selected', s ),
+      onDeselect: s => this._dispatchEvent( 'deselected', s )
     }
 
   }
