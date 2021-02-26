@@ -304,7 +304,7 @@ export default class PickerPanel extends Cacheable {
         return url 
 
       case 'history':
-        const baseUrl = url + '/historyyy',
+        const baseUrl = url + '/history',
               urlData = { [this._param]: { 
                 identifier: this.data.identifier,
                 scope_id: this.data.scope_id
