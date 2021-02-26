@@ -49,7 +49,7 @@ class Form
       if datatype.nil?
         html += field_table(["?", "?", "?"])
       elsif datatype.datetime?
-        html += field_table(["D", "D", "/", "M", "M", "M", "/", "Y", "Y", "Y", "Y", "", "H", "H", ":", "M", "M"])
+        html += field_table(["D", "D", "/", "M", "M", "M", "/", "Y", "Y", "Y", "Y", " ", "H", "H", ":", "M", "M"])
       elsif datatype.date?
        html += field_table(["D", "D", "/", "M", "M", "M", "/", "Y", "Y", "Y", "Y"])
       elsif datatype.time?
@@ -90,7 +90,7 @@ class Form
     end
 
     def separators
-      [".", ":", "/"]
+      [".", ":", "/", " "]
     end
 
     def terminology_cell(item)
