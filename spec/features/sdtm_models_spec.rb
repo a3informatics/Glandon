@@ -67,7 +67,7 @@ describe "SDTM Models", :type => :feature do
       context_menu_element('history', 4, 'SDTM MODEL', :show)
       wait_for_ajax 10
       expect(page).to have_content 'Show: CDISC SDTM Model'
-      ui_check_table_info("show", 1, 10, 18)
+      ui_check_table_info("show", 1, 10, 20)
       ui_check_table_cell("show", 5, 2, "TE")
       ui_check_table_cell("show", 5, 1, "SDTM MODEL TE")
     end
