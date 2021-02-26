@@ -38,9 +38,9 @@ describe "SDTM Classes", :type => :feature do
       wait_for_ajax 20
       expect(page).to have_content 'Index: SDTM Classes'
       find(:xpath, "//th[contains(.,'Identifier')]").click # Order
-      ui_check_table_info("index", 1, 10, 18)
-      ui_check_table_cell("index", 3, 2, "SDTM MODEL EVENTS")
-      ui_check_table_cell("index", 3, 3, "SDTM MODEL EVENTS")
+      ui_check_table_info("index", 1, 10, 20)
+      ui_check_table_cell("index", 5, 2, "SDTM MODEL EVENTS")
+      ui_check_table_cell("index", 5, 3, "SDTM MODEL EVENTS")
     end
 
     it "allows the history page to be viewed", js:true do
