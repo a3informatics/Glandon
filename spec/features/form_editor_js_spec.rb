@@ -981,6 +981,7 @@ describe "Forms", :type => :feature do
 
       context_menu_element_v2('history', '0.1.0', :edit)
       wait_for_ajax 10 
+      find('#main_area').scroll_to(:bottom)
 
       # Add Group
       find_node('Test Form').click
