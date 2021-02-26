@@ -22,7 +22,7 @@ export default class Cacheable {
    * @param {boolean} overwrite Set to true to overwrite data in cache if the key already exists, optional
    */
   _saveToCache(key, data, overwrite = false) {
-    if ( !this._hasCacheEntry(key) || overwrite )
+    if ( overwrite || !this._hasCacheEntry(key) )
       this.cacheObj[key] = data;
   }
 
