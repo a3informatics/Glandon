@@ -3,6 +3,7 @@ import IPSRenderer from './support/ip_selector_renderer'
 
 import PickerPanel from './panels/ip_panel'
 
+import { tableInteraction } from 'shared/helpers/utils'
 
 /**
  * Managed Selector (Items Picker) 
@@ -21,7 +22,7 @@ export default class ManagedSelector {
     type,
     options
   }) {
-     
+
     const selector = '#' + IPHelper.typeToSelectorId( type )
 
     Object.assign( this, {
@@ -69,7 +70,7 @@ export default class ManagedSelector {
     this._initialize()
 
     // Load index table data automatically 
-    this.index.load()
+    this.indexPanel.load()
 
     this._config.buildRequired = false 
 
@@ -80,12 +81,43 @@ export default class ManagedSelector {
    */
   _initialize() {
 
-    this.index = new PickerPanel({
+    this.indexPanel = new PickerPanel({
       selector: this.selector,
       type: this.type,
-      tableId: 'index'
+      tableId: 'index',
+      onSelect: s => this._onIndexSelect( s.data() ),
+      onDeselect: s => this._onIndexDeselect( s.data() )
     })
 
+    this.historyPanel = new PickerPanel({
+      selector: this.selector,
+      type: this.type,
+      tableId: 'history'
+    })
+
+  }
+
+
+  /*** Events ***/
+
+
+  /**
+   * On Index Panel item selected event, set-up and load history panel data
+   * @param {array} selected Selected item data 
+   */
+  _onIndexSelect(selected) {
+
+    this.historyPanel.setData( selected[0] )
+                .load() 
+
+  }
+
+  /**
+   * On Index Panel item deselected event, clear history panel
+   * @param {array} deselected Deelected item data 
+   */
+  _onIndexDeselect(deselected) {
+    this.historyPanel.clear()
   }
 
 
@@ -100,6 +132,18 @@ export default class ManagedSelector {
     return this._config.renderer
   }
 
+
+  /*** Support ***/
+
+
+  _loading(enable) {
+
+    if ( enable )
+      tableInteraction.disable( this.indexPanel.selector )
+    else 
+      tableInteraction.enable( this.indexPanel.selector )
+
+  }
 
 }
 
