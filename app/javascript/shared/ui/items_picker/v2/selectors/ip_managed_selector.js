@@ -94,7 +94,7 @@ export default class ManagedSelector {
       selector: this.selector,
       type: this.type,
       tableId: 'history'
-    })
+    }).setMultiple( this.options.multiple )
 
     this._setPanelListeners()
 
@@ -104,6 +104,9 @@ export default class ManagedSelector {
   /*** Events ***/
 
 
+  /**
+   * Picker Panel event listeners & handlers
+   */
   _setPanelListeners() {
 
     this.indexPanel.on( 'selected', s => this._onIndexSelect(s.data()) )

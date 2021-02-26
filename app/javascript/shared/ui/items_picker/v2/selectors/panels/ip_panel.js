@@ -121,7 +121,10 @@ export default class PickerPanel extends Cacheable {
    * @param {boolean} multiple Option value 
    */
   setMultiple(multiple) {
+
     this.sp.table.select.style( multiple ? 'multi' : 'single' )
+    return this 
+    
   }
 
   /**

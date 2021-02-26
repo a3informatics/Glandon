@@ -261,8 +261,15 @@ export default class ItemsPicker extends ModalView {
       const tabsLayout = this._Renderer.$tabs
 
       TabsLayout.initialize( tabsLayout )
+
       TabsLayout.onTabSwitch( tabsLayout, tab => 
         this._selectors[ IPHelper.idToType(tab) ].show() 
+      )
+
+      // Automatically open the first tab in the Picker 
+      setTimeout( () => 
+        this.modal.find( '.tab-option' )[0].click(),
+        10
       )
 
     })
