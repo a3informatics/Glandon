@@ -300,18 +300,16 @@ export default class PickerPanel extends Cacheable {
    */
   get _dataUrl() {
 
-    let { url } = this.type  
-
     switch ( this.tableId ) {
 
       case 'index':
         if ( this.type === types.TH_CL || this.type === types.TH_CLI )
-          return this._codeListsIndexUrl
+          return types.TH_CL.indexUrl
          
-        return url 
+        return this.type.url  
 
       case 'history':
-        const baseUrl = url + '/history',
+        const baseUrl = this.type.url + '/history',
               urlData = { [this._param]: { 
                 identifier: this.data.identifier,
                 scope_id: this.data.scope_id
@@ -323,21 +321,6 @@ export default class PickerPanel extends Cacheable {
         return types.TH_CL.url + '/children'
     
       }
-
-  }
-
-  /**
-   * Get the Code Lists index url (set with indicators) 
-   * @return {string} Code Lists index url 
-   */
-  get _codeListsIndexUrl() {
-
-    const baseUrl = types.TH_CL.url + '/set_with_indicators',
-          urlData = { [types.TH_CL.param]: { 
-            type: 'all' 
-          } }
-
-    return encodeDataToUrl( baseUrl, urlData )
 
   }
 

@@ -11,7 +11,8 @@ const rdfTypesMap = {
     rdfType: 'http://www.assero.co.uk/Thesaurus#ManagedConcept',
     name: 'Code List',
     param: 'managed_concept',
-    url: '/thesauri/managed_concepts'
+    url: '/thesauri/managed_concepts',
+    indexUrl: '/thesauri/managed_concepts/set_with_indicators?managed_concept%5Btype%5D=all'
   },
   TH_SUBSET: {
     rdfType: 'http://www.assero.co.uk/Thesaurus#ManagedConcept#Subset',
