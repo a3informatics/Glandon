@@ -48,6 +48,15 @@ export default class Cacheable {
   }
 
   /**
+   * Remove an entry from the cache
+   * @param {string} key Unique identifier data is cached under
+   */
+  _removeFromCache(key) {
+    if ( this._hasCacheEntry(key) )
+      delete this.cacheObj[key]
+  }
+
+  /**
    * Deletes cache and re-initializes a new cache
    */
   _clearCache() {
