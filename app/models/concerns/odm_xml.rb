@@ -17,7 +17,6 @@ class OdmXml
     @filename = filename
     xml = PublicFile.read(filename)
     @doc = Nokogiri::XML(xml)
-    @doc.remove_namespaces!
   rescue => e
     exception(C_CLASS_NAME, __method__.to_s, e, "Exception raised opening ODM XML file, filename=#{@filename}.")
   end

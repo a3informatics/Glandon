@@ -13,7 +13,7 @@ class OdmXml::Forms < OdmXml
   # @return [Array] array of hash entries containing the list of code lists (:identifier and :label).
   def list
     results = []
-    @doc.xpath("//FormDef").each { |n| results << { identifier: n.attributes["OID"].value, label: n.attributes["Name"].value } }
+    @doc.xpath("//xmlns:FormDef").each { |n| results << { identifier: n.attributes["OID"].value, label: n.attributes["Name"].value } }
     return results
   rescue => e
     exception(C_CLASS_NAME, __method__.to_s, e, "Exception raised building form list.")
@@ -71,7 +71,7 @@ class OdmXml::Forms < OdmXml
 
     def groups(doc)
       results = []
-      doc.xpath("//FormDef[@OID = '#{@oid}']/ItemGroupRef").each { |n| results << OdmGroup.new(doc, n) }
+      doc.xpath("//xmlns:FormDef[@OID = '#{@oid}']/xmlns:ItemGroupRef").each { |n| results << OdmGroup.new(doc, n) }
       results.sort_by! {|r| r.group.ordinal}
       ordinal = 1
       results.each do |r| 
@@ -94,7 +94,7 @@ class OdmXml::Forms < OdmXml
 
     def initialize(doc, node)
       @oid = node.attributes["ItemGroupOID"].value
-      group_node = doc.xpath("//ItemGroupDef[@OID = '#{@oid}']")
+      group_node = doc.xpath("//xmlns:ItemGroupDef[@OID = '#{@oid}']")
       @group = Form::Group::Normal.new
       @group.label = group_node.first.attributes["Name"].value
       @group.ordinal = node.attributes["OrderNumber"].nil? ? 1 : node.attributes["OrderNumber"].value.to_i
@@ -102,7 +102,7 @@ class OdmXml::Forms < OdmXml
 
     def items(doc)
       results = []
-      doc.xpath("//ItemGroupDef[@OID = '#{@oid}']/ItemRef").each { |n| results << OdmItem.new(doc, n) }
+      doc.xpath("//xmlns:ItemGroupDef[@OID = '#{@oid}']/xmlns:ItemRef").each { |n| results << OdmItem.new(doc, n) }
       results.sort_by! {|r| r.items.first.ordinal}
       ordinal = 1
       results.each do |result|
@@ -127,10 +127,13 @@ class OdmXml::Forms < OdmXml
     def initialize(doc, node)  
       @items = []
       @oid = node.attributes["ItemOID"].value
-      item_node = doc.xpath("//ItemDef[@OID = '#{@oid}']")
+      item_node = doc.xpath("//xmlns:ItemDef[@OID = '#{@oid}']")
       item = Form::Item::Question.new
-      item.note = ""
       item.label = item_node.first.attributes["Name"].value
+      impl_notes = item_node.xpath("xmlns:Alias[@Context='implementationNotes']")
+      item.note = impl_notes.empty? ? "" : impl_notes.first.attributes["Name"].value
+      compl_inst = item_node.xpath("xmlns:Alias[@Context='completionInstructions']")
+      item.completion = compl_inst.empty? ? "" : compl_inst.first.attributes["Name"].value
       dt_and_format = get_datatype_and_format(item_node)
       item.datatype = dt_and_format[:datatype]
       item.format = dt_and_format[:format]
@@ -141,11 +144,11 @@ class OdmXml::Forms < OdmXml
       if !cl_ref_node.empty?
         item.datatype = BaseDatatype::C_STRING
         cl_oid = cl_ref_node.first.attributes["CodeListOID"].value
-        cl_node = node.xpath("//CodeList[@OID = '#{cl_oid}']")
+        cl_node = node.xpath("//xmlns:CodeList[@OID = '#{cl_oid}']")
         add_cl(cl_node.first, item)
       end
       @items << item
-      mu_nodes = item_node.xpath("MeasurementUnitRef")
+      mu_nodes = item_node.xpath("xmlns:MeasurementUnitRef")
       if !mu_nodes.empty?
         mu_item = Form::Item::Question.new
         mu_item.note = ""
@@ -195,14 +198,15 @@ class OdmXml::Forms < OdmXml
 
     def add_question(node, question)
       question.question_text = "#{C_NO_Q_TEXT}"
-      q_text_node = node.xpath("Question/TranslatedText[@lang = 'en']")
+      q_node = node.xpath("xmlns:Question")
+      q_text_node = translated_text_node(q_node)
       return if question_normal(q_text_node, question)
       return if question_name(node, question)
     end
 
     def question_normal(node, question)
-      return false if node.empty?
-      question.question_text = parse_special(node.first.text.strip)
+      return false if node.nil?
+      question.question_text = parse_special(node.text.strip)
       return true
     end
 
@@ -214,7 +218,7 @@ class OdmXml::Forms < OdmXml
     end
 
     def add_cl(node, question)
-      cli_nodes = node.xpath("CodeListItem")
+      cli_nodes = node.xpath("xmlns:CodeListItem")
       return if cli_nodes.empty?
       return if alias_cl(node, question, cli_nodes)
       return if sas_format_cl(node, question, cli_nodes)
@@ -222,7 +226,7 @@ class OdmXml::Forms < OdmXml
     end
 
     def alias_cl(node, question, cli_nodes)
-      alias_nodes = node.xpath("Alias[@Context='nci:ExtCodeID']")
+      alias_nodes = node.xpath("xmlns:Alias[@Context='nci:ExtCodeID']")
       return false if alias_nodes.empty?
       return find_cl({identifier: alias_nodes.first.attributes["Name"].value}, question, cli_nodes)
     end
@@ -265,7 +269,7 @@ class OdmXml::Forms < OdmXml
     end
 
     def preferred_term_cli(result, cli_node, question, ordinal, info)
-      pt_nodes = cli_node.xpath("Decode/TranslatedText")
+      pt_nodes = cli_node.xpath("xmlns:Decode/xmlns:TranslatedText")
       return false if pt_nodes.empty?
       info[:preferred_term] = pt_nodes.first.text.strip
       cli = result[:tc].children.find { |x| x.preferred_term_objects.label.upcase == info[:preferred_term].upcase}
@@ -287,7 +291,8 @@ class OdmXml::Forms < OdmXml
       ordinal = Ordinal.new
       nodes.each do |mu_ref_node|
         oid = mu_ref_node.attributes["MeasurementUnitOID"].value
-        mu_node = doc.xpath("//MeasurementUnit[@OID = '#{oid}']/Symbol/TranslatedText[@lang = 'en']")
+        symbol = doc.xpath("//xmlns:MeasurementUnit[@OID = '#{oid}']/xmlns:Symbol")
+        mu_node = translated_text(symbol)
         result = get_tc({notation: parse_special(mu_node.first.text.strip)})
         if !result[:tc].nil?
           add_op_ref(result[:tc], question, ordinal)
@@ -314,6 +319,15 @@ class OdmXml::Forms < OdmXml
       parts = []
       params.each {|k,v| parts << "'#{k}=#{v}'"}
       return "[#{parts.join(", ")}]"
+    end
+
+    def translated_text_node(node)
+      return "" if node.empty?
+      node_en = node.first.xpath("xmlns:TranslatedText[@lang = 'en']")
+      node_non = node.first.xpath("xmlns:TranslatedText")
+      return node_en.first if node_en.any?
+      return node_non.first if node_non.any?
+      nil
     end
 
   end
