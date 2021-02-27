@@ -37,7 +37,7 @@ describe Import::Crf do
 
   after :each do
     Import.destroy_all
-    delete_all_public_test_files
+    #delete_all_public_test_files
   end
 
   it "returns the configuration" do
@@ -94,7 +94,7 @@ describe Import::Crf do
     expected = read_yaml_file(sub_dir, "import_expected_2.yaml")
     compare_import_hash(result, expected, output_file: true)
     filename = File.basename(result.output_file)
-  #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_2.ttl")
+  copy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_2.ttl")
     copy_file_from_public_files("test", filename, sub_dir)
     check_ttl_fix(filename, "import_expected_2.ttl", {last_change_date: true, creation_date: true})
     delete_data_file(sub_dir, filename)
@@ -113,6 +113,51 @@ describe Import::Crf do
     actual = read_yaml_file(sub_dir, File.basename(result.error_file))
     expect(actual).to hash_equal(expected)
     delete_data_file(sub_dir, File.basename(result.error_file))
+  end
+
+  it "CDISC aCRF Library - DM" do
+    simple_setup
+    full_path = test_file_path(sub_dir, "DM.xml")
+    @object.import({identifier: "DM", files: [full_path], file_type: "1", job: @job})
+    result = Import.find(@object.id)
+  #Xwrite_yaml_file(import_hash(result), sub_dir, "import_expected_4.yaml")
+    expected = read_yaml_file(sub_dir, "import_expected_4.yaml")
+    compare_import_hash(result, expected, output_file: true)
+    filename = File.basename(result.output_file)
+  #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_4.ttl")
+    copy_file_from_public_files("test", filename, sub_dir)
+    check_ttl_fix(filename, "import_expected_4.ttl", {last_change_date: true, creation_date: true})
+    delete_data_file(sub_dir, filename)
+  end
+
+  it "CDISC aCRF Library - VS" do
+    simple_setup
+    full_path = test_file_path(sub_dir, "VS.xml")
+    @object.import({identifier: "VS_HORIZONTAL", files: [full_path], file_type: "1", job: @job})
+    result = Import.find(@object.id)
+  #Xwrite_yaml_file(import_hash(result), sub_dir, "import_expected_5.yaml")
+    expected = read_yaml_file(sub_dir, "import_expected_5.yaml")
+    compare_import_hash(result, expected, output_file: true)
+    filename = File.basename(result.output_file)
+  #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_5.ttl")
+    copy_file_from_public_files("test", filename, sub_dir)
+    check_ttl_fix(filename, "import_expected_5.ttl", {last_change_date: true, creation_date: true})
+    delete_data_file(sub_dir, filename)
+  end
+
+  it "CDISC aCRF Library - PE" do
+    simple_setup
+    full_path = test_file_path(sub_dir, "PE.xml")
+    @object.import({identifier: "PE", files: [full_path], file_type: "1", job: @job})
+    result = Import.find(@object.id)
+  #Xwrite_yaml_file(import_hash(result), sub_dir, "import_expected_6.yaml")
+    expected = read_yaml_file(sub_dir, "import_expected_6.yaml")
+    compare_import_hash(result, expected, output_file: true)
+    filename = File.basename(result.output_file)
+  #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_6.ttl")
+    copy_file_from_public_files("test", filename, sub_dir)
+    check_ttl_fix(filename, "import_expected_6.ttl", {last_change_date: true, creation_date: true})
+    delete_data_file(sub_dir, filename)
   end
 
 end

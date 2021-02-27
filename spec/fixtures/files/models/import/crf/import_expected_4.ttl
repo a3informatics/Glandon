@@ -1,0 +1,162 @@
+@prefix : <http://www.acme-pharma.com/DM/V1#> .
+@prefix bf: <http://www.assero.co.uk/BusinessForm#> .
+@prefix isoC: <http://www.assero.co.uk/ISO11179Concepts#> .
+@prefix isoT: <http://www.assero.co.uk/ISO11179Types#> .
+@prefix isoR: <http://www.assero.co.uk/ISO11179Registration#> .
+@prefix isoI: <http://www.assero.co.uk/ISO11179Identification#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+<http://www.acme-pharma.com/DM/V1>
+	rdf:type owl:Ontology ;
+.
+:F
+	rdf:type bf:Form ;
+	isoC:label "Form DM - Demographics"^^xsd:string ;
+	isoT:hasState :F_RS ;
+	isoT:hasIdentifier :F_SI ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2021-02-27T16:55:19+01:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2021-02-27T16:55:19+01:00"^^xsd:dateTime ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:hasGroup :NG_1760cbb1-a370-41f6-a3b3-493c1d9c2238 ;
+.
+:F_RS
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
+.
+:F_SI
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "DM"^^xsd:string ;
+	isoI:versionLabel "0.1.0"^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
+	isoI:semanticVersion "0.1.0"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/NS#ACME> ;
+.
+:NG_1760cbb1-a370-41f6-a3b3-493c1d9c2238
+	rdf:type bf:NormalGroup ;
+	isoC:label "DM - Demographics"^^xsd:string ;
+	bf:ordinal "1"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:hasItem :Q_4646b47a-4ae4-4f21-b5e2-565815c8cded ;
+	bf:hasItem :Q_92bf8b74-ec78-4348-9a1b-154a6ccb9b9f ;
+	bf:hasItem :Q_b76597f7-972f-40f4-bed7-e134725cf296 ;
+	bf:hasItem :Q_36d01a04-97fa-4ae9-8f40-9f266a6cdc06 ;
+	bf:hasItem :Q_0cda6f24-e54d-4724-af79-916d41d9bd7f ;
+	bf:hasItem :Q_7948e614-fdba-484a-9dfc-c98ce368d4e7 ;
+	bf:hasItem :Q_c9f7f7de-d227-4e15-b171-06c4306b77f4 ;
+	bf:hasItem :Q_f9fe7128-4b63-482d-9a11-62250e24fe0c ;
+	bf:repeating "false"^^xsd:boolean ;
+.
+:Q_4646b47a-4ae4-4f21-b5e2-565815c8cded
+	rdf:type bf:Question ;
+	isoC:label "BRTHDAT"^^xsd:string ;
+	bf:ordinal "1"^^xsd:integer ;
+	bf:note "BRTHDAT is the collected field used for recording the full birth date. The sponsor may choose to database the date of birth as a single variable (BRTHDAT), or as separate variables for each component of the date/time (BRTHYY, BRTHMO, BRTHDD, BRTHTIM). The sponsor may choose a method based on database considerations, or for regulatory reasons. It is expected that what is collected for BRTHDAT (complete date or whichever components are collected) is reported in the SDTMIG variable BRTHDTC in the ISO 8601 format. If data are collected in a manner resulting in a reduced precision level, then the AGE (SDTM expected variable), if not collected on the CRF, should be derived using a documented algorithm that describes how the age was determined and/or imputed for those birth dates collected with reduced precision."^^xsd:string ;
+	bf:completion "Record the date of birth to the level of precision known (e.g., day/month/year, year, month/year, etc.) in this format (DD-MON-YYYY)."^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype "date"^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "[NO MAPPING]"^^xsd:string ;
+	bf:questionText "BRTHDAT"^^xsd:string ;
+.
+:Q_92bf8b74-ec78-4348-9a1b-154a6ccb9b9f
+	rdf:type bf:Question ;
+	isoC:label "AGE"^^xsd:string ;
+	bf:ordinal "2"^^xsd:integer ;
+	bf:note "If Age is collected, it should be collected as a number and, to be correctly interpreted, the age value should be associated to a variable for the Age Unit. It may be necessary to know when the age was collected as an age may need to be recalculated for analysis, such as deriving age at a reference start time (RFSTDTC for SDTM). BRTHDTC may not be available in all cases (due to subject privacy concerns).If AGE is collected, then it is recommended that the date of collection also be recorded, either separately or by association to the date of the visit."^^xsd:string ;
+	bf:completion "Record age of the subject."^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype "integer"^^xsd:string ;
+	bf:format "3"^^xsd:string ;
+	bf:mapping "[NO MAPPING]"^^xsd:string ;
+	bf:questionText "AGE"^^xsd:string ;
+.
+:Q_b76597f7-972f-40f4-bed7-e134725cf296
+	rdf:type bf:Question ;
+	isoC:label "AGEU"^^xsd:string ;
+	bf:ordinal "3"^^xsd:integer ;
+	bf:note "If Age is captured on the CRF, the age unit must be known to make the age value meaningful. The age unit might be collected on the CRF, in those cases where the protocol allows for any age group, or it may be preprinted on the CRF (typically with the unit of \"years\")."^^xsd:string ;
+	bf:completion "Record the appropriate age unit (e.g., YEARS, MONTHS, WEEKS, etc.)."^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype "float"^^xsd:string ;
+	bf:format "20.0"^^xsd:string ;
+	bf:mapping "[NO MAPPING]"^^xsd:string ;
+	bf:questionText "AGEU"^^xsd:string ;
+.
+:Q_36d01a04-97fa-4ae9-8f40-9f266a6cdc06
+	rdf:type bf:Question ;
+	isoC:label "AGEU units"^^xsd:string ;
+	bf:ordinal "4"^^xsd:integer ;
+	bf:note "* No entries found for parameters ['notation=Years'].\n"^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype "string"^^xsd:string ;
+	bf:format "20"^^xsd:string ;
+	bf:mapping "[NO MAPPING]"^^xsd:string ;
+	bf:questionText "AGEU units"^^xsd:string ;
+.
+:Q_0cda6f24-e54d-4724-af79-916d41d9bd7f
+	rdf:type bf:Question ;
+	isoC:label "SEX"^^xsd:string ;
+	bf:ordinal "5"^^xsd:integer ;
+	bf:note "Collect the subject's sex or gender, as reported by the investigator. This is a phenotypic assessment and not a genotypic assessment."^^xsd:string ;
+	bf:completion "Record the appropriate sex (e.g., F (female), M (male)."^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype "string"^^xsd:string ;
+	bf:format "15"^^xsd:string ;
+	bf:mapping "[NO MAPPING]"^^xsd:string ;
+	bf:questionText "SEX"^^xsd:string ;
+.
+:Q_7948e614-fdba-484a-9dfc-c98ce368d4e7
+	rdf:type bf:Question ;
+	isoC:label "ETHNIC"^^xsd:string ;
+	bf:ordinal "6"^^xsd:integer ;
+	bf:note "For use when values are being collected using the exact non-extensible ETHNIC codelist (C66790) values. Sponsors should refer to the FDA's Collection of Race and Ethnicity Data in Clinical Trials guidance regarding the collection of ethnicity (http://www.fda.gov/)."^^xsd:string ;
+	bf:completion "Study participants should self-report ethnicity, with ethnicity being asked about before race."^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype "string"^^xsd:string ;
+	bf:format "23"^^xsd:string ;
+	bf:mapping "[NO MAPPING]"^^xsd:string ;
+	bf:questionText "ETHNIC"^^xsd:string ;
+.
+:Q_c9f7f7de-d227-4e15-b171-06c4306b77f4
+	rdf:type bf:Question ;
+	isoC:label "RACE"^^xsd:string ;
+	bf:ordinal "7"^^xsd:integer ;
+	bf:note "Use RACE when the 5 designations for race used by the FDA are collected (American Indian or Alaska Native; Asian; Black or African American; Native Hawaiian or Other Pacific Islander ; White).* Sponsors should refer to the FDA Guidance. See SDTMIG v3.2 Section 5, DM Domain.   *For studies where data are collected outside the US, the recommended categories are the same except for Black instead of Black or African American. If multiple races are collected, an alternate sponsor-defined variable structure would be required. Sponsors may record multiple self-reported races for a subject by appending a suffix to denote multiple collected races (e.g. RACE1, RACE2) and populate RACE with the value MULTIPLE."^^xsd:string ;
+	bf:completion "Study participants should self-report race, with race being asked about after ethnicity."^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype "string"^^xsd:string ;
+	bf:format "25"^^xsd:string ;
+	bf:mapping "RACE"^^xsd:string ;
+	bf:questionText "RACE"^^xsd:string ;
+.
+:Q_f9fe7128-4b63-482d-9a11-62250e24fe0c
+	rdf:type bf:Question ;
+	isoC:label "RACEOTH"^^xsd:string ;
+	bf:ordinal "8"^^xsd:integer ;
+	bf:note "When creating the DM form, it is suggested that the 5 standard race categories be included. Sponsors may choose to include another value of Specify, Other with a free-text field for extending the list of values. The RACEOTH variable contains the free text added by the site. The value(s) added in the optional variable might or might not \"collapse up\" into one of the 5 categories specified by the FDA Guidance. See SDTMIG v3.2, Section 5 -DM Domain for examples of reporting this implementation."^^xsd:string ;
+	bf:completion "If none of the pre-printed values for RACE are applicable or if another, unprinted selection should be added to those pre-printed values, record the value in this free text field."^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype "string"^^xsd:string ;
+	bf:format "100"^^xsd:string ;
+	bf:mapping "[NO MAPPING]"^^xsd:string ;
+	bf:questionText "RACEOTH"^^xsd:string ;
+.

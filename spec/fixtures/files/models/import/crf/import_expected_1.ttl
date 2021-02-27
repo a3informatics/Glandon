@@ -20,8 +20,8 @@
 	isoT:hasIdentifier :F_SI ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
-	isoT:creationDate "2020-11-25T18:31:01+01:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-11-25T18:31:01+01:00"^^xsd:dateTime ;
+	isoT:creationDate "2021-02-27T16:52:57+01:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2021-02-27T16:52:57+01:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bf:note ""^^xsd:string ;
 	bf:completion ""^^xsd:string ;
@@ -71,7 +71,7 @@
 	bf:datatype "string"^^xsd:string ;
 	bf:format "3"^^xsd:string ;
 	bf:mapping "SITEID"^^xsd:string ;
-	bf:questionText "Site #"^^xsd:string ;
+	bf:questionText "Site Number"^^xsd:string ;
 .
 <http://www.acme-pharma.com/FAE/V1#Q_92bf8b74-ec78-4348-9a1b-154a6ccb9b9f>
 	rdf:type bf:Question ;
@@ -83,7 +83,7 @@
 	bf:datatype "string"^^xsd:string ;
 	bf:format "11"^^xsd:string ;
 	bf:mapping "USUBJID"^^xsd:string ;
-	bf:questionText "Subject ID #"^^xsd:string ;
+	bf:questionText "Subject ID"^^xsd:string ;
 .
 <http://www.acme-pharma.com/FAE/V1#Q_b76597f7-972f-40f4-bed7-e134725cf296>
 	rdf:type bf:Question ;
@@ -111,13 +111,13 @@
 	rdf:type bf:Question ;
 	isoC:label "Adverse Event Experienced"^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
-	bf:note "* No entries found for code list, parameters ['notation=NOYES'].\n* No entries found for code list, parameters ['notation=CLNOYES'].\n"^^xsd:string ;
+	bf:note ""^^xsd:string ;
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
-	bf:datatype "string"^^xsd:string ;
+	bf:datatype "integer"^^xsd:string ;
 	bf:format "1"^^xsd:string ;
 	bf:mapping "[NO MAPPING]"^^xsd:string ;
-	bf:questionText "Has the subject experienced any adverse events"^^xsd:string ;
+	bf:questionText "Adverse Event Experienced"^^xsd:string ;
 .
 <http://www.acme-pharma.com/FAE/V1#NG_7948e614-fdba-484a-9dfc-c98ce368d4e7>
 	rdf:type bf:NormalGroup ;
@@ -148,7 +148,7 @@
 	bf:datatype "integer"^^xsd:string ;
 	bf:format "3"^^xsd:string ;
 	bf:mapping "AESPID"^^xsd:string ;
-	bf:questionText "Event No."^^xsd:string ;
+	bf:questionText "Adverse Event Number"^^xsd:string ;
 .
 <http://www.acme-pharma.com/FAE/V1#Q_f9fe7128-4b63-482d-9a11-62250e24fe0c>
 	rdf:type bf:Question ;
@@ -160,7 +160,7 @@
 	bf:datatype "string"^^xsd:string ;
 	bf:format "255"^^xsd:string ;
 	bf:mapping "AETERM"^^xsd:string ;
-	bf:questionText "Adverse event"^^xsd:string ;
+	bf:questionText "Adverse Event Term"^^xsd:string ;
 .
 <http://www.acme-pharma.com/FAE/V1#Q_f03287d6-23ea-43bb-b3cf-f972761caabd>
 	rdf:type bf:Question ;
@@ -172,7 +172,7 @@
 	bf:datatype "date"^^xsd:string ;
 	bf:format ""^^xsd:string ;
 	bf:mapping "AESTDTC"^^xsd:string ;
-	bf:questionText "Start Date"^^xsd:string ;
+	bf:questionText "Adverse Event Start Date"^^xsd:string ;
 .
 <http://www.acme-pharma.com/FAE/V1#Q_4b981364-daf4-4c99-84f0-f7514bd092e7>
 	rdf:type bf:Question ;
@@ -184,77 +184,77 @@
 	bf:datatype "date"^^xsd:string ;
 	bf:format ""^^xsd:string ;
 	bf:mapping "AEENDTC"^^xsd:string ;
-	bf:questionText "Stop Date"^^xsd:string ;
+	bf:questionText "Adverse Event Stop Date"^^xsd:string ;
 .
 <http://www.acme-pharma.com/FAE/V1#Q_8cd62d3c-bce2-4d1b-bc7e-cc6544551abb>
 	rdf:type bf:Question ;
 	isoC:label "Adverse Event Continues"^^xsd:string ;
 	bf:ordinal "5"^^xsd:integer ;
-	bf:note "* No entries found for code list, parameters ['notation=NOYES'].\n* No entries found for code list, parameters ['notation=CLNOYES'].\n"^^xsd:string ;
+	bf:note ""^^xsd:string ;
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
-	bf:datatype "string"^^xsd:string ;
+	bf:datatype "integer"^^xsd:string ;
 	bf:format "1"^^xsd:string ;
 	bf:mapping "AEENRF"^^xsd:string ;
-	bf:questionText "Mark if event is still continuing"^^xsd:string ;
+	bf:questionText "Adverse Event Continues"^^xsd:string ;
 .
 <http://www.acme-pharma.com/FAE/V1#Q_830fa72c-a59e-475b-9b2c-eb4b5ace264f>
 	rdf:type bf:Question ;
 	isoC:label "Adverse Event Serious"^^xsd:string ;
 	bf:ordinal "6"^^xsd:integer ;
-	bf:note "* No entries found for code list, parameters ['notation=NOYES'].\n* No entries found for code list, parameters ['notation=CLNOYES'].\n"^^xsd:string ;
+	bf:note ""^^xsd:string ;
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
-	bf:datatype "string"^^xsd:string ;
+	bf:datatype "integer"^^xsd:string ;
 	bf:format "1"^^xsd:string ;
 	bf:mapping "AESER"^^xsd:string ;
-	bf:questionText "Was event serious"^^xsd:string ;
+	bf:questionText "Adverse Event Serious"^^xsd:string ;
 .
 <http://www.acme-pharma.com/FAE/V1#Q_242c3d94-f47c-4477-9f51-afa4c18fa949>
 	rdf:type bf:Question ;
 	isoC:label "Adverse Event Severity"^^xsd:string ;
 	bf:ordinal "7"^^xsd:integer ;
-	bf:note "* No entries found in code list 'C66769' for item with submission value: '1' or preferred term: 'Mild'.\n* No entries found in code list 'C66769' for item with submission value: '2' or preferred term: 'Moderate'.\n* No entries found in code list 'C66769' for item with submission value: '3' or preferred term: 'Severe'.\n"^^xsd:string ;
+	bf:note ""^^xsd:string ;
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
-	bf:datatype "string"^^xsd:string ;
+	bf:datatype "integer"^^xsd:string ;
 	bf:format "1"^^xsd:string ;
 	bf:mapping "AESEV"^^xsd:string ;
-	bf:questionText "Severity"^^xsd:string ;
+	bf:questionText "Adverse Event Severity"^^xsd:string ;
 .
 <http://www.acme-pharma.com/FAE/V1#Q_159a7d7f-1ef5-40f7-808b-d5d66ac7a06e>
 	rdf:type bf:Question ;
 	isoC:label "Adverse Event Related"^^xsd:string ;
 	bf:ordinal "8"^^xsd:integer ;
-	bf:note "* No entries found for code list, parameters ['notation=NOYES'].\n* No entries found for code list, parameters ['notation=CLNOYES'].\n"^^xsd:string ;
+	bf:note ""^^xsd:string ;
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
-	bf:datatype "string"^^xsd:string ;
+	bf:datatype "integer"^^xsd:string ;
 	bf:format "1"^^xsd:string ;
 	bf:mapping "AEREL"^^xsd:string ;
-	bf:questionText "Is there a reasonable possibility that the AE may have been caused by the study drug"^^xsd:string ;
+	bf:questionText "Adverse Event Related"^^xsd:string ;
 .
 <http://www.acme-pharma.com/FAE/V1#Q_53dd87c3-1c29-4240-ba98-72341896b348>
 	rdf:type bf:Question ;
 	isoC:label "Adverse Event Action Taken"^^xsd:string ;
 	bf:ordinal "9"^^xsd:integer ;
-	bf:note "* No entries found for code list, parameters ['notation=AEACTION'].\n* No entries found for code list, parameters ['notation=CLAEACTION'].\n"^^xsd:string ;
+	bf:note ""^^xsd:string ;
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
-	bf:datatype "string"^^xsd:string ;
+	bf:datatype "integer"^^xsd:string ;
 	bf:format "1"^^xsd:string ;
 	bf:mapping "AEACN"^^xsd:string ;
-	bf:questionText "Action taken with study drug"^^xsd:string ;
+	bf:questionText "Adverse Event Action Taken"^^xsd:string ;
 .
 <http://www.acme-pharma.com/FAE/V1#Q_9512d1d4-7f6c-4b3c-a330-ff3081f8de24>
 	rdf:type bf:Question ;
 	isoC:label "Adverse Event Subject Outcome"^^xsd:string ;
 	bf:ordinal "10"^^xsd:integer ;
-	bf:note "* No entries found for code list, parameters ['notation=AEOUT'].\n* No entries found for code list, parameters ['notation=CLAEOUTCOME'].\n"^^xsd:string ;
+	bf:note ""^^xsd:string ;
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
-	bf:datatype "string"^^xsd:string ;
+	bf:datatype "integer"^^xsd:string ;
 	bf:format "1"^^xsd:string ;
 	bf:mapping "AEOUT"^^xsd:string ;
-	bf:questionText "Subject outcome"^^xsd:string ;
+	bf:questionText "Adverse Event Subject Outcome"^^xsd:string ;
 .
