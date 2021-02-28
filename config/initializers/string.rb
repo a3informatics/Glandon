@@ -26,4 +26,12 @@ class String
     self.gsub(/(_)/, ' ').upcase
   end
 
+  # To Alphanumeric
+  #
+  # @param text [String] the text to be cleaned
+  # @return [String] the cleaned text
+  def to_alphanumeric
+    self.dup.gsub(/[^A-Z0-9a-z]/i, '').upcase.strip
+  end
+  
 end
