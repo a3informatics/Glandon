@@ -27,17 +27,6 @@ describe OdmXml do
     expect(object.errors.full_messages.to_sentence).to eq("")    
 	end
 
-  it "clean identifier" do
-    result = OdmXml.clean_identifier("ABCdef")
-    expect(result).to eq("ABCDEF")    
-    result = OdmXml.clean_identifier("ABC def")
-    expect(result).to eq("ABCDEF")    
-    result = OdmXml.clean_identifier("ABC def  % ")
-    expect(result).to eq("ABCDEF")    
-    result = OdmXml.clean_identifier("ABC def 123 % ")
-    expect(result).to eq("ABCDEF123")    
-  end
-
   it "logs exception" do
     e = Exception.new("Exception")
     e.set_backtrace(["A", "b"])

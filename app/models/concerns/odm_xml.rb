@@ -21,14 +21,6 @@ class OdmXml
     exception(C_CLASS_NAME, __method__.to_s, e, "Exception raised opening ODM XML file, filename=#{@filename}.")
   end
 
-  # Clean Identifier
-  #
-  # @param [String] identifier the identifier to be cleaned
-  # @return [Stirng] the cleaned identifier, upper case, no spaces, alpha numeric
-  def self.clean_identifier(identifier)
-    identifier.gsub(/[^A-Z0-9a-z]/i, '').upcase.strip
-  end
-
   # Exception. Log an exception
   #
   # @param [String] klass_name the class name
