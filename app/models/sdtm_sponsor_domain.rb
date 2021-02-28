@@ -3,6 +3,8 @@ class SdtmSponsorDomain < SdtmIgDomain
   configure rdf_type: "http://www.assero.co.uk/Tabulation#SdtmSponsorDomain",
             uri_suffix: "SPD"
 
+  object_property_class :includes_column, model_class: "SdtmSponsorDomain::VariableSSD"
+
   include Tabulation::Ordinal
 
   # Clone. Clone the Sponsor SDTM Domain
@@ -26,7 +28,7 @@ class SdtmSponsorDomain < SdtmIgDomain
     object.ordinal = 1
     object.set_initial(params[:identifier])
     object.structure = ig_domain.structure
-    object.based_on_class = ig_domain.based_on_class.uri
+    object.based_on_class = ig_domain.based_on_class
     ig_domain.includes_column.sort_by {|x| x.ordinal}.each do |domain_variable|
       sponsor_variable_name = SdtmVariableName.new(domain_variable.name, ig_domain.prefix, domain_variable.based_on_class_variable.prefixed).with_prefix(object.prefix)
       sponsor_variable = SdtmSponsorDomain::VariableSSD.new(label: domain_variable.label, name: sponsor_variable_name, ordinal: domain_variable.ordinal)

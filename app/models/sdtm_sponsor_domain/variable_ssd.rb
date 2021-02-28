@@ -9,7 +9,7 @@ class SdtmSponsorDomain::VariableSSD < SdtmIgDomain::Variable
   data_property :notes
   data_property :method
   object_property :typed_as, cardinality: :one, model_class: "IsoConceptSystem::Node", delete_exclude: true
-  object_property :based_on_ig_variable, cardinality: :one, model_class: "SdtmIgDomain::Variable", delete_exclude: true
+  object_property :based_on_ig_variable, cardinality: :one, model_class: "SdtmIgDomain::Variable", delete_exclude: true, read_exclude: true
   object_property :classified_as, cardinality: :one, model_class: "IsoConceptSystem::Node", delete_exclude: true
 
   validates_with Validator::Field, attribute: :name, method: :valid_sdtm_variable_name?
