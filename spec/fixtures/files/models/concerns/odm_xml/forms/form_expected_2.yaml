@@ -1,234 +1,237 @@
 ---
-:type: http://www.assero.co.uk/BusinessForm#Form
-:id: ''
-:namespace: ''
+:id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vRl9BRS9WMSNG
+:uri: http://www.acme-pharma.com/F_AE/V1#F
+:rdf_type: http://www.assero.co.uk/BusinessForm#Form
 :label: Adverse Event Form (ACRO)
-:extension_properties: []
-:origin: ''
-:change_description: ''
-:creation_date: '2019-09-21T11:18:14+02:00'
-:last_changed_date: '2019-09-21T11:18:14+02:00'
-:explanatory_comment: ''
-:registration_state:
-  :namespace: http://www.assero.co.uk/MDRItems
-  :id: ''
-  :registration_authority:
-    :id: 
-    :uri: {}
-    :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
-    :organization_identifier: "<Not Set>"
-    :international_code_designator: DUNS
-    :owner: false
-    :ra_namespace: 
-  :registration_status: Not_Set
+:has_state:
+  :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vRl9BRS9WMSNGX1JT
+  :uri: http://www.acme-pharma.com/F_AE/V1#F_RS
+  :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationState
+  :registration_status: Incomplete
   :administrative_note: ''
   :effective_date: '2016-01-01T00:00:00+00:00'
   :until_date: '2016-01-01T00:00:00+00:00'
-  :current: false
   :unresolved_issue: ''
   :administrative_status: ''
-  :previous_state: Not_Set
-:scoped_identifier:
-  :id: ''
+  :previous_state: Incomplete
+  :multiple_edit: false
+  :by_authority:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUkEjRFVOUzEyMzQ1Njc4OQ==
+    :uri: http://www.assero.co.uk/RA#DUNS123456789
+    :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
+    :organization_identifier: '123456789'
+    :international_code_designator: DUNS
+    :owner: true
+    :ra_namespace:
+      :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQUNNRQ==
+      :uri: http://www.assero.co.uk/NS#ACME
+      :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+      :short_name: ACME
+      :name: ACME Pharma
+      :authority: www.acme-pharma.com
+:has_identifier:
+  :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vRl9BRS9WMSNGX1NJ
+  :uri: http://www.acme-pharma.com/F_AE/V1#F_SI
+  :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
   :identifier: F AE
   :version_label: ''
-  :version: 0
-  :semantic_version: 0.0.0
-  :namespace:
-    :id: 
-    :uri: {}
+  :version: 1
+  :semantic_version: 0.1.0
+  :has_scope:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQUNNRQ==
+    :uri: http://www.assero.co.uk/NS#ACME
     :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
-    :short_name: ''
-    :name: ''
-    :authority: ''
-:completion: ''
+    :short_name: ACME
+    :name: ACME Pharma
+    :authority: www.acme-pharma.com
+:has_previous_version: 
+:origin: ''
+:change_description: ''
+:creation_date: '2016-01-01T00:00:00+00:00'
+:last_change_date: '2021-02-28T14:01:49+01:00'
+:explanatory_comment: ''
 :note: ''
-:children:
-- :type: http://www.assero.co.uk/BusinessForm#NormalGroup
-  :id: ''
-  :namespace: ''
+:completion: ''
+:has_group:
+- :id: 
+  :uri: {}
+  :rdf_type: http://www.assero.co.uk/BusinessForm#NormalGroup
   :label: Common
-  :extension_properties: []
   :ordinal: 1
-  :optional: false
-  :completion: ''
   :note: ''
-  :children:
-  - :type: http://www.assero.co.uk/BusinessForm#Question
-    :id: ''
-    :namespace: ''
+  :completion: ''
+  :optional: false
+  :has_item:
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/BusinessForm#Question
     :label: Site Number
-    :extension_properties: []
     :ordinal: 1
     :note: ''
     :completion: ''
     :optional: false
     :datatype: string
     :format: '3'
-    :question_text: 'Site #'
     :mapping: SITEID
-    :children: []
-  - :type: http://www.assero.co.uk/BusinessForm#Question
-    :id: ''
-    :namespace: ''
+    :question_text: 'Site #'
+    :has_coded_value: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/BusinessForm#Question
     :label: Subject ID
-    :extension_properties: []
     :ordinal: 2
     :note: ''
     :completion: ''
     :optional: false
     :datatype: string
     :format: '11'
-    :question_text: 'Subject ID #'
     :mapping: USUBJID
-    :children: []
-  - :type: http://www.assero.co.uk/BusinessForm#Question
-    :id: ''
-    :namespace: ''
+    :question_text: 'Subject ID #'
+    :has_coded_value: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/BusinessForm#Question
     :label: Visit Date
-    :extension_properties: []
     :ordinal: 3
     :note: ''
     :completion: ''
     :optional: false
     :datatype: date
     :format: ''
-    :question_text: Visit Date
     :mapping: RFSTDTC
-    :children: []
+    :question_text: Visit Date
+    :has_coded_value: []
   :repeating: false
-  :bc_ref: {}
-- :type: http://www.assero.co.uk/BusinessForm#NormalGroup
-  :id: ''
-  :namespace: ''
+  :has_sub_group: []
+  :has_common: []
+- :id: 
+  :uri: {}
+  :rdf_type: http://www.assero.co.uk/BusinessForm#NormalGroup
   :label: Adverse Events Occurred
-  :extension_properties: []
   :ordinal: 2
-  :optional: false
-  :completion: ''
   :note: ''
-  :children:
-  - :type: http://www.assero.co.uk/BusinessForm#Question
-    :id: ''
-    :namespace: ''
+  :completion: ''
+  :optional: false
+  :has_item:
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/BusinessForm#Question
     :label: Adverse Event Experienced
-    :extension_properties: []
     :ordinal: 1
     :note: |
       * No entries found for code list, parameters ['notation=NOYES'].
       * No entries found for code list, parameters ['notation=CLNOYES'].
+      * No entries found for code list, parameters ['identifier='].
+      * No entries found for code list, parameters ['label=No Yes'].
     :completion: ''
     :optional: false
     :datatype: string
     :format: '1'
-    :question_text: Has the subject experienced any adverse events
     :mapping: "[NO MAPPING]"
-    :children: []
+    :question_text: Has the subject experienced any adverse events
+    :has_coded_value: []
   :repeating: false
-  :bc_ref: {}
-- :type: http://www.assero.co.uk/BusinessForm#NormalGroup
-  :id: ''
-  :namespace: ''
+  :has_sub_group: []
+  :has_common: []
+- :id: 
+  :uri: {}
+  :rdf_type: http://www.assero.co.uk/BusinessForm#NormalGroup
   :label: Adverse Event
-  :extension_properties: []
   :ordinal: 3
-  :optional: false
-  :completion: ''
   :note: ''
-  :children:
-  - :type: http://www.assero.co.uk/BusinessForm#Question
-    :id: ''
-    :namespace: ''
+  :completion: ''
+  :optional: false
+  :has_item:
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/BusinessForm#Question
     :label: Adverse Event Number
-    :extension_properties: []
     :ordinal: 1
     :note: ''
     :completion: ''
     :optional: false
     :datatype: integer
     :format: '3'
-    :question_text: Event No.
     :mapping: AESPID
-    :children: []
-  - :type: http://www.assero.co.uk/BusinessForm#Question
-    :id: ''
-    :namespace: ''
+    :question_text: Event No.
+    :has_coded_value: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/BusinessForm#Question
     :label: Adverse Event Term
-    :extension_properties: []
     :ordinal: 2
     :note: ''
     :completion: ''
     :optional: false
     :datatype: string
     :format: '255'
-    :question_text: Adverse event
     :mapping: AETERM
-    :children: []
-  - :type: http://www.assero.co.uk/BusinessForm#Question
-    :id: ''
-    :namespace: ''
+    :question_text: Adverse event
+    :has_coded_value: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/BusinessForm#Question
     :label: Adverse Event Start Date
-    :extension_properties: []
     :ordinal: 3
     :note: ''
     :completion: ''
     :optional: false
     :datatype: date
     :format: ''
-    :question_text: Start Date
     :mapping: AESTDTC
-    :children: []
-  - :type: http://www.assero.co.uk/BusinessForm#Question
-    :id: ''
-    :namespace: ''
+    :question_text: Start Date
+    :has_coded_value: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/BusinessForm#Question
     :label: Adverse Event Stop Date
-    :extension_properties: []
     :ordinal: 4
     :note: ''
     :completion: ''
     :optional: false
     :datatype: date
     :format: ''
-    :question_text: Stop Date
     :mapping: AEENDTC
-    :children: []
-  - :type: http://www.assero.co.uk/BusinessForm#Question
-    :id: ''
-    :namespace: ''
+    :question_text: Stop Date
+    :has_coded_value: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/BusinessForm#Question
     :label: Adverse Event Continues
-    :extension_properties: []
     :ordinal: 5
     :note: |
       * No entries found for code list, parameters ['notation=NOYES'].
       * No entries found for code list, parameters ['notation=CLNOYES'].
+      * No entries found for code list, parameters ['identifier='].
+      * No entries found for code list, parameters ['label=No Yes'].
     :completion: ''
     :optional: false
     :datatype: string
     :format: '1'
-    :question_text: Mark if event is still continuing
     :mapping: AEENRF
-    :children: []
-  - :type: http://www.assero.co.uk/BusinessForm#Question
-    :id: ''
-    :namespace: ''
+    :question_text: Mark if event is still continuing
+    :has_coded_value: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/BusinessForm#Question
     :label: Adverse Event Serious
-    :extension_properties: []
     :ordinal: 6
     :note: |
       * No entries found for code list, parameters ['notation=NOYES'].
       * No entries found for code list, parameters ['notation=CLNOYES'].
+      * No entries found for code list, parameters ['identifier='].
+      * No entries found for code list, parameters ['label=No Yes'].
     :completion: ''
     :optional: false
     :datatype: string
     :format: '1'
-    :question_text: Was event serious
     :mapping: AESER
-    :children: []
-  - :type: http://www.assero.co.uk/BusinessForm#Question
-    :id: ''
-    :namespace: ''
+    :question_text: Was event serious
+    :has_coded_value: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/BusinessForm#Question
     :label: Adverse Event Severity
-    :extension_properties: []
     :ordinal: 7
     :note: |
       * No entries found in code list 'C66769' for item with submission value: '1' or preferred term: 'Mild'.
@@ -238,57 +241,61 @@
     :optional: false
     :datatype: string
     :format: '1'
-    :question_text: Severity
     :mapping: AESEV
-    :children: []
-  - :type: http://www.assero.co.uk/BusinessForm#Question
-    :id: ''
-    :namespace: ''
+    :question_text: Severity
+    :has_coded_value: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/BusinessForm#Question
     :label: Adverse Event Related
-    :extension_properties: []
     :ordinal: 8
     :note: |
       * No entries found for code list, parameters ['notation=NOYES'].
       * No entries found for code list, parameters ['notation=CLNOYES'].
+      * No entries found for code list, parameters ['identifier='].
+      * No entries found for code list, parameters ['label=No Yes'].
     :completion: ''
     :optional: false
     :datatype: string
     :format: '1'
+    :mapping: AEREL
     :question_text: Is there a reasonable possibility that the AE may have been caused
       by the study drug
-    :mapping: AEREL
-    :children: []
-  - :type: http://www.assero.co.uk/BusinessForm#Question
-    :id: ''
-    :namespace: ''
+    :has_coded_value: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/BusinessForm#Question
     :label: Adverse Event Action Taken
-    :extension_properties: []
     :ordinal: 9
     :note: |
       * No entries found for code list, parameters ['notation=AEACTION'].
       * No entries found for code list, parameters ['notation=CLAEACTION'].
+      * No entries found for code list, parameters ['identifier='].
+      * No entries found for code list, parameters ['label=Adverse Event Action Taken'].
     :completion: ''
     :optional: false
     :datatype: string
     :format: '1'
-    :question_text: Action taken with study drug
     :mapping: AEACN
-    :children: []
-  - :type: http://www.assero.co.uk/BusinessForm#Question
-    :id: ''
-    :namespace: ''
+    :question_text: Action taken with study drug
+    :has_coded_value: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/BusinessForm#Question
     :label: Adverse Event Subject Outcome
-    :extension_properties: []
     :ordinal: 10
     :note: |
       * No entries found for code list, parameters ['notation=AEOUT'].
       * No entries found for code list, parameters ['notation=CLAEOUTCOME'].
+      * No entries found for code list, parameters ['identifier='].
+      * No entries found for code list, parameters ['label=Adverse Event Action Taken'].
     :completion: ''
     :optional: false
     :datatype: string
     :format: '1'
-    :question_text: Subject outcome
     :mapping: AEOUT
-    :children: []
+    :question_text: Subject outcome
+    :has_coded_value: []
   :repeating: false
-  :bc_ref: {}
+  :has_sub_group: []
+  :has_common: []

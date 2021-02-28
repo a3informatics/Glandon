@@ -4,6 +4,7 @@
 @prefix isoT: <http://www.assero.co.uk/ISO11179Types#> .
 @prefix isoR: <http://www.assero.co.uk/ISO11179Registration#> .
 @prefix isoI: <http://www.assero.co.uk/ISO11179Identification#> .
+@prefix bo: <http://www.assero.co.uk/BusinessOperational#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
@@ -20,8 +21,8 @@
 	isoT:hasIdentifier :F_SI ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
-	isoT:creationDate "2021-02-27T17:07:05+01:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2021-02-27T17:07:05+01:00"^^xsd:dateTime ;
+	isoT:creationDate "2021-02-28T13:24:45+01:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2021-02-28T13:24:45+01:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bf:note ""^^xsd:string ;
 	bf:completion ""^^xsd:string ;
@@ -62,13 +63,31 @@
 	rdf:type bf:Question ;
 	isoC:label "PEPERF"^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
-	bf:note "This general prompt question is used as a data management tool to verify that missing results are confirmed missing. Used to ask if the physical exam was performed at the overall subject level at the specified time point. If this field is used then the result should only be mapped to PESTAT if the overall examination, at the subject level, was not performed. If the overall examination was performed, then the value of PESTAT would be null for each examined body systems and \"NOT DONE\" for any body systems not examined (see PERES)."^^xsd:string ;
+	bf:note "This general prompt question is used as a data management tool to verify that missing results are confirmed missing. Used to ask if the physical exam was performed at the overall subject level at the specified time point. If this field is used then the result should only be mapped to PESTAT if the overall examination, at the subject level, was not performed. If the overall examination was performed, then the value of PESTAT would be null for each examined body systems and \"NOT DONE\" for any body systems not examined (see PERES).* No entries found for code list, parameters ['notation=CLC66742NYNY'].\n"^^xsd:string ;
 	bf:completion "If physical examination was performed as planned then select Yes, otherwise, select No."^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "3"^^xsd:string ;
 	bf:mapping "[NO MAPPING]"^^xsd:string ;
-	bf:questionText "PEPERF"^^xsd:string ;
+	bf:questionText "Was the physical examination performed?"^^xsd:string ;
+	bf:hasCodedValue :Q_4646b47a-4ae4-4f21-b5e2-565815c8cded_R1 ;
+	bf:hasCodedValue :Q_4646b47a-4ae4-4f21-b5e2-565815c8cded_R2 ;
+.
+:Q_4646b47a-4ae4-4f21-b5e2-565815c8cded_R1
+	rdf:type bo:Reference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+.
+:Q_4646b47a-4ae4-4f21-b5e2-565815c8cded_R2
+	rdf:type bo:Reference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
 .
 :Q_92bf8b74-ec78-4348-9a1b-154a6ccb9b9f
 	rdf:type bf:Question ;
@@ -80,5 +99,5 @@
 	bf:datatype "date"^^xsd:string ;
 	bf:format ""^^xsd:string ;
 	bf:mapping "[NO MAPPING]"^^xsd:string ;
-	bf:questionText "PEDAT"^^xsd:string ;
+	bf:questionText "What was the date of the physical examination?"^^xsd:string ;
 .

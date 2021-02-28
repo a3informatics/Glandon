@@ -1,137 +1,142 @@
 ---
-:type: http://www.assero.co.uk/BusinessForm#Form
-:id: ''
-:namespace: ''
+:id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vSUUvVjEjRg==
+:uri: http://www.acme-pharma.com/IE/V1#F
+:rdf_type: http://www.assero.co.uk/BusinessForm#Form
 :label: Eligibility
-:extension_properties: []
-:origin: ''
-:change_description: ''
-:creation_date: '2019-09-21T11:18:23+02:00'
-:last_changed_date: '2019-09-21T11:18:23+02:00'
-:explanatory_comment: ''
-:registration_state:
-  :namespace: http://www.assero.co.uk/MDRItems
-  :id: ''
-  :registration_authority:
-    :id: 
-    :uri: {}
-    :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
-    :organization_identifier: "<Not Set>"
-    :international_code_designator: DUNS
-    :owner: false
-    :ra_namespace: 
-  :registration_status: Not_Set
+:has_state:
+  :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vSUUvVjEjRl9SUw==
+  :uri: http://www.acme-pharma.com/IE/V1#F_RS
+  :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationState
+  :registration_status: Incomplete
   :administrative_note: ''
   :effective_date: '2016-01-01T00:00:00+00:00'
   :until_date: '2016-01-01T00:00:00+00:00'
-  :current: false
   :unresolved_issue: ''
   :administrative_status: ''
-  :previous_state: Not_Set
-:scoped_identifier:
-  :id: ''
+  :previous_state: Incomplete
+  :multiple_edit: false
+  :by_authority:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUkEjRFVOUzEyMzQ1Njc4OQ==
+    :uri: http://www.assero.co.uk/RA#DUNS123456789
+    :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
+    :organization_identifier: '123456789'
+    :international_code_designator: DUNS
+    :owner: true
+    :ra_namespace:
+      :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQUNNRQ==
+      :uri: http://www.assero.co.uk/NS#ACME
+      :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+      :short_name: ACME
+      :name: ACME Pharma
+      :authority: www.acme-pharma.com
+:has_identifier:
+  :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vSUUvVjEjRl9TSQ==
+  :uri: http://www.acme-pharma.com/IE/V1#F_SI
+  :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
   :identifier: IE
   :version_label: ''
-  :version: 0
-  :semantic_version: 0.0.0
-  :namespace:
-    :id: 
-    :uri: {}
+  :version: 1
+  :semantic_version: 0.1.0
+  :has_scope:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQUNNRQ==
+    :uri: http://www.assero.co.uk/NS#ACME
     :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
-    :short_name: ''
-    :name: ''
-    :authority: ''
-:completion: ''
+    :short_name: ACME
+    :name: ACME Pharma
+    :authority: www.acme-pharma.com
+:has_previous_version: 
+:origin: ''
+:change_description: ''
+:creation_date: '2016-01-01T00:00:00+00:00'
+:last_change_date: '2021-02-28T14:01:58+01:00'
+:explanatory_comment: ''
 :note: ''
-:children:
-- :type: http://www.assero.co.uk/BusinessForm#NormalGroup
-  :id: ''
-  :namespace: ''
+:completion: ''
+:has_group:
+- :id: 
+  :uri: {}
+  :rdf_type: http://www.assero.co.uk/BusinessForm#NormalGroup
   :label: IEG1
-  :extension_properties: []
   :ordinal: 1
-  :optional: false
-  :completion: ''
   :note: ''
-  :children:
-  - :type: http://www.assero.co.uk/BusinessForm#Question
-    :id: ''
-    :namespace: ''
+  :completion: ''
+  :optional: false
+  :has_item:
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/BusinessForm#Question
     :label: IE1
-    :extension_properties: []
     :ordinal: 1
     :note: ''
     :completion: ''
     :optional: false
     :datatype: string
     :format: '100'
+    :mapping: "[NO MAPPING]"
     :question_text: Is the subject meeting all the inclusion criteria and none of
       the exclusion criteria assessed at this visit?
-    :mapping: "[NO MAPPING]"
-    :children: []
-  - :type: http://www.assero.co.uk/BusinessForm#Question
-    :id: ''
-    :namespace: ''
+    :has_coded_value: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/BusinessForm#Question
     :label: IE2
-    :extension_properties: []
     :ordinal: 2
     :note: ''
     :completion: ''
     :optional: false
     :datatype: string
     :format: '100'
+    :mapping: "[NO MAPPING]"
     :question_text: Is the subject meeting all the inclusion criteria and none of
       the exclusion criteria assessed at this visit and at the previous visit?
-    :mapping: "[NO MAPPING]"
-    :children: []
-  - :type: http://www.assero.co.uk/BusinessForm#Question
-    :id: ''
-    :namespace: ''
+    :has_coded_value: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/BusinessForm#Question
     :label: IEORRES
-    :extension_properties: []
     :ordinal: 3
     :note: |
       * No entries found for code list, parameters ['notation=YESNO'].
       * No entries found for code list, parameters ['notation=CLFMTYESNO'].
+      * No entries found for code list, parameters ['identifier='].
+      * No entries found for code list, parameters ['label=CL_FMT_YESNO'].
     :completion: ''
     :optional: false
     :datatype: string
     :format: '100'
-    :question_text: ''
     :mapping: "[NO MAPPING]"
-    :children: []
-  - :type: http://www.assero.co.uk/BusinessForm#Question
-    :id: ''
-    :namespace: ''
+    :question_text: ''
+    :has_coded_value: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/BusinessForm#Question
     :label: IE3
-    :extension_properties: []
     :ordinal: 4
     :note: ''
     :completion: ''
     :optional: false
     :datatype: string
     :format: '100'
+    :mapping: "[NO MAPPING]"
     :question_text: Please-removed-discontinue the subject and complete the-removed-End
       of Study form.
-    :mapping: "[NO MAPPING]"
-    :children: []
+    :has_coded_value: []
   :repeating: false
-  :bc_ref: {}
-- :type: http://www.assero.co.uk/BusinessForm#NormalGroup
-  :id: ''
-  :namespace: ''
+  :has_sub_group: []
+  :has_common: []
+- :id: 
+  :uri: {}
+  :rdf_type: http://www.assero.co.uk/BusinessForm#NormalGroup
   :label: IEG5
-  :extension_properties: []
   :ordinal: 2
-  :optional: false
-  :completion: ''
   :note: ''
-  :children:
-  - :type: http://www.assero.co.uk/BusinessForm#Question
-    :id: ''
-    :namespace: ''
+  :completion: ''
+  :optional: false
+  :has_item:
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/BusinessForm#Question
     :label: IECAT
-    :extension_properties: []
     :ordinal: 1
     :note: |
       * No entries found in code list 'C66797' for item with submission value: '1' or preferred term: 'Inclusion'.
@@ -141,32 +146,32 @@
     :optional: false
     :datatype: string
     :format: '100'
-    :question_text: Criteria not met
     :mapping: "[NO MAPPING]"
-    :children: []
+    :question_text: Criteria not met
+    :has_coded_value: []
   :repeating: false
-  :bc_ref: {}
-- :type: http://www.assero.co.uk/BusinessForm#NormalGroup
-  :id: ''
-  :namespace: ''
+  :has_sub_group: []
+  :has_common: []
+- :id: 
+  :uri: {}
+  :rdf_type: http://www.assero.co.uk/BusinessForm#NormalGroup
   :label: IEG3
-  :extension_properties: []
   :ordinal: 3
-  :optional: false
-  :completion: ''
   :note: ''
-  :children:
-  - :type: http://www.assero.co.uk/BusinessForm#Question
-    :id: ''
-    :namespace: ''
+  :completion: ''
+  :optional: false
+  :has_item:
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/BusinessForm#Question
     :label: IE5
-    :extension_properties: []
     :ordinal: 1
     :note: ''
     :completion: ''
     :optional: false
     :datatype: string
     :format: '100'
+    :mapping: "[NO MAPPING]"
     :question_text: 'I1. Written informed consent obtained from parents / caregivers
       before any trial related procedures are performed.I2. Male or female of any
       race / ethnicity aged -removed- 4 to -removed- 17 years on the day informed
@@ -199,19 +204,18 @@
       at screening.I12. Positive skin prick test (SPT) (-removed- 3 mm) to D. pteronyssinus
       and/or D. farinae at screening.I13. Subject willing and able to comply with
       trial protocol.'
-    :mapping: "[NO MAPPING]"
-    :children: []
-  - :type: http://www.assero.co.uk/BusinessForm#Question
-    :id: ''
-    :namespace: ''
+    :has_coded_value: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/BusinessForm#Question
     :label: IE5_Copy1
-    :extension_properties: []
     :ordinal: 2
     :note: ''
     :completion: ''
     :optional: false
     :datatype: string
     :format: '100'
+    :mapping: "[NO MAPPING]"
     :question_text: 'I1. Written informed consent obtained from parents / caregivers
       before any trial related procedures are performed. Consent or assent from the
       subject must be obtained according to national requirements.I2. Male or female
@@ -245,47 +249,47 @@
       at screening.I12. Positive skin prick test (SPT) (-removed- 3 mm) to D. pteronyssinus
       and/or D. farinae at screening.I13. Subject willing and able to comply with
       trial protocol.'
-    :mapping: "[NO MAPPING]"
-    :children: []
-  - :type: http://www.assero.co.uk/BusinessForm#Question
-    :id: ''
-    :namespace: ''
+    :has_coded_value: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/BusinessForm#Question
     :label: IEINTESTCD
-    :extension_properties: []
     :ordinal: 3
     :note: |
       * No entries found for code list, parameters ['notation=INCL'].
       * No entries found for code list, parameters ['notation=CLIEINTESTCD'].
+      * No entries found for code list, parameters ['identifier='].
+      * No entries found for code list, parameters ['label=CL_IEINTESTCD'].
     :completion: ''
     :optional: false
     :datatype: string
     :format: '100'
-    :question_text: Specify the inclusion criteria not met(Please check all that apply)
     :mapping: "[NO MAPPING]"
-    :children: []
+    :question_text: Specify the inclusion criteria not met(Please check all that apply)
+    :has_coded_value: []
   :repeating: false
-  :bc_ref: {}
-- :type: http://www.assero.co.uk/BusinessForm#NormalGroup
-  :id: ''
-  :namespace: ''
+  :has_sub_group: []
+  :has_common: []
+- :id: 
+  :uri: {}
+  :rdf_type: http://www.assero.co.uk/BusinessForm#NormalGroup
   :label: IEG4
-  :extension_properties: []
   :ordinal: 4
-  :optional: false
-  :completion: ''
   :note: ''
-  :children:
-  - :type: http://www.assero.co.uk/BusinessForm#Question
-    :id: ''
-    :namespace: ''
+  :completion: ''
+  :optional: false
+  :has_item:
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/BusinessForm#Question
     :label: IE4
-    :extension_properties: []
     :ordinal: 1
     :note: ''
     :completion: ''
     :optional: false
     :datatype: string
     :format: '100'
+    :mapping: "[NO MAPPING]"
     :question_text: E1. Is sensitised and regularly exposed to animal dander, molds,
       and/or cockroach (e.g., present in the home, job, daycare, etc.) or other perennial
       allergen.E2. Has experienced a life-threatening asthma attack defined for this
@@ -334,23 +338,24 @@
       the risk of the subject developing severe adverse reactions after adrenaline
       administration.E23. Is unable to or will not comply with the use of adrenaline
       auto-injectors.
-    :mapping: "[NO MAPPING]"
-    :children: []
-  - :type: http://www.assero.co.uk/BusinessForm#Question
-    :id: ''
-    :namespace: ''
+    :has_coded_value: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/BusinessForm#Question
     :label: IEEXTESTCD
-    :extension_properties: []
     :ordinal: 2
     :note: |
       * No entries found for code list, parameters ['notation=EXCL'].
       * No entries found for code list, parameters ['notation=CLIEEXTESTCD'].
+      * No entries found for code list, parameters ['identifier='].
+      * No entries found for code list, parameters ['label=CL_IEEXTESTCD'].
     :completion: ''
     :optional: false
     :datatype: string
     :format: '100'
-    :question_text: Specify the exclusion criteria met(Please check all that apply)
     :mapping: "[NO MAPPING]"
-    :children: []
+    :question_text: Specify the exclusion criteria met(Please check all that apply)
+    :has_coded_value: []
   :repeating: false
-  :bc_ref: {}
+  :has_sub_group: []
+  :has_common: []

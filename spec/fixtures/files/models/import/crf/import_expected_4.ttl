@@ -4,6 +4,7 @@
 @prefix isoT: <http://www.assero.co.uk/ISO11179Types#> .
 @prefix isoR: <http://www.assero.co.uk/ISO11179Registration#> .
 @prefix isoI: <http://www.assero.co.uk/ISO11179Identification#> .
+@prefix bo: <http://www.assero.co.uk/BusinessOperational#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
@@ -20,8 +21,8 @@
 	isoT:hasIdentifier :F_SI ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
-	isoT:creationDate "2021-02-27T16:55:19+01:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2021-02-27T16:55:19+01:00"^^xsd:dateTime ;
+	isoT:creationDate "2021-02-28T13:24:21+01:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2021-02-28T13:24:21+01:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bf:note ""^^xsd:string ;
 	bf:completion ""^^xsd:string ;
@@ -74,7 +75,7 @@
 	bf:datatype "date"^^xsd:string ;
 	bf:format ""^^xsd:string ;
 	bf:mapping "[NO MAPPING]"^^xsd:string ;
-	bf:questionText "BRTHDAT"^^xsd:string ;
+	bf:questionText "What is the subject's date of birth?"^^xsd:string ;
 .
 :Q_92bf8b74-ec78-4348-9a1b-154a6ccb9b9f
 	rdf:type bf:Question ;
@@ -86,7 +87,7 @@
 	bf:datatype "integer"^^xsd:string ;
 	bf:format "3"^^xsd:string ;
 	bf:mapping "[NO MAPPING]"^^xsd:string ;
-	bf:questionText "AGE"^^xsd:string ;
+	bf:questionText "What is the subject's age?"^^xsd:string ;
 .
 :Q_b76597f7-972f-40f4-bed7-e134725cf296
 	rdf:type bf:Question ;
@@ -98,7 +99,7 @@
 	bf:datatype "float"^^xsd:string ;
 	bf:format "20.0"^^xsd:string ;
 	bf:mapping "[NO MAPPING]"^^xsd:string ;
-	bf:questionText "AGEU"^^xsd:string ;
+	bf:questionText "What is the age unit used?"^^xsd:string ;
 .
 :Q_36d01a04-97fa-4ae9-8f40-9f266a6cdc06
 	rdf:type bf:Question ;
@@ -110,43 +111,160 @@
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
 	bf:mapping "[NO MAPPING]"^^xsd:string ;
-	bf:questionText "AGEU units"^^xsd:string ;
+	bf:questionText "What is the age unit used? units"^^xsd:string ;
 .
 :Q_0cda6f24-e54d-4724-af79-916d41d9bd7f
 	rdf:type bf:Question ;
 	isoC:label "SEX"^^xsd:string ;
 	bf:ordinal "5"^^xsd:integer ;
-	bf:note "Collect the subject's sex or gender, as reported by the investigator. This is a phenotypic assessment and not a genotypic assessment."^^xsd:string ;
+	bf:note "Collect the subject's sex or gender, as reported by the investigator. This is a phenotypic assessment and not a genotypic assessment.* No entries found for code list, parameters ['notation=CLC66731SEX'].\n"^^xsd:string ;
 	bf:completion "Record the appropriate sex (e.g., F (female), M (male)."^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "15"^^xsd:string ;
 	bf:mapping "[NO MAPPING]"^^xsd:string ;
-	bf:questionText "SEX"^^xsd:string ;
+	bf:questionText "What is the sex of the subject?"^^xsd:string ;
+	bf:hasCodedValue :Q_0cda6f24-e54d-4724-af79-916d41d9bd7f_R1 ;
+	bf:hasCodedValue :Q_0cda6f24-e54d-4724-af79-916d41d9bd7f_R2 ;
+	bf:hasCodedValue :Q_0cda6f24-e54d-4724-af79-916d41d9bd7f_R3 ;
+	bf:hasCodedValue :Q_0cda6f24-e54d-4724-af79-916d41d9bd7f_R4 ;
+.
+:Q_0cda6f24-e54d-4724-af79-916d41d9bd7f_R1
+	rdf:type bo:Reference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66731/V4#C66731_C16576> ;
+.
+:Q_0cda6f24-e54d-4724-af79-916d41d9bd7f_R2
+	rdf:type bo:Reference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66731/V16#C66731_C20197> ;
+.
+:Q_0cda6f24-e54d-4724-af79-916d41d9bd7f_R3
+	rdf:type bo:Reference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66731/V4#C66731_C17998> ;
+.
+:Q_0cda6f24-e54d-4724-af79-916d41d9bd7f_R4
+	rdf:type bo:Reference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "4"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66731/V39#C66731_C45908> ;
 .
 :Q_7948e614-fdba-484a-9dfc-c98ce368d4e7
 	rdf:type bf:Question ;
 	isoC:label "ETHNIC"^^xsd:string ;
 	bf:ordinal "6"^^xsd:integer ;
-	bf:note "For use when values are being collected using the exact non-extensible ETHNIC codelist (C66790) values. Sponsors should refer to the FDA's Collection of Race and Ethnicity Data in Clinical Trials guidance regarding the collection of ethnicity (http://www.fda.gov/)."^^xsd:string ;
+	bf:note "For use when values are being collected using the exact non-extensible ETHNIC codelist (C66790) values. Sponsors should refer to the FDA's Collection of Race and Ethnicity Data in Clinical Trials guidance regarding the collection of ethnicity (http://www.fda.gov/).* No entries found for code list, parameters ['notation=CLC66790ETHNIC'].\n"^^xsd:string ;
 	bf:completion "Study participants should self-report ethnicity, with ethnicity being asked about before race."^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "23"^^xsd:string ;
 	bf:mapping "[NO MAPPING]"^^xsd:string ;
-	bf:questionText "ETHNIC"^^xsd:string ;
+	bf:questionText "Do you consider yourself Hispanic/Latino or not Hispanic/Latino?"^^xsd:string ;
+	bf:hasCodedValue :Q_7948e614-fdba-484a-9dfc-c98ce368d4e7_R1 ;
+	bf:hasCodedValue :Q_7948e614-fdba-484a-9dfc-c98ce368d4e7_R2 ;
+	bf:hasCodedValue :Q_7948e614-fdba-484a-9dfc-c98ce368d4e7_R3 ;
+	bf:hasCodedValue :Q_7948e614-fdba-484a-9dfc-c98ce368d4e7_R4 ;
+.
+:Q_7948e614-fdba-484a-9dfc-c98ce368d4e7_R1
+	rdf:type bo:Reference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66790/V16#C66790_C17459> ;
+.
+:Q_7948e614-fdba-484a-9dfc-c98ce368d4e7_R2
+	rdf:type bo:Reference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66790/V4#C66790_C41222> ;
+.
+:Q_7948e614-fdba-484a-9dfc-c98ce368d4e7_R3
+	rdf:type bo:Reference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66790/V19#C66790_C43234> ;
+.
+:Q_7948e614-fdba-484a-9dfc-c98ce368d4e7_R4
+	rdf:type bo:Reference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "4"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66790/V4#C66790_C17998> ;
 .
 :Q_c9f7f7de-d227-4e15-b171-06c4306b77f4
 	rdf:type bf:Question ;
 	isoC:label "RACE"^^xsd:string ;
 	bf:ordinal "7"^^xsd:integer ;
-	bf:note "Use RACE when the 5 designations for race used by the FDA are collected (American Indian or Alaska Native; Asian; Black or African American; Native Hawaiian or Other Pacific Islander ; White).* Sponsors should refer to the FDA Guidance. See SDTMIG v3.2 Section 5, DM Domain.   *For studies where data are collected outside the US, the recommended categories are the same except for Black instead of Black or African American. If multiple races are collected, an alternate sponsor-defined variable structure would be required. Sponsors may record multiple self-reported races for a subject by appending a suffix to denote multiple collected races (e.g. RACE1, RACE2) and populate RACE with the value MULTIPLE."^^xsd:string ;
+	bf:note "Use RACE when the 5 designations for race used by the FDA are collected (American Indian or Alaska Native; Asian; Black or African American; Native Hawaiian or Other Pacific Islander ; White).* Sponsors should refer to the FDA Guidance. See SDTMIG v3.2 Section 5, DM Domain.   *For studies where data are collected outside the US, the recommended categories are the same except for Black instead of Black or African American. If multiple races are collected, an alternate sponsor-defined variable structure would be required. Sponsors may record multiple self-reported races for a subject by appending a suffix to denote multiple collected races (e.g. RACE1, RACE2) and populate RACE with the value MULTIPLE.* No entries found for code list, parameters ['notation=CLC74457RACE'].\n* No entries found in code list 'C74457' for item with submission value: 'NOT REPORTED' or preferred term: 'Not Reported'.\n* No entries found in code list 'C74457' for item with submission value: 'UNKNOWN' or preferred term: 'Unknown'.\n* No entries found in code list 'C74457' for item with submission value: 'OTHER' or preferred term: 'Other'.\n"^^xsd:string ;
 	bf:completion "Study participants should self-report race, with race being asked about after ethnicity."^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "25"^^xsd:string ;
 	bf:mapping "RACE"^^xsd:string ;
-	bf:questionText "RACE"^^xsd:string ;
+	bf:questionText "Which of the following five racial designations best describes you?-removed-    (More than one choice is acceptable.)"^^xsd:string ;
+	bf:hasCodedValue :Q_c9f7f7de-d227-4e15-b171-06c4306b77f4_R1 ;
+	bf:hasCodedValue :Q_c9f7f7de-d227-4e15-b171-06c4306b77f4_R2 ;
+	bf:hasCodedValue :Q_c9f7f7de-d227-4e15-b171-06c4306b77f4_R3 ;
+	bf:hasCodedValue :Q_c9f7f7de-d227-4e15-b171-06c4306b77f4_R4 ;
+	bf:hasCodedValue :Q_c9f7f7de-d227-4e15-b171-06c4306b77f4_R5 ;
+.
+:Q_c9f7f7de-d227-4e15-b171-06c4306b77f4_R1
+	rdf:type bo:Reference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C74457/V10#C74457_C41259> ;
+.
+:Q_c9f7f7de-d227-4e15-b171-06c4306b77f4_R2
+	rdf:type bo:Reference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C74457/V10#C74457_C41260> ;
+.
+:Q_c9f7f7de-d227-4e15-b171-06c4306b77f4_R3
+	rdf:type bo:Reference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C74457/V49#C74457_C16352> ;
+.
+:Q_c9f7f7de-d227-4e15-b171-06c4306b77f4_R4
+	rdf:type bo:Reference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "4"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C74457/V10#C74457_C41219> ;
+.
+:Q_c9f7f7de-d227-4e15-b171-06c4306b77f4_R5
+	rdf:type bo:Reference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "5"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C74457/V10#C74457_C41261> ;
 .
 :Q_f9fe7128-4b63-482d-9a11-62250e24fe0c
 	rdf:type bf:Question ;
@@ -158,5 +276,5 @@
 	bf:datatype "string"^^xsd:string ;
 	bf:format "100"^^xsd:string ;
 	bf:mapping "[NO MAPPING]"^^xsd:string ;
-	bf:questionText "RACEOTH"^^xsd:string ;
+	bf:questionText "What was the other race?"^^xsd:string ;
 .

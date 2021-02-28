@@ -4,6 +4,7 @@
 @prefix isoT: <http://www.assero.co.uk/ISO11179Types#> .
 @prefix isoR: <http://www.assero.co.uk/ISO11179Registration#> .
 @prefix isoI: <http://www.assero.co.uk/ISO11179Identification#> .
+@prefix bo: <http://www.assero.co.uk/BusinessOperational#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
@@ -20,8 +21,8 @@
 	isoT:hasIdentifier :F_SI ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
-	isoT:creationDate "2021-02-27T16:55:19+01:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2021-02-27T16:55:19+01:00"^^xsd:dateTime ;
+	isoT:creationDate "2021-02-28T13:24:45+01:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2021-02-28T13:24:45+01:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bf:note ""^^xsd:string ;
 	bf:completion ""^^xsd:string ;
@@ -63,13 +64,31 @@
 	rdf:type bf:Question ;
 	isoC:label "VSPERF"^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
-	bf:note "This general prompt question is used as a data management tool to verify that missing results are confirmed missing. This may be implemented for all tests collected on the same horizontal record or for each specific test. When mapped to SDTM, the value of VSPERF would apply to all tests on the same record. Use the CDASH variable [VSTESTCD]_VSPERF when implemented on a specific test basis."^^xsd:string ;
+	bf:note "This general prompt question is used as a data management tool to verify that missing results are confirmed missing. This may be implemented for all tests collected on the same horizontal record or for each specific test. When mapped to SDTM, the value of VSPERF would apply to all tests on the same record. Use the CDASH variable [VSTESTCD]_VSPERF when implemented on a specific test basis.* No entries found for code list, parameters ['notation=CLC66742NYNY'].\n"^^xsd:string ;
 	bf:completion "Indicate if the vital signs were collected. If yes, include the appropriate details where indicated on the CRF."^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "1"^^xsd:string ;
 	bf:mapping "[NO MAPPING]"^^xsd:string ;
-	bf:questionText "VSPERF"^^xsd:string ;
+	bf:questionText "Were vital signs performed?"^^xsd:string ;
+	bf:hasCodedValue <http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_4646b47a-4ae4-4f21-b5e2-565815c8cded_R1> ;
+	bf:hasCodedValue <http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_4646b47a-4ae4-4f21-b5e2-565815c8cded_R2> ;
+.
+<http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_4646b47a-4ae4-4f21-b5e2-565815c8cded_R1>
+	rdf:type bo:Reference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+.
+<http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_4646b47a-4ae4-4f21-b5e2-565815c8cded_R2>
+	rdf:type bo:Reference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
 .
 <http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_92bf8b74-ec78-4348-9a1b-154a6ccb9b9f>
 	rdf:type bf:Question ;
@@ -81,7 +100,7 @@
 	bf:datatype "date"^^xsd:string ;
 	bf:format ""^^xsd:string ;
 	bf:mapping "[NO MAPPING]"^^xsd:string ;
-	bf:questionText "VSDAT"^^xsd:string ;
+	bf:questionText "What was the date of the measurement(s)?"^^xsd:string ;
 .
 <http://www.acme-pharma.com/VSHORIZONTAL/V1#NG_b76597f7-972f-40f4-bed7-e134725cf296>
 	rdf:type bf:NormalGroup ;
@@ -124,7 +143,7 @@
 	bf:datatype "float"^^xsd:string ;
 	bf:format "3.0"^^xsd:string ;
 	bf:mapping "[NO MAPPING]"^^xsd:string ;
-	bf:questionText "SYSBP_VSORRES"^^xsd:string ;
+	bf:questionText "What was the result of the Systolic Blood Pressure measurement?"^^xsd:string ;
 .
 <http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_0cda6f24-e54d-4724-af79-916d41d9bd7f>
 	rdf:type bf:Question ;
@@ -136,19 +155,28 @@
 	bf:datatype "float"^^xsd:string ;
 	bf:format "4.0"^^xsd:string ;
 	bf:mapping "[NO MAPPING]"^^xsd:string ;
-	bf:questionText "SYSBP_VSORRESU"^^xsd:string ;
+	bf:questionText "What was the unit of the Systolic Blood Pressure measurement?"^^xsd:string ;
 .
 <http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_7948e614-fdba-484a-9dfc-c98ce368d4e7>
 	rdf:type bf:Question ;
 	isoC:label "SYSBP_VSORRESU units"^^xsd:string ;
 	bf:ordinal "3"^^xsd:integer ;
-	bf:note "* Multiple entries [C49670,C49670] found for parameters ['notation=mmHg'], ignored.\n"^^xsd:string ;
+	bf:note "* Multiple entries [C49670,C49670] found for parameters ['notation=mmHg'], using first found.\n"^^xsd:string ;
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
 	bf:mapping "[NO MAPPING]"^^xsd:string ;
-	bf:questionText "SYSBP_VSORRESU units"^^xsd:string ;
+	bf:questionText "What was the unit of the Systolic Blood Pressure measurement? units"^^xsd:string ;
+	bf:hasCodedValue <http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_7948e614-fdba-484a-9dfc-c98ce368d4e7_R1> ;
+.
+<http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_7948e614-fdba-484a-9dfc-c98ce368d4e7_R1>
+	rdf:type bo:Reference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C71620/V37#C71620_C49670> ;
 .
 <http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_c9f7f7de-d227-4e15-b171-06c4306b77f4>
 	rdf:type bf:Question ;
@@ -160,7 +188,7 @@
 	bf:datatype "float"^^xsd:string ;
 	bf:format "3.0"^^xsd:string ;
 	bf:mapping "[NO MAPPING]"^^xsd:string ;
-	bf:questionText "DIABP_VSORRES"^^xsd:string ;
+	bf:questionText "What was the result of the Diastolic Blood Pressure measurement?"^^xsd:string ;
 .
 <http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_f9fe7128-4b63-482d-9a11-62250e24fe0c>
 	rdf:type bf:Question ;
@@ -172,43 +200,124 @@
 	bf:datatype "float"^^xsd:string ;
 	bf:format "4.0"^^xsd:string ;
 	bf:mapping "[NO MAPPING]"^^xsd:string ;
-	bf:questionText "DIABP_VSORRESU"^^xsd:string ;
+	bf:questionText "What was the unit of the Diastolic Blood Pressure measurement?"^^xsd:string ;
 .
 <http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_f03287d6-23ea-43bb-b3cf-f972761caabd>
 	rdf:type bf:Question ;
 	isoC:label "DIABP_VSORRESU units"^^xsd:string ;
 	bf:ordinal "6"^^xsd:integer ;
-	bf:note "* Multiple entries [C49670,C49670] found for parameters ['notation=mmHg'], ignored.\n"^^xsd:string ;
+	bf:note "* Multiple entries [C49670,C49670] found for parameters ['notation=mmHg'], using first found.\n"^^xsd:string ;
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
 	bf:mapping "[NO MAPPING]"^^xsd:string ;
-	bf:questionText "DIABP_VSORRESU units"^^xsd:string ;
+	bf:questionText "What was the unit of the Diastolic Blood Pressure measurement? units"^^xsd:string ;
+	bf:hasCodedValue <http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_f03287d6-23ea-43bb-b3cf-f972761caabd_R1> ;
+.
+<http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_f03287d6-23ea-43bb-b3cf-f972761caabd_R1>
+	rdf:type bo:Reference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C71620/V37#C71620_C49670> ;
 .
 <http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_4b981364-daf4-4c99-84f0-f7514bd092e7>
 	rdf:type bf:Question ;
 	isoC:label "BP_VSPOS"^^xsd:string ;
 	bf:ordinal "7"^^xsd:integer ;
-	bf:note "Results may be affected by whether conditions for vital signs as specified in the protocol were properly met. One common condition is the subject's position. If the protocol requires this type of information, then a CDASH variable [VSTESTCD]_VSPOS may be created for each VSTESTCD and added to the CRF, if needed."^^xsd:string ;
+	bf:note "Results may be affected by whether conditions for vital signs as specified in the protocol were properly met. One common condition is the subject's position. If the protocol requires this type of information, then a CDASH variable [VSTESTCD]_VSPOS may be created for each VSTESTCD and added to the CRF, if needed.* No entries found for code list, parameters ['notation=CLC71148POSITIONBP'].\n"^^xsd:string ;
 	bf:completion "Record the position of subject at time of test (e.g. SITTING)."^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
 	bf:mapping "[NO MAPPING]"^^xsd:string ;
-	bf:questionText "BP_VSPOS"^^xsd:string ;
+	bf:questionText "What was the position of the subject during the blood pressure measurement?"^^xsd:string ;
+	bf:hasCodedValue <http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_4b981364-daf4-4c99-84f0-f7514bd092e7_R1> ;
+	bf:hasCodedValue <http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_4b981364-daf4-4c99-84f0-f7514bd092e7_R2> ;
+	bf:hasCodedValue <http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_4b981364-daf4-4c99-84f0-f7514bd092e7_R3> ;
+	bf:hasCodedValue <http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_4b981364-daf4-4c99-84f0-f7514bd092e7_R4> ;
+	bf:hasCodedValue <http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_4b981364-daf4-4c99-84f0-f7514bd092e7_R5> ;
+.
+<http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_4b981364-daf4-4c99-84f0-f7514bd092e7_R1>
+	rdf:type bo:Reference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C71148/V6#C71148_C62165> ;
+.
+<http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_4b981364-daf4-4c99-84f0-f7514bd092e7_R2>
+	rdf:type bo:Reference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C71148/V36#C71148_C111310> ;
+.
+<http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_4b981364-daf4-4c99-84f0-f7514bd092e7_R3>
+	rdf:type bo:Reference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C71148/V6#C71148_C62122> ;
+.
+<http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_4b981364-daf4-4c99-84f0-f7514bd092e7_R4>
+	rdf:type bo:Reference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "4"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C71148/V6#C71148_C62166> ;
+.
+<http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_4b981364-daf4-4c99-84f0-f7514bd092e7_R5>
+	rdf:type bo:Reference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "5"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C71148/V6#C71148_C62167> ;
 .
 <http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_8cd62d3c-bce2-4d1b-bc7e-cc6544551abb>
 	rdf:type bf:Question ;
 	isoC:label "BP_VSLOC"^^xsd:string ;
 	bf:ordinal "8"^^xsd:integer ;
-	bf:note "Collected or preprinted when the sponsor needs to identify the specific anatomical location (e.g., ARM for blood pressure). Sponsors may collect the data using a subset list of controlled terminology on the CRF. In horizontal data collection, a CDASH variable [VSTESTCD]_VSLOC may be created for each VSTESTCD and added to the CRF, if needed. LAT, DIR, and PORTOT are used to further describe the anatomical location."^^xsd:string ;
+	bf:note "Collected or preprinted when the sponsor needs to identify the specific anatomical location (e.g., ARM for blood pressure). Sponsors may collect the data using a subset list of controlled terminology on the CRF. In horizontal data collection, a CDASH variable [VSTESTCD]_VSLOC may be created for each VSTESTCD and added to the CRF, if needed. LAT, DIR, and PORTOT are used to further describe the anatomical location.* No entries found for code list, parameters ['notation=CLC74456LOCBP'].\n* No entries found in code list 'C74456' for item with submission value: 'PERIPHERAL ARTERY' or preferred term: 'Peripheral Artery'.\n"^^xsd:string ;
 	bf:completion "Record or select location on body where measurement was performed, if not preprinted on CRF."^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
 	bf:mapping "[NO MAPPING]"^^xsd:string ;
-	bf:questionText "BP_VSLOC"^^xsd:string ;
+	bf:questionText "What was the anatomical location where the blood pressure measurement was taken?"^^xsd:string ;
+	bf:hasCodedValue <http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_8cd62d3c-bce2-4d1b-bc7e-cc6544551abb_R1> ;
+	bf:hasCodedValue <http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_8cd62d3c-bce2-4d1b-bc7e-cc6544551abb_R2> ;
+	bf:hasCodedValue <http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_8cd62d3c-bce2-4d1b-bc7e-cc6544551abb_R3> ;
+.
+<http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_8cd62d3c-bce2-4d1b-bc7e-cc6544551abb_R1>
+	rdf:type bo:Reference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C74456/V8#C74456_C12681> ;
+.
+<http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_8cd62d3c-bce2-4d1b-bc7e-cc6544551abb_R2>
+	rdf:type bo:Reference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C74456/V8#C74456_C32608> ;
+.
+<http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_8cd62d3c-bce2-4d1b-bc7e-cc6544551abb_R3>
+	rdf:type bo:Reference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C74456/V8#C74456_C12838> ;
 .
 <http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_830fa72c-a59e-475b-9b2c-eb4b5ace264f>
 	rdf:type bf:Question ;
@@ -220,19 +329,37 @@
 	bf:datatype "string"^^xsd:string ;
 	bf:format "3"^^xsd:string ;
 	bf:mapping "[NO MAPPING]"^^xsd:string ;
-	bf:questionText "HEIGHT_VSORRES"^^xsd:string ;
+	bf:questionText "What was the result of the height measurement?"^^xsd:string ;
 .
 <http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_242c3d94-f47c-4477-9f51-afa4c18fa949>
 	rdf:type bf:Question ;
 	isoC:label "HEIGHT_VSORRESU"^^xsd:string ;
 	bf:ordinal "10"^^xsd:integer ;
-	bf:note "A single Unit field can be collected once for all measurements collected on the same horizontal record using VSUNIT. The value of VSUNIT applies to all measurements on that record when mapped to SDTM. If needed for each measurement, unit may be collected using the CDASH variable [VSTESTCD]_VSSTAT. Should be preprinted on the CRF with the associated test when possible, rather than collected in a field that requires the site to enter text."^^xsd:string ;
+	bf:note "A single Unit field can be collected once for all measurements collected on the same horizontal record using VSUNIT. The value of VSUNIT applies to all measurements on that record when mapped to SDTM. If needed for each measurement, unit may be collected using the CDASH variable [VSTESTCD]_VSSTAT. Should be preprinted on the CRF with the associated test when possible, rather than collected in a field that requires the site to enter text.* No entries found for code list, parameters ['notation=CLC66770VSRESUHGT'].\n"^^xsd:string ;
 	bf:completion "Record or select the original unit in which these data were collected, if not preprinted on CRF."^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "4"^^xsd:string ;
 	bf:mapping "[NO MAPPING]"^^xsd:string ;
-	bf:questionText "HEIGHT_VSORRESU"^^xsd:string ;
+	bf:questionText "What was the unit of the height measurement?"^^xsd:string ;
+	bf:hasCodedValue <http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_242c3d94-f47c-4477-9f51-afa4c18fa949_R1> ;
+	bf:hasCodedValue <http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_242c3d94-f47c-4477-9f51-afa4c18fa949_R2> ;
+.
+<http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_242c3d94-f47c-4477-9f51-afa4c18fa949_R1>
+	rdf:type bo:Reference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66770/V34#C66770_C49668> ;
+.
+<http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_242c3d94-f47c-4477-9f51-afa4c18fa949_R2>
+	rdf:type bo:Reference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66770/V42#C66770_C48500> ;
 .
 <http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_159a7d7f-1ef5-40f7-808b-d5d66ac7a06e>
 	rdf:type bf:Question ;
@@ -244,19 +371,37 @@
 	bf:datatype "string"^^xsd:string ;
 	bf:format "3"^^xsd:string ;
 	bf:mapping "WEIGHT"^^xsd:string ;
-	bf:questionText "WEIGHT_VSORRES"^^xsd:string ;
+	bf:questionText "What was the result of the weight measurement?"^^xsd:string ;
 .
 <http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_53dd87c3-1c29-4240-ba98-72341896b348>
 	rdf:type bf:Question ;
 	isoC:label "WEIGHT_VSORRESU"^^xsd:string ;
 	bf:ordinal "12"^^xsd:integer ;
-	bf:note "A single Unit field can be collected once for all measurements collected on the same horizontal record using VSUNIT. The value of VSUNIT applies to all measurements on that record when mapped to SDTM. If needed for each measurement, unit may be collected using the CDASH variable [VSTESTCD]_VSSTAT. Should be preprinted on the CRF with the associated test when possible, rather than collected in a field that requires the site to enter text."^^xsd:string ;
+	bf:note "A single Unit field can be collected once for all measurements collected on the same horizontal record using VSUNIT. The value of VSUNIT applies to all measurements on that record when mapped to SDTM. If needed for each measurement, unit may be collected using the CDASH variable [VSTESTCD]_VSSTAT. Should be preprinted on the CRF with the associated test when possible, rather than collected in a field that requires the site to enter text.* No entries found for code list, parameters ['notation=CLC66770VSRESUWGT'].\n"^^xsd:string ;
 	bf:completion "Record or select the original unit in which these data were collected, if not preprinted on CRF."^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "4"^^xsd:string ;
 	bf:mapping "[NO MAPPING]"^^xsd:string ;
-	bf:questionText "WEIGHT_VSORRESU"^^xsd:string ;
+	bf:questionText "What was the unit of the weight measurement?"^^xsd:string ;
+	bf:hasCodedValue <http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_53dd87c3-1c29-4240-ba98-72341896b348_R1> ;
+	bf:hasCodedValue <http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_53dd87c3-1c29-4240-ba98-72341896b348_R2> ;
+.
+<http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_53dd87c3-1c29-4240-ba98-72341896b348_R1>
+	rdf:type bo:Reference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66770/V49#C66770_C28252> ;
+.
+<http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_53dd87c3-1c29-4240-ba98-72341896b348_R2>
+	rdf:type bo:Reference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66770/V4#C66770_C48531> ;
 .
 <http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_9512d1d4-7f6c-4b3c-a330-ff3081f8de24>
 	rdf:type bf:Question ;
@@ -268,7 +413,7 @@
 	bf:datatype "float"^^xsd:string ;
 	bf:format "3.0"^^xsd:string ;
 	bf:mapping "[NO MAPPING]"^^xsd:string ;
-	bf:questionText "PULSE_VSORRES"^^xsd:string ;
+	bf:questionText "What was the result of the pulse measurement?"^^xsd:string ;
 .
 <http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_16815e87-0141-4de3-b575-f06a729bdf40>
 	rdf:type bf:Question ;
@@ -280,31 +425,76 @@
 	bf:datatype "float"^^xsd:string ;
 	bf:format "4.0"^^xsd:string ;
 	bf:mapping "[NO MAPPING]"^^xsd:string ;
-	bf:questionText "PULSE_VSORRESU"^^xsd:string ;
+	bf:questionText "What was the unit of the pulse measurement?"^^xsd:string ;
 .
 <http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_f79069ba-85a0-4c75-a2b1-987b90fadd9d>
 	rdf:type bf:Question ;
 	isoC:label "PULSE_VSORRESU units"^^xsd:string ;
 	bf:ordinal "15"^^xsd:integer ;
-	bf:note "* Multiple entries [C49673,C49673,C49673] found for parameters ['notation=beats/min'], ignored.\n"^^xsd:string ;
+	bf:note "* Multiple entries [C49673,C49673,C49673] found for parameters ['notation=beats/min'], using first found.\n"^^xsd:string ;
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
 	bf:mapping "[NO MAPPING]"^^xsd:string ;
-	bf:questionText "PULSE_VSORRESU units"^^xsd:string ;
+	bf:questionText "What was the unit of the pulse measurement? units"^^xsd:string ;
+	bf:hasCodedValue <http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_f79069ba-85a0-4c75-a2b1-987b90fadd9d_R1> ;
+.
+<http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_f79069ba-85a0-4c75-a2b1-987b90fadd9d_R1>
+	rdf:type bo:Reference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C71620/V44#C71620_C49673> ;
 .
 <http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_b40ce817-f549-40d0-ab47-88d4faeda520>
 	rdf:type bf:Question ;
 	isoC:label "PULSE_VSLOC"^^xsd:string ;
 	bf:ordinal "16"^^xsd:integer ;
-	bf:note "Collected or preprinted when the sponsor needs to identify the specific anatomical location (e.g., ARM for blood pressure). Sponsors may collect the data using a subset list of controlled terminology on the CRF. In horizontal data collection, a CDASH variable [VSTESTCD]_VSLOC may be created for each VSTESTCD and added to the CRF, if needed. LAT, DIR, and PORTOT are used to further describe the anatomical location."^^xsd:string ;
+	bf:note "Collected or preprinted when the sponsor needs to identify the specific anatomical location (e.g., ARM for blood pressure). Sponsors may collect the data using a subset list of controlled terminology on the CRF. In horizontal data collection, a CDASH variable [VSTESTCD]_VSLOC may be created for each VSTESTCD and added to the CRF, if needed. LAT, DIR, and PORTOT are used to further describe the anatomical location.* No entries found for code list, parameters ['notation=CLC74456LOCPULSE'].\n* No entries found in code list 'C74456' for item with submission value: 'CEREBRAL ARTERY' or preferred term: 'Cerebral Artery'.\n* No entries found in code list 'C74456' for item with submission value: 'PERIPHERAL ARTERY' or preferred term: 'Peripheral Artery'.\n"^^xsd:string ;
 	bf:completion "Record or select location on body where measurement was performed, if not preprinted on CRF."^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
 	bf:mapping "[NO MAPPING]"^^xsd:string ;
-	bf:questionText "PULSE_VSLOC"^^xsd:string ;
+	bf:questionText "What was the anatomical location where the pulse measurement was taken?"^^xsd:string ;
+	bf:hasCodedValue <http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_b40ce817-f549-40d0-ab47-88d4faeda520_R1> ;
+	bf:hasCodedValue <http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_b40ce817-f549-40d0-ab47-88d4faeda520_R2> ;
+	bf:hasCodedValue <http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_b40ce817-f549-40d0-ab47-88d4faeda520_R3> ;
+	bf:hasCodedValue <http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_b40ce817-f549-40d0-ab47-88d4faeda520_R4> ;
+.
+<http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_b40ce817-f549-40d0-ab47-88d4faeda520_R1>
+	rdf:type bo:Reference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C74456/V8#C74456_C12681> ;
+.
+<http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_b40ce817-f549-40d0-ab47-88d4faeda520_R2>
+	rdf:type bo:Reference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C74456/V8#C74456_C12687> ;
+.
+<http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_b40ce817-f549-40d0-ab47-88d4faeda520_R3>
+	rdf:type bo:Reference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C74456/V8#C74456_C32478> ;
+.
+<http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_b40ce817-f549-40d0-ab47-88d4faeda520_R4>
+	rdf:type bo:Reference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "4"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C74456/V8#C74456_C12715> ;
 .
 <http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_46e0d9c5-c6c2-4331-9716-d82e3edfa837>
 	rdf:type bf:Question ;
@@ -316,7 +506,7 @@
 	bf:datatype "float"^^xsd:string ;
 	bf:format "3.0"^^xsd:string ;
 	bf:mapping "[NO MAPPING]"^^xsd:string ;
-	bf:questionText "RESP_VSORRES"^^xsd:string ;
+	bf:questionText "What was the result of the respiratory rate measurement?"^^xsd:string ;
 .
 <http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_75568830-cc5c-4fd3-b944-7d89b5a72c2c>
 	rdf:type bf:Question ;
@@ -328,19 +518,28 @@
 	bf:datatype "float"^^xsd:string ;
 	bf:format "4.0"^^xsd:string ;
 	bf:mapping "[NO MAPPING]"^^xsd:string ;
-	bf:questionText "RESP_VSORRESU"^^xsd:string ;
+	bf:questionText "What was the unit of the Respiratory Rate Unit measurement?"^^xsd:string ;
 .
 <http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_cffd2e4b-6089-4cd7-9214-b240de957046>
 	rdf:type bf:Question ;
 	isoC:label "RESP_VSORRESU units"^^xsd:string ;
 	bf:ordinal "19"^^xsd:integer ;
-	bf:note "* Multiple entries [C49674,C49674] found for parameters ['notation=breaths/min'], ignored.\n"^^xsd:string ;
+	bf:note "* Multiple entries [C49674,C49674] found for parameters ['notation=breaths/min'], using first found.\n"^^xsd:string ;
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
 	bf:mapping "[NO MAPPING]"^^xsd:string ;
-	bf:questionText "RESP_VSORRESU units"^^xsd:string ;
+	bf:questionText "What was the unit of the Respiratory Rate Unit measurement? units"^^xsd:string ;
+	bf:hasCodedValue <http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_cffd2e4b-6089-4cd7-9214-b240de957046_R1> ;
+.
+<http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_cffd2e4b-6089-4cd7-9214-b240de957046_R1>
+	rdf:type bo:Reference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C71620/V44#C71620_C49674> ;
 .
 <http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_49df362a-e61a-4191-8537-2148baf12008>
 	rdf:type bf:Question ;
@@ -352,29 +551,83 @@
 	bf:datatype "string"^^xsd:string ;
 	bf:format "5"^^xsd:string ;
 	bf:mapping "[NO MAPPING]"^^xsd:string ;
-	bf:questionText "TEMP_VSORRES"^^xsd:string ;
+	bf:questionText "What was the result of the temperature measurement?"^^xsd:string ;
 .
 <http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_0d54bd68-b43e-499a-9dfc-55040dca1732>
 	rdf:type bf:Question ;
 	isoC:label "TEMP_VSORRESU"^^xsd:string ;
 	bf:ordinal "21"^^xsd:integer ;
-	bf:note "A single Unit field can be collected once for all measurements collected on the same horizontal record using VSUNIT. The value of VSUNIT applies to all measurements on that record when mapped to SDTM. If needed for each measurement, unit may be collected using the CDASH variable [VSTESTCD]_VSSTAT. Should be preprinted on the CRF with the associated test when possible, rather than collected in a field that requires the site to enter text."^^xsd:string ;
+	bf:note "A single Unit field can be collected once for all measurements collected on the same horizontal record using VSUNIT. The value of VSUNIT applies to all measurements on that record when mapped to SDTM. If needed for each measurement, unit may be collected using the CDASH variable [VSTESTCD]_VSSTAT. Should be preprinted on the CRF with the associated test when possible, rather than collected in a field that requires the site to enter text.* No entries found for code list, parameters ['notation=CLC66770VSRESUTEMP'].\n"^^xsd:string ;
 	bf:completion "Record or select the original unit in which these data were collected, if not preprinted on CRF."^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "4"^^xsd:string ;
 	bf:mapping "[NO MAPPING]"^^xsd:string ;
-	bf:questionText "TEMP_VSORRESU"^^xsd:string ;
+	bf:questionText "What was the unit of the Temperature Unit measurement?"^^xsd:string ;
+	bf:hasCodedValue <http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_0d54bd68-b43e-499a-9dfc-55040dca1732_R1> ;
+	bf:hasCodedValue <http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_0d54bd68-b43e-499a-9dfc-55040dca1732_R2> ;
+.
+<http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_0d54bd68-b43e-499a-9dfc-55040dca1732_R1>
+	rdf:type bo:Reference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66770/V4#C66770_C42559> ;
+.
+<http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_0d54bd68-b43e-499a-9dfc-55040dca1732_R2>
+	rdf:type bo:Reference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66770/V17#C66770_C44277> ;
 .
 <http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_043597a3-c572-41fb-9715-f1f4be733a6e>
 	rdf:type bf:Question ;
 	isoC:label "TEMP_VSLOC"^^xsd:string ;
 	bf:ordinal "22"^^xsd:integer ;
-	bf:note "Collected or preprinted when the sponsor needs to identify the specific anatomical location (e.g., ARM for blood pressure). Sponsors may collect the data using a subset list of controlled terminology on the CRF. In horizontal data collection, a CDASH variable [VSTESTCD]_VSLOC may be created for each VSTESTCD and added to the CRF, if needed. LAT, DIR, and PORTOT are used to further describe the anatomical location."^^xsd:string ;
+	bf:note "Collected or preprinted when the sponsor needs to identify the specific anatomical location (e.g., ARM for blood pressure). Sponsors may collect the data using a subset list of controlled terminology on the CRF. In horizontal data collection, a CDASH variable [VSTESTCD]_VSLOC may be created for each VSTESTCD and added to the CRF, if needed. LAT, DIR, and PORTOT are used to further describe the anatomical location.* No entries found for code list, parameters ['notation=CLC74456LOCTEMP'].\n"^^xsd:string ;
 	bf:completion "Record or select location on body where measurement was performed, if not preprinted on CRF."^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "11"^^xsd:string ;
 	bf:mapping "[NO MAPPING]"^^xsd:string ;
-	bf:questionText "TEMP_VSLOC"^^xsd:string ;
+	bf:questionText "What was the anatomical location where the temperature was taken?"^^xsd:string ;
+	bf:hasCodedValue <http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_043597a3-c572-41fb-9715-f1f4be733a6e_R1> ;
+	bf:hasCodedValue <http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_043597a3-c572-41fb-9715-f1f4be733a6e_R2> ;
+	bf:hasCodedValue <http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_043597a3-c572-41fb-9715-f1f4be733a6e_R3> ;
+	bf:hasCodedValue <http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_043597a3-c572-41fb-9715-f1f4be733a6e_R4> ;
+.
+<http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_043597a3-c572-41fb-9715-f1f4be733a6e_R1>
+	rdf:type bo:Reference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C74456/V8#C74456_C12674> ;
+.
+<http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_043597a3-c572-41fb-9715-f1f4be733a6e_R2>
+	rdf:type bo:Reference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C74456/V8#C74456_C12394> ;
+.
+<http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_043597a3-c572-41fb-9715-f1f4be733a6e_R3>
+	rdf:type bo:Reference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C74456/V28#C74456_C89803> ;
+.
+<http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_043597a3-c572-41fb-9715-f1f4be733a6e_R4>
+	rdf:type bo:Reference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "4"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C74456/V40#C74456_C12421> ;
 .

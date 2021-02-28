@@ -140,7 +140,7 @@ class OdmXml::Forms < OdmXml
       item.mapping = item_node.first.attributes["SDSVarName"].nil? ? "#{C_NO_MAPPING}" : item_node.first.attributes["SDSVarName"].value
       item.ordinal = node.attributes["OrderNumber"].nil? ? 1 : node.attributes["OrderNumber"].value.to_i
       add_question(item_node.first, item)      
-      cl_ref_node = item_node.xpath("CodeListRef")
+      cl_ref_node = item_node.xpath("xmlns:CodeListRef")
       if !cl_ref_node.empty?
         item.datatype = BaseDatatype::C_STRING
         cl_oid = cl_ref_node.first.attributes["CodeListOID"].value
@@ -208,6 +208,8 @@ class OdmXml::Forms < OdmXml
       return false if node.nil?
       question.question_text = parse_special(node.text.strip)
       return true
+    rescue => e
+      byebug
     end
 
     def question_name(node, question)
@@ -222,7 +224,9 @@ class OdmXml::Forms < OdmXml
       return if cli_nodes.empty?
       return if alias_cl(node, question, cli_nodes)
       return if sas_format_cl(node, question, cli_nodes)
-      return if oid_cl(node, question, cli_nodes)
+      return if oid_cl_notation(node, question, cli_nodes)
+      return if oid_cl_c_code(node, question, cli_nodes)
+      return if name_cl(node, question, cli_nodes)
     end
 
     def alias_cl(node, question, cli_nodes)
@@ -240,8 +244,18 @@ class OdmXml::Forms < OdmXml
       return find_cl({notation: text}, question, cli_nodes)
     end
 
-    def oid_cl(node, question, cli_nodes)
-      return find_cl({notation: OdmXml.clean_identifier(node.attributes["OID"].value)}, question, cli_nodes)
+    def name_cl(node, question, cli_nodes)
+      return false if node.attributes["Name"].nil?
+      text = node.attributes["Name"].value
+      return find_cl({label: text}, question, cli_nodes)
+    end
+
+    def oid_cl_notation(node, question, cli_nodes)
+      find_cl({notation: node.attributes["OID"].value.to_alphanumeric}, question, cli_nodes)
+    end
+
+    def oid_cl_c_code(node, question, cli_nodes)
+      find_cl({identifier: NciThesaurusUtility.to_c_code(node.attributes["OID"].value)}, question, cli_nodes)
     end
 
     def find_cl(params, question, cli_nodes)
@@ -292,13 +306,13 @@ class OdmXml::Forms < OdmXml
       nodes.each do |mu_ref_node|
         oid = mu_ref_node.attributes["MeasurementUnitOID"].value
         symbol = doc.xpath("//xmlns:MeasurementUnit[@OID = '#{oid}']/xmlns:Symbol")
-        mu_node = translated_text(symbol)
-        result = get_tc({notation: parse_special(mu_node.first.text.strip)})
+        mu_node = translated_text_node(symbol)
+        notation = mu_node.nil? ? "" : mu_node.text.strip
+        result = get_tc({notation: parse_special(notation)})
         if !result[:tc].nil?
           add_op_ref(result[:tc], question, ordinal)
-        else
-          question.note += "* #{result[:note]}\n" if !result[:note].empty?
         end
+        question.note += "* #{result[:note]}\n" if !result[:note].empty?
       end
     end
 
@@ -311,7 +325,7 @@ class OdmXml::Forms < OdmXml
         return {tc: thcs.first, note: ""}
       else
         entries = thcs.map { |tc| tc.identifier }.join(',')
-        return {tc: nil, note: "Multiple entries [#{entries}] found for parameters #{params_to_s(params)}, ignored." }
+        return {tc: thcs.first, note: "Multiple entries [#{entries}] found for parameters #{params_to_s(params)}, using first found." }
       end
     end
 
@@ -322,7 +336,7 @@ class OdmXml::Forms < OdmXml
     end
 
     def translated_text_node(node)
-      return "" if node.empty?
+      return nil if node.empty?
       node_en = node.first.xpath("xmlns:TranslatedText[@lang = 'en']")
       node_non = node.first.xpath("xmlns:TranslatedText")
       return node_en.first if node_en.any?
