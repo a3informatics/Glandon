@@ -1,4 +1,4 @@
-@prefix : <http://www.acme-pharma.com/VS_HORIZONTAL/V1#> .
+@prefix : <http://www.s-cubed.dk/VS_HORIZONTAL/V1#> .
 @prefix bf: <http://www.assero.co.uk/BusinessForm#> .
 @prefix isoC: <http://www.assero.co.uk/ISO11179Concepts#> .
 @prefix isoT: <http://www.assero.co.uk/ISO11179Types#> .
@@ -11,7 +11,7 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 
-<http://www.acme-pharma.com/VS_HORIZONTAL/V1>
+<http://www.s-cubed.dk/VS_HORIZONTAL/V1>
 	rdf:type owl:Ontology ;
 .
 :F
@@ -21,13 +21,13 @@
 	isoT:hasIdentifier :F_SI ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
-	isoT:creationDate "2021-03-01T11:05:11+01:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2021-03-01T11:05:11+01:00"^^xsd:dateTime ;
+	isoT:creationDate "2021-03-01T11:00:54+01:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2021-03-01T11:00:54+01:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bf:note ""^^xsd:string ;
 	bf:completion ""^^xsd:string ;
-	bf:hasGroup <http://www.acme-pharma.com/VSHORIZONTAL/V1#NG_1760cbb1-a370-41f6-a3b3-493c1d9c2238> ;
-	bf:hasGroup <http://www.acme-pharma.com/VSHORIZONTAL/V1#NG_b76597f7-972f-40f4-bed7-e134725cf296> ;
+	bf:hasGroup <http://www.s-cubed.dk/VSHORIZONTAL/V1#NG_a6eb3fa7-9b12-4b41-8008-25bc798ae974> ;
+	bf:hasGroup <http://www.s-cubed.dk/VSHORIZONTAL/V1#NG_a393cf4e-d7d8-434e-83d6-f4178694da26> ;
 .
 :F_RS
 	rdf:type isoR:RegistrationState ;
@@ -47,20 +47,20 @@
 	isoI:versionLabel "0.1.0"^^xsd:string ;
 	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:semanticVersion "0.1.0"^^xsd:string ;
-	isoI:hasScope <http://www.assero.co.uk/NS#ACME> ;
+	isoI:hasScope <http://www.assero.co.uk/NS#SCUBED> ;
 .
-<http://www.acme-pharma.com/VSHORIZONTAL/V1#NG_1760cbb1-a370-41f6-a3b3-493c1d9c2238>
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#NG_a6eb3fa7-9b12-4b41-8008-25bc798ae974>
 	rdf:type bf:NormalGroup ;
 	isoC:label "VS - Horizontal Header"^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
-	bf:hasItem <http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_4646b47a-4ae4-4f21-b5e2-565815c8cded> ;
-	bf:hasItem <http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_92bf8b74-ec78-4348-9a1b-154a6ccb9b9f> ;
+	bf:hasItem <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_fe3e4799-d84f-4d2d-9a30-b33aea713d5d> ;
+	bf:hasItem <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_7bc78e8f-d17e-40e8-afea-398f88964d2f> ;
 	bf:repeating "false"^^xsd:boolean ;
 .
-<http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_4646b47a-4ae4-4f21-b5e2-565815c8cded>
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_fe3e4799-d84f-4d2d-9a30-b33aea713d5d>
 	rdf:type bf:Question ;
 	isoC:label "VSPERF"^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
@@ -71,30 +71,30 @@
 	bf:format "1"^^xsd:string ;
 	bf:mapping "[NO MAPPING]"^^xsd:string ;
 	bf:questionText "Were vital signs performed?"^^xsd:string ;
-	bf:hasCodedValue <http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_4646b47a-4ae4-4f21-b5e2-565815c8cded_TUC1> ;
-	bf:hasCodedValue <http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_4646b47a-4ae4-4f21-b5e2-565815c8cded_TUC2> ;
+	bf:hasCodedValue <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_fe3e4799-d84f-4d2d-9a30-b33aea713d5d_TUC1> ;
+	bf:hasCodedValue <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_fe3e4799-d84f-4d2d-9a30-b33aea713d5d_TUC2> ;
 .
-<http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_4646b47a-4ae4-4f21-b5e2-565815c8cded_TUC1>
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_fe3e4799-d84f-4d2d-9a30-b33aea713d5d_TUC1>
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "1"^^xsd:positiveInteger ;
 	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
-	bo:context <http://www.cdisc.org/C66742/V36#C66742> ;
+	bo:context <http://www.cdisc.org/C66742/V56#C66742> ;
 	bo:localLabel "No"^^xsd:string ;
 .
-<http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_4646b47a-4ae4-4f21-b5e2-565815c8cded_TUC2>
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_fe3e4799-d84f-4d2d-9a30-b33aea713d5d_TUC2>
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "2"^^xsd:positiveInteger ;
 	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
-	bo:context <http://www.cdisc.org/C66742/V36#C66742> ;
+	bo:context <http://www.cdisc.org/C66742/V56#C66742> ;
 	bo:localLabel "Yes"^^xsd:string ;
 .
-<http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_92bf8b74-ec78-4348-9a1b-154a6ccb9b9f>
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_7bc78e8f-d17e-40e8-afea-398f88964d2f>
 	rdf:type bf:Question ;
 	isoC:label "VSDAT"^^xsd:string ;
 	bf:ordinal "2"^^xsd:integer ;
@@ -106,38 +106,38 @@
 	bf:mapping "[NO MAPPING]"^^xsd:string ;
 	bf:questionText "What was the date of the measurement(s)?"^^xsd:string ;
 .
-<http://www.acme-pharma.com/VSHORIZONTAL/V1#NG_b76597f7-972f-40f4-bed7-e134725cf296>
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#NG_a393cf4e-d7d8-434e-83d6-f4178694da26>
 	rdf:type bf:NormalGroup ;
 	isoC:label "VS - Implementation Options: HorizontalGeneric"^^xsd:string ;
 	bf:ordinal "2"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
-	bf:hasItem <http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_36d01a04-97fa-4ae9-8f40-9f266a6cdc06> ;
-	bf:hasItem <http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_0cda6f24-e54d-4724-af79-916d41d9bd7f> ;
-	bf:hasItem <http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_7948e614-fdba-484a-9dfc-c98ce368d4e7> ;
-	bf:hasItem <http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_c9f7f7de-d227-4e15-b171-06c4306b77f4> ;
-	bf:hasItem <http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_f9fe7128-4b63-482d-9a11-62250e24fe0c> ;
-	bf:hasItem <http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_f03287d6-23ea-43bb-b3cf-f972761caabd> ;
-	bf:hasItem <http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_4b981364-daf4-4c99-84f0-f7514bd092e7> ;
-	bf:hasItem <http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_8cd62d3c-bce2-4d1b-bc7e-cc6544551abb> ;
-	bf:hasItem <http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_830fa72c-a59e-475b-9b2c-eb4b5ace264f> ;
-	bf:hasItem <http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_242c3d94-f47c-4477-9f51-afa4c18fa949> ;
-	bf:hasItem <http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_159a7d7f-1ef5-40f7-808b-d5d66ac7a06e> ;
-	bf:hasItem <http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_53dd87c3-1c29-4240-ba98-72341896b348> ;
-	bf:hasItem <http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_9512d1d4-7f6c-4b3c-a330-ff3081f8de24> ;
-	bf:hasItem <http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_16815e87-0141-4de3-b575-f06a729bdf40> ;
-	bf:hasItem <http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_f79069ba-85a0-4c75-a2b1-987b90fadd9d> ;
-	bf:hasItem <http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_b40ce817-f549-40d0-ab47-88d4faeda520> ;
-	bf:hasItem <http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_46e0d9c5-c6c2-4331-9716-d82e3edfa837> ;
-	bf:hasItem <http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_75568830-cc5c-4fd3-b944-7d89b5a72c2c> ;
-	bf:hasItem <http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_cffd2e4b-6089-4cd7-9214-b240de957046> ;
-	bf:hasItem <http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_49df362a-e61a-4191-8537-2148baf12008> ;
-	bf:hasItem <http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_0d54bd68-b43e-499a-9dfc-55040dca1732> ;
-	bf:hasItem <http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_043597a3-c572-41fb-9715-f1f4be733a6e> ;
+	bf:hasItem <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_6b666e4b-4539-439c-a5ee-ac3127cba851> ;
+	bf:hasItem <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_7e036514-245b-4675-b2d6-93fd3753d6c4> ;
+	bf:hasItem <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_4d73b26f-e211-445c-b928-a5262030a11f> ;
+	bf:hasItem <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_1116f643-15ca-47cb-9051-934f0f2f92a3> ;
+	bf:hasItem <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_4ded3862-c637-4ac5-aec2-826ba70182d4> ;
+	bf:hasItem <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_f2bdb81b-b0c5-4340-8b81-b1b643aaa1a7> ;
+	bf:hasItem <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_095bac28-47b9-4ba2-a355-56513f9eb0a5> ;
+	bf:hasItem <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_a5574494-38cd-4fca-a02a-68547faf7c8b> ;
+	bf:hasItem <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_77b6bdbe-84d4-4814-971e-844c70c28aba> ;
+	bf:hasItem <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_90d57150-9536-4112-8d33-f881bb7dbc7f> ;
+	bf:hasItem <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_9c9ff5a6-803b-45c4-973e-8e726766b3cd> ;
+	bf:hasItem <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_d58a5255-b62a-44d2-9b90-57f2091a60d4> ;
+	bf:hasItem <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_2e7e8aa3-aca1-4e2f-8eca-bc9eeb96dca9> ;
+	bf:hasItem <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_f9f6dd7f-c198-4c94-8bc8-ecd8582742f3> ;
+	bf:hasItem <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_2d3d7d49-c10c-4d6e-a9fb-836095a002b1> ;
+	bf:hasItem <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_f529cbbd-a3e3-4dec-93ba-27b050d9752f> ;
+	bf:hasItem <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_104e7607-c226-4436-ba1e-91cfe16383dc> ;
+	bf:hasItem <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_5ff3cc63-2c2d-4212-bdd6-d7ba2a576e4e> ;
+	bf:hasItem <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_57dc3148-ad9e-4ab5-ace9-28de2834dd2b> ;
+	bf:hasItem <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_d342f877-3780-41c3-a3f0-c554ec2ab650> ;
+	bf:hasItem <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_d884a045-2f07-4ebd-9392-9d7cded2eeba> ;
+	bf:hasItem <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_278e202f-6fc3-49d0-b94b-ccb8e73f0a60> ;
 	bf:repeating "false"^^xsd:boolean ;
 .
-<http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_36d01a04-97fa-4ae9-8f40-9f266a6cdc06>
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_6b666e4b-4539-439c-a5ee-ac3127cba851>
 	rdf:type bf:Question ;
 	isoC:label "SYSBP_VSORRES"^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
@@ -149,7 +149,7 @@
 	bf:mapping "[NO MAPPING]"^^xsd:string ;
 	bf:questionText "What was the result of the Systolic Blood Pressure measurement?"^^xsd:string ;
 .
-<http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_0cda6f24-e54d-4724-af79-916d41d9bd7f>
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_7e036514-245b-4675-b2d6-93fd3753d6c4>
 	rdf:type bf:Question ;
 	isoC:label "SYSBP_VSORRESU"^^xsd:string ;
 	bf:ordinal "2"^^xsd:integer ;
@@ -161,7 +161,7 @@
 	bf:mapping "[NO MAPPING]"^^xsd:string ;
 	bf:questionText "What was the unit of the Systolic Blood Pressure measurement?"^^xsd:string ;
 .
-<http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_7948e614-fdba-484a-9dfc-c98ce368d4e7>
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_4d73b26f-e211-445c-b928-a5262030a11f>
 	rdf:type bf:Question ;
 	isoC:label "SYSBP_VSORRESU units"^^xsd:string ;
 	bf:ordinal "3"^^xsd:integer ;
@@ -172,19 +172,19 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "[NO MAPPING]"^^xsd:string ;
 	bf:questionText "What was the unit of the Systolic Blood Pressure measurement? units"^^xsd:string ;
-	bf:hasCodedValue <http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_7948e614-fdba-484a-9dfc-c98ce368d4e7_TUC1> ;
+	bf:hasCodedValue <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_4d73b26f-e211-445c-b928-a5262030a11f_TUC1> ;
 .
-<http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_7948e614-fdba-484a-9dfc-c98ce368d4e7_TUC1>
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_4d73b26f-e211-445c-b928-a5262030a11f_TUC1>
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "1"^^xsd:positiveInteger ;
-	bo:reference <http://www.cdisc.org/C71620/V37#C71620_C49670> ;
-	bo:context <http://www.cdisc.org/C71620/V49#C71620> ;
+	bo:reference <http://www.cdisc.org/C66770/V38#C66770_C49670> ;
+	bo:context <http://www.cdisc.org/C66770/V59#C66770> ;
 	bo:localLabel "Millimeter of Mercury"^^xsd:string ;
 .
-<http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_c9f7f7de-d227-4e15-b171-06c4306b77f4>
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_1116f643-15ca-47cb-9051-934f0f2f92a3>
 	rdf:type bf:Question ;
 	isoC:label "DIABP_VSORRES"^^xsd:string ;
 	bf:ordinal "4"^^xsd:integer ;
@@ -196,7 +196,7 @@
 	bf:mapping "[NO MAPPING]"^^xsd:string ;
 	bf:questionText "What was the result of the Diastolic Blood Pressure measurement?"^^xsd:string ;
 .
-<http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_f9fe7128-4b63-482d-9a11-62250e24fe0c>
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_4ded3862-c637-4ac5-aec2-826ba70182d4>
 	rdf:type bf:Question ;
 	isoC:label "DIABP_VSORRESU"^^xsd:string ;
 	bf:ordinal "5"^^xsd:integer ;
@@ -208,7 +208,7 @@
 	bf:mapping "[NO MAPPING]"^^xsd:string ;
 	bf:questionText "What was the unit of the Diastolic Blood Pressure measurement?"^^xsd:string ;
 .
-<http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_f03287d6-23ea-43bb-b3cf-f972761caabd>
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_f2bdb81b-b0c5-4340-8b81-b1b643aaa1a7>
 	rdf:type bf:Question ;
 	isoC:label "DIABP_VSORRESU units"^^xsd:string ;
 	bf:ordinal "6"^^xsd:integer ;
@@ -219,19 +219,19 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "[NO MAPPING]"^^xsd:string ;
 	bf:questionText "What was the unit of the Diastolic Blood Pressure measurement? units"^^xsd:string ;
-	bf:hasCodedValue <http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_f03287d6-23ea-43bb-b3cf-f972761caabd_TUC1> ;
+	bf:hasCodedValue <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_f2bdb81b-b0c5-4340-8b81-b1b643aaa1a7_TUC1> ;
 .
-<http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_f03287d6-23ea-43bb-b3cf-f972761caabd_TUC1>
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_f2bdb81b-b0c5-4340-8b81-b1b643aaa1a7_TUC1>
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "1"^^xsd:positiveInteger ;
-	bo:reference <http://www.cdisc.org/C71620/V37#C71620_C49670> ;
-	bo:context <http://www.cdisc.org/C71620/V49#C71620> ;
+	bo:reference <http://www.cdisc.org/C66770/V38#C66770_C49670> ;
+	bo:context <http://www.cdisc.org/C66770/V59#C66770> ;
 	bo:localLabel "Millimeter of Mercury"^^xsd:string ;
 .
-<http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_4b981364-daf4-4c99-84f0-f7514bd092e7>
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_095bac28-47b9-4ba2-a355-56513f9eb0a5>
 	rdf:type bf:Question ;
 	isoC:label "BP_VSPOS"^^xsd:string ;
 	bf:ordinal "7"^^xsd:integer ;
@@ -242,63 +242,63 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "[NO MAPPING]"^^xsd:string ;
 	bf:questionText "What was the position of the subject during the blood pressure measurement?"^^xsd:string ;
-	bf:hasCodedValue <http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_4b981364-daf4-4c99-84f0-f7514bd092e7_TUC1> ;
-	bf:hasCodedValue <http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_4b981364-daf4-4c99-84f0-f7514bd092e7_TUC2> ;
-	bf:hasCodedValue <http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_4b981364-daf4-4c99-84f0-f7514bd092e7_TUC3> ;
-	bf:hasCodedValue <http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_4b981364-daf4-4c99-84f0-f7514bd092e7_TUC4> ;
-	bf:hasCodedValue <http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_4b981364-daf4-4c99-84f0-f7514bd092e7_TUC5> ;
+	bf:hasCodedValue <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_095bac28-47b9-4ba2-a355-56513f9eb0a5_TUC1> ;
+	bf:hasCodedValue <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_095bac28-47b9-4ba2-a355-56513f9eb0a5_TUC2> ;
+	bf:hasCodedValue <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_095bac28-47b9-4ba2-a355-56513f9eb0a5_TUC3> ;
+	bf:hasCodedValue <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_095bac28-47b9-4ba2-a355-56513f9eb0a5_TUC4> ;
+	bf:hasCodedValue <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_095bac28-47b9-4ba2-a355-56513f9eb0a5_TUC5> ;
 .
-<http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_4b981364-daf4-4c99-84f0-f7514bd092e7_TUC1>
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_095bac28-47b9-4ba2-a355-56513f9eb0a5_TUC1>
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "1"^^xsd:positiveInteger ;
 	bo:reference <http://www.cdisc.org/C71148/V6#C71148_C62165> ;
-	bo:context <http://www.cdisc.org/C71148/V36#C71148> ;
+	bo:context <http://www.cdisc.org/C71148/V66#C71148> ;
 	bo:localLabel "Prone Position"^^xsd:string ;
 .
-<http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_4b981364-daf4-4c99-84f0-f7514bd092e7_TUC2>
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_095bac28-47b9-4ba2-a355-56513f9eb0a5_TUC2>
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "2"^^xsd:positiveInteger ;
-	bo:reference <http://www.cdisc.org/C71148/V36#C71148_C111310> ;
-	bo:context <http://www.cdisc.org/C71148/V36#C71148> ;
+	bo:reference <http://www.cdisc.org/C71148/V53#C71148_C111310> ;
+	bo:context <http://www.cdisc.org/C71148/V66#C71148> ;
 	bo:localLabel "Semi-Recumbent"^^xsd:string ;
 .
-<http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_4b981364-daf4-4c99-84f0-f7514bd092e7_TUC3>
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_095bac28-47b9-4ba2-a355-56513f9eb0a5_TUC3>
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "3"^^xsd:positiveInteger ;
 	bo:reference <http://www.cdisc.org/C71148/V6#C71148_C62122> ;
-	bo:context <http://www.cdisc.org/C71148/V36#C71148> ;
+	bo:context <http://www.cdisc.org/C71148/V66#C71148> ;
 	bo:localLabel "Sitting"^^xsd:string ;
 .
-<http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_4b981364-daf4-4c99-84f0-f7514bd092e7_TUC4>
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_095bac28-47b9-4ba2-a355-56513f9eb0a5_TUC4>
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "4"^^xsd:positiveInteger ;
-	bo:reference <http://www.cdisc.org/C71148/V6#C71148_C62166> ;
-	bo:context <http://www.cdisc.org/C71148/V36#C71148> ;
+	bo:reference <http://www.cdisc.org/C71148/V62#C71148_C62166> ;
+	bo:context <http://www.cdisc.org/C71148/V66#C71148> ;
 	bo:localLabel "Standing"^^xsd:string ;
 .
-<http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_4b981364-daf4-4c99-84f0-f7514bd092e7_TUC5>
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_095bac28-47b9-4ba2-a355-56513f9eb0a5_TUC5>
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "5"^^xsd:positiveInteger ;
 	bo:reference <http://www.cdisc.org/C71148/V6#C71148_C62167> ;
-	bo:context <http://www.cdisc.org/C71148/V36#C71148> ;
+	bo:context <http://www.cdisc.org/C71148/V66#C71148> ;
 	bo:localLabel "Supine Position"^^xsd:string ;
 .
-<http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_8cd62d3c-bce2-4d1b-bc7e-cc6544551abb>
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_a5574494-38cd-4fca-a02a-68547faf7c8b>
 	rdf:type bf:Question ;
 	isoC:label "BP_VSLOC"^^xsd:string ;
 	bf:ordinal "8"^^xsd:integer ;
@@ -309,41 +309,41 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "[NO MAPPING]"^^xsd:string ;
 	bf:questionText "What was the anatomical location where the blood pressure measurement was taken?"^^xsd:string ;
-	bf:hasCodedValue <http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_8cd62d3c-bce2-4d1b-bc7e-cc6544551abb_TUC1> ;
-	bf:hasCodedValue <http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_8cd62d3c-bce2-4d1b-bc7e-cc6544551abb_TUC2> ;
-	bf:hasCodedValue <http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_8cd62d3c-bce2-4d1b-bc7e-cc6544551abb_TUC3> ;
+	bf:hasCodedValue <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_a5574494-38cd-4fca-a02a-68547faf7c8b_TUC1> ;
+	bf:hasCodedValue <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_a5574494-38cd-4fca-a02a-68547faf7c8b_TUC2> ;
+	bf:hasCodedValue <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_a5574494-38cd-4fca-a02a-68547faf7c8b_TUC3> ;
 .
-<http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_8cd62d3c-bce2-4d1b-bc7e-cc6544551abb_TUC1>
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_a5574494-38cd-4fca-a02a-68547faf7c8b_TUC1>
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "1"^^xsd:positiveInteger ;
-	bo:reference <http://www.cdisc.org/C74456/V8#C74456_C12681> ;
-	bo:context <http://www.cdisc.org/C74456/V49#C74456> ;
+	bo:reference <http://www.cdisc.org/C74456/V51#C74456_C12681> ;
+	bo:context <http://www.cdisc.org/C74456/V68#C74456> ;
 	bo:localLabel "Brachial Artery"^^xsd:string ;
 .
-<http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_8cd62d3c-bce2-4d1b-bc7e-cc6544551abb_TUC2>
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_a5574494-38cd-4fca-a02a-68547faf7c8b_TUC2>
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "2"^^xsd:positiveInteger ;
 	bo:reference <http://www.cdisc.org/C74456/V8#C74456_C32608> ;
-	bo:context <http://www.cdisc.org/C74456/V49#C74456> ;
+	bo:context <http://www.cdisc.org/C74456/V68#C74456> ;
 	bo:localLabel "Finger"^^xsd:string ;
 .
-<http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_8cd62d3c-bce2-4d1b-bc7e-cc6544551abb_TUC3>
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_a5574494-38cd-4fca-a02a-68547faf7c8b_TUC3>
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "3"^^xsd:positiveInteger ;
 	bo:reference <http://www.cdisc.org/C74456/V8#C74456_C12838> ;
-	bo:context <http://www.cdisc.org/C74456/V49#C74456> ;
+	bo:context <http://www.cdisc.org/C74456/V68#C74456> ;
 	bo:localLabel "Radial Artery"^^xsd:string ;
 .
-<http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_830fa72c-a59e-475b-9b2c-eb4b5ace264f>
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_77b6bdbe-84d4-4814-971e-844c70c28aba>
 	rdf:type bf:Question ;
 	isoC:label "HEIGHT_VSORRES"^^xsd:string ;
 	bf:ordinal "9"^^xsd:integer ;
@@ -355,7 +355,7 @@
 	bf:mapping "[NO MAPPING]"^^xsd:string ;
 	bf:questionText "What was the result of the height measurement?"^^xsd:string ;
 .
-<http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_242c3d94-f47c-4477-9f51-afa4c18fa949>
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_90d57150-9536-4112-8d33-f881bb7dbc7f>
 	rdf:type bf:Question ;
 	isoC:label "HEIGHT_VSORRESU"^^xsd:string ;
 	bf:ordinal "10"^^xsd:integer ;
@@ -366,30 +366,30 @@
 	bf:format "4"^^xsd:string ;
 	bf:mapping "[NO MAPPING]"^^xsd:string ;
 	bf:questionText "What was the unit of the height measurement?"^^xsd:string ;
-	bf:hasCodedValue <http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_242c3d94-f47c-4477-9f51-afa4c18fa949_TUC1> ;
-	bf:hasCodedValue <http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_242c3d94-f47c-4477-9f51-afa4c18fa949_TUC2> ;
+	bf:hasCodedValue <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_90d57150-9536-4112-8d33-f881bb7dbc7f_TUC1> ;
+	bf:hasCodedValue <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_90d57150-9536-4112-8d33-f881bb7dbc7f_TUC2> ;
 .
-<http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_242c3d94-f47c-4477-9f51-afa4c18fa949_TUC1>
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_90d57150-9536-4112-8d33-f881bb7dbc7f_TUC1>
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "1"^^xsd:positiveInteger ;
 	bo:reference <http://www.cdisc.org/C66770/V34#C66770_C49668> ;
-	bo:context <http://www.cdisc.org/C66770/V49#C66770> ;
+	bo:context <http://www.cdisc.org/C66770/V59#C66770> ;
 	bo:localLabel "Centimeter"^^xsd:string ;
 .
-<http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_242c3d94-f47c-4477-9f51-afa4c18fa949_TUC2>
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_90d57150-9536-4112-8d33-f881bb7dbc7f_TUC2>
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "2"^^xsd:positiveInteger ;
 	bo:reference <http://www.cdisc.org/C66770/V42#C66770_C48500> ;
-	bo:context <http://www.cdisc.org/C66770/V49#C66770> ;
+	bo:context <http://www.cdisc.org/C66770/V59#C66770> ;
 	bo:localLabel "Inch"^^xsd:string ;
 .
-<http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_159a7d7f-1ef5-40f7-808b-d5d66ac7a06e>
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_9c9ff5a6-803b-45c4-973e-8e726766b3cd>
 	rdf:type bf:Question ;
 	isoC:label "WEIGHT_VSORRES"^^xsd:string ;
 	bf:ordinal "11"^^xsd:integer ;
@@ -401,7 +401,7 @@
 	bf:mapping "WEIGHT"^^xsd:string ;
 	bf:questionText "What was the result of the weight measurement?"^^xsd:string ;
 .
-<http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_53dd87c3-1c29-4240-ba98-72341896b348>
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_d58a5255-b62a-44d2-9b90-57f2091a60d4>
 	rdf:type bf:Question ;
 	isoC:label "WEIGHT_VSORRESU"^^xsd:string ;
 	bf:ordinal "12"^^xsd:integer ;
@@ -412,30 +412,30 @@
 	bf:format "4"^^xsd:string ;
 	bf:mapping "[NO MAPPING]"^^xsd:string ;
 	bf:questionText "What was the unit of the weight measurement?"^^xsd:string ;
-	bf:hasCodedValue <http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_53dd87c3-1c29-4240-ba98-72341896b348_TUC1> ;
-	bf:hasCodedValue <http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_53dd87c3-1c29-4240-ba98-72341896b348_TUC2> ;
+	bf:hasCodedValue <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_d58a5255-b62a-44d2-9b90-57f2091a60d4_TUC1> ;
+	bf:hasCodedValue <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_d58a5255-b62a-44d2-9b90-57f2091a60d4_TUC2> ;
 .
-<http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_53dd87c3-1c29-4240-ba98-72341896b348_TUC1>
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_d58a5255-b62a-44d2-9b90-57f2091a60d4_TUC1>
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "1"^^xsd:positiveInteger ;
 	bo:reference <http://www.cdisc.org/C66770/V49#C66770_C28252> ;
-	bo:context <http://www.cdisc.org/C66770/V49#C66770> ;
+	bo:context <http://www.cdisc.org/C66770/V59#C66770> ;
 	bo:localLabel "Kilogram"^^xsd:string ;
 .
-<http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_53dd87c3-1c29-4240-ba98-72341896b348_TUC2>
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_d58a5255-b62a-44d2-9b90-57f2091a60d4_TUC2>
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "2"^^xsd:positiveInteger ;
 	bo:reference <http://www.cdisc.org/C66770/V4#C66770_C48531> ;
-	bo:context <http://www.cdisc.org/C66770/V49#C66770> ;
+	bo:context <http://www.cdisc.org/C66770/V59#C66770> ;
 	bo:localLabel "Pound"^^xsd:string ;
 .
-<http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_9512d1d4-7f6c-4b3c-a330-ff3081f8de24>
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_2e7e8aa3-aca1-4e2f-8eca-bc9eeb96dca9>
 	rdf:type bf:Question ;
 	isoC:label "PULSE_VSORRES"^^xsd:string ;
 	bf:ordinal "13"^^xsd:integer ;
@@ -447,7 +447,7 @@
 	bf:mapping "[NO MAPPING]"^^xsd:string ;
 	bf:questionText "What was the result of the pulse measurement?"^^xsd:string ;
 .
-<http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_16815e87-0141-4de3-b575-f06a729bdf40>
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_f9f6dd7f-c198-4c94-8bc8-ecd8582742f3>
 	rdf:type bf:Question ;
 	isoC:label "PULSE_VSORRESU"^^xsd:string ;
 	bf:ordinal "14"^^xsd:integer ;
@@ -459,7 +459,7 @@
 	bf:mapping "[NO MAPPING]"^^xsd:string ;
 	bf:questionText "What was the unit of the pulse measurement?"^^xsd:string ;
 .
-<http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_f79069ba-85a0-4c75-a2b1-987b90fadd9d>
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_2d3d7d49-c10c-4d6e-a9fb-836095a002b1>
 	rdf:type bf:Question ;
 	isoC:label "PULSE_VSORRESU units"^^xsd:string ;
 	bf:ordinal "15"^^xsd:integer ;
@@ -470,75 +470,86 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "[NO MAPPING]"^^xsd:string ;
 	bf:questionText "What was the unit of the pulse measurement? units"^^xsd:string ;
-	bf:hasCodedValue <http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_f79069ba-85a0-4c75-a2b1-987b90fadd9d_TUC1> ;
+	bf:hasCodedValue <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_2d3d7d49-c10c-4d6e-a9fb-836095a002b1_TUC1> ;
 .
-<http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_f79069ba-85a0-4c75-a2b1-987b90fadd9d_TUC1>
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_2d3d7d49-c10c-4d6e-a9fb-836095a002b1_TUC1>
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "1"^^xsd:positiveInteger ;
-	bo:reference <http://www.cdisc.org/C71620/V44#C71620_C49673> ;
-	bo:context <http://www.cdisc.org/C71620/V49#C71620> ;
+	bo:reference <http://www.cdisc.org/C66770/V44#C66770_C49673> ;
+	bo:context <http://www.cdisc.org/C66770/V59#C66770> ;
 	bo:localLabel "Beats per Minute"^^xsd:string ;
 .
-<http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_b40ce817-f549-40d0-ab47-88d4faeda520>
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_f529cbbd-a3e3-4dec-93ba-27b050d9752f>
 	rdf:type bf:Question ;
 	isoC:label "PULSE_VSLOC"^^xsd:string ;
 	bf:ordinal "16"^^xsd:integer ;
-	bf:note "Collected or preprinted when the sponsor needs to identify the specific anatomical location (e.g., ARM for blood pressure). Sponsors may collect the data using a subset list of controlled terminology on the CRF. In horizontal data collection, a CDASH variable [VSTESTCD]_VSLOC may be created for each VSTESTCD and added to the CRF, if needed. LAT, DIR, and PORTOT are used to further describe the anatomical location.* No entries found for code list, parameters ['notation=CLC74456LOCPULSE'].\n* No entries found in code list 'C74456' for item with submission value: 'CEREBRAL ARTERY' or preferred term: 'Cerebral Artery'.\n* No entries found in code list 'C74456' for item with submission value: 'PERIPHERAL ARTERY' or preferred term: 'Peripheral Artery'.\n"^^xsd:string ;
+	bf:note "Collected or preprinted when the sponsor needs to identify the specific anatomical location (e.g., ARM for blood pressure). Sponsors may collect the data using a subset list of controlled terminology on the CRF. In horizontal data collection, a CDASH variable [VSTESTCD]_VSLOC may be created for each VSTESTCD and added to the CRF, if needed. LAT, DIR, and PORTOT are used to further describe the anatomical location.* No entries found for code list, parameters ['notation=CLC74456LOCPULSE'].\n* No entries found in code list 'C74456' for item with submission value: 'PERIPHERAL ARTERY' or preferred term: 'Peripheral Artery'.\n"^^xsd:string ;
 	bf:completion "Record or select location on body where measurement was performed, if not preprinted on CRF."^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
 	bf:mapping "[NO MAPPING]"^^xsd:string ;
 	bf:questionText "What was the anatomical location where the pulse measurement was taken?"^^xsd:string ;
-	bf:hasCodedValue <http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_b40ce817-f549-40d0-ab47-88d4faeda520_TUC1> ;
-	bf:hasCodedValue <http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_b40ce817-f549-40d0-ab47-88d4faeda520_TUC2> ;
-	bf:hasCodedValue <http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_b40ce817-f549-40d0-ab47-88d4faeda520_TUC3> ;
-	bf:hasCodedValue <http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_b40ce817-f549-40d0-ab47-88d4faeda520_TUC4> ;
+	bf:hasCodedValue <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_f529cbbd-a3e3-4dec-93ba-27b050d9752f_TUC1> ;
+	bf:hasCodedValue <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_f529cbbd-a3e3-4dec-93ba-27b050d9752f_TUC2> ;
+	bf:hasCodedValue <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_f529cbbd-a3e3-4dec-93ba-27b050d9752f_TUC3> ;
+	bf:hasCodedValue <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_f529cbbd-a3e3-4dec-93ba-27b050d9752f_TUC4> ;
+	bf:hasCodedValue <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_f529cbbd-a3e3-4dec-93ba-27b050d9752f_TUC5> ;
 .
-<http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_b40ce817-f549-40d0-ab47-88d4faeda520_TUC1>
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_f529cbbd-a3e3-4dec-93ba-27b050d9752f_TUC1>
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "1"^^xsd:positiveInteger ;
-	bo:reference <http://www.cdisc.org/C74456/V8#C74456_C12681> ;
-	bo:context <http://www.cdisc.org/C74456/V49#C74456> ;
+	bo:reference <http://www.cdisc.org/C74456/V51#C74456_C12681> ;
+	bo:context <http://www.cdisc.org/C74456/V68#C74456> ;
 	bo:localLabel "Brachial Artery"^^xsd:string ;
 .
-<http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_b40ce817-f549-40d0-ab47-88d4faeda520_TUC2>
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_f529cbbd-a3e3-4dec-93ba-27b050d9752f_TUC2>
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "2"^^xsd:positiveInteger ;
-	bo:reference <http://www.cdisc.org/C74456/V8#C74456_C12687> ;
-	bo:context <http://www.cdisc.org/C74456/V49#C74456> ;
+	bo:reference <http://www.cdisc.org/C74456/V51#C74456_C12687> ;
+	bo:context <http://www.cdisc.org/C74456/V68#C74456> ;
 	bo:localLabel "Carotid Artery"^^xsd:string ;
 .
-<http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_b40ce817-f549-40d0-ab47-88d4faeda520_TUC3>
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_f529cbbd-a3e3-4dec-93ba-27b050d9752f_TUC3>
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "3"^^xsd:positiveInteger ;
-	bo:reference <http://www.cdisc.org/C74456/V8#C74456_C32478> ;
-	bo:context <http://www.cdisc.org/C74456/V49#C74456> ;
-	bo:localLabel "Dorsalis Pedis Artery"^^xsd:string ;
+	bo:reference <http://www.cdisc.org/C74456/V53#C74456_C12691> ;
+	bo:context <http://www.cdisc.org/C74456/V68#C74456> ;
+	bo:localLabel "Cerebral Artery"^^xsd:string ;
 .
-<http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_b40ce817-f549-40d0-ab47-88d4faeda520_TUC4>
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_f529cbbd-a3e3-4dec-93ba-27b050d9752f_TUC4>
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "4"^^xsd:positiveInteger ;
-	bo:reference <http://www.cdisc.org/C74456/V8#C74456_C12715> ;
-	bo:context <http://www.cdisc.org/C74456/V49#C74456> ;
+	bo:reference <http://www.cdisc.org/C74456/V66#C74456_C32478> ;
+	bo:context <http://www.cdisc.org/C74456/V68#C74456> ;
+	bo:localLabel "Dorsalis Pedis Artery"^^xsd:string ;
+.
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_f529cbbd-a3e3-4dec-93ba-27b050d9752f_TUC5>
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "5"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C74456/V51#C74456_C12715> ;
+	bo:context <http://www.cdisc.org/C74456/V68#C74456> ;
 	bo:localLabel "Femoral Artery"^^xsd:string ;
 .
-<http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_46e0d9c5-c6c2-4331-9716-d82e3edfa837>
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_104e7607-c226-4436-ba1e-91cfe16383dc>
 	rdf:type bf:Question ;
 	isoC:label "RESP_VSORRES"^^xsd:string ;
 	bf:ordinal "17"^^xsd:integer ;
@@ -550,7 +561,7 @@
 	bf:mapping "[NO MAPPING]"^^xsd:string ;
 	bf:questionText "What was the result of the respiratory rate measurement?"^^xsd:string ;
 .
-<http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_75568830-cc5c-4fd3-b944-7d89b5a72c2c>
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_5ff3cc63-2c2d-4212-bdd6-d7ba2a576e4e>
 	rdf:type bf:Question ;
 	isoC:label "RESP_VSORRESU"^^xsd:string ;
 	bf:ordinal "18"^^xsd:integer ;
@@ -562,7 +573,7 @@
 	bf:mapping "[NO MAPPING]"^^xsd:string ;
 	bf:questionText "What was the unit of the Respiratory Rate Unit measurement?"^^xsd:string ;
 .
-<http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_cffd2e4b-6089-4cd7-9214-b240de957046>
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_57dc3148-ad9e-4ab5-ace9-28de2834dd2b>
 	rdf:type bf:Question ;
 	isoC:label "RESP_VSORRESU units"^^xsd:string ;
 	bf:ordinal "19"^^xsd:integer ;
@@ -573,19 +584,19 @@
 	bf:format "20"^^xsd:string ;
 	bf:mapping "[NO MAPPING]"^^xsd:string ;
 	bf:questionText "What was the unit of the Respiratory Rate Unit measurement? units"^^xsd:string ;
-	bf:hasCodedValue <http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_cffd2e4b-6089-4cd7-9214-b240de957046_TUC1> ;
+	bf:hasCodedValue <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_57dc3148-ad9e-4ab5-ace9-28de2834dd2b_TUC1> ;
 .
-<http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_cffd2e4b-6089-4cd7-9214-b240de957046_TUC1>
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_57dc3148-ad9e-4ab5-ace9-28de2834dd2b_TUC1>
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "1"^^xsd:positiveInteger ;
-	bo:reference <http://www.cdisc.org/C71620/V44#C71620_C49674> ;
-	bo:context <http://www.cdisc.org/C71620/V49#C71620> ;
+	bo:reference <http://www.cdisc.org/C66770/V44#C66770_C49674> ;
+	bo:context <http://www.cdisc.org/C66770/V59#C66770> ;
 	bo:localLabel "Breaths per Minute"^^xsd:string ;
 .
-<http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_49df362a-e61a-4191-8537-2148baf12008>
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_d342f877-3780-41c3-a3f0-c554ec2ab650>
 	rdf:type bf:Question ;
 	isoC:label "TEMP_VSORRES"^^xsd:string ;
 	bf:ordinal "20"^^xsd:integer ;
@@ -597,7 +608,7 @@
 	bf:mapping "[NO MAPPING]"^^xsd:string ;
 	bf:questionText "What was the result of the temperature measurement?"^^xsd:string ;
 .
-<http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_0d54bd68-b43e-499a-9dfc-55040dca1732>
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_d884a045-2f07-4ebd-9392-9d7cded2eeba>
 	rdf:type bf:Question ;
 	isoC:label "TEMP_VSORRESU"^^xsd:string ;
 	bf:ordinal "21"^^xsd:integer ;
@@ -608,30 +619,30 @@
 	bf:format "4"^^xsd:string ;
 	bf:mapping "[NO MAPPING]"^^xsd:string ;
 	bf:questionText "What was the unit of the Temperature Unit measurement?"^^xsd:string ;
-	bf:hasCodedValue <http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_0d54bd68-b43e-499a-9dfc-55040dca1732_TUC1> ;
-	bf:hasCodedValue <http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_0d54bd68-b43e-499a-9dfc-55040dca1732_TUC2> ;
+	bf:hasCodedValue <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_d884a045-2f07-4ebd-9392-9d7cded2eeba_TUC1> ;
+	bf:hasCodedValue <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_d884a045-2f07-4ebd-9392-9d7cded2eeba_TUC2> ;
 .
-<http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_0d54bd68-b43e-499a-9dfc-55040dca1732_TUC1>
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_d884a045-2f07-4ebd-9392-9d7cded2eeba_TUC1>
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "1"^^xsd:positiveInteger ;
 	bo:reference <http://www.cdisc.org/C66770/V4#C66770_C42559> ;
-	bo:context <http://www.cdisc.org/C66770/V49#C66770> ;
+	bo:context <http://www.cdisc.org/C66770/V59#C66770> ;
 	bo:localLabel "Degree Celsius"^^xsd:string ;
 .
-<http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_0d54bd68-b43e-499a-9dfc-55040dca1732_TUC2>
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_d884a045-2f07-4ebd-9392-9d7cded2eeba_TUC2>
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "2"^^xsd:positiveInteger ;
 	bo:reference <http://www.cdisc.org/C66770/V17#C66770_C44277> ;
-	bo:context <http://www.cdisc.org/C66770/V49#C66770> ;
+	bo:context <http://www.cdisc.org/C66770/V59#C66770> ;
 	bo:localLabel "Degree Fahrenheit"^^xsd:string ;
 .
-<http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_043597a3-c572-41fb-9715-f1f4be733a6e>
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_278e202f-6fc3-49d0-b94b-ccb8e73f0a60>
 	rdf:type bf:Question ;
 	isoC:label "TEMP_VSLOC"^^xsd:string ;
 	bf:ordinal "22"^^xsd:integer ;
@@ -642,48 +653,48 @@
 	bf:format "11"^^xsd:string ;
 	bf:mapping "[NO MAPPING]"^^xsd:string ;
 	bf:questionText "What was the anatomical location where the temperature was taken?"^^xsd:string ;
-	bf:hasCodedValue <http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_043597a3-c572-41fb-9715-f1f4be733a6e_TUC1> ;
-	bf:hasCodedValue <http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_043597a3-c572-41fb-9715-f1f4be733a6e_TUC2> ;
-	bf:hasCodedValue <http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_043597a3-c572-41fb-9715-f1f4be733a6e_TUC3> ;
-	bf:hasCodedValue <http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_043597a3-c572-41fb-9715-f1f4be733a6e_TUC4> ;
+	bf:hasCodedValue <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_278e202f-6fc3-49d0-b94b-ccb8e73f0a60_TUC1> ;
+	bf:hasCodedValue <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_278e202f-6fc3-49d0-b94b-ccb8e73f0a60_TUC2> ;
+	bf:hasCodedValue <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_278e202f-6fc3-49d0-b94b-ccb8e73f0a60_TUC3> ;
+	bf:hasCodedValue <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_278e202f-6fc3-49d0-b94b-ccb8e73f0a60_TUC4> ;
 .
-<http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_043597a3-c572-41fb-9715-f1f4be733a6e_TUC1>
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_278e202f-6fc3-49d0-b94b-ccb8e73f0a60_TUC1>
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "1"^^xsd:positiveInteger ;
-	bo:reference <http://www.cdisc.org/C74456/V8#C74456_C12674> ;
-	bo:context <http://www.cdisc.org/C74456/V49#C74456> ;
+	bo:reference <http://www.cdisc.org/C74456/V61#C74456_C12674> ;
+	bo:context <http://www.cdisc.org/C74456/V68#C74456> ;
 	bo:localLabel "Axilla"^^xsd:string ;
 .
-<http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_043597a3-c572-41fb-9715-f1f4be733a6e_TUC2>
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_278e202f-6fc3-49d0-b94b-ccb8e73f0a60_TUC2>
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "2"^^xsd:positiveInteger ;
-	bo:reference <http://www.cdisc.org/C74456/V8#C74456_C12394> ;
-	bo:context <http://www.cdisc.org/C74456/V49#C74456> ;
+	bo:reference <http://www.cdisc.org/C74456/V51#C74456_C12394> ;
+	bo:context <http://www.cdisc.org/C74456/V68#C74456> ;
 	bo:localLabel "Ear"^^xsd:string ;
 .
-<http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_043597a3-c572-41fb-9715-f1f4be733a6e_TUC3>
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_278e202f-6fc3-49d0-b94b-ccb8e73f0a60_TUC3>
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "3"^^xsd:positiveInteger ;
 	bo:reference <http://www.cdisc.org/C74456/V28#C74456_C89803> ;
-	bo:context <http://www.cdisc.org/C74456/V49#C74456> ;
+	bo:context <http://www.cdisc.org/C74456/V68#C74456> ;
 	bo:localLabel "Forehead"^^xsd:string ;
 .
-<http://www.acme-pharma.com/VSHORIZONTAL/V1#Q_043597a3-c572-41fb-9715-f1f4be733a6e_TUC4>
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_278e202f-6fc3-49d0-b94b-ccb8e73f0a60_TUC4>
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "4"^^xsd:positiveInteger ;
-	bo:reference <http://www.cdisc.org/C74456/V40#C74456_C12421> ;
-	bo:context <http://www.cdisc.org/C74456/V49#C74456> ;
+	bo:reference <http://www.cdisc.org/C74456/V59#C74456_C12421> ;
+	bo:context <http://www.cdisc.org/C74456/V68#C74456> ;
 	bo:localLabel "Oral Cavity"^^xsd:string ;
 .

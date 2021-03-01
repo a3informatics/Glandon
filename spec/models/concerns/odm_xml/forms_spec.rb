@@ -48,7 +48,8 @@ describe OdmXml::Forms do
     expect(object.errors.count).to eq(0)
     actual = object.form("F_BASELINE")
     expect(actual).to_not be_nil
-    fix_dates(actual, sub_dir, "form_expected_1.yaml", :creation_date)
+    expect(actual.errors.count).to eq(0)
+    fix_dates(actual, sub_dir, "form_expected_1.yaml", :creation_date, :last_change_date)
     check_file_actual_expected(actual.to_h, sub_dir, "form_expected_1.yaml", equate_method: :hash_equal)
   end
 
@@ -58,7 +59,8 @@ describe OdmXml::Forms do
     expect(object.errors.count).to eq(0)
     actual = object.form("F_AE")
     expect(actual).to_not be_nil
-    fix_dates(actual, sub_dir, "form_expected_2.yaml", :creation_date)
+    expect(actual.errors.count).to eq(0)
+    fix_dates(actual, sub_dir, "form_expected_2.yaml", :creation_date, :last_change_date)
     check_file_actual_expected(actual.to_h, sub_dir, "form_expected_2.yaml", equate_method: :hash_equal)
   end
 
@@ -68,7 +70,8 @@ describe OdmXml::Forms do
     expect(object.errors.count).to eq(0)
     actual = object.form("DM")
     expect(actual).to_not be_nil
-    fix_dates(actual, sub_dir, "form_expected_3.yaml", :creation_date)
+    expect(actual.errors.count).to eq(0)
+    fix_dates(actual, sub_dir, "form_expected_3.yaml", :creation_date, :last_change_date)
     check_file_actual_expected(actual.to_h, sub_dir, "form_expected_3.yaml", equate_method: :hash_equal)
   end
 
@@ -78,7 +81,8 @@ describe OdmXml::Forms do
     expect(object.errors.count).to eq(0)
     actual = object.form("IE")
     expect(actual).to_not be_nil
-    fix_dates(actual, sub_dir, "form_expected_4.yaml", :creation_date)
+    expect(actual.errors.count).to eq(0)
+    fix_dates(actual, sub_dir, "form_expected_4.yaml", :creation_date, :last_change_date)
     check_file_actual_expected(actual.to_h, sub_dir, "form_expected_4.yaml", equate_method: :hash_equal)
   end
 
@@ -88,7 +92,8 @@ describe OdmXml::Forms do
     expect(object.errors.count).to eq(0)
     actual = object.form("f.dm")
     expect(actual).to_not be_nil
-    fix_dates(actual, sub_dir, "form_expected_5.yaml", :creation_date)
+    expect(actual.errors.count).to eq(0)
+    fix_dates(actual, sub_dir, "form_expected_5.yaml", :creation_date, :last_change_date)
     check_file_actual_expected(actual.to_h, sub_dir, "form_expected_5.yaml", equate_method: :hash_equal)
   end
 
@@ -98,17 +103,28 @@ describe OdmXml::Forms do
     expect(object.errors.count).to eq(0)
     actual = object.form("f.screenid")
     expect(actual).to_not be_nil
-    fix_dates(actual, sub_dir, "form_expected_6.yaml", :creation_date)
+    expect(actual.errors.count).to eq(0)
+    fix_dates(actual, sub_dir, "form_expected_6.yaml", :creation_date, :last_change_date)
     check_file_actual_expected(actual.to_h, sub_dir, "form_expected_6.yaml", equate_method: :hash_equal)
   end
 
-  it "reads the odm fle, error I" do
+  it "gets form, ERROR example" do
     full_path = test_file_path(sub_dir, "odm_1.xml")
     object = OdmXml::Forms.new(full_path)
     expect(object.errors.count).to eq(0)
-    item = object.form("F_ERROR")
-    expect(object.errors.count).to eq(1)
-		expect(object.errors.full_messages.to_sentence).to eq("Exception raised building form. undefined method `attributes' for nil:NilClass")	
+    actual = object.form("F_ERROR")
+    expect(actual.errors.count).to eq(0)
+    fix_dates(actual, sub_dir, "form_expected_6.yaml", :creation_date, :last_change_date)
+    check_file_actual_expected(actual.to_h, sub_dir, "form_expected_7.yaml", equate_method: :hash_equal)
 	end
+
+  it "gets form, ERROR example" do
+    full_path = test_file_path(sub_dir, "odm_1.xml")
+    object = OdmXml::Forms.new(full_path)
+    expect(object.errors.count).to eq(0)
+    actual = object.form("F_ERRORxx")
+    expect(actual.errors.count).to eq(1)
+    expect(actual.errors.full_messages.to_sentence).to eq("Failed to find the form, possible identifier mismatch.")
+  end
    
 end

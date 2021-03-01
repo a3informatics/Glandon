@@ -1,4 +1,4 @@
-@prefix : <http://www.acme-pharma.com/PE/V1#> .
+@prefix : <http://www.s-cubed.dk/PE/V1#> .
 @prefix bf: <http://www.assero.co.uk/BusinessForm#> .
 @prefix isoC: <http://www.assero.co.uk/ISO11179Concepts#> .
 @prefix isoT: <http://www.assero.co.uk/ISO11179Types#> .
@@ -11,7 +11,7 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 
-<http://www.acme-pharma.com/PE/V1>
+<http://www.s-cubed.dk/PE/V1>
 	rdf:type owl:Ontology ;
 .
 :F
@@ -21,12 +21,12 @@
 	isoT:hasIdentifier :F_SI ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
-	isoT:creationDate "2021-03-01T11:05:11+01:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2021-03-01T11:05:11+01:00"^^xsd:dateTime ;
+	isoT:creationDate "2021-03-01T11:00:55+01:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2021-03-01T11:00:55+01:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bf:note ""^^xsd:string ;
 	bf:completion ""^^xsd:string ;
-	bf:hasGroup :NG_1760cbb1-a370-41f6-a3b3-493c1d9c2238 ;
+	bf:hasGroup :NG_25821d56-0d20-43f4-92f2-5d44450d1ecb ;
 .
 :F_RS
 	rdf:type isoR:RegistrationState ;
@@ -46,20 +46,20 @@
 	isoI:versionLabel "0.1.0"^^xsd:string ;
 	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:semanticVersion "0.1.0"^^xsd:string ;
-	isoI:hasScope <http://www.assero.co.uk/NS#ACME> ;
+	isoI:hasScope <http://www.assero.co.uk/NS#SCUBED> ;
 .
-:NG_1760cbb1-a370-41f6-a3b3-493c1d9c2238
+:NG_25821d56-0d20-43f4-92f2-5d44450d1ecb
 	rdf:type bf:NormalGroup ;
 	isoC:label "PE - Recommended"^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
-	bf:hasItem :Q_4646b47a-4ae4-4f21-b5e2-565815c8cded ;
-	bf:hasItem :Q_92bf8b74-ec78-4348-9a1b-154a6ccb9b9f ;
+	bf:hasItem :Q_abeb5d8b-cbe6-4bbe-871f-07cab41f17be ;
+	bf:hasItem :Q_4aa9e70f-6b0a-4b64-a107-cffa6d017560 ;
 	bf:repeating "false"^^xsd:boolean ;
 .
-:Q_4646b47a-4ae4-4f21-b5e2-565815c8cded
+:Q_abeb5d8b-cbe6-4bbe-871f-07cab41f17be
 	rdf:type bf:Question ;
 	isoC:label "PEPERF"^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
@@ -70,30 +70,30 @@
 	bf:format "3"^^xsd:string ;
 	bf:mapping "[NO MAPPING]"^^xsd:string ;
 	bf:questionText "Was the physical examination performed?"^^xsd:string ;
-	bf:hasCodedValue :Q_4646b47a-4ae4-4f21-b5e2-565815c8cded_TUC1 ;
-	bf:hasCodedValue :Q_4646b47a-4ae4-4f21-b5e2-565815c8cded_TUC2 ;
+	bf:hasCodedValue :Q_abeb5d8b-cbe6-4bbe-871f-07cab41f17be_TUC1 ;
+	bf:hasCodedValue :Q_abeb5d8b-cbe6-4bbe-871f-07cab41f17be_TUC2 ;
 .
-:Q_4646b47a-4ae4-4f21-b5e2-565815c8cded_TUC1
+:Q_abeb5d8b-cbe6-4bbe-871f-07cab41f17be_TUC1
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "1"^^xsd:positiveInteger ;
 	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
-	bo:context <http://www.cdisc.org/C66742/V36#C66742> ;
+	bo:context <http://www.cdisc.org/C66742/V56#C66742> ;
 	bo:localLabel "No"^^xsd:string ;
 .
-:Q_4646b47a-4ae4-4f21-b5e2-565815c8cded_TUC2
+:Q_abeb5d8b-cbe6-4bbe-871f-07cab41f17be_TUC2
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "2"^^xsd:positiveInteger ;
 	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
-	bo:context <http://www.cdisc.org/C66742/V36#C66742> ;
+	bo:context <http://www.cdisc.org/C66742/V56#C66742> ;
 	bo:localLabel "Yes"^^xsd:string ;
 .
-:Q_92bf8b74-ec78-4348-9a1b-154a6ccb9b9f
+:Q_4aa9e70f-6b0a-4b64-a107-cffa6d017560
 	rdf:type bf:Question ;
 	isoC:label "PEDAT"^^xsd:string ;
 	bf:ordinal "2"^^xsd:integer ;

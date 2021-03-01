@@ -63,7 +63,7 @@ class OdmXml::Forms < OdmXml
       if source_form.nil?
         parent.error(self.class.name, __method__.to_s, "Failed to find the form, possible identifier mismatch.") 
       else
-        @form = Form.new 
+        @form = ::Form.new 
         @form.set_initial(IsoScopedIdentifierV2.clean_identifier(identifier)) # Make sure we remove anything nasty
         @form.label = source_form[:label]
       end
@@ -96,6 +96,7 @@ class OdmXml::Forms < OdmXml
       @oid = node.attributes["ItemGroupOID"].value
       group_node = doc.xpath("//xmlns:ItemGroupDef[@OID = '#{@oid}']")
       @group = Form::Group::Normal.new
+      return if group_node.empty?
       @group.label = group_node.first.attributes["Name"].value
       @group.ordinal = node.attributes["OrderNumber"].nil? ? 1 : node.attributes["OrderNumber"].value.to_i
     end
@@ -208,8 +209,6 @@ class OdmXml::Forms < OdmXml
       return false if node.nil?
       question.question_text = parse_special(node.text.strip)
       return true
-    rescue => e
-      byebug
     end
 
     def question_name(node, question)
@@ -220,19 +219,36 @@ class OdmXml::Forms < OdmXml
     end
 
     def add_cl(node, question)
+      notes = []
       cli_nodes = node.xpath("xmlns:CodeListItem")
-      return if cli_nodes.empty?
-      return if alias_cl(node, question, cli_nodes)
-      return if sas_format_cl(node, question, cli_nodes)
-      return if oid_cl_notation(node, question, cli_nodes)
-      return if oid_cl_c_code(node, question, cli_nodes)
-      return if name_cl(node, question, cli_nodes)
+      return true if cli_nodes.empty?
+
+      result = alias_cl(node, question, cli_nodes)
+      return true if result[:result]
+      notes += result[:notes]
+
+      result = sas_format_cl(node, question, cli_nodes)
+      return true if result[:result]
+      notes += result[:notes]
+
+      result = oid_cl_notation(node, question, cli_nodes)
+      return true if result[:result]
+      notes += result[:notes]
+
+      result = oid_cl_c_code(node, question, cli_nodes)
+      return true if result[:result]
+      notes += result[:notes]
+
+      result = name_cl(node, question, cli_nodes)
+      return true if result[:result]
+      notes += result[:notes]
+      question.note += "\n\nTerminology Search:\n#{notes}" 
     end
 
     def alias_cl(node, question, cli_nodes)
       alias_nodes = node.xpath("xmlns:Alias[@Context='nci:ExtCodeID']")
-      return false if alias_nodes.empty?
-      return find_cl({identifier: alias_nodes.first.attributes["Name"].value}, question, cli_nodes)
+      return {result: false, notes: []} if alias_nodes.empty?
+      find_cl({identifier: alias_nodes.first.attributes["Name"].value}, question, cli_nodes)
     end
 
     def sas_format_cl(node, question, cli_nodes)
@@ -241,13 +257,13 @@ class OdmXml::Forms < OdmXml
       text = text.gsub(/[^0-9A-Za-z]/, "") # Remove any non-alphanumeric, e.g. $
       text = text.upcase # Make sure it has a chance of matching 
       return find_cl({identifier: text}, question, cli_nodes) if NciThesaurusUtility.c_code?(text)      
-      return find_cl({notation: text}, question, cli_nodes)
+      find_cl({notation: text}, question, cli_nodes)
     end
 
     def name_cl(node, question, cli_nodes)
       return false if node.attributes["Name"].nil?
       text = node.attributes["Name"].value
-      return find_cl({label: text}, question, cli_nodes)
+      find_cl({label: text}, question, cli_nodes)
     end
 
     def oid_cl_notation(node, question, cli_nodes)
@@ -259,6 +275,7 @@ class OdmXml::Forms < OdmXml
     end
 
     def find_cl(params, question, cli_nodes)
+      notes = []
       result = get_tc(params)
       if !result[:tc].nil?
         ordinal = Ordinal.new
@@ -266,12 +283,12 @@ class OdmXml::Forms < OdmXml
           info = {notation: "", preferred_term: ""}
           next if notation_cli(result, cli_node, question, ordinal, info)
           next if preferred_term_cli(result, cli_node, question, ordinal, info)
-          question.note += "* No entries found in code list '#{result[:tc].identifier}' for item with submission value: '#{info[:notation]}' or preferred term: '#{info[:preferred_term]}'.\n"
+          notes << "* No entries found in code list '#{result[:tc].identifier}' for item with submission value: '#{info[:notation]}' or preferred term: '#{info[:preferred_term]}'.\n"
         end
-        return true
+        return {result: true, notes: notes}
       else
-        question.note += "* No entries found for code list, parameters #{params_to_s(params)}.\n"
-        return false
+        notes << "* No entries found for code list, parameters #{params_to_s(params)}.\n"
+        return {result: false, notes: notes}
       end
     end
 
@@ -293,7 +310,9 @@ class OdmXml::Forms < OdmXml
     end
 
     def add_op_ref(cli, question, ordinal)
-      ref = OperationalReferenceV3.new
+      ref = OperationalReferenceV3::TucReference.new
+      ref.local_label = cli.label
+      ref.context = cli.parents.last
       ref.ordinal = ordinal.value
       ref.reference = cli.uri
       question.has_coded_value << ref

@@ -141,31 +141,30 @@
     :has_coded_value:
     - :id: 
       :uri: {}
-      :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
       :label: ''
       :enabled: true
       :optional: false
       :ordinal: 1
       :reference: http://www.cdisc.org/C66731/V16#C66731_C20197
-      :context: 
+      :context: http://www.cdisc.org/C66731/V39#C66731
+      :local_label: Male
     - :id: 
       :uri: {}
-      :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
       :label: ''
       :enabled: true
       :optional: false
       :ordinal: 2
       :reference: http://www.cdisc.org/C66731/V4#C66731_C16576
-      :context: 
+      :context: http://www.cdisc.org/C66731/V39#C66731
+      :local_label: Female
   - :id: 
     :uri: {}
     :rdf_type: http://www.assero.co.uk/BusinessForm#Question
     :label: DM - Race
     :ordinal: 3
-    :note: |
-      * No entries found in code list 'C74457' for item with submission value: 'CAUCASIAN' or preferred term: 'Caucasian'.
-      * No entries found in code list 'C74457' for item with submission value: 'BLACK' or preferred term: 'Black'.
-      * No entries found in code list 'C74457' for item with submission value: 'OTHER' or preferred term: 'Other'.
+    :note: ''
     :completion: ''
     :optional: false
     :datatype: string
@@ -175,13 +174,14 @@
     :has_coded_value:
     - :id: 
       :uri: {}
-      :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
       :label: ''
       :enabled: true
       :optional: false
       :ordinal: 1
       :reference: http://www.cdisc.org/C74457/V10#C74457_C41260
-      :context: 
+      :context: http://www.cdisc.org/C74457/V49#C74457
+      :local_label: Asian
   :repeating: false
   :has_sub_group: []
   :has_common: []
@@ -199,11 +199,11 @@
     :rdf_type: http://www.assero.co.uk/BusinessForm#Question
     :label: Smoking
     :ordinal: 1
-    :note: |
-      * No entries found for code list, parameters ['notation=SMOKE'].
-      * No entries found for code list, parameters ['notation=CLSMOKING'].
-      * No entries found for code list, parameters ['identifier='].
-      * No entries found for code list, parameters ['label=Smoking'].
+    :note: |2-
+
+
+      Terminology Search:
+      ["* No entries found for code list, parameters ['notation=SMOKE'].\n", "* No entries found for code list, parameters ['notation=CLSMOKING'].\n", "* No entries found for code list, parameters ['identifier='].\n", "* No entries found for code list, parameters ['label=Smoking'].\n"]
     :completion: ''
     :optional: false
     :datatype: string
@@ -228,11 +228,11 @@
     :rdf_type: http://www.assero.co.uk/BusinessForm#Question
     :label: Drinking
     :ordinal: 1
-    :note: |
-      * No entries found for code list, parameters ['notation=DRINK'].
-      * No entries found for code list, parameters ['notation=CLDRINKING'].
-      * No entries found for code list, parameters ['identifier='].
-      * No entries found for code list, parameters ['label=Drinking'].
+    :note: |2-
+
+
+      Terminology Search:
+      ["* No entries found for code list, parameters ['notation=DRINK'].\n", "* No entries found for code list, parameters ['notation=CLDRINKING'].\n", "* No entries found for code list, parameters ['identifier='].\n", "* No entries found for code list, parameters ['label=Drinking'].\n"]
     :completion: ''
     :optional: false
     :datatype: string
@@ -281,13 +281,14 @@
     :has_coded_value:
     - :id: 
       :uri: {}
-      :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
       :label: ''
       :enabled: true
       :optional: false
       :ordinal: 1
       :reference: http://www.cdisc.org/C71620/V42#C71620_C48500
-      :context: 
+      :context: http://www.cdisc.org/C71620/V49#C71620
+      :local_label: Inch
   - :id: 
     :uri: {}
     :rdf_type: http://www.assero.co.uk/BusinessForm#Question

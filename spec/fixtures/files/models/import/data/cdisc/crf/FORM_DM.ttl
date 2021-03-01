@@ -1,4 +1,4 @@
-@prefix : <http://www.acme-pharma.com/DM/V1#> .
+@prefix : <http://www.s-cubed.dk/DM/V1#> .
 @prefix bf: <http://www.assero.co.uk/BusinessForm#> .
 @prefix isoC: <http://www.assero.co.uk/ISO11179Concepts#> .
 @prefix isoT: <http://www.assero.co.uk/ISO11179Types#> .
@@ -11,7 +11,7 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 
-<http://www.acme-pharma.com/DM/V1>
+<http://www.s-cubed.dk/DM/V1>
 	rdf:type owl:Ontology ;
 .
 :F
@@ -21,12 +21,12 @@
 	isoT:hasIdentifier :F_SI ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
-	isoT:creationDate "2021-03-01T11:04:44+01:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2021-03-01T11:04:44+01:00"^^xsd:dateTime ;
+	isoT:creationDate "2021-03-01T11:00:27+01:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2021-03-01T11:00:27+01:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bf:note ""^^xsd:string ;
 	bf:completion ""^^xsd:string ;
-	bf:hasGroup :NG_1760cbb1-a370-41f6-a3b3-493c1d9c2238 ;
+	bf:hasGroup :NG_2e965ad8-2e13-4511-a29a-130e20943c71 ;
 .
 :F_RS
 	rdf:type isoR:RegistrationState ;
@@ -46,26 +46,26 @@
 	isoI:versionLabel "0.1.0"^^xsd:string ;
 	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:semanticVersion "0.1.0"^^xsd:string ;
-	isoI:hasScope <http://www.assero.co.uk/NS#ACME> ;
+	isoI:hasScope <http://www.assero.co.uk/NS#SCUBED> ;
 .
-:NG_1760cbb1-a370-41f6-a3b3-493c1d9c2238
+:NG_2e965ad8-2e13-4511-a29a-130e20943c71
 	rdf:type bf:NormalGroup ;
 	isoC:label "DM - Demographics"^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
-	bf:hasItem :Q_4646b47a-4ae4-4f21-b5e2-565815c8cded ;
-	bf:hasItem :Q_92bf8b74-ec78-4348-9a1b-154a6ccb9b9f ;
-	bf:hasItem :Q_b76597f7-972f-40f4-bed7-e134725cf296 ;
-	bf:hasItem :Q_36d01a04-97fa-4ae9-8f40-9f266a6cdc06 ;
-	bf:hasItem :Q_0cda6f24-e54d-4724-af79-916d41d9bd7f ;
-	bf:hasItem :Q_7948e614-fdba-484a-9dfc-c98ce368d4e7 ;
-	bf:hasItem :Q_c9f7f7de-d227-4e15-b171-06c4306b77f4 ;
-	bf:hasItem :Q_f9fe7128-4b63-482d-9a11-62250e24fe0c ;
+	bf:hasItem :Q_6c5b4da8-8628-4347-ba6b-9f5af603c360 ;
+	bf:hasItem :Q_e6bacf10-5049-4e90-a7a3-d03d846e92d9 ;
+	bf:hasItem :Q_81f93d94-c8dd-43d9-95e4-7cfb2317bb57 ;
+	bf:hasItem :Q_d5032668-2249-43f1-b7a2-23fa0cdbb9d8 ;
+	bf:hasItem :Q_6f3aad2f-5e84-4412-b9de-ce10cedfdebb ;
+	bf:hasItem :Q_4b6e6750-d7ab-495c-b722-f8e6268cf998 ;
+	bf:hasItem :Q_a4fe56e9-4c8a-451b-953b-5d121fac7469 ;
+	bf:hasItem :Q_fa7d2d96-241b-49c4-8758-f979a415a65d ;
 	bf:repeating "false"^^xsd:boolean ;
 .
-:Q_4646b47a-4ae4-4f21-b5e2-565815c8cded
+:Q_6c5b4da8-8628-4347-ba6b-9f5af603c360
 	rdf:type bf:Question ;
 	isoC:label "BRTHDAT"^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
@@ -77,7 +77,7 @@
 	bf:mapping "[NO MAPPING]"^^xsd:string ;
 	bf:questionText "What is the subject's date of birth?"^^xsd:string ;
 .
-:Q_92bf8b74-ec78-4348-9a1b-154a6ccb9b9f
+:Q_e6bacf10-5049-4e90-a7a3-d03d846e92d9
 	rdf:type bf:Question ;
 	isoC:label "AGE"^^xsd:string ;
 	bf:ordinal "2"^^xsd:integer ;
@@ -89,7 +89,7 @@
 	bf:mapping "[NO MAPPING]"^^xsd:string ;
 	bf:questionText "What is the subject's age?"^^xsd:string ;
 .
-:Q_b76597f7-972f-40f4-bed7-e134725cf296
+:Q_81f93d94-c8dd-43d9-95e4-7cfb2317bb57
 	rdf:type bf:Question ;
 	isoC:label "AGEU"^^xsd:string ;
 	bf:ordinal "3"^^xsd:integer ;
@@ -101,7 +101,7 @@
 	bf:mapping "[NO MAPPING]"^^xsd:string ;
 	bf:questionText "What is the age unit used?"^^xsd:string ;
 .
-:Q_36d01a04-97fa-4ae9-8f40-9f266a6cdc06
+:Q_d5032668-2249-43f1-b7a2-23fa0cdbb9d8
 	rdf:type bf:Question ;
 	isoC:label "AGEU units"^^xsd:string ;
 	bf:ordinal "4"^^xsd:integer ;
@@ -113,7 +113,7 @@
 	bf:mapping "[NO MAPPING]"^^xsd:string ;
 	bf:questionText "What is the age unit used? units"^^xsd:string ;
 .
-:Q_0cda6f24-e54d-4724-af79-916d41d9bd7f
+:Q_6f3aad2f-5e84-4412-b9de-ce10cedfdebb
 	rdf:type bf:Question ;
 	isoC:label "SEX"^^xsd:string ;
 	bf:ordinal "5"^^xsd:integer ;
@@ -124,52 +124,52 @@
 	bf:format "15"^^xsd:string ;
 	bf:mapping "[NO MAPPING]"^^xsd:string ;
 	bf:questionText "What is the sex of the subject?"^^xsd:string ;
-	bf:hasCodedValue :Q_0cda6f24-e54d-4724-af79-916d41d9bd7f_TUC1 ;
-	bf:hasCodedValue :Q_0cda6f24-e54d-4724-af79-916d41d9bd7f_TUC2 ;
-	bf:hasCodedValue :Q_0cda6f24-e54d-4724-af79-916d41d9bd7f_TUC3 ;
-	bf:hasCodedValue :Q_0cda6f24-e54d-4724-af79-916d41d9bd7f_TUC4 ;
+	bf:hasCodedValue :Q_6f3aad2f-5e84-4412-b9de-ce10cedfdebb_TUC1 ;
+	bf:hasCodedValue :Q_6f3aad2f-5e84-4412-b9de-ce10cedfdebb_TUC2 ;
+	bf:hasCodedValue :Q_6f3aad2f-5e84-4412-b9de-ce10cedfdebb_TUC3 ;
+	bf:hasCodedValue :Q_6f3aad2f-5e84-4412-b9de-ce10cedfdebb_TUC4 ;
 .
-:Q_0cda6f24-e54d-4724-af79-916d41d9bd7f_TUC1
+:Q_6f3aad2f-5e84-4412-b9de-ce10cedfdebb_TUC1
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "1"^^xsd:positiveInteger ;
 	bo:reference <http://www.cdisc.org/C66731/V4#C66731_C16576> ;
-	bo:context <http://www.cdisc.org/C66731/V39#C66731> ;
+	bo:context <http://www.cdisc.org/C66731/V56#C66731> ;
 	bo:localLabel "Female"^^xsd:string ;
 .
-:Q_0cda6f24-e54d-4724-af79-916d41d9bd7f_TUC2
+:Q_6f3aad2f-5e84-4412-b9de-ce10cedfdebb_TUC2
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "2"^^xsd:positiveInteger ;
 	bo:reference <http://www.cdisc.org/C66731/V16#C66731_C20197> ;
-	bo:context <http://www.cdisc.org/C66731/V39#C66731> ;
+	bo:context <http://www.cdisc.org/C66731/V56#C66731> ;
 	bo:localLabel "Male"^^xsd:string ;
 .
-:Q_0cda6f24-e54d-4724-af79-916d41d9bd7f_TUC3
+:Q_6f3aad2f-5e84-4412-b9de-ce10cedfdebb_TUC3
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "3"^^xsd:positiveInteger ;
-	bo:reference <http://www.cdisc.org/C66731/V4#C66731_C17998> ;
-	bo:context <http://www.cdisc.org/C66731/V39#C66731> ;
+	bo:reference <http://www.cdisc.org/C66731/V56#C66731_C17998> ;
+	bo:context <http://www.cdisc.org/C66731/V56#C66731> ;
 	bo:localLabel "Unknown"^^xsd:string ;
 .
-:Q_0cda6f24-e54d-4724-af79-916d41d9bd7f_TUC4
+:Q_6f3aad2f-5e84-4412-b9de-ce10cedfdebb_TUC4
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "4"^^xsd:positiveInteger ;
 	bo:reference <http://www.cdisc.org/C66731/V39#C66731_C45908> ;
-	bo:context <http://www.cdisc.org/C66731/V39#C66731> ;
+	bo:context <http://www.cdisc.org/C66731/V56#C66731> ;
 	bo:localLabel "Intersex"^^xsd:string ;
 .
-:Q_7948e614-fdba-484a-9dfc-c98ce368d4e7
+:Q_4b6e6750-d7ab-495c-b722-f8e6268cf998
 	rdf:type bf:Question ;
 	isoC:label "ETHNIC"^^xsd:string ;
 	bf:ordinal "6"^^xsd:integer ;
@@ -180,119 +180,141 @@
 	bf:format "23"^^xsd:string ;
 	bf:mapping "[NO MAPPING]"^^xsd:string ;
 	bf:questionText "Do you consider yourself Hispanic/Latino or not Hispanic/Latino?"^^xsd:string ;
-	bf:hasCodedValue :Q_7948e614-fdba-484a-9dfc-c98ce368d4e7_TUC1 ;
-	bf:hasCodedValue :Q_7948e614-fdba-484a-9dfc-c98ce368d4e7_TUC2 ;
-	bf:hasCodedValue :Q_7948e614-fdba-484a-9dfc-c98ce368d4e7_TUC3 ;
-	bf:hasCodedValue :Q_7948e614-fdba-484a-9dfc-c98ce368d4e7_TUC4 ;
+	bf:hasCodedValue :Q_4b6e6750-d7ab-495c-b722-f8e6268cf998_TUC1 ;
+	bf:hasCodedValue :Q_4b6e6750-d7ab-495c-b722-f8e6268cf998_TUC2 ;
+	bf:hasCodedValue :Q_4b6e6750-d7ab-495c-b722-f8e6268cf998_TUC3 ;
+	bf:hasCodedValue :Q_4b6e6750-d7ab-495c-b722-f8e6268cf998_TUC4 ;
 .
-:Q_7948e614-fdba-484a-9dfc-c98ce368d4e7_TUC1
+:Q_4b6e6750-d7ab-495c-b722-f8e6268cf998_TUC1
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "1"^^xsd:positiveInteger ;
 	bo:reference <http://www.cdisc.org/C66790/V16#C66790_C17459> ;
-	bo:context <http://www.cdisc.org/C66790/V34#C66790> ;
+	bo:context <http://www.cdisc.org/C66790/V56#C66790> ;
 	bo:localLabel "Hispanic or Latino"^^xsd:string ;
 .
-:Q_7948e614-fdba-484a-9dfc-c98ce368d4e7_TUC2
+:Q_4b6e6750-d7ab-495c-b722-f8e6268cf998_TUC2
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "2"^^xsd:positiveInteger ;
 	bo:reference <http://www.cdisc.org/C66790/V4#C66790_C41222> ;
-	bo:context <http://www.cdisc.org/C66790/V34#C66790> ;
+	bo:context <http://www.cdisc.org/C66790/V56#C66790> ;
 	bo:localLabel "Not Hispanic or Latino"^^xsd:string ;
 .
-:Q_7948e614-fdba-484a-9dfc-c98ce368d4e7_TUC3
+:Q_4b6e6750-d7ab-495c-b722-f8e6268cf998_TUC3
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "3"^^xsd:positiveInteger ;
-	bo:reference <http://www.cdisc.org/C66790/V19#C66790_C43234> ;
-	bo:context <http://www.cdisc.org/C66790/V34#C66790> ;
-	bo:localLabel "Not Stated"^^xsd:string ;
+	bo:reference <http://www.cdisc.org/C66790/V54#C66790_C43234> ;
+	bo:context <http://www.cdisc.org/C66790/V56#C66790> ;
+	bo:localLabel "Not Reported"^^xsd:string ;
 .
-:Q_7948e614-fdba-484a-9dfc-c98ce368d4e7_TUC4
+:Q_4b6e6750-d7ab-495c-b722-f8e6268cf998_TUC4
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "4"^^xsd:positiveInteger ;
-	bo:reference <http://www.cdisc.org/C66790/V4#C66790_C17998> ;
-	bo:context <http://www.cdisc.org/C66790/V34#C66790> ;
+	bo:reference <http://www.cdisc.org/C66790/V56#C66790_C17998> ;
+	bo:context <http://www.cdisc.org/C66790/V56#C66790> ;
 	bo:localLabel "Unknown"^^xsd:string ;
 .
-:Q_c9f7f7de-d227-4e15-b171-06c4306b77f4
+:Q_a4fe56e9-4c8a-451b-953b-5d121fac7469
 	rdf:type bf:Question ;
 	isoC:label "RACE"^^xsd:string ;
 	bf:ordinal "7"^^xsd:integer ;
-	bf:note "Use RACE when the 5 designations for race used by the FDA are collected (American Indian or Alaska Native; Asian; Black or African American; Native Hawaiian or Other Pacific Islander ; White).* Sponsors should refer to the FDA Guidance. See SDTMIG v3.2 Section 5, DM Domain.   *For studies where data are collected outside the US, the recommended categories are the same except for Black instead of Black or African American. If multiple races are collected, an alternate sponsor-defined variable structure would be required. Sponsors may record multiple self-reported races for a subject by appending a suffix to denote multiple collected races (e.g. RACE1, RACE2) and populate RACE with the value MULTIPLE.* No entries found for code list, parameters ['notation=CLC74457RACE'].\n* No entries found in code list 'C74457' for item with submission value: 'NOT REPORTED' or preferred term: 'Not Reported'.\n* No entries found in code list 'C74457' for item with submission value: 'UNKNOWN' or preferred term: 'Unknown'.\n* No entries found in code list 'C74457' for item with submission value: 'OTHER' or preferred term: 'Other'.\n"^^xsd:string ;
+	bf:note "Use RACE when the 5 designations for race used by the FDA are collected (American Indian or Alaska Native; Asian; Black or African American; Native Hawaiian or Other Pacific Islander ; White).* Sponsors should refer to the FDA Guidance. See SDTMIG v3.2 Section 5, DM Domain.   *For studies where data are collected outside the US, the recommended categories are the same except for Black instead of Black or African American. If multiple races are collected, an alternate sponsor-defined variable structure would be required. Sponsors may record multiple self-reported races for a subject by appending a suffix to denote multiple collected races (e.g. RACE1, RACE2) and populate RACE with the value MULTIPLE.* No entries found for code list, parameters ['notation=CLC74457RACE'].\n* No entries found in code list 'C74457' for item with submission value: 'OTHER' or preferred term: 'Other'.\n"^^xsd:string ;
 	bf:completion "Study participants should self-report race, with race being asked about after ethnicity."^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "25"^^xsd:string ;
 	bf:mapping "RACE"^^xsd:string ;
 	bf:questionText "Which of the following five racial designations best describes you?-removed-    (More than one choice is acceptable.)"^^xsd:string ;
-	bf:hasCodedValue :Q_c9f7f7de-d227-4e15-b171-06c4306b77f4_TUC1 ;
-	bf:hasCodedValue :Q_c9f7f7de-d227-4e15-b171-06c4306b77f4_TUC2 ;
-	bf:hasCodedValue :Q_c9f7f7de-d227-4e15-b171-06c4306b77f4_TUC3 ;
-	bf:hasCodedValue :Q_c9f7f7de-d227-4e15-b171-06c4306b77f4_TUC4 ;
-	bf:hasCodedValue :Q_c9f7f7de-d227-4e15-b171-06c4306b77f4_TUC5 ;
+	bf:hasCodedValue :Q_a4fe56e9-4c8a-451b-953b-5d121fac7469_TUC1 ;
+	bf:hasCodedValue :Q_a4fe56e9-4c8a-451b-953b-5d121fac7469_TUC2 ;
+	bf:hasCodedValue :Q_a4fe56e9-4c8a-451b-953b-5d121fac7469_TUC3 ;
+	bf:hasCodedValue :Q_a4fe56e9-4c8a-451b-953b-5d121fac7469_TUC4 ;
+	bf:hasCodedValue :Q_a4fe56e9-4c8a-451b-953b-5d121fac7469_TUC5 ;
+	bf:hasCodedValue :Q_a4fe56e9-4c8a-451b-953b-5d121fac7469_TUC6 ;
+	bf:hasCodedValue :Q_a4fe56e9-4c8a-451b-953b-5d121fac7469_TUC7 ;
 .
-:Q_c9f7f7de-d227-4e15-b171-06c4306b77f4_TUC1
+:Q_a4fe56e9-4c8a-451b-953b-5d121fac7469_TUC1
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "1"^^xsd:positiveInteger ;
 	bo:reference <http://www.cdisc.org/C74457/V10#C74457_C41259> ;
-	bo:context <http://www.cdisc.org/C74457/V49#C74457> ;
+	bo:context <http://www.cdisc.org/C74457/V58#C74457> ;
 	bo:localLabel "American Indian or Alaska Native"^^xsd:string ;
 .
-:Q_c9f7f7de-d227-4e15-b171-06c4306b77f4_TUC2
+:Q_a4fe56e9-4c8a-451b-953b-5d121fac7469_TUC2
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "2"^^xsd:positiveInteger ;
 	bo:reference <http://www.cdisc.org/C74457/V10#C74457_C41260> ;
-	bo:context <http://www.cdisc.org/C74457/V49#C74457> ;
+	bo:context <http://www.cdisc.org/C74457/V58#C74457> ;
 	bo:localLabel "Asian"^^xsd:string ;
 .
-:Q_c9f7f7de-d227-4e15-b171-06c4306b77f4_TUC3
+:Q_a4fe56e9-4c8a-451b-953b-5d121fac7469_TUC3
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "3"^^xsd:positiveInteger ;
 	bo:reference <http://www.cdisc.org/C74457/V49#C74457_C16352> ;
-	bo:context <http://www.cdisc.org/C74457/V49#C74457> ;
+	bo:context <http://www.cdisc.org/C74457/V58#C74457> ;
 	bo:localLabel "Black or African American"^^xsd:string ;
 .
-:Q_c9f7f7de-d227-4e15-b171-06c4306b77f4_TUC4
+:Q_a4fe56e9-4c8a-451b-953b-5d121fac7469_TUC4
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "4"^^xsd:positiveInteger ;
 	bo:reference <http://www.cdisc.org/C74457/V10#C74457_C41219> ;
-	bo:context <http://www.cdisc.org/C74457/V49#C74457> ;
+	bo:context <http://www.cdisc.org/C74457/V58#C74457> ;
 	bo:localLabel "Native Hawaiian or Other Pacific Islander"^^xsd:string ;
 .
-:Q_c9f7f7de-d227-4e15-b171-06c4306b77f4_TUC5
+:Q_a4fe56e9-4c8a-451b-953b-5d121fac7469_TUC5
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "5"^^xsd:positiveInteger ;
 	bo:reference <http://www.cdisc.org/C74457/V10#C74457_C41261> ;
-	bo:context <http://www.cdisc.org/C74457/V49#C74457> ;
+	bo:context <http://www.cdisc.org/C74457/V58#C74457> ;
 	bo:localLabel "White"^^xsd:string ;
 .
-:Q_f9fe7128-4b63-482d-9a11-62250e24fe0c
+:Q_a4fe56e9-4c8a-451b-953b-5d121fac7469_TUC6
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "6"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C74457/V58#C74457_C43234> ;
+	bo:context <http://www.cdisc.org/C74457/V58#C74457> ;
+	bo:localLabel "Not Reported"^^xsd:string ;
+.
+:Q_a4fe56e9-4c8a-451b-953b-5d121fac7469_TUC7
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "7"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C74457/V58#C74457_C17998> ;
+	bo:context <http://www.cdisc.org/C74457/V58#C74457> ;
+	bo:localLabel "Unknown"^^xsd:string ;
+.
+:Q_fa7d2d96-241b-49c4-8758-f979a415a65d
 	rdf:type bf:Question ;
 	isoC:label "RACEOTH"^^xsd:string ;
 	bf:ordinal "8"^^xsd:integer ;

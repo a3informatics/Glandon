@@ -145,11 +145,11 @@
     :rdf_type: http://www.assero.co.uk/BusinessForm#Question
     :label: DNA Informed Consent
     :ordinal: 7
-    :note: |
-      * No entries found for code list, parameters ['notation=YN'].
-      * No entries found for code list, parameters ['notation=CYN'].
-      * No entries found for code list, parameters ['identifier='].
-      * No entries found for code list, parameters ['label=yesno'].
+    :note: |2-
+
+
+      Terminology Search:
+      ["* No entries found for code list, parameters ['notation=YN'].\n", "* No entries found for code list, parameters ['notation=CYN'].\n", "* No entries found for code list, parameters ['identifier='].\n", "* No entries found for code list, parameters ['label=yesno'].\n"]
     :completion: ''
     :optional: false
     :datatype: string
@@ -226,11 +226,11 @@
     :rdf_type: http://www.assero.co.uk/BusinessForm#Question
     :label: Birth month
     :ordinal: 2
-    :note: |
-      * No entries found for code list, parameters ['notation=MTH'].
-      * No entries found for code list, parameters ['notation=CMONTH'].
-      * No entries found for code list, parameters ['identifier='].
-      * No entries found for code list, parameters ['label=month'].
+    :note: |2-
+
+
+      Terminology Search:
+      ["* No entries found for code list, parameters ['notation=MTH'].\n", "* No entries found for code list, parameters ['notation=CMONTH'].\n", "* No entries found for code list, parameters ['identifier='].\n", "* No entries found for code list, parameters ['label=month'].\n"]
     :completion: ''
     :optional: false
     :datatype: string
@@ -280,13 +280,14 @@
     :has_coded_value:
     - :id: 
       :uri: {}
-      :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
       :label: ''
       :enabled: true
       :optional: false
       :ordinal: 1
       :reference: http://www.cdisc.org/C71620/V34#C71620_C29848
-      :context: 
+      :context: http://www.cdisc.org/C71620/V49#C71620
+      :local_label: Year
   - :id: 
     :uri: {}
     :rdf_type: http://www.assero.co.uk/BusinessForm#Question
@@ -302,22 +303,24 @@
     :has_coded_value:
     - :id: 
       :uri: {}
-      :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
       :label: ''
       :enabled: true
       :optional: false
       :ordinal: 1
       :reference: http://www.cdisc.org/C66731/V16#C66731_C20197
-      :context: 
+      :context: http://www.cdisc.org/C66731/V39#C66731
+      :local_label: Male
     - :id: 
       :uri: {}
-      :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
       :label: ''
       :enabled: true
       :optional: false
       :ordinal: 2
       :reference: http://www.cdisc.org/C66731/V4#C66731_C16576
-      :context: 
+      :context: http://www.cdisc.org/C66731/V39#C66731
+      :local_label: Female
   - :id: 
     :uri: {}
     :rdf_type: http://www.assero.co.uk/BusinessForm#Question
@@ -333,29 +336,30 @@
     :has_coded_value:
     - :id: 
       :uri: {}
-      :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
       :label: ''
       :enabled: true
       :optional: false
       :ordinal: 1
       :reference: http://www.cdisc.org/C66790/V16#C66790_C17459
-      :context: 
+      :context: http://www.cdisc.org/C66790/V34#C66790
+      :local_label: Hispanic or Latino
     - :id: 
       :uri: {}
-      :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
       :label: ''
       :enabled: true
       :optional: false
       :ordinal: 2
       :reference: http://www.cdisc.org/C66790/V4#C66790_C41222
-      :context: 
+      :context: http://www.cdisc.org/C66790/V34#C66790
+      :local_label: Not Hispanic or Latino
   - :id: 
     :uri: {}
     :rdf_type: http://www.assero.co.uk/BusinessForm#Question
     :label: Race
     :ordinal: 8
-    :note: "* No entries found in code list 'C74457' for item with submission value:
-      'OTHER' or preferred term: 'OTHER'.\n"
+    :note: ''
     :completion: ''
     :optional: false
     :datatype: string
@@ -365,49 +369,54 @@
     :has_coded_value:
     - :id: 
       :uri: {}
-      :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
       :label: ''
       :enabled: true
       :optional: false
       :ordinal: 1
       :reference: http://www.cdisc.org/C74457/V10#C74457_C41261
-      :context: 
+      :context: http://www.cdisc.org/C74457/V49#C74457
+      :local_label: White
     - :id: 
       :uri: {}
-      :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
       :label: ''
       :enabled: true
       :optional: false
       :ordinal: 2
       :reference: http://www.cdisc.org/C74457/V49#C74457_C16352
-      :context: 
+      :context: http://www.cdisc.org/C74457/V49#C74457
+      :local_label: Black or African American
     - :id: 
       :uri: {}
-      :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
       :label: ''
       :enabled: true
       :optional: false
       :ordinal: 3
       :reference: http://www.cdisc.org/C74457/V10#C74457_C41219
-      :context: 
+      :context: http://www.cdisc.org/C74457/V49#C74457
+      :local_label: Native Hawaiian or Other Pacific Islander
     - :id: 
       :uri: {}
-      :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
       :label: ''
       :enabled: true
       :optional: false
       :ordinal: 4
       :reference: http://www.cdisc.org/C74457/V10#C74457_C41260
-      :context: 
+      :context: http://www.cdisc.org/C74457/V49#C74457
+      :local_label: Asian
     - :id: 
       :uri: {}
-      :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
       :label: ''
       :enabled: true
       :optional: false
       :ordinal: 5
       :reference: http://www.cdisc.org/C74457/V10#C74457_C41259
-      :context: 
+      :context: http://www.cdisc.org/C74457/V49#C74457
+      :local_label: American Indian or Alaska Native
   - :id: 
     :uri: {}
     :rdf_type: http://www.assero.co.uk/BusinessForm#Question

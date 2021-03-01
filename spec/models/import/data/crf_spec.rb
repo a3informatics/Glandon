@@ -9,7 +9,7 @@ describe Import::Crf do
   include SecureRandomHelpers
   
 	def sub_dir
-    return "models/import/crf"
+    return "models/import/data/cdisc/crf"
   end
 
   def simple_setup

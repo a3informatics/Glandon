@@ -133,11 +133,11 @@
     :rdf_type: http://www.assero.co.uk/BusinessForm#Question
     :label: AASSNTYN
     :ordinal: 6
-    :note: |
-      * No entries found for code list, parameters ['notation=YESNO'].
-      * No entries found for code list, parameters ['notation=CLFMTYESNO'].
-      * No entries found for code list, parameters ['identifier='].
-      * No entries found for code list, parameters ['label=CL_FMT_YESNO'].
+    :note: |2-
+
+
+      Terminology Search:
+      ["* No entries found for code list, parameters ['notation=YESNO'].\n", "* No entries found for code list, parameters ['notation=CLFMTYESNO'].\n", "* No entries found for code list, parameters ['identifier='].\n", "* No entries found for code list, parameters ['label=CL_FMT_YESNO'].\n"]
     :completion: ''
     :optional: false
     :datatype: string
@@ -185,32 +185,34 @@
     :has_coded_value:
     - :id: 
       :uri: {}
-      :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
       :label: ''
       :enabled: true
       :optional: false
       :ordinal: 1
       :reference: http://www.cdisc.org/C66731/V16#C66731_C20197
-      :context: 
+      :context: http://www.cdisc.org/C66731/V39#C66731
+      :local_label: Male
     - :id: 
       :uri: {}
-      :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
       :label: ''
       :enabled: true
       :optional: false
       :ordinal: 2
       :reference: http://www.cdisc.org/C66731/V4#C66731_C16576
-      :context: 
+      :context: http://www.cdisc.org/C66731/V39#C66731
+      :local_label: Female
   - :id: 
     :uri: {}
     :rdf_type: http://www.assero.co.uk/BusinessForm#Question
     :label: CHILDPOT
     :ordinal: 2
-    :note: |
-      * No entries found for code list, parameters ['notation=YESNO'].
-      * No entries found for code list, parameters ['notation=CLFMTYESNO'].
-      * No entries found for code list, parameters ['identifier='].
-      * No entries found for code list, parameters ['label=CL_FMT_YESNO'].
+    :note: |2-
+
+
+      Terminology Search:
+      ["* No entries found for code list, parameters ['notation=YESNO'].\n", "* No entries found for code list, parameters ['notation=CLFMTYESNO'].\n", "* No entries found for code list, parameters ['identifier='].\n", "* No entries found for code list, parameters ['label=CL_FMT_YESNO'].\n"]
     :completion: ''
     :optional: false
     :datatype: string
@@ -236,11 +238,11 @@
     :rdf_type: http://www.assero.co.uk/BusinessForm#Question
     :label: MENOSTAT
     :ordinal: 4
-    :note: |
-      * No entries found for code list, parameters ['notation=CHBREAS'].
-      * No entries found for code list, parameters ['notation=CLMENOSTAT'].
-      * No entries found for code list, parameters ['identifier='].
-      * No entries found for code list, parameters ['label=CL_MENOSTAT'].
+    :note: |2-
+
+
+      Terminology Search:
+      ["* No entries found for code list, parameters ['notation=CHBREAS'].\n", "* No entries found for code list, parameters ['notation=CLMENOSTAT'].\n", "* No entries found for code list, parameters ['identifier='].\n", "* No entries found for code list, parameters ['label=CL_MENOSTAT'].\n"]
     :completion: ''
     :optional: false
     :datatype: string
@@ -265,8 +267,7 @@
     :rdf_type: http://www.assero.co.uk/BusinessForm#Question
     :label: ETHNIC
     :ordinal: 1
-    :note: "* No entries found in code list 'C66790' for item with submission value:
-      '3' or preferred term: 'Not reported'.\n"
+    :note: ''
     :completion: ''
     :optional: false
     :datatype: string
@@ -276,38 +277,40 @@
     :has_coded_value:
     - :id: 
       :uri: {}
-      :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
       :label: ''
       :enabled: true
       :optional: false
       :ordinal: 1
       :reference: http://www.cdisc.org/C66790/V16#C66790_C17459
-      :context: 
+      :context: http://www.cdisc.org/C66790/V34#C66790
+      :local_label: Hispanic or Latino
     - :id: 
       :uri: {}
-      :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
       :label: ''
       :enabled: true
       :optional: false
       :ordinal: 2
       :reference: http://www.cdisc.org/C66790/V4#C66790_C41222
-      :context: 
+      :context: http://www.cdisc.org/C66790/V34#C66790
+      :local_label: Not Hispanic or Latino
     - :id: 
       :uri: {}
-      :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
       :label: ''
       :enabled: true
       :optional: false
       :ordinal: 3
       :reference: http://www.cdisc.org/C66790/V4#C66790_C17998
-      :context: 
+      :context: http://www.cdisc.org/C66790/V34#C66790
+      :local_label: Unknown
   - :id: 
     :uri: {}
     :rdf_type: http://www.assero.co.uk/BusinessForm#Question
     :label: RACE
     :ordinal: 2
-    :note: "* No entries found in code list 'C74457' for item with submission value:
-      '99' or preferred term: 'Other'.\n"
+    :note: ''
     :completion: ''
     :optional: false
     :datatype: string
@@ -317,49 +320,54 @@
     :has_coded_value:
     - :id: 
       :uri: {}
-      :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
       :label: ''
       :enabled: true
       :optional: false
       :ordinal: 1
       :reference: http://www.cdisc.org/C74457/V49#C74457_C16352
-      :context: 
+      :context: http://www.cdisc.org/C74457/V49#C74457
+      :local_label: Black or African American
     - :id: 
       :uri: {}
-      :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
       :label: ''
       :enabled: true
       :optional: false
       :ordinal: 2
       :reference: http://www.cdisc.org/C74457/V10#C74457_C41259
-      :context: 
+      :context: http://www.cdisc.org/C74457/V49#C74457
+      :local_label: American Indian or Alaska Native
     - :id: 
       :uri: {}
-      :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
       :label: ''
       :enabled: true
       :optional: false
       :ordinal: 3
       :reference: http://www.cdisc.org/C74457/V10#C74457_C41260
-      :context: 
+      :context: http://www.cdisc.org/C74457/V49#C74457
+      :local_label: Asian
     - :id: 
       :uri: {}
-      :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
       :label: ''
       :enabled: true
       :optional: false
       :ordinal: 4
       :reference: http://www.cdisc.org/C74457/V10#C74457_C41219
-      :context: 
+      :context: http://www.cdisc.org/C74457/V49#C74457
+      :local_label: Native Hawaiian or Other Pacific Islander
     - :id: 
       :uri: {}
-      :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
       :label: ''
       :enabled: true
       :optional: false
       :ordinal: 5
       :reference: http://www.cdisc.org/C74457/V10#C74457_C41261
-      :context: 
+      :context: http://www.cdisc.org/C74457/V49#C74457
+      :local_label: White
   - :id: 
     :uri: {}
     :rdf_type: http://www.assero.co.uk/BusinessForm#Question
@@ -403,8 +411,7 @@
     :rdf_type: http://www.assero.co.uk/BusinessForm#Question
     :label: SMOKENCF
     :ordinal: 1
-    :note: "* No entries found in code list 'C78738' for item with submission value:
-      '3' or preferred term: 'Former'.\n"
+    :note: ''
     :completion: ''
     :optional: false
     :datatype: string
@@ -414,22 +421,24 @@
     :has_coded_value:
     - :id: 
       :uri: {}
-      :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
       :label: ''
       :enabled: true
       :optional: false
       :ordinal: 1
       :reference: http://www.cdisc.org/C78738/V14#C78738_C70543
-      :context: 
+      :context: http://www.cdisc.org/C78738/V14#C78738
+      :local_label: Never
     - :id: 
       :uri: {}
-      :rdf_type: http://www.assero.co.uk/BusinessOperational#Reference
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
       :label: ''
       :enabled: true
       :optional: false
       :ordinal: 2
       :reference: http://www.cdisc.org/C78738/V14#C78738_C25471
-      :context: 
+      :context: http://www.cdisc.org/C78738/V14#C78738
+      :local_label: Current
   :repeating: false
   :has_sub_group: []
   :has_common: []
@@ -447,11 +456,11 @@
     :rdf_type: http://www.assero.co.uk/BusinessForm#Question
     :label: PREVSCRYN
     :ordinal: 1
-    :note: |
-      * No entries found for code list, parameters ['notation=YESNO'].
-      * No entries found for code list, parameters ['notation=CLFMTYESNO'].
-      * No entries found for code list, parameters ['identifier='].
-      * No entries found for code list, parameters ['label=CL_FMT_YESNO'].
+    :note: |2-
+
+
+      Terminology Search:
+      ["* No entries found for code list, parameters ['notation=YESNO'].\n", "* No entries found for code list, parameters ['notation=CLFMTYESNO'].\n", "* No entries found for code list, parameters ['identifier='].\n", "* No entries found for code list, parameters ['label=CL_FMT_YESNO'].\n"]
     :completion: ''
     :optional: false
     :datatype: string
@@ -567,11 +576,11 @@
     :rdf_type: http://www.assero.co.uk/BusinessForm#Question
     :label: CBSPHGYN
     :ordinal: 7
-    :note: |
-      * No entries found for code list, parameters ['notation=YESNONA'].
-      * No entries found for code list, parameters ['notation=CLAUTOMREVYN1'].
-      * No entries found for code list, parameters ['identifier='].
-      * No entries found for code list, parameters ['label=CL_AUTOMREVYN1'].
+    :note: |2-
+
+
+      Terminology Search:
+      ["* No entries found for code list, parameters ['notation=YESNONA'].\n", "* No entries found for code list, parameters ['notation=CLAUTOMREVYN1'].\n", "* No entries found for code list, parameters ['identifier='].\n", "* No entries found for code list, parameters ['label=CL_AUTOMREVYN1'].\n"]
     :completion: ''
     :optional: false
     :datatype: string
@@ -611,11 +620,11 @@
     :rdf_type: http://www.assero.co.uk/BusinessForm#Question
     :label: CBSIMMUYN
     :ordinal: 10
-    :note: |
-      * No entries found for code list, parameters ['notation=YESNONA'].
-      * No entries found for code list, parameters ['notation=CLAUTOMREVYN1'].
-      * No entries found for code list, parameters ['identifier='].
-      * No entries found for code list, parameters ['label=CL_AUTOMREVYN1'].
+    :note: |2-
+
+
+      Terminology Search:
+      ["* No entries found for code list, parameters ['notation=YESNONA'].\n", "* No entries found for code list, parameters ['notation=CLAUTOMREVYN1'].\n", "* No entries found for code list, parameters ['identifier='].\n", "* No entries found for code list, parameters ['label=CL_AUTOMREVYN1'].\n"]
     :completion: ''
     :optional: false
     :datatype: string

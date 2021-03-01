@@ -95,11 +95,11 @@
     :rdf_type: http://www.assero.co.uk/BusinessForm#Question
     :label: IEORRES
     :ordinal: 3
-    :note: |
-      * No entries found for code list, parameters ['notation=YESNO'].
-      * No entries found for code list, parameters ['notation=CLFMTYESNO'].
-      * No entries found for code list, parameters ['identifier='].
-      * No entries found for code list, parameters ['label=CL_FMT_YESNO'].
+    :note: |2-
+
+
+      Terminology Search:
+      ["* No entries found for code list, parameters ['notation=YESNO'].\n", "* No entries found for code list, parameters ['notation=CLFMTYESNO'].\n", "* No entries found for code list, parameters ['identifier='].\n", "* No entries found for code list, parameters ['label=CL_FMT_YESNO'].\n"]
     :completion: ''
     :optional: false
     :datatype: string
@@ -138,10 +138,7 @@
     :rdf_type: http://www.assero.co.uk/BusinessForm#Question
     :label: IECAT
     :ordinal: 1
-    :note: |
-      * No entries found in code list 'C66797' for item with submission value: '1' or preferred term: 'Inclusion'.
-      * No entries found in code list 'C66797' for item with submission value: '2' or preferred term: 'Exclusion'.
-      * No entries found in code list 'C66797' for item with submission value: '3' or preferred term: 'Both'.
+    :note: ''
     :completion: ''
     :optional: false
     :datatype: string
@@ -255,11 +252,11 @@
     :rdf_type: http://www.assero.co.uk/BusinessForm#Question
     :label: IEINTESTCD
     :ordinal: 3
-    :note: |
-      * No entries found for code list, parameters ['notation=INCL'].
-      * No entries found for code list, parameters ['notation=CLIEINTESTCD'].
-      * No entries found for code list, parameters ['identifier='].
-      * No entries found for code list, parameters ['label=CL_IEINTESTCD'].
+    :note: |2-
+
+
+      Terminology Search:
+      ["* No entries found for code list, parameters ['notation=INCL'].\n", "* No entries found for code list, parameters ['notation=CLIEINTESTCD'].\n", "* No entries found for code list, parameters ['identifier='].\n", "* No entries found for code list, parameters ['label=CL_IEINTESTCD'].\n"]
     :completion: ''
     :optional: false
     :datatype: string
@@ -344,11 +341,11 @@
     :rdf_type: http://www.assero.co.uk/BusinessForm#Question
     :label: IEEXTESTCD
     :ordinal: 2
-    :note: |
-      * No entries found for code list, parameters ['notation=EXCL'].
-      * No entries found for code list, parameters ['notation=CLIEEXTESTCD'].
-      * No entries found for code list, parameters ['identifier='].
-      * No entries found for code list, parameters ['label=CL_IEEXTESTCD'].
+    :note: |2-
+
+
+      Terminology Search:
+      ["* No entries found for code list, parameters ['notation=EXCL'].\n", "* No entries found for code list, parameters ['notation=CLIEEXTESTCD'].\n", "* No entries found for code list, parameters ['identifier='].\n", "* No entries found for code list, parameters ['label=CL_IEEXTESTCD'].\n"]
     :completion: ''
     :optional: false
     :datatype: string
