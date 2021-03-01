@@ -32,16 +32,7 @@ export default class IPSRenderer {
           historyCard = this._card({ 
             name: historyCardTitle, 
             id: 'history' 
-          }),
-
-          indexTable = this._table( 'index' ),
-          historyTable = this._table( 'history' )
-
-    browseCard.find( '.card-content' )
-              .append( indexTable )
-
-    historyCard.find( '.card-content' )
-               .append( historyTable )
+          })
 
     this.content.html( browseCard.add( historyCard ) )
 
@@ -61,11 +52,7 @@ export default class IPSRenderer {
             name: 'Select', 
             id: 'children',
             hidden: true  
-          }),
-          childrenTable = this._table( 'children' ) 
-
-    childrenCard.find( '.card-content' )
-                .append( childrenTable )
+          })
 
     this.content.append( childrenCard )
 
@@ -95,7 +82,7 @@ export default class IPSRenderer {
 
 
   /**
-   * Render a single card-block with a title 
+   * Render a single card-block with a title, subtitle, content, and a table
    * @param {string} name Card title 
    * @param {string} id Card id - match containing table id
    * @param {boolean} hidden Card hidden property, optional
@@ -107,7 +94,8 @@ export default class IPSRenderer {
                                 .prop( 'id', IPHelper.cardId(id) )
                                 .prop( 'hidden', hidden ),
 
-          content = $( '<div>' ).addClass( 'card-content' ),
+          content = $( '<div>' ).addClass( 'card-content' )
+                                .append( this._table(id) ),
 
           title =   $( '<div>' ).addClass( 'ci-card-title text-xnormal text-link' )
                                 .text( name ),
@@ -117,7 +105,7 @@ export default class IPSRenderer {
                           
 
     title.append( subtitle )
-    content.append( title )
+    content.prepend( title )
     card.append( content )
 
     return card                       
