@@ -1,14 +1,15 @@
 import Cacheable from 'shared/base/cacheable'
 import SelectablePanel from 'shared/base/selectable_panel'
-import IPHelper from '../../support/ip_helper'
 
 import { dtIndexColumns, dtCLIndexColumns, dtSimpleHistoryColumns, dtSimpleChildrenColumns } from 'shared/helpers/dt/dt_column_collections'
 import { rdfTypesMap as types } from 'shared/helpers/rdf_types'
 import { customBtn } from 'shared/helpers/dt/utils'
 import { encodeDataToUrl } from 'shared/helpers/urls' 
+import { tableInteraction } from 'shared/helpers/utils'
+import IPSRenderer from '../support/ip_selector_renderer'
 
 /**
- * Items Picker (Selectable) Panel 
+ * Selectable Items Picker Panel 
  * @description Wrapping class for a Selectable Panel with custom Items Picker related features  
  * @author Samuel Banas <sab@s-cubed.dk>
  */
@@ -19,19 +20,21 @@ export default class PickerPanel extends Cacheable {
    * @param {Object} params Instance parameters
    * @param {string} params.selector Unique selector string of the wrapping element 
    * @param {Object} params.type Selector type, must an entry be from the RdfTypesMap
-   * @param {string} params.tableId Specifies type of the table and its id - index / history / children  
+   * @param {string} params.id Specifies the id of the table - index / history / children  
+   * @param {IPSRenderer} params._Renderer IP Selector Renderer instance reference   
    */
   constructor({
     selector, 
     type,
-    tableId
+    id,
+    _Renderer
   }) {
 
     super()
 
     Object.assign( this, {
-      type, tableId,
-      selector: `${ selector } #${ tableId }`
+      type, id, _Renderer,
+      selector: `${ selector } #${ id }`
     })
 
     this._initPanel()
@@ -45,9 +48,14 @@ export default class PickerPanel extends Cacheable {
    */
   setData(data) {
 
-    if ( data )
-      this.data = data
+    if ( data ) {
 
+      this.data = data
+      // Render the current item reference in this instance's card subtitle
+      this._Renderer.renderSubtitle( this.id, data )
+
+    }
+    
     return this 
 
   }
@@ -69,7 +77,7 @@ export default class PickerPanel extends Cacheable {
       // Load data from server  
       else  {
 
-        this._loading( true )
+        this._toggleInteraction( true )
         this.sp.loadData( this._dataUrl )
 
       }
@@ -88,8 +96,9 @@ export default class PickerPanel extends Cacheable {
 
     if ( this._canFetch ) {
 
+      // Remove current item data from cache 
       this._removeFromCache( this._dataUrl )
-
+      // Reload data from the server 
       this.load()
           ._dispatchEvent( 'refresh' )
     
@@ -109,6 +118,9 @@ export default class PickerPanel extends Cacheable {
     this.sp.clear()
     this.data = undefined 
 
+    // Empty the subtitle text as no item currently shown 
+    this._Renderer.renderSubtitle( this.id )
+
     if ( clearCache )
       this._clearCache()
 
@@ -122,7 +134,17 @@ export default class PickerPanel extends Cacheable {
    */
   setMultiple(multiple) {
 
-    this.sp.table.select.style( multiple ? 'multi' : 'single' )
+    // Set DataTable select option
+    this.sp.table.select.style( 
+      multiple ? 'multi' : 'single' 
+    )
+
+    // Hide / show buttons in table depending on the multiple option value
+    if ( this.id === 'children' )
+      this.sp.table.buttons([ 'select-all:name', 'deselect-all:name' ])
+                   .nodes()
+                   .toggle( multiple )
+
     return this 
     
   }
@@ -140,7 +162,7 @@ export default class PickerPanel extends Cacheable {
   /**
    * Add a custom event listener to the panel
    * @warning Do not use names of events that are used in the DataTables API 
-   * @param {string} eventName Name of custom event. Available events: selected, deselected, dataLoaded, loadingStateChanged, refresh
+   * @param {string} eventName Name of custom event. Available events: selected, deselected, dataLoaded, interactionStateChanged, refresh
    * @param {function} handler Event handler function
    * @return {PickerPanel} this instance (for chaining)
    */
@@ -162,10 +184,10 @@ export default class PickerPanel extends Cacheable {
 
     const options = this._panelOpts
 
-    if ( this.tableId === 'index' )
+    if ( this.id === 'index' )
       options.ownershipColorBadge = true 
 
-    if ( this.tableId === 'children' )
+    if ( this.id === 'children' )
       options.allowAll = true 
 
     this.sp = new SelectablePanel( options )
@@ -175,6 +197,26 @@ export default class PickerPanel extends Cacheable {
 
   /*** Events ***/
 
+ 
+  /**
+   * On data loaded callback, caches fetched data 
+   */
+  _onDataLoaded() {
+
+    // Cache loaded data
+    this._saveToCache( 
+      this._dataUrl, 
+      this.sp.rowDataToArray, 
+      true 
+    )
+
+    // Update loading state
+    this._toggleInteraction( false )
+
+    // Data loaded event
+    this._dispatchEvent( 'dataLoaded' )
+
+  }
 
   /**
    * Dispatches a custom Panel event 
@@ -184,25 +226,6 @@ export default class PickerPanel extends Cacheable {
    */
   _dispatchEvent(eventName, ...args) {
     $( this.selector ).trigger( eventName, args )
-  }
-  
-  /**
-   * On data loaded callback, caches fetched data 
-   */
-  _onDataLoaded() {
-
-    // Cache loaded data
-    const url = this._dataUrl,
-          data = this.sp.rowDataToArray
-
-    this._saveToCache( url, data, true )
-
-    // Update loading state
-    this._loading( false )
-
-    // Data loaded event
-    this._dispatchEvent( 'dataLoaded' )
-
   }
 
 
@@ -215,7 +238,7 @@ export default class PickerPanel extends Cacheable {
    */
   get _columns() {
 
-    switch ( this.tableId ) {
+    switch ( this.id ) {
       case 'index':
         if ( this.type === types.TH_CL )
           return dtCLIndexColumns()
@@ -248,7 +271,7 @@ export default class PickerPanel extends Cacheable {
    */
   get _count() {
 
-    switch ( this.tableId ) {
+    switch ( this.id ) {
       case 'index':
         return 5000
       case 'history':
@@ -265,7 +288,7 @@ export default class PickerPanel extends Cacheable {
    */
   get _emptyMsg() {
 
-    switch ( this.tableId ) {
+    switch ( this.id ) {
       case 'index':
         return 'No items found'
       case 'history':
@@ -300,25 +323,32 @@ export default class PickerPanel extends Cacheable {
    */
   get _dataUrl() {
 
-    switch ( this.tableId ) {
+    switch ( this.id ) {
 
       case 'index':
+        // Use special index url for for CLs and CLIs 
         if ( this.type === types.TH_CL || this.type === types.TH_CLI )
           return types.TH_CL.indexUrl
          
         return this.type.url  
 
       case 'history':
-        const baseUrl = this.type.url + '/history',
+        let baseUrl = this.type.url 
+
+        // Use CL url for CLIs 
+        if ( this.type === types.TH_CLI )
+          baseUrl = types.TH_CL.url 
+
+        const url = baseUrl + '/history',
               urlData = { [this._param]: { 
                 identifier: this.data.identifier,
                 scope_id: this.data.scope_id
               } }
 
-        return encodeDataToUrl( baseUrl, urlData )
+        return encodeDataToUrl( url, urlData )
         
       case 'children':
-        return types.TH_CL.url + '/children'
+        return types.TH_CL.url + '/' + this.data.id + '/children'
     
       }
 
@@ -337,27 +367,40 @@ export default class PickerPanel extends Cacheable {
     if ( this.sp.isProcessing )
       return false 
 
-    if ( this.tableId === 'history' )
+    if ( this.id === 'history' )
       return ( this.data?.identifier && this.data?.scope_id ) 
+
+    if ( this.id === 'children' )
+      return !!this.data?.id
 
     return true 
 
   }
 
   /**
-   * Set the Panel's loading state 
-   * does not control the table loading animation, only additional stuff (e.g. table buttons)
-   * @param {boolean} enable Target loading state
+   * Set the Panel's interactable state 
+   * Does not control the table loading animation
+   * @param {boolean} enable Target interactable state
    */
-  _loading(enable) {
+  _toggleInteraction(enable) {
 
-    if ( enable )
-      this.sp.table.buttons().disable()
-    else 
-      this.sp.table.buttons().enable()
+    if ( enable ) {
 
-    // Loading state changed event
-    this._dispatchEvent( 'loadingStateChanged', enable )
+      tableInteraction.disable( this.selector )
+      this.sp.table.buttons()
+                   .disable()
+
+    }
+    else { 
+
+      tableInteraction.enable( this.selector )
+      this.sp.table.buttons()
+                   .enable()
+
+    }
+    
+    // Interaction state changed event
+    this._dispatchEvent( 'interactionStateChanged', enable )
 
   }
 
@@ -381,11 +424,11 @@ export default class PickerPanel extends Cacheable {
         buttons: [ this._dtRefreshBtn ],
         tableOptions: this._tableOpts,
         loadCallback: () => this._onDataLoaded(),
-        errorCallback: () => this._loading( false )
+        errorCallback: () => this._toggleInteraction( false )
       },
       showSelectionInfo: false,
-      onSelect: s => this._dispatchEvent( 'selected', s ),
-      onDeselect: s => this._dispatchEvent( 'deselected', s )
+      onSelect: s => this._dispatchEvent( 'selected', s.data() ),
+      onDeselect: s => this._dispatchEvent( 'deselected', s.data() )
     }
 
   }

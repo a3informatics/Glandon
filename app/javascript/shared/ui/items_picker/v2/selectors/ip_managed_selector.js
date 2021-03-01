@@ -3,8 +3,6 @@ import IPSRenderer from './support/ip_selector_renderer'
 
 import PickerPanel from './panels/ip_panel'
 
-import { tableInteraction } from 'shared/helpers/utils'
-
 /**
  * Managed Selector (Items Picker) 
  * @description Managed Items Selector for version-based selection of managed item types 
@@ -53,8 +51,10 @@ export default class ManagedSelector {
   destroy() {
 
     this.indexPanel.destroy()
-    this.historyPanel.destroy() 
-    $( this.selector ).empty() 
+    this.historyPanel.destroy()
+
+    $( this.selector ).unbind()
+                      .empty() 
     
     this._config.buildRequired = true 
 
@@ -65,12 +65,13 @@ export default class ManagedSelector {
 
 
   /**
-   * Build, render and initialize Selector 
+   * Build - render and initialize Selector 
    */
   _build() {
 
-    this._Renderer.renderManagedSelector( this.type )
-    this._initialize()
+    this._render()
+        ._initialize()
+        ._setPanelListeners()
 
     // Load index table data automatically 
     this.indexPanel.load()
@@ -81,22 +82,34 @@ export default class ManagedSelector {
 
   /**
    * Initialize Selector modules
+   * @return {ManagedSelector} This instance (for chaining)
    */
   _initialize() {
 
+    const { selector, type, _Renderer } = this 
+
     this.indexPanel = new PickerPanel({
-      selector: this.selector,
-      type: this.type,
-      tableId: 'index'
+      selector, type, _Renderer,
+      id: 'index'
     })
 
     this.historyPanel = new PickerPanel({
-      selector: this.selector,
-      type: this.type,
-      tableId: 'history'
+      selector, type, _Renderer,
+      id: 'history'
     }).setMultiple( this.options.multiple )
 
-    this._setPanelListeners()
+    return this 
+
+  }
+
+  /**
+   * Render Selector contents
+   * @return {ManagedSelector} This instance (for chaining)
+   */
+  _render() {
+
+    this._Renderer.renderManagedSelector()
+    return this 
 
   }
 
@@ -106,14 +119,23 @@ export default class ManagedSelector {
 
   /**
    * Picker Panel event listeners & handlers
+   * @return {ManagedSelector} This instance (for chaining)
    */
   _setPanelListeners() {
 
-    this.indexPanel.on( 'selected', s => this._onIndexSelect(s.data()) )
-                   .on( 'deselected', s => this._onIndexDeselect(s.data()) )
-                   .on( 'refresh', () => this.historyPanel.clear( true ) )
+    this.indexPanel
+      .on( 'selected', s => this._onIndexSelect(s) )
+      .on( 'deselected', s => this._onIndexDeselect(s) )
+      .on( 'refresh', () => this.historyPanel.clear(true) )
 
-    this.historyPanel.on( 'loadingStateChanged', isLoading => this._loading( isLoading ) )
+    this.historyPanel
+      .on( 'selected', s => this._onHistorySelect(s) )
+      .on( 'deselected', s => this._onHistoryDeselect(s) )
+      .on( 'interactionStateChanged', enable => 
+        this.indexPanel._toggleInteraction(enable) 
+      )
+
+    return this 
 
   }
 
@@ -137,6 +159,22 @@ export default class ManagedSelector {
     this.historyPanel.clear()
   }
 
+  /**
+   * On History Panel item selected event, add to selection 
+   * @param {array} selected Selected item data 
+   */
+  _onHistorySelect(selected) {
+
+  }
+
+  /**
+   * On History Panel item deselected event, remove from selection
+   * @param {array} deselected Deselected item data 
+   */
+  _onHistoryDeselect(deselected) {
+
+  }
+
 
   /*** Getters ***/
 
@@ -147,19 +185,6 @@ export default class ManagedSelector {
    */
   get _Renderer() {
     return this._config.renderer
-  }
-
-
-  /*** Support ***/
-
-
-  _loading(enable) {
-
-    if ( enable )
-      tableInteraction.disable( this.indexPanel.selector )
-    else 
-      tableInteraction.enable( this.indexPanel.selector )
-
   }
 
 }

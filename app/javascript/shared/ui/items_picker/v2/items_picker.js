@@ -6,6 +6,7 @@ import IPRenderer from './support/ip_renderer'
 
 import { rdfTypesMap } from 'shared/helpers/rdf_types'
 import ManagedSelector from './selectors/ip_managed_selector'
+import UnmanagedSelector from './selectors/ip_unmanaged_selector'
 
 /**
  * Items Picker
@@ -300,7 +301,10 @@ export default class ItemsPicker extends ModalView {
   _newSelector(type) {
 
     if ( type === rdfTypesMap.TH_CLI )
-      return 
+      return new UnmanagedSelector({
+        type, 
+        options: this.options
+      })
 
     else 
       return new ManagedSelector({
