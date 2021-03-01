@@ -130,6 +130,7 @@ function highlightRow(table, rowSelector, blink = true, blinkTimeoutMs = 1000) {
  function selectAllBtn(action, filter = { search: 'applied' }) {
   return {
     text: 'Select All',
+    name: 'select-all',
     className: 'btn-xs white',
     action: action ? action : (e, dt, node, conf) => dt.rows({ selected: false, ...filter }).select()
   }
@@ -144,6 +145,7 @@ function highlightRow(table, rowSelector, blink = true, blinkTimeoutMs = 1000) {
  function deselectAllBtn(action, filter = { search: 'applied' }) {
   return {
     text: 'Deselect All',
+    name: 'deselect-all',
     className: 'btn-xs white',
     action: action ? action : (e, dt, node, conf) => dt.rows({ selected: true, ...filter }).deselect()
   }

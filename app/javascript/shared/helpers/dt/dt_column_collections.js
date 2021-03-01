@@ -98,8 +98,8 @@ function dtSimpleChildrenColumns() {
       title: 'Submission value'
     },
     { 
-      data: 'label',
-      title: 'Label'
+      data: 'preferred_term',
+      title: 'Preferred term'
     }
   ]
 
