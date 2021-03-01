@@ -21,8 +21,8 @@
 	isoT:hasIdentifier :F_SI ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
-	isoT:creationDate "2021-03-01T11:04:44+01:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2021-03-01T11:04:44+01:00"^^xsd:dateTime ;
+	isoT:creationDate "2021-03-01T13:03:23+01:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2021-03-01T13:03:23+01:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bf:note ""^^xsd:string ;
 	bf:completion ""^^xsd:string ;
@@ -117,7 +117,7 @@
 	rdf:type bf:Question ;
 	isoC:label "SEX"^^xsd:string ;
 	bf:ordinal "5"^^xsd:integer ;
-	bf:note "Collect the subject's sex or gender, as reported by the investigator. This is a phenotypic assessment and not a genotypic assessment.* No entries found for code list, parameters ['notation=CLC66731SEX'].\n"^^xsd:string ;
+	bf:note "Collect the subject's sex or gender, as reported by the investigator. This is a phenotypic assessment and not a genotypic assessment."^^xsd:string ;
 	bf:completion "Record the appropriate sex (e.g., F (female), M (male)."^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
@@ -173,7 +173,7 @@
 	rdf:type bf:Question ;
 	isoC:label "ETHNIC"^^xsd:string ;
 	bf:ordinal "6"^^xsd:integer ;
-	bf:note "For use when values are being collected using the exact non-extensible ETHNIC codelist (C66790) values. Sponsors should refer to the FDA's Collection of Race and Ethnicity Data in Clinical Trials guidance regarding the collection of ethnicity (http://www.fda.gov/).* No entries found for code list, parameters ['notation=CLC66790ETHNIC'].\n"^^xsd:string ;
+	bf:note "For use when values are being collected using the exact non-extensible ETHNIC codelist (C66790) values. Sponsors should refer to the FDA's Collection of Race and Ethnicity Data in Clinical Trials guidance regarding the collection of ethnicity (http://www.fda.gov/)."^^xsd:string ;
 	bf:completion "Study participants should self-report ethnicity, with ethnicity being asked about before race."^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
@@ -229,7 +229,7 @@
 	rdf:type bf:Question ;
 	isoC:label "RACE"^^xsd:string ;
 	bf:ordinal "7"^^xsd:integer ;
-	bf:note "Use RACE when the 5 designations for race used by the FDA are collected (American Indian or Alaska Native; Asian; Black or African American; Native Hawaiian or Other Pacific Islander ; White).* Sponsors should refer to the FDA Guidance. See SDTMIG v3.2 Section 5, DM Domain.   *For studies where data are collected outside the US, the recommended categories are the same except for Black instead of Black or African American. If multiple races are collected, an alternate sponsor-defined variable structure would be required. Sponsors may record multiple self-reported races for a subject by appending a suffix to denote multiple collected races (e.g. RACE1, RACE2) and populate RACE with the value MULTIPLE.* No entries found for code list, parameters ['notation=CLC74457RACE'].\n* No entries found in code list 'C74457' for item with submission value: 'NOT REPORTED' or preferred term: 'Not Reported'.\n* No entries found in code list 'C74457' for item with submission value: 'UNKNOWN' or preferred term: 'Unknown'.\n* No entries found in code list 'C74457' for item with submission value: 'OTHER' or preferred term: 'Other'.\n"^^xsd:string ;
+	bf:note "Use RACE when the 5 designations for race used by the FDA are collected (American Indian or Alaska Native; Asian; Black or African American; Native Hawaiian or Other Pacific Islander ; White).* Sponsors should refer to the FDA Guidance. See SDTMIG v3.2 Section 5, DM Domain.   *For studies where data are collected outside the US, the recommended categories are the same except for Black instead of Black or African American. If multiple races are collected, an alternate sponsor-defined variable structure would be required. Sponsors may record multiple self-reported races for a subject by appending a suffix to denote multiple collected races (e.g. RACE1, RACE2) and populate RACE with the value MULTIPLE."^^xsd:string ;
 	bf:completion "Study participants should self-report race, with race being asked about after ethnicity."^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;

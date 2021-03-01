@@ -21,8 +21,8 @@
 	isoT:hasIdentifier :F_SI ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
-	isoT:creationDate "2021-03-01T11:05:11+01:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2021-03-01T11:05:11+01:00"^^xsd:dateTime ;
+	isoT:creationDate "2021-03-01T13:03:48+01:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2021-03-01T13:03:48+01:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bf:note ""^^xsd:string ;
 	bf:completion ""^^xsd:string ;
@@ -63,7 +63,7 @@
 	rdf:type bf:Question ;
 	isoC:label "PEPERF"^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
-	bf:note "This general prompt question is used as a data management tool to verify that missing results are confirmed missing. Used to ask if the physical exam was performed at the overall subject level at the specified time point. If this field is used then the result should only be mapped to PESTAT if the overall examination, at the subject level, was not performed. If the overall examination was performed, then the value of PESTAT would be null for each examined body systems and \"NOT DONE\" for any body systems not examined (see PERES).* No entries found for code list, parameters ['notation=CLC66742NYNY'].\n"^^xsd:string ;
+	bf:note "This general prompt question is used as a data management tool to verify that missing results are confirmed missing. Used to ask if the physical exam was performed at the overall subject level at the specified time point. If this field is used then the result should only be mapped to PESTAT if the overall examination, at the subject level, was not performed. If the overall examination was performed, then the value of PESTAT would be null for each examined body systems and \"NOT DONE\" for any body systems not examined (see PERES)."^^xsd:string ;
 	bf:completion "If physical examination was performed as planned then select Yes, otherwise, select No."^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;

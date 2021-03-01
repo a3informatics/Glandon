@@ -21,8 +21,8 @@
 	isoT:hasIdentifier :F_SI ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
-	isoT:creationDate "2021-03-01T11:04:43+01:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2021-03-01T11:04:43+01:00"^^xsd:dateTime ;
+	isoT:creationDate "2021-03-01T13:03:21+01:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2021-03-01T13:03:21+01:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bf:note ""^^xsd:string ;
 	bf:completion ""^^xsd:string ;
@@ -162,7 +162,7 @@
 	rdf:type bf:Question ;
 	isoC:label "DM - Race"^^xsd:string ;
 	bf:ordinal "3"^^xsd:integer ;
-	bf:note "* No entries found in code list 'C74457' for item with submission value: 'CAUCASIAN' or preferred term: 'Caucasian'.\n* No entries found in code list 'C74457' for item with submission value: 'BLACK' or preferred term: 'Black'.\n* No entries found in code list 'C74457' for item with submission value: 'OTHER' or preferred term: 'Other'.\n"^^xsd:string ;
+	bf:note ""^^xsd:string ;
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
@@ -195,7 +195,7 @@
 	rdf:type bf:Question ;
 	isoC:label "Smoking"^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
-	bf:note "* No entries found for code list, parameters ['notation=SMOKE'].\n* No entries found for code list, parameters ['notation=CLSMOKING'].\n* No entries found for code list, parameters ['identifier='].\n* No entries found for code list, parameters ['label=Smoking'].\n"^^xsd:string ;
+	bf:note "\n\nTerminology Search:\n[\"* No entries found for code list, parameters ['notation=SMOKE'].\\n\", \"* No entries found for code list, parameters ['notation=CLSMOKING'].\\n\", \"* No entries found for code list, parameters ['identifier='].\\n\", \"* No entries found for code list, parameters ['label=Smoking'].\\n\"]"^^xsd:string ;
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
@@ -217,7 +217,7 @@
 	rdf:type bf:Question ;
 	isoC:label "Drinking"^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
-	bf:note "* No entries found for code list, parameters ['notation=DRINK'].\n* No entries found for code list, parameters ['notation=CLDRINKING'].\n* No entries found for code list, parameters ['identifier='].\n* No entries found for code list, parameters ['label=Drinking'].\n"^^xsd:string ;
+	bf:note "\n\nTerminology Search:\n[\"* No entries found for code list, parameters ['notation=DRINK'].\\n\", \"* No entries found for code list, parameters ['notation=CLDRINKING'].\\n\", \"* No entries found for code list, parameters ['identifier='].\\n\", \"* No entries found for code list, parameters ['label=Drinking'].\\n\"]"^^xsd:string ;
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;

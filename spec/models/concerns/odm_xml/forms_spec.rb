@@ -118,7 +118,7 @@ describe OdmXml::Forms do
     check_file_actual_expected(actual.to_h, sub_dir, "form_expected_7.yaml", equate_method: :hash_equal)
 	end
 
-  it "gets form, ERROR example" do
+  it "gets form, error" do
     full_path = test_file_path(sub_dir, "odm_1.xml")
     object = OdmXml::Forms.new(full_path)
     expect(object.errors.count).to eq(0)

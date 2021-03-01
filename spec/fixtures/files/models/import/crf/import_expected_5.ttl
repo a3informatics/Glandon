@@ -21,8 +21,8 @@
 	isoT:hasIdentifier :F_SI ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
-	isoT:creationDate "2021-03-01T11:05:11+01:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2021-03-01T11:05:11+01:00"^^xsd:dateTime ;
+	isoT:creationDate "2021-03-01T13:03:47+01:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2021-03-01T13:03:47+01:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bf:note ""^^xsd:string ;
 	bf:completion ""^^xsd:string ;
@@ -64,7 +64,7 @@
 	rdf:type bf:Question ;
 	isoC:label "VSPERF"^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
-	bf:note "This general prompt question is used as a data management tool to verify that missing results are confirmed missing. This may be implemented for all tests collected on the same horizontal record or for each specific test. When mapped to SDTM, the value of VSPERF would apply to all tests on the same record. Use the CDASH variable [VSTESTCD]_VSPERF when implemented on a specific test basis.* No entries found for code list, parameters ['notation=CLC66742NYNY'].\n"^^xsd:string ;
+	bf:note "This general prompt question is used as a data management tool to verify that missing results are confirmed missing. This may be implemented for all tests collected on the same horizontal record or for each specific test. When mapped to SDTM, the value of VSPERF would apply to all tests on the same record. Use the CDASH variable [VSTESTCD]_VSPERF when implemented on a specific test basis."^^xsd:string ;
 	bf:completion "Indicate if the vital signs were collected. If yes, include the appropriate details where indicated on the CRF."^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
@@ -235,7 +235,7 @@
 	rdf:type bf:Question ;
 	isoC:label "BP_VSPOS"^^xsd:string ;
 	bf:ordinal "7"^^xsd:integer ;
-	bf:note "Results may be affected by whether conditions for vital signs as specified in the protocol were properly met. One common condition is the subject's position. If the protocol requires this type of information, then a CDASH variable [VSTESTCD]_VSPOS may be created for each VSTESTCD and added to the CRF, if needed.* No entries found for code list, parameters ['notation=CLC71148POSITIONBP'].\n"^^xsd:string ;
+	bf:note "Results may be affected by whether conditions for vital signs as specified in the protocol were properly met. One common condition is the subject's position. If the protocol requires this type of information, then a CDASH variable [VSTESTCD]_VSPOS may be created for each VSTESTCD and added to the CRF, if needed."^^xsd:string ;
 	bf:completion "Record the position of subject at time of test (e.g. SITTING)."^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
@@ -302,7 +302,7 @@
 	rdf:type bf:Question ;
 	isoC:label "BP_VSLOC"^^xsd:string ;
 	bf:ordinal "8"^^xsd:integer ;
-	bf:note "Collected or preprinted when the sponsor needs to identify the specific anatomical location (e.g., ARM for blood pressure). Sponsors may collect the data using a subset list of controlled terminology on the CRF. In horizontal data collection, a CDASH variable [VSTESTCD]_VSLOC may be created for each VSTESTCD and added to the CRF, if needed. LAT, DIR, and PORTOT are used to further describe the anatomical location.* No entries found for code list, parameters ['notation=CLC74456LOCBP'].\n* No entries found in code list 'C74456' for item with submission value: 'PERIPHERAL ARTERY' or preferred term: 'Peripheral Artery'.\n"^^xsd:string ;
+	bf:note "Collected or preprinted when the sponsor needs to identify the specific anatomical location (e.g., ARM for blood pressure). Sponsors may collect the data using a subset list of controlled terminology on the CRF. In horizontal data collection, a CDASH variable [VSTESTCD]_VSLOC may be created for each VSTESTCD and added to the CRF, if needed. LAT, DIR, and PORTOT are used to further describe the anatomical location."^^xsd:string ;
 	bf:completion "Record or select location on body where measurement was performed, if not preprinted on CRF."^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
@@ -359,7 +359,7 @@
 	rdf:type bf:Question ;
 	isoC:label "HEIGHT_VSORRESU"^^xsd:string ;
 	bf:ordinal "10"^^xsd:integer ;
-	bf:note "A single Unit field can be collected once for all measurements collected on the same horizontal record using VSUNIT. The value of VSUNIT applies to all measurements on that record when mapped to SDTM. If needed for each measurement, unit may be collected using the CDASH variable [VSTESTCD]_VSSTAT. Should be preprinted on the CRF with the associated test when possible, rather than collected in a field that requires the site to enter text.* No entries found for code list, parameters ['notation=CLC66770VSRESUHGT'].\n"^^xsd:string ;
+	bf:note "A single Unit field can be collected once for all measurements collected on the same horizontal record using VSUNIT. The value of VSUNIT applies to all measurements on that record when mapped to SDTM. If needed for each measurement, unit may be collected using the CDASH variable [VSTESTCD]_VSSTAT. Should be preprinted on the CRF with the associated test when possible, rather than collected in a field that requires the site to enter text."^^xsd:string ;
 	bf:completion "Record or select the original unit in which these data were collected, if not preprinted on CRF."^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
@@ -405,7 +405,7 @@
 	rdf:type bf:Question ;
 	isoC:label "WEIGHT_VSORRESU"^^xsd:string ;
 	bf:ordinal "12"^^xsd:integer ;
-	bf:note "A single Unit field can be collected once for all measurements collected on the same horizontal record using VSUNIT. The value of VSUNIT applies to all measurements on that record when mapped to SDTM. If needed for each measurement, unit may be collected using the CDASH variable [VSTESTCD]_VSSTAT. Should be preprinted on the CRF with the associated test when possible, rather than collected in a field that requires the site to enter text.* No entries found for code list, parameters ['notation=CLC66770VSRESUWGT'].\n"^^xsd:string ;
+	bf:note "A single Unit field can be collected once for all measurements collected on the same horizontal record using VSUNIT. The value of VSUNIT applies to all measurements on that record when mapped to SDTM. If needed for each measurement, unit may be collected using the CDASH variable [VSTESTCD]_VSSTAT. Should be preprinted on the CRF with the associated test when possible, rather than collected in a field that requires the site to enter text."^^xsd:string ;
 	bf:completion "Record or select the original unit in which these data were collected, if not preprinted on CRF."^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
@@ -486,7 +486,7 @@
 	rdf:type bf:Question ;
 	isoC:label "PULSE_VSLOC"^^xsd:string ;
 	bf:ordinal "16"^^xsd:integer ;
-	bf:note "Collected or preprinted when the sponsor needs to identify the specific anatomical location (e.g., ARM for blood pressure). Sponsors may collect the data using a subset list of controlled terminology on the CRF. In horizontal data collection, a CDASH variable [VSTESTCD]_VSLOC may be created for each VSTESTCD and added to the CRF, if needed. LAT, DIR, and PORTOT are used to further describe the anatomical location.* No entries found for code list, parameters ['notation=CLC74456LOCPULSE'].\n* No entries found in code list 'C74456' for item with submission value: 'CEREBRAL ARTERY' or preferred term: 'Cerebral Artery'.\n* No entries found in code list 'C74456' for item with submission value: 'PERIPHERAL ARTERY' or preferred term: 'Peripheral Artery'.\n"^^xsd:string ;
+	bf:note "Collected or preprinted when the sponsor needs to identify the specific anatomical location (e.g., ARM for blood pressure). Sponsors may collect the data using a subset list of controlled terminology on the CRF. In horizontal data collection, a CDASH variable [VSTESTCD]_VSLOC may be created for each VSTESTCD and added to the CRF, if needed. LAT, DIR, and PORTOT are used to further describe the anatomical location."^^xsd:string ;
 	bf:completion "Record or select location on body where measurement was performed, if not preprinted on CRF."^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
@@ -601,7 +601,7 @@
 	rdf:type bf:Question ;
 	isoC:label "TEMP_VSORRESU"^^xsd:string ;
 	bf:ordinal "21"^^xsd:integer ;
-	bf:note "A single Unit field can be collected once for all measurements collected on the same horizontal record using VSUNIT. The value of VSUNIT applies to all measurements on that record when mapped to SDTM. If needed for each measurement, unit may be collected using the CDASH variable [VSTESTCD]_VSSTAT. Should be preprinted on the CRF with the associated test when possible, rather than collected in a field that requires the site to enter text.* No entries found for code list, parameters ['notation=CLC66770VSRESUTEMP'].\n"^^xsd:string ;
+	bf:note "A single Unit field can be collected once for all measurements collected on the same horizontal record using VSUNIT. The value of VSUNIT applies to all measurements on that record when mapped to SDTM. If needed for each measurement, unit may be collected using the CDASH variable [VSTESTCD]_VSSTAT. Should be preprinted on the CRF with the associated test when possible, rather than collected in a field that requires the site to enter text."^^xsd:string ;
 	bf:completion "Record or select the original unit in which these data were collected, if not preprinted on CRF."^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
@@ -635,7 +635,7 @@
 	rdf:type bf:Question ;
 	isoC:label "TEMP_VSLOC"^^xsd:string ;
 	bf:ordinal "22"^^xsd:integer ;
-	bf:note "Collected or preprinted when the sponsor needs to identify the specific anatomical location (e.g., ARM for blood pressure). Sponsors may collect the data using a subset list of controlled terminology on the CRF. In horizontal data collection, a CDASH variable [VSTESTCD]_VSLOC may be created for each VSTESTCD and added to the CRF, if needed. LAT, DIR, and PORTOT are used to further describe the anatomical location.* No entries found for code list, parameters ['notation=CLC74456LOCTEMP'].\n"^^xsd:string ;
+	bf:note "Collected or preprinted when the sponsor needs to identify the specific anatomical location (e.g., ARM for blood pressure). Sponsors may collect the data using a subset list of controlled terminology on the CRF. In horizontal data collection, a CDASH variable [VSTESTCD]_VSLOC may be created for each VSTESTCD and added to the CRF, if needed. LAT, DIR, and PORTOT are used to further describe the anatomical location."^^xsd:string ;
 	bf:completion "Record or select location on body where measurement was performed, if not preprinted on CRF."^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;

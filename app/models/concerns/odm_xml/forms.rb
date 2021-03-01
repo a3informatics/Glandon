@@ -252,7 +252,7 @@ class OdmXml::Forms < OdmXml
     end
 
     def sas_format_cl(node, question, cli_nodes)
-      return false if node.attributes["SASFormatName"].nil?
+      return {result: false, notes: []} if node.attributes["SASFormatName"].nil?
       text = node.attributes["SASFormatName"].value
       text = text.gsub(/[^0-9A-Za-z]/, "") # Remove any non-alphanumeric, e.g. $
       text = text.upcase # Make sure it has a chance of matching 
@@ -261,7 +261,7 @@ class OdmXml::Forms < OdmXml
     end
 
     def name_cl(node, question, cli_nodes)
-      return false if node.attributes["Name"].nil?
+      return {result: false, notes: []} if node.attributes["Name"].nil?
       text = node.attributes["Name"].value
       find_cl({label: text}, question, cli_nodes)
     end
