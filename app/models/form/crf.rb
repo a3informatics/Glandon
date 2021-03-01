@@ -67,7 +67,7 @@ class Form
         html += field_table(["#"]*count)
       elsif datatype.string?
         length = item.format.scan /\w/
-        html += field_table([" "]*5 + ["S"] + length + [""]*5)
+        html += field_table([" "]*5 + ["S"] + length + [" "]*5)
       elsif datatype.boolean?
         html += '<input type="checkbox">'
       else
@@ -90,7 +90,7 @@ class Form
     end
 
     def separators
-      [".", ":", "/", " "]
+      [".", ":", "/"]
     end
 
     def terminology_cell(item)
