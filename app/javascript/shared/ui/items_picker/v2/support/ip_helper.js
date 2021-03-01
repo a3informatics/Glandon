@@ -77,4 +77,14 @@ export default class IPHelper {
     return id.split('-')[1]
   }
 
+  /**
+   * Convert a table type to card id 
+   * @param {string} id Table type - id 
+   * @return {string} Wrapping card id 
+   * @static
+   */
+  static cardId(id) {
+    return `${ id }-card`
+  }
+
 }

@@ -120,7 +120,7 @@ export default class IPRenderer {
           icon = icons.renderIcon( rdfType, { size: 'text-large' } )
           
     return $( '<div>' ).addClass( 'tab-option with-icon no-badge')
-                       .attr( 'id', id )
+                       .prop( 'id', id )
                        .text( tabName )
                        .prepend( icon )
 
@@ -133,14 +133,11 @@ export default class IPRenderer {
    */
   _tabContent(type) {
 
-    const { param } = type
-
     return $( '<div>' ).addClass( 'tab-wrap closed' )
-                       .attr( 'id', IPHelper.typeToSelectorId( type ) )
+                       .prop( 'id', IPHelper.typeToSelectorId( type ) )
                        .attr( 'data-tab', IPHelper.typeToTabId( type ) ) 
 
   }
-
 
 
   /*** Getters ***/
@@ -154,6 +151,10 @@ export default class IPRenderer {
     return this.content.find( '#items-picker-tabs' )
   }
 
+  /**
+   * Get the content (main) element
+   * @return {JQuery Element} Main content element
+   */
   get content() {
     return $( this.selector ) 
   }
