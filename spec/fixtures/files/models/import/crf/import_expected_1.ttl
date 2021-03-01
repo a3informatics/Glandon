@@ -20,8 +20,8 @@
 	isoT:hasIdentifier :F_SI ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
-	isoT:creationDate "2021-03-01T13:03:19+01:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2021-03-01T13:03:19+01:00"^^xsd:dateTime ;
+	isoT:creationDate "2021-03-01T18:13:05+01:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2021-03-01T18:13:05+01:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bf:note ""^^xsd:string ;
 	bf:completion ""^^xsd:string ;
@@ -111,7 +111,7 @@
 	rdf:type bf:Question ;
 	isoC:label "Adverse Event Experienced"^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
-	bf:note "\n\nTerminology Search:\n[\"* No entries found for code list, parameters ['notation=NOYES'].\\n\", \"* No entries found for code list, parameters ['notation=CLNOYES'].\\n\", \"* No entries found for code list, parameters ['identifier='].\\n\", \"* No entries found for code list, parameters ['label=No Yes'].\\n\"]"^^xsd:string ;
+	bf:note "\n\nTerminology Search:\n* No entries found for code list, parameters ['notation=NOYES'].\n* No entries found for code list, parameters ['notation=CLNOYES'].\n* No entries found for code list, parameters ['identifier='].\n* No entries found for code list, parameters ['label=No Yes']."^^xsd:string ;
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
@@ -190,7 +190,7 @@
 	rdf:type bf:Question ;
 	isoC:label "Adverse Event Continues"^^xsd:string ;
 	bf:ordinal "5"^^xsd:integer ;
-	bf:note "\n\nTerminology Search:\n[\"* No entries found for code list, parameters ['notation=NOYES'].\\n\", \"* No entries found for code list, parameters ['notation=CLNOYES'].\\n\", \"* No entries found for code list, parameters ['identifier='].\\n\", \"* No entries found for code list, parameters ['label=No Yes'].\\n\"]"^^xsd:string ;
+	bf:note "\n\nTerminology Search:\n* No entries found for code list, parameters ['notation=NOYES'].\n* No entries found for code list, parameters ['notation=CLNOYES'].\n* No entries found for code list, parameters ['identifier='].\n* No entries found for code list, parameters ['label=No Yes']."^^xsd:string ;
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
@@ -202,7 +202,7 @@
 	rdf:type bf:Question ;
 	isoC:label "Adverse Event Serious"^^xsd:string ;
 	bf:ordinal "6"^^xsd:integer ;
-	bf:note "\n\nTerminology Search:\n[\"* No entries found for code list, parameters ['notation=NOYES'].\\n\", \"* No entries found for code list, parameters ['notation=CLNOYES'].\\n\", \"* No entries found for code list, parameters ['identifier='].\\n\", \"* No entries found for code list, parameters ['label=No Yes'].\\n\"]"^^xsd:string ;
+	bf:note "\n\nTerminology Search:\n* No entries found for code list, parameters ['notation=NOYES'].\n* No entries found for code list, parameters ['notation=CLNOYES'].\n* No entries found for code list, parameters ['identifier='].\n* No entries found for code list, parameters ['label=No Yes']."^^xsd:string ;
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
@@ -226,7 +226,7 @@
 	rdf:type bf:Question ;
 	isoC:label "Adverse Event Related"^^xsd:string ;
 	bf:ordinal "8"^^xsd:integer ;
-	bf:note "\n\nTerminology Search:\n[\"* No entries found for code list, parameters ['notation=NOYES'].\\n\", \"* No entries found for code list, parameters ['notation=CLNOYES'].\\n\", \"* No entries found for code list, parameters ['identifier='].\\n\", \"* No entries found for code list, parameters ['label=No Yes'].\\n\"]"^^xsd:string ;
+	bf:note "\n\nTerminology Search:\n* No entries found for code list, parameters ['notation=NOYES'].\n* No entries found for code list, parameters ['notation=CLNOYES'].\n* No entries found for code list, parameters ['identifier='].\n* No entries found for code list, parameters ['label=No Yes']."^^xsd:string ;
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
@@ -238,7 +238,7 @@
 	rdf:type bf:Question ;
 	isoC:label "Adverse Event Action Taken"^^xsd:string ;
 	bf:ordinal "9"^^xsd:integer ;
-	bf:note "\n\nTerminology Search:\n[\"* No entries found for code list, parameters ['notation=AEACTION'].\\n\", \"* No entries found for code list, parameters ['notation=CLAEACTION'].\\n\", \"* No entries found for code list, parameters ['identifier='].\\n\", \"* No entries found for code list, parameters ['label=Adverse Event Action Taken'].\\n\"]"^^xsd:string ;
+	bf:note "\n\nTerminology Search:\n* No entries found for code list, parameters ['notation=AEACTION'].\n* No entries found for code list, parameters ['notation=CLAEACTION'].\n* No entries found for code list, parameters ['identifier='].\n* No entries found for code list, parameters ['label=Adverse Event Action Taken']."^^xsd:string ;
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
@@ -250,7 +250,7 @@
 	rdf:type bf:Question ;
 	isoC:label "Adverse Event Subject Outcome"^^xsd:string ;
 	bf:ordinal "10"^^xsd:integer ;
-	bf:note "\n\nTerminology Search:\n[\"* No entries found for code list, parameters ['notation=AEOUT'].\\n\", \"* No entries found for code list, parameters ['notation=CLAEOUTCOME'].\\n\", \"* No entries found for code list, parameters ['identifier='].\\n\", \"* No entries found for code list, parameters ['label=Adverse Event Action Taken'].\\n\"]"^^xsd:string ;
+	bf:note "\n\nTerminology Search:\n* No entries found for code list, parameters ['notation=AEOUT'].\n* No entries found for code list, parameters ['notation=CLAEOUTCOME'].\n* No entries found for code list, parameters ['identifier='].\n* No entries found for code list, parameters ['label=Adverse Event Action Taken']."^^xsd:string ;
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;

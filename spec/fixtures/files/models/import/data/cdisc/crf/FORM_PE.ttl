@@ -21,12 +21,12 @@
 	isoT:hasIdentifier :F_SI ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
-	isoT:creationDate "2021-03-01T13:06:38+01:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2021-03-01T13:06:38+01:00"^^xsd:dateTime ;
+	isoT:creationDate "2021-03-01T18:43:07+01:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2021-03-01T18:43:07+01:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bf:note ""^^xsd:string ;
 	bf:completion ""^^xsd:string ;
-	bf:hasGroup :NG_93690c13-ab66-4b04-b50e-aa161d0cb6ff ;
+	bf:hasGroup :NG_e1fd96d1-1d93-4d9f-bf14-92504e66a8cc ;
 .
 :F_RS
 	rdf:type isoR:RegistrationState ;
@@ -48,32 +48,32 @@
 	isoI:semanticVersion "0.1.0"^^xsd:string ;
 	isoI:hasScope <http://www.assero.co.uk/NS#SCUBED> ;
 .
-:NG_93690c13-ab66-4b04-b50e-aa161d0cb6ff
+:NG_e1fd96d1-1d93-4d9f-bf14-92504e66a8cc
 	rdf:type bf:NormalGroup ;
 	isoC:label "PE - Recommended"^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
-	bf:hasItem :Q_31d4c916-72b7-4bde-9d30-ba824e57e8e3 ;
-	bf:hasItem :Q_40b9c511-8ed8-4c5d-b7bf-54ee33105996 ;
+	bf:hasItem :Q_9d013032-317c-477a-9f09-43347cc4a21c ;
+	bf:hasItem :Q_528c6404-56ca-44ea-a93a-731da3de5992 ;
 	bf:repeating "false"^^xsd:boolean ;
 .
-:Q_31d4c916-72b7-4bde-9d30-ba824e57e8e3
+:Q_9d013032-317c-477a-9f09-43347cc4a21c
 	rdf:type bf:Question ;
 	isoC:label "PEPERF"^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
-	bf:note "This general prompt question is used as a data management tool to verify that missing results are confirmed missing. Used to ask if the physical exam was performed at the overall subject level at the specified time point. If this field is used then the result should only be mapped to PESTAT if the overall examination, at the subject level, was not performed. If the overall examination was performed, then the value of PESTAT would be null for each examined body systems and \"NOT DONE\" for any body systems not examined (see PERES)."^^xsd:string ;
+	bf:note "\n\nPrompt:\n\nPhysical Exam Performed\n\nImplementation Notes:\n\nThis general prompt question is used as a data management tool to verify that missing results are confirmed missing. Used to ask if the physical exam was performed at the overall subject level at the specified time point. If this field is used then the result should only be mapped to PESTAT if the overall examination, at the subject level, was not performed. If the overall examination was performed, then the value of PESTAT would be null for each examined body systems and \"NOT DONE\" for any body systems not examined (see PERES).\n\nMapping Instructions:\n\nThis does not map directly to an SDTMIG variable. May be used to derive a value into the SDTMIG variable PESTAT. If PEPERF=\"N\" the value of PESTAT=\"NOT DONE\". If PEPERF=\"Y\", then the actual physical exam results would be reported by body system (see PERES). PECAT, PESCAT, PETEST and PETESTCD must reflect what tests were not done. If used for an entire CRF or other set of multiple tests with PECAT and PESCAT, PETESTCD=PEALL.\n\nCdash:\n\nPROCCUR"^^xsd:string ;
 	bf:completion "If physical examination was performed as planned then select Yes, otherwise, select No."^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "3"^^xsd:string ;
 	bf:mapping "[NO MAPPING]"^^xsd:string ;
 	bf:questionText "Was the physical examination performed?"^^xsd:string ;
-	bf:hasCodedValue :Q_31d4c916-72b7-4bde-9d30-ba824e57e8e3_TUC1 ;
-	bf:hasCodedValue :Q_31d4c916-72b7-4bde-9d30-ba824e57e8e3_TUC2 ;
+	bf:hasCodedValue :Q_9d013032-317c-477a-9f09-43347cc4a21c_TUC1 ;
+	bf:hasCodedValue :Q_9d013032-317c-477a-9f09-43347cc4a21c_TUC2 ;
 .
-:Q_31d4c916-72b7-4bde-9d30-ba824e57e8e3_TUC1
+:Q_9d013032-317c-477a-9f09-43347cc4a21c_TUC1
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -83,7 +83,7 @@
 	bo:context <http://www.cdisc.org/C66742/V56#C66742> ;
 	bo:localLabel "No"^^xsd:string ;
 .
-:Q_31d4c916-72b7-4bde-9d30-ba824e57e8e3_TUC2
+:Q_9d013032-317c-477a-9f09-43347cc4a21c_TUC2
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -93,11 +93,11 @@
 	bo:context <http://www.cdisc.org/C66742/V56#C66742> ;
 	bo:localLabel "Yes"^^xsd:string ;
 .
-:Q_40b9c511-8ed8-4c5d-b7bf-54ee33105996
+:Q_528c6404-56ca-44ea-a93a-731da3de5992
 	rdf:type bf:Question ;
 	isoC:label "PEDAT"^^xsd:string ;
 	bf:ordinal "2"^^xsd:integer ;
-	bf:note "The date of examination may be determined from the date of the visit (VISDAT) and if so, a separate assessment date field is not required."^^xsd:string ;
+	bf:note "\n\nPrompt:\n\nExam Date\n\nImplementation Notes:\n\nThe date of examination may be determined from the date of the visit (VISDAT) and if so, a separate assessment date field is not required.\n\nMapping Instructions:\n\nThis does not map directly to an SDTMIG variable. For the SDTM submission dataset, concatenate all collected CDASH DATE and TIME components and populate the SDTMIG variable PEDTC in ISO 8601 format.\n\nCdash:\n\nPRSTDAT"^^xsd:string ;
 	bf:completion "Record complete date of examination using this format (DD-MON-YYYY)."^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "date"^^xsd:string ;

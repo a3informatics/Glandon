@@ -203,7 +203,10 @@
 
 
       Terminology Search:
-      ["* No entries found for code list, parameters ['notation=SMOKE'].\n", "* No entries found for code list, parameters ['notation=CLSMOKING'].\n", "* No entries found for code list, parameters ['identifier='].\n", "* No entries found for code list, parameters ['label=Smoking'].\n"]
+      * No entries found for code list, parameters ['notation=SMOKE'].
+      * No entries found for code list, parameters ['notation=CLSMOKING'].
+      * No entries found for code list, parameters ['identifier='].
+      * No entries found for code list, parameters ['label=Smoking'].
     :completion: ''
     :optional: false
     :datatype: string
@@ -232,7 +235,10 @@
 
 
       Terminology Search:
-      ["* No entries found for code list, parameters ['notation=DRINK'].\n", "* No entries found for code list, parameters ['notation=CLDRINKING'].\n", "* No entries found for code list, parameters ['identifier='].\n", "* No entries found for code list, parameters ['label=Drinking'].\n"]
+      * No entries found for code list, parameters ['notation=DRINK'].
+      * No entries found for code list, parameters ['notation=CLDRINKING'].
+      * No entries found for code list, parameters ['identifier='].
+      * No entries found for code list, parameters ['label=Drinking'].
     :completion: ''
     :optional: false
     :datatype: string
@@ -271,7 +277,7 @@
     :label: Height units
     :ordinal: 2
     :note: "* Multiple entries [C48500,C48500] found for parameters ['notation=in'],
-      using first found.\n"
+      using first found."
     :completion: ''
     :optional: false
     :datatype: string
@@ -307,7 +313,7 @@
     :rdf_type: http://www.assero.co.uk/BusinessForm#Question
     :label: Weight units
     :ordinal: 4
-    :note: "* No entries found for parameters ['notation=lbs'].\n"
+    :note: "* No entries found for parameters ['notation=lbs']."
     :completion: ''
     :optional: false
     :datatype: string
@@ -333,7 +339,7 @@
     :rdf_type: http://www.assero.co.uk/BusinessForm#Question
     :label: Systolic BP units
     :ordinal: 6
-    :note: "* No entries found for parameters ['notation=mm Hg'].\n"
+    :note: "* No entries found for parameters ['notation=mm Hg']."
     :completion: ''
     :optional: false
     :datatype: string
@@ -359,7 +365,7 @@
     :rdf_type: http://www.assero.co.uk/BusinessForm#Question
     :label: Diastolic BP units
     :ordinal: 8
-    :note: "* No entries found for parameters ['notation=mm Hg'].\n"
+    :note: "* No entries found for parameters ['notation=mm Hg']."
     :completion: ''
     :optional: false
     :datatype: string

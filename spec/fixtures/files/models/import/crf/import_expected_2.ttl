@@ -21,8 +21,8 @@
 	isoT:hasIdentifier :F_SI ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
-	isoT:creationDate "2021-03-01T13:03:21+01:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2021-03-01T13:03:21+01:00"^^xsd:dateTime ;
+	isoT:creationDate "2021-03-01T18:13:07+01:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2021-03-01T18:13:07+01:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bf:note ""^^xsd:string ;
 	bf:completion ""^^xsd:string ;
@@ -195,7 +195,7 @@
 	rdf:type bf:Question ;
 	isoC:label "Smoking"^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
-	bf:note "\n\nTerminology Search:\n[\"* No entries found for code list, parameters ['notation=SMOKE'].\\n\", \"* No entries found for code list, parameters ['notation=CLSMOKING'].\\n\", \"* No entries found for code list, parameters ['identifier='].\\n\", \"* No entries found for code list, parameters ['label=Smoking'].\\n\"]"^^xsd:string ;
+	bf:note "\n\nTerminology Search:\n* No entries found for code list, parameters ['notation=SMOKE'].\n* No entries found for code list, parameters ['notation=CLSMOKING'].\n* No entries found for code list, parameters ['identifier='].\n* No entries found for code list, parameters ['label=Smoking']."^^xsd:string ;
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
@@ -217,7 +217,7 @@
 	rdf:type bf:Question ;
 	isoC:label "Drinking"^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
-	bf:note "\n\nTerminology Search:\n[\"* No entries found for code list, parameters ['notation=DRINK'].\\n\", \"* No entries found for code list, parameters ['notation=CLDRINKING'].\\n\", \"* No entries found for code list, parameters ['identifier='].\\n\", \"* No entries found for code list, parameters ['label=Drinking'].\\n\"]"^^xsd:string ;
+	bf:note "\n\nTerminology Search:\n* No entries found for code list, parameters ['notation=DRINK'].\n* No entries found for code list, parameters ['notation=CLDRINKING'].\n* No entries found for code list, parameters ['identifier='].\n* No entries found for code list, parameters ['label=Drinking']."^^xsd:string ;
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
@@ -258,7 +258,7 @@
 	rdf:type bf:Question ;
 	isoC:label "Height units"^^xsd:string ;
 	bf:ordinal "2"^^xsd:integer ;
-	bf:note "* Multiple entries [C48500,C48500] found for parameters ['notation=in'], using first found.\n"^^xsd:string ;
+	bf:note "* Multiple entries [C48500,C48500] found for parameters ['notation=in'], using first found."^^xsd:string ;
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
@@ -293,7 +293,7 @@
 	rdf:type bf:Question ;
 	isoC:label "Weight units"^^xsd:string ;
 	bf:ordinal "4"^^xsd:integer ;
-	bf:note "* No entries found for parameters ['notation=lbs'].\n"^^xsd:string ;
+	bf:note "* No entries found for parameters ['notation=lbs']."^^xsd:string ;
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
@@ -317,7 +317,7 @@
 	rdf:type bf:Question ;
 	isoC:label "Systolic BP units"^^xsd:string ;
 	bf:ordinal "6"^^xsd:integer ;
-	bf:note "* No entries found for parameters ['notation=mm Hg'].\n"^^xsd:string ;
+	bf:note "* No entries found for parameters ['notation=mm Hg']."^^xsd:string ;
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
@@ -341,7 +341,7 @@
 	rdf:type bf:Question ;
 	isoC:label "Diastolic BP units"^^xsd:string ;
 	bf:ordinal "8"^^xsd:integer ;
-	bf:note "* No entries found for parameters ['notation=mm Hg'].\n"^^xsd:string ;
+	bf:note "* No entries found for parameters ['notation=mm Hg']."^^xsd:string ;
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;

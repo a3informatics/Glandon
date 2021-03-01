@@ -98,8 +98,15 @@
     :note: |2-
 
 
+      Export Label:
+
+      I/E Criterion Original Result
+
       Terminology Search:
-      ["* No entries found for code list, parameters ['notation=YESNO'].\n", "* No entries found for code list, parameters ['notation=CLFMTYESNO'].\n", "* No entries found for code list, parameters ['identifier='].\n", "* No entries found for code list, parameters ['label=CL_FMT_YESNO'].\n"]
+      * No entries found for code list, parameters ['notation=YESNO'].
+      * No entries found for code list, parameters ['notation=CLFMTYESNO'].
+      * No entries found for code list, parameters ['identifier='].
+      * No entries found for code list, parameters ['label=CL_FMT_YESNO'].
     :completion: ''
     :optional: false
     :datatype: string
@@ -138,7 +145,12 @@
     :rdf_type: http://www.assero.co.uk/BusinessForm#Question
     :label: IECAT
     :ordinal: 1
-    :note: ''
+    :note: |2-
+
+
+      Export Label:
+
+      Inclusion/Exclusion Not Met
     :completion: ''
     :optional: false
     :datatype: string
@@ -255,8 +267,15 @@
     :note: |2-
 
 
+      Export Label:
+
+      Inclusion Criterion Short Name
+
       Terminology Search:
-      ["* No entries found for code list, parameters ['notation=INCL'].\n", "* No entries found for code list, parameters ['notation=CLIEINTESTCD'].\n", "* No entries found for code list, parameters ['identifier='].\n", "* No entries found for code list, parameters ['label=CL_IEINTESTCD'].\n"]
+      * No entries found for code list, parameters ['notation=INCL'].
+      * No entries found for code list, parameters ['notation=CLIEINTESTCD'].
+      * No entries found for code list, parameters ['identifier='].
+      * No entries found for code list, parameters ['label=CL_IEINTESTCD'].
     :completion: ''
     :optional: false
     :datatype: string
@@ -344,8 +363,15 @@
     :note: |2-
 
 
+      Export Label:
+
+      Exclusion Criterion Short Name
+
       Terminology Search:
-      ["* No entries found for code list, parameters ['notation=EXCL'].\n", "* No entries found for code list, parameters ['notation=CLIEEXTESTCD'].\n", "* No entries found for code list, parameters ['identifier='].\n", "* No entries found for code list, parameters ['label=CL_IEEXTESTCD'].\n"]
+      * No entries found for code list, parameters ['notation=EXCL'].
+      * No entries found for code list, parameters ['notation=CLIEEXTESTCD'].
+      * No entries found for code list, parameters ['identifier='].
+      * No entries found for code list, parameters ['label=CL_IEEXTESTCD'].
     :completion: ''
     :optional: false
     :datatype: string

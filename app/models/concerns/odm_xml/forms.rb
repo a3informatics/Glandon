@@ -5,7 +5,13 @@ class OdmXml::Forms < OdmXml
   C_CLASS_NAME = self.name
   C_NO_MAPPING = "[NO MAPPING]"
   C_NO_Q_TEXT = "*** Set Question Text ***"
-  
+  C_RECOGNIZED_CONTEXTS = [
+    { context: "completionInstructions", method: :completion }
+  ]
+  C_IGNORE_CONTEXTS = [
+    { context: "SDTM", method: :mapping }
+  ]
+
   extend ActiveModel::Naming
 
   # List. List all forms present in the file.
@@ -131,14 +137,11 @@ class OdmXml::Forms < OdmXml
       item_node = doc.xpath("//xmlns:ItemDef[@OID = '#{@oid}']")
       item = Form::Item::Question.new
       item.label = item_node.first.attributes["Name"].value
-      impl_notes = item_node.xpath("xmlns:Alias[@Context='implementationNotes']")
-      item.note = impl_notes.empty? ? "" : impl_notes.first.attributes["Name"].value
-      compl_inst = item_node.xpath("xmlns:Alias[@Context='completionInstructions']")
-      item.completion = compl_inst.empty? ? "" : compl_inst.first.attributes["Name"].value
+      process_alias_nodes(item_node, item)
+      process_mapping_nodes(item_node, item)
       dt_and_format = get_datatype_and_format(item_node)
       item.datatype = dt_and_format[:datatype]
       item.format = dt_and_format[:format]
-      item.mapping = item_node.first.attributes["SDSVarName"].nil? ? "#{C_NO_MAPPING}" : item_node.first.attributes["SDSVarName"].value
       item.ordinal = node.attributes["OrderNumber"].nil? ? 1 : node.attributes["OrderNumber"].value.to_i
       add_question(item_node.first, item)      
       cl_ref_node = item_node.xpath("xmlns:CodeListRef")
@@ -242,13 +245,13 @@ class OdmXml::Forms < OdmXml
       result = name_cl(node, question, cli_nodes)
       return true if result[:result]
       notes += result[:notes]
-      question.note += "\n\nTerminology Search:\n#{notes}" 
+      question.note += "\n\nTerminology Search:\n#{notes.join("\n")}" 
     end
 
     def alias_cl(node, question, cli_nodes)
-      alias_nodes = node.xpath("xmlns:Alias[@Context='nci:ExtCodeID']")
-      return {result: false, notes: []} if alias_nodes.empty?
-      find_cl({identifier: alias_nodes.first.attributes["Name"].value}, question, cli_nodes)
+      a_nodes = node.xpath("xmlns:Alias[@Context='nci:ExtCodeID']")
+      return {result: false, notes: []} if a_nodes.empty?
+      find_cl({identifier: a_nodes.first.attributes["Name"].value}, question, cli_nodes)
     end
 
     def sas_format_cl(node, question, cli_nodes)
@@ -283,11 +286,11 @@ class OdmXml::Forms < OdmXml
           info = {notation: "", preferred_term: ""}
           next if notation_cli(result, cli_node, question, ordinal, info)
           next if preferred_term_cli(result, cli_node, question, ordinal, info)
-          notes << "* No entries found in code list '#{result[:tc].identifier}' for item with submission value: '#{info[:notation]}' or preferred term: '#{info[:preferred_term]}'.\n"
+          notes << "* No entries found in code list '#{result[:tc].identifier}' for item with submission value: '#{info[:notation]}' or preferred term: '#{info[:preferred_term]}'."
         end
         return {result: true, notes: notes}
       else
-        notes << "* No entries found for code list, parameters #{params_to_s(params)}.\n"
+        notes << "* No entries found for code list, parameters #{params_to_s(params)}."
         return {result: false, notes: notes}
       end
     end
@@ -331,7 +334,7 @@ class OdmXml::Forms < OdmXml
         if !result[:tc].nil?
           add_op_ref(result[:tc], question, ordinal)
         end
-        question.note += "* #{result[:note]}\n" if !result[:note].empty?
+        question.note += "* #{result[:note]}" if !result[:note].empty?
       end
     end
 
@@ -361,6 +364,40 @@ class OdmXml::Forms < OdmXml
       return node_en.first if node_en.any?
       return node_non.first if node_non.any?
       nil
+    end
+
+    def process_mapping_nodes(node, question)
+      mapping = []
+      sdtm_node = node.xpath("xmlns:Alias[@context = 'SDTM']")
+      mapping << sdtm_node.first.attributes["Name"].value unless sdtm_node.empty? 
+      mapping << node.first.attributes["SDSVarName"].value unless node.first.attributes["SDSVarName"].nil?
+      question.mapping = mapping.empty? ? "#{C_NO_MAPPING}" : mapping.join(" | ")
+    end
+
+    # Process the alias nodes
+    def process_alias_nodes(node, question)
+      nodes = node.xpath("xmlns:Alias")
+      return true if nodes.empty?
+      nodes.each{ |n| process_alias_node(n, question) }
+    rescue => e
+      byebug
+    end
+
+    # Process a single alias nodes
+    def process_alias_node(node, question)
+      context = node.attributes["Context"].value
+      value = node.attributes["Name"].value
+      ignore = C_IGNORE_CONTEXTS.find{|c| c[:context] == context}
+      return true unless ignore.nil?
+      recognized = C_RECOGNIZED_CONTEXTS.find{|c| c[:context] == context}
+      if recognized.nil?
+        question.note += "\n\n#{context.underscore.titleize}:\n\n#{value}"
+      else
+        question.send("#{recognized[:method]}=", value)
+      end
+      true
+    rescue => e
+      byebug
     end
 
   end

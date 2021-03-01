@@ -21,8 +21,8 @@
 	isoT:hasIdentifier :F_SI ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
-	isoT:creationDate "2021-03-01T13:03:47+01:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2021-03-01T13:03:47+01:00"^^xsd:dateTime ;
+	isoT:creationDate "2021-03-01T18:13:35+01:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2021-03-01T18:13:35+01:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bf:note ""^^xsd:string ;
 	bf:completion ""^^xsd:string ;
@@ -64,7 +64,7 @@
 	rdf:type bf:Question ;
 	isoC:label "VSPERF"^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
-	bf:note "This general prompt question is used as a data management tool to verify that missing results are confirmed missing. This may be implemented for all tests collected on the same horizontal record or for each specific test. When mapped to SDTM, the value of VSPERF would apply to all tests on the same record. Use the CDASH variable [VSTESTCD]_VSPERF when implemented on a specific test basis."^^xsd:string ;
+	bf:note "\n\nPrompt:\n\nVital Signs Performed ; [VSTEST] Performed\n\nImplementation Notes:\n\nThis general prompt question is used as a data management tool to verify that missing results are confirmed missing. This may be implemented for all tests collected on the same horizontal record or for each specific test. When mapped to SDTM, the value of VSPERF would apply to all tests on the same record. Use the CDASH variable [VSTESTCD]_VSPERF when implemented on a specific test basis.\n\nMapping Instructions:\n\nThis does not map directly to an SDTMIG variable. May be used to derive a value into the SDTM variable VSSTAT. If VSPERF=\"N\", the value of VSSTAT will be \"NOT DONE\". If VSPERF=\"Y\", VSSTAT should be null. A combination of SDTMIG variables (e.g., VSCAT and VSSCAT, VSTPT) is used to indicate that multiple tests were not done. In this situation, the SDTMIG variable VSTESTCD would be populated as VSALL and an appropriate test name (VSTEST) provided. See SDTMIG v3.2 Section 4.1.5.1.2.\n\nCdash:\n\nVSPERF"^^xsd:string ;
 	bf:completion "Indicate if the vital signs were collected. If yes, include the appropriate details where indicated on the CRF."^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
@@ -98,7 +98,7 @@
 	rdf:type bf:Question ;
 	isoC:label "VSDAT"^^xsd:string ;
 	bf:ordinal "2"^^xsd:integer ;
-	bf:note "A single date may be collected for all the vital sign measurements when they are performed on the same date. The date of each measurement can also be collected for each measurement using a CDASH variable [VSTESTCD]_VSDAT. The date of the measurements may be determined from a collected date of visit and in such cases a separate measurement date field is not required."^^xsd:string ;
+	bf:note "\n\nPrompt:\n\n[VSTEST] Date\n\nImplementation Notes:\n\nA single date may be collected for all the vital sign measurements when they are performed on the same date. The date of each measurement can also be collected for each measurement using a CDASH variable [VSTESTCD]_VSDAT. The date of the measurements may be determined from a collected date of visit and in such cases a separate measurement date field is not required.\n\nMapping Instructions:\n\nThis does not map directly to an SDTMIG variable. For the SDTM submission dataset, concatenate all collected CDASH DATE and TIME components and populate the SDTMIG variable VSDTC in ISO 8601 format.\n\nCdash:\n\nVSDAT"^^xsd:string ;
 	bf:completion "Record date of measurements using this format (DD-MON-YYYY)."^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "date"^^xsd:string ;
@@ -141,7 +141,7 @@
 	rdf:type bf:Question ;
 	isoC:label "SYSBP_VSORRES"^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
-	bf:note "Each test may be collected using the CDASH variable [TESTCD] e.g., SYSBP or [TESTCD]_VSORRES where TESTCD is the appropriate CT for the VS test code e.g., SYSBP_VSORRES. This CDASH variable name is an example of what \"variable name\" can be used in a denormalized data structure."^^xsd:string ;
+	bf:note "\n\nPrompt:\n\n[VSTEST] (Result)\n\nImplementation Notes:\n\nEach test may be collected using the CDASH variable [TESTCD] e.g., SYSBP or [TESTCD]_VSORRES where TESTCD is the appropriate CT for the VS test code e.g., SYSBP_VSORRES. This CDASH variable name is an example of what \"variable name\" can be used in a denormalized data structure.\n\nMapping Instructions:\n\nMaps directly to the SDTMIG variable listed in the column with the heading SDTMIG Target. In addition to the SDTMIG variable VSORRES, create VSTESTCD from the CDASH variable name and determine the value of VSTEST from VSTESTCD. The CDASH prompt may also contain the VSTEST. Use appropriate CDISC Controlled Terminology for the test and test code.\n\nCdash:\n\nSYSBP_VSORRES"^^xsd:string ;
 	bf:completion "Record the vital sign results."^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "float"^^xsd:string ;
@@ -153,7 +153,7 @@
 	rdf:type bf:Question ;
 	isoC:label "SYSBP_VSORRESU"^^xsd:string ;
 	bf:ordinal "2"^^xsd:integer ;
-	bf:note "A single Unit field can be collected once for all measurements collected on the same horizontal record using VSUNIT. The value of VSUNIT applies to all measurements on that record when mapped to SDTM. If needed for each measurement, unit may be collected using the CDASH variable [VSTESTCD]_VSSTAT. Should be preprinted on the CRF with the associated test when possible, rather than collected in a field that requires the site to enter text."^^xsd:string ;
+	bf:note "\n\nPrompt:\n\n[VSTEST] Unit\n\nImplementation Notes:\n\nA single Unit field can be collected once for all measurements collected on the same horizontal record using VSUNIT. The value of VSUNIT applies to all measurements on that record when mapped to SDTM. If needed for each measurement, unit may be collected using the CDASH variable [VSTESTCD]_VSSTAT. Should be preprinted on the CRF with the associated test when possible, rather than collected in a field that requires the site to enter text.\n\nMapping Instructions:\n\nMaps directly to the SDTMIG variable listed in the column with the heading SDTMIG Target.\n\nCdash:\n\nSYSBP_VSORRESU"^^xsd:string ;
 	bf:completion "Record or select the original unit in which these data were collected, if not preprinted on CRF."^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "float"^^xsd:string ;
@@ -165,7 +165,7 @@
 	rdf:type bf:Question ;
 	isoC:label "SYSBP_VSORRESU units"^^xsd:string ;
 	bf:ordinal "3"^^xsd:integer ;
-	bf:note "* Multiple entries [C49670,C49670] found for parameters ['notation=mmHg'], using first found.\n"^^xsd:string ;
+	bf:note "* Multiple entries [C49670,C49670] found for parameters ['notation=mmHg'], using first found."^^xsd:string ;
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
@@ -188,7 +188,7 @@
 	rdf:type bf:Question ;
 	isoC:label "DIABP_VSORRES"^^xsd:string ;
 	bf:ordinal "4"^^xsd:integer ;
-	bf:note "Each test may be collected using the CDASH variable [TESTCD] e.g., SYSBP or [TESTCD]_VSORRES where TESTCD is the appropriate CT for the VS test code e.g., SYSBP_VSORRES. This CDASH variable name is an example of what \"variable name\" can be used in a denormalized data structure."^^xsd:string ;
+	bf:note "\n\nPrompt:\n\n[VSTEST] (Result)\n\nImplementation Notes:\n\nEach test may be collected using the CDASH variable [TESTCD] e.g., SYSBP or [TESTCD]_VSORRES where TESTCD is the appropriate CT for the VS test code e.g., SYSBP_VSORRES. This CDASH variable name is an example of what \"variable name\" can be used in a denormalized data structure.\n\nMapping Instructions:\n\nMaps directly to the SDTMIG variable listed in the column with the heading SDTMIG Target. In addition to the SDTMIG variable VSORRES, create VSTESTCD from the CDASH variable name and determine the value of VSTEST from VSTESTCD. The CDASH prompt may also contain the VSTEST. Use appropriate CDISC Controlled Terminology for the test and test code.\n\nCdash:\n\nDIABP_VSORRES"^^xsd:string ;
 	bf:completion "Record the vital sign results."^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "float"^^xsd:string ;
@@ -200,7 +200,7 @@
 	rdf:type bf:Question ;
 	isoC:label "DIABP_VSORRESU"^^xsd:string ;
 	bf:ordinal "5"^^xsd:integer ;
-	bf:note "A single Unit field can be collected once for all measurements collected on the same horizontal record using VSUNIT. The value of VSUNIT applies to all measurements on that record when mapped to SDTM. If needed for each measurement, unit may be collected using the CDASH variable [VSTESTCD]_VSSTAT. Should be preprinted on the CRF with the associated test when possible, rather than collected in a field that requires the site to enter text."^^xsd:string ;
+	bf:note "\n\nPrompt:\n\n[VSTEST] Unit\n\nImplementation Notes:\n\nA single Unit field can be collected once for all measurements collected on the same horizontal record using VSUNIT. The value of VSUNIT applies to all measurements on that record when mapped to SDTM. If needed for each measurement, unit may be collected using the CDASH variable [VSTESTCD]_VSSTAT. Should be preprinted on the CRF with the associated test when possible, rather than collected in a field that requires the site to enter text.\n\nMapping Instructions:\n\nMaps directly to the SDTMIG variable listed in the column with the heading SDTMIG Target.\n\nCdash:\n\nDIABP_VSORRESU"^^xsd:string ;
 	bf:completion "Record or select the original unit in which these data were collected, if not preprinted on CRF."^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "float"^^xsd:string ;
@@ -212,7 +212,7 @@
 	rdf:type bf:Question ;
 	isoC:label "DIABP_VSORRESU units"^^xsd:string ;
 	bf:ordinal "6"^^xsd:integer ;
-	bf:note "* Multiple entries [C49670,C49670] found for parameters ['notation=mmHg'], using first found.\n"^^xsd:string ;
+	bf:note "* Multiple entries [C49670,C49670] found for parameters ['notation=mmHg'], using first found."^^xsd:string ;
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
@@ -235,7 +235,7 @@
 	rdf:type bf:Question ;
 	isoC:label "BP_VSPOS"^^xsd:string ;
 	bf:ordinal "7"^^xsd:integer ;
-	bf:note "Results may be affected by whether conditions for vital signs as specified in the protocol were properly met. One common condition is the subject's position. If the protocol requires this type of information, then a CDASH variable [VSTESTCD]_VSPOS may be created for each VSTESTCD and added to the CRF, if needed."^^xsd:string ;
+	bf:note "\n\nPrompt:\n\n[VSTEST] Position\n\nImplementation Notes:\n\nResults may be affected by whether conditions for vital signs as specified in the protocol were properly met. One common condition is the subject's position. If the protocol requires this type of information, then a CDASH variable [VSTESTCD]_VSPOS may be created for each VSTESTCD and added to the CRF, if needed.\n\nMapping Instructions:\n\nMaps directly to the SDTMIG variable listed in the column with the heading SDTMIG Target.\n\nCdash:\n\nBP_VSPOS"^^xsd:string ;
 	bf:completion "Record the position of subject at time of test (e.g. SITTING)."^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
@@ -302,7 +302,7 @@
 	rdf:type bf:Question ;
 	isoC:label "BP_VSLOC"^^xsd:string ;
 	bf:ordinal "8"^^xsd:integer ;
-	bf:note "Collected or preprinted when the sponsor needs to identify the specific anatomical location (e.g., ARM for blood pressure). Sponsors may collect the data using a subset list of controlled terminology on the CRF. In horizontal data collection, a CDASH variable [VSTESTCD]_VSLOC may be created for each VSTESTCD and added to the CRF, if needed. LAT, DIR, and PORTOT are used to further describe the anatomical location."^^xsd:string ;
+	bf:note "\n\nPrompt:\n\n[VSTEST] Anatomical Location\n\nImplementation Notes:\n\nCollected or preprinted when the sponsor needs to identify the specific anatomical location (e.g., ARM for blood pressure). Sponsors may collect the data using a subset list of controlled terminology on the CRF. In horizontal data collection, a CDASH variable [VSTESTCD]_VSLOC may be created for each VSTESTCD and added to the CRF, if needed. LAT, DIR, and PORTOT are used to further describe the anatomical location.\n\nMapping Instructions:\n\nMaps directly to the SDTMIG variable listed in the column with the heading SDTMIG Target.\n\nCdash:\n\nBP_VSLOC"^^xsd:string ;
 	bf:completion "Record or select location on body where measurement was performed, if not preprinted on CRF."^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
@@ -347,7 +347,7 @@
 	rdf:type bf:Question ;
 	isoC:label "HEIGHT_VSORRES"^^xsd:string ;
 	bf:ordinal "9"^^xsd:integer ;
-	bf:note "Each test may be collected using the CDASH variable [TESTCD] e.g., SYSBP or [TESTCD]_VSORRES where TESTCD is the appropriate CT for the VS test code e.g., SYSBP_VSORRES. This CDASH variable name is an example of what \"variable name\" can be used in a denormalized data structure."^^xsd:string ;
+	bf:note "\n\nPrompt:\n\n[VSTEST] (Result)\n\nImplementation Notes:\n\nEach test may be collected using the CDASH variable [TESTCD] e.g., SYSBP or [TESTCD]_VSORRES where TESTCD is the appropriate CT for the VS test code e.g., SYSBP_VSORRES. This CDASH variable name is an example of what \"variable name\" can be used in a denormalized data structure.\n\nMapping Instructions:\n\nMaps directly to the SDTMIG variable listed in the column with the heading SDTMIG Target. In addition to the SDTMIG variable VSORRES, create VSTESTCD from the CDASH variable name and determine the value of VSTEST from VSTESTCD. The CDASH prompt may also contain the VSTEST. Use appropriate CDISC Controlled Terminology for the test and test code.\n\nCdash:\n\nHEIGHT_VSORRES"^^xsd:string ;
 	bf:completion "Record the vital sign results."^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
@@ -359,7 +359,7 @@
 	rdf:type bf:Question ;
 	isoC:label "HEIGHT_VSORRESU"^^xsd:string ;
 	bf:ordinal "10"^^xsd:integer ;
-	bf:note "A single Unit field can be collected once for all measurements collected on the same horizontal record using VSUNIT. The value of VSUNIT applies to all measurements on that record when mapped to SDTM. If needed for each measurement, unit may be collected using the CDASH variable [VSTESTCD]_VSSTAT. Should be preprinted on the CRF with the associated test when possible, rather than collected in a field that requires the site to enter text."^^xsd:string ;
+	bf:note "\n\nPrompt:\n\n[VSTEST] Unit\n\nImplementation Notes:\n\nA single Unit field can be collected once for all measurements collected on the same horizontal record using VSUNIT. The value of VSUNIT applies to all measurements on that record when mapped to SDTM. If needed for each measurement, unit may be collected using the CDASH variable [VSTESTCD]_VSSTAT. Should be preprinted on the CRF with the associated test when possible, rather than collected in a field that requires the site to enter text.\n\nMapping Instructions:\n\nMaps directly to the SDTMIG variable listed in the column with the heading SDTMIG Target.\n\nCdash:\n\nHEIGHT_VSORRESU"^^xsd:string ;
 	bf:completion "Record or select the original unit in which these data were collected, if not preprinted on CRF."^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
@@ -393,7 +393,7 @@
 	rdf:type bf:Question ;
 	isoC:label "WEIGHT_VSORRES"^^xsd:string ;
 	bf:ordinal "11"^^xsd:integer ;
-	bf:note "Each test may be collected using the CDASH variable [TESTCD] e.g., SYSBP or [TESTCD]_VSORRES where TESTCD is the appropriate CT for the VS test code e.g., SYSBP_VSORRES. This CDASH variable name is an example of what \"variable name\" can be used in a denormalized data structure."^^xsd:string ;
+	bf:note "\n\nPrompt:\n\n[VSTEST] (Result)\n\nImplementation Notes:\n\nEach test may be collected using the CDASH variable [TESTCD] e.g., SYSBP or [TESTCD]_VSORRES where TESTCD is the appropriate CT for the VS test code e.g., SYSBP_VSORRES. This CDASH variable name is an example of what \"variable name\" can be used in a denormalized data structure.\n\nMapping Instructions:\n\nMaps directly to the SDTMIG variable listed in the column with the heading SDTMIG Target. In addition to the SDTMIG variable VSORRES, create VSTESTCD from the CDASH variable name and determine the value of VSTEST from VSTESTCD. The CDASH prompt may also contain the VSTEST. Use appropriate CDISC Controlled Terminology for the test and test code.\n\nCdash:\n\nWEIGHT_VSORRES"^^xsd:string ;
 	bf:completion "Record the vital sign results."^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
@@ -405,7 +405,7 @@
 	rdf:type bf:Question ;
 	isoC:label "WEIGHT_VSORRESU"^^xsd:string ;
 	bf:ordinal "12"^^xsd:integer ;
-	bf:note "A single Unit field can be collected once for all measurements collected on the same horizontal record using VSUNIT. The value of VSUNIT applies to all measurements on that record when mapped to SDTM. If needed for each measurement, unit may be collected using the CDASH variable [VSTESTCD]_VSSTAT. Should be preprinted on the CRF with the associated test when possible, rather than collected in a field that requires the site to enter text."^^xsd:string ;
+	bf:note "\n\nPrompt:\n\n[VSTEST] Unit\n\nImplementation Notes:\n\nA single Unit field can be collected once for all measurements collected on the same horizontal record using VSUNIT. The value of VSUNIT applies to all measurements on that record when mapped to SDTM. If needed for each measurement, unit may be collected using the CDASH variable [VSTESTCD]_VSSTAT. Should be preprinted on the CRF with the associated test when possible, rather than collected in a field that requires the site to enter text.\n\nMapping Instructions:\n\nMaps directly to the SDTMIG variable listed in the column with the heading SDTMIG Target.\n\nCdash:\n\nWEIGHT_VSORRESU"^^xsd:string ;
 	bf:completion "Record or select the original unit in which these data were collected, if not preprinted on CRF."^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
@@ -439,7 +439,7 @@
 	rdf:type bf:Question ;
 	isoC:label "PULSE_VSORRES"^^xsd:string ;
 	bf:ordinal "13"^^xsd:integer ;
-	bf:note "Each test may be collected using the CDASH variable [TESTCD] e.g., SYSBP or [TESTCD]_VSORRES where TESTCD is the appropriate CT for the VS test code e.g., SYSBP_VSORRES. This CDASH variable name is an example of what \"variable name\" can be used in a denormalized data structure."^^xsd:string ;
+	bf:note "\n\nPrompt:\n\n[VSTEST] (Result)\n\nImplementation Notes:\n\nEach test may be collected using the CDASH variable [TESTCD] e.g., SYSBP or [TESTCD]_VSORRES where TESTCD is the appropriate CT for the VS test code e.g., SYSBP_VSORRES. This CDASH variable name is an example of what \"variable name\" can be used in a denormalized data structure.\n\nMapping Instructions:\n\nMaps directly to the SDTMIG variable listed in the column with the heading SDTMIG Target. In addition to the SDTMIG variable VSORRES, create VSTESTCD from the CDASH variable name and determine the value of VSTEST from VSTESTCD. The CDASH prompt may also contain the VSTEST. Use appropriate CDISC Controlled Terminology for the test and test code.\n\nCdash:\n\nPULSE_VSORRES"^^xsd:string ;
 	bf:completion "Record the vital sign results."^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "float"^^xsd:string ;
@@ -451,7 +451,7 @@
 	rdf:type bf:Question ;
 	isoC:label "PULSE_VSORRESU"^^xsd:string ;
 	bf:ordinal "14"^^xsd:integer ;
-	bf:note "A single Unit field can be collected once for all measurements collected on the same horizontal record using VSUNIT. The value of VSUNIT applies to all measurements on that record when mapped to SDTM. If needed for each measurement, unit may be collected using the CDASH variable [VSTESTCD]_VSSTAT. Should be preprinted on the CRF with the associated test when possible, rather than collected in a field that requires the site to enter text."^^xsd:string ;
+	bf:note "\n\nPrompt:\n\n[VSTEST] Unit\n\nImplementation Notes:\n\nA single Unit field can be collected once for all measurements collected on the same horizontal record using VSUNIT. The value of VSUNIT applies to all measurements on that record when mapped to SDTM. If needed for each measurement, unit may be collected using the CDASH variable [VSTESTCD]_VSSTAT. Should be preprinted on the CRF with the associated test when possible, rather than collected in a field that requires the site to enter text.\n\nMapping Instructions:\n\nMaps directly to the SDTMIG variable listed in the column with the heading SDTMIG Target.\n\nCdash:\n\nPULSE_VSORRESU"^^xsd:string ;
 	bf:completion "Record or select the original unit in which these data were collected, if not preprinted on CRF."^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "float"^^xsd:string ;
@@ -463,7 +463,7 @@
 	rdf:type bf:Question ;
 	isoC:label "PULSE_VSORRESU units"^^xsd:string ;
 	bf:ordinal "15"^^xsd:integer ;
-	bf:note "* Multiple entries [C49673,C49673,C49673] found for parameters ['notation=beats/min'], using first found.\n"^^xsd:string ;
+	bf:note "* Multiple entries [C49673,C49673,C49673] found for parameters ['notation=beats/min'], using first found."^^xsd:string ;
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
@@ -486,7 +486,7 @@
 	rdf:type bf:Question ;
 	isoC:label "PULSE_VSLOC"^^xsd:string ;
 	bf:ordinal "16"^^xsd:integer ;
-	bf:note "Collected or preprinted when the sponsor needs to identify the specific anatomical location (e.g., ARM for blood pressure). Sponsors may collect the data using a subset list of controlled terminology on the CRF. In horizontal data collection, a CDASH variable [VSTESTCD]_VSLOC may be created for each VSTESTCD and added to the CRF, if needed. LAT, DIR, and PORTOT are used to further describe the anatomical location."^^xsd:string ;
+	bf:note "\n\nPrompt:\n\n[VSTEST] Anatomical Location\n\nImplementation Notes:\n\nCollected or preprinted when the sponsor needs to identify the specific anatomical location (e.g., ARM for blood pressure). Sponsors may collect the data using a subset list of controlled terminology on the CRF. In horizontal data collection, a CDASH variable [VSTESTCD]_VSLOC may be created for each VSTESTCD and added to the CRF, if needed. LAT, DIR, and PORTOT are used to further describe the anatomical location.\n\nMapping Instructions:\n\nMaps directly to the SDTMIG variable listed in the column with the heading SDTMIG Target.\n\nCdash:\n\nPULSE_VSLOC"^^xsd:string ;
 	bf:completion "Record or select location on body where measurement was performed, if not preprinted on CRF."^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
@@ -542,7 +542,7 @@
 	rdf:type bf:Question ;
 	isoC:label "RESP_VSORRES"^^xsd:string ;
 	bf:ordinal "17"^^xsd:integer ;
-	bf:note "Each test may be collected using the CDASH variable [TESTCD] e.g., SYSBP or [TESTCD]_VSORRES where TESTCD is the appropriate CT for the VS test code e.g., SYSBP_VSORRES. This CDASH variable name is an example of what \"variable name\" can be used in a denormalized data structure."^^xsd:string ;
+	bf:note "\n\nPrompt:\n\n[VSTEST] (Result)\n\nImplementation Notes:\n\nEach test may be collected using the CDASH variable [TESTCD] e.g., SYSBP or [TESTCD]_VSORRES where TESTCD is the appropriate CT for the VS test code e.g., SYSBP_VSORRES. This CDASH variable name is an example of what \"variable name\" can be used in a denormalized data structure.\n\nMapping Instructions:\n\nMaps directly to the SDTMIG variable listed in the column with the heading SDTMIG Target. In addition to the SDTMIG variable VSORRES, create VSTESTCD from the CDASH variable name and determine the value of VSTEST from VSTESTCD. The CDASH prompt may also contain the VSTEST. Use appropriate CDISC Controlled Terminology for the test and test code.\n\nCdash:\n\nRESP_VSORRES"^^xsd:string ;
 	bf:completion "Record the vital sign results."^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "float"^^xsd:string ;
@@ -554,7 +554,7 @@
 	rdf:type bf:Question ;
 	isoC:label "RESP_VSORRESU"^^xsd:string ;
 	bf:ordinal "18"^^xsd:integer ;
-	bf:note "A single Unit field can be collected once for all measurements collected on the same horizontal record using VSUNIT. The value of VSUNIT applies to all measurements on that record when mapped to SDTM. If needed for each measurement, unit may be collected using the CDASH variable [VSTESTCD]_VSSTAT. Should be preprinted on the CRF with the associated test when possible, rather than collected in a field that requires the site to enter text."^^xsd:string ;
+	bf:note "\n\nPrompt:\n\n[VSTEST] Unit\n\nImplementation Notes:\n\nA single Unit field can be collected once for all measurements collected on the same horizontal record using VSUNIT. The value of VSUNIT applies to all measurements on that record when mapped to SDTM. If needed for each measurement, unit may be collected using the CDASH variable [VSTESTCD]_VSSTAT. Should be preprinted on the CRF with the associated test when possible, rather than collected in a field that requires the site to enter text.\n\nMapping Instructions:\n\nMaps directly to the SDTMIG variable listed in the column with the heading SDTMIG Target.\n\nCdash:\n\nRESP_VSORRESU"^^xsd:string ;
 	bf:completion "Record or select the original unit in which these data were collected, if not preprinted on CRF."^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "float"^^xsd:string ;
@@ -566,7 +566,7 @@
 	rdf:type bf:Question ;
 	isoC:label "RESP_VSORRESU units"^^xsd:string ;
 	bf:ordinal "19"^^xsd:integer ;
-	bf:note "* Multiple entries [C49674,C49674] found for parameters ['notation=breaths/min'], using first found.\n"^^xsd:string ;
+	bf:note "* Multiple entries [C49674,C49674] found for parameters ['notation=breaths/min'], using first found."^^xsd:string ;
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
@@ -589,7 +589,7 @@
 	rdf:type bf:Question ;
 	isoC:label "TEMP_VSORRES"^^xsd:string ;
 	bf:ordinal "20"^^xsd:integer ;
-	bf:note "Each test may be collected using the CDASH variable [TESTCD] e.g., SYSBP or [TESTCD]_VSORRES where TESTCD is the appropriate CT for the VS test code e.g., SYSBP_VSORRES. This CDASH variable name is an example of what \"variable name\" can be used in a denormalized data structure."^^xsd:string ;
+	bf:note "\n\nPrompt:\n\n[VSTEST] (Result)\n\nImplementation Notes:\n\nEach test may be collected using the CDASH variable [TESTCD] e.g., SYSBP or [TESTCD]_VSORRES where TESTCD is the appropriate CT for the VS test code e.g., SYSBP_VSORRES. This CDASH variable name is an example of what \"variable name\" can be used in a denormalized data structure.\n\nMapping Instructions:\n\nMaps directly to the SDTMIG variable listed in the column with the heading SDTMIG Target. In addition to the SDTMIG variable VSORRES, create VSTESTCD from the CDASH variable name and determine the value of VSTEST from VSTESTCD. The CDASH prompt may also contain the VSTEST. Use appropriate CDISC Controlled Terminology for the test and test code.\n\nCdash:\n\nTEMP_VSORRES"^^xsd:string ;
 	bf:completion "Record the vital sign results."^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
@@ -601,7 +601,7 @@
 	rdf:type bf:Question ;
 	isoC:label "TEMP_VSORRESU"^^xsd:string ;
 	bf:ordinal "21"^^xsd:integer ;
-	bf:note "A single Unit field can be collected once for all measurements collected on the same horizontal record using VSUNIT. The value of VSUNIT applies to all measurements on that record when mapped to SDTM. If needed for each measurement, unit may be collected using the CDASH variable [VSTESTCD]_VSSTAT. Should be preprinted on the CRF with the associated test when possible, rather than collected in a field that requires the site to enter text."^^xsd:string ;
+	bf:note "\n\nPrompt:\n\n[VSTEST] Unit\n\nImplementation Notes:\n\nA single Unit field can be collected once for all measurements collected on the same horizontal record using VSUNIT. The value of VSUNIT applies to all measurements on that record when mapped to SDTM. If needed for each measurement, unit may be collected using the CDASH variable [VSTESTCD]_VSSTAT. Should be preprinted on the CRF with the associated test when possible, rather than collected in a field that requires the site to enter text.\n\nMapping Instructions:\n\nMaps directly to the SDTMIG variable listed in the column with the heading SDTMIG Target.\n\nCdash:\n\nTEMP_VSORRESU"^^xsd:string ;
 	bf:completion "Record or select the original unit in which these data were collected, if not preprinted on CRF."^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
@@ -635,7 +635,7 @@
 	rdf:type bf:Question ;
 	isoC:label "TEMP_VSLOC"^^xsd:string ;
 	bf:ordinal "22"^^xsd:integer ;
-	bf:note "Collected or preprinted when the sponsor needs to identify the specific anatomical location (e.g., ARM for blood pressure). Sponsors may collect the data using a subset list of controlled terminology on the CRF. In horizontal data collection, a CDASH variable [VSTESTCD]_VSLOC may be created for each VSTESTCD and added to the CRF, if needed. LAT, DIR, and PORTOT are used to further describe the anatomical location."^^xsd:string ;
+	bf:note "\n\nPrompt:\n\n[VSTEST] Anatomical Location\n\nImplementation Notes:\n\nCollected or preprinted when the sponsor needs to identify the specific anatomical location (e.g., ARM for blood pressure). Sponsors may collect the data using a subset list of controlled terminology on the CRF. In horizontal data collection, a CDASH variable [VSTESTCD]_VSLOC may be created for each VSTESTCD and added to the CRF, if needed. LAT, DIR, and PORTOT are used to further describe the anatomical location.\n\nMapping Instructions:\n\nMaps directly to the SDTMIG variable listed in the column with the heading SDTMIG Target.\n\nCdash:\n\nTEMP_VSLOC"^^xsd:string ;
 	bf:completion "Record or select location on body where measurement was performed, if not preprinted on CRF."^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;

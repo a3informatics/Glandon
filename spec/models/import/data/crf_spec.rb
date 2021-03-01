@@ -46,8 +46,6 @@ describe Import::Crf do
     result = Import.find(@object.id)
     filename = File.basename(result.output_file)
   #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "FORM_DM.ttl")
-    copy_file_from_public_files("test", filename, sub_dir)
-    check_ttl_fix(filename, "FORM_DM.ttl", {last_change_date: true, creation_date: true})
     delete_data_file(sub_dir, filename)
   end
 
@@ -58,8 +56,6 @@ describe Import::Crf do
     result = Import.find(@object.id)
     filename = File.basename(result.output_file)
   #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "FORM_VS.ttl")
-    copy_file_from_public_files("test", filename, sub_dir)
-    check_ttl_fix(filename, "FORM_VS.ttl", {last_change_date: true, creation_date: true})
     delete_data_file(sub_dir, filename)
   end
 
@@ -70,8 +66,6 @@ describe Import::Crf do
     result = Import.find(@object.id)
     filename = File.basename(result.output_file)
   #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "FORM_PE.ttl")
-    copy_file_from_public_files("test", filename, sub_dir)
-    check_ttl_fix(filename, "FORM_PE.ttl", {last_change_date: true, creation_date: true})
     delete_data_file(sub_dir, filename)
   end
 

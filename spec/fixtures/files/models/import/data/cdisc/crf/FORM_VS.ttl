@@ -21,13 +21,13 @@
 	isoT:hasIdentifier :F_SI ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
-	isoT:creationDate "2021-03-01T13:06:38+01:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2021-03-01T13:06:38+01:00"^^xsd:dateTime ;
+	isoT:creationDate "2021-03-01T18:43:07+01:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2021-03-01T18:43:07+01:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bf:note ""^^xsd:string ;
 	bf:completion ""^^xsd:string ;
-	bf:hasGroup <http://www.s-cubed.dk/VSHORIZONTAL/V1#NG_bf62e42f-c934-4fec-a17e-a5cbc0cb8395> ;
-	bf:hasGroup <http://www.s-cubed.dk/VSHORIZONTAL/V1#NG_979a6adc-8646-46cd-b71b-d919c6de6daf> ;
+	bf:hasGroup <http://www.s-cubed.dk/VSHORIZONTAL/V1#NG_2969e637-b615-4fde-b18c-db814652155b> ;
+	bf:hasGroup <http://www.s-cubed.dk/VSHORIZONTAL/V1#NG_15c75755-272f-4d97-ad51-c0b25f8f1dbc> ;
 .
 :F_RS
 	rdf:type isoR:RegistrationState ;
@@ -49,32 +49,32 @@
 	isoI:semanticVersion "0.1.0"^^xsd:string ;
 	isoI:hasScope <http://www.assero.co.uk/NS#SCUBED> ;
 .
-<http://www.s-cubed.dk/VSHORIZONTAL/V1#NG_bf62e42f-c934-4fec-a17e-a5cbc0cb8395>
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#NG_2969e637-b615-4fde-b18c-db814652155b>
 	rdf:type bf:NormalGroup ;
 	isoC:label "VS - Horizontal Header"^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
-	bf:hasItem <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_642069f8-fec1-4ce6-9074-5600d797cb67> ;
-	bf:hasItem <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_46ffdb25-35f6-44dc-95b7-f5bb693b3066> ;
+	bf:hasItem <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_5624bea8-a862-41bd-a60c-01ecffa6cad8> ;
+	bf:hasItem <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_16272b86-b082-4825-9af2-32dcf3e5afad> ;
 	bf:repeating "false"^^xsd:boolean ;
 .
-<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_642069f8-fec1-4ce6-9074-5600d797cb67>
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_5624bea8-a862-41bd-a60c-01ecffa6cad8>
 	rdf:type bf:Question ;
 	isoC:label "VSPERF"^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
-	bf:note "This general prompt question is used as a data management tool to verify that missing results are confirmed missing. This may be implemented for all tests collected on the same horizontal record or for each specific test. When mapped to SDTM, the value of VSPERF would apply to all tests on the same record. Use the CDASH variable [VSTESTCD]_VSPERF when implemented on a specific test basis."^^xsd:string ;
+	bf:note "\n\nPrompt:\n\nVital Signs Performed ; [VSTEST] Performed\n\nImplementation Notes:\n\nThis general prompt question is used as a data management tool to verify that missing results are confirmed missing. This may be implemented for all tests collected on the same horizontal record or for each specific test. When mapped to SDTM, the value of VSPERF would apply to all tests on the same record. Use the CDASH variable [VSTESTCD]_VSPERF when implemented on a specific test basis.\n\nMapping Instructions:\n\nThis does not map directly to an SDTMIG variable. May be used to derive a value into the SDTM variable VSSTAT. If VSPERF=\"N\", the value of VSSTAT will be \"NOT DONE\". If VSPERF=\"Y\", VSSTAT should be null. A combination of SDTMIG variables (e.g., VSCAT and VSSCAT, VSTPT) is used to indicate that multiple tests were not done. In this situation, the SDTMIG variable VSTESTCD would be populated as VSALL and an appropriate test name (VSTEST) provided. See SDTMIG v3.2 Section 4.1.5.1.2.\n\nCdash:\n\nVSPERF"^^xsd:string ;
 	bf:completion "Indicate if the vital signs were collected. If yes, include the appropriate details where indicated on the CRF."^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "1"^^xsd:string ;
 	bf:mapping "[NO MAPPING]"^^xsd:string ;
 	bf:questionText "Were vital signs performed?"^^xsd:string ;
-	bf:hasCodedValue <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_642069f8-fec1-4ce6-9074-5600d797cb67_TUC1> ;
-	bf:hasCodedValue <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_642069f8-fec1-4ce6-9074-5600d797cb67_TUC2> ;
+	bf:hasCodedValue <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_5624bea8-a862-41bd-a60c-01ecffa6cad8_TUC1> ;
+	bf:hasCodedValue <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_5624bea8-a862-41bd-a60c-01ecffa6cad8_TUC2> ;
 .
-<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_642069f8-fec1-4ce6-9074-5600d797cb67_TUC1>
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_5624bea8-a862-41bd-a60c-01ecffa6cad8_TUC1>
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -84,7 +84,7 @@
 	bo:context <http://www.cdisc.org/C66742/V56#C66742> ;
 	bo:localLabel "No"^^xsd:string ;
 .
-<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_642069f8-fec1-4ce6-9074-5600d797cb67_TUC2>
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_5624bea8-a862-41bd-a60c-01ecffa6cad8_TUC2>
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -94,11 +94,11 @@
 	bo:context <http://www.cdisc.org/C66742/V56#C66742> ;
 	bo:localLabel "Yes"^^xsd:string ;
 .
-<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_46ffdb25-35f6-44dc-95b7-f5bb693b3066>
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_16272b86-b082-4825-9af2-32dcf3e5afad>
 	rdf:type bf:Question ;
 	isoC:label "VSDAT"^^xsd:string ;
 	bf:ordinal "2"^^xsd:integer ;
-	bf:note "A single date may be collected for all the vital sign measurements when they are performed on the same date. The date of each measurement can also be collected for each measurement using a CDASH variable [VSTESTCD]_VSDAT. The date of the measurements may be determined from a collected date of visit and in such cases a separate measurement date field is not required."^^xsd:string ;
+	bf:note "\n\nPrompt:\n\n[VSTEST] Date\n\nImplementation Notes:\n\nA single date may be collected for all the vital sign measurements when they are performed on the same date. The date of each measurement can also be collected for each measurement using a CDASH variable [VSTESTCD]_VSDAT. The date of the measurements may be determined from a collected date of visit and in such cases a separate measurement date field is not required.\n\nMapping Instructions:\n\nThis does not map directly to an SDTMIG variable. For the SDTM submission dataset, concatenate all collected CDASH DATE and TIME components and populate the SDTMIG variable VSDTC in ISO 8601 format.\n\nCdash:\n\nVSDAT"^^xsd:string ;
 	bf:completion "Record date of measurements using this format (DD-MON-YYYY)."^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "date"^^xsd:string ;
@@ -106,42 +106,42 @@
 	bf:mapping "[NO MAPPING]"^^xsd:string ;
 	bf:questionText "What was the date of the measurement(s)?"^^xsd:string ;
 .
-<http://www.s-cubed.dk/VSHORIZONTAL/V1#NG_979a6adc-8646-46cd-b71b-d919c6de6daf>
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#NG_15c75755-272f-4d97-ad51-c0b25f8f1dbc>
 	rdf:type bf:NormalGroup ;
 	isoC:label "VS - Implementation Options: HorizontalGeneric"^^xsd:string ;
 	bf:ordinal "2"^^xsd:integer ;
 	bf:note ""^^xsd:string ;
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
-	bf:hasItem <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_a311b861-fd28-4cbf-a4b6-b5e0bbeafdfa> ;
-	bf:hasItem <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_a47373f6-15a1-4d97-955d-a14c1678e9c1> ;
-	bf:hasItem <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_fdfea48e-db89-40ca-8579-43b3951e2995> ;
-	bf:hasItem <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_49888588-f477-4928-b352-624e4c860908> ;
-	bf:hasItem <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_df607a57-d756-4788-9ae0-58527940f2c7> ;
-	bf:hasItem <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_8c31ec98-3b68-41ee-97cf-02715874c9c2> ;
-	bf:hasItem <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_bc23e13f-b11d-4f72-8b4d-8cfcd6510a04> ;
-	bf:hasItem <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_97225cb6-f4e0-4ec8-a085-1617d166cc52> ;
-	bf:hasItem <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_2545ad5c-08e8-46fc-872d-618094f883c8> ;
-	bf:hasItem <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_bdb5f4f6-19c8-4ecf-9abb-5d723148c48f> ;
-	bf:hasItem <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_5fed8270-80cc-4eab-8d5d-b4928fc79f95> ;
-	bf:hasItem <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_77817632-a621-4f32-9d51-6611d4f6e502> ;
-	bf:hasItem <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_e0290f5b-5fc8-4112-a536-c5f74442bdfd> ;
-	bf:hasItem <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_6a2c3b18-37a3-4ed6-a2c8-61a9cd2bd8e0> ;
-	bf:hasItem <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_ed64323c-31ab-454e-acdb-07ab2c4bb8f3> ;
-	bf:hasItem <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_4d856b85-d41e-4cc9-8b3e-909500a80d5c> ;
-	bf:hasItem <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_dfbda70a-65f1-47bd-9dce-6f169746b265> ;
-	bf:hasItem <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_30001857-d3d8-4bac-99fe-0273057840fa> ;
-	bf:hasItem <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_3e7c6191-06a1-4181-ac70-78842bb649a2> ;
-	bf:hasItem <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_78932641-1ccf-4634-b34e-17d8aa540448> ;
-	bf:hasItem <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_36ca869b-c3e8-47e5-a4dd-bef557292cc4> ;
-	bf:hasItem <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_f8bceb1c-9754-42e5-9a97-a3e80b585a8c> ;
+	bf:hasItem <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_990addd2-2bc7-4eed-a26b-7cdd38cfb96e> ;
+	bf:hasItem <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_dc18000e-5ce4-4dcf-9f5c-8f043e3d72fb> ;
+	bf:hasItem <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_8b76c409-aa11-44f3-a352-a43dfb1396b8> ;
+	bf:hasItem <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_751b8351-8285-4db5-bfca-4401c31441e4> ;
+	bf:hasItem <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_ff8fa969-ffd1-4318-ac5f-3d4384d38e55> ;
+	bf:hasItem <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_443875c5-f927-4cad-9214-774ab5741327> ;
+	bf:hasItem <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_73e6dc7b-7063-4f60-96bc-c3ab2a083158> ;
+	bf:hasItem <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_61ec00cf-64d9-4c82-a311-a2a8d153b9cc> ;
+	bf:hasItem <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_af7e3dc4-e115-4909-aa13-fae0f831be1e> ;
+	bf:hasItem <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_1fdd6bb1-d1b6-4b96-8fca-6f16eea48369> ;
+	bf:hasItem <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_eb69776a-e9ff-4177-bfb7-3db075ceb252> ;
+	bf:hasItem <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_762f3240-747e-4fa8-bb0c-a328fd849ca5> ;
+	bf:hasItem <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_2c7107b3-e80d-48cf-8ea9-ec41cc98bb09> ;
+	bf:hasItem <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_d86c98d1-a1e1-4ce8-990e-b08058068ab0> ;
+	bf:hasItem <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_31709a10-7e88-410d-83ea-74882e16348a> ;
+	bf:hasItem <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_917c330e-fb7d-422a-9b11-d54c0502751c> ;
+	bf:hasItem <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_4ec7bfc0-01ae-4783-95fb-78c46e8b799c> ;
+	bf:hasItem <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_31bc135e-e2a0-48f0-944d-28a340dc47a2> ;
+	bf:hasItem <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_df82c03c-e82f-42aa-ac21-e791fca7c6c3> ;
+	bf:hasItem <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_d43b10a3-4bd0-49e2-9ee8-37a0cffbfa06> ;
+	bf:hasItem <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_b9999a94-3c2b-497d-8d9c-6a85fcbe54a6> ;
+	bf:hasItem <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_188741bd-8fe1-4d47-b8d0-3808d161c1dd> ;
 	bf:repeating "false"^^xsd:boolean ;
 .
-<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_a311b861-fd28-4cbf-a4b6-b5e0bbeafdfa>
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_990addd2-2bc7-4eed-a26b-7cdd38cfb96e>
 	rdf:type bf:Question ;
 	isoC:label "SYSBP_VSORRES"^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
-	bf:note "Each test may be collected using the CDASH variable [TESTCD] e.g., SYSBP or [TESTCD]_VSORRES where TESTCD is the appropriate CT for the VS test code e.g., SYSBP_VSORRES. This CDASH variable name is an example of what \"variable name\" can be used in a denormalized data structure."^^xsd:string ;
+	bf:note "\n\nPrompt:\n\n[VSTEST] (Result)\n\nImplementation Notes:\n\nEach test may be collected using the CDASH variable [TESTCD] e.g., SYSBP or [TESTCD]_VSORRES where TESTCD is the appropriate CT for the VS test code e.g., SYSBP_VSORRES. This CDASH variable name is an example of what \"variable name\" can be used in a denormalized data structure.\n\nMapping Instructions:\n\nMaps directly to the SDTMIG variable listed in the column with the heading SDTMIG Target. In addition to the SDTMIG variable VSORRES, create VSTESTCD from the CDASH variable name and determine the value of VSTEST from VSTESTCD. The CDASH prompt may also contain the VSTEST. Use appropriate CDISC Controlled Terminology for the test and test code.\n\nCdash:\n\nSYSBP_VSORRES"^^xsd:string ;
 	bf:completion "Record the vital sign results."^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "float"^^xsd:string ;
@@ -149,11 +149,11 @@
 	bf:mapping "[NO MAPPING]"^^xsd:string ;
 	bf:questionText "What was the result of the Systolic Blood Pressure measurement?"^^xsd:string ;
 .
-<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_a47373f6-15a1-4d97-955d-a14c1678e9c1>
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_dc18000e-5ce4-4dcf-9f5c-8f043e3d72fb>
 	rdf:type bf:Question ;
 	isoC:label "SYSBP_VSORRESU"^^xsd:string ;
 	bf:ordinal "2"^^xsd:integer ;
-	bf:note "A single Unit field can be collected once for all measurements collected on the same horizontal record using VSUNIT. The value of VSUNIT applies to all measurements on that record when mapped to SDTM. If needed for each measurement, unit may be collected using the CDASH variable [VSTESTCD]_VSSTAT. Should be preprinted on the CRF with the associated test when possible, rather than collected in a field that requires the site to enter text."^^xsd:string ;
+	bf:note "\n\nPrompt:\n\n[VSTEST] Unit\n\nImplementation Notes:\n\nA single Unit field can be collected once for all measurements collected on the same horizontal record using VSUNIT. The value of VSUNIT applies to all measurements on that record when mapped to SDTM. If needed for each measurement, unit may be collected using the CDASH variable [VSTESTCD]_VSSTAT. Should be preprinted on the CRF with the associated test when possible, rather than collected in a field that requires the site to enter text.\n\nMapping Instructions:\n\nMaps directly to the SDTMIG variable listed in the column with the heading SDTMIG Target.\n\nCdash:\n\nSYSBP_VSORRESU"^^xsd:string ;
 	bf:completion "Record or select the original unit in which these data were collected, if not preprinted on CRF."^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "float"^^xsd:string ;
@@ -161,20 +161,20 @@
 	bf:mapping "[NO MAPPING]"^^xsd:string ;
 	bf:questionText "What was the unit of the Systolic Blood Pressure measurement?"^^xsd:string ;
 .
-<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_fdfea48e-db89-40ca-8579-43b3951e2995>
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_8b76c409-aa11-44f3-a352-a43dfb1396b8>
 	rdf:type bf:Question ;
 	isoC:label "SYSBP_VSORRESU units"^^xsd:string ;
 	bf:ordinal "3"^^xsd:integer ;
-	bf:note "* Multiple entries [C49670,C49670] found for parameters ['notation=mmHg'], using first found.\n"^^xsd:string ;
+	bf:note "* Multiple entries [C49670,C49670] found for parameters ['notation=mmHg'], using first found."^^xsd:string ;
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
 	bf:mapping "[NO MAPPING]"^^xsd:string ;
 	bf:questionText "What was the unit of the Systolic Blood Pressure measurement? units"^^xsd:string ;
-	bf:hasCodedValue <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_fdfea48e-db89-40ca-8579-43b3951e2995_TUC1> ;
+	bf:hasCodedValue <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_8b76c409-aa11-44f3-a352-a43dfb1396b8_TUC1> ;
 .
-<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_fdfea48e-db89-40ca-8579-43b3951e2995_TUC1>
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_8b76c409-aa11-44f3-a352-a43dfb1396b8_TUC1>
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -184,11 +184,11 @@
 	bo:context <http://www.cdisc.org/C66770/V59#C66770> ;
 	bo:localLabel "Millimeter of Mercury"^^xsd:string ;
 .
-<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_49888588-f477-4928-b352-624e4c860908>
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_751b8351-8285-4db5-bfca-4401c31441e4>
 	rdf:type bf:Question ;
 	isoC:label "DIABP_VSORRES"^^xsd:string ;
 	bf:ordinal "4"^^xsd:integer ;
-	bf:note "Each test may be collected using the CDASH variable [TESTCD] e.g., SYSBP or [TESTCD]_VSORRES where TESTCD is the appropriate CT for the VS test code e.g., SYSBP_VSORRES. This CDASH variable name is an example of what \"variable name\" can be used in a denormalized data structure."^^xsd:string ;
+	bf:note "\n\nPrompt:\n\n[VSTEST] (Result)\n\nImplementation Notes:\n\nEach test may be collected using the CDASH variable [TESTCD] e.g., SYSBP or [TESTCD]_VSORRES where TESTCD is the appropriate CT for the VS test code e.g., SYSBP_VSORRES. This CDASH variable name is an example of what \"variable name\" can be used in a denormalized data structure.\n\nMapping Instructions:\n\nMaps directly to the SDTMIG variable listed in the column with the heading SDTMIG Target. In addition to the SDTMIG variable VSORRES, create VSTESTCD from the CDASH variable name and determine the value of VSTEST from VSTESTCD. The CDASH prompt may also contain the VSTEST. Use appropriate CDISC Controlled Terminology for the test and test code.\n\nCdash:\n\nDIABP_VSORRES"^^xsd:string ;
 	bf:completion "Record the vital sign results."^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "float"^^xsd:string ;
@@ -196,11 +196,11 @@
 	bf:mapping "[NO MAPPING]"^^xsd:string ;
 	bf:questionText "What was the result of the Diastolic Blood Pressure measurement?"^^xsd:string ;
 .
-<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_df607a57-d756-4788-9ae0-58527940f2c7>
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_ff8fa969-ffd1-4318-ac5f-3d4384d38e55>
 	rdf:type bf:Question ;
 	isoC:label "DIABP_VSORRESU"^^xsd:string ;
 	bf:ordinal "5"^^xsd:integer ;
-	bf:note "A single Unit field can be collected once for all measurements collected on the same horizontal record using VSUNIT. The value of VSUNIT applies to all measurements on that record when mapped to SDTM. If needed for each measurement, unit may be collected using the CDASH variable [VSTESTCD]_VSSTAT. Should be preprinted on the CRF with the associated test when possible, rather than collected in a field that requires the site to enter text."^^xsd:string ;
+	bf:note "\n\nPrompt:\n\n[VSTEST] Unit\n\nImplementation Notes:\n\nA single Unit field can be collected once for all measurements collected on the same horizontal record using VSUNIT. The value of VSUNIT applies to all measurements on that record when mapped to SDTM. If needed for each measurement, unit may be collected using the CDASH variable [VSTESTCD]_VSSTAT. Should be preprinted on the CRF with the associated test when possible, rather than collected in a field that requires the site to enter text.\n\nMapping Instructions:\n\nMaps directly to the SDTMIG variable listed in the column with the heading SDTMIG Target.\n\nCdash:\n\nDIABP_VSORRESU"^^xsd:string ;
 	bf:completion "Record or select the original unit in which these data were collected, if not preprinted on CRF."^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "float"^^xsd:string ;
@@ -208,20 +208,20 @@
 	bf:mapping "[NO MAPPING]"^^xsd:string ;
 	bf:questionText "What was the unit of the Diastolic Blood Pressure measurement?"^^xsd:string ;
 .
-<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_8c31ec98-3b68-41ee-97cf-02715874c9c2>
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_443875c5-f927-4cad-9214-774ab5741327>
 	rdf:type bf:Question ;
 	isoC:label "DIABP_VSORRESU units"^^xsd:string ;
 	bf:ordinal "6"^^xsd:integer ;
-	bf:note "* Multiple entries [C49670,C49670] found for parameters ['notation=mmHg'], using first found.\n"^^xsd:string ;
+	bf:note "* Multiple entries [C49670,C49670] found for parameters ['notation=mmHg'], using first found."^^xsd:string ;
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
 	bf:mapping "[NO MAPPING]"^^xsd:string ;
 	bf:questionText "What was the unit of the Diastolic Blood Pressure measurement? units"^^xsd:string ;
-	bf:hasCodedValue <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_8c31ec98-3b68-41ee-97cf-02715874c9c2_TUC1> ;
+	bf:hasCodedValue <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_443875c5-f927-4cad-9214-774ab5741327_TUC1> ;
 .
-<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_8c31ec98-3b68-41ee-97cf-02715874c9c2_TUC1>
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_443875c5-f927-4cad-9214-774ab5741327_TUC1>
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -231,24 +231,24 @@
 	bo:context <http://www.cdisc.org/C66770/V59#C66770> ;
 	bo:localLabel "Millimeter of Mercury"^^xsd:string ;
 .
-<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_bc23e13f-b11d-4f72-8b4d-8cfcd6510a04>
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_73e6dc7b-7063-4f60-96bc-c3ab2a083158>
 	rdf:type bf:Question ;
 	isoC:label "BP_VSPOS"^^xsd:string ;
 	bf:ordinal "7"^^xsd:integer ;
-	bf:note "Results may be affected by whether conditions for vital signs as specified in the protocol were properly met. One common condition is the subject's position. If the protocol requires this type of information, then a CDASH variable [VSTESTCD]_VSPOS may be created for each VSTESTCD and added to the CRF, if needed."^^xsd:string ;
+	bf:note "\n\nPrompt:\n\n[VSTEST] Position\n\nImplementation Notes:\n\nResults may be affected by whether conditions for vital signs as specified in the protocol were properly met. One common condition is the subject's position. If the protocol requires this type of information, then a CDASH variable [VSTESTCD]_VSPOS may be created for each VSTESTCD and added to the CRF, if needed.\n\nMapping Instructions:\n\nMaps directly to the SDTMIG variable listed in the column with the heading SDTMIG Target.\n\nCdash:\n\nBP_VSPOS"^^xsd:string ;
 	bf:completion "Record the position of subject at time of test (e.g. SITTING)."^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
 	bf:mapping "[NO MAPPING]"^^xsd:string ;
 	bf:questionText "What was the position of the subject during the blood pressure measurement?"^^xsd:string ;
-	bf:hasCodedValue <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_bc23e13f-b11d-4f72-8b4d-8cfcd6510a04_TUC1> ;
-	bf:hasCodedValue <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_bc23e13f-b11d-4f72-8b4d-8cfcd6510a04_TUC2> ;
-	bf:hasCodedValue <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_bc23e13f-b11d-4f72-8b4d-8cfcd6510a04_TUC3> ;
-	bf:hasCodedValue <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_bc23e13f-b11d-4f72-8b4d-8cfcd6510a04_TUC4> ;
-	bf:hasCodedValue <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_bc23e13f-b11d-4f72-8b4d-8cfcd6510a04_TUC5> ;
+	bf:hasCodedValue <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_73e6dc7b-7063-4f60-96bc-c3ab2a083158_TUC1> ;
+	bf:hasCodedValue <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_73e6dc7b-7063-4f60-96bc-c3ab2a083158_TUC2> ;
+	bf:hasCodedValue <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_73e6dc7b-7063-4f60-96bc-c3ab2a083158_TUC3> ;
+	bf:hasCodedValue <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_73e6dc7b-7063-4f60-96bc-c3ab2a083158_TUC4> ;
+	bf:hasCodedValue <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_73e6dc7b-7063-4f60-96bc-c3ab2a083158_TUC5> ;
 .
-<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_bc23e13f-b11d-4f72-8b4d-8cfcd6510a04_TUC1>
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_73e6dc7b-7063-4f60-96bc-c3ab2a083158_TUC1>
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -258,7 +258,7 @@
 	bo:context <http://www.cdisc.org/C71148/V66#C71148> ;
 	bo:localLabel "Prone Position"^^xsd:string ;
 .
-<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_bc23e13f-b11d-4f72-8b4d-8cfcd6510a04_TUC2>
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_73e6dc7b-7063-4f60-96bc-c3ab2a083158_TUC2>
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -268,7 +268,7 @@
 	bo:context <http://www.cdisc.org/C71148/V66#C71148> ;
 	bo:localLabel "Semi-Recumbent"^^xsd:string ;
 .
-<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_bc23e13f-b11d-4f72-8b4d-8cfcd6510a04_TUC3>
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_73e6dc7b-7063-4f60-96bc-c3ab2a083158_TUC3>
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -278,7 +278,7 @@
 	bo:context <http://www.cdisc.org/C71148/V66#C71148> ;
 	bo:localLabel "Sitting"^^xsd:string ;
 .
-<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_bc23e13f-b11d-4f72-8b4d-8cfcd6510a04_TUC4>
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_73e6dc7b-7063-4f60-96bc-c3ab2a083158_TUC4>
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -288,7 +288,7 @@
 	bo:context <http://www.cdisc.org/C71148/V66#C71148> ;
 	bo:localLabel "Standing"^^xsd:string ;
 .
-<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_bc23e13f-b11d-4f72-8b4d-8cfcd6510a04_TUC5>
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_73e6dc7b-7063-4f60-96bc-c3ab2a083158_TUC5>
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -298,22 +298,22 @@
 	bo:context <http://www.cdisc.org/C71148/V66#C71148> ;
 	bo:localLabel "Supine Position"^^xsd:string ;
 .
-<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_97225cb6-f4e0-4ec8-a085-1617d166cc52>
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_61ec00cf-64d9-4c82-a311-a2a8d153b9cc>
 	rdf:type bf:Question ;
 	isoC:label "BP_VSLOC"^^xsd:string ;
 	bf:ordinal "8"^^xsd:integer ;
-	bf:note "Collected or preprinted when the sponsor needs to identify the specific anatomical location (e.g., ARM for blood pressure). Sponsors may collect the data using a subset list of controlled terminology on the CRF. In horizontal data collection, a CDASH variable [VSTESTCD]_VSLOC may be created for each VSTESTCD and added to the CRF, if needed. LAT, DIR, and PORTOT are used to further describe the anatomical location."^^xsd:string ;
+	bf:note "\n\nPrompt:\n\n[VSTEST] Anatomical Location\n\nImplementation Notes:\n\nCollected or preprinted when the sponsor needs to identify the specific anatomical location (e.g., ARM for blood pressure). Sponsors may collect the data using a subset list of controlled terminology on the CRF. In horizontal data collection, a CDASH variable [VSTESTCD]_VSLOC may be created for each VSTESTCD and added to the CRF, if needed. LAT, DIR, and PORTOT are used to further describe the anatomical location.\n\nMapping Instructions:\n\nMaps directly to the SDTMIG variable listed in the column with the heading SDTMIG Target.\n\nCdash:\n\nBP_VSLOC"^^xsd:string ;
 	bf:completion "Record or select location on body where measurement was performed, if not preprinted on CRF."^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
 	bf:mapping "[NO MAPPING]"^^xsd:string ;
 	bf:questionText "What was the anatomical location where the blood pressure measurement was taken?"^^xsd:string ;
-	bf:hasCodedValue <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_97225cb6-f4e0-4ec8-a085-1617d166cc52_TUC1> ;
-	bf:hasCodedValue <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_97225cb6-f4e0-4ec8-a085-1617d166cc52_TUC2> ;
-	bf:hasCodedValue <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_97225cb6-f4e0-4ec8-a085-1617d166cc52_TUC3> ;
+	bf:hasCodedValue <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_61ec00cf-64d9-4c82-a311-a2a8d153b9cc_TUC1> ;
+	bf:hasCodedValue <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_61ec00cf-64d9-4c82-a311-a2a8d153b9cc_TUC2> ;
+	bf:hasCodedValue <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_61ec00cf-64d9-4c82-a311-a2a8d153b9cc_TUC3> ;
 .
-<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_97225cb6-f4e0-4ec8-a085-1617d166cc52_TUC1>
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_61ec00cf-64d9-4c82-a311-a2a8d153b9cc_TUC1>
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -323,7 +323,7 @@
 	bo:context <http://www.cdisc.org/C74456/V68#C74456> ;
 	bo:localLabel "Brachial Artery"^^xsd:string ;
 .
-<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_97225cb6-f4e0-4ec8-a085-1617d166cc52_TUC2>
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_61ec00cf-64d9-4c82-a311-a2a8d153b9cc_TUC2>
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -333,7 +333,7 @@
 	bo:context <http://www.cdisc.org/C74456/V68#C74456> ;
 	bo:localLabel "Finger"^^xsd:string ;
 .
-<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_97225cb6-f4e0-4ec8-a085-1617d166cc52_TUC3>
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_61ec00cf-64d9-4c82-a311-a2a8d153b9cc_TUC3>
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -343,11 +343,11 @@
 	bo:context <http://www.cdisc.org/C74456/V68#C74456> ;
 	bo:localLabel "Radial Artery"^^xsd:string ;
 .
-<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_2545ad5c-08e8-46fc-872d-618094f883c8>
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_af7e3dc4-e115-4909-aa13-fae0f831be1e>
 	rdf:type bf:Question ;
 	isoC:label "HEIGHT_VSORRES"^^xsd:string ;
 	bf:ordinal "9"^^xsd:integer ;
-	bf:note "Each test may be collected using the CDASH variable [TESTCD] e.g., SYSBP or [TESTCD]_VSORRES where TESTCD is the appropriate CT for the VS test code e.g., SYSBP_VSORRES. This CDASH variable name is an example of what \"variable name\" can be used in a denormalized data structure."^^xsd:string ;
+	bf:note "\n\nPrompt:\n\n[VSTEST] (Result)\n\nImplementation Notes:\n\nEach test may be collected using the CDASH variable [TESTCD] e.g., SYSBP or [TESTCD]_VSORRES where TESTCD is the appropriate CT for the VS test code e.g., SYSBP_VSORRES. This CDASH variable name is an example of what \"variable name\" can be used in a denormalized data structure.\n\nMapping Instructions:\n\nMaps directly to the SDTMIG variable listed in the column with the heading SDTMIG Target. In addition to the SDTMIG variable VSORRES, create VSTESTCD from the CDASH variable name and determine the value of VSTEST from VSTESTCD. The CDASH prompt may also contain the VSTEST. Use appropriate CDISC Controlled Terminology for the test and test code.\n\nCdash:\n\nHEIGHT_VSORRES"^^xsd:string ;
 	bf:completion "Record the vital sign results."^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
@@ -355,21 +355,21 @@
 	bf:mapping "[NO MAPPING]"^^xsd:string ;
 	bf:questionText "What was the result of the height measurement?"^^xsd:string ;
 .
-<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_bdb5f4f6-19c8-4ecf-9abb-5d723148c48f>
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_1fdd6bb1-d1b6-4b96-8fca-6f16eea48369>
 	rdf:type bf:Question ;
 	isoC:label "HEIGHT_VSORRESU"^^xsd:string ;
 	bf:ordinal "10"^^xsd:integer ;
-	bf:note "A single Unit field can be collected once for all measurements collected on the same horizontal record using VSUNIT. The value of VSUNIT applies to all measurements on that record when mapped to SDTM. If needed for each measurement, unit may be collected using the CDASH variable [VSTESTCD]_VSSTAT. Should be preprinted on the CRF with the associated test when possible, rather than collected in a field that requires the site to enter text."^^xsd:string ;
+	bf:note "\n\nPrompt:\n\n[VSTEST] Unit\n\nImplementation Notes:\n\nA single Unit field can be collected once for all measurements collected on the same horizontal record using VSUNIT. The value of VSUNIT applies to all measurements on that record when mapped to SDTM. If needed for each measurement, unit may be collected using the CDASH variable [VSTESTCD]_VSSTAT. Should be preprinted on the CRF with the associated test when possible, rather than collected in a field that requires the site to enter text.\n\nMapping Instructions:\n\nMaps directly to the SDTMIG variable listed in the column with the heading SDTMIG Target.\n\nCdash:\n\nHEIGHT_VSORRESU"^^xsd:string ;
 	bf:completion "Record or select the original unit in which these data were collected, if not preprinted on CRF."^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "4"^^xsd:string ;
 	bf:mapping "[NO MAPPING]"^^xsd:string ;
 	bf:questionText "What was the unit of the height measurement?"^^xsd:string ;
-	bf:hasCodedValue <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_bdb5f4f6-19c8-4ecf-9abb-5d723148c48f_TUC1> ;
-	bf:hasCodedValue <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_bdb5f4f6-19c8-4ecf-9abb-5d723148c48f_TUC2> ;
+	bf:hasCodedValue <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_1fdd6bb1-d1b6-4b96-8fca-6f16eea48369_TUC1> ;
+	bf:hasCodedValue <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_1fdd6bb1-d1b6-4b96-8fca-6f16eea48369_TUC2> ;
 .
-<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_bdb5f4f6-19c8-4ecf-9abb-5d723148c48f_TUC1>
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_1fdd6bb1-d1b6-4b96-8fca-6f16eea48369_TUC1>
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -379,7 +379,7 @@
 	bo:context <http://www.cdisc.org/C66770/V59#C66770> ;
 	bo:localLabel "Centimeter"^^xsd:string ;
 .
-<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_bdb5f4f6-19c8-4ecf-9abb-5d723148c48f_TUC2>
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_1fdd6bb1-d1b6-4b96-8fca-6f16eea48369_TUC2>
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -389,11 +389,11 @@
 	bo:context <http://www.cdisc.org/C66770/V59#C66770> ;
 	bo:localLabel "Inch"^^xsd:string ;
 .
-<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_5fed8270-80cc-4eab-8d5d-b4928fc79f95>
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_eb69776a-e9ff-4177-bfb7-3db075ceb252>
 	rdf:type bf:Question ;
 	isoC:label "WEIGHT_VSORRES"^^xsd:string ;
 	bf:ordinal "11"^^xsd:integer ;
-	bf:note "Each test may be collected using the CDASH variable [TESTCD] e.g., SYSBP or [TESTCD]_VSORRES where TESTCD is the appropriate CT for the VS test code e.g., SYSBP_VSORRES. This CDASH variable name is an example of what \"variable name\" can be used in a denormalized data structure."^^xsd:string ;
+	bf:note "\n\nPrompt:\n\n[VSTEST] (Result)\n\nImplementation Notes:\n\nEach test may be collected using the CDASH variable [TESTCD] e.g., SYSBP or [TESTCD]_VSORRES where TESTCD is the appropriate CT for the VS test code e.g., SYSBP_VSORRES. This CDASH variable name is an example of what \"variable name\" can be used in a denormalized data structure.\n\nMapping Instructions:\n\nMaps directly to the SDTMIG variable listed in the column with the heading SDTMIG Target. In addition to the SDTMIG variable VSORRES, create VSTESTCD from the CDASH variable name and determine the value of VSTEST from VSTESTCD. The CDASH prompt may also contain the VSTEST. Use appropriate CDISC Controlled Terminology for the test and test code.\n\nCdash:\n\nWEIGHT_VSORRES"^^xsd:string ;
 	bf:completion "Record the vital sign results."^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
@@ -401,21 +401,21 @@
 	bf:mapping "WEIGHT"^^xsd:string ;
 	bf:questionText "What was the result of the weight measurement?"^^xsd:string ;
 .
-<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_77817632-a621-4f32-9d51-6611d4f6e502>
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_762f3240-747e-4fa8-bb0c-a328fd849ca5>
 	rdf:type bf:Question ;
 	isoC:label "WEIGHT_VSORRESU"^^xsd:string ;
 	bf:ordinal "12"^^xsd:integer ;
-	bf:note "A single Unit field can be collected once for all measurements collected on the same horizontal record using VSUNIT. The value of VSUNIT applies to all measurements on that record when mapped to SDTM. If needed for each measurement, unit may be collected using the CDASH variable [VSTESTCD]_VSSTAT. Should be preprinted on the CRF with the associated test when possible, rather than collected in a field that requires the site to enter text."^^xsd:string ;
+	bf:note "\n\nPrompt:\n\n[VSTEST] Unit\n\nImplementation Notes:\n\nA single Unit field can be collected once for all measurements collected on the same horizontal record using VSUNIT. The value of VSUNIT applies to all measurements on that record when mapped to SDTM. If needed for each measurement, unit may be collected using the CDASH variable [VSTESTCD]_VSSTAT. Should be preprinted on the CRF with the associated test when possible, rather than collected in a field that requires the site to enter text.\n\nMapping Instructions:\n\nMaps directly to the SDTMIG variable listed in the column with the heading SDTMIG Target.\n\nCdash:\n\nWEIGHT_VSORRESU"^^xsd:string ;
 	bf:completion "Record or select the original unit in which these data were collected, if not preprinted on CRF."^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "4"^^xsd:string ;
 	bf:mapping "[NO MAPPING]"^^xsd:string ;
 	bf:questionText "What was the unit of the weight measurement?"^^xsd:string ;
-	bf:hasCodedValue <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_77817632-a621-4f32-9d51-6611d4f6e502_TUC1> ;
-	bf:hasCodedValue <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_77817632-a621-4f32-9d51-6611d4f6e502_TUC2> ;
+	bf:hasCodedValue <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_762f3240-747e-4fa8-bb0c-a328fd849ca5_TUC1> ;
+	bf:hasCodedValue <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_762f3240-747e-4fa8-bb0c-a328fd849ca5_TUC2> ;
 .
-<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_77817632-a621-4f32-9d51-6611d4f6e502_TUC1>
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_762f3240-747e-4fa8-bb0c-a328fd849ca5_TUC1>
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -425,7 +425,7 @@
 	bo:context <http://www.cdisc.org/C66770/V59#C66770> ;
 	bo:localLabel "Kilogram"^^xsd:string ;
 .
-<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_77817632-a621-4f32-9d51-6611d4f6e502_TUC2>
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_762f3240-747e-4fa8-bb0c-a328fd849ca5_TUC2>
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -435,11 +435,11 @@
 	bo:context <http://www.cdisc.org/C66770/V59#C66770> ;
 	bo:localLabel "Pound"^^xsd:string ;
 .
-<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_e0290f5b-5fc8-4112-a536-c5f74442bdfd>
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_2c7107b3-e80d-48cf-8ea9-ec41cc98bb09>
 	rdf:type bf:Question ;
 	isoC:label "PULSE_VSORRES"^^xsd:string ;
 	bf:ordinal "13"^^xsd:integer ;
-	bf:note "Each test may be collected using the CDASH variable [TESTCD] e.g., SYSBP or [TESTCD]_VSORRES where TESTCD is the appropriate CT for the VS test code e.g., SYSBP_VSORRES. This CDASH variable name is an example of what \"variable name\" can be used in a denormalized data structure."^^xsd:string ;
+	bf:note "\n\nPrompt:\n\n[VSTEST] (Result)\n\nImplementation Notes:\n\nEach test may be collected using the CDASH variable [TESTCD] e.g., SYSBP or [TESTCD]_VSORRES where TESTCD is the appropriate CT for the VS test code e.g., SYSBP_VSORRES. This CDASH variable name is an example of what \"variable name\" can be used in a denormalized data structure.\n\nMapping Instructions:\n\nMaps directly to the SDTMIG variable listed in the column with the heading SDTMIG Target. In addition to the SDTMIG variable VSORRES, create VSTESTCD from the CDASH variable name and determine the value of VSTEST from VSTESTCD. The CDASH prompt may also contain the VSTEST. Use appropriate CDISC Controlled Terminology for the test and test code.\n\nCdash:\n\nPULSE_VSORRES"^^xsd:string ;
 	bf:completion "Record the vital sign results."^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "float"^^xsd:string ;
@@ -447,11 +447,11 @@
 	bf:mapping "[NO MAPPING]"^^xsd:string ;
 	bf:questionText "What was the result of the pulse measurement?"^^xsd:string ;
 .
-<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_6a2c3b18-37a3-4ed6-a2c8-61a9cd2bd8e0>
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_d86c98d1-a1e1-4ce8-990e-b08058068ab0>
 	rdf:type bf:Question ;
 	isoC:label "PULSE_VSORRESU"^^xsd:string ;
 	bf:ordinal "14"^^xsd:integer ;
-	bf:note "A single Unit field can be collected once for all measurements collected on the same horizontal record using VSUNIT. The value of VSUNIT applies to all measurements on that record when mapped to SDTM. If needed for each measurement, unit may be collected using the CDASH variable [VSTESTCD]_VSSTAT. Should be preprinted on the CRF with the associated test when possible, rather than collected in a field that requires the site to enter text."^^xsd:string ;
+	bf:note "\n\nPrompt:\n\n[VSTEST] Unit\n\nImplementation Notes:\n\nA single Unit field can be collected once for all measurements collected on the same horizontal record using VSUNIT. The value of VSUNIT applies to all measurements on that record when mapped to SDTM. If needed for each measurement, unit may be collected using the CDASH variable [VSTESTCD]_VSSTAT. Should be preprinted on the CRF with the associated test when possible, rather than collected in a field that requires the site to enter text.\n\nMapping Instructions:\n\nMaps directly to the SDTMIG variable listed in the column with the heading SDTMIG Target.\n\nCdash:\n\nPULSE_VSORRESU"^^xsd:string ;
 	bf:completion "Record or select the original unit in which these data were collected, if not preprinted on CRF."^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "float"^^xsd:string ;
@@ -459,20 +459,20 @@
 	bf:mapping "[NO MAPPING]"^^xsd:string ;
 	bf:questionText "What was the unit of the pulse measurement?"^^xsd:string ;
 .
-<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_ed64323c-31ab-454e-acdb-07ab2c4bb8f3>
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_31709a10-7e88-410d-83ea-74882e16348a>
 	rdf:type bf:Question ;
 	isoC:label "PULSE_VSORRESU units"^^xsd:string ;
 	bf:ordinal "15"^^xsd:integer ;
-	bf:note "* Multiple entries [C49673,C49673,C49673] found for parameters ['notation=beats/min'], using first found.\n"^^xsd:string ;
+	bf:note "* Multiple entries [C49673,C49673,C49673] found for parameters ['notation=beats/min'], using first found."^^xsd:string ;
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
 	bf:mapping "[NO MAPPING]"^^xsd:string ;
 	bf:questionText "What was the unit of the pulse measurement? units"^^xsd:string ;
-	bf:hasCodedValue <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_ed64323c-31ab-454e-acdb-07ab2c4bb8f3_TUC1> ;
+	bf:hasCodedValue <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_31709a10-7e88-410d-83ea-74882e16348a_TUC1> ;
 .
-<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_ed64323c-31ab-454e-acdb-07ab2c4bb8f3_TUC1>
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_31709a10-7e88-410d-83ea-74882e16348a_TUC1>
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -482,24 +482,24 @@
 	bo:context <http://www.cdisc.org/C66770/V59#C66770> ;
 	bo:localLabel "Beats per Minute"^^xsd:string ;
 .
-<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_4d856b85-d41e-4cc9-8b3e-909500a80d5c>
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_917c330e-fb7d-422a-9b11-d54c0502751c>
 	rdf:type bf:Question ;
 	isoC:label "PULSE_VSLOC"^^xsd:string ;
 	bf:ordinal "16"^^xsd:integer ;
-	bf:note "Collected or preprinted when the sponsor needs to identify the specific anatomical location (e.g., ARM for blood pressure). Sponsors may collect the data using a subset list of controlled terminology on the CRF. In horizontal data collection, a CDASH variable [VSTESTCD]_VSLOC may be created for each VSTESTCD and added to the CRF, if needed. LAT, DIR, and PORTOT are used to further describe the anatomical location."^^xsd:string ;
+	bf:note "\n\nPrompt:\n\n[VSTEST] Anatomical Location\n\nImplementation Notes:\n\nCollected or preprinted when the sponsor needs to identify the specific anatomical location (e.g., ARM for blood pressure). Sponsors may collect the data using a subset list of controlled terminology on the CRF. In horizontal data collection, a CDASH variable [VSTESTCD]_VSLOC may be created for each VSTESTCD and added to the CRF, if needed. LAT, DIR, and PORTOT are used to further describe the anatomical location.\n\nMapping Instructions:\n\nMaps directly to the SDTMIG variable listed in the column with the heading SDTMIG Target.\n\nCdash:\n\nPULSE_VSLOC"^^xsd:string ;
 	bf:completion "Record or select location on body where measurement was performed, if not preprinted on CRF."^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
 	bf:mapping "[NO MAPPING]"^^xsd:string ;
 	bf:questionText "What was the anatomical location where the pulse measurement was taken?"^^xsd:string ;
-	bf:hasCodedValue <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_4d856b85-d41e-4cc9-8b3e-909500a80d5c_TUC1> ;
-	bf:hasCodedValue <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_4d856b85-d41e-4cc9-8b3e-909500a80d5c_TUC2> ;
-	bf:hasCodedValue <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_4d856b85-d41e-4cc9-8b3e-909500a80d5c_TUC3> ;
-	bf:hasCodedValue <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_4d856b85-d41e-4cc9-8b3e-909500a80d5c_TUC4> ;
-	bf:hasCodedValue <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_4d856b85-d41e-4cc9-8b3e-909500a80d5c_TUC5> ;
+	bf:hasCodedValue <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_917c330e-fb7d-422a-9b11-d54c0502751c_TUC1> ;
+	bf:hasCodedValue <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_917c330e-fb7d-422a-9b11-d54c0502751c_TUC2> ;
+	bf:hasCodedValue <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_917c330e-fb7d-422a-9b11-d54c0502751c_TUC3> ;
+	bf:hasCodedValue <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_917c330e-fb7d-422a-9b11-d54c0502751c_TUC4> ;
+	bf:hasCodedValue <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_917c330e-fb7d-422a-9b11-d54c0502751c_TUC5> ;
 .
-<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_4d856b85-d41e-4cc9-8b3e-909500a80d5c_TUC1>
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_917c330e-fb7d-422a-9b11-d54c0502751c_TUC1>
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -509,7 +509,7 @@
 	bo:context <http://www.cdisc.org/C74456/V68#C74456> ;
 	bo:localLabel "Brachial Artery"^^xsd:string ;
 .
-<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_4d856b85-d41e-4cc9-8b3e-909500a80d5c_TUC2>
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_917c330e-fb7d-422a-9b11-d54c0502751c_TUC2>
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -519,7 +519,7 @@
 	bo:context <http://www.cdisc.org/C74456/V68#C74456> ;
 	bo:localLabel "Carotid Artery"^^xsd:string ;
 .
-<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_4d856b85-d41e-4cc9-8b3e-909500a80d5c_TUC3>
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_917c330e-fb7d-422a-9b11-d54c0502751c_TUC3>
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -529,7 +529,7 @@
 	bo:context <http://www.cdisc.org/C74456/V68#C74456> ;
 	bo:localLabel "Cerebral Artery"^^xsd:string ;
 .
-<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_4d856b85-d41e-4cc9-8b3e-909500a80d5c_TUC4>
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_917c330e-fb7d-422a-9b11-d54c0502751c_TUC4>
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -539,7 +539,7 @@
 	bo:context <http://www.cdisc.org/C74456/V68#C74456> ;
 	bo:localLabel "Dorsalis Pedis Artery"^^xsd:string ;
 .
-<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_4d856b85-d41e-4cc9-8b3e-909500a80d5c_TUC5>
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_917c330e-fb7d-422a-9b11-d54c0502751c_TUC5>
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -549,11 +549,11 @@
 	bo:context <http://www.cdisc.org/C74456/V68#C74456> ;
 	bo:localLabel "Femoral Artery"^^xsd:string ;
 .
-<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_dfbda70a-65f1-47bd-9dce-6f169746b265>
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_4ec7bfc0-01ae-4783-95fb-78c46e8b799c>
 	rdf:type bf:Question ;
 	isoC:label "RESP_VSORRES"^^xsd:string ;
 	bf:ordinal "17"^^xsd:integer ;
-	bf:note "Each test may be collected using the CDASH variable [TESTCD] e.g., SYSBP or [TESTCD]_VSORRES where TESTCD is the appropriate CT for the VS test code e.g., SYSBP_VSORRES. This CDASH variable name is an example of what \"variable name\" can be used in a denormalized data structure."^^xsd:string ;
+	bf:note "\n\nPrompt:\n\n[VSTEST] (Result)\n\nImplementation Notes:\n\nEach test may be collected using the CDASH variable [TESTCD] e.g., SYSBP or [TESTCD]_VSORRES where TESTCD is the appropriate CT for the VS test code e.g., SYSBP_VSORRES. This CDASH variable name is an example of what \"variable name\" can be used in a denormalized data structure.\n\nMapping Instructions:\n\nMaps directly to the SDTMIG variable listed in the column with the heading SDTMIG Target. In addition to the SDTMIG variable VSORRES, create VSTESTCD from the CDASH variable name and determine the value of VSTEST from VSTESTCD. The CDASH prompt may also contain the VSTEST. Use appropriate CDISC Controlled Terminology for the test and test code.\n\nCdash:\n\nRESP_VSORRES"^^xsd:string ;
 	bf:completion "Record the vital sign results."^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "float"^^xsd:string ;
@@ -561,11 +561,11 @@
 	bf:mapping "[NO MAPPING]"^^xsd:string ;
 	bf:questionText "What was the result of the respiratory rate measurement?"^^xsd:string ;
 .
-<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_30001857-d3d8-4bac-99fe-0273057840fa>
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_31bc135e-e2a0-48f0-944d-28a340dc47a2>
 	rdf:type bf:Question ;
 	isoC:label "RESP_VSORRESU"^^xsd:string ;
 	bf:ordinal "18"^^xsd:integer ;
-	bf:note "A single Unit field can be collected once for all measurements collected on the same horizontal record using VSUNIT. The value of VSUNIT applies to all measurements on that record when mapped to SDTM. If needed for each measurement, unit may be collected using the CDASH variable [VSTESTCD]_VSSTAT. Should be preprinted on the CRF with the associated test when possible, rather than collected in a field that requires the site to enter text."^^xsd:string ;
+	bf:note "\n\nPrompt:\n\n[VSTEST] Unit\n\nImplementation Notes:\n\nA single Unit field can be collected once for all measurements collected on the same horizontal record using VSUNIT. The value of VSUNIT applies to all measurements on that record when mapped to SDTM. If needed for each measurement, unit may be collected using the CDASH variable [VSTESTCD]_VSSTAT. Should be preprinted on the CRF with the associated test when possible, rather than collected in a field that requires the site to enter text.\n\nMapping Instructions:\n\nMaps directly to the SDTMIG variable listed in the column with the heading SDTMIG Target.\n\nCdash:\n\nRESP_VSORRESU"^^xsd:string ;
 	bf:completion "Record or select the original unit in which these data were collected, if not preprinted on CRF."^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "float"^^xsd:string ;
@@ -573,20 +573,20 @@
 	bf:mapping "[NO MAPPING]"^^xsd:string ;
 	bf:questionText "What was the unit of the Respiratory Rate Unit measurement?"^^xsd:string ;
 .
-<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_3e7c6191-06a1-4181-ac70-78842bb649a2>
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_df82c03c-e82f-42aa-ac21-e791fca7c6c3>
 	rdf:type bf:Question ;
 	isoC:label "RESP_VSORRESU units"^^xsd:string ;
 	bf:ordinal "19"^^xsd:integer ;
-	bf:note "* Multiple entries [C49674,C49674] found for parameters ['notation=breaths/min'], using first found.\n"^^xsd:string ;
+	bf:note "* Multiple entries [C49674,C49674] found for parameters ['notation=breaths/min'], using first found."^^xsd:string ;
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
 	bf:mapping "[NO MAPPING]"^^xsd:string ;
 	bf:questionText "What was the unit of the Respiratory Rate Unit measurement? units"^^xsd:string ;
-	bf:hasCodedValue <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_3e7c6191-06a1-4181-ac70-78842bb649a2_TUC1> ;
+	bf:hasCodedValue <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_df82c03c-e82f-42aa-ac21-e791fca7c6c3_TUC1> ;
 .
-<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_3e7c6191-06a1-4181-ac70-78842bb649a2_TUC1>
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_df82c03c-e82f-42aa-ac21-e791fca7c6c3_TUC1>
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -596,11 +596,11 @@
 	bo:context <http://www.cdisc.org/C66770/V59#C66770> ;
 	bo:localLabel "Breaths per Minute"^^xsd:string ;
 .
-<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_78932641-1ccf-4634-b34e-17d8aa540448>
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_d43b10a3-4bd0-49e2-9ee8-37a0cffbfa06>
 	rdf:type bf:Question ;
 	isoC:label "TEMP_VSORRES"^^xsd:string ;
 	bf:ordinal "20"^^xsd:integer ;
-	bf:note "Each test may be collected using the CDASH variable [TESTCD] e.g., SYSBP or [TESTCD]_VSORRES where TESTCD is the appropriate CT for the VS test code e.g., SYSBP_VSORRES. This CDASH variable name is an example of what \"variable name\" can be used in a denormalized data structure."^^xsd:string ;
+	bf:note "\n\nPrompt:\n\n[VSTEST] (Result)\n\nImplementation Notes:\n\nEach test may be collected using the CDASH variable [TESTCD] e.g., SYSBP or [TESTCD]_VSORRES where TESTCD is the appropriate CT for the VS test code e.g., SYSBP_VSORRES. This CDASH variable name is an example of what \"variable name\" can be used in a denormalized data structure.\n\nMapping Instructions:\n\nMaps directly to the SDTMIG variable listed in the column with the heading SDTMIG Target. In addition to the SDTMIG variable VSORRES, create VSTESTCD from the CDASH variable name and determine the value of VSTEST from VSTESTCD. The CDASH prompt may also contain the VSTEST. Use appropriate CDISC Controlled Terminology for the test and test code.\n\nCdash:\n\nTEMP_VSORRES"^^xsd:string ;
 	bf:completion "Record the vital sign results."^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
@@ -608,21 +608,21 @@
 	bf:mapping "[NO MAPPING]"^^xsd:string ;
 	bf:questionText "What was the result of the temperature measurement?"^^xsd:string ;
 .
-<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_36ca869b-c3e8-47e5-a4dd-bef557292cc4>
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_b9999a94-3c2b-497d-8d9c-6a85fcbe54a6>
 	rdf:type bf:Question ;
 	isoC:label "TEMP_VSORRESU"^^xsd:string ;
 	bf:ordinal "21"^^xsd:integer ;
-	bf:note "A single Unit field can be collected once for all measurements collected on the same horizontal record using VSUNIT. The value of VSUNIT applies to all measurements on that record when mapped to SDTM. If needed for each measurement, unit may be collected using the CDASH variable [VSTESTCD]_VSSTAT. Should be preprinted on the CRF with the associated test when possible, rather than collected in a field that requires the site to enter text."^^xsd:string ;
+	bf:note "\n\nPrompt:\n\n[VSTEST] Unit\n\nImplementation Notes:\n\nA single Unit field can be collected once for all measurements collected on the same horizontal record using VSUNIT. The value of VSUNIT applies to all measurements on that record when mapped to SDTM. If needed for each measurement, unit may be collected using the CDASH variable [VSTESTCD]_VSSTAT. Should be preprinted on the CRF with the associated test when possible, rather than collected in a field that requires the site to enter text.\n\nMapping Instructions:\n\nMaps directly to the SDTMIG variable listed in the column with the heading SDTMIG Target.\n\nCdash:\n\nTEMP_VSORRESU"^^xsd:string ;
 	bf:completion "Record or select the original unit in which these data were collected, if not preprinted on CRF."^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "4"^^xsd:string ;
 	bf:mapping "[NO MAPPING]"^^xsd:string ;
 	bf:questionText "What was the unit of the Temperature Unit measurement?"^^xsd:string ;
-	bf:hasCodedValue <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_36ca869b-c3e8-47e5-a4dd-bef557292cc4_TUC1> ;
-	bf:hasCodedValue <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_36ca869b-c3e8-47e5-a4dd-bef557292cc4_TUC2> ;
+	bf:hasCodedValue <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_b9999a94-3c2b-497d-8d9c-6a85fcbe54a6_TUC1> ;
+	bf:hasCodedValue <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_b9999a94-3c2b-497d-8d9c-6a85fcbe54a6_TUC2> ;
 .
-<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_36ca869b-c3e8-47e5-a4dd-bef557292cc4_TUC1>
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_b9999a94-3c2b-497d-8d9c-6a85fcbe54a6_TUC1>
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -632,7 +632,7 @@
 	bo:context <http://www.cdisc.org/C66770/V59#C66770> ;
 	bo:localLabel "Degree Celsius"^^xsd:string ;
 .
-<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_36ca869b-c3e8-47e5-a4dd-bef557292cc4_TUC2>
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_b9999a94-3c2b-497d-8d9c-6a85fcbe54a6_TUC2>
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -642,23 +642,23 @@
 	bo:context <http://www.cdisc.org/C66770/V59#C66770> ;
 	bo:localLabel "Degree Fahrenheit"^^xsd:string ;
 .
-<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_f8bceb1c-9754-42e5-9a97-a3e80b585a8c>
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_188741bd-8fe1-4d47-b8d0-3808d161c1dd>
 	rdf:type bf:Question ;
 	isoC:label "TEMP_VSLOC"^^xsd:string ;
 	bf:ordinal "22"^^xsd:integer ;
-	bf:note "Collected or preprinted when the sponsor needs to identify the specific anatomical location (e.g., ARM for blood pressure). Sponsors may collect the data using a subset list of controlled terminology on the CRF. In horizontal data collection, a CDASH variable [VSTESTCD]_VSLOC may be created for each VSTESTCD and added to the CRF, if needed. LAT, DIR, and PORTOT are used to further describe the anatomical location."^^xsd:string ;
+	bf:note "\n\nPrompt:\n\n[VSTEST] Anatomical Location\n\nImplementation Notes:\n\nCollected or preprinted when the sponsor needs to identify the specific anatomical location (e.g., ARM for blood pressure). Sponsors may collect the data using a subset list of controlled terminology on the CRF. In horizontal data collection, a CDASH variable [VSTESTCD]_VSLOC may be created for each VSTESTCD and added to the CRF, if needed. LAT, DIR, and PORTOT are used to further describe the anatomical location.\n\nMapping Instructions:\n\nMaps directly to the SDTMIG variable listed in the column with the heading SDTMIG Target.\n\nCdash:\n\nTEMP_VSLOC"^^xsd:string ;
 	bf:completion "Record or select location on body where measurement was performed, if not preprinted on CRF."^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "11"^^xsd:string ;
 	bf:mapping "[NO MAPPING]"^^xsd:string ;
 	bf:questionText "What was the anatomical location where the temperature was taken?"^^xsd:string ;
-	bf:hasCodedValue <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_f8bceb1c-9754-42e5-9a97-a3e80b585a8c_TUC1> ;
-	bf:hasCodedValue <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_f8bceb1c-9754-42e5-9a97-a3e80b585a8c_TUC2> ;
-	bf:hasCodedValue <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_f8bceb1c-9754-42e5-9a97-a3e80b585a8c_TUC3> ;
-	bf:hasCodedValue <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_f8bceb1c-9754-42e5-9a97-a3e80b585a8c_TUC4> ;
+	bf:hasCodedValue <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_188741bd-8fe1-4d47-b8d0-3808d161c1dd_TUC1> ;
+	bf:hasCodedValue <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_188741bd-8fe1-4d47-b8d0-3808d161c1dd_TUC2> ;
+	bf:hasCodedValue <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_188741bd-8fe1-4d47-b8d0-3808d161c1dd_TUC3> ;
+	bf:hasCodedValue <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_188741bd-8fe1-4d47-b8d0-3808d161c1dd_TUC4> ;
 .
-<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_f8bceb1c-9754-42e5-9a97-a3e80b585a8c_TUC1>
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_188741bd-8fe1-4d47-b8d0-3808d161c1dd_TUC1>
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -668,7 +668,7 @@
 	bo:context <http://www.cdisc.org/C74456/V68#C74456> ;
 	bo:localLabel "Axilla"^^xsd:string ;
 .
-<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_f8bceb1c-9754-42e5-9a97-a3e80b585a8c_TUC2>
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_188741bd-8fe1-4d47-b8d0-3808d161c1dd_TUC2>
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -678,7 +678,7 @@
 	bo:context <http://www.cdisc.org/C74456/V68#C74456> ;
 	bo:localLabel "Ear"^^xsd:string ;
 .
-<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_f8bceb1c-9754-42e5-9a97-a3e80b585a8c_TUC3>
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_188741bd-8fe1-4d47-b8d0-3808d161c1dd_TUC3>
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
@@ -688,7 +688,7 @@
 	bo:context <http://www.cdisc.org/C74456/V68#C74456> ;
 	bo:localLabel "Forehead"^^xsd:string ;
 .
-<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_f8bceb1c-9754-42e5-9a97-a3e80b585a8c_TUC4>
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_188741bd-8fe1-4d47-b8d0-3808d161c1dd_TUC4>
 	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
