@@ -131,8 +131,9 @@ class Form
       }     
       query_results = Sparql::Query.new.query(query_string, "", [:bf, :bo, :bd, :bc, :isoC])
       triples = query_results.by_object_set([:item, :domain_prefix, :sdtm_var_name, :domain_long_name])
+      domain_var_prefixed = domain_list_prefixed + domain_list_prefixed_2
       triples.each do |entry|
-        add_annotation(entry)
+        add_annotation(entry) if domain_var_prefixed.include? entry[:domain_prefix]
       end
     end
 
@@ -149,6 +150,58 @@ class Form
         domain_long_name = a.domain_long_name
         @domain_list[domain_prefix] = {long_name: domain_long_name} if !@domain_list.key?(domain_prefix)
       end
+    end
+
+    def domain_list_prefixed
+      query_string = %Q{         
+        SELECT DISTINCT ?domain_prefix WHERE 
+        {
+          ?col bd:name ?sdtm_var_name .
+          ?dataset bd:includesColumn ?col .
+          ?dataset bd:prefix ?domain_prefix .
+          ?col bd:basedOnClassVariable|bd:basedOnIgVariable/bd:basedOnClassVariable ?class_variable .
+          ?class_variable bd:prefixed "true"^^xsd:boolean
+          { 
+            SELECT ?sdtm_var_name WHERE
+            { 
+              #{@form.uri.to_ref} bf:hasGroup/bf:hasSubGroup* ?group .                                                         
+              ?group (bf:hasItem)+ ?item .
+              ?item bf:mapping ?sdtm_var_name .
+            }
+          }
+        } 
+      }     
+      query_results = Sparql::Query.new.query(query_string, "", [:bf, :bd])
+      query_results.by_object(:domain_prefix)
+    end
+
+    def domain_list_prefixed_2
+      query_string = %Q{
+        SELECT ?domain_prefix WHERE              
+        {                    
+          ?sdtm_domain bd:prefix ?domain_prefix .                                         
+          ?sdtm_domain isoC:label ?domain_long_name .           
+          {                                  
+            SELECT ?sdtm_domain WHERE                  
+            {                           
+              #{@form.uri.to_ref} bf:hasGroup/bf:hasSubGroup* ?group .                                                                         
+              ?group bf:hasItem ?item .
+              ?item bf:hasProperty ?op_ref1 .
+              ?group bf:hasItem/bf:hasProperty ?op_ref1 .                                                     
+              ?op_ref1 bo:reference ?bc_property .               
+              ?bc_property bc:isA ?ref .                                                     
+              ?sdtm_domain_var bd:isA ?ref .                                                     
+              ?sdtm_domain_var bd:name ?sdtm_var_name .           
+              ?sdtm_domain bd:includesColumn ?sdtm_domain_var .                                   
+              ?sdtm_domain ^bo:theSubject ?assoc .                                  
+              ?bc_root ^bo:associatedWith ?assoc .                                  
+              ?bc_root (bc:hasItem/bc:hasComplexDatatype/bc:hasProperty) ?bc_property .         
+            }                              
+          }                          
+        } 
+      }   
+      query_results = Sparql::Query.new.query(query_string, "", [:bf, :bo, :bd, :bc, :isoC])
+      triples = query_results.by_object(:domain_prefix)
     end
 
   end
