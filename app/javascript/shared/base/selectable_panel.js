@@ -41,6 +41,14 @@ export default class SelectablePanel extends TablePanel {
   }
 
   /**
+   * Set the multiple select option
+   * @param {boolean} multiple True if multiple selection enable, false if single selection enable
+   */
+  setMultiple(multiple) {
+    this.table.select.style( multiple ? 'multi' : 'single' )
+  }
+
+  /**
    * Enables row selection for the user
    */
   enableSelect() { 
