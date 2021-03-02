@@ -149,6 +149,30 @@ export default class PickerPanelHelper {
 
 
   /**
+   * Get data url based on panel options and type 
+   * @param {object} options Picker Panel options object containing its id and type definitions
+   * @param {object | undefined} data Data object of item to build the url for (not required for index url)
+   * @return {string | undefined} Panel data url, undefined if data in wrong format  
+   */
+  static dataUrl(options, data) {
+
+    switch( options.id ) {
+
+      case 'index':
+        return this.indexUrl( options )
+
+      case 'history':
+        return this.historyUrl( options, data )
+
+      case 'children':
+        return this.childrenUrl( options, data )
+
+    }
+
+  }
+
+
+  /**
    * Get index data url based on panel options 
    * @param {object} options Picker Panel options object containing its id and type definitions
    * @return {string} Index data url 
