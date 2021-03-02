@@ -22,7 +22,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2021-03-02T19:25:41+01:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2021-03-02T19:42:07+01:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bc:hasItem :BCI_BCI1 ;
 	bc:hasItem :BCI_BCI2 ;
@@ -90,7 +90,7 @@
 	bo:optional "true"^^xsd:boolean ;
 	bo:ordinal "1"^^xsd:positiveInteger ;
 	bo:reference <http://www.cdisc.org/C66741/V4#C66741_C49677> ;
-	bo:context <http://www.cdisc.org/C66741/V61#C66741> ;
+	bo:context <http://www.cdisc.org/C66741/V66#C66741> ;
 	bo:localLabel ""^^xsd:string ;
 .
 :BCI_BCI2
@@ -178,7 +178,7 @@
 	bo:optional "true"^^xsd:boolean ;
 	bo:ordinal "1"^^xsd:positiveInteger ;
 	bo:reference <http://www.cdisc.org/C71148/V62#C71148_C62166> ;
-	bo:context <http://www.cdisc.org/C71148/V62#C71148> ;
+	bo:context <http://www.cdisc.org/C71148/V66#C71148> ;
 	bo:localLabel ""^^xsd:string ;
 .
 :BCI_BCI4_BCCDTCD_BCPcode_TUC2
@@ -188,7 +188,7 @@
 	bo:optional "true"^^xsd:boolean ;
 	bo:ordinal "2"^^xsd:positiveInteger ;
 	bo:reference <http://www.cdisc.org/C71148/V6#C71148_C62122> ;
-	bo:context <http://www.cdisc.org/C71148/V62#C71148> ;
+	bo:context <http://www.cdisc.org/C71148/V66#C71148> ;
 	bo:localLabel ""^^xsd:string ;
 .
 :BCI_BCI4_BCCDTCD_BCPcode_TUC3
@@ -198,7 +198,7 @@
 	bo:optional "true"^^xsd:boolean ;
 	bo:ordinal "3"^^xsd:positiveInteger ;
 	bo:reference <http://www.cdisc.org/C71148/V6#C71148_C62167> ;
-	bo:context <http://www.cdisc.org/C71148/V62#C71148> ;
+	bo:context <http://www.cdisc.org/C71148/V66#C71148> ;
 	bo:localLabel ""^^xsd:string ;
 .
 :BCI_BCI5
@@ -234,7 +234,7 @@
 	bo:optional "true"^^xsd:boolean ;
 	bo:ordinal "1"^^xsd:positiveInteger ;
 	bo:reference <http://www.cdisc.org/C74456/V58#C74456_C32141> ;
-	bo:context <http://www.cdisc.org/C74456/V62#C74456> ;
+	bo:context <http://www.cdisc.org/C74456/V68#C74456> ;
 	bo:localLabel ""^^xsd:string ;
 .
 :BCI_BCI6

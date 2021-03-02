@@ -22,7 +22,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2021-03-02T19:25:36+01:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2021-03-02T19:42:02+01:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bc:hasItem :BCI_BCI1 ;
 	bc:hasItem :BCI_BCI2 ;
@@ -90,7 +90,7 @@
 	bo:optional "true"^^xsd:boolean ;
 	bo:ordinal "1"^^xsd:positiveInteger ;
 	bo:reference <http://www.cdisc.org/C65047/V62#C65047_C64849> ;
-	bo:context <http://www.cdisc.org/C65047/V62#C65047> ;
+	bo:context <http://www.cdisc.org/C65047/V68#C65047> ;
 	bo:localLabel ""^^xsd:string ;
 .
 :BCI_BCI2
@@ -338,7 +338,7 @@
 	bo:optional "true"^^xsd:boolean ;
 	bo:ordinal "1"^^xsd:positiveInteger ;
 	bo:reference <http://www.cdisc.org/C71620/V50#C71620_C25613> ;
-	bo:context <http://www.cdisc.org/C71620/V62#C71620> ;
+	bo:context <http://www.cdisc.org/C71620/V68#C71620> ;
 	bo:localLabel ""^^xsd:string ;
 .
 :BCI_BCI10_BCCDTPQR_BCPcode_TUC2
@@ -348,6 +348,6 @@
 	bo:optional "true"^^xsd:boolean ;
 	bo:ordinal "2"^^xsd:positiveInteger ;
 	bo:reference <http://www.cdisc.org/C71620/V61#C71620_C111253> ;
-	bo:context <http://www.cdisc.org/C71620/V62#C71620> ;
+	bo:context <http://www.cdisc.org/C71620/V68#C71620> ;
 	bo:localLabel ""^^xsd:string ;
 .

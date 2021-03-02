@@ -22,7 +22,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2021-03-02T19:25:42+01:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2021-03-02T19:42:09+01:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bc:hasItem :BCI_BCI1 ;
 	bc:hasItem :BCI_BCI2 ;
@@ -90,7 +90,7 @@
 	bo:optional "true"^^xsd:boolean ;
 	bo:ordinal "1"^^xsd:positiveInteger ;
 	bo:reference <http://www.cdisc.org/C66741/V55#C66741_C147492> ;
-	bo:context <http://www.cdisc.org/C66741/V61#C66741> ;
+	bo:context <http://www.cdisc.org/C66741/V66#C66741> ;
 	bo:localLabel ""^^xsd:string ;
 .
 :BCI_BCI2
@@ -191,7 +191,7 @@
 	bo:optional "true"^^xsd:boolean ;
 	bo:ordinal "1"^^xsd:positiveInteger ;
 	bo:reference <http://www.cdisc.org/C71148/V36#C71148_C77532> ;
-	bo:context <http://www.cdisc.org/C71148/V62#C71148> ;
+	bo:context <http://www.cdisc.org/C71148/V66#C71148> ;
 	bo:localLabel ""^^xsd:string ;
 .
 :BCI_BCI4_BCCDTCD_BCPcode_TUC2
@@ -201,7 +201,7 @@
 	bo:optional "true"^^xsd:boolean ;
 	bo:ordinal "2"^^xsd:positiveInteger ;
 	bo:reference <http://www.cdisc.org/C71148/V6#C71148_C62173> ;
-	bo:context <http://www.cdisc.org/C71148/V62#C71148> ;
+	bo:context <http://www.cdisc.org/C71148/V66#C71148> ;
 	bo:localLabel ""^^xsd:string ;
 .
 :BCI_BCI4_BCCDTCD_BCPcode_TUC3
@@ -211,7 +211,7 @@
 	bo:optional "true"^^xsd:boolean ;
 	bo:ordinal "3"^^xsd:positiveInteger ;
 	bo:reference <http://www.cdisc.org/C71148/V30#C71148_C100758> ;
-	bo:context <http://www.cdisc.org/C71148/V62#C71148> ;
+	bo:context <http://www.cdisc.org/C71148/V66#C71148> ;
 	bo:localLabel ""^^xsd:string ;
 .
 :BCI_BCI4_BCCDTCD_BCPcode_TUC4
@@ -221,7 +221,7 @@
 	bo:optional "true"^^xsd:boolean ;
 	bo:ordinal "4"^^xsd:positiveInteger ;
 	bo:reference <http://www.cdisc.org/C71148/V6#C71148_C62172> ;
-	bo:context <http://www.cdisc.org/C71148/V62#C71148> ;
+	bo:context <http://www.cdisc.org/C71148/V66#C71148> ;
 	bo:localLabel ""^^xsd:string ;
 .
 :BCI_BCI4_BCCDTCD_BCPcode_TUC5
@@ -231,7 +231,7 @@
 	bo:optional "true"^^xsd:boolean ;
 	bo:ordinal "5"^^xsd:positiveInteger ;
 	bo:reference <http://www.cdisc.org/C71148/V6#C71148_C62165> ;
-	bo:context <http://www.cdisc.org/C71148/V62#C71148> ;
+	bo:context <http://www.cdisc.org/C71148/V66#C71148> ;
 	bo:localLabel ""^^xsd:string ;
 .
 :BCI_BCI4_BCCDTCD_BCPcode_TUC6
@@ -241,7 +241,7 @@
 	bo:optional "true"^^xsd:boolean ;
 	bo:ordinal "6"^^xsd:positiveInteger ;
 	bo:reference <http://www.cdisc.org/C71148/V6#C71148_C62169> ;
-	bo:context <http://www.cdisc.org/C71148/V62#C71148> ;
+	bo:context <http://www.cdisc.org/C71148/V66#C71148> ;
 	bo:localLabel ""^^xsd:string ;
 .
 :BCI_BCI4_BCCDTCD_BCPcode_TUC7
@@ -251,7 +251,7 @@
 	bo:optional "true"^^xsd:boolean ;
 	bo:ordinal "7"^^xsd:positiveInteger ;
 	bo:reference <http://www.cdisc.org/C71148/V6#C71148_C62171> ;
-	bo:context <http://www.cdisc.org/C71148/V62#C71148> ;
+	bo:context <http://www.cdisc.org/C71148/V66#C71148> ;
 	bo:localLabel ""^^xsd:string ;
 .
 :BCI_BCI4_BCCDTCD_BCPcode_TUC8
@@ -261,7 +261,7 @@
 	bo:optional "true"^^xsd:boolean ;
 	bo:ordinal "8"^^xsd:positiveInteger ;
 	bo:reference <http://www.cdisc.org/C71148/V6#C71148_C62174> ;
-	bo:context <http://www.cdisc.org/C71148/V62#C71148> ;
+	bo:context <http://www.cdisc.org/C71148/V66#C71148> ;
 	bo:localLabel ""^^xsd:string ;
 .
 :BCI_BCI4_BCCDTCD_BCPcode_TUC9
@@ -271,7 +271,7 @@
 	bo:optional "true"^^xsd:boolean ;
 	bo:ordinal "9"^^xsd:positiveInteger ;
 	bo:reference <http://www.cdisc.org/C71148/V53#C71148_C111310> ;
-	bo:context <http://www.cdisc.org/C71148/V62#C71148> ;
+	bo:context <http://www.cdisc.org/C71148/V66#C71148> ;
 	bo:localLabel ""^^xsd:string ;
 .
 :BCI_BCI4_BCCDTCD_BCPcode_TUC10
@@ -281,7 +281,7 @@
 	bo:optional "true"^^xsd:boolean ;
 	bo:ordinal "10"^^xsd:positiveInteger ;
 	bo:reference <http://www.cdisc.org/C71148/V6#C71148_C62122> ;
-	bo:context <http://www.cdisc.org/C71148/V62#C71148> ;
+	bo:context <http://www.cdisc.org/C71148/V66#C71148> ;
 	bo:localLabel ""^^xsd:string ;
 .
 :BCI_BCI4_BCCDTCD_BCPcode_TUC11
@@ -291,7 +291,7 @@
 	bo:optional "true"^^xsd:boolean ;
 	bo:ordinal "11"^^xsd:positiveInteger ;
 	bo:reference <http://www.cdisc.org/C71148/V56#C71148_C150885> ;
-	bo:context <http://www.cdisc.org/C71148/V62#C71148> ;
+	bo:context <http://www.cdisc.org/C71148/V66#C71148> ;
 	bo:localLabel ""^^xsd:string ;
 .
 :BCI_BCI4_BCCDTCD_BCPcode_TUC12
@@ -301,7 +301,7 @@
 	bo:optional "true"^^xsd:boolean ;
 	bo:ordinal "12"^^xsd:positiveInteger ;
 	bo:reference <http://www.cdisc.org/C71148/V26#C71148_C92604> ;
-	bo:context <http://www.cdisc.org/C71148/V62#C71148> ;
+	bo:context <http://www.cdisc.org/C71148/V66#C71148> ;
 	bo:localLabel ""^^xsd:string ;
 .
 :BCI_BCI4_BCCDTCD_BCPcode_TUC13
@@ -311,7 +311,7 @@
 	bo:optional "true"^^xsd:boolean ;
 	bo:ordinal "13"^^xsd:positiveInteger ;
 	bo:reference <http://www.cdisc.org/C71148/V62#C71148_C62166> ;
-	bo:context <http://www.cdisc.org/C71148/V62#C71148> ;
+	bo:context <http://www.cdisc.org/C71148/V66#C71148> ;
 	bo:localLabel ""^^xsd:string ;
 .
 :BCI_BCI4_BCCDTCD_BCPcode_TUC14
@@ -321,7 +321,7 @@
 	bo:optional "true"^^xsd:boolean ;
 	bo:ordinal "14"^^xsd:positiveInteger ;
 	bo:reference <http://www.cdisc.org/C71148/V6#C71148_C62167> ;
-	bo:context <http://www.cdisc.org/C71148/V62#C71148> ;
+	bo:context <http://www.cdisc.org/C71148/V66#C71148> ;
 	bo:localLabel ""^^xsd:string ;
 .
 :BCI_BCI4_BCCDTCD_BCPcode_TUC15
@@ -331,7 +331,7 @@
 	bo:optional "true"^^xsd:boolean ;
 	bo:ordinal "15"^^xsd:positiveInteger ;
 	bo:reference <http://www.cdisc.org/C71148/V6#C71148_C62168> ;
-	bo:context <http://www.cdisc.org/C71148/V62#C71148> ;
+	bo:context <http://www.cdisc.org/C71148/V66#C71148> ;
 	bo:localLabel ""^^xsd:string ;
 .
 :BCI_BCI4_BCCDTCD_BCPcode_TUC16
@@ -341,7 +341,7 @@
 	bo:optional "true"^^xsd:boolean ;
 	bo:ordinal "16"^^xsd:positiveInteger ;
 	bo:reference <http://www.cdisc.org/C71148/V26#C71148_C90480> ;
-	bo:context <http://www.cdisc.org/C71148/V62#C71148> ;
+	bo:context <http://www.cdisc.org/C71148/V66#C71148> ;
 	bo:localLabel ""^^xsd:string ;
 .
 :BCI_BCI5

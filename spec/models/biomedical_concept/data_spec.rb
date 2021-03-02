@@ -11,12 +11,12 @@ describe BiomedicalConcept do
 
   before :all do
     load_files(schema_files, ["hackathon_thesaurus.ttl"])
-    load_cdisc_term_versions(1..62)
+    load_cdisc_term_versions(1..68)
     load_data_file_into_triple_store("mdr_identification.ttl")
     load_data_file_into_triple_store("canonical_references.ttl")
     load_data_file_into_triple_store("complex_datatypes.ttl")
     @cdt_set = {}
-    @ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V62#TH"))
+    @ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V68#TH"))
     @ht = Thesaurus.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/CT/V1#TH"))
   end
 
@@ -166,11 +166,12 @@ describe BiomedicalConcept do
   end
 
   it "create instances, by domain" do
+    write_file = false
     load_local_file_into_triple_store(sub_dir, "biomedical_concept_templates.ttl")
     ["ae", "dm", "eg", "lb", "vs"].each do |dir|
       filenames = dir_file_list("#{sub_dir}/#{dir}", "*.yaml")
       filenames.each do |f|
-        generate_instances("#{sub_dir}/#{dir}", f, false)
+        generate_instances("#{sub_dir}/#{dir}", f, write_file)
       end
     end
   end
