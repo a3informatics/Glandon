@@ -1,6 +1,7 @@
 import ModalView from 'shared/base/modal_view'
 import TabsLayout from 'shared/ui/tabs_layout'
 
+import SelectionHandler from './selection_handler'
 import IPHelper from './support/ip_helper'
 import IPRenderer from './support/ip_renderer'
 
@@ -54,10 +55,11 @@ export default class ItemsPicker extends ModalView {
     })
 
     Object.assign( this, {
+      selectionHandler: new SelectionHandler({ selector: this.selector, multiple }),
       buttons, 
       strings: {
-        description: description || this.defaultStrings.description,
-        submit: submitText || this.defaultStrings.submit
+        description: description || IPRenderer.defaults.description,
+        submit: submitText || IPRenderer.defaults.submit
       },
       options: {
         multiple, submitEmpty, hideOnSubmit 
@@ -356,23 +358,6 @@ export default class ItemsPicker extends ModalView {
    */
   get _Renderer() {
     return this._config.renderer
-  }
-
-
-  /*** Defaults ***/
-
-
-  /**
-   * Get the default values for various prompts in the Picker 
-   * @return {object} Default string values
-   */
-  get defaultStrings() {
-
-    return {
-      description: 'To proceed, select one or more items',
-      submit: 'Submit and proceed'
-    }
-
   }
 
 }
