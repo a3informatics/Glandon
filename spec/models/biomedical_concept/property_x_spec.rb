@@ -74,8 +74,8 @@ describe BiomedicalConcept::PropertyX do
     before :each do
       load_files(schema_files, [])
       load_data_file_into_triple_store("mdr_identification.ttl")
-      load_data_file_into_triple_store("biomedical_concept_templates.ttl")
-      load_data_file_into_triple_store("biomedical_concept_instances.ttl")
+      load_bc_template_and_instances
+      #load_data_file_into_triple_store("biomedical_concept_instances.ttl")
       @uri_p = Uri.new(uri: "http://www.s-cubed.dk/BMI/V1#BCI_BCI1_BCCDTCD_BCPcode")
       @property = BiomedicalConcept::PropertyX.find(@uri_p)
     end
@@ -92,8 +92,8 @@ describe BiomedicalConcept::PropertyX do
     before :each do
       load_files(schema_files, [])
       load_data_file_into_triple_store("mdr_identification.ttl")
-      load_data_file_into_triple_store("biomedical_concept_templates.ttl")
-      load_data_file_into_triple_store("biomedical_concept_instances.ttl")
+      load_bc_template_and_instances
+      #load_data_file_into_triple_store("biomedical_concept_instances.ttl")
       @uri_p = Uri.new(uri: "http://www.s-cubed.dk/BMI/V1#BCI_BCI1_BCCDTCD_BCPcode")
       @property = BiomedicalConcept::PropertyX.find(@uri_p)
     end
@@ -156,8 +156,8 @@ describe BiomedicalConcept::PropertyX do
     before :each do
       load_files(schema_files, [])
       load_data_file_into_triple_store("mdr_identification.ttl")
-      #load_data_file_into_triple_store("biomedical_concept_templates.ttl")
-      #load_data_file_into_triple_store("biomedical_concept_instances.ttl")
+      #load_bc_template_and_instances
+      ##load_data_file_into_triple_store("biomedical_concept_instances.ttl")
       load_cdisc_term_versions(1..10)
     end
 
@@ -216,8 +216,7 @@ describe BiomedicalConcept::PropertyX do
     before :each do
       load_files(schema_files, [])
       load_data_file_into_triple_store("mdr_identification.ttl")
-      load_data_file_into_triple_store("biomedical_concept_templates.ttl")
-      load_data_file_into_triple_store("biomedical_concept_instances.ttl")
+      load_bc_template_and_instances
     end
 
     it "finds managed ancestors, single" do

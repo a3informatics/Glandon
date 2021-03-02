@@ -588,8 +588,8 @@ puts "Extra:    #{uri_result.sort - diff.sort}"
       load_files(schema_files, [])
       load_cdisc_term_versions(1..59)
       load_data_file_into_triple_store("mdr_identification.ttl")
-      load_data_file_into_triple_store("biomedical_concept_templates.ttl")
-      load_data_file_into_triple_store("biomedical_concept_instances.ttl")
+      load_bc_template_and_instances
+      #load_data_file_into_triple_store("biomedical_concept_instances.ttl")
     end
 
     

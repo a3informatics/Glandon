@@ -17,7 +17,7 @@ describe "Token Locks", :type => :feature do
     load_cdisc_term_versions(1..65)
     load_local_file_into_triple_store("features/thesaurus/subset", "subsets_input_4.ttl")
     load_data_file_into_triple_store("mdr_identification.ttl")
-    load_data_file_into_triple_store("biomedical_concept_instances.ttl")
+    #load_data_file_into_triple_store("biomedical_concept_instances.ttl")
     load_test_file_into_triple_store("forms/CRF TEST 1.ttl")
 
     # SDTM Files 

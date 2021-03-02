@@ -51,8 +51,8 @@ describe BiomedicalConceptInstance do
       load_files(schema_files, [])
       load_cdisc_term_versions(1..62)
       load_data_file_into_triple_store("mdr_identification.ttl")
-      load_data_file_into_triple_store("biomedical_concept_templates.ttl")
-      load_data_file_into_triple_store("biomedical_concept_instances.ttl")
+      load_bc_template_and_instances
+      #load_data_file_into_triple_store("biomedical_concept_instances.ttl")
     end
 
     it "allows a BC to be found" do
@@ -87,7 +87,7 @@ describe BiomedicalConceptInstance do
     before :all do
       load_files(schema_files, [])
       load_data_file_into_triple_store("mdr_identification.ttl")
-      load_data_file_into_triple_store("biomedical_concept_templates.ttl")
+      load_bc_template_and_instances
       load_data_file_into_triple_store("complex_datatypes.ttl")
     end
 
@@ -119,8 +119,8 @@ describe BiomedicalConceptInstance do
     before :each do
       load_files(schema_files, [])
       load_data_file_into_triple_store("mdr_identification.ttl")
-      load_data_file_into_triple_store("biomedical_concept_templates.ttl")
-      load_data_file_into_triple_store("biomedical_concept_instances.ttl")
+      load_bc_template_and_instances
+      #load_data_file_into_triple_store("biomedical_concept_instances.ttl")
     end
 
     it "update, no clone, no errors" do
@@ -229,8 +229,8 @@ describe BiomedicalConceptInstance do
     before :each do
       load_files(schema_files, [])
       load_data_file_into_triple_store("mdr_identification.ttl")
-      load_data_file_into_triple_store("biomedical_concept_templates.ttl")
-      load_data_file_into_triple_store("biomedical_concept_instances.ttl")
+      load_bc_template_and_instances
+      #load_data_file_into_triple_store("biomedical_concept_instances.ttl")
       load_cdisc_term_versions(1..10)
     end
 
@@ -265,8 +265,8 @@ describe BiomedicalConceptInstance do
     before :each do
       load_files(schema_files, [])
       load_data_file_into_triple_store("mdr_identification.ttl")
-      load_data_file_into_triple_store("biomedical_concept_templates.ttl")
-      load_data_file_into_triple_store("biomedical_concept_instances.ttl")
+      load_bc_template_and_instances
+      #load_data_file_into_triple_store("biomedical_concept_instances.ttl")
     end
 
     it "clone" do
@@ -283,8 +283,8 @@ describe BiomedicalConceptInstance do
       load_files(schema_files, [])
       load_cdisc_term_versions(1..62)
       load_data_file_into_triple_store("mdr_identification.ttl")
-      load_data_file_into_triple_store("biomedical_concept_templates.ttl")
-      load_data_file_into_triple_store("biomedical_concept_instances.ttl")
+      load_bc_template_and_instances
+      #load_data_file_into_triple_store("biomedical_concept_instances.ttl")
     end
 
     it "allows an object to be exported as SPARQL" do
@@ -318,8 +318,8 @@ describe BiomedicalConceptInstance do
     before :all do
       load_files(schema_files, [])
       load_data_file_into_triple_store("mdr_identification.ttl")
-      load_data_file_into_triple_store("biomedical_concept_templates.ttl")
-      load_data_file_into_triple_store("biomedical_concept_instances.ttl")
+      load_bc_template_and_instances
+      #load_data_file_into_triple_store("biomedical_concept_instances.ttl")
     end
 
     it "dependency paths" do

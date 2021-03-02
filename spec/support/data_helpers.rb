@@ -104,6 +104,16 @@ module DataHelpers
     load_cdisc_term_versions(CdiscCtHelpers.version_range)
   end
 
+  def load_bc_template_and_instances
+    load_bc_template_and_instances
+    ["ae", "dm", "eg", "lb", "vs"].each do |dir|
+      filenames = dir_file_list("#{sub_dir}/#{dir}", "*.ttl")
+      filenames.each do |f|
+        load_data_file_into_triple_store("bc/#{dir}", f)
+      end
+    end
+  end
+
   def load_file_into_triple_store(full_path)
     i = 0
     begin

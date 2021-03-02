@@ -141,6 +141,7 @@ describe BiomedicalConcept do
   end
 
   it "create templates" do
+    write_file = false
     results = []
     templates = read_yaml_file(sub_dir, "templates.yaml")
     templates.each do |template|
@@ -158,7 +159,10 @@ describe BiomedicalConcept do
     sparql.default_namespace(results.first.uri.namespace)
     results.each{|x| x.to_sparql(sparql, true)}
     full_path = sparql.to_file
-  #Xcopy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "biomedical_concept_templates.ttl")
+    if write_file
+      file_write_warning
+      copy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "biomedical_concept_templates.ttl")
+    end
   end
 
   it "create instances, by domain" do
@@ -166,16 +170,21 @@ describe BiomedicalConcept do
     ["ae", "dm", "eg", "lb", "vs"].each do |dir|
       filenames = dir_file_list("#{sub_dir}/#{dir}", "*.yaml")
       filenames.each do |f|
-        generate_instances("#{sub_dir}/#{dir}", f, true)
+        generate_instances("#{sub_dir}/#{dir}", f, false)
       end
     end
   end
 
   it "check data" do
     load_local_file_into_triple_store(sub_dir, "biomedical_concept_templates.ttl")
-    load_local_file_into_triple_store(sub_dir, "biomedical_concept_instances.ttl")
+    ["ae", "dm", "eg", "lb", "vs"].each do |dir|
+      filenames = dir_file_list("#{sub_dir}/#{dir}", "*.ttl")
+      filenames.each do |f|
+        load_local_file_into_triple_store("#{sub_dir}/#{dir}", f)
+      end
+    end
     expect(BiomedicalConceptTemplate.unique.count).to eq(6)
-    expect(BiomedicalConceptInstance.unique.count).to eq(14)
+    expect(BiomedicalConceptInstance.unique.count).to eq(54)
   end
 
 end
