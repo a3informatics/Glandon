@@ -113,6 +113,33 @@ describe BiomedicalConcept do
     property
   end
 
+  def generate_instances(the_sub_dir, filename, write_file=false)
+    results = []
+    instances = read_yaml_file(the_sub_dir, filename)
+    instances.each do |instance|
+      template = BiomedicalConceptTemplate.find_full(Uri.new(uri: instance[:based_on]))
+      object = BiomedicalConceptInstance.new(label: instance[:label])
+      object.based_on = template.uri
+      id_item = create_item(instance[:identified_by], 1, template)
+      object.has_item_push(id_item)
+      object.identified_by = id_item
+      instance[:has_items].each_with_index do |item, index| 
+        object.has_item_push(create_item(item, index+2, template))
+      end
+      #puts "Obj Final Alias=#{object.to_h[:has_item].map{|z| z[:has_complex_datatype].map{|x| x[:has_property].map{|y| y[:alias]}}}}"
+      object.set_initial(instance[:identifier])
+      results << object
+    end
+    sparql = Sparql::Update.new
+    sparql.default_namespace(results.first.uri.namespace)
+    results.each{|x| x.to_sparql(sparql, true)}
+    full_path = sparql.to_file
+    if write_file
+      file_write_warning
+      copy_file_from_public_files_rename("test", File.basename(full_path), the_sub_dir, "#{File.basename(filename, '.yaml')}.ttl")
+    end
+  end
+
   it "create templates" do
     results = []
     templates = read_yaml_file(sub_dir, "templates.yaml")
@@ -136,27 +163,12 @@ describe BiomedicalConcept do
 
   it "create instances" do
     load_local_file_into_triple_store(sub_dir, "biomedical_concept_templates.ttl")
-    results = []
-    instances = read_yaml_file(sub_dir, "instances.yaml")
-    instances.each do |instance|
-      template = BiomedicalConceptTemplate.find_full(Uri.new(uri: instance[:based_on]))
-      object = BiomedicalConceptInstance.new(label: instance[:label])
-      object.based_on = template.uri
-      id_item = create_item(instance[:identified_by], 1, template)
-      object.has_item_push(id_item)
-      object.identified_by = id_item
-      instance[:has_items].each_with_index do |item, index| 
-        object.has_item_push(create_item(item, index+2, template))
+    ["vs"].each do |dir|
+      filenames = dir_file_list("#{sub_dir}/#{dir}", "*.yaml")
+      filenames.each do |f|
+        generate_instances("#{sub_dir}/#{dir}", f, true)
       end
-      #puts "Obj Final Alias=#{object.to_h[:has_item].map{|z| z[:has_complex_datatype].map{|x| x[:has_property].map{|y| y[:alias]}}}}"
-      object.set_initial(instance[:identifier])
-      results << object
     end
-    sparql = Sparql::Update.new
-    sparql.default_namespace(results.first.uri.namespace)
-    results.each{|x| x.to_sparql(sparql, true)}
-    full_path = sparql.to_file
-  #Xcopy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "biomedical_concept_instances.ttl")
   end
 
   it "check data" do

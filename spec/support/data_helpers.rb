@@ -121,11 +121,15 @@ module DataHelpers
     write_file = args[:write_file] ? args[:write_file] : false
     equate_method = args[:equate_method] ? args[:equate_method] : :eq
     if args[:write_file]
-      puts colourize("***** WARNING: Writing Results File *****", "red")
+      file_write_warning
       write_yaml_file(actual, sub_dir, filename)
     end
     expected = read_yaml_file(sub_dir, filename)
     expect(actual).to self.send(equate_method, expected)
+  end
+
+  def file_write_warning
+    puts colourize("***** WARNING: Writing Results File *****", "red")
   end
 
   def read_yaml_file_to_hash(filename)
@@ -272,6 +276,10 @@ module DataHelpers
   def set_path(sub_dir, filename)
     return Rails.root.join "spec/fixtures/files/#{sub_dir}/#{filename}"
   end
+
+  def dir_file_list(sub_dir, filter="*.*")
+    Dir.glob("#{Rails.root}/spec/fixtures/files/#{sub_dir}/#{filter}").map{ |s| File.basename(s) }
+  end    
 
   # Set this to false for tests that require ActiveRecord persistence in the database across multiple tests.
   # Use in before :all and after :all (don't forget to set back to true at the end)
