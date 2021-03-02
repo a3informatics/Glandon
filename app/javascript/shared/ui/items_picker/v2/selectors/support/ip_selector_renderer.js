@@ -34,7 +34,7 @@ export default class IPSRenderer {
             id: 'history' 
           })
 
-    this.content.html( browseCard.add( historyCard ) )
+    this.content.html([ browseCard, historyCard ])
 
   }
 
@@ -90,25 +90,20 @@ export default class IPSRenderer {
    */
   _card({ name, id, hidden = false }) {
 
-    const card =    $( '<div>' ).addClass( 'col-md-6 card wide' )
-                                .prop( 'id', IPHelper.cardId(id) )
-                                .prop( 'hidden', hidden ),
-
-          content = $( '<div>' ).addClass( 'card-content' )
-                                .append( this._table(id) ),
-
-          title =   $( '<div>' ).addClass( 'ci-card-title text-xnormal text-link' )
-                                .text( name ),
+    const card = $( '<div>' ).addClass( 'col-md-6 card wide' )
+                             .prop( 'id', IPHelper.cardId(id) )
+                             .prop( 'hidden', hidden ),
 
           subtitle = $( '<span>' ).addClass( 'ip-card-subtitle text-medium text-xtiny' )
-                                  .css( 'margin', '0 10px' )
-                          
+                                  .css( 'margin', '0 10px' ),
 
-    title.append( subtitle )
-    content.prepend( title )
-    card.append( content )
+          title = $( '<div>' ).addClass( 'ci-card-title text-xnormal text-link' )
+                              .append([ name, subtitle ]),
 
-    return card                       
+          content = $( '<div>' ).addClass( 'card-content' )
+                                .append([ title, this._table(id) ])
+                        
+    return card.append( content )                       
 
   }
 

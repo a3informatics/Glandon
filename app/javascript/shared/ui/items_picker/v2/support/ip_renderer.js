@@ -113,7 +113,7 @@ export default class IPRenderer {
    */
   _tabOption(type) {
 
-    const { rdfType, name, param } = type 
+    const { rdfType, name } = type 
 
     const id = IPHelper.typeToTabId( type ),
           tabName = this._pluralize( name ),
@@ -121,8 +121,7 @@ export default class IPRenderer {
           
     return $( '<div>' ).addClass( 'tab-option with-icon no-badge')
                        .prop( 'id', id )
-                       .text( tabName )
-                       .prepend( icon )
+                       .append([ icon, tabName ])
 
   }
 
@@ -174,6 +173,20 @@ export default class IPRenderer {
       return 'Terminologies'
     else 
       return name + 's'
+
+  }
+
+
+  /**
+   * Get the default values for various prompts in the Picker 
+   * @return {object} Default string values
+   */
+  static get defaults() {
+
+    return {
+      description: 'To proceed, select one or more items',
+      submit: 'Submit and proceed'
+    }
 
   }
 
