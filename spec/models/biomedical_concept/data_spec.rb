@@ -161,9 +161,9 @@ describe BiomedicalConcept do
   #Xcopy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "biomedical_concept_templates.ttl")
   end
 
-  it "create instances" do
+  it "create instances, by domain" do
     load_local_file_into_triple_store(sub_dir, "biomedical_concept_templates.ttl")
-    ["vs"].each do |dir|
+    ["ae", "dm", "eg", "lb", "vs"].each do |dir|
       filenames = dir_file_list("#{sub_dir}/#{dir}", "*.yaml")
       filenames.each do |f|
         generate_instances("#{sub_dir}/#{dir}", f, true)
