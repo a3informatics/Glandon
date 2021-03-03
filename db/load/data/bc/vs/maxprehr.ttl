@@ -1,4 +1,4 @@
-@prefix : <http://www.s-cubed.dk/Maximum_Predicted_Heart_Rate/V1#> .
+@prefix : <http://www.s-cubed.dk/MAXPREHR/V1#> .
 @prefix bc: <http://www.assero.co.uk/BiomedicalConcept#> .
 @prefix isoC: <http://www.assero.co.uk/ISO11179Concepts#> .
 @prefix isoT: <http://www.assero.co.uk/ISO11179Types#> .
@@ -11,18 +11,18 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 
-<http://www.s-cubed.dk/Maximum_Predicted_Heart_Rate/V1>
+<http://www.s-cubed.dk/MAXPREHR/V1>
 	rdf:type owl:Ontology ;
 .
 :BCI
 	rdf:type bc:BiomedicalConceptInstance ;
-	isoC:label "Pulse Rate"^^xsd:string ;
+	isoC:label "Maximum Predicted Heart Rate"^^xsd:string ;
 	isoT:hasState :BCI_RS ;
 	isoT:hasIdentifier :BCI_SI ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2021-03-02T19:42:09+01:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2021-03-03T08:24:12+01:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bc:hasItem :BCI_BCI1 ;
 	bc:hasItem :BCI_BCI2 ;
@@ -51,7 +51,7 @@
 .
 :BCI_SI
 	rdf:type isoI:ScopedIdentifier ;
-	isoI:identifier "Maximum Predicted Heart Rate"^^xsd:string ;
+	isoI:identifier "MAXPREHR"^^xsd:string ;
 	isoI:versionLabel ""^^xsd:string ;
 	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:semanticVersion "0.1.0"^^xsd:string ;
