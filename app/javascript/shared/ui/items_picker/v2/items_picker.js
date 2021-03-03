@@ -4,6 +4,7 @@ import TabsLayout from 'shared/ui/tabs_layout'
 import SelectionHandler from './selection_handler'
 import IPHelper from './support/ip_helper'
 import IPRenderer from './support/ip_renderer'
+import EventHandler from 'shared/helpers/event_handler' 
 
 import { rdfTypesMap } from 'shared/helpers/rdf_types'
 import ManagedSelector from './selectors/ip_managed_selector'
@@ -31,7 +32,7 @@ export default class ItemsPicker extends ModalView {
    * @param {boolean} params.hideOnSubmit Specifies if picker will hide on submit
    * @param {function} params.onSubmit Specifies the onSubmit callback, with selection passed as the argument
    * @param {function} params.onShow Specifies the onShow (modal) callback
-   * @param {function} params.onShow Specifies the onHide (modal) callback
+   * @param {function} params.onHide Specifies the onHide (modal) callback
    */
   constructor({
     id,   
@@ -55,7 +56,6 @@ export default class ItemsPicker extends ModalView {
     })
 
     Object.assign( this, {
-      selectionHandler: new SelectionHandler({ selector: this.selector, multiple }),
       buttons, 
       strings: {
         description: description || IPRenderer.defaults.description,
@@ -69,6 +69,10 @@ export default class ItemsPicker extends ModalView {
       },
       _config: {
         renderer: new IPRenderer( this.selector ),
+        eventHandler: new EventHandler({ 
+          selector: this.selector,
+          namespace: 'ItemsPicker' 
+        }),
         buildRequired: true 
       }
     })
@@ -91,7 +95,6 @@ export default class ItemsPicker extends ModalView {
   show() {
 
     super.show()
-
     return this 
 
   }
@@ -102,8 +105,10 @@ export default class ItemsPicker extends ModalView {
    */
   reset() {
 
-    // Clear tabs
-    // Clear selection 
+    this.selectionHandler?.clear()
+    Object.values( this._selectors )
+          .forEach( selector => selector.reset() )
+
     return this 
 
   }
@@ -236,6 +241,7 @@ export default class ItemsPicker extends ModalView {
 
     // Init tabs 
     this._initSelectors()
+    this._initSelectionHandler()
     this._renderAll()
     this._config.buildRequired = false
 
@@ -250,7 +256,7 @@ export default class ItemsPicker extends ModalView {
                   .renderSubmitText( this.strings.submit )
                   .renderTabs( this.types )
 
-    this._dispatchEvent( 'renderComplete' )
+    this._dispatch( 'renderComplete' )
 
   }
 
@@ -259,23 +265,10 @@ export default class ItemsPicker extends ModalView {
    */
   _setListeners() {
 
-    this.modal.on( 'renderComplete', () => {
-
-      const tabsLayout = this._Renderer.$tabs
-
-      TabsLayout.initialize( tabsLayout )
-
-      TabsLayout.onTabSwitch( tabsLayout, tab => 
-        this._selectors[ IPHelper.idToType(tab) ].show() 
-      )
-
-      // Automatically open the first tab in the Picker 
-      setTimeout( () => 
-        this.modal.find( '.tab-option' )[0].click(),
-        10
-      )
-
-    })
+    this._EventHandler
+      .on( 'renderComplete', () => this._onRender() )
+      .on( 'addToSelection', items =>  this.selectionHandler.add(items)  )
+      .on( 'removeFromSelection', items => this.selectionHandler.remove(items) )
 
   }
 
@@ -302,18 +295,37 @@ export default class ItemsPicker extends ModalView {
    */
   _newSelector(type) {
 
+    const params = {
+      type, 
+      options: this.options,
+      eventHandler: this._EventHandler
+    }
+
     if ( type === rdfTypesMap.TH_CLI )
-      return new UnmanagedSelector({
-        type, 
-        options: this.options
-      })
+      return new UnmanagedSelector( params )
 
     else 
-      return new ManagedSelector({
-        type,
-        options: this.options
-      })
+      return new ManagedSelector( params )
 
+  }
+
+
+  /*** Selection Handler ***/
+
+
+  /**
+   * Initialize a new SelectionHandler instance 
+   */
+  _initSelectionHandler() {
+  
+    this.selectionHandler?.destroy() 
+
+    this.selectionHandler = new SelectionHandler({ 
+      selector: this.selector, 
+      multiple: this.options.multiple,
+      eventHandler: this._EventHandler
+    })
+  
   }
 
 
@@ -321,12 +333,12 @@ export default class ItemsPicker extends ModalView {
 
 
   /**
-   * Dispatches a Picker event (handle by attaching listeners on the modal element)
+   * Dispatches a Picker event
    * @param {string} eventName Name of the custom event 
    * @param {any} args Any args to pass into the handler 
    */
-  _dispatchEvent(eventName, ...args) {
-    this.modal.trigger( eventName, args )
+  _dispatch(eventName, ...args) {
+    this._config.eventHandler.dispatch( eventName, args )
   }
 
   /**
@@ -348,6 +360,29 @@ export default class ItemsPicker extends ModalView {
     this.events.onHide() 
   }
 
+  /**
+   * On full Render event, initialze TabsLayout and auto-open the first tab 
+   */
+  _onRender() {
+
+    const tabsLayout = this._Renderer.$tabs
+
+    // Init Tabs layout 
+    TabsLayout.initialize( tabsLayout )
+
+    // Set a custom handler to tabSwitch event to show() the clicked tab's Selector
+    TabsLayout.onTabSwitch( tabsLayout, tab => 
+      this._selectors[ IPHelper.idToType(tab) ].show() 
+    )
+
+    // Automatically open the first tab in the Picker 
+    const tab = this.modal.find( '.tab-option' )
+                          .get(0)
+
+    setTimeout( () => tab.click(), 10 )
+
+  }
+
 
   /*** Getters ***/
 
@@ -358,6 +393,14 @@ export default class ItemsPicker extends ModalView {
    */
   get _Renderer() {
     return this._config.renderer
+  }
+
+  /**
+   * Get the current EventHandler instance 
+   * @return {EventHandler} 
+   */
+  get _EventHandler() {
+    return this._config.eventHandler
   }
 
 }

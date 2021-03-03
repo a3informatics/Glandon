@@ -3,6 +3,7 @@ import SelectablePanel from 'shared/base/selectable_panel'
 
 import PickerPanelHelper from '../support/ip_panel_helper'
 import IPSRenderer from '../support/ip_selector_renderer'
+import EventHandler from 'shared/helpers/event_handler' 
 
 import { customBtn } from 'shared/helpers/dt/utils'
 import { tableInteraction } from 'shared/helpers/utils'
@@ -31,13 +32,19 @@ export default class PickerPanel extends Cacheable {
 
     super()
 
+    const _selector = `${ selector } #${ id }`
+
     Object.assign( this, {
-      selector: `${ selector } #${ id }`,
+      selector: _selector,
       options: {
         type, id 
       },
       _config: {
-        renderer: _Renderer 
+        renderer: _Renderer,
+        eventHandler: new EventHandler({ 
+          selector: _selector, 
+          namespace: 'PickerPanel' 
+        })
       }
     })
 
@@ -89,7 +96,7 @@ export default class PickerPanel extends Cacheable {
       this._removeFromCache( this._cacheKey )
       // Reload data from the server 
       this.load()
-          .dispatchEvent( 'refresh' )
+          .dispatch( 'refresh' )
     
     }
 
@@ -159,9 +166,17 @@ export default class PickerPanel extends Cacheable {
    */
   destroy() {
 
-    $( this.selector ).unbind()
+    this._config.eventHandler.unbindAll()
     this.sp.destroy()
 
+  }
+
+  /**
+   * Get data of currently selected items in Panel
+   * @return {Array} Array of data objects of selected items  
+   */
+  get selected() {
+    return this.sp.selected.data().toArray()
   }
 
 
@@ -170,24 +185,25 @@ export default class PickerPanel extends Cacheable {
 
   /**
    * Dispatches a custom Panel event 
-   * @warning Do not use names of events that are used in the DataTables API 
    * @param {string} eventName Name of the custom event 
    * @param {any} args Any args to pass into the handler 
    */
-  dispatchEvent(eventName, ...args) {
-    $( this.selector ).trigger( eventName, args )
+  dispatch(eventName, ...args) {
+
+    this._config.eventHandler.dispatch( eventName, ...args )
+    return this 
+
   }
 
   /**
    * Add a custom event listener to the panel
-   * @warning Do not use names of events that are used in the DataTables API 
    * @param {string} eventName Name of custom event. Available events: selected, deselected, dataLoaded, interactionStateChanged, refresh
    * @param {function} handler Event handler function
    * @return {PickerPanel} this instance (for chaining)
    */
   on(eventName, handler = () => {}) {
 
-    $( this.selector ).on( eventName, (e, ...args) => handler(...args) )
+    this._config.eventHandler.on( eventName, handler )
     return this 
 
   }
@@ -208,8 +224,8 @@ export default class PickerPanel extends Cacheable {
         buttons: [ this._dtRefreshButton ],
         onLoad: () => this._onDataLoaded(),
         onError: () => this._toggleInteraction( true ),
-        onSelect: s => this.dispatchEvent( 'selected', s.data() ),
-        onDeselect: d => this.dispatchEvent( 'deselected', d.data() )
+        onSelect: s => this.dispatch( 'selected', s.data().toArray() ),
+        onDeselect: d => this.dispatch( 'deselected', d.data().toArray() )
       }
     )
 
@@ -245,7 +261,7 @@ export default class PickerPanel extends Cacheable {
     this._toggleInteraction( true )
 
     // Data loaded event
-    this.dispatchEvent( 'dataLoaded' )
+    this.dispatch( 'dataLoaded' )
 
   }
 
@@ -330,7 +346,7 @@ export default class PickerPanel extends Cacheable {
     }
     
     // Interaction state changed event
-    this.dispatchEvent( 'interactionStateChanged', enable )
+    this.dispatch( 'interactionStateChanged', enable )
 
   }
 
