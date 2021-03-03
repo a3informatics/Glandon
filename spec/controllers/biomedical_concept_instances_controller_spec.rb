@@ -22,7 +22,6 @@ describe BiomedicalConceptInstancesController do
       load_files(schema_files, [])
       load_data_file_into_triple_store("mdr_identification.ttl")
       load_bc_template_and_instances
-      #load_data_file_into_triple_store("biomedical_concept_instances.ttl")
     end
 
     it "index" do
@@ -77,7 +76,7 @@ describe BiomedicalConceptInstancesController do
 
     before :all do
       load_files(schema_files, [])
-      load_cdisc_term_versions(1..62)
+      load_cdisc_term_versions(1..68)
       load_data_file_into_triple_store("mdr_identification.ttl")
       load_bc_template_and_instances
       #load_data_file_into_triple_store("biomedical_concept_instances.ttl")
@@ -132,7 +131,6 @@ describe BiomedicalConceptInstancesController do
       load_files(schema_files, [])
       load_data_file_into_triple_store("mdr_identification.ttl")
       load_bc_template_and_instances
-      #load_data_file_into_triple_store("biomedical_concept_instances.ttl")
       load_data_file_into_triple_store("complex_datatypes.ttl")
     end
 
@@ -165,7 +163,6 @@ describe BiomedicalConceptInstancesController do
       load_files(schema_files, [])
       load_data_file_into_triple_store("mdr_identification.ttl")
       load_bc_template_and_instances
-      #load_data_file_into_triple_store("biomedical_concept_instances.ttl")
     end
 
     after :all do
@@ -268,7 +265,6 @@ describe BiomedicalConceptInstancesController do
       load_files(schema_files, [])
       load_data_file_into_triple_store("mdr_identification.ttl")
       load_bc_template_and_instances
-      #load_data_file_into_triple_store("biomedical_concept_instances.ttl")
     end
 
     after :all do
@@ -310,10 +306,9 @@ describe BiomedicalConceptInstancesController do
 
     before :all do
       load_files(schema_files, [])
-      load_cdisc_term_versions(1..62) # A bit naughty but quicker. Some references will be unresolved.
+      load_cdisc_term_versions(1..68) 
       load_data_file_into_triple_store("mdr_identification.ttl")
       load_bc_template_and_instances
-      #load_data_file_into_triple_store("biomedical_concept_instances.ttl")
       @instance = BiomedicalConceptInstance.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
       uri = Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI1_BCCDTCD_BCPcode")
       @property = BiomedicalConcept::PropertyX.find(uri)

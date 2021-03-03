@@ -61,7 +61,7 @@
       :format: '8'
       :alias: "--TESTCD"
       :has_coded_value:
-      - :show_path: "/thesauri/unmanaged_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzQxL1Y0I0M2Njc0MV9DMjUzNDc=?unmanaged_concept%5Bcontext_id%5D=&unmanaged_concept%5Bparent_id%5D=aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzQxL1Y2MSNDNjY3NDE%3D"
+      - :show_path: "/thesauri/unmanaged_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzQxL1Y0I0M2Njc0MV9DMjUzNDc=?unmanaged_concept%5Bcontext_id%5D=&unmanaged_concept%5Bparent_id%5D=aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzQxL1Y2NiNDNjY3NDE%3D"
         :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0hFSUdIVC9WMSNCQ0lfQkNJMV9CQ0NEVENEX0JDUGNvZGVfVFVDMQ==
         :uri: http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI1_BCCDTCD_BCPcode_TUC1
         :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
@@ -84,11 +84,11 @@
           :synonym:
           - http://www.assero.co.uk/SYN#3f608b4935ead643d43b2642dc4ec863d170aa1d
         :context:
-          :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzQxL1Y2MSNDNjY3NDE=
-          :uri: http://www.cdisc.org/C66741/V61#C66741
+          :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzQxL1Y2NiNDNjY3NDE=
+          :uri: http://www.cdisc.org/C66741/V66#C66741
           :identifier: C66741
           :notation: VSTESTCD
-          :semantic_version: 24.0.0
+          :semantic_version: 28.0.0
         :local_label: ''
       :is_a: http://www.s-cubed.dk/CAR#18a302ee283ea042f30ca2cb852a2846f97c9413
       :is_complex_datatype_property: http://www.s-cubed.dk/CDT#CD_code
@@ -258,7 +258,7 @@
       :format: '20'
       :alias: "--ORRESU"
       :has_coded_value:
-      - :show_path: "/thesauri/unmanaged_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxNjIwL1Y2I0M3MTYyMF9DNDExMzk=?unmanaged_concept%5Bcontext_id%5D=&unmanaged_concept%5Bparent_id%5D=aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxNjIwL1Y2MiNDNzE2MjA%3D"
+      - :show_path: "/thesauri/unmanaged_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxNjIwL1Y2I0M3MTYyMF9DNDExMzk=?unmanaged_concept%5Bcontext_id%5D=&unmanaged_concept%5Bparent_id%5D=aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxNjIwL1Y2OCNDNzE2MjA%3D"
         :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0hFSUdIVC9WMSNCQ0lfQkNJMTFfQkNDRFRQUVJfQkNQY29kZV9UVUMz
         :uri: http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI11_BCCDTPQR_BCPcode_TUC3
         :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
@@ -282,13 +282,13 @@
           :synonym:
           - http://www.assero.co.uk/SYN#df8fad2cc28080ebffb2553e4679edc2f50cfbfe
         :context:
-          :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxNjIwL1Y2MiNDNzE2MjA=
-          :uri: http://www.cdisc.org/C71620/V62#C71620
+          :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxNjIwL1Y2OCNDNzE2MjA=
+          :uri: http://www.cdisc.org/C71620/V68#C71620
           :identifier: C71620
           :notation: UNIT
-          :semantic_version: 45.0.0
+          :semantic_version: 50.0.0
         :local_label: ''
-      - :show_path: "/thesauri/unmanaged_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxNjIwL1Y2I0M3MTYyMF9DNzEyNTM=?unmanaged_concept%5Bcontext_id%5D=&unmanaged_concept%5Bparent_id%5D=aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxNjIwL1Y2MiNDNzE2MjA%3D"
+      - :show_path: "/thesauri/unmanaged_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxNjIwL1Y2I0M3MTYyMF9DNzEyNTM=?unmanaged_concept%5Bcontext_id%5D=&unmanaged_concept%5Bparent_id%5D=aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxNjIwL1Y2OCNDNzE2MjA%3D"
         :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0hFSUdIVC9WMSNCQ0lfQkNJMTFfQkNDRFRQUVJfQkNQY29kZV9UVUM0
         :uri: http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI11_BCCDTPQR_BCPcode_TUC4
         :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
@@ -312,11 +312,11 @@
           :synonym:
           - http://www.assero.co.uk/SYN#d88c8ea10f076325483be42bbe1abf9c709658f0
         :context:
-          :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxNjIwL1Y2MiNDNzE2MjA=
-          :uri: http://www.cdisc.org/C71620/V62#C71620
+          :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxNjIwL1Y2OCNDNzE2MjA=
+          :uri: http://www.cdisc.org/C71620/V68#C71620
           :identifier: C71620
           :notation: UNIT
-          :semantic_version: 45.0.0
+          :semantic_version: 50.0.0
         :local_label: ''
       - :show_path: "/thesauri/unmanaged_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzcwL1YzNCNDNjY3NzBfQzQ5NjY4?unmanaged_concept%5Bcontext_id%5D=&unmanaged_concept%5Bparent_id%5D=aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzcwL1Y1OSNDNjY3NzA%3D"
         :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0hFSUdIVC9WMSNCQ0lfQkNJMTFfQkNDRFRQUVJfQkNQY29kZV9UVUMx

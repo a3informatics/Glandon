@@ -47,10 +47,9 @@ describe "Biomedical Concept Instances Editor", :type => :feature do
 
     before :all do
       load_files(schema_files, [])
-      load_cdisc_term_versions(1..62)
+      load_cdisc_term_versions(1..68)
       load_data_file_into_triple_store("mdr_identification.ttl")
       load_bc_template_and_instances
-      #load_data_file_into_triple_store("biomedical_concept_instances.ttl")
       load_data_file_into_triple_store("complex_datatypes.ttl")
       ua_create
       Token.delete_all
