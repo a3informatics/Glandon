@@ -105,11 +105,11 @@ module DataHelpers
   end
 
   def load_bc_template_and_instances
-    load_bc_template_and_instances
+    load_data_file_into_triple_store("bc/biomedical_concept_templates.ttl")
     ["ae", "dm", "eg", "lb", "vs"].each do |dir|
-      filenames = dir_file_list("#{sub_dir}/#{dir}", "*.ttl")
+      filenames = data_load_file_list("/bc/#{dir}", "*.ttl")
       filenames.each do |f|
-        load_data_file_into_triple_store("bc/#{dir}", f)
+        load_data_file_into_triple_store("bc/#{dir}/#{f}")
       end
     end
   end
@@ -287,9 +287,17 @@ module DataHelpers
     return Rails.root.join "spec/fixtures/files/#{sub_dir}/#{filename}"
   end
 
-  def dir_file_list(sub_dir, filter="*.*")
-    Dir.glob("#{Rails.root}/spec/fixtures/files/#{sub_dir}/#{filter}").map{ |s| File.basename(s) }
+  def local_file_list(sub_dir, filter="*.*")
+    dir_file_list("#{Rails.root}/spec/fixtures/files/#{sub_dir}/#{filter}")
   end    
+
+  def data_load_file_list(sub_dir, filter="*.*")
+    dir_file_list("#{Rails.root}/db/load/data/#{sub_dir}/#{filter}")
+  end    
+
+  def dir_file_list(path)
+    Dir.glob(path).map{ |s| File.basename(s) }
+  end
 
   # Set this to false for tests that require ActiveRecord persistence in the database across multiple tests.
   # Use in before :all and after :all (don't forget to set back to true at the end)

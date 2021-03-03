@@ -169,7 +169,7 @@ describe BiomedicalConcept do
     write_file = false
     load_local_file_into_triple_store(sub_dir, "biomedical_concept_templates.ttl")
     ["ae", "dm", "eg", "lb", "vs"].each do |dir|
-      filenames = dir_file_list("#{sub_dir}/#{dir}", "*.yaml")
+      filenames = local_file_list("#{sub_dir}/#{dir}", "*.yaml")
       filenames.each do |f|
         generate_instances("#{sub_dir}/#{dir}", f, write_file)
       end
@@ -179,7 +179,7 @@ describe BiomedicalConcept do
   it "check data" do
     load_local_file_into_triple_store(sub_dir, "biomedical_concept_templates.ttl")
     ["ae", "dm", "eg", "lb", "vs"].each do |dir|
-      filenames = dir_file_list("#{sub_dir}/#{dir}", "*.ttl")
+      filenames = local_file_list("#{sub_dir}/#{dir}", "*.ttl")
       filenames.each do |f|
         load_local_file_into_triple_store("#{sub_dir}/#{dir}", f)
       end
