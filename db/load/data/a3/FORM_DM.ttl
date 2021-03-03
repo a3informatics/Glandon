@@ -1,0 +1,328 @@
+@prefix : <http://www.s-cubed.dk/DM/V1#> .
+@prefix bf: <http://www.assero.co.uk/BusinessForm#> .
+@prefix isoC: <http://www.assero.co.uk/ISO11179Concepts#> .
+@prefix isoT: <http://www.assero.co.uk/ISO11179Types#> .
+@prefix isoR: <http://www.assero.co.uk/ISO11179Registration#> .
+@prefix isoI: <http://www.assero.co.uk/ISO11179Identification#> .
+@prefix bo: <http://www.assero.co.uk/BusinessOperational#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+<http://www.s-cubed.dk/DM/V1>
+	rdf:type owl:Ontology ;
+.
+:F
+	rdf:type bf:Form ;
+	isoC:label "Form DM - Demographics"^^xsd:string ;
+	isoT:hasState :F_RS ;
+	isoT:hasIdentifier :F_SI ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2021-03-01T18:42:38+01:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2021-03-01T18:42:38+01:00"^^xsd:dateTime ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:hasGroup :NG_2c61e2a9-3c28-45b3-b511-0f3cb819d7f9 ;
+.
+:F_RS
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
+.
+:F_SI
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "DM"^^xsd:string ;
+	isoI:versionLabel "0.1.0"^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
+	isoI:semanticVersion "0.1.0"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/NS#SCUBED> ;
+.
+:NG_2c61e2a9-3c28-45b3-b511-0f3cb819d7f9
+	rdf:type bf:NormalGroup ;
+	isoC:label "DM - Demographics"^^xsd:string ;
+	bf:ordinal "1"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:hasItem :Q_e11bd5fb-4d5c-4e42-945c-5aee77df8b5d ;
+	bf:hasItem :Q_1222a398-ee64-4515-b171-1aaf31079666 ;
+	bf:hasItem :Q_f1a1543e-3a74-47d3-851d-d73c9e3b7332 ;
+	bf:hasItem :Q_244ab45e-60aa-47b7-b4fd-f644e351c2fb ;
+	bf:hasItem :Q_b2b91d42-5186-4bd5-81a7-28e5ba15cf41 ;
+	bf:hasItem :Q_4afa0bc1-1228-4f04-b770-e7ad9bf6f858 ;
+	bf:hasItem :Q_14ebb9b9-82e7-4bb6-85ff-b7a9dc72adc7 ;
+	bf:hasItem :Q_90faf1c6-8435-4815-b635-c790ecd0a52a ;
+	bf:repeating "false"^^xsd:boolean ;
+.
+:Q_e11bd5fb-4d5c-4e42-945c-5aee77df8b5d
+	rdf:type bf:Question ;
+	isoC:label "BRTHDAT"^^xsd:string ;
+	bf:ordinal "1"^^xsd:integer ;
+	bf:note "\n\nPrompt:\n\nBirth Date\n\nImplementation Notes:\n\nBRTHDAT is the collected field used for recording the full birth date. The sponsor may choose to database the date of birth as a single variable (BRTHDAT), or as separate variables for each component of the date/time (BRTHYY, BRTHMO, BRTHDD, BRTHTIM). The sponsor may choose a method based on database considerations, or for regulatory reasons. It is expected that what is collected for BRTHDAT (complete date or whichever components are collected) is reported in the SDTMIG variable BRTHDTC in the ISO 8601 format. If data are collected in a manner resulting in a reduced precision level, then the AGE (SDTM expected variable), if not collected on the CRF, should be derived using a documented algorithm that describes how the age was determined and/or imputed for those birth dates collected with reduced precision.\n\nMapping Instructions:\n\nThis does not map directly to an SDTMIG variable. For the SDTM submission dataset, concatenate all collected CDASH DATE and TIME components and populate the SDTMIG variable BRTHDTC in ISO 8601 format.\n\nCdash:\n\nBRTHDAT"^^xsd:string ;
+	bf:completion "Record the date of birth to the level of precision known (e.g., day/month/year, year, month/year, etc.) in this format (DD-MON-YYYY)."^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype "date"^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "[NO MAPPING]"^^xsd:string ;
+	bf:questionText "What is the subject's date of birth?"^^xsd:string ;
+.
+:Q_1222a398-ee64-4515-b171-1aaf31079666
+	rdf:type bf:Question ;
+	isoC:label "AGE"^^xsd:string ;
+	bf:ordinal "2"^^xsd:integer ;
+	bf:note "\n\nPrompt:\n\nAge\n\nImplementation Notes:\n\nIf Age is collected, it should be collected as a number and, to be correctly interpreted, the age value should be associated to a variable for the Age Unit. It may be necessary to know when the age was collected as an age may need to be recalculated for analysis, such as deriving age at a reference start time (RFSTDTC for SDTM). BRTHDTC may not be available in all cases (due to subject privacy concerns).If AGE is collected, then it is recommended that the date of collection also be recorded, either separately or by association to the date of the visit.\n\nMapping Instructions:\n\nMaps directly to the SDTMIG variable listed in the column with the heading SDTMIG Target.\n\nCdash:\n\nAGE"^^xsd:string ;
+	bf:completion "Record age of the subject."^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype "integer"^^xsd:string ;
+	bf:format "3"^^xsd:string ;
+	bf:mapping "[NO MAPPING]"^^xsd:string ;
+	bf:questionText "What is the subject's age?"^^xsd:string ;
+.
+:Q_f1a1543e-3a74-47d3-851d-d73c9e3b7332
+	rdf:type bf:Question ;
+	isoC:label "AGEU"^^xsd:string ;
+	bf:ordinal "3"^^xsd:integer ;
+	bf:note "\n\nPrompt:\n\nAge Unit\n\nImplementation Notes:\n\nIf Age is captured on the CRF, the age unit must be known to make the age value meaningful. The age unit might be collected on the CRF, in those cases where the protocol allows for any age group, or it may be preprinted on the CRF (typically with the unit of \"years\").\n\nMapping Instructions:\n\nMaps directly to the SDTMIG variable listed in the column with the heading SDTMIG Target.\n\nCdash:\n\nAGEU"^^xsd:string ;
+	bf:completion "Record the appropriate age unit (e.g., YEARS, MONTHS, WEEKS, etc.)."^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype "float"^^xsd:string ;
+	bf:format "20.0"^^xsd:string ;
+	bf:mapping "[NO MAPPING]"^^xsd:string ;
+	bf:questionText "What is the age unit used?"^^xsd:string ;
+.
+:Q_244ab45e-60aa-47b7-b4fd-f644e351c2fb
+	rdf:type bf:Question ;
+	isoC:label "AGEU units"^^xsd:string ;
+	bf:ordinal "4"^^xsd:integer ;
+	bf:note "* No entries found for parameters ['notation=Years']."^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype "string"^^xsd:string ;
+	bf:format "20"^^xsd:string ;
+	bf:mapping "[NO MAPPING]"^^xsd:string ;
+	bf:questionText "What is the age unit used? units"^^xsd:string ;
+.
+:Q_b2b91d42-5186-4bd5-81a7-28e5ba15cf41
+	rdf:type bf:Question ;
+	isoC:label "SEX"^^xsd:string ;
+	bf:ordinal "5"^^xsd:integer ;
+	bf:note "\n\nPrompt:\n\nSex\n\nImplementation Notes:\n\nCollect the subject's sex or gender, as reported by the investigator. This is a phenotypic assessment and not a genotypic assessment.\n\nMapping Instructions:\n\nMaps directly to the SDTMIG variable listed in the column with the heading SDTMIG Target.\n\nCdash:\n\nSEX"^^xsd:string ;
+	bf:completion "Record the appropriate sex (e.g., F (female), M (male)."^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype "string"^^xsd:string ;
+	bf:format "15"^^xsd:string ;
+	bf:mapping "[NO MAPPING]"^^xsd:string ;
+	bf:questionText "What is the sex of the subject?"^^xsd:string ;
+	bf:hasCodedValue :Q_b2b91d42-5186-4bd5-81a7-28e5ba15cf41_TUC1 ;
+	bf:hasCodedValue :Q_b2b91d42-5186-4bd5-81a7-28e5ba15cf41_TUC2 ;
+	bf:hasCodedValue :Q_b2b91d42-5186-4bd5-81a7-28e5ba15cf41_TUC3 ;
+	bf:hasCodedValue :Q_b2b91d42-5186-4bd5-81a7-28e5ba15cf41_TUC4 ;
+.
+:Q_b2b91d42-5186-4bd5-81a7-28e5ba15cf41_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66731/V4#C66731_C16576> ;
+	bo:context <http://www.cdisc.org/C66731/V56#C66731> ;
+	bo:localLabel "Female"^^xsd:string ;
+.
+:Q_b2b91d42-5186-4bd5-81a7-28e5ba15cf41_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66731/V16#C66731_C20197> ;
+	bo:context <http://www.cdisc.org/C66731/V56#C66731> ;
+	bo:localLabel "Male"^^xsd:string ;
+.
+:Q_b2b91d42-5186-4bd5-81a7-28e5ba15cf41_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66731/V56#C66731_C17998> ;
+	bo:context <http://www.cdisc.org/C66731/V56#C66731> ;
+	bo:localLabel "Unknown"^^xsd:string ;
+.
+:Q_b2b91d42-5186-4bd5-81a7-28e5ba15cf41_TUC4
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "4"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66731/V39#C66731_C45908> ;
+	bo:context <http://www.cdisc.org/C66731/V56#C66731> ;
+	bo:localLabel "Intersex"^^xsd:string ;
+.
+:Q_4afa0bc1-1228-4f04-b770-e7ad9bf6f858
+	rdf:type bf:Question ;
+	isoC:label "ETHNIC"^^xsd:string ;
+	bf:ordinal "6"^^xsd:integer ;
+	bf:note "\n\nPrompt:\n\nEthnicity\n\nImplementation Notes:\n\nFor use when values are being collected using the exact non-extensible ETHNIC codelist (C66790) values. Sponsors should refer to the FDA's Collection of Race and Ethnicity Data in Clinical Trials guidance regarding the collection of ethnicity (http://www.fda.gov/).\n\nMapping Instructions:\n\nMaps directly to the SDTMIG variable listed in the column with the heading SDTMIG Target.\n\nCdash:\n\nETHNIC"^^xsd:string ;
+	bf:completion "Study participants should self-report ethnicity, with ethnicity being asked about before race."^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype "string"^^xsd:string ;
+	bf:format "23"^^xsd:string ;
+	bf:mapping "[NO MAPPING]"^^xsd:string ;
+	bf:questionText "Do you consider yourself Hispanic/Latino or not Hispanic/Latino?"^^xsd:string ;
+	bf:hasCodedValue :Q_4afa0bc1-1228-4f04-b770-e7ad9bf6f858_TUC1 ;
+	bf:hasCodedValue :Q_4afa0bc1-1228-4f04-b770-e7ad9bf6f858_TUC2 ;
+	bf:hasCodedValue :Q_4afa0bc1-1228-4f04-b770-e7ad9bf6f858_TUC3 ;
+	bf:hasCodedValue :Q_4afa0bc1-1228-4f04-b770-e7ad9bf6f858_TUC4 ;
+.
+:Q_4afa0bc1-1228-4f04-b770-e7ad9bf6f858_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66790/V16#C66790_C17459> ;
+	bo:context <http://www.cdisc.org/C66790/V56#C66790> ;
+	bo:localLabel "Hispanic or Latino"^^xsd:string ;
+.
+:Q_4afa0bc1-1228-4f04-b770-e7ad9bf6f858_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66790/V4#C66790_C41222> ;
+	bo:context <http://www.cdisc.org/C66790/V56#C66790> ;
+	bo:localLabel "Not Hispanic or Latino"^^xsd:string ;
+.
+:Q_4afa0bc1-1228-4f04-b770-e7ad9bf6f858_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66790/V54#C66790_C43234> ;
+	bo:context <http://www.cdisc.org/C66790/V56#C66790> ;
+	bo:localLabel "Not Reported"^^xsd:string ;
+.
+:Q_4afa0bc1-1228-4f04-b770-e7ad9bf6f858_TUC4
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "4"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66790/V56#C66790_C17998> ;
+	bo:context <http://www.cdisc.org/C66790/V56#C66790> ;
+	bo:localLabel "Unknown"^^xsd:string ;
+.
+:Q_14ebb9b9-82e7-4bb6-85ff-b7a9dc72adc7
+	rdf:type bf:Question ;
+	isoC:label "RACE"^^xsd:string ;
+	bf:ordinal "7"^^xsd:integer ;
+	bf:note "\n\nPrompt:\n\nRace\n\nImplementation Notes:\n\nUse RACE when the 5 designations for race used by the FDA are collected (American Indian or Alaska Native; Asian; Black or African American; Native Hawaiian or Other Pacific Islander ; White).* Sponsors should refer to the FDA Guidance. See SDTMIG v3.2 Section 5, DM Domain.   *For studies where data are collected outside the US, the recommended categories are the same except for Black instead of Black or African American. If multiple races are collected, an alternate sponsor-defined variable structure would be required. Sponsors may record multiple self-reported races for a subject by appending a suffix to denote multiple collected races (e.g. RACE1, RACE2) and populate RACE with the value MULTIPLE.\n\nMapping Instructions:\n\nMaps directly to the SDTMIG variable listed in the column with the heading SDTMIG Target.\n\nCdash:\n\nRACE"^^xsd:string ;
+	bf:completion "Study participants should self-report race, with race being asked about after ethnicity."^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype "string"^^xsd:string ;
+	bf:format "25"^^xsd:string ;
+	bf:mapping "RACE"^^xsd:string ;
+	bf:questionText "Which of the following five racial designations best describes you?-removed-    (More than one choice is acceptable.)"^^xsd:string ;
+	bf:hasCodedValue :Q_14ebb9b9-82e7-4bb6-85ff-b7a9dc72adc7_TUC1 ;
+	bf:hasCodedValue :Q_14ebb9b9-82e7-4bb6-85ff-b7a9dc72adc7_TUC2 ;
+	bf:hasCodedValue :Q_14ebb9b9-82e7-4bb6-85ff-b7a9dc72adc7_TUC3 ;
+	bf:hasCodedValue :Q_14ebb9b9-82e7-4bb6-85ff-b7a9dc72adc7_TUC4 ;
+	bf:hasCodedValue :Q_14ebb9b9-82e7-4bb6-85ff-b7a9dc72adc7_TUC5 ;
+	bf:hasCodedValue :Q_14ebb9b9-82e7-4bb6-85ff-b7a9dc72adc7_TUC6 ;
+	bf:hasCodedValue :Q_14ebb9b9-82e7-4bb6-85ff-b7a9dc72adc7_TUC7 ;
+.
+:Q_14ebb9b9-82e7-4bb6-85ff-b7a9dc72adc7_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C74457/V10#C74457_C41259> ;
+	bo:context <http://www.cdisc.org/C74457/V58#C74457> ;
+	bo:localLabel "American Indian or Alaska Native"^^xsd:string ;
+.
+:Q_14ebb9b9-82e7-4bb6-85ff-b7a9dc72adc7_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C74457/V10#C74457_C41260> ;
+	bo:context <http://www.cdisc.org/C74457/V58#C74457> ;
+	bo:localLabel "Asian"^^xsd:string ;
+.
+:Q_14ebb9b9-82e7-4bb6-85ff-b7a9dc72adc7_TUC3
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C74457/V49#C74457_C16352> ;
+	bo:context <http://www.cdisc.org/C74457/V58#C74457> ;
+	bo:localLabel "Black or African American"^^xsd:string ;
+.
+:Q_14ebb9b9-82e7-4bb6-85ff-b7a9dc72adc7_TUC4
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "4"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C74457/V10#C74457_C41219> ;
+	bo:context <http://www.cdisc.org/C74457/V58#C74457> ;
+	bo:localLabel "Native Hawaiian or Other Pacific Islander"^^xsd:string ;
+.
+:Q_14ebb9b9-82e7-4bb6-85ff-b7a9dc72adc7_TUC5
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "5"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C74457/V10#C74457_C41261> ;
+	bo:context <http://www.cdisc.org/C74457/V58#C74457> ;
+	bo:localLabel "White"^^xsd:string ;
+.
+:Q_14ebb9b9-82e7-4bb6-85ff-b7a9dc72adc7_TUC6
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "6"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C74457/V58#C74457_C43234> ;
+	bo:context <http://www.cdisc.org/C74457/V58#C74457> ;
+	bo:localLabel "Not Reported"^^xsd:string ;
+.
+:Q_14ebb9b9-82e7-4bb6-85ff-b7a9dc72adc7_TUC7
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "7"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C74457/V58#C74457_C17998> ;
+	bo:context <http://www.cdisc.org/C74457/V58#C74457> ;
+	bo:localLabel "Unknown"^^xsd:string ;
+.
+:Q_90faf1c6-8435-4815-b635-c790ecd0a52a
+	rdf:type bf:Question ;
+	isoC:label "RACEOTH"^^xsd:string ;
+	bf:ordinal "8"^^xsd:integer ;
+	bf:note "\n\nPrompt:\n\nSpecify Other Race\n\nImplementation Notes:\n\nWhen creating the DM form, it is suggested that the 5 standard race categories be included. Sponsors may choose to include another value of Specify, Other with a free-text field for extending the list of values. The RACEOTH variable contains the free text added by the site. The value(s) added in the optional variable might or might not \"collapse up\" into one of the 5 categories specified by the FDA Guidance. See SDTMIG v3.2, Section 5 -DM Domain for examples of reporting this implementation.\n\nMapping Instructions:\n\nThis does not map directly to an SDTMIG variable. This information could be submitted in a SUPPDM dataset as the value of SUPPDM.QVAL where SUPPDM.QNAM = \"RACEOTH\" and SUPP.QLABEL=\"RACE OTHER\". See SDTMIG v3.2 Section 5, DM Domain. Refer to the current SDTM and SDTMIG for instructions on placement of non-standard variables in SDTM domains.\n\nCdash:\n\nRACEOTH"^^xsd:string ;
+	bf:completion "If none of the pre-printed values for RACE are applicable or if another, unprinted selection should be added to those pre-printed values, record the value in this free text field."^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype "string"^^xsd:string ;
+	bf:format "100"^^xsd:string ;
+	bf:mapping "[NO MAPPING]"^^xsd:string ;
+	bf:questionText "What was the other race?"^^xsd:string ;
+.

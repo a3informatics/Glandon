@@ -1,0 +1,118 @@
+---
+:id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vRl9FUlJPUi9WMSNG
+:uri: http://www.acme-pharma.com/F_ERROR/V1#F
+:rdf_type: http://www.assero.co.uk/BusinessForm#Form
+:label: Laboratory
+:has_state:
+  :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vRl9FUlJPUi9WMSNGX1JT
+  :uri: http://www.acme-pharma.com/F_ERROR/V1#F_RS
+  :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationState
+  :registration_status: Incomplete
+  :administrative_note: ''
+  :effective_date: '2016-01-01T00:00:00+00:00'
+  :until_date: '2016-01-01T00:00:00+00:00'
+  :unresolved_issue: ''
+  :administrative_status: ''
+  :previous_state: Incomplete
+  :multiple_edit: false
+  :by_authority:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUkEjRFVOUzEyMzQ1Njc4OQ==
+    :uri: http://www.assero.co.uk/RA#DUNS123456789
+    :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
+    :organization_identifier: '123456789'
+    :international_code_designator: DUNS
+    :owner: true
+    :ra_namespace:
+      :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQUNNRQ==
+      :uri: http://www.assero.co.uk/NS#ACME
+      :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+      :short_name: ACME
+      :name: ACME Pharma
+      :authority: www.acme-pharma.com
+:has_identifier:
+  :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vRl9FUlJPUi9WMSNGX1NJ
+  :uri: http://www.acme-pharma.com/F_ERROR/V1#F_SI
+  :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
+  :identifier: F ERROR
+  :version_label: ''
+  :version: 1
+  :semantic_version: 0.1.0
+  :has_scope:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQUNNRQ==
+    :uri: http://www.assero.co.uk/NS#ACME
+    :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+    :short_name: ACME
+    :name: ACME Pharma
+    :authority: www.acme-pharma.com
+:has_previous_version: 
+:origin: ''
+:change_description: ''
+:creation_date: '2019-11-22T13:06:45+01:00'
+:last_change_date: '2021-02-28T14:02:00+01:00'
+:explanatory_comment: ''
+:note: ''
+:completion: ''
+:has_group:
+- :id: 
+  :uri: {}
+  :rdf_type: http://www.assero.co.uk/BusinessForm#NormalGroup
+  :label: Common
+  :ordinal: 1
+  :note: ''
+  :completion: ''
+  :optional: false
+  :has_item:
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/BusinessForm#Question
+    :label: Site Number
+    :ordinal: 1
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: '3'
+    :mapping: SITEID
+    :question_text: 'Site #'
+    :has_coded_value: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/BusinessForm#Question
+    :label: Subject ID
+    :ordinal: 2
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: '11'
+    :mapping: USUBJID
+    :question_text: 'Subject ID #'
+    :has_coded_value: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/BusinessForm#Question
+    :label: Visit Date
+    :ordinal: 3
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: date
+    :format: ''
+    :mapping: RFSTDTC
+    :question_text: Visit Date
+    :has_coded_value: []
+  :repeating: false
+  :has_sub_group: []
+  :has_common: []
+- :id: 
+  :uri: {}
+  :rdf_type: http://www.assero.co.uk/BusinessForm#NormalGroup
+  :label: ''
+  :ordinal: 2
+  :note: ''
+  :completion: ''
+  :optional: false
+  :has_item: []
+  :repeating: false
+  :has_sub_group: []
+  :has_common: []

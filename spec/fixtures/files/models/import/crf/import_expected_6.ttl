@@ -1,0 +1,107 @@
+@prefix : <http://www.acme-pharma.com/PE/V1#> .
+@prefix bf: <http://www.assero.co.uk/BusinessForm#> .
+@prefix isoC: <http://www.assero.co.uk/ISO11179Concepts#> .
+@prefix isoT: <http://www.assero.co.uk/ISO11179Types#> .
+@prefix isoR: <http://www.assero.co.uk/ISO11179Registration#> .
+@prefix isoI: <http://www.assero.co.uk/ISO11179Identification#> .
+@prefix bo: <http://www.assero.co.uk/BusinessOperational#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+<http://www.acme-pharma.com/PE/V1>
+	rdf:type owl:Ontology ;
+.
+:F
+	rdf:type bf:Form ;
+	isoC:label "Form PE - Physical Exam Recommended"^^xsd:string ;
+	isoT:hasState :F_RS ;
+	isoT:hasIdentifier :F_SI ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2021-03-01T18:13:35+01:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2021-03-01T18:13:35+01:00"^^xsd:dateTime ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:hasGroup :NG_1760cbb1-a370-41f6-a3b3-493c1d9c2238 ;
+.
+:F_RS
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
+.
+:F_SI
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "PE"^^xsd:string ;
+	isoI:versionLabel "0.1.0"^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
+	isoI:semanticVersion "0.1.0"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/NS#ACME> ;
+.
+:NG_1760cbb1-a370-41f6-a3b3-493c1d9c2238
+	rdf:type bf:NormalGroup ;
+	isoC:label "PE - Recommended"^^xsd:string ;
+	bf:ordinal "1"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:hasItem :Q_4646b47a-4ae4-4f21-b5e2-565815c8cded ;
+	bf:hasItem :Q_92bf8b74-ec78-4348-9a1b-154a6ccb9b9f ;
+	bf:repeating "false"^^xsd:boolean ;
+.
+:Q_4646b47a-4ae4-4f21-b5e2-565815c8cded
+	rdf:type bf:Question ;
+	isoC:label "PEPERF"^^xsd:string ;
+	bf:ordinal "1"^^xsd:integer ;
+	bf:note "\n\nPrompt:\n\nPhysical Exam Performed\n\nImplementation Notes:\n\nThis general prompt question is used as a data management tool to verify that missing results are confirmed missing. Used to ask if the physical exam was performed at the overall subject level at the specified time point. If this field is used then the result should only be mapped to PESTAT if the overall examination, at the subject level, was not performed. If the overall examination was performed, then the value of PESTAT would be null for each examined body systems and \"NOT DONE\" for any body systems not examined (see PERES).\n\nMapping Instructions:\n\nThis does not map directly to an SDTMIG variable. May be used to derive a value into the SDTMIG variable PESTAT. If PEPERF=\"N\" the value of PESTAT=\"NOT DONE\". If PEPERF=\"Y\", then the actual physical exam results would be reported by body system (see PERES). PECAT, PESCAT, PETEST and PETESTCD must reflect what tests were not done. If used for an entire CRF or other set of multiple tests with PECAT and PESCAT, PETESTCD=PEALL.\n\nCdash:\n\nPROCCUR"^^xsd:string ;
+	bf:completion "If physical examination was performed as planned then select Yes, otherwise, select No."^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype "string"^^xsd:string ;
+	bf:format "3"^^xsd:string ;
+	bf:mapping "[NO MAPPING]"^^xsd:string ;
+	bf:questionText "Was the physical examination performed?"^^xsd:string ;
+	bf:hasCodedValue :Q_4646b47a-4ae4-4f21-b5e2-565815c8cded_TUC1 ;
+	bf:hasCodedValue :Q_4646b47a-4ae4-4f21-b5e2-565815c8cded_TUC2 ;
+.
+:Q_4646b47a-4ae4-4f21-b5e2-565815c8cded_TUC1
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+	bo:context <http://www.cdisc.org/C66742/V36#C66742> ;
+	bo:localLabel "No"^^xsd:string ;
+.
+:Q_4646b47a-4ae4-4f21-b5e2-565815c8cded_TUC2
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+	bo:context <http://www.cdisc.org/C66742/V36#C66742> ;
+	bo:localLabel "Yes"^^xsd:string ;
+.
+:Q_92bf8b74-ec78-4348-9a1b-154a6ccb9b9f
+	rdf:type bf:Question ;
+	isoC:label "PEDAT"^^xsd:string ;
+	bf:ordinal "2"^^xsd:integer ;
+	bf:note "\n\nPrompt:\n\nExam Date\n\nImplementation Notes:\n\nThe date of examination may be determined from the date of the visit (VISDAT) and if so, a separate assessment date field is not required.\n\nMapping Instructions:\n\nThis does not map directly to an SDTMIG variable. For the SDTM submission dataset, concatenate all collected CDASH DATE and TIME components and populate the SDTMIG variable PEDTC in ISO 8601 format.\n\nCdash:\n\nPRSTDAT"^^xsd:string ;
+	bf:completion "Record complete date of examination using this format (DD-MON-YYYY)."^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype "date"^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "[NO MAPPING]"^^xsd:string ;
+	bf:questionText "What was the date of the physical examination?"^^xsd:string ;
+.
