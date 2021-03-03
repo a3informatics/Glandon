@@ -17,7 +17,7 @@ export default class SHRenderer {
    * Render Selection Handler contents in the Picker 
    * @param {string} selector Unique Selection Handler selector
    */
-  renderSelectionHandler() {
+  renderHandler() {
 
     const preview = $( '<span>' ).addClass( 'bg-label bordered text-small' )
                                  .attr( 'id', 'selection-preview' ),
@@ -35,9 +35,28 @@ export default class SHRenderer {
           })
 
     
-    this.content.html([ preview, viewBtn, clearBtn ])
+    this.content.html([ 'Selected: ', preview, viewBtn, clearBtn ])
 
     return this
+
+  }
+
+  /**
+   * Render Selection Handler preview value  
+   * @param {string} value Selection preview value (count | reference string)
+   */
+  renderPreview(value, options) {
+
+    if ( value === undefined || value === null )
+      return
+
+    // Render value in preview 
+    this.content.find( '#selection-preview' )
+                .html( value )
+
+    // Show / hide the selection view button depending on the multiple option 
+    this.content.find( '#view-selection' )
+                .toggle( options.multiple )
 
   }
 
