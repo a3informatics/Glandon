@@ -1,7 +1,7 @@
 import SHRenderer from './support/sh_renderer'
 
+import InformationDialog from 'shared/ui/dialogs/information_dialog'
 import { rdfTypesMap as types } from 'shared/helpers/rdf_types'
-import { unmanagedItemRef, managedItemRef } from 'shared/ui/strings'
 
 /**
  * Selection Handler (Items Picker)
@@ -15,11 +15,13 @@ export default class SelectionHandler {
    * @param {Object} params Instance parameters
    * @param {string} params.selector Unique selector string of the ItemsPicker in which the SelectionHandler will render 
    * @param {boolean} params.multiple Specifies if selection of multiple items is allowed
+   * @param {array} params.types Pickable Type definition objects
    * @param {EventHandler} params.eventHandler Reference to main ItemsPicker Event Handler instance for dispatching and listening to related events 
    */
   constructor({
     selector,
     multiple,
+    types,
     eventHandler
   }) {
 
@@ -28,7 +30,8 @@ export default class SelectionHandler {
     Object.assign( this, {
       selector: _selector,
       options: {
-        multiple
+        multiple,
+        types
       },
       _config: {
         renderer: new SHRenderer( _selector ),
@@ -121,6 +124,14 @@ export default class SelectionHandler {
     return this.selection.length
   }
 
+  /**
+   * Check if Selection is empty
+   * @return {boolean} True if empty
+   */
+  get isEmpty() {
+    return this.count === 0
+  }
+
 
   /*** Private ***/
 
@@ -164,6 +175,9 @@ export default class SelectionHandler {
     // Button event handlers 
     $( this.selector ).find( '#clear-selection' )
                       .click( () => this.clear() )
+
+    $( this.selector ).find( '#view-selection' )
+                      .click( () => this._showSelectionDialog() )
 
   }
 
@@ -213,6 +227,28 @@ export default class SelectionHandler {
 
   }
 
+  
+  /*** Selection Dialog ***/
+
+
+  /**
+   * Build and show the Selection Dialog 
+   */
+  _showSelectionDialog() {
+
+    new InformationDialog({
+      title: 'Current selection',
+      target: this.selector,
+      subtitle: this._Renderer.buildSelectionDialog({
+        selection: this.selection, 
+        types: this.options.types,
+        onItemClick: id => console.log(id)
+      }),
+      wide: true
+    }).show()
+
+  }
+
 
   /*** String helpers ***/
 
@@ -231,23 +267,9 @@ export default class SelectionHandler {
     
     // Otherwise return reference string | None
     return selectedItem ? 
-      this._referenceString( selectedItem ) :
+      this._Renderer.referenceString( selectedItem ) :
       'None'
 
-  }
-
-  /**
-   * Get Item Reference string (for rendering)
-   * @param {Object} item Reference item data object 
-   * @return {string} Standard Reference string based on item type    
-   */
-  _referenceString(item) {
-
-    if ( item.rdf_type === types.TH_CLI.rdfType )
-      return unmanagedItemRef( item, item._context )
-
-    return managedItemRef( item )
-  
   }
 
 

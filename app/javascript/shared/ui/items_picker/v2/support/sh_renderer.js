@@ -1,3 +1,7 @@
+import IPHelper from './ip_helper' 
+import { rdfTypesMap as types } from 'shared/helpers/rdf_types'
+import { unmanagedItemRef, managedItemRef } from 'shared/ui/strings'
+
 /**
  * Selection Handler Renderer
  * @description Collection of helper functions for rendering the UI elements of an Items Picker Selection Handler
@@ -60,8 +64,121 @@ export default class SHRenderer {
 
   }
 
+  /**
+   * Build the View Selection dialog contents
+   * @param {Array} selection Selection of item data  
+   * @param {Array} types Allowed Picker types   
+   * @param {function} onItemClick Item click handler, Item ID passed as first arg
+   * @return {JQuery Element} View Selection dialog content    
+   */
+  buildSelectionDialog({
+    selection = [], 
+    types = [], 
+    onItemClick = () => {}
+  }) {
+
+    // Selection empty 
+    if ( !selection.length )
+      return 'Selection is empty'
+    
+    const content = $( '<div>' ).append( this._dialogHint )
+
+    for ( const type of types ) {
+
+      // Filter Selected items to the current Type only 
+      const itemsByType = selection.filter( item => item.rdf_type === type.rdfType )
+
+      if ( !itemsByType.length )
+        continue 
+
+      // Render Type title and items
+      const title = this._typeTitle( type ),
+            items = this._itemLabels( itemsByType, onItemClick )
+
+      content.append([ title, '<br>', items ])
+    
+    }
+
+    return content
+
+  }
+
+  /**
+   * Get Item Reference string 
+   * @param {Object} item Reference item data object 
+   * @return {string} Standard Reference string based on item type    
+   */
+  static referenceString(item) {
+
+    if ( item.rdf_type === types.TH_CLI.rdfType )
+      return unmanagedItemRef( item, item._context )
+
+    return managedItemRef( item )
+  
+  }
+
 
   /*** Private ***/
+  
+
+  /*** Selection Dialog ***/
+
+
+  /**
+   * Render Type as title in Selection Dialog
+   * @param {Object} type Type definition object 
+   * @return {JQuery Element} Rendered Type title element     
+   */
+  _typeTitle(type) {
+
+    return $( '<div>' ).addClass( 'label-styled label-w-margin' )
+                       .text( IPHelper.pluralize( type.name ) )
+  
+  }
+
+  /**
+   * Render Items data as clickable labels in Selection Dialog
+   * @param {Array} items Item data objects
+   * @param {function} onItemClick Item click handler
+   * @return {JQuery Element} Rendered Items elements wrapped in a div     
+   */
+  _itemLabels(items, onItemClick) {
+
+    return items.reduce( ( wrapper, item ) => 
+      wrapper.append( this._itemLabel( item, onItemClick ) ),
+      $( '<div>' )
+    )
+       
+  } 
+
+  /**
+   * Render single Item data as clickable label in Selection Dialog
+   * @param {object} item Item data object
+   * @param {function} onClick Item click handler, ID passed as argument
+   * @return {JQuery Element} Rendered Item element     
+   */
+  _itemLabel(item, onClick) {
+
+    return $( '<div>' ).addClass( 'bg-label removable label-w-margin' )
+                       .attr( 'data-id', item.id )
+                       .click( ({ target }) => onClick( $( target ).attr( 'data-id' ) ) )
+                       .html( SHRenderer.referenceString( item ) )
+
+  }
+
+  /**
+   * Get the Hint element in Selection Dialog
+   * @return {JQuery Element} Text hint div     
+   */
+  get _dialogHint() {
+
+    return $( '<div>' ).addClass( 'text-xtiny' )
+                       .text( 'Click on an item to remove it from the selection.' )
+
+  }
+
+
+  /*** Other elements ***/
 
 
   /**
