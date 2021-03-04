@@ -111,7 +111,7 @@ private
   def add_tc_paths_to_items(items)
     items = items.each do |x|
       x[:has_complex_datatype][:has_property][:has_coded_value].each do |cv|
-        cv.reverse_merge!({show_path: thesauri_unmanaged_concept_path({id: cv[:reference][:id], unmanaged_concept: {parent_id: cv[:context][:id], context_id: ""}})})
+          cv.reverse_merge!({show_path: thesauri_unmanaged_concept_path({id: cv[:reference][:id], unmanaged_concept: {parent_id: cv[:context][:id], context_id: ""}})})
       end
     end
     items

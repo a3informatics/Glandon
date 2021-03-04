@@ -11,10 +11,9 @@ describe "Breadcrumb", :type => :feature do
   before :all do
     data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "form_crf_test_1.ttl", "sdtm_model_and_ig.ttl"]
     load_files(schema_files, data_files)
-    load_cdisc_term_versions(1..62)
+    load_cdisc_term_versions(1..55)
     load_data_file_into_triple_store("mdr_identification.ttl")
-    load_local_bc_template_and_instances
-    #load_data_file_into_triple_store("biomedical_concept_instances.ttl")
+    load_test_bc_template_and_instances
     AdHocReport.destroy_all
     ua_create
   end
@@ -189,6 +188,7 @@ describe "Breadcrumb", :type => :feature do
       click_navbar_bc
       wait_for_ajax 20
       ui_check_breadcrumb("Biomedical Concepts", "", "", "")
+      ui_table_search('index', 'HR')
       find(:xpath, "//tr[contains(.,'HR')]/td/a").click
       wait_for_ajax 20
       ui_check_breadcrumb("Biomedical Concepts", "S-cubed, HR", "", "")

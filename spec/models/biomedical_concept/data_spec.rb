@@ -196,12 +196,12 @@ describe BiomedicalConcept do
 
     before :all do
       load_files(schema_files, ["hackathon_thesaurus.ttl"])
-      load_cdisc_term_versions(1..62)
+      load_cdisc_term_versions(1..55)
       load_data_file_into_triple_store("mdr_identification.ttl")
       load_data_file_into_triple_store("canonical_references.ttl")
       load_data_file_into_triple_store("complex_datatypes.ttl")
       @cdt_set = {}
-      @ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V20#TH"))
+      @ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V55#TH"))
       @ht = Thesaurus.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/CT/V1#TH"))
     end
 

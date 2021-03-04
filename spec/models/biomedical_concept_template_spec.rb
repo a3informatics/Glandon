@@ -11,7 +11,7 @@ describe BiomedicalConceptTemplate do
   before :all do
     load_files(schema_files, [])
     load_data_file_into_triple_store("mdr_identification.ttl")
-    load_local_bc_template_and_instances
+    load_test_bc_template_and_instances
   end
 
 
