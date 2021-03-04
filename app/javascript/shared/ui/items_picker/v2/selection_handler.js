@@ -255,7 +255,6 @@ export default class SelectionHandler {
       selection: this.selection, 
       types: this.options.types,
       onItemClick: el => {
-        console.log(el);
         this.remove({ id: el.attr('data-id') }) // Remove from selection
         el.remove()                             // Remove label element 
       }
