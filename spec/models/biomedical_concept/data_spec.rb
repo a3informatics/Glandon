@@ -168,7 +168,7 @@ describe BiomedicalConcept do
     end
 
     it "create instances, by domain, production" do
-      write_file = true
+      write_file = false
       load_local_file_into_triple_store("#{sub_dir}/templates", "biomedical_concept_templates.ttl")
       ["ae", "dm", "eg", "lb", "vs"].each do |dir|
         filenames = local_file_list("#{sub_dir}/instances/#{dir}", "*.yaml")
@@ -196,7 +196,7 @@ describe BiomedicalConcept do
 
     before :all do
       load_files(schema_files, ["hackathon_thesaurus.ttl"])
-      load_cdisc_term_versions(1..20)
+      load_cdisc_term_versions(1..62)
       load_data_file_into_triple_store("mdr_identification.ttl")
       load_data_file_into_triple_store("canonical_references.ttl")
       load_data_file_into_triple_store("complex_datatypes.ttl")
@@ -206,7 +206,7 @@ describe BiomedicalConcept do
     end
 
     it "create instances, local test" do
-      write_file = true
+      write_file = false
       load_local_file_into_triple_store("#{sub_dir}/templates", "biomedical_concept_templates.ttl")
       generate_instances("#{sub_dir}/instances/test", "instances.yaml", write_file)
     end

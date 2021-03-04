@@ -115,8 +115,8 @@ module DataHelpers
   end
 
   def load_test_bc_template_and_instances
-    load_file_into_triple_store(set_path("db/bc/instances/biomedical_concept_templates.ttl"))
-    load_file_into_triple_store(set_path("db/bc/instances/biomedical_concept_instances.ttl"))
+    load_file_into_triple_store(set_path("db/bc/templates", "biomedical_concept_templates.ttl"))
+    load_file_into_triple_store(set_path("db/bc/instances", "instances.ttl"))
   end
 
   def load_file_into_triple_store(full_path)

@@ -1,181 +1,5 @@
 ---
 :data:
-- :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0hFSUdIVC9WMSNCQ0lfQkNJNQ==
-  :uri: http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI5
-  :label: Position
-  :mandatory: true
-  :collect: true
-  :enabled: false
-  :ordinal: 5
-  :has_complex_datatype:
-    :label: CD
-    :has_property:
-      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0hFSUdIVC9WMSNCQ0lfQkNJNV9CQ0NEVENEX0JDUGNvZGU=
-      :uri: http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI5_BCCDTCD_BCPcode
-      :rdf_type: http://www.assero.co.uk/BiomedicalConcept#PropertyX
-      :label: code
-      :question_text: ''
-      :prompt_text: ''
-      :format: ''
-      :alias: "--POS"
-      :has_coded_value: []
-      :is_a: http://www.s-cubed.dk/CAR#cf1c85adba548e8d681255278976584a7e4a44de
-      :is_complex_datatype_property: http://www.s-cubed.dk/CDT#CD_code
-- :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0hFSUdIVC9WMSNCQ0lfQkNJNg==
-  :uri: http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI6
-  :label: Site of Administration
-  :mandatory: true
-  :collect: true
-  :enabled: false
-  :ordinal: 6
-  :has_complex_datatype:
-    :label: CD
-    :has_property:
-      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0hFSUdIVC9WMSNCQ0lfQkNJNl9CQ0NEVENEX0JDUGNvZGU=
-      :uri: http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI6_BCCDTCD_BCPcode
-      :rdf_type: http://www.assero.co.uk/BiomedicalConcept#PropertyX
-      :label: code
-      :question_text: ''
-      :prompt_text: ''
-      :format: ''
-      :alias: "--LOC"
-      :has_coded_value: []
-      :is_a: http://www.s-cubed.dk/CAR#d219c68101f532de10add2cf42fb9dbeca73d3be
-      :is_complex_datatype_property: http://www.s-cubed.dk/CDT#CD_code
-- :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0hFSUdIVC9WMSNCQ0lfQkNJMQ==
-  :uri: http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI1
-  :label: Test
-  :mandatory: true
-  :collect: false
-  :enabled: true
-  :ordinal: 1
-  :has_complex_datatype:
-    :label: CD
-    :has_property:
-      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0hFSUdIVC9WMSNCQ0lfQkNJMV9CQ0NEVENEX0JDUGNvZGU=
-      :uri: http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI1_BCCDTCD_BCPcode
-      :rdf_type: http://www.assero.co.uk/BiomedicalConcept#PropertyX
-      :label: code
-      :question_text: something else
-      :prompt_text: ''
-      :format: '8'
-      :alias: "--TESTCD"
-      :has_coded_value:
-      - :show_path: "/thesauri/unmanaged_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzQxL1Y0I0M2Njc0MV9DMjUzNDc=?unmanaged_concept%5Bcontext_id%5D=&unmanaged_concept%5Bparent_id%5D=aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzQxL1Y2NiNDNjY3NDE%3D"
-        :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0hFSUdIVC9WMSNCQ0lfQkNJMV9CQ0NEVENEX0JDUGNvZGVfVFVDMQ==
-        :uri: http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI1_BCCDTCD_BCPcode_TUC1
-        :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
-        :label: ''
-        :enabled: true
-        :optional: true
-        :ordinal: 1
-        :reference:
-          :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzQxL1Y0I0M2Njc0MV9DMjUzNDc=
-          :uri: http://www.cdisc.org/C66741/V4#C66741_C25347
-          :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
-          :label: Height
-          :identifier: C25347
-          :notation: HEIGHT
-          :definition: The vertical measurement or distance from the base to the top
-            of an object; the vertical dimension of extension. (NCI)
-          :extensible: false
-          :narrower: []
-          :preferred_term: http://www.assero.co.uk/PT#3f608b4935ead643d43b2642dc4ec863d170aa1d
-          :synonym:
-          - http://www.assero.co.uk/SYN#3f608b4935ead643d43b2642dc4ec863d170aa1d
-        :context:
-          :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzQxL1Y2NiNDNjY3NDE=
-          :uri: http://www.cdisc.org/C66741/V66#C66741
-          :identifier: C66741
-          :notation: VSTESTCD
-          :semantic_version: 28.0.0
-        :local_label: ''
-      :is_a: http://www.s-cubed.dk/CAR#18a302ee283ea042f30ca2cb852a2846f97c9413
-      :is_complex_datatype_property: http://www.s-cubed.dk/CDT#CD_code
-- :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0hFSUdIVC9WMSNCQ0lfQkNJNw==
-  :uri: http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI7
-  :label: Laterality
-  :mandatory: true
-  :collect: true
-  :enabled: false
-  :ordinal: 7
-  :has_complex_datatype:
-    :label: CD
-    :has_property:
-      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0hFSUdIVC9WMSNCQ0lfQkNJN19CQ0NEVENEX0JDUGNvZGU=
-      :uri: http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI7_BCCDTCD_BCPcode
-      :rdf_type: http://www.assero.co.uk/BiomedicalConcept#PropertyX
-      :label: code
-      :question_text: ''
-      :prompt_text: ''
-      :format: ''
-      :alias: "--LAT"
-      :has_coded_value: []
-      :is_a: http://www.s-cubed.dk/CAR#ef3aa1b3b12817712a7c3e62022cbe06bd6c3f08
-      :is_complex_datatype_property: http://www.s-cubed.dk/CDT#CD_code
-- :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0hFSUdIVC9WMSNCQ0lfQkNJMg==
-  :uri: http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI2
-  :label: Date Time
-  :mandatory: true
-  :collect: true
-  :enabled: true
-  :ordinal: 2
-  :has_complex_datatype:
-    :label: DATETIME
-    :has_property:
-      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0hFSUdIVC9WMSNCQ0lfQkNJMl9CQ0NEVERBVEVUSU1FX0JDUHZhbHVl
-      :uri: http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI2_BCCDTDATETIME_BCPvalue
-      :rdf_type: http://www.assero.co.uk/BiomedicalConcept#PropertyX
-      :label: value
-      :question_text: Date and time
-      :prompt_text: Date Time
-      :format: ''
-      :alias: "--DTC"
-      :has_coded_value: []
-      :is_a: http://www.s-cubed.dk/CAR#232daabe4ca2dfdb32645c572b1d34ddb4fe9995
-      :is_complex_datatype_property: http://www.s-cubed.dk/CDT#DATETIME_value
-- :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0hFSUdIVC9WMSNCQ0lfQkNJOA==
-  :uri: http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI8
-  :label: Method
-  :mandatory: true
-  :collect: true
-  :enabled: false
-  :ordinal: 8
-  :has_complex_datatype:
-    :label: CD
-    :has_property:
-      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0hFSUdIVC9WMSNCQ0lfQkNJOF9CQ0NEVENEX0JDUGNvZGU=
-      :uri: http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI8_BCCDTCD_BCPcode
-      :rdf_type: http://www.assero.co.uk/BiomedicalConcept#PropertyX
-      :label: code
-      :question_text: ''
-      :prompt_text: ''
-      :format: ''
-      :alias: "--METHOD"
-      :has_coded_value: []
-      :is_a: http://www.s-cubed.dk/CAR#88306943fea7e76f9cd57cae0ea6d8b32d2e8434
-      :is_complex_datatype_property: http://www.s-cubed.dk/CDT#CD_code
-- :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0hFSUdIVC9WMSNCQ0lfQkNJMw==
-  :uri: http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI3
-  :label: Category Code
-  :mandatory: true
-  :collect: true
-  :enabled: false
-  :ordinal: 3
-  :has_complex_datatype:
-    :label: CD
-    :has_property:
-      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0hFSUdIVC9WMSNCQ0lfQkNJM19CQ0NEVENEX0JDUGNvZGU=
-      :uri: http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI3_BCCDTCD_BCPcode
-      :rdf_type: http://www.assero.co.uk/BiomedicalConcept#PropertyX
-      :label: code
-      :question_text: ''
-      :prompt_text: ''
-      :format: ''
-      :alias: "--CAT"
-      :has_coded_value: []
-      :is_a: http://www.s-cubed.dk/CAR#a3c686e711e4720f99b4562bb3dbaae7ab658cf2
-      :is_complex_datatype_property: http://www.s-cubed.dk/CDT#CD_code
 - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0hFSUdIVC9WMSNCQ0lfQkNJMTA=
   :uri: http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI10
   :label: Reason Not Done
@@ -196,6 +20,27 @@
       :alias: "--REASND"
       :has_coded_value: []
       :is_a: http://www.s-cubed.dk/CAR#52b30e2515e4fa778a3ab77470f0b096877a26c2
+      :is_complex_datatype_property: http://www.s-cubed.dk/CDT#CD_code
+- :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0hFSUdIVC9WMSNCQ0lfQkNJNA==
+  :uri: http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI4
+  :label: Subcategory Code
+  :mandatory: true
+  :collect: true
+  :enabled: false
+  :ordinal: 4
+  :has_complex_datatype:
+    :label: CD
+    :has_property:
+      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0hFSUdIVC9WMSNCQ0lfQkNJNF9CQ0NEVENEX0JDUGNvZGU=
+      :uri: http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI4_BCCDTCD_BCPcode
+      :rdf_type: http://www.assero.co.uk/BiomedicalConcept#PropertyX
+      :label: code
+      :question_text: ''
+      :prompt_text: ''
+      :format: ''
+      :alias: "--SCAT"
+      :has_coded_value: []
+      :is_a: http://www.s-cubed.dk/CAR#479a67983e739413da55faf0dc509f83fd5dea64
       :is_complex_datatype_property: http://www.s-cubed.dk/CDT#CD_code
 - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0hFSUdIVC9WMSNCQ0lfQkNJOQ==
   :uri: http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI9
@@ -218,26 +63,181 @@
       :has_coded_value: []
       :is_a: http://www.s-cubed.dk/CAR#bae7d5be70820ed56467bd9a63744e23b47bd711
       :is_complex_datatype_property: http://www.s-cubed.dk/CDT#BL_value
-- :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0hFSUdIVC9WMSNCQ0lfQkNJNA==
-  :uri: http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI4
-  :label: Subcategory Code
+- :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0hFSUdIVC9WMSNCQ0lfQkNJMw==
+  :uri: http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI3
+  :label: Category Code
   :mandatory: true
   :collect: true
   :enabled: false
-  :ordinal: 4
+  :ordinal: 3
   :has_complex_datatype:
     :label: CD
     :has_property:
-      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0hFSUdIVC9WMSNCQ0lfQkNJNF9CQ0NEVENEX0JDUGNvZGU=
-      :uri: http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI4_BCCDTCD_BCPcode
+      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0hFSUdIVC9WMSNCQ0lfQkNJM19CQ0NEVENEX0JDUGNvZGU=
+      :uri: http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI3_BCCDTCD_BCPcode
       :rdf_type: http://www.assero.co.uk/BiomedicalConcept#PropertyX
       :label: code
       :question_text: ''
       :prompt_text: ''
       :format: ''
-      :alias: "--SCAT"
+      :alias: "--CAT"
       :has_coded_value: []
-      :is_a: http://www.s-cubed.dk/CAR#479a67983e739413da55faf0dc509f83fd5dea64
+      :is_a: http://www.s-cubed.dk/CAR#a3c686e711e4720f99b4562bb3dbaae7ab658cf2
+      :is_complex_datatype_property: http://www.s-cubed.dk/CDT#CD_code
+- :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0hFSUdIVC9WMSNCQ0lfQkNJOA==
+  :uri: http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI8
+  :label: Method
+  :mandatory: true
+  :collect: true
+  :enabled: false
+  :ordinal: 8
+  :has_complex_datatype:
+    :label: CD
+    :has_property:
+      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0hFSUdIVC9WMSNCQ0lfQkNJOF9CQ0NEVENEX0JDUGNvZGU=
+      :uri: http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI8_BCCDTCD_BCPcode
+      :rdf_type: http://www.assero.co.uk/BiomedicalConcept#PropertyX
+      :label: code
+      :question_text: ''
+      :prompt_text: ''
+      :format: ''
+      :alias: "--METHOD"
+      :has_coded_value: []
+      :is_a: http://www.s-cubed.dk/CAR#88306943fea7e76f9cd57cae0ea6d8b32d2e8434
+      :is_complex_datatype_property: http://www.s-cubed.dk/CDT#CD_code
+- :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0hFSUdIVC9WMSNCQ0lfQkNJMg==
+  :uri: http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI2
+  :label: Date Time
+  :mandatory: true
+  :collect: true
+  :enabled: true
+  :ordinal: 2
+  :has_complex_datatype:
+    :label: DATETIME
+    :has_property:
+      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0hFSUdIVC9WMSNCQ0lfQkNJMl9CQ0NEVERBVEVUSU1FX0JDUHZhbHVl
+      :uri: http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI2_BCCDTDATETIME_BCPvalue
+      :rdf_type: http://www.assero.co.uk/BiomedicalConcept#PropertyX
+      :label: value
+      :question_text: Date and time
+      :prompt_text: Date Time
+      :format: ''
+      :alias: "--DTC"
+      :has_coded_value: []
+      :is_a: http://www.s-cubed.dk/CAR#232daabe4ca2dfdb32645c572b1d34ddb4fe9995
+      :is_complex_datatype_property: http://www.s-cubed.dk/CDT#DATETIME_value
+- :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0hFSUdIVC9WMSNCQ0lfQkNJNw==
+  :uri: http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI7
+  :label: Laterality
+  :mandatory: true
+  :collect: true
+  :enabled: false
+  :ordinal: 7
+  :has_complex_datatype:
+    :label: CD
+    :has_property:
+      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0hFSUdIVC9WMSNCQ0lfQkNJN19CQ0NEVENEX0JDUGNvZGU=
+      :uri: http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI7_BCCDTCD_BCPcode
+      :rdf_type: http://www.assero.co.uk/BiomedicalConcept#PropertyX
+      :label: code
+      :question_text: ''
+      :prompt_text: ''
+      :format: ''
+      :alias: "--LAT"
+      :has_coded_value: []
+      :is_a: http://www.s-cubed.dk/CAR#ef3aa1b3b12817712a7c3e62022cbe06bd6c3f08
+      :is_complex_datatype_property: http://www.s-cubed.dk/CDT#CD_code
+- :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0hFSUdIVC9WMSNCQ0lfQkNJMQ==
+  :uri: http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI1
+  :label: Test
+  :mandatory: true
+  :collect: false
+  :enabled: true
+  :ordinal: 1
+  :has_complex_datatype:
+    :label: CD
+    :has_property:
+      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0hFSUdIVC9WMSNCQ0lfQkNJMV9CQ0NEVENEX0JDUGNvZGU=
+      :uri: http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI1_BCCDTCD_BCPcode
+      :rdf_type: http://www.assero.co.uk/BiomedicalConcept#PropertyX
+      :label: code
+      :question_text: something else
+      :prompt_text: ''
+      :format: '8'
+      :alias: "--TESTCD"
+      :has_coded_value:
+      - :show_path: "/thesauri/unmanaged_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzQxL1Y0I0M2Njc0MV9DMjUzNDc=?unmanaged_concept%5Bcontext_id%5D=&unmanaged_concept%5Bparent_id%5D=aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzQxL1YyMCNDNjY3NDE%3D"
+        :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0hFSUdIVC9WMSNCQ0lfQkNJMV9CQ0NEVENEX0JDUGNvZGVfVFVDMQ==
+        :uri: http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI1_BCCDTCD_BCPcode_TUC1
+        :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+        :label: ''
+        :enabled: true
+        :optional: true
+        :ordinal: 1
+        :reference:
+          :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzQxL1Y0I0M2Njc0MV9DMjUzNDc=
+          :uri: http://www.cdisc.org/C66741/V4#C66741_C25347
+          :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+          :label: Height
+          :identifier: C25347
+          :notation: HEIGHT
+          :definition: The vertical measurement or distance from the base to the top
+            of an object; the vertical dimension of extension. (NCI)
+          :extensible: false
+          :narrower: []
+          :preferred_term: http://www.assero.co.uk/PT#3f608b4935ead643d43b2642dc4ec863d170aa1d
+          :synonym:
+          - http://www.assero.co.uk/SYN#3f608b4935ead643d43b2642dc4ec863d170aa1d
+        :context:
+          :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzQxL1YyMCNDNjY3NDE=
+          :uri: http://www.cdisc.org/C66741/V20#C66741
+          :identifier: C66741
+          :notation: VSTESTCD
+          :semantic_version: 5.0.0
+        :local_label: ''
+      :is_a: http://www.s-cubed.dk/CAR#18a302ee283ea042f30ca2cb852a2846f97c9413
+      :is_complex_datatype_property: http://www.s-cubed.dk/CDT#CD_code
+- :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0hFSUdIVC9WMSNCQ0lfQkNJNg==
+  :uri: http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI6
+  :label: Site of Administration
+  :mandatory: true
+  :collect: true
+  :enabled: false
+  :ordinal: 6
+  :has_complex_datatype:
+    :label: CD
+    :has_property:
+      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0hFSUdIVC9WMSNCQ0lfQkNJNl9CQ0NEVENEX0JDUGNvZGU=
+      :uri: http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI6_BCCDTCD_BCPcode
+      :rdf_type: http://www.assero.co.uk/BiomedicalConcept#PropertyX
+      :label: code
+      :question_text: ''
+      :prompt_text: ''
+      :format: ''
+      :alias: "--LOC"
+      :has_coded_value: []
+      :is_a: http://www.s-cubed.dk/CAR#d219c68101f532de10add2cf42fb9dbeca73d3be
+      :is_complex_datatype_property: http://www.s-cubed.dk/CDT#CD_code
+- :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0hFSUdIVC9WMSNCQ0lfQkNJNQ==
+  :uri: http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI5
+  :label: Position
+  :mandatory: true
+  :collect: true
+  :enabled: false
+  :ordinal: 5
+  :has_complex_datatype:
+    :label: CD
+    :has_property:
+      :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0hFSUdIVC9WMSNCQ0lfQkNJNV9CQ0NEVENEX0JDUGNvZGU=
+      :uri: http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI5_BCCDTCD_BCPcode
+      :rdf_type: http://www.assero.co.uk/BiomedicalConcept#PropertyX
+      :label: code
+      :question_text: ''
+      :prompt_text: ''
+      :format: ''
+      :alias: "--POS"
+      :has_coded_value: []
+      :is_a: http://www.s-cubed.dk/CAR#cf1c85adba548e8d681255278976584a7e4a44de
       :is_complex_datatype_property: http://www.s-cubed.dk/CDT#CD_code
 - :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0hFSUdIVC9WMSNCQ0lfQkNJMTE=
   :uri: http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI11
@@ -258,37 +258,65 @@
       :format: '20'
       :alias: "--ORRESU"
       :has_coded_value:
-      - :show_path: "/thesauri/unmanaged_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxNjIwL1Y2I0M3MTYyMF9DNDExMzk=?unmanaged_concept%5Bcontext_id%5D=&unmanaged_concept%5Bparent_id%5D=aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxNjIwL1Y2OCNDNzE2MjA%3D"
-        :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0hFSUdIVC9WMSNCQ0lfQkNJMTFfQkNDRFRQUVJfQkNQY29kZV9UVUMz
-        :uri: http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI11_BCCDTPQR_BCPcode_TUC3
+      - :show_path: "/thesauri/unmanaged_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzcwL1YyI0M2Njc3MF9DNDg1MDA=?unmanaged_concept%5Bcontext_id%5D=&unmanaged_concept%5Bparent_id%5D=aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzcwL1YxNyNDNjY3NzA%3D"
+        :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0hFSUdIVC9WMSNCQ0lfQkNJMTFfQkNDRFRQUVJfQkNQY29kZV9UVUMy
+        :uri: http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI11_BCCDTPQR_BCPcode_TUC2
         :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
         :label: ''
         :enabled: true
         :optional: true
-        :ordinal: 3
+        :ordinal: 2
         :reference:
-          :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxNjIwL1Y2I0M3MTYyMF9DNDExMzk=
-          :uri: http://www.cdisc.org/C71620/V6#C71620_C41139
+          :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzcwL1YyI0M2Njc3MF9DNDg1MDA=
+          :uri: http://www.cdisc.org/C66770/V2#C66770_C48500
           :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
-          :label: Meter
-          :identifier: C41139
-          :notation: m
-          :definition: A meter is defined as the length of the path traveled by light
-            in a vacuum during a time interval of 1/299 792 458 of a second and is
-            equal to 1.093 61 yards.(NCI)
+          :label: Inch
+          :identifier: C48500
+          :notation: IN
+          :definition: A traditional unit of length equal to 2.54 centimeters. (NCI)
           :extensible: false
           :narrower: []
-          :preferred_term: http://www.assero.co.uk/PT#df8fad2cc28080ebffb2553e4679edc2f50cfbfe
+          :preferred_term: http://www.assero.co.uk/PT#2fb30e16a2a8b342a0edb99debc4b295b2d35961
           :synonym:
-          - http://www.assero.co.uk/SYN#df8fad2cc28080ebffb2553e4679edc2f50cfbfe
+          - http://www.assero.co.uk/SYN#2fb30e16a2a8b342a0edb99debc4b295b2d35961
         :context:
-          :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxNjIwL1Y2OCNDNzE2MjA=
-          :uri: http://www.cdisc.org/C71620/V68#C71620
-          :identifier: C71620
-          :notation: UNIT
-          :semantic_version: 50.0.0
+          :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzcwL1YxNyNDNjY3NzA=
+          :uri: http://www.cdisc.org/C66770/V17#C66770
+          :identifier: C66770
+          :notation: VSRESU
+          :semantic_version: 4.0.0
         :local_label: ''
-      - :show_path: "/thesauri/unmanaged_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxNjIwL1Y2I0M3MTYyMF9DNzEyNTM=?unmanaged_concept%5Bcontext_id%5D=&unmanaged_concept%5Bparent_id%5D=aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxNjIwL1Y2OCNDNzE2MjA%3D"
+      - :show_path: "/thesauri/unmanaged_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzcwL1Y0I0M2Njc3MF9DNDk2Njg=?unmanaged_concept%5Bcontext_id%5D=&unmanaged_concept%5Bparent_id%5D=aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzcwL1YxNyNDNjY3NzA%3D"
+        :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0hFSUdIVC9WMSNCQ0lfQkNJMTFfQkNDRFRQUVJfQkNQY29kZV9UVUMx
+        :uri: http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI11_BCCDTPQR_BCPcode_TUC1
+        :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
+        :label: ''
+        :enabled: true
+        :optional: true
+        :ordinal: 1
+        :reference:
+          :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzcwL1Y0I0M2Njc3MF9DNDk2Njg=
+          :uri: http://www.cdisc.org/C66770/V4#C66770_C49668
+          :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+          :label: Centimeter
+          :identifier: C49668
+          :notation: cm
+          :definition: A basic unit of length in the former CGS version of metric
+            system, equal to one hundredth of a meter or approximately 0.393 700 787
+            inch. (NCI)
+          :extensible: false
+          :narrower: []
+          :preferred_term: http://www.assero.co.uk/PT#9cab1c70b10c72b3dc8fc42049f8e0e2303757a9
+          :synonym:
+          - http://www.assero.co.uk/SYN#9cab1c70b10c72b3dc8fc42049f8e0e2303757a9
+        :context:
+          :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzcwL1YxNyNDNjY3NzA=
+          :uri: http://www.cdisc.org/C66770/V17#C66770
+          :identifier: C66770
+          :notation: VSRESU
+          :semantic_version: 4.0.0
+        :local_label: ''
+      - :show_path: "/thesauri/unmanaged_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxNjIwL1Y2I0M3MTYyMF9DNzEyNTM=?unmanaged_concept%5Bcontext_id%5D=&unmanaged_concept%5Bparent_id%5D=aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxNjIwL1YyMCNDNzE2MjA%3D"
         :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0hFSUdIVC9WMSNCQ0lfQkNJMTFfQkNDRFRQUVJfQkNQY29kZV9UVUM0
         :uri: http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI11_BCCDTPQR_BCPcode_TUC4
         :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
@@ -312,68 +340,41 @@
           :synonym:
           - http://www.assero.co.uk/SYN#d88c8ea10f076325483be42bbe1abf9c709658f0
         :context:
-          :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxNjIwL1Y2OCNDNzE2MjA=
-          :uri: http://www.cdisc.org/C71620/V68#C71620
+          :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxNjIwL1YyMCNDNzE2MjA=
+          :uri: http://www.cdisc.org/C71620/V20#C71620
           :identifier: C71620
           :notation: UNIT
-          :semantic_version: 50.0.0
+          :semantic_version: 10.0.0
         :local_label: ''
-      - :show_path: "/thesauri/unmanaged_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzcwL1YzNCNDNjY3NzBfQzQ5NjY4?unmanaged_concept%5Bcontext_id%5D=&unmanaged_concept%5Bparent_id%5D=aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzcwL1Y1OSNDNjY3NzA%3D"
-        :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0hFSUdIVC9WMSNCQ0lfQkNJMTFfQkNDRFRQUVJfQkNQY29kZV9UVUMx
-        :uri: http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI11_BCCDTPQR_BCPcode_TUC1
+      - :show_path: "/thesauri/unmanaged_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxNjIwL1Y2I0M3MTYyMF9DNDExMzk=?unmanaged_concept%5Bcontext_id%5D=&unmanaged_concept%5Bparent_id%5D=aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxNjIwL1YyMCNDNzE2MjA%3D"
+        :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0hFSUdIVC9WMSNCQ0lfQkNJMTFfQkNDRFRQUVJfQkNQY29kZV9UVUMz
+        :uri: http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI11_BCCDTPQR_BCPcode_TUC3
         :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
         :label: ''
         :enabled: true
         :optional: true
-        :ordinal: 1
+        :ordinal: 3
         :reference:
-          :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzcwL1YzNCNDNjY3NzBfQzQ5NjY4
-          :uri: http://www.cdisc.org/C66770/V34#C66770_C49668
+          :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxNjIwL1Y2I0M3MTYyMF9DNDExMzk=
+          :uri: http://www.cdisc.org/C71620/V6#C71620_C41139
           :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
-          :label: Centimeter
-          :identifier: C49668
-          :notation: cm
-          :definition: A basic unit of length equal to one hundredth of a meter or
-            approximately 0.393700787 inch.
+          :label: Meter
+          :identifier: C41139
+          :notation: m
+          :definition: A meter is defined as the length of the path traveled by light
+            in a vacuum during a time interval of 1/299 792 458 of a second and is
+            equal to 1.093 61 yards.(NCI)
           :extensible: false
           :narrower: []
-          :preferred_term: http://www.assero.co.uk/PT#9cab1c70b10c72b3dc8fc42049f8e0e2303757a9
+          :preferred_term: http://www.assero.co.uk/PT#df8fad2cc28080ebffb2553e4679edc2f50cfbfe
           :synonym:
-          - http://www.assero.co.uk/SYN#9cab1c70b10c72b3dc8fc42049f8e0e2303757a9
+          - http://www.assero.co.uk/SYN#df8fad2cc28080ebffb2553e4679edc2f50cfbfe
         :context:
-          :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzcwL1Y1OSNDNjY3NzA=
-          :uri: http://www.cdisc.org/C66770/V59#C66770
-          :identifier: C66770
-          :notation: VSRESU
-          :semantic_version: 18.0.0
-        :local_label: ''
-      - :show_path: "/thesauri/unmanaged_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzcwL1Y0MiNDNjY3NzBfQzQ4NTAw?unmanaged_concept%5Bcontext_id%5D=&unmanaged_concept%5Bparent_id%5D=aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzcwL1Y1OSNDNjY3NzA%3D"
-        :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0hFSUdIVC9WMSNCQ0lfQkNJMTFfQkNDRFRQUVJfQkNQY29kZV9UVUMy
-        :uri: http://www.s-cubed.dk/HEIGHT/V1#BCI_BCI11_BCCDTPQR_BCPcode_TUC2
-        :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
-        :label: ''
-        :enabled: true
-        :optional: true
-        :ordinal: 2
-        :reference:
-          :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzcwL1Y0MiNDNjY3NzBfQzQ4NTAw
-          :uri: http://www.cdisc.org/C66770/V42#C66770_C48500
-          :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
-          :label: Inch
-          :identifier: C48500
-          :notation: in
-          :definition: A traditional unit of length equal to 2.54 centimeters. (NCI)
-          :extensible: false
-          :narrower: []
-          :preferred_term: http://www.assero.co.uk/PT#2fb30e16a2a8b342a0edb99debc4b295b2d35961
-          :synonym:
-          - http://www.assero.co.uk/SYN#2fb30e16a2a8b342a0edb99debc4b295b2d35961
-        :context:
-          :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzcwL1Y1OSNDNjY3NzA=
-          :uri: http://www.cdisc.org/C66770/V59#C66770
-          :identifier: C66770
-          :notation: VSRESU
-          :semantic_version: 18.0.0
+          :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxNjIwL1YyMCNDNzE2MjA=
+          :uri: http://www.cdisc.org/C71620/V20#C71620
+          :identifier: C71620
+          :notation: UNIT
+          :semantic_version: 10.0.0
         :local_label: ''
       :is_a: http://www.s-cubed.dk/CAR#7715259cc4b4ef877c53de5ab0e9673dff58ca35
       :is_complex_datatype_property: http://www.s-cubed.dk/CDT#PQR_code
