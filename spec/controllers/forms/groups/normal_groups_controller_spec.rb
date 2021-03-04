@@ -9,22 +9,18 @@ describe Forms::Groups::NormalGroupsController do
   include ControllerHelpers
   include SecureRandomHelpers
   include IsoManagedHelpers
+
+  def sub_dir
+    return "controllers/forms/groups"
+  end
+
+  def make_standard(item)
+    IsoManagedHelpers.make_item_standard(item)
+  end
   
   describe "Update" do
   	
     login_curator
-
-    def sub_dir
-      return "controllers/forms/groups"
-    end
-
-    def make_standard(item)
-      IsoManagedHelpers.make_item_standard(item)
-    end
-
-    after :all do
-      ua_remove_user("lock@example.com")
-    end
 
     before :all do
       data_files = ["forms/FN000120.ttl"]
@@ -34,6 +30,10 @@ describe Forms::Groups::NormalGroupsController do
       Token.delete_all
       @form = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/FN000120/V1#F"))
       @normal = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/FN000120/V1#F_NG12"))
+    end
+
+    after :all do
+      ua_remove_user("lock@example.com")
     end
 
     it "update" do
@@ -113,10 +113,6 @@ describe Forms::Groups::NormalGroupsController do
 
     login_curator
 
-    def sub_dir
-      return "controllers/forms/groups"
-    end
-
     before :all do
       data_files = ["forms/FN000120.ttl", "biomedical_concept_instances.ttl", "biomedical_concept_templates.ttl"]
       load_files(schema_files, data_files)
@@ -170,14 +166,6 @@ describe Forms::Groups::NormalGroupsController do
     
     login_curator
 
-    def sub_dir
-      return "controllers/forms/groups"
-    end
-
-    after :all do
-      ua_remove_user("lock@example.com")
-    end
-
     before :all do
       data_files = ["forms/FN000150.ttl","forms/FN000120.ttl", "forms/CRF TEST 1.ttl","biomedical_concept_instances.ttl", "biomedical_concept_templates.ttl" ]
       load_files(schema_files, data_files)
@@ -185,6 +173,10 @@ describe Forms::Groups::NormalGroupsController do
       @lock_user = ua_add_user(email: "lock@example.com")
       Token.delete_all
       @form = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/FN000120/V1#F"))
+    end
+
+    after :all do
+      ua_remove_user("lock@example.com")
     end
 
     it "Move up I" do
@@ -231,32 +223,28 @@ describe Forms::Groups::NormalGroupsController do
     
     login_curator
 
-    def sub_dir
-      return "controllers/forms/groups"
+    before :all do
+      load_files(schema_files, [])
+      load_data_file_into_triple_store("mdr_identification.ttl")
+      @lock_user = ua_add_user(email: "lock@example.com")
+      Token.delete_all
     end
 
     after :all do
       ua_remove_user("lock@example.com")
     end
 
-    before :all do
-      data_files = ["forms/form_test_2.ttl"]
-      load_files(schema_files, data_files)
-      load_cdisc_term_versions(1..1)
-      load_data_file_into_triple_store("mdr_identification.ttl")
-      @lock_user = ua_add_user(email: "lock@example.com")
-      Token.delete_all
-      @form = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/form_test_2/V1#F"))
-    end
-
     it "Destroy" do
       request.env['HTTP_ACCEPT'] = "application/json"
       request.content_type = 'application/json'
-      item = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/form_test_2/V1#F_NG1"))
-      parent = Form.find(Uri.new(uri: "http://www.s-cubed.dk/form_test_2/V1#F"))
-      token = Token.obtain(@form, @user)
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
+      form = Form.create(label: "Form test 2", identifier: "Form test 2")
+      form.add_child({type:"normal_group"})
+      item = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/Formtest2/V1#NG_1760cbb1-a370-41f6-a3b3-493c1d9c2238"))
+      form = Form.find_minimum(form.uri)
+      token = Token.obtain(form, @user)
       audit_count = AuditTrail.count
-      delete :destroy, params:{id: item.id, normal_group: {parent_id: parent.id , form_id: @form.id}}
+      delete :destroy, params:{id: item.id, normal_group: {parent_id: form.id , form_id: form.id}}
       expect(AuditTrail.count).to eq(audit_count+1)
       actual = check_good_json_response(response)
       check_file_actual_expected(actual, sub_dir, "destroy_normal_group_expected_1.yaml", equate_method: :hash_equal)
