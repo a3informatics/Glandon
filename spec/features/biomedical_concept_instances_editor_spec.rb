@@ -573,7 +573,6 @@ describe "Biomedical Concept Instances Editor", :type => :feature do
       # Put to Recorded - locked state
       click_on 'Return'
       wait_for_ajax 20
-pause
       context_menu_element_v2('history', 'HEIGHT', :document_control)
       wait_for_ajax 10
       dc_forward_to 'Recorded'
