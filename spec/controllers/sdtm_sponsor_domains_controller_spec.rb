@@ -487,7 +487,7 @@ describe SdtmSponsorDomainsController do
       data_files = ["SDTM_Sponsor_Domain.ttl", "association.ttl"]
       load_files(schema_files, data_files)
       load_data_file_into_triple_store("mdr_identification.ttl")
-      load_bc_template_and_instances
+      load_local_bc_template_and_instances
       #load_data_file_into_triple_store("biomedical_concept_instances.ttl")
       @lock_user = ua_add_user(email: "lock@example.com")
       Token.delete_all
@@ -536,7 +536,7 @@ describe SdtmSponsorDomainsController do
       data_files = ["SDTM_Sponsor_Domain.ttl"]
       load_files(schema_files, data_files)
       load_data_file_into_triple_store("mdr_identification.ttl")
-      load_bc_template_and_instances
+      load_local_bc_template_and_instances
       #load_data_file_into_triple_store("biomedical_concept_instances.ttl")
       @lock_user = ua_add_user(email: "lock@example.com")
       Token.delete_all
@@ -572,7 +572,7 @@ describe SdtmSponsorDomainsController do
       data_files = ["SDTM_Sponsor_Domain.ttl"]
       load_files(schema_files, data_files)
       load_data_file_into_triple_store("mdr_identification.ttl")
-      load_bc_template_and_instances
+      load_local_bc_template_and_instances
       #load_data_file_into_triple_store("biomedical_concept_instances.ttl")
       @lock_user = ua_add_user(email: "lock@example.com")
       Token.delete_all
@@ -614,7 +614,7 @@ describe SdtmSponsorDomainsController do
       data_files = ["SDTM_Sponsor_Domain.ttl"]
       load_files(schema_files, data_files)
       load_data_file_into_triple_store("mdr_identification.ttl")
-      load_bc_template_and_instances
+      load_local_bc_template_and_instances
       #load_data_file_into_triple_store("biomedical_concept_instances.ttl")
       @lock_user = ua_add_user(email: "lock@example.com")
       Token.delete_all

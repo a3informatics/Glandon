@@ -13,7 +13,7 @@ describe "Breadcrumb", :type => :feature do
     load_files(schema_files, data_files)
     load_cdisc_term_versions(1..62)
     load_data_file_into_triple_store("mdr_identification.ttl")
-    load_bc_template_and_instances
+    load_local_bc_template_and_instances
     #load_data_file_into_triple_store("biomedical_concept_instances.ttl")
     AdHocReport.destroy_all
     ua_create

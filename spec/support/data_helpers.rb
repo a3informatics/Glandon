@@ -104,14 +104,19 @@ module DataHelpers
     load_cdisc_term_versions(CdiscCtHelpers.version_range)
   end
 
-  def load_bc_template_and_instances
-    load_data_file_into_triple_store("bc/biomedical_concept_templates.ttl")
+  def load_data_bc_template_and_instances
+    load_data_file_into_triple_store("bc/templates/biomedical_concept_templates.ttl")
     ["ae", "dm", "eg", "lb", "vs"].each do |dir|
-      filenames = data_load_file_list("/bc/#{dir}", "*.ttl")
+      filenames = data_load_file_list("/bc/instances/#{dir}", "*.ttl")
       filenames.each do |f|
-        load_data_file_into_triple_store("bc/#{dir}/#{f}")
+        load_data_file_into_triple_store("bc/instances/#{dir}/#{f}")
       end
     end
+  end
+
+  def load_test_bc_template_and_instances
+    load_file_into_triple_store(set_path("db/bc/instances/biomedical_concept_templates.ttl"))
+    load_file_into_triple_store(set_path("db/bc/instances/biomedical_concept_instances.ttl"))
   end
 
   def load_file_into_triple_store(full_path)

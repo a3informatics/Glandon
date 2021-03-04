@@ -32,7 +32,7 @@ describe BiomedicalConcept::ComplexDatatype do
     before :each do
       load_files(schema_files, [])
       load_data_file_into_triple_store("mdr_identification.ttl")
-      load_bc_template_and_instances
+      load_local_bc_template_and_instances
       #load_data_file_into_triple_store("biomedical_concept_instances.ttl")
       @uri_cdt = Uri.new(uri: "http://www.s-cubed.dk/BMI/V1#BCI_BCI1_BCCDTCD")
       @property = BiomedicalConcept::ComplexDatatype.find(@uri_cdt)
