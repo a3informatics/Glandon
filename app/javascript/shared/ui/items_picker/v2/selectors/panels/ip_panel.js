@@ -67,9 +67,12 @@ export default class PickerPanel extends Cacheable {
       const cached = this._getFromCache( this._cacheKey )
 
       // Render data from cache 
-      if ( cached )
-        this.sp._render( cached, true )
+      if ( cached ) {
 
+        this.sp._render( cached, true )
+        this.dispatch( 'dataLoaded' )
+
+      }
       // Load data from server  
       else  {
 
@@ -162,6 +165,18 @@ export default class PickerPanel extends Cacheable {
   }
 
   /**
+   * Update Panels's selected rows according to the specified comparator
+   * Does not execute the 'selected' and 'deselected' event handlers
+   * @param {function} comparator Function that determines whether a row should be selected, row data passed as arg    
+   */
+  updateSelection(comparator) {
+
+    this.sp.deselectWithoutCallback() 
+    this.sp.selectWithoutCallback( (idx, data) => comparator( data ) )
+
+  }
+
+  /**
    * Destroy Picker Panel instance
    */
   destroy() {
@@ -196,7 +211,7 @@ export default class PickerPanel extends Cacheable {
   }
 
   /**
-   * Add a custom event listener to the panel
+   * Add a custom event handler to the panel
    * @param {string} eventName Name of custom event. Available events: selected, deselected, dataLoaded, interactionStateChanged, refresh
    * @param {function} handler Event handler function
    * @return {PickerPanel} this instance (for chaining)
@@ -204,6 +219,18 @@ export default class PickerPanel extends Cacheable {
   on(eventName, handler = () => {}) {
 
     this._config.eventHandler.on( eventName, handler )
+    return this 
+
+  }
+
+  /**
+   * Remove event handlers from the panel
+   * @param {string} eventName Name of custom event. Available events: selected, deselected, dataLoaded, interactionStateChanged, refresh
+   * @return {PickerPanel} this instance (for chaining)
+   */
+  off(eventName) {
+
+    this._config.eventHandler.off( eventName )
     return this 
 
   }

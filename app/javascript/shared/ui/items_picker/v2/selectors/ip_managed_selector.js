@@ -15,11 +15,13 @@ export default class ManagedSelector {
    * @param {Object} params Instance parameters
    * @param {Object} params.type Selector type, must an entry be from the RdfTypesMap
    * @param {Object} params.options ItemsPicker options object 
-   * @param {EventHandler} params.eventHandler ItemsPicker shared EventHandler instance 
+   * @param {SelectionHandler} params.selectionHandler Items Picker SelectionHandler instance 
+   * @param {EventHandler} params.eventHandler Items Picker shared EventHandler instance 
    */
   constructor({
     type,
     options,
+    selectionHandler,
     eventHandler
   }) {
 
@@ -32,6 +34,7 @@ export default class ManagedSelector {
       _config: {
         buildRequired: true,
         renderer: new IPSRenderer( selector ),
+        selectionHandler,
         eventHandler
       }
     })
@@ -126,6 +129,15 @@ export default class ManagedSelector {
 
   }
 
+  /**
+   * Update Selector's Panels selected rows to match Selection Handler  
+   * Call when Selection changed from places other than the Panels
+   * @param {PickerPanel} targetPanel Picker Panel instance to update  
+   */
+  _updatePanels(targetPanel = this.historyPanel) {
+    targetPanel.updateSelection( data => this._SelectionHandler.has( data ) )
+  }
+
 
   /*** Events ***/
 
@@ -144,14 +156,17 @@ export default class ManagedSelector {
     this.historyPanel
       .on( 'selected', s => this._onHistorySelect(s) )
       .on( 'deselected', d => this._onHistoryDeselect(d) )
+      .on( 'dataLoaded', () => this._updatePanels() )
       .on( 'interactionStateChanged', enable => 
         this.indexPanel._toggleInteraction(enable) 
       )
 
+    this._EventHandler
+      .on( 'selectionChange', (sh, requireUpdate) => requireUpdate && this._updatePanels() )
+
     return this 
 
   }
-
 
   /**
    * On Index Panel item selected event, set-up and load history panel data
@@ -171,19 +186,19 @@ export default class ManagedSelector {
   }
 
   /**
-   * On History Panel item selected event, dispatch add to selection event
+   * On History Panel item selected event, add items to SelectionHandler
    * @param {array} selected Selected item data 
    */
   _onHistorySelect(selected) {
-    this._EventHandler.dispatch( 'addToSelection', selected )
+    this._SelectionHandler.add( selected )
   }
 
   /**
-   * On History Panel item deselected event, dispatch remove from selection event
+   * On History Panel item deselected event, remove items from SelectionHandler
    * @param {array} deselected Deselected item data 
    */
   _onHistoryDeselect(deselected) {
-    this._EventHandler.dispatch( 'removeFromSelection', deselected )
+    this._SelectionHandler.remove( deselected )
   }
 
 
@@ -204,6 +219,14 @@ export default class ManagedSelector {
    */
   get _EventHandler() {
     return this._config.eventHandler
+  }
+
+  /**
+   * Get the current SelectionHandler instance 
+   * @return {SelectionHandler} 
+   */
+  get _SelectionHandler() {
+    return this._config.selectionHandler
   }
 
 }

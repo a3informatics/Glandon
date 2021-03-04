@@ -50,39 +50,48 @@ export default class SelectionHandler {
 
   /**
    * Add items to Selection 
+   * Dispatches selectionChange event with this instance and updatePanels as args 
    * @param {Array | Object} items One or more data objects to be added into the selection
+   * @param {Object} params Optional params 
+   * @param {boolean} updatePanels Specifies whether the selection of the Panels in the Picker requires updating 
    */
-  add(items) {
+  add(items, { updatePanels = false } = {}) {
 
     if ( !Array.isArray( items ) )
       items = [ items ]
 
     this._add( items )
-        ._dispatch( 'selectionChange' )
+        ._dispatch( 'selectionChange', this, updatePanels )
 
   }
 
   /**
    * Remove items from Selection 
+   * Dispatches selectionChange event with this instance and updatePanels as args 
    * @param {Array | Object} items One or more data objects to be removed from the selection
+   * @param {Object} params Optional params 
+   * @param {boolean} updatePanels Specifies whether the selection of the Panels in the Picker requires updating 
    */
-  remove(items) {
+  remove(items, { updatePanels = false } = {}) {
 
     if ( !Array.isArray( items ) )
       items = [ items ]
   
     this._remove( items )
-        ._dispatch( 'selectionChange' )
+        ._dispatch( 'selectionChange', this, updatePanels )
 
   }
 
   /**
-   * Clear the Selection
+   * Clear Selection
+   * Dispatches selectionChange event with this instance and updatePanels as args 
+   * @param {Object} params Optional params 
+   * @param {boolean} updatePanels Specifies whether the selection of the Panels in the Picker requires updating 
    */
-  clear() {
+  clear({ updatePanels = true } = {}) {
 
     this.selection = []
-    this._dispatch( 'selectionChange' )
+    this._dispatch( 'selectionChange', this, updatePanels )
 
   }
 
@@ -254,11 +263,27 @@ export default class SelectionHandler {
     return this._Renderer.buildSelectionDialog({
       selection: this.selection, 
       types: this.options.types,
-      onItemClick: el => {
-        this.remove({ id: el.attr('data-id') }) // Remove from selection
-        el.remove()                             // Remove label element 
-      }
+      onItemClick: el => this._onSelectionDialogItemClick(el)
     })
+
+  }
+
+  /**
+   * Selection Dialog Item Click event handler, remove matching Item from Selection
+   * @param {JQuery Element} element Clicked element 
+   */
+  _onSelectionDialogItemClick(element) {
+
+    if ( !element )
+      return 
+
+    // Remove from selection
+    this.remove(
+      { id: element.attr('data-id') }, 
+      { updatePanels: true }
+    ) 
+    // Remove label element 
+    element.remove() 
 
   }
 
@@ -304,7 +329,7 @@ export default class SelectionHandler {
    */
   _dispatch(eventName, ...args) {
 
-    this._config.eventHandler.dispatch( eventName, args )
+    this._config.eventHandler.dispatch( eventName, ...args )
     return this 
 
   }

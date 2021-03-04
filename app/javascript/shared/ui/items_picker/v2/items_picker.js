@@ -240,8 +240,8 @@ export default class ItemsPicker extends ModalView {
   _build() {
 
     // Init tabs 
-    this._initSelectors()
     this._initSelectionHandler()
+    this._initSelectors()
     this._renderAll()
     this._config.buildRequired = false
 
@@ -267,8 +267,6 @@ export default class ItemsPicker extends ModalView {
 
     this._EventHandler
       .on( 'renderComplete', () => this._onRender() )
-      .on( 'addToSelection', items =>  this.selectionHandler.add(items)  )
-      .on( 'removeFromSelection', items => this.selectionHandler.remove(items) )
 
   }
 
@@ -298,6 +296,7 @@ export default class ItemsPicker extends ModalView {
     const params = {
       type, 
       options: this.options,
+      selectionHandler: this.selectionHandler,
       eventHandler: this._EventHandler
     }
 

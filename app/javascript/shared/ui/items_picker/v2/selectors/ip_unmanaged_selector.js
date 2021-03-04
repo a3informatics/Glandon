@@ -15,14 +15,16 @@ export default class UnmanagedSelector extends ManagedSelector {
    * @param {Object} params Instance parameters
    * @param {Object} params.type Selector type, must an entry be from the RdfTypesMap
    * @param {Object} params.options ItemsPicker options object 
+   * @param {SelectionHandler} params.selectionHandler Items Picker SelectionHandler instance 
    * @param {EventHandler} params.eventHandler ItemsPicker shared EventHandler instance 
    */
   constructor({
     type,
     options,
+    selectionHandler,
     eventHandler
   }) {
-    super({ type, options, eventHandler })
+    super({ type, options, selectionHandler, eventHandler })
   }
 
   /**
@@ -83,6 +85,15 @@ export default class UnmanagedSelector extends ManagedSelector {
 
   }
 
+  /**
+   * Update Selector's Panels (row selection) to match the state of the master Items Picker Selection 
+   * Used when Selection changed from places other than the Panels
+   * @param {PickerPanel} targetPanel Picker Panel instance to update  
+   */
+  _updatePanels(targetPanel = this.childrenPanel) {
+    super._updatePanels( targetPanel )
+  }
+
 
   /*** Events ***/
 
@@ -98,11 +109,13 @@ export default class UnmanagedSelector extends ManagedSelector {
     this.indexPanel.on( 'refresh', () => this.childrenPanel.clear(true) )
 
     this.historyPanel.on( 'refresh', () => this.childrenPanel.clear(true) )
+                     .off( 'dataLoaded' )
 
     // Children panel events 
     this.childrenPanel
       .on( 'selected', s => this._onChildrenSelect(s) )
       .on( 'deselected', d => this._onChildrenDeselect(d) )
+      .on( 'dataLoaded', () => this._updatePanels() )
       .on( 'interactionStateChanged', enable => 
         this.historyPanel._toggleInteraction(enable) 
       )
@@ -144,19 +157,22 @@ export default class UnmanagedSelector extends ManagedSelector {
   }
 
   /**
-   * On Children Panel item selected event, dispatch add to selection event
+   * On Children Panel item selected event, add items to SelectionHandler
    * @param {array} selected Selected item data 
    */
   _onChildrenSelect(selected) {
-    this._EventHandler.dispatch( 'addToSelection', this._addContextToItems( selected ) )
+
+    selected = this._addContextToItems( selected ) 
+    this._SelectionHandler.add( selected )
+
   }
 
   /**
-   * On Children Panel item deselected event, dispatch remove from selection event
+   * On Children Panel item deselected event, remove items from SelectionHandler
    * @param {array} deselected Deselected item data 
    */
   _onChildrenDeselect(deselected) {
-    this._EventHandler.dispatch( 'removeFromSelection', deselected )
+    this._SelectionHandler.remove( deselected )
   }
 
 
@@ -173,7 +189,7 @@ export default class UnmanagedSelector extends ManagedSelector {
     const [context] = this.historyPanel.selected
 
     return items.map( item => 
-      Object.assign( item, { _context: context })
+      Object.assign( {}, item, { _context: context })
     )
 
   }
