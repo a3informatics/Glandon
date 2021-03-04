@@ -48,6 +48,20 @@ export default class IPHelper {
   }
 
   /**
+   * Pluralizes type name
+   * @param {string} name Item type name to pluralize
+   * @return {string} Type name in plural 
+   */
+  static pluralize(name) {
+
+    if ( name === 'Terminology' )
+      return 'Terminologies'
+    else 
+      return name + 's'
+
+  }
+
+  /**
    * Convert type to Selector ID (serves as tab-wrapper id too)
    * @param {object} type RDF type definition object 
    * @return {string} Selector ID 

@@ -131,5 +131,4 @@ export default class IPSRenderer {
     return $( this.selector ) 
   }
 
-
 }

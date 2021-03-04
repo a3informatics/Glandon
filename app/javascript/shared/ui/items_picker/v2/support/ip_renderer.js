@@ -116,7 +116,7 @@ export default class IPRenderer {
     const { rdfType, name } = type 
 
     const id = IPHelper.typeToTabId( type ),
-          tabName = this._pluralize( name ),
+          tabName = IPHelper.pluralize( name ),
           icon = icons.renderIcon( rdfType, { size: 'text-large' } )
           
     return $( '<div>' ).addClass( 'tab-option with-icon no-badge')
@@ -160,21 +160,6 @@ export default class IPRenderer {
 
 
   /*** Support ***/
-
-
-  /**
-   * Plularizes the tab name
-   * @param {string} name Tab name to pluralize
-   * @return {string} Tab name in plural 
-   */
-  _pluralize(name) {
-
-    if ( name === 'Terminology' )
-      return 'Terminologies'
-    else 
-      return name + 's'
-
-  }
 
 
   /**
