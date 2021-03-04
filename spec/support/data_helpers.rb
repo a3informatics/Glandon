@@ -104,6 +104,21 @@ module DataHelpers
     load_cdisc_term_versions(CdiscCtHelpers.version_range)
   end
 
+  def load_data_bc_template_and_instances
+    load_data_file_into_triple_store("bc/templates/biomedical_concept_templates.ttl")
+    ["ae", "dm", "eg", "lb", "vs"].each do |dir|
+      filenames = data_load_file_list("/bc/instances/#{dir}", "*.ttl")
+      filenames.each do |f|
+        load_data_file_into_triple_store("bc/instances/#{dir}/#{f}")
+      end
+    end
+  end
+
+  def load_test_bc_template_and_instances
+    load_file_into_triple_store(set_path("db/bc/templates", "biomedical_concept_templates.ttl"))
+    load_file_into_triple_store(set_path("db/bc/instances", "instances.ttl"))
+  end
+
   def load_file_into_triple_store(full_path)
     i = 0
     begin
@@ -121,11 +136,15 @@ module DataHelpers
     write_file = args[:write_file] ? args[:write_file] : false
     equate_method = args[:equate_method] ? args[:equate_method] : :eq
     if args[:write_file]
-      puts colourize("***** WARNING: Writing Results File *****", "red")
+      file_write_warning
       write_yaml_file(actual, sub_dir, filename)
     end
     expected = read_yaml_file(sub_dir, filename)
     expect(actual).to self.send(equate_method, expected)
+  end
+
+  def file_write_warning
+    puts colourize("***** WARNING: Writing Results File *****", "red")
   end
 
   def read_yaml_file_to_hash(filename)
@@ -271,6 +290,18 @@ module DataHelpers
 
   def set_path(sub_dir, filename)
     return Rails.root.join "spec/fixtures/files/#{sub_dir}/#{filename}"
+  end
+
+  def local_file_list(sub_dir, filter="*.*")
+    dir_file_list("#{Rails.root}/spec/fixtures/files/#{sub_dir}/#{filter}")
+  end    
+
+  def data_load_file_list(sub_dir, filter="*.*")
+    dir_file_list("#{Rails.root}/db/load/data/#{sub_dir}/#{filter}")
+  end    
+
+  def dir_file_list(path)
+    Dir.glob(path).map{ |s| File.basename(s) }
   end
 
   # Set this to false for tests that require ActiveRecord persistence in the database across multiple tests.

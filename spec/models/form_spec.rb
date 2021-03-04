@@ -321,7 +321,7 @@ puts "Extra:    #{uri_result.sort - diff.sort}"
     
     before :all do
       load_files(schema_files, [])
-      load_cdisc_term_versions(1..62)
+      load_cdisc_term_versions(1..20)
       load_data_file_into_triple_store("mdr_identification.ttl")
       load_data_file_into_triple_store("cdisc/sdtm_ig/SDTM_IG_V1.ttl")
       load_data_file_into_triple_store("cdisc/sdtm_ig/SDTM_IG_V2.ttl")
@@ -340,8 +340,7 @@ puts "Extra:    #{uri_result.sort - diff.sort}"
       load_data_file_into_triple_store("mdr_iso_concept_systems_migration_3.ttl")
       load_data_file_into_triple_store("association_IG_domain.ttl") 
       load_data_file_into_triple_store("complex_datatypes.ttl")
-      load_data_file_into_triple_store("biomedical_concept_instances.ttl")
-      load_data_file_into_triple_store("biomedical_concept_templates.ttl")
+      load_test_bc_template_and_instances
     end
 
     it "to acrf I, Question and Question with Domain variable" do
@@ -666,10 +665,9 @@ puts "Extra:    #{uri_result.sort - diff.sort}"
 
     before :each do
       load_files(schema_files, [])
-      load_cdisc_term_versions(1..59)
+      load_cdisc_term_versions(1..20)
       load_data_file_into_triple_store("mdr_identification.ttl")
-      load_data_file_into_triple_store("biomedical_concept_templates.ttl")
-      load_data_file_into_triple_store("biomedical_concept_instances.ttl")
+      load_test_bc_template_and_instances
     end
 
     

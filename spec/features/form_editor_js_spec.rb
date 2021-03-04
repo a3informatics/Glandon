@@ -25,7 +25,7 @@ describe "Forms", :type => :feature do
     load_test_file_into_triple_store("forms/FN000150.ttl")
     load_test_file_into_triple_store("forms/FN000120.ttl")
     load_test_file_into_triple_store("forms/CRF TEST 1.ttl")
-    load_data_file_into_triple_store("biomedical_concept_instances.ttl")
+    #load_data_file_into_triple_store("biomedical_concept_instances.ttl")
     Token.delete_all
     ua_create
   end
@@ -1027,7 +1027,7 @@ describe "Forms", :type => :feature do
     load_test_file_into_triple_store("forms/FN000150.ttl")
     load_test_file_into_triple_store("forms/FN000120.ttl")
     load_test_file_into_triple_store("forms/CRF TEST 1.ttl")
-    load_data_file_into_triple_store("biomedical_concept_instances.ttl")
+    #load_data_file_into_triple_store("biomedical_concept_instances.ttl")
     Token.delete_all
     ua_create
   end
