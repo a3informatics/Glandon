@@ -323,6 +323,7 @@ export default class ItemsPicker extends ModalView {
     this.selectionHandler = new SelectionHandler({ 
       selector: this.selector, 
       multiple: this.options.multiple,
+      types: this.types,
       eventHandler: this._EventHandler
     })
   
