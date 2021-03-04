@@ -80,7 +80,7 @@ describe "Biomedical Concept Instances Editor", :type => :feature do
       ui_check_table_info 'editor', 1, 10, 12
       ui_check_table_cell 'editor', 6, 5, 'Unit'
       ui_check_table_cell 'editor', 7, 5, 'Height'
-      ui_check_table_cell 'editor', 1, 8, 'HEIGHT C25347 (VSTESTCD C66741 v5.0.0)'
+      ui_check_table_cell 'editor', 1, 8, 'HEIGHT C25347 (VSTESTCD C66741 v20.0.0)'
       ui_check_table_cell_icon 'editor', 1, 1, 'sel-filled'
       ui_check_table_cell_icon 'editor', 3, 1, 'times-circle'
     end
@@ -152,8 +152,8 @@ describe "Biomedical Concept Instances Editor", :type => :feature do
         ip_submit 'bc-term-ref'
       end
 
-      ui_editor_check_value 6, 8, 'm C41139 (UNIT C71620 v10.0.0)'
-      ui_editor_check_value 6, 8, 'cm C49668 (VSRESU C66770 v10.0.0)'
+      ui_editor_check_value 6, 8, 'm C41139 (UNIT C71620 v38.0.0)'
+      ui_editor_check_value 6, 8, 'cm C49668 (VSRESU C66770 v15.0.0)'
 
       # Remove All Terminology References
 
@@ -172,7 +172,7 @@ describe "Biomedical Concept Instances Editor", :type => :feature do
     it "prevents adding more than one Terminology Reference to a TESTCD BC Property" do
       go_to_edit 'HEIGHT'
 
-      ui_editor_check_value 1, 8, 'HEIGHT C25347 (VSTESTCD C66741 v5.0.0)'
+      ui_editor_check_value 1, 8, 'HEIGHT C25347 (VSTESTCD C66741 v20.0.0)'
       ui_editor_select_by_location 1, 8, offset_y: 70
 
       # Attemp to add more Terminology References
@@ -182,7 +182,7 @@ describe "Biomedical Concept Instances Editor", :type => :feature do
         ], 'bc-term-ref'
       end
 
-      ui_editor_check_value 1, 8, 'HEIGHT C25347 (VSTESTCD C66741 v5.0.0)'
+      ui_editor_check_value 1, 8, 'HEIGHT C25347 (VSTESTCD C66741 v20.0.0)'
       expect(page).to have_content 'attempting to add multiple values when the property is the identifier'
     end 
 
@@ -209,7 +209,7 @@ describe "Biomedical Concept Instances Editor", :type => :feature do
 
       click_bc 'WEIGHT', :edit
       ui_check_table_info 'editor', 1, 10, 12
-      ui_editor_check_value 1, 8, 'WEIGHT C25208 (VSTESTCD C66741 v5.0.0)'
+      ui_editor_check_value 1, 8, 'WEIGHT C25208 (VSTESTCD C66741 v20.0.0)'
 
       # Add BC
       find('#add-bc-edit-button').click
@@ -327,7 +327,7 @@ describe "Biomedical Concept Instances Editor", :type => :feature do
           ], 'bc-term-ref'
       end
 
-      ui_editor_check_value 9, 8, 'ARM C32141 (LOC C74456 v38.0.0)'
+      ui_editor_check_value 9, 8, 'ARM C32141 (LOC C74456 v31.0.0)'
       ui_editor_check_value 9, 8, 'LEG C32974 (LOC C74456 v38.0.0)'
 
       # Remove Term Reference
@@ -573,7 +573,7 @@ describe "Biomedical Concept Instances Editor", :type => :feature do
       # Put to Recorded - locked state
       click_on 'Return'
       wait_for_ajax 20
-
+pause
       context_menu_element_v2('history', 'HEIGHT', :document_control)
       wait_for_ajax 10
       dc_forward_to 'Recorded'
