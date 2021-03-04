@@ -232,20 +232,34 @@ export default class SelectionHandler {
 
 
   /**
-   * Build and show the Selection Dialog 
+   * Init and show Selection Dialog 
    */
   _showSelectionDialog() {
 
     new InformationDialog({
       title: 'Current selection',
       target: this.selector,
-      subtitle: this._Renderer.buildSelectionDialog({
-        selection: this.selection, 
-        types: this.options.types,
-        onItemClick: id => console.log(id)
-      }),
+      subtitle: this._buildSelectionDialog,
       wide: true
     }).show()
+
+  }
+
+  /**
+   * Get Selection Dialog contents for rendering
+   * @return {JQuery Element} Selection Dialog rendered contents with attached event handler
+   */
+  get _buildSelectionDialog() {
+
+    return this._Renderer.buildSelectionDialog({
+      selection: this.selection, 
+      types: this.options.types,
+      onItemClick: el => {
+        console.log(el);
+        this.remove({ id: el.attr('data-id') }) // Remove from selection
+        el.remove()                             // Remove label element 
+      }
+    })
 
   }
 

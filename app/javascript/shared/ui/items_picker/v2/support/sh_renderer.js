@@ -68,7 +68,7 @@ export default class SHRenderer {
    * Build the View Selection dialog contents
    * @param {Array} selection Selection of item data  
    * @param {Array} types Allowed Picker types   
-   * @param {function} onItemClick Item click handler, Item ID passed as first arg
+   * @param {function} onItemClick Item click handler, element passed as argument
    * @return {JQuery Element} View Selection dialog content    
    */
   buildSelectionDialog({
@@ -154,14 +154,14 @@ export default class SHRenderer {
   /**
    * Render single Item data as clickable label in Selection Dialog
    * @param {object} item Item data object
-   * @param {function} onClick Item click handler, ID passed as argument
+   * @param {function} onClick Item click handler, element passed as argument
    * @return {JQuery Element} Rendered Item element     
    */
   _itemLabel(item, onClick) {
 
     return $( '<div>' ).addClass( 'bg-label removable label-w-margin' )
                        .attr( 'data-id', item.id )
-                       .click( ({ target }) => onClick( $( target ).attr( 'data-id' ) ) )
+                       .click( ({ currentTarget }) => onClick($( currentTarget )) )
                        .html( SHRenderer.referenceString( item ) )
 
   }
