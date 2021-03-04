@@ -5,7 +5,13 @@ class OdmXml::Forms < OdmXml
   C_CLASS_NAME = self.name
   C_NO_MAPPING = "[NO MAPPING]"
   C_NO_Q_TEXT = "*** Set Question Text ***"
-  
+  C_RECOGNIZED_CONTEXTS = [
+    { context: "completionInstructions", method: :completion }
+  ]
+  C_IGNORE_CONTEXTS = [
+    { context: "SDTM", method: :mapping }
+  ]
+
   extend ActiveModel::Naming
 
   # List. List all forms present in the file.
@@ -13,7 +19,7 @@ class OdmXml::Forms < OdmXml
   # @return [Array] array of hash entries containing the list of code lists (:identifier and :label).
   def list
     results = []
-    @doc.xpath("//FormDef").each { |n| results << { identifier: n.attributes["OID"].value, label: n.attributes["Name"].value } }
+    @doc.xpath("//xmlns:FormDef").each { |n| results << { identifier: n.attributes["OID"].value, label: n.attributes["Name"].value } }
     return results
   rescue => e
     exception(C_CLASS_NAME, __method__.to_s, e, "Exception raised building form list.")
@@ -63,7 +69,7 @@ class OdmXml::Forms < OdmXml
       if source_form.nil?
         parent.error(self.class.name, __method__.to_s, "Failed to find the form, possible identifier mismatch.") 
       else
-        @form = Form.new 
+        @form = ::Form.new 
         @form.set_initial(IsoScopedIdentifierV2.clean_identifier(identifier)) # Make sure we remove anything nasty
         @form.label = source_form[:label]
       end
@@ -71,7 +77,7 @@ class OdmXml::Forms < OdmXml
 
     def groups(doc)
       results = []
-      doc.xpath("//FormDef[@OID = '#{@oid}']/ItemGroupRef").each { |n| results << OdmGroup.new(doc, n) }
+      doc.xpath("//xmlns:FormDef[@OID = '#{@oid}']/xmlns:ItemGroupRef").each { |n| results << OdmGroup.new(doc, n) }
       results.sort_by! {|r| r.group.ordinal}
       ordinal = 1
       results.each do |r| 
@@ -94,15 +100,16 @@ class OdmXml::Forms < OdmXml
 
     def initialize(doc, node)
       @oid = node.attributes["ItemGroupOID"].value
-      group_node = doc.xpath("//ItemGroupDef[@OID = '#{@oid}']")
+      group_node = doc.xpath("//xmlns:ItemGroupDef[@OID = '#{@oid}']")
       @group = Form::Group::Normal.new
+      return if group_node.empty?
       @group.label = group_node.first.attributes["Name"].value
       @group.ordinal = node.attributes["OrderNumber"].nil? ? 1 : node.attributes["OrderNumber"].value.to_i
     end
 
     def items(doc)
       results = []
-      doc.xpath("//ItemGroupDef[@OID = '#{@oid}']/ItemRef").each { |n| results << OdmItem.new(doc, n) }
+      doc.xpath("//xmlns:ItemGroupDef[@OID = '#{@oid}']/xmlns:ItemRef").each { |n| results << OdmItem.new(doc, n) }
       results.sort_by! {|r| r.items.first.ordinal}
       ordinal = 1
       results.each do |result|
@@ -127,25 +134,25 @@ class OdmXml::Forms < OdmXml
     def initialize(doc, node)  
       @items = []
       @oid = node.attributes["ItemOID"].value
-      item_node = doc.xpath("//ItemDef[@OID = '#{@oid}']")
+      item_node = doc.xpath("//xmlns:ItemDef[@OID = '#{@oid}']")
       item = Form::Item::Question.new
-      item.note = ""
       item.label = item_node.first.attributes["Name"].value
+      process_alias_nodes(item_node, item)
+      process_mapping_nodes(item_node, item)
       dt_and_format = get_datatype_and_format(item_node)
       item.datatype = dt_and_format[:datatype]
       item.format = dt_and_format[:format]
-      item.mapping = item_node.first.attributes["SDSVarName"].nil? ? "#{C_NO_MAPPING}" : item_node.first.attributes["SDSVarName"].value
       item.ordinal = node.attributes["OrderNumber"].nil? ? 1 : node.attributes["OrderNumber"].value.to_i
       add_question(item_node.first, item)      
-      cl_ref_node = item_node.xpath("CodeListRef")
+      cl_ref_node = item_node.xpath("xmlns:CodeListRef")
       if !cl_ref_node.empty?
         item.datatype = BaseDatatype::C_STRING
         cl_oid = cl_ref_node.first.attributes["CodeListOID"].value
-        cl_node = node.xpath("//CodeList[@OID = '#{cl_oid}']")
+        cl_node = node.xpath("//xmlns:CodeList[@OID = '#{cl_oid}']")
         add_cl(cl_node.first, item)
       end
       @items << item
-      mu_nodes = item_node.xpath("MeasurementUnitRef")
+      mu_nodes = item_node.xpath("xmlns:MeasurementUnitRef")
       if !mu_nodes.empty?
         mu_item = Form::Item::Question.new
         mu_item.note = ""
@@ -195,14 +202,15 @@ class OdmXml::Forms < OdmXml
 
     def add_question(node, question)
       question.question_text = "#{C_NO_Q_TEXT}"
-      q_text_node = node.xpath("Question/TranslatedText[@lang = 'en']")
+      q_node = node.xpath("xmlns:Question")
+      q_text_node = translated_text_node(q_node)
       return if question_normal(q_text_node, question)
       return if question_name(node, question)
     end
 
     def question_normal(node, question)
-      return false if node.empty?
-      question.question_text = parse_special(node.first.text.strip)
+      return false if node.nil?
+      question.question_text = parse_special(node.text.strip)
       return true
     end
 
@@ -214,33 +222,63 @@ class OdmXml::Forms < OdmXml
     end
 
     def add_cl(node, question)
-      cli_nodes = node.xpath("CodeListItem")
-      return if cli_nodes.empty?
-      return if alias_cl(node, question, cli_nodes)
-      return if sas_format_cl(node, question, cli_nodes)
-      return if oid_cl(node, question, cli_nodes)
+      notes = []
+      cli_nodes = node.xpath("xmlns:CodeListItem")
+      return true if cli_nodes.empty?
+
+      result = alias_cl(node, question, cli_nodes)
+      return true if result[:result]
+      notes += result[:notes]
+
+      result = sas_format_cl(node, question, cli_nodes)
+      return true if result[:result]
+      notes += result[:notes]
+
+      result = oid_cl_notation(node, question, cli_nodes)
+      return true if result[:result]
+      notes += result[:notes]
+
+      result = oid_cl_c_code(node, question, cli_nodes)
+      return true if result[:result]
+      notes += result[:notes]
+
+      result = name_cl(node, question, cli_nodes)
+      return true if result[:result]
+      notes += result[:notes]
+      question.note += "\n\nTerminology Search:\n#{notes.join("\n")}" 
     end
 
     def alias_cl(node, question, cli_nodes)
-      alias_nodes = node.xpath("Alias[@Context='nci:ExtCodeID']")
-      return false if alias_nodes.empty?
-      return find_cl({identifier: alias_nodes.first.attributes["Name"].value}, question, cli_nodes)
+      a_nodes = node.xpath("xmlns:Alias[@Context='nci:ExtCodeID']")
+      return {result: false, notes: []} if a_nodes.empty?
+      find_cl({identifier: a_nodes.first.attributes["Name"].value}, question, cli_nodes)
     end
 
     def sas_format_cl(node, question, cli_nodes)
-      return false if node.attributes["SASFormatName"].nil?
+      return {result: false, notes: []} if node.attributes["SASFormatName"].nil?
       text = node.attributes["SASFormatName"].value
       text = text.gsub(/[^0-9A-Za-z]/, "") # Remove any non-alphanumeric, e.g. $
       text = text.upcase # Make sure it has a chance of matching 
       return find_cl({identifier: text}, question, cli_nodes) if NciThesaurusUtility.c_code?(text)      
-      return find_cl({notation: text}, question, cli_nodes)
+      find_cl({notation: text}, question, cli_nodes)
     end
 
-    def oid_cl(node, question, cli_nodes)
-      return find_cl({notation: OdmXml.clean_identifier(node.attributes["OID"].value)}, question, cli_nodes)
+    def name_cl(node, question, cli_nodes)
+      return {result: false, notes: []} if node.attributes["Name"].nil?
+      text = node.attributes["Name"].value
+      find_cl({label: text}, question, cli_nodes)
+    end
+
+    def oid_cl_notation(node, question, cli_nodes)
+      find_cl({notation: node.attributes["OID"].value.to_alphanumeric}, question, cli_nodes)
+    end
+
+    def oid_cl_c_code(node, question, cli_nodes)
+      find_cl({identifier: NciThesaurusUtility.to_c_code(node.attributes["OID"].value)}, question, cli_nodes)
     end
 
     def find_cl(params, question, cli_nodes)
+      notes = []
       result = get_tc(params)
       if !result[:tc].nil?
         ordinal = Ordinal.new
@@ -248,12 +286,12 @@ class OdmXml::Forms < OdmXml
           info = {notation: "", preferred_term: ""}
           next if notation_cli(result, cli_node, question, ordinal, info)
           next if preferred_term_cli(result, cli_node, question, ordinal, info)
-          question.note += "* No entries found in code list '#{result[:tc].identifier}' for item with submission value: '#{info[:notation]}' or preferred term: '#{info[:preferred_term]}'.\n"
+          notes << "* No entries found in code list '#{result[:tc].identifier}' for item with submission value: '#{info[:notation]}' or preferred term: '#{info[:preferred_term]}'."
         end
-        return true
+        return {result: true, notes: notes}
       else
-        question.note += "* No entries found for code list, parameters #{params_to_s(params)}.\n"
-        return false
+        notes << "* No entries found for code list, parameters #{params_to_s(params)}."
+        return {result: false, notes: notes}
       end
     end
 
@@ -265,7 +303,7 @@ class OdmXml::Forms < OdmXml
     end
 
     def preferred_term_cli(result, cli_node, question, ordinal, info)
-      pt_nodes = cli_node.xpath("Decode/TranslatedText")
+      pt_nodes = cli_node.xpath("xmlns:Decode/xmlns:TranslatedText")
       return false if pt_nodes.empty?
       info[:preferred_term] = pt_nodes.first.text.strip
       cli = result[:tc].children.find { |x| x.preferred_term_objects.label.upcase == info[:preferred_term].upcase}
@@ -275,7 +313,9 @@ class OdmXml::Forms < OdmXml
     end
 
     def add_op_ref(cli, question, ordinal)
-      ref = OperationalReferenceV3.new
+      ref = OperationalReferenceV3::TucReference.new
+      ref.local_label = cli.label
+      ref.context = cli.parents.last
       ref.ordinal = ordinal.value
       ref.reference = cli.uri
       question.has_coded_value << ref
@@ -287,13 +327,14 @@ class OdmXml::Forms < OdmXml
       ordinal = Ordinal.new
       nodes.each do |mu_ref_node|
         oid = mu_ref_node.attributes["MeasurementUnitOID"].value
-        mu_node = doc.xpath("//MeasurementUnit[@OID = '#{oid}']/Symbol/TranslatedText[@lang = 'en']")
-        result = get_tc({notation: parse_special(mu_node.first.text.strip)})
+        symbol = doc.xpath("//xmlns:MeasurementUnit[@OID = '#{oid}']/xmlns:Symbol")
+        mu_node = translated_text_node(symbol)
+        notation = mu_node.nil? ? "" : mu_node.text.strip
+        result = get_tc({notation: parse_special(notation)})
         if !result[:tc].nil?
           add_op_ref(result[:tc], question, ordinal)
-        else
-          question.note += "* #{result[:note]}\n" if !result[:note].empty?
         end
+        question.note += "* #{result[:note]}" if !result[:note].empty?
       end
     end
 
@@ -306,7 +347,7 @@ class OdmXml::Forms < OdmXml
         return {tc: thcs.first, note: ""}
       else
         entries = thcs.map { |tc| tc.identifier }.join(',')
-        return {tc: nil, note: "Multiple entries [#{entries}] found for parameters #{params_to_s(params)}, ignored." }
+        return {tc: thcs.first, note: "Multiple entries [#{entries}] found for parameters #{params_to_s(params)}, using first found." }
       end
     end
 
@@ -314,6 +355,49 @@ class OdmXml::Forms < OdmXml
       parts = []
       params.each {|k,v| parts << "'#{k}=#{v}'"}
       return "[#{parts.join(", ")}]"
+    end
+
+    def translated_text_node(node)
+      return nil if node.empty?
+      node_en = node.first.xpath("xmlns:TranslatedText[@lang = 'en']")
+      node_non = node.first.xpath("xmlns:TranslatedText")
+      return node_en.first if node_en.any?
+      return node_non.first if node_non.any?
+      nil
+    end
+
+    def process_mapping_nodes(node, question)
+      mapping = []
+      sdtm_node = node.xpath("xmlns:Alias[@context = 'SDTM']")
+      mapping << sdtm_node.first.attributes["Name"].value unless sdtm_node.empty? 
+      mapping << node.first.attributes["SDSVarName"].value unless node.first.attributes["SDSVarName"].nil?
+      question.mapping = mapping.empty? ? "#{C_NO_MAPPING}" : mapping.join(" | ")
+    end
+
+    # Process the alias nodes
+    def process_alias_nodes(node, question)
+      nodes = node.xpath("xmlns:Alias")
+      return true if nodes.empty?
+      nodes.each{ |n| process_alias_node(n, question) }
+    rescue => e
+      byebug
+    end
+
+    # Process a single alias nodes
+    def process_alias_node(node, question)
+      context = node.attributes["Context"].value
+      value = node.attributes["Name"].value
+      ignore = C_IGNORE_CONTEXTS.find{|c| c[:context] == context}
+      return true unless ignore.nil?
+      recognized = C_RECOGNIZED_CONTEXTS.find{|c| c[:context] == context}
+      if recognized.nil?
+        question.note += "\n\n#{context.underscore.titleize}:\n\n#{value}"
+      else
+        question.send("#{recognized[:method]}=", value)
+      end
+      true
+    rescue => e
+      byebug
     end
 
   end

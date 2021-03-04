@@ -38,4 +38,16 @@ describe NciThesaurusUtility do
     expect(NciThesaurusUtility.c_code?("C123A56")).to eq(false)
   end
 
+  it "extract C Code, valid" do
+    expect(NciThesaurusUtility.to_c_code("xxx.xxx.C123xxx.eeee")).to eq("C123")
+    expect(NciThesaurusUtility.to_c_code("C1234xxx.eeee")).to eq("C1234")
+    expect(NciThesaurusUtility.to_c_code("xxx.xxx.C12356.eeee")).to eq("C12356")
+    expect(NciThesaurusUtility.to_c_code("xxx.C123456")).to eq("C123456")
+  end
+
+  it "extract C Code, invalid" do
+    expect(NciThesaurusUtility.to_c_code("xxx.C1234567")).to eq("C123456")
+    expect(NciThesaurusUtility.to_c_code("xxx.xxx.C12.eeee")).to eq("")
+  end
+
 end
