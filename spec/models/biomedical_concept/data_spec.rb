@@ -206,7 +206,7 @@ describe BiomedicalConcept do
     end
 
     it "create instances, local test" do
-      write_file = true
+      write_file = false
       load_local_file_into_triple_store("#{sub_dir}/templates", "biomedical_concept_templates.ttl")
       generate_instances("#{sub_dir}/instances/test", "instances.yaml", write_file)
     end
