@@ -260,6 +260,15 @@ export default class ItemsPicker extends ModalView {
 
 
   /**
+   * Get reference to RDF Types map
+   * @return {Object} Rdf Types Map object reference 
+   * @static 
+   */
+  static get allTypes() {
+    return rdfTypesMap
+  }
+
+  /**
    * Check if confitions to Submit Selection are fulfilled
    * @return {boolean} True if Selection can be Submitted 
    */
