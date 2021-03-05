@@ -204,7 +204,7 @@ describe "SDTM Sponsor Domains", :type => :feature do
       load_data_file_into_triple_store("mdr_iso_concept_systems_migration_3.ttl")
       load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V1.ttl")
       load_data_file_into_triple_store("cdisc/sdtm_ig/SDTM_IG_V1.ttl")
-      #load_data_file_into_triple_store("biomedical_concept_instances.ttl")
+      load_test_bc_template_and_instances
     end
 
     it "allows to access BC Associations from SDTM SD's History Panel" do
