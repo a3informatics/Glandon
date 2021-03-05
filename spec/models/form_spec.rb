@@ -321,7 +321,7 @@ puts "Extra:    #{uri_result.sort - diff.sort}"
     
     before :all do
       load_files(schema_files, [])
-      load_cdisc_term_versions(1..20)
+      load_cdisc_term_versions(1..55)
       load_data_file_into_triple_store("mdr_identification.ttl")
       load_data_file_into_triple_store("cdisc/sdtm_ig/SDTM_IG_V1.ttl")
       load_data_file_into_triple_store("cdisc/sdtm_ig/SDTM_IG_V2.ttl")
@@ -665,7 +665,7 @@ puts "Extra:    #{uri_result.sort - diff.sort}"
 
     before :each do
       load_files(schema_files, [])
-      load_cdisc_term_versions(1..20)
+      load_cdisc_term_versions(1..55)
       load_data_file_into_triple_store("mdr_identification.ttl")
       load_test_bc_template_and_instances
     end
