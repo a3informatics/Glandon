@@ -52,12 +52,13 @@ export default class ManagedSelector {
   }
 
   /**
-   * Reset Selector to initial state, clear caches
+   * Reset Selector to initial state
+   * @param {boolean} clearCache Specifies if Panel caches should be cleared
    */
-  reset() {
+  reset(clearCache) {
 
-    this.indexPanel.clear(true)
-    this.historyPanel.clear(true)
+    this.indexPanel?.sp._deselectAll()
+    this.historyPanel?.clear( clearCache )
 
   }
 
@@ -69,9 +70,9 @@ export default class ManagedSelector {
     this.indexPanel.destroy()
     this.historyPanel.destroy()
 
-    $( this.selector ).unbind()
-                      .empty() 
-    
+    this._EventHandler.unbindAll()    
+    this._Renderer.empty()
+
     this._config.buildRequired = true 
 
   }

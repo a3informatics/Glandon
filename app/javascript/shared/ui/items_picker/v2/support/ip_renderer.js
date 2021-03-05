@@ -57,6 +57,13 @@ export default class IPRenderer {
 
   }
 
+  /**
+   * Empty all content
+   */
+  empty() {
+    this.$tabs.remove()
+  }
+
 
   /*** Private ***/
 

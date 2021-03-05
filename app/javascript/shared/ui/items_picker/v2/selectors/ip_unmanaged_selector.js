@@ -28,13 +28,15 @@ export default class UnmanagedSelector extends ManagedSelector {
   }
 
   /**
-   * Reset Selector to initial state, clear caches
+   * Reset Selector to initial state, toggle cards 
+   * @param {boolean} clearCache Specifies if Panel caches should be cleared
    */
-  reset() {
+  reset(clearCache) {
 
-    super.reset()
-    this.childrenPanel.clear(true)
-    this._toggleCards( 'index' )
+    this.historyPanel?.sp._deselectAll()
+    this.childrenPanel?.clear( clearCache )
+
+    super.reset( clearCache )
 
   }
 
@@ -43,8 +45,8 @@ export default class UnmanagedSelector extends ManagedSelector {
    */
   destroy() {
 
-    super.destroy() 
     this.childrenPanel.destroy()
+    super.destroy() 
 
   }
 

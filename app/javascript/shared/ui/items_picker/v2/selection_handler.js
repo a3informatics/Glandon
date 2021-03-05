@@ -114,8 +114,11 @@ export default class SelectionHandler {
    * Destroy the Selection Handler instance and set to initial state 
    */
   destroy() {
-    delete this._selection 
+
+    this._selection = []
+    this._Renderer.empty()
     this._config.buildRequired = true
+
   }
 
 

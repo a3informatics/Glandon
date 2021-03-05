@@ -101,13 +101,14 @@ export default class ItemsPicker extends ModalView {
 
   /**
    * Reset Items Picker - clear selection, data cache
+   * @param {boolean} clearCache Specifies if Panel caches should be cleared
    * @return {ItemsPicker} This ItemsPicker instance (for chaining)
    */
-  reset() {
+  reset(clearCache = false) {
 
     this.selectionHandler?.clear()
     Object.values( this._selectors )
-          .forEach( selector => selector.reset() )
+          .forEach( selector => selector?.reset( clearCache ) )
 
     return this 
 
@@ -119,8 +120,31 @@ export default class ItemsPicker extends ModalView {
    */
   destroy() {
 
-    // Set to state before init 
+    this.selectionHandler?.destroy()
+    this._selectors && Object.values( this._selectors )
+                             .forEach( selector => selector?.destroy() )
+
+    this._EventHandler.unbindAll()
+    this._Renderer.empty()
+
+    this.types = {} 
+
     this._config.buildRequired = true
+    return this 
+
+  }
+
+  /**
+   * Set ItemsPicker properties to default 
+   * @return {ItemsPicker} This ItemsPicker instance (for chaining)
+   */
+  setDefaults() {
+
+    this.setOnSubmit( () => {} )
+        .setMultiple( false )
+        .setDescription( IPRenderer.defaults.description )
+        .setSubmitText( IPRenderer.defaults.submit )
+    
     return this 
 
   }
@@ -138,8 +162,10 @@ export default class ItemsPicker extends ModalView {
 
     if ( newTypes && IPHelper.validateTypes( newTypes ) ) {
       
+      if ( this.types )
+        this.destroy()
+      
       this.types = newTypes
-      this.destroy()
 
     }
     else 
@@ -220,17 +246,17 @@ export default class ItemsPicker extends ModalView {
    */
   _submit() {
 
-    // const { submitEmpty, hideOnSubmit } = this.options
+    const { submitEmpty, hideOnSubmit } = this.options
 
-    // // Do not submit an empty selection
-    // if ( !submitEmpty && this.selectionView.selectionEmpty )
-    //   return
+    // Do not submit an empty selection
+    if ( !submitEmpty && this.selectionHandler?.isEmpty )
+      return
 
-    // if ( this.onSubmit )
-    //   this.onSubmit( this.selectionView.getSelection() )
+    if ( this.events.onSubmit )
+      this.events.onSubmit( this.selectionHandler.selection )
 
-    // if ( hideOnSubmit )
-    //   this.hide()
+    if ( hideOnSubmit )
+      this.hide()
 
   }
 
@@ -280,6 +306,13 @@ export default class ItemsPicker extends ModalView {
   _initSelectors() {
     
     this._selectors = {}
+
+    if ( !this.types || !this.types.length ) {
+
+      IPHelper.onError({ debug: 'No Picker types are specified.' })
+      return
+
+    }
 
     for ( const type of this.types ) {
       this._selectors[ type.param ] = this._newSelector( type ) 
@@ -349,15 +382,21 @@ export default class ItemsPicker extends ModalView {
     if ( this._config.buildRequired )
       this._build()
 
-    this.events.onShow()
+    if ( this.events.onShow )
+      this.events.onShow()
 
   }
 
   /**
-   * On Picker hide event handler
+   * On Picker hide complete event handler
    */
-  _onHide() {
-    this.events.onHide() 
+  _onHideComplete() {
+
+    this.reset()
+
+    if ( this.events.onHide )
+      this.events.onHide() 
+  
   }
 
   /**

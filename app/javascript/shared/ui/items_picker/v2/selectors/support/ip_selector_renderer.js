@@ -77,6 +77,13 @@ export default class IPSRenderer {
 
   }
 
+  /**
+   * Empty all content
+   */
+  empty() {
+    this.content.empty()
+  }
+
 
   /*** Private ***/
 
