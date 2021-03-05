@@ -36,7 +36,7 @@ export default class IPRenderer {
   renderDescription(description) {
 
     this.content.find( '#items-picker-description' )
-                .text( description )
+                .html( description )
 
     return this 
 

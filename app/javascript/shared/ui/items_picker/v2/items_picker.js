@@ -87,6 +87,19 @@ export default class ItemsPicker extends ModalView {
 
 
   /**
+   * Manually build the Picker Instance (use to init and render before the Picker opens)
+   * @return {ItemsPicker} This ItemsPicker instance (for chaining)
+   */
+  initialize() {
+
+    if ( this._config.buildRequired )
+      this._build()
+
+    return this 
+
+  }
+
+  /**
    * Show Items Picker
    * @return {ItemsPicker} This ItemsPicker instance (for chaining)
    */
