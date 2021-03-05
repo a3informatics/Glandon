@@ -44,6 +44,21 @@ export default class SelectionHandler {
 
   }
 
+  /**
+   * Get Selection array in a specific format 
+   * @return {Object} Functions that return selection in formats: asObjects, asIDs
+   */
+  get selection() {
+    return {
+      asObjects: () => {
+        return this._selection
+      },
+      asIDs: () => {
+        return this._selection.asObjects().map( d => d.id )
+      }
+    }
+  }
+
 
   /*** Actions ***/
 
@@ -90,7 +105,7 @@ export default class SelectionHandler {
    */
   clear({ updatePanels = true } = {}) {
 
-    this.selection = []
+    this._selection = []
     this._dispatch( 'selectionChange', this, updatePanels )
 
   }
@@ -99,7 +114,7 @@ export default class SelectionHandler {
    * Destroy the Selection Handler instance and set to initial state 
    */
   destroy() {
-    delete this.selection 
+    delete this._selection 
     this._config.buildRequired = true
   }
 
@@ -122,7 +137,7 @@ export default class SelectionHandler {
    * @return {int} Index of the item in the selection, -1 if not present 
    */
   indexOf(item) {
-    return this.selection.findIndex( _item => _item.id === item.id )
+    return this._selection.findIndex( _item => _item.id === item.id )
   }
 
   /**
@@ -130,7 +145,7 @@ export default class SelectionHandler {
    * @return {int} Count of items
    */
   get count() {
-    return this.selection.length
+    return this._selection.length
   }
 
   /**
@@ -150,7 +165,7 @@ export default class SelectionHandler {
    */
   _initialize() {
 
-    this.selection = []
+    this._selection = []
   
     if ( this._config.buildRequired )
       this._build()
@@ -208,9 +223,9 @@ export default class SelectionHandler {
         continue
 
       if ( this.options.multiple )
-        this.selection.push( item )
+        this._selection.push( item )
       else 
-        this.selection = [ item ]
+        this._selection = [ item ]
 
     }
 
@@ -228,7 +243,7 @@ export default class SelectionHandler {
     for ( const item of items ) {
 
       if ( item )
-        this.selection.splice( this.indexOf(item), 1 )
+        this._selection.splice( this.indexOf(item), 1 )
 
     }
 
@@ -261,7 +276,7 @@ export default class SelectionHandler {
   get _buildSelectionDialog() {
 
     return this._Renderer.buildSelectionDialog({
-      selection: this.selection, 
+      selection: this._selection, 
       types: this.options.types,
       onItemClick: el => this._onSelectionDialogItemClick(el)
     })
@@ -297,7 +312,7 @@ export default class SelectionHandler {
    */
   get _previewString() {
 
-    const [ selectedItem ] = this.selection
+    const [ selectedItem ] = this._selection
 
     // Return selection count when multiple option enabled 
     if ( this.options.multiple )
@@ -305,7 +320,7 @@ export default class SelectionHandler {
     
     // Otherwise return reference string | None
     return selectedItem ? 
-      this._Renderer.referenceString( selectedItem ) :
+      SHRenderer.referenceString( selectedItem ) :
       'None'
 
   }
