@@ -37,7 +37,7 @@
       Find and select items which should be added to the ordered Subset in the table below.
     </div>
 
-    <div class="table-cardstyle loading-with-btns">
+    <div class="table-cardstyle table-editable loading-with-btns">
       <%= render partial: "shared/iso_managed/children/children_panel", locals: { id: "source-table",
           table_classes: "striped table-row-clickable", custom_props?: true, item: @source_mc } %>
     </div>
@@ -49,7 +49,7 @@
       Reorder the Subset items by click-and-drag of their <b>Ordinal</b> column.
     </div>
 
-    <div class="table-cardstyle all-columns loading-with-btns">
+    <div class="table-cardstyle table-editable all-columns loading-with-btns">
       <%= render partial: "shared/iso_managed/children/children_panel", locals: { id: "subset-table",
           table_classes: 'table-reorderable', indicators?: false, first_column: 'Ordinal', custom_props?: true, item: @subset_mc } %>
     </div>
