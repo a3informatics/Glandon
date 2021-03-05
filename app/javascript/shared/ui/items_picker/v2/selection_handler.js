@@ -54,7 +54,7 @@ export default class SelectionHandler {
         return this._selection
       },
       asIDs: () => {
-        return this._selection.asObjects().map( d => d.id )
+        return this._selection.map( d => d.id )
       }
     }
   }
