@@ -41,11 +41,19 @@ export default class UnmanagedSelector extends ManagedSelector {
   }
 
   /**
+   * Set the Multiple selection option on the select Panel
+   * @param {boolean} multiple Specifies new Multiple option value
+   */
+  setMultiple(multiple) {
+    this.childrenPanel?.setMultiple( multiple )
+  }
+
+  /**
    * Destroy Selector, clear from DOM
    */
   destroy() {
 
-    this.childrenPanel.destroy()
+    this.childrenPanel?.destroy()
     super.destroy() 
 
   }

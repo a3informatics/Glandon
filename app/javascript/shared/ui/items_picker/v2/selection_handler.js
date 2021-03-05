@@ -111,6 +111,18 @@ export default class SelectionHandler {
   }
 
   /**
+   * Set the Multiple selection option 
+   * Clears current Selection 
+   * @param {boolean} multiple New Multiple option value 
+   */
+  setMultiple(multiple) {
+
+    this.options.multiple = multiple 
+    this.clear()
+
+  }
+
+  /**
    * Destroy the Selection Handler instance and set to initial state 
    */
   destroy() {

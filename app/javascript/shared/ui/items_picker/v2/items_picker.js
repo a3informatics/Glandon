@@ -80,8 +80,6 @@ export default class ItemsPicker extends ModalView {
     if ( types )
       this.setTypes( types )
 
-    this._setListeners()
-
   }
 
 
@@ -107,8 +105,7 @@ export default class ItemsPicker extends ModalView {
   reset(clearCache = false) {
 
     this.selectionHandler?.clear()
-    Object.values( this._selectors )
-          .forEach( selector => selector?.reset( clearCache ) )
+    this._eachSelector( selector => selector.reset( clearCache ) )  
 
     return this 
 
@@ -127,7 +124,7 @@ export default class ItemsPicker extends ModalView {
     this._EventHandler.unbindAll()
     this._Renderer.empty()
 
-    this.types = {} 
+    this.types = undefined
 
     this._config.buildRequired = true
     return this 
@@ -162,6 +159,7 @@ export default class ItemsPicker extends ModalView {
 
     if ( newTypes && IPHelper.validateTypes( newTypes ) ) {
       
+      // If types are already set, destroy instance
       if ( this.types )
         this.destroy()
       
@@ -232,9 +230,34 @@ export default class ItemsPicker extends ModalView {
    */
   setMultiple(multiple) {
 
-    this.options.multiple = !!multiple 
+    multiple = !!multiple 
+
+    this.options.multiple = multiple 
+    this.selectionHandler?.setMultiple( multiple )
+    this._eachSelector( selector => selector.setMultiple( multiple ) )  
+
     return this 
 
+  }
+
+
+  /*** Getters ***/
+
+
+  /**
+   * Check if confitions to Submit Selection are fulfilled
+   * @return {boolean} True if Selection can be Submitted 
+   */
+  get canSubmit() {
+    return this.options.submitEmpty || !this.selectionHandler?.isEmpty
+  }
+
+  /**
+   * Get Selection from SelectionHandler instance
+   * @return {object | undefined} Selection accessor object / undefined if selectionHandler not available 
+   */
+  get selection() {
+    return this.selectionHandler?.selection
   }
 
 
@@ -246,16 +269,14 @@ export default class ItemsPicker extends ModalView {
    */
   _submit() {
 
-    const { submitEmpty, hideOnSubmit } = this.options
-
     // Do not submit an empty selection
-    if ( !submitEmpty && this.selectionHandler?.isEmpty )
+    if ( !this.canSubmit )
       return
 
     if ( this.events.onSubmit )
-      this.events.onSubmit( this.selectionHandler.selection )
+      this.events.onSubmit( this.selection )
 
-    if ( hideOnSubmit )
+    if ( this.options.hideOnSubmit )
       this.hide()
 
   }
@@ -265,10 +286,18 @@ export default class ItemsPicker extends ModalView {
    */
   _build() {
 
-    // Init tabs 
+    if ( !this.types ) {
+      
+      IPHelper.onError({ debug: 'Cannot initialize Picker. No Types have been set' })
+      return
+
+    }
+
+    this._setListeners()
     this._initSelectionHandler()
     this._initSelectors()
     this._renderAll()
+
     this._config.buildRequired = false
 
   }
@@ -291,8 +320,13 @@ export default class ItemsPicker extends ModalView {
    */
   _setListeners() {
 
-    this._EventHandler
-      .on( 'renderComplete', () => this._onRender() )
+    // Render complete handler
+    this._EventHandler.on( 'renderComplete', () => this._onRender() )
+                      .on( 'selectionChange', () => this._onSelectionChange() ) 
+
+    // Submit Button click handler
+    this._Renderer.submitBtn.off('click')   
+                            .click( () => this._submit() )
 
   }
 
@@ -404,7 +438,7 @@ export default class ItemsPicker extends ModalView {
    */
   _onRender() {
 
-    const tabsLayout = this._Renderer.$tabs
+    const tabsLayout = this._Renderer.tabs
 
     // Init Tabs layout 
     TabsLayout.initialize( tabsLayout )
@@ -418,7 +452,38 @@ export default class ItemsPicker extends ModalView {
     const tab = this.modal.find( '.tab-option' )
                           .get(0)
 
-    setTimeout( () => tab.click(), 10 )
+    setTimeout( () => tab?.click(), 10 )
+
+    this._Renderer.toggleSubmit( this.canSubmit )
+
+  }
+
+  /**
+   * On selection change event, handle UI updates
+   */
+  _onSelectionChange() {
+
+    // Update Submit button 
+    this._Renderer.toggleSubmit( this.canSubmit )
+
+  }
+
+
+  /*** Support ***/
+
+
+  /**
+   * Iterate over all Selector instances
+   * @param {function} action Action to execute for each Selector instance 
+   */
+  _eachSelector(action = () => {}) {
+
+    if ( !this._selectors )
+      return 
+
+    for ( const selector of Object.values( this._selectors ) ) {
+      selector && action( selector )
+    }
 
   }
 

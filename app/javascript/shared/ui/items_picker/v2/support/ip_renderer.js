@@ -23,8 +23,7 @@ export default class IPRenderer {
    */
   renderTabs(types) {
 
-    this.$tabs.html( this._tabsLayout( types ) ) 
-
+    this.tabs.html( this._tabsLayout( types ) ) 
     return this 
 
   }
@@ -50,18 +49,24 @@ export default class IPRenderer {
    */
   renderSubmitText(submitText) {
 
-    this.content.find( '#items-picker-submit' )
-                .text( submitText )
-
+    this.submitBtn.text( submitText )
     return this 
 
+  }
+
+  /**
+   * Toggle Submit button enabled / disabled
+   * @param {boolean} enable True if button should be enabled
+   */
+  toggleSubmit(enable) {
+    this.submitBtn.toggleClass( 'disabled', !enable )
   }
 
   /**
    * Empty all content
    */
   empty() {
-    this.$tabs.remove()
+    this.tabs.empty()
   }
 
 
@@ -153,8 +158,16 @@ export default class IPRenderer {
    * Get the Picker tabs element
    * @return {JQuery Element} Picker tabs element
    */
-  get $tabs() {
+  get tabs() {
     return this.content.find( '#items-picker-tabs' )
+  }
+
+  /**
+   * Get the Picker Submit button
+   * @return {JQuery Element} Picker Submit button
+   */
+  get submitBtn() {
+    return this.content.find( '#items-picker-submit' )
   }
 
   /**

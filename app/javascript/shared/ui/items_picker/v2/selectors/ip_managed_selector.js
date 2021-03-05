@@ -63,12 +63,20 @@ export default class ManagedSelector {
   }
 
   /**
+   * Set the Multiple selection option on the select Panel
+   * @param {boolean} multiple Specifies new Multiple option value
+   */
+  setMultiple(multiple) {
+    this.historyPanel?.setMultiple( multiple )
+  }
+
+  /**
    * Destroy Selector, clear from DOM
    */
   destroy() {
 
-    this.indexPanel.destroy()
-    this.historyPanel.destroy()
+    this.indexPanel?.destroy()
+    this.historyPanel?.destroy()
 
     this._EventHandler.unbindAll()    
     this._Renderer.empty()

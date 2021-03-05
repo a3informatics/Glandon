@@ -104,6 +104,13 @@ export default class SHRenderer {
   }
 
   /**
+   * Empty all content
+   */
+  empty() {
+    this.content.empty()
+  }
+
+  /**
    * Get Item Reference string 
    * @param {Object} item Reference item data object 
    * @return {string} Standard Reference string based on item type    
