@@ -76,7 +76,7 @@ describe BiomedicalConceptInstancesController do
 
     before :all do
       load_files(schema_files, [])
-      load_cdisc_term_versions(1..20)
+      load_cdisc_term_versions(1..55)
       load_data_file_into_triple_store("mdr_identification.ttl")
       load_test_bc_template_and_instances
     end
@@ -305,7 +305,7 @@ describe BiomedicalConceptInstancesController do
 
     before :all do
       load_files(schema_files, [])
-      load_cdisc_term_versions(1..20) 
+      load_cdisc_term_versions(1..55) 
       load_data_file_into_triple_store("mdr_identification.ttl")
       load_test_bc_template_and_instances
       @instance = BiomedicalConceptInstance.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))

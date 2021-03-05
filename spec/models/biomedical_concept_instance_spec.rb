@@ -49,7 +49,7 @@ describe BiomedicalConceptInstance do
 
     before :all do
       load_files(schema_files, [])
-      load_cdisc_term_versions(1..20)
+      load_cdisc_term_versions(1..55)
       load_data_file_into_triple_store("mdr_identification.ttl")
       load_test_bc_template_and_instances
     end
@@ -228,7 +228,7 @@ describe BiomedicalConceptInstance do
       load_files(schema_files, [])
       load_data_file_into_triple_store("mdr_identification.ttl")
       load_test_bc_template_and_instances
-      load_cdisc_term_versions(1..20)
+      load_cdisc_term_versions(1..55)
     end
 
     it "update, no clone, no errors, 3 updates" do
@@ -277,7 +277,7 @@ describe BiomedicalConceptInstance do
 
     before :all do
       load_files(schema_files, [])
-      load_cdisc_term_versions(1..20)
+      load_cdisc_term_versions(1..55)
       load_data_file_into_triple_store("mdr_identification.ttl")
       load_test_bc_template_and_instances
     end
