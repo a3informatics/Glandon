@@ -81,7 +81,6 @@ describe "SDTM IGs", :type => :feature do
       context_menu_element('history', 4, 'SDTM IG', :show)
       wait_for_ajax 10
       click_on 'CSV'
-
       file = download_content
       check_file_actual_expected(file, sub_dir, "sdtm_ig_csv_expected.csv")
     end
