@@ -24,7 +24,7 @@ export default class ItemsPicker extends ModalView {
    * @param {Object} params Instance parameters
    * @param {string} params.id Id of the Items Picker modal, must match the id used in partial render 
    * @param {array} params.types List of item types allowed to be picked from, must be RdfTypesMap entries @see rdf_types.js
-   * @param {array} params.buttons List of definition objects for (extra) buttons that will be rendered in the footer, ({ id, css, text onClick })
+   * @param {array} params.buttons List of definition objects for (extra) buttons that will be rendered in the footer, ({ id, css, text, onClick })
    * @param {string} params.description Description text, will use default if not specified
    * @param {string} params.submitText Submit button text, will use default if not specified
    * @param {boolean} params.multiple Specifies if selection of multiple items is allowed
@@ -141,6 +141,7 @@ export default class ItemsPicker extends ModalView {
         .setMultiple( false )
         .setDescription( IPRenderer.defaults.description )
         .setSubmitText( IPRenderer.defaults.submit )
+        .setButtons([])
     
     return this 
 
@@ -240,6 +241,20 @@ export default class ItemsPicker extends ModalView {
 
   }
 
+  /**
+   * Set Custom Picker buttons
+   * @param {array} buttons Collection of Button definitions (props: id, cssClasses, text, onClick) 
+   * @return {ItemsPicker} This ItemsPicker instance (for chaining)
+   */
+  setButtons(buttons) {
+
+    if ( buttons )
+      this.buttons = buttons 
+    
+    return this 
+
+  }
+
 
   /*** Getters ***/
 
@@ -309,6 +324,7 @@ export default class ItemsPicker extends ModalView {
 
     this._Renderer.renderDescription( this.strings.description )
                   .renderSubmitText( this.strings.submit )
+                  .renderButtons( this.buttons )
                   .renderTabs( this.types )
 
     this._dispatch( 'renderComplete' )

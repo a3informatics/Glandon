@@ -55,6 +55,23 @@ export default class IPRenderer {
   }
 
   /**
+   * Render custom buttons in the Picker footer  
+   * @param {array} buttons Collection of Button definitions (props: id, cssClasses, text, onClick) 
+   * @return {IPRenderer} Current IPRenderer instnace (for chaining) 
+   */
+  renderButtons(buttons) {
+    
+    this.customBtnsWrap.empty()
+
+    buttons.forEach( buttonOpts => 
+      this.customBtnsWrap.append( this._button( buttonOpts ) ) 
+    )
+
+    return this
+
+  }
+
+  /**
    * Toggle Submit button enabled / disabled
    * @param {boolean} enable True if button should be enabled
    */
@@ -67,10 +84,27 @@ export default class IPRenderer {
    */
   empty() {
     this.tabs.empty()
+    this.customBtnsWrap.empty()
   }
 
 
   /*** Private ***/
+
+
+  /**
+   * Render a Picker button 
+   * @param {string} id Button ID
+   * @param {string} text Button text
+   * @param {string} cssClasses Button CSS classes for styling
+   * @param {function} onClick Button on click handler 
+   */
+  _button({ id, text, cssClasses = 'light', onClick = () => {} }) {
+
+    return $( '<button>' ).addClass( `btn medium ${ cssClasses }` )
+                          .attr( 'id', id )
+                          .text( text )
+                          .click( () => onClick() )
+  }
 
 
   /*** Tabs ***/
@@ -168,6 +202,14 @@ export default class IPRenderer {
    */
   get submitBtn() {
     return this.content.find( '#items-picker-submit' )
+  }
+
+  /**
+   * Get the Picker Custom Buttons wrapper element
+   * @return {JQuery Element} Custom Buttons wrapper element
+   */
+  get customBtnsWrap() {
+    return this.content.find( '#items-picker-custom-buttons' )
   }
 
   /**
