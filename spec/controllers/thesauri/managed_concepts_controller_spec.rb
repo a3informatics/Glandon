@@ -818,7 +818,7 @@ describe Thesauri::ManagedConceptsController do
     before :all do
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
       load_files(schema_files, data_files)
-      load_cdisc_term_versions(1..34)
+      load_cdisc_term_versions(1..32)
       @lock_user = ua_add_user(email: "lock@example.com")
       Token.delete_all
     end
