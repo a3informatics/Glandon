@@ -5,7 +5,6 @@ import TokenTimer from 'shared/custom/tokens/token_timer'
 import PairHandler from 'shared/custom/thesauri/managed_concepts/pair_handler'
 import PropertiesEditor from 'shared/custom/thesauri/managed_concepts/properties_editor'
 import UpgradeHandler from 'shared/custom/thesauri/managed_concepts/upgrade/upgrade_handler'
-//TODO: Convert dependencies to ES6 modules
 
 $(document).ready(() => {
 
@@ -22,7 +21,7 @@ $(document).ready(() => {
     onEdited: () => tt.extend()
   });
 
-  // Init Rank
+  // Init Rank, TODO: Update to ES6
   let rankModal = new RankModal( () => tt.extend() );
 
   // Extension Properties Editor 
@@ -30,11 +29,9 @@ $(document).ready(() => {
     data: JSON.parse( editItemPropertiesData )
   });
 
-  // Init Pairing handler
+  // Pairing handler
   let ph = new PairHandler({
-    pairUrl: pairSelectPath,
-    unpairUrl: unpairPath,
-    isPaired: isItemPaired
+    ...pairOptions
   });
 
   // Upgrade button handler

@@ -18,7 +18,7 @@ $(document).ready( () => {
     extendTimer: () => tt.extend()
   });
 
-  // Init Rank
+  // Init Rank, TODO: Update to ES6
   let rm = new RankModal(tt.extend.bind(tt));
 
   // Code list Properties Editor
