@@ -120,9 +120,10 @@ describe "Breadcrumb", :type => :feature do
       # Search Terms
       click_on 'Search Terminologies'
       ui_in_modal do
-        find('#select-all-latest').click
-        click_on 'Submit and proceed'
+        click_on 'Search in Latest'
       end
+      wait_for_ajax 10 
+      
       expect(page).to have_content "Search Latest"
       ui_check_breadcrumb("Terminology", "Search", "", "")
       next_link_crumb(1, 'Index: Terminology', "Terminology", "", "")
