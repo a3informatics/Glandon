@@ -26,11 +26,9 @@ $(document).ready( () => {
     data: JSON.parse( editItemPropertiesData )
   });
 
-  // Init Pairing handler
-  let ps = new PairHandler({
-    pairUrl: pairSelectPath,
-    unpairUrl: unpairPath,
-    isPaired: isItemPaired
+  // Pairing handler
+  let ph = new PairHandler({
+    ...pairOptions
   });
 
 });
