@@ -2,7 +2,6 @@ import ExtensionEditor from 'shared/custom/thesauri/managed_concepts/extensions/
 
 import TokenTimer from 'shared/custom/tokens/token_timer'
 
-import PairHandler from 'shared/custom/thesauri/managed_concepts/pair_handler'
 import PropertiesEditor from 'shared/custom/thesauri/managed_concepts/properties_editor'
 import UpgradeHandler from 'shared/custom/thesauri/managed_concepts/upgrade/upgrade_handler'
 
@@ -27,14 +26,23 @@ $(document).ready(() => {
   // Extension Properties Editor 
   let pe = new PropertiesEditor({
     data: JSON.parse( editItemPropertiesData )
-  });
-
-  // Pairing handler
-  let ph = new PairHandler({
-    ...pairOptions
-  });
+  }); 
 
   // Upgrade button handler
-  new UpgradeHandler()
+  new UpgradeHandler();
+
+  /**
+   * Asynchronously load additional modules
+   */
+  ( async () => {
+
+    // Import and init PairHandler
+    let PairHandler = await import('shared/custom/thesauri/managed_concepts/pair_handler'),
+
+        ph = new PairHandler.default({
+          ...pairOptions
+        })
+
+  }) ();
 
 });
