@@ -15,7 +15,7 @@ export default class IPHelper {
    */
   static validateTypes(types) {
 
-    if ( !types.length )
+    if ( !types || !types.length )
       return false 
 
     for ( const type of types ) {
@@ -29,6 +29,19 @@ export default class IPHelper {
     }
 
     return true 
+
+  }
+
+  /**
+   * Check if two sets of Picker item types are different
+   * @param {array} types Collection of types 
+   * @param {array} newTypes Collection of new types to compare 
+   * @return {boolean} True if types collections differ, false if identical  
+   */
+  static typesDiffer(types, newTypes) {
+
+    const filtered = types.filter( type => newTypes.includes( type ) )
+    return types.length === newTypes.length && newTypes.length === filtered.length
 
   }
 

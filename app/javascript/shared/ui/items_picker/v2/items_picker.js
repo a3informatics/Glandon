@@ -171,10 +171,10 @@ export default class ItemsPicker extends ModalView {
    */
   setTypes(newTypes) {
 
-    if ( newTypes && IPHelper.validateTypes( newTypes ) ) {
-      
-      // If types are already set, destroy instance
-      if ( this.types )
+    if ( IPHelper.validateTypes( newTypes ) ) {
+
+      // If types are already set, and newTypes are different than current, destroy instance 
+      if ( this.types && IPHelper.typesDiffer( this.types, newTypes ) )
         this.destroy()
       
       this.types = newTypes
