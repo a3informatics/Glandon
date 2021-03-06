@@ -99,6 +99,18 @@ export default class TablePanel {
   }
 
   /**
+   * Resets the table to initial state (keeps data)
+   */
+  reset() {
+
+    this.table.search('')
+              .page( 'first' )
+              .order( this.order )
+              .draw()
+
+  }
+
+  /**
    * Refresh (reload) table data
    * @param {string} url optional, specify data source url
    */

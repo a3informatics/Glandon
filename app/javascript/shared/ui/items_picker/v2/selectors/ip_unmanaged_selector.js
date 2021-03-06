@@ -33,10 +33,12 @@ export default class UnmanagedSelector extends ManagedSelector {
    */
   reset(clearCache) {
 
-    this.historyPanel?.sp._deselectAll()
-    this.childrenPanel?.clear( clearCache )
-
     super.reset( clearCache )
+    
+    this.childrenPanel?.reset() 
+                       .clear( clearCache )
+
+    this._toggleCards( 'index' )
 
   }
 

@@ -130,6 +130,19 @@ export default class PickerPanel extends Cacheable {
   }
 
   /**
+   * Reset the panel to initial state (keeps data)
+   * @return {PickerPanel} this instance (for chaining)
+   */
+  reset() {
+
+    this.sp._deselectAll()
+    this.sp.reset()
+
+    return this
+
+  }
+
+  /**
    * Set current data source (used for history, children types)
    * @param {object} data Current data source depending on table type  
    * @return {PickerPanel} this instance (for chaining)

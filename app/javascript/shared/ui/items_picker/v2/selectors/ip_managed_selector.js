@@ -57,8 +57,9 @@ export default class ManagedSelector {
    */
   reset(clearCache) {
 
-    this.indexPanel?.sp._deselectAll()
-    this.historyPanel?.clear( clearCache )
+    this.indexPanel?.reset()
+    this.historyPanel?.reset()  
+                      .clear( clearCache )
 
   }
 
