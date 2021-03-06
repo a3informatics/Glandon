@@ -98,7 +98,7 @@ class Form
       item.has_coded_value_objects.sort_by {|x| x.ordinal}.each do |cv|
         tc = Thesaurus::UnmanagedConcept.find(cv.reference)
         if cv.enabled
-          html += "<p><input type=\"radio\" name=\"#{tc.identifier}\" value=\"#{tc.identifier}\"></input>#{tc.label}</p>"
+          html += "<p><input type=\"radio\" name=\"#{tc.identifier}\" value=\"#{tc.identifier}\"></input>#{cv.local_label}</p>"
         end
       end
       html += '</td>'

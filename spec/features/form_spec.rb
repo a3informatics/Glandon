@@ -96,6 +96,21 @@ describe "Forms", :type => :feature do
       expect(page).to have_content 'Compltion Status'
     end
 
+    it "history allows ttl to be exported", js:true do
+      click_navbar_forms
+      wait_for_ajax 10
+      expect(page).to have_content 'Index: Forms'
+      ui_table_search('index', 'Height')
+      find(:xpath, "//tr[contains(.,'Height (Pilot)')]/td/a", :text => 'History').click
+      wait_for_ajax 10
+      expect(page).to have_content 'Version History of \'FN000150\''
+      context_menu_element_v2('history', 'Height (Pilot)', :export_ttl)
+      file = download_content
+    # write_text_file_2(file, sub_dir, "form_export_ttl_expected.ttl")
+      expected = read_text_file_2(sub_dir, "form_export_ttl_expected.ttl")
+      expect(file).to eq(expected)
+    end
+
     it "show page has terminology reference links", js:true do
       click_navbar_forms
       wait_for_ajax 10

@@ -19,6 +19,7 @@ class Form::Group::Normal < Form::Group
     ]
 
   validates_with Validator::Field, attribute: :repeating, method: :valid_boolean?
+  validate :valid_repeating?
 
   # Managed Ancestors Predicate. Returns the property(ies) from this instance/class in the managed ancestor path to the child class
   #
@@ -104,21 +105,30 @@ class Form::Group::Normal < Form::Group
   # @option params [Array] :id_set array of biomedical concept ids
   # @return [Array] the created objects. May contain errors if unsuccesful.  
   def add_child(params)
-    if params[:type].to_sym == :normal_group
-      add_normal_group
-    elsif params[:type].to_sym == :bc_group
-      results = []
-      params[:id_set].each do |id|
-        results << add_bc_group(id)
+    if self.repeating 
+      if valid_repeating_child?(params)
+        add_repeating_child(params)
+      else
+        self.errors.add(:base, "Attempting to add an invalid child type to Repeating")
+        []
       end
-      results
-    elsif params[:type].to_sym == :common_group
-      add_common_group
-    elsif items.include?params[:type].to_sym
-      add_item(params)
     else
-      self.errors.add(:base, "Attempting to add an invalid child type")
-      []
+      if params[:type].to_sym == :normal_group
+        add_normal_group
+      elsif params[:type].to_sym == :bc_group
+        results = []
+        params[:id_set].each do |id|
+          results << add_bc_group(id)
+        end
+        results
+      elsif params[:type].to_sym == :common_group
+        add_common_group
+      elsif items.include?params[:type].to_sym
+        add_item(params)
+      else
+        self.errors.add(:base, "Attempting to add an invalid child type")
+        []
+      end
     end
   end
 
@@ -146,6 +156,40 @@ class Form::Group::Normal < Form::Group
       result[:has_common] << cg.full_data 
     end
     result
+  end
+
+  # Valid Repeating? Check if it is valid to set the repeating attribute
+  #
+  # @return [Boolean] true if valid, false otherwise
+  def valid_repeating?
+    if self.repeating
+      items = self.has_item_objects
+      sub_groups = self.has_sub_group_objects
+      if items.count + sub_groups.count == 0 #Empty group
+        return true
+      elsif items.count > 0 && sub_groups.count == 0 #Only items group
+        items.each do |item|
+          if item.class != Form::Item::Question
+            self.errors.add(:base, "Failed to set repeating, other items exist")
+            return false
+          end
+        end
+        return true
+      elsif sub_groups.count > 0 && items.count == 0 #Only sub groups group
+        sub_groups.each do |sg|
+          if sg.class != Form::Group::Bc
+            self.errors.add(:base, "Failed to set repeating, other items exist")
+            return false
+          end
+        end
+        return true
+      elsif items.count > 0 && sub_groups.count > 0 # Items and groups
+        self.errors.add(:base, "Failed to set repeating, other items exist")
+        return false 
+      end
+    else
+      return true
+    end  
   end
 
   private
@@ -278,9 +322,12 @@ class Form::Group::Normal < Form::Group
     # Is a Question only group
     def is_question_only_group?
       items = self.has_item_objects
-      if items.count > 0
+      sub_groups = self.has_sub_group_objects
+      if sub_groups.count > 0
+        return false
+      elsif items.count > 0
         items.each do |item|
-          return false if item.class != Form::Item::Question && item.class != Form::Item::Mapping && item.class != Form::Item::TextLabel
+          return false if item.class != Form::Item::Question
         end
         return true
       else
@@ -290,10 +337,13 @@ class Form::Group::Normal < Form::Group
 
     # Is a BC only group
     def is_bc_only_group?
-      bcgs = self.has_sub_group_objects
-      if bcgs.count > 0
-        bcgs.each do |bcg|
-          return false if bcg.class != Form::Group::Bc
+      items = self.has_item_objects
+      sub_groups = self.has_sub_group_objects
+      if items.count > 0
+        return false
+      elsif sub_groups.count > 0
+        sub_groups.each do |sg|
+          return false if sg.class != Form::Group::Bc
         end
         return true
       else
@@ -304,34 +354,25 @@ class Form::Group::Normal < Form::Group
     # Repeating Question group
     def repeating_question_group(annotations)
       html = ""
-      # Put the labels and mappings out first
-      self.has_item.sort_by {|x| x.ordinal}.each do |item|
-        html += item.to_crf unless item.class == Form::Item::Question
-      end
-      # Now the questions
       html += '<td colspan="3"><table class="table table-striped table-bordered table-condensed">'
       html += '<tr>'
       self.has_item.sort_by {|x| x.ordinal}.each do |item|
-        html += item.question_cell(item.question_text) if item.class == Form::Item::Question
+        html += item.question_cell(item.question_text)
       end
       html += '</tr>'
 
       unless annotations.nil?
         html += '<tr>'
         self.has_item.sort_by {|x| x.ordinal}.each do |item|
-          if item.class == Form::Item::Question
-            qa = item.question_annotations(annotations)
-            html += mapping_cell(qa, annotations)
-          else
-            html += empty_cell
-          end
+          qa = item.question_annotations(annotations)
+          html += mapping_cell(qa, annotations)
         end
         html += '</tr>'
       end
 
       html += '<tr>'
       self.has_item.sort_by {|x| x.ordinal}.each do |item|
-        html += input_field(item) if item.class == Form::Item::Question
+        html += item.has_coded_value.count == 0 ? input_field(item) : terminology_cell(item)
       end
       html += '</tr>'
       html += '</table></td>' 
@@ -393,6 +434,44 @@ class Form::Group::Normal < Form::Group
       html += '</tr>'
       html += '</table></td>'
       return html
+    end
+
+    # Valid Repeating Child? Check if it is valid to add a child to a repeating group
+    #
+    # @return [Boolean] true if valid, false otherwise
+    def valid_repeating_child?(params)
+      items = self.has_item_objects
+      sub_groups = self.has_sub_group_objects
+      if params[:type].to_sym == :question
+        if sub_groups.count == 0
+          return true
+        elsif sub_groups.count > 0 
+          return false
+        end
+      elsif params[:type].to_sym == :bc_group
+        if items.count == 0 
+          return true
+        elsif items.count > 0
+          return false
+        end
+      else
+        return false
+      end
+    end
+
+    def add_repeating_child(params)
+      if params[:type].to_sym == :bc_group
+        results = []
+        params[:id_set].each do |id|
+          results << add_bc_group(id)
+        end
+        results
+      elsif params[:type].to_sym == :question
+        add_item(params)
+      else
+        self.errors.add(:base, "Attempting to add an invalid child type")
+        []
+      end
     end
 
     def type_to_class

@@ -601,7 +601,8 @@ module UiHelpers
 			show_paired: "Show Paired",
       crf: "CRF",
       acrf: "aCRF",
-      bca: "BC Associations"
+      bca: "BC Associations",
+      export_ttl: "Export TTL"
     }
 	end
 

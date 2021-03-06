@@ -8,7 +8,7 @@ class SdtmIgDomain < Tabulation
 
   #object_property :has_biomedical_concept, cardinality: :many, model_class: "OperationalReferenceV3"
   #object_property :by_association, cardinality: :one, model_class: "Association"
-  object_property :based_on_class, cardinality: :one, model_class: "SdtmClass", delete_exclude: true
+  object_property :based_on_class, cardinality: :one, model_class: "SdtmClass", delete_exclude: true, read_exclude: true
   object_property_class :includes_column, model_class: "SdtmIgDomain::Variable"
 
   # Get Children.

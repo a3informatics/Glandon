@@ -311,7 +311,16 @@ export default class NodeEditor extends GenericEditor {
   _renderTUCRef() {
 
     let cliRef = this.item.data.reference,
-        parentQuestion = this.item.parent.is( 'QUESTION' );
+        parentQuestion = this.item.parent.is( 'QUESTION' )
+
+    // Button element that sets the label value to default value
+    let labelResetBtn = this._button({ 
+      text: 'Reset', 
+      css: 'white sm-margin',
+      onClick: () => $( label[1] ).find( 'input' )
+                                  .val( cliRef.label )
+                                  .trigger( 'input' ),
+    })
 
     let identifier = [ 'Identifier', this._labelStyled(
                           cliRef.identifier || 'N/A'
@@ -322,7 +331,7 @@ export default class NodeEditor extends GenericEditor {
         notation =   [ 'Submission Value', this._labelStyled(
                           cliRef.notation || 'N/A'
                      ) ],
-        label =      [ 'Label', this._input( 'local_label' ) ],
+        label =      [ 'Label', this._input( 'local_label' ).append( labelResetBtn ) ],
         enable =     [ 'Enabled', this._checkbox( 'enabled', { disabled: parentQuestion } ) ],
         optional =   [ 'Optional', this._checkbox( 'optional' ) ],
 

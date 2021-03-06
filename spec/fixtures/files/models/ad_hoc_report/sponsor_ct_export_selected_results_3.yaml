@@ -1,750 +1,973 @@
 ---
 ACN:
 - - Action Taken with Study Treatment
-  - C66767
   - ACN
   - 'false'
   - Terminology specifying changes to the study treatment as a result of an adverse
     event.
+  - C66767
   - C17998
-  - Unknown
   - UNKNOWN
-  - U;Unknown
   - Unknown
-  - ''
+  - U; Unknown
+  - U; Unknown
+  - Not known, not observed, not recorded, or refused. (NCI)
+  - text
+  - Unknown
+  - '6'
   - '6'
   - 'true'
   - 'true'
   - 'true'
+  - 'false'
 - - Action Taken with Study Treatment
-  - C66767
   - ACN
   - 'false'
   - Terminology specifying changes to the study treatment as a result of an adverse
     event.
+  - C66767
   - C48660
-  - Not Applicable
   - NOT APPLICABLE
-  - NA;Not Applicable
   - Not Applicable
-  - ''
+  - NA; Not Applicable
+  - NA; Not Applicable
+  - Determination of a value is not relevant in the current context. (NCI)
+  - text
+  - Not Applicable
+  - '7'
   - '7'
   - 'true'
   - 'true'
   - 'true'
+  - 'false'
 - - Action Taken with Study Treatment
-  - C66767
   - ACN
   - 'false'
   - Terminology specifying changes to the study treatment as a result of an adverse
     event.
+  - C66767
   - C49501
-  - Drug Interrupted
   - DRUG INTERRUPTED
-  - ''
   - Drug Interrupted
   - ''
+  - ''
+  - An indication that a medication schedule was modified by temporarily terminating
+    a prescribed regimen of medication. (NCI)
+  - text
+  - Drug Interrupted
+  - '3'
   - '3'
   - 'true'
   - 'true'
   - 'true'
+  - 'false'
 - - Action Taken with Study Treatment
-  - C66767
   - ACN
   - 'false'
   - Terminology specifying changes to the study treatment as a result of an adverse
     event.
+  - C66767
   - C49502
-  - Drug Withdrawn
   - DRUG WITHDRAWN
-  - ''
   - Drug Withdrawn
   - ''
+  - ''
+  - An indication that a medication schedule was modified through termination of a
+    prescribed regimen of medication. (NCI)
+  - text
+  - Drug Withdrawn
+  - '4'
   - '4'
   - 'true'
   - 'true'
   - 'true'
+  - 'false'
 - - Action Taken with Study Treatment
-  - C66767
   - ACN
   - 'false'
   - Terminology specifying changes to the study treatment as a result of an adverse
     event.
+  - C66767
   - C49503
-  - Dose Increased
   - DOSE INCREASED
-  - ''
   - Dose Increased
   - ''
+  - ''
+  - An indication that a medication schedule was modified by addition; either by changing
+    the frequency, strength or amount. (NCI)
+  - text
+  - Dose Increased
+  - '5'
   - '5'
   - 'true'
   - 'true'
   - 'true'
+  - 'false'
 - - Action Taken with Study Treatment
-  - C66767
   - ACN
   - 'false'
   - Terminology specifying changes to the study treatment as a result of an adverse
     event.
+  - C66767
   - C49504
-  - Dose Not Changed
   - DOSE NOT CHANGED
-  - ''
   - Dose Not Changed
   - ''
+  - ''
+  - An indication that a medication schedule was maintained. (NCI)
+  - text
+  - Dose Not Changed
+  - '1'
   - '1'
   - 'true'
   - 'true'
   - 'true'
+  - 'false'
 - - Action Taken with Study Treatment
-  - C66767
   - ACN
   - 'false'
   - Terminology specifying changes to the study treatment as a result of an adverse
     event.
+  - C66767
   - C49505
-  - Dose Reduced
   - DOSE REDUCED
-  - ''
   - Dose Reduced
   - ''
+  - ''
+  - An indication that a medication schedule was modified by subtraction, either by
+    changing the frequency, strength or amount. (NCI)
+  - text
+  - Dose Reduced
+  - '2'
   - '2'
   - 'true'
   - 'true'
   - 'true'
+  - 'false'
 - - Action Taken with Study Treatment
-  - C66767
   - ACN
   - 'false'
   - Terminology specifying changes to the study treatment as a result of an adverse
     event.
+  - C66767
   - C78728
-  - Many
   - MULTIPLE
-  - Many;Several
+  - ''
+  - Many; Several
+  - Many; Several
+  - More than one. (NCI)
+  - text
   - ''
   - ''
   - '8'
   - 'false'
   - 'true'
   - 'true'
+  - 'false'
 AERELA:
 - - Relationship to Study Treatment
-  - SN000012
   - AERELA
   - 'false'
   - Used to determine the relationship of Adverse Event to study treatment.
+  - SN000012
   - C78728
-  - Many
   - MULTIPLE
-  - Many;Several
+  - ''
+  - Many; Several
+  - Many; Several
+  - More than one. (NCI)
+  - text
   - ''
   - ''
   - '5'
   - 'false'
   - 'true'
   - 'true'
+  - 'false'
 - - Relationship to Study Treatment
-  - SN000012
   - AERELA
   - 'false'
   - Used to determine the relationship of Adverse Event to study treatment.
+  - SN000012
   - S000090
-  - Not Related
   - NOT RELATED
-  - ''
   - Not Related
   - ''
+  - ''
+  - A characteristic used to qualify the adverse event as clearly not related to the
+    study treatment.
+  - text
+  - Not Related
+  - '1'
   - '1'
   - 'true'
   - 'true'
   - 'true'
+  - 'false'
 - - Relationship to Study Treatment
-  - SN000012
   - AERELA
   - 'false'
   - Used to determine the relationship of Adverse Event to study treatment.
+  - SN000012
   - S000092
-  - Possibly Related
   - POSSIBLY RELATED
-  - ''
   - Possibly Related
   - ''
+  - ''
+  - A characteristic indicating that an adverse event may be related to the study
+    treatment.
+  - text
+  - Possibly Related
+  - '3'
   - '3'
   - 'true'
   - 'true'
   - 'true'
+  - 'false'
 - - Relationship to Study Treatment
-  - SN000012
   - AERELA
   - 'false'
   - Used to determine the relationship of Adverse Event to study treatment.
+  - SN000012
   - S000093
-  - Related
   - RELATED
-  - ''
   - Related
   - ''
+  - ''
+  - A characteristic used to qualify the adverse event as related to the study treatment.
+  - text
+  - Related
+  - '4'
   - '4'
   - 'true'
   - 'true'
   - 'true'
+  - 'false'
 - - Relationship to Study Treatment
-  - SN000012
   - AERELA
   - 'false'
   - Used to determine the relationship of Adverse Event to study treatment.
+  - SN000012
   - S000094
-  - Unlikely Related
   - UNLIKELY RELATED
-  - ''
   - Unlikely Related
   - ''
+  - ''
+  - A characteristic used to qualify the adverse event as unlikely related to the
+    study treatment.
+  - text
+  - Unlikely Related
+  - '2'
   - '2'
   - 'true'
   - 'true'
   - 'true'
+  - 'false'
 AERELDEV_01:
 - - Relationship to Device Subset 01
-  - SN001877
   - AERELDEV_01
   - 'false'
   - Used to determine the relationship of Adverse Event to device.
+  - SN001877
   - S000090
-  - Not Related
   - NOT RELATED
+  - Not Related
   - ''
+  - ''
+  - A characteristic used to qualify the adverse event as clearly not related to the
+    study treatment.
+  - text
   - Not Related
   - '2'
   - '1'
   - 'true'
   - 'true'
+  - 'false'
   - 'false'
 - - Relationship to Device Subset 01
-  - SN001877
   - AERELDEV_01
   - 'false'
   - Used to determine the relationship of Adverse Event to device.
+  - SN001877
   - S000093
-  - Related
   - RELATED
+  - Related
   - ''
+  - ''
+  - A characteristic used to qualify the adverse event as related to the study treatment.
+  - text
   - Related
   - '1'
   - '2'
   - 'true'
   - 'true'
+  - 'false'
   - 'false'
 AGEGRPE:
 - - Age Group (EudraCT)
-  - SN000018
   - AGEGRPE
   - 'false'
   - Age category used for EudraCT demographics table.
+  - SN000018
   - S000109
   - ADOLESCENTS (12-17 YEARS)
-  - ADOLESCENTS (12-17 YEARS)
   - ''
+  - ''
+  - ''
+  - Adolescents (12-17 years).
+  - text
   - ''
   - ''
   - '6'
   - 'false'
   - 'false'
   - 'true'
+  - 'false'
 - - Age Group (EudraCT)
-  - SN000018
   - AGEGRPE
   - 'false'
   - Age category used for EudraCT demographics table.
+  - SN000018
   - S000110
   - CHILDREN (2-11 YEARS)
-  - CHILDREN (2-11 YEARS)
   - ''
+  - ''
+  - ''
+  - Children (2-11 years).
+  - text
   - ''
   - ''
   - '5'
   - 'false'
   - 'false'
   - 'true'
+  - 'false'
 - - Age Group (EudraCT)
-  - SN000018
   - AGEGRPE
   - 'false'
   - Age category used for EudraCT demographics table.
+  - SN000018
   - S000111
   - FROM 18 - 64 YEARS
-  - FROM 18 - 64 YEARS
   - ''
+  - ''
+  - ''
+  - Adults (18-64 years).
+  - text
   - ''
   - ''
   - '7'
   - 'false'
   - 'false'
   - 'true'
+  - 'false'
 - - Age Group (EudraCT)
-  - SN000018
   - AGEGRPE
   - 'false'
   - Age category used for EudraCT demographics table.
+  - SN000018
   - S000112
   - FROM 65 - 84 YEARS
-  - FROM 65 - 84 YEARS
   - ''
+  - ''
+  - ''
+  - Adults (65-84 years).
+  - text
   - ''
   - ''
   - '8'
   - 'false'
   - 'false'
   - 'true'
+  - 'false'
 - - Age Group (EudraCT)
-  - SN000018
   - AGEGRPE
   - 'false'
   - Age category used for EudraCT demographics table.
+  - SN000018
   - S000113
   - IN UTERO
-  - IN UTERO
   - ''
+  - ''
+  - ''
+  - Fetus.
+  - text
   - ''
   - ''
   - '1'
   - 'false'
   - 'false'
   - 'true'
+  - 'false'
 - - Age Group (EudraCT)
-  - SN000018
   - AGEGRPE
   - 'false'
   - Age category used for EudraCT demographics table.
+  - SN000018
   - S000114
   - INFANTS AND TODDLERS (28 DAYS - 23 MONTHS)
-  - INFANTS AND TODDLERS (28 DAYS - 23 MONTHS)
   - ''
+  - ''
+  - ''
+  - Infants and toddlers (28 days - 23 months).
+  - text
   - ''
   - ''
   - '4'
   - 'false'
   - 'false'
   - 'true'
+  - 'false'
 - - Age Group (EudraCT)
-  - SN000018
   - AGEGRPE
   - 'false'
   - Age category used for EudraCT demographics table.
+  - SN000018
   - S000115
   - NEWBORNS (0-27 DAYS)
-  - NEWBORNS (0-27 DAYS)
   - ''
+  - ''
+  - ''
+  - Newborns (0-27 days).
+  - text
   - ''
   - ''
   - '3'
   - 'false'
   - 'false'
   - 'true'
+  - 'false'
 - - Age Group (EudraCT)
-  - SN000018
   - AGEGRPE
   - 'false'
   - Age category used for EudraCT demographics table.
+  - SN000018
   - S000117
   - PRETERM NEWBORN - GESTATIONAL AGEP < 37 WKS
-  - PRETERM NEWBORN - GESTATIONAL AGEP < 37 WKS
   - ''
+  - ''
+  - ''
+  - Preterm newborn infants (gestational age <37 wks).
+  - text
   - ''
   - ''
   - '2'
   - 'false'
   - 'false'
   - 'true'
+  - 'false'
 - - Age Group (EudraCT)
-  - SN000018
   - AGEGRPE
   - 'false'
   - Age category used for EudraCT demographics table.
+  - SN000018
   - S009907
   - 85 YEARS AND OVER
-  - 85 YEARS AND OVER
   - ''
+  - ''
+  - ''
+  - Adults (85 years and over).
+  - text
   - ''
   - ''
   - '9'
   - 'false'
   - 'false'
   - 'true'
+  - 'false'
 AGEGRPPN:
 - - Age Group (Pediatric) Numeric
-  - SN000021
   - AGEGRPPN
   - 'false'
   - Numeric - Age category used for pediatric study PCSA Criteria.
+  - SN000021
   - S000127
-  - INFANTS
   - '2'
   - ''
+  - ''
+  - ''
+  - A numeric value, two, that indicate 28 days/1 month to 23 months old.
+  - integer
   - ''
   - ''
   - '2'
   - 'false'
   - 'false'
   - 'true'
+  - 'false'
 - - Age Group (Pediatric) Numeric
-  - SN000021
   - AGEGRPPN
   - 'false'
   - Numeric - Age category used for pediatric study PCSA Criteria.
+  - SN000021
   - S000132
-  - YOUNGER CHILDREN
   - '3'
   - ''
+  - ''
+  - ''
+  - A numeric value, three, that indicate 24 months/2 years to <6 years old.
+  - integer
   - ''
   - ''
   - '3'
   - 'false'
   - 'false'
   - 'true'
+  - 'false'
 - - Age Group (Pediatric) Numeric
-  - SN000021
   - AGEGRPPN
   - 'false'
   - Numeric - Age category used for pediatric study PCSA Criteria.
+  - SN000021
   - S000145
-  - NEONATES
   - '1'
   - ''
+  - ''
+  - ''
+  - A numeric value, one, that indicate birth/0 to 27 days old.
+  - integer
   - ''
   - ''
   - '1'
   - 'false'
   - 'false'
   - 'true'
+  - 'false'
 - - Age Group (Pediatric) Numeric
-  - SN000021
   - AGEGRPPN
   - 'false'
   - Numeric - Age category used for pediatric study PCSA Criteria.
+  - SN000021
   - S000146
-  - OLDER CHILDREN
   - '4'
   - ''
+  - ''
+  - ''
+  - A numeric value, four, that indicate 6 to <12 years old.
+  - integer
   - ''
   - ''
   - '4'
   - 'false'
   - 'false'
   - 'true'
+  - 'false'
 - - Age Group (Pediatric) Numeric
-  - SN000021
   - AGEGRPPN
   - 'false'
   - Numeric - Age category used for pediatric study PCSA Criteria.
+  - SN000021
   - S000147
-  - ADOLESCENTS
   - '5'
   - ''
+  - ''
+  - ''
+  - A numeric value, five, that indicate 12 to 16/18 years old.
+  - integer
   - ''
   - ''
   - '5'
   - 'false'
   - 'false'
   - 'true'
+  - 'false'
 NORMEDN:
 - - Normalized Identifier Numeric
-  - SN000394
   - NORMEDN
   - 'false'
   - Numeric - Indicator of norrmalization of PCSA (return to equal or lesser PCSA
     as compared to baseline PCSA).
+  - SN000394
   - S003126
-  - No worsening as compared to the baseline pcsa status
   - '0'
   - ''
   - ''
   - ''
+  - A numeric value of 0 indicating that all PCSA on treatment are equal to or less
+    than PCSA at baseline.
+  - integer
+  - ''
+  - ''
   - '1'
   - 'false'
   - 'false'
   - 'true'
+  - 'false'
 - - Normalized Identifier Numeric
-  - SN000394
   - NORMEDN
   - 'false'
   - Numeric - Indicator of norrmalization of PCSA (return to equal or lesser PCSA
     as compared to baseline PCSA).
+  - SN000394
   - S003127
-  - Never returned to baseline pcsa status
   - '3'
   - ''
+  - ''
+  - ''
+  - A numeric value of 3 indicating that there is an on treatment PCSA higher than
+    the baseline PCSA, and neither the last value on treatment or the last after max
+    on treatment during the follow up are equal to or less than PCSA at baseline.
+  - integer
   - ''
   - ''
   - '4'
   - 'false'
   - 'false'
   - 'true'
+  - 'false'
 - - Normalized Identifier Numeric
-  - SN000394
   - NORMEDN
   - 'false'
   - Numeric - Indicator of norrmalization of PCSA (return to equal or lesser PCSA
     as compared to baseline PCSA).
+  - SN000394
   - S003128
-  - No assessment after elevation
   - '4'
   - ''
+  - ''
+  - ''
+  - A numeric value of 4 indicating that there is an on treatment PCSA higher than
+    the baseline PCSA, but after the last max on treatment PCSA there are no other
+    values.
+  - integer
   - ''
   - ''
   - '5'
   - 'false'
   - 'false'
   - 'true'
+  - 'false'
 - - Normalized Identifier Numeric
-  - SN000394
   - NORMEDN
   - 'false'
   - Numeric - Indicator of norrmalization of PCSA (return to equal or lesser PCSA
     as compared to baseline PCSA).
+  - SN000394
   - S003129
-  - Returned to baseline pcsa status after last imp dose
   - '2'
   - ''
+  - ''
+  - ''
+  - A numeric value of 2 indicating that there is an on treatment PCSA higher than
+    the baseline PCSA, but the last after max on treatment PCSA during the follow-up
+    period is equal to or less than PCSA at baseline.
+  - integer
   - ''
   - ''
   - '3'
   - 'false'
   - 'false'
   - 'true'
+  - 'false'
 - - Normalized Identifier Numeric
-  - SN000394
   - NORMEDN
   - 'false'
   - Numeric - Indicator of norrmalization of PCSA (return to equal or lesser PCSA
     as compared to baseline PCSA).
+  - SN000394
   - S003130
-  - Returned to baseline pcsa status before last imp dose
   - '1'
   - ''
   - ''
   - ''
+  - A numeric value of 1 indicating that there is an on treatment PCSA higher than
+    the baseline PCSA, but the PCSA of the last value on treatment is equal to or
+    less than PCSA at baseline.
+  - integer
+  - ''
+  - ''
   - '2'
   - 'false'
   - 'false'
   - 'true'
+  - 'false'
 SEVRS:
 - - Severity Response
-  - SC165643
   - SEVRS
   - 'true'
   - Terminology relevant to a severity scale that describes the degree or intensity
     of a notable event or finding.
+  - SC165643
   - S011102
-  - Major
   - MAJOR
-  - '3'
   - Major
-  - ''
+  - '3'
+  - '3'
+  - Major disease manifestations with major-as or more important complications than
+    principal diagnosis, and non emergency life support procedures.
+  - text
+  - Major
+  - '4'
   - '4'
   - 'true'
   - 'true'
   - 'true'
+  - 'false'
 - - Severity Response
-  - SC165643
   - SEVRS
   - 'true'
   - Terminology relevant to a severity scale that describes the degree or intensity
     of a notable event or finding.
+  - SC165643
   - S011103
-  - Minor
   - MINOR
-  - 1;Low
   - Minor
-  - ''
+  - 1; Low
+  - 1; Low
+  - Asymptomatic disease with none or very minor complication, and non invasis diagnostic
+    or minor therapeutic.
+  - text
+  - Minor
+  - '2'
   - '2'
   - 'true'
   - 'true'
   - 'true'
+  - 'false'
 - - Severity Response
-  - SC165643
   - SEVRS
   - 'true'
   - Terminology relevant to a severity scale that describes the degree or intensity
     of a notable event or finding.
+  - SC165643
   - SC17998
-  - Unknown
   - U
-  - U;UNK;Unknown
   - Unknown
-  - ''
+  - U; UNK; Unknown
+  - U; UNK; Unknown
+  - Not known, not observed, not recorded, or refused. (NCI)
+  - text
+  - Unknown
+  - '6'
   - '6'
   - 'true'
   - 'true'
   - 'true'
+  - 'false'
 - - Severity Response
-  - SC165643
   - SEVRS
   - 'true'
   - Terminology relevant to a severity scale that describes the degree or intensity
     of a notable event or finding.
+  - SC165643
   - SC61376
-  - Moderate
   - MODERATE
-  - ''
   - Moderate
   - ''
+  - ''
+  - Middling or intermediate in degree, quality or extent.
+  - text
+  - Moderate
+  - '3'
   - '3'
   - 'true'
   - 'true'
   - 'true'
+  - 'false'
 - - Severity Response
-  - SC165643
   - SEVRS
   - 'true'
   - Terminology relevant to a severity scale that describes the degree or intensity
     of a notable event or finding.
+  - SC165643
   - SC70666
-  - Mild
   - MILD
-  - ''
   - Mild
   - ''
+  - ''
+  - Slight or minor in degree, quality or extent.
+  - text
+  - Mild
+  - '1'
   - '1'
   - 'true'
   - 'true'
   - 'true'
+  - 'false'
 - - Severity Response
-  - SC165643
   - SEVRS
   - 'true'
   - Terminology relevant to a severity scale that describes the degree or intensity
     of a notable event or finding.
+  - SC165643
   - SC70667
-  - Severe
   - SEVERE
-  - ''
   - Severe
   - ''
+  - ''
+  - Intensely bad or major in degree, quality or extent.
+  - text
+  - Severe
+  - '5'
   - '5'
   - 'true'
   - 'true'
   - 'true'
+  - 'false'
 SHIFT2N:
 - - Shift of Normality from Baseline Numeric
-  - SN000550
   - SHIFT2N
   - 'true'
   - Numeric - A description of the shift of normality from baseline.
+  - SN000550
   - S000229
-  - Abnormal to Normal
   - '1'
   - ''
+  - ''
+  - ''
+  - A numeric value that indicate a shift from Abnormal at baseline to Normal.
+  - integer
   - ''
   - ''
   - '1'
   - 'false'
   - 'false'
   - 'true'
+  - 'false'
 - - Shift of Normality from Baseline Numeric
-  - SN000550
   - SHIFT2N
   - 'true'
   - Numeric - A description of the shift of normality from baseline.
+  - SN000550
   - S003276
-  - Normal/Missing to Abnormal
   - '2'
   - ''
+  - ''
+  - ''
+  - A numeric value that indicate a shift from Normal or Missing at baseline to Abnormal.
+  - integer
   - ''
   - ''
   - '2'
   - 'false'
   - 'false'
   - 'true'
+  - 'false'
 TOXGR_01:
 - - Common Terminology Criteria for Adverse Events Subset 01
-  - SN001030
   - TOXGR_01
   - 'false'
   - The standard terminology developed to report adverse events occurring in cancer
     clinical trials. Common terminology criteria for adverse events (CTCAE) are used
     to study adverse event summaries and Investigational New Drug reports to the Food.
+  - SN001030
   - S011595
-  - Mild Adverse Event
   - '1'
+  - Grade 1
   - Mild Adverse Event
+  - Mild Adverse Event
+  - "(Synonym 1 NCI) An adverse event that is asymptomatic; or involves mild or minor
+    symptoms; or is of marginal clinical relevance; or consists of clinical or diagnostic
+    observations alone; or for which intervention is not indicated; or for which only
+    non-prescription intervention is indicated."
+  - text
   - Grade 1
   - '1'
   - '1'
   - 'true'
   - 'false'
   - 'true'
+  - 'false'
 - - Common Terminology Criteria for Adverse Events Subset 01
-  - SN001030
   - TOXGR_01
   - 'false'
   - The standard terminology developed to report adverse events occurring in cancer
     clinical trials. Common terminology criteria for adverse events (CTCAE) are used
     to study adverse event summaries and Investigational New Drug reports to the Food.
+  - SN001030
   - S011596
-  - Moderate Adverse Event
   - '2'
+  - Grade 2
   - Moderate Adverse Event
+  - Moderate Adverse Event
+  - "(Synonym 1 NCI) An adverse event for which only minimal, local, or noninvasive
+    intervention (e.g. packing, cautery) is indicated; or that limits instrumental
+    activities of daily living (ADLs, e.g., shopping, laundry, transportation, or
+    ability to conduct finances)."
+  - text
   - Grade 2
   - '2'
   - '2'
   - 'true'
   - 'false'
   - 'true'
+  - 'false'
 - - Common Terminology Criteria for Adverse Events Subset 01
-  - SN001030
   - TOXGR_01
   - 'false'
   - The standard terminology developed to report adverse events occurring in cancer
     clinical trials. Common terminology criteria for adverse events (CTCAE) are used
     to study adverse event summaries and Investigational New Drug reports to the Food.
+  - SN001030
   - S011597
-  - Severe Adverse Event
   - '3'
+  - Grade 3
   - Severe Adverse Event
+  - Severe Adverse Event
+  - "(Synonym 1 NCI) An adverse event that is medically significant but not life-threatening;
+    or for which inpatient care or prolongation of hospitalization are indicated;
+    or that is an important medical event that does not result in hospitalization,
+    but may jeopardize the patient or may require intervention either to prevent hospitalization,
+    to prevent the AE from becoming life-threatening or causing death; or that is
+    disabling; or that results in persistent or significant disability, incapacity,
+    or limitation of self care activities of daily living (ADLs, e.g., getting in
+    and out of bed, dressing, eating, getting around inside, bathing, or using the
+    toilet)."
+  - text
   - Grade 3
   - '3'
   - '3'
   - 'true'
   - 'false'
   - 'true'
+  - 'false'
 - - Common Terminology Criteria for Adverse Events Subset 01
-  - SN001030
   - TOXGR_01
   - 'false'
   - The standard terminology developed to report adverse events occurring in cancer
     clinical trials. Common terminology criteria for adverse events (CTCAE) are used
     to study adverse event summaries and Investigational New Drug reports to the Food.
+  - SN001030
   - S011598
-  - Life Threatening Adverse Event
   - '4'
+  - Grade 4
   - Life Threatening Adverse Event
+  - Life Threatening Adverse Event
+  - "(Synonym 1 NCI) An adverse event that has life-threatening consequences; for
+    which urgent intervention is indicated; that puts the patient at risk of death
+    at the time of the event if immediate intervention is not undertaken; or that
+    causes blindness or deafness."
+  - text
   - Grade 4
   - '4'
   - '4'
   - 'true'
   - 'false'
   - 'true'
+  - 'false'
 - - Common Terminology Criteria for Adverse Events Subset 01
-  - SN001030
   - TOXGR_01
   - 'false'
   - The standard terminology developed to report adverse events occurring in cancer
     clinical trials. Common terminology criteria for adverse events (CTCAE) are used
     to study adverse event summaries and Investigational New Drug reports to the Food.
+  - SN001030
   - S011599
-  - Death Related to Adverse Event
   - '5'
+  - Grade 5
   - Death Related to Adverse Event
+  - Death Related to Adverse Event
+  - "(Synonym 1 NCI) The termination of life as a result of an adverse event. (NCI)"
+  - text
   - Grade 5
   - '5'
   - '5'
   - 'true'
   - 'false'
   - 'true'
+  - 'false'
 TOXGRN:
 - - Common Terminology Criteria for Adverse Events Numeric
-  - SN001072
   - TOXGRN
   - 'false'
   - Numeric -Standard terminology developed to report adverse events occurring in
@@ -752,18 +975,23 @@ TOXGRN:
     are used to study adverse event summaries and Investigational New Drug reports
     to the Food and Drug Administration. The CTCAE contain a grading scale for each
     adverse event term representing the severity of the event.
+  - SN001072
   - S017114
-  - No Abnormality
   - "-1"
   - ''
   - ''
   - ''
+  - Numeric value 1, that indicate no abnormality is universally defined as absence
+    of Adverse Events or within normal limits or values.
+  - integer
+  - ''
+  - '1'
   - '1'
   - 'false'
   - 'false'
   - 'true'
+  - 'false'
 - - Common Terminology Criteria for Adverse Events Numeric
-  - SN001072
   - TOXGRN
   - 'false'
   - Numeric -Standard terminology developed to report adverse events occurring in
@@ -771,18 +999,25 @@ TOXGRN:
     are used to study adverse event summaries and Investigational New Drug reports
     to the Food and Drug Administration. The CTCAE contain a grading scale for each
     adverse event term representing the severity of the event.
+  - SN001072
   - S017640
-  - Mild Adverse Event
   - '1'
   - ''
   - ''
   - ''
+  - Numeric value 2, that indicate an asymptomatic adverse event or involves mild
+    or minor symptoms; or is of marginal clinical relevance; or consists of clinical
+    or diagnostic observations alone; or for which intervention is not indicated;
+    or for which only non-prescription intervention is indicated.
+  - integer
+  - ''
+  - '2'
   - '2'
   - 'false'
   - 'false'
   - 'true'
+  - 'false'
 - - Common Terminology Criteria for Adverse Events Numeric
-  - SN001072
   - TOXGRN
   - 'false'
   - Numeric -Standard terminology developed to report adverse events occurring in
@@ -790,18 +1025,25 @@ TOXGRN:
     are used to study adverse event summaries and Investigational New Drug reports
     to the Food and Drug Administration. The CTCAE contain a grading scale for each
     adverse event term representing the severity of the event.
+  - SN001072
   - S017641
-  - Moderate Adverse Event
   - '2'
   - ''
   - ''
   - ''
+  - Numeric value 3, that indicate an adverse event for which only minimal, local,
+    or noninvasive intervention (e.g. packing, cautery) is indicated; or that limits
+    instrumental activities of daily living (ADLs, e.g., shopping, laundry, transportation,
+    or ability to conduct finances).
+  - integer
+  - ''
+  - '3'
   - '3'
   - 'false'
   - 'false'
   - 'true'
+  - 'false'
 - - Common Terminology Criteria for Adverse Events Numeric
-  - SN001072
   - TOXGRN
   - 'false'
   - Numeric -Standard terminology developed to report adverse events occurring in
@@ -809,18 +1051,30 @@ TOXGRN:
     are used to study adverse event summaries and Investigational New Drug reports
     to the Food and Drug Administration. The CTCAE contain a grading scale for each
     adverse event term representing the severity of the event.
+  - SN001072
   - S017642
-  - Severe Adverse Event
   - '3'
   - ''
   - ''
   - ''
+  - Numeric value 4, that indicate an adverse event that is medically significant
+    but not life-threatening; or for which inpatient care or prolongation of hospitalization
+    are indicated; or that is an important medical event that does not result in hospitalization,
+    but may jeopardize the patient or may require intervention either to prevent hospitalization,
+    to prevent the AE from becoming life-threatening or causing death; or that is
+    disabling; or that results in persistent or significant disability, incapacity,
+    or limitation of self care activities of daily living (ADLs, e.g., getting in
+    and out of bed, dressing, eating, getting around inside, bathing, or using the
+    toilet).
+  - integer
+  - ''
+  - '4'
   - '4'
   - 'false'
   - 'false'
   - 'true'
+  - 'false'
 - - Common Terminology Criteria for Adverse Events Numeric
-  - SN001072
   - TOXGRN
   - 'false'
   - Numeric -Standard terminology developed to report adverse events occurring in
@@ -828,18 +1082,25 @@ TOXGRN:
     are used to study adverse event summaries and Investigational New Drug reports
     to the Food and Drug Administration. The CTCAE contain a grading scale for each
     adverse event term representing the severity of the event.
+  - SN001072
   - S017643
-  - Life Threatening Adverse Event
   - '4'
   - ''
   - ''
   - ''
+  - Numeric value 5, that indicate an adverse event that has life-threatening consequences;
+    for which urgent intervention is indicated; that puts the patient at risk of death
+    at the time of the event if immediate intervention is not undertaken; or that
+    causes blindness or deafness.
+  - integer
+  - ''
+  - '5'
   - '5'
   - 'false'
   - 'false'
   - 'true'
+  - 'false'
 - - Common Terminology Criteria for Adverse Events Numeric
-  - SN001072
   - TOXGRN
   - 'false'
   - Numeric -Standard terminology developed to report adverse events occurring in
@@ -847,13 +1108,1436 @@ TOXGRN:
     are used to study adverse event summaries and Investigational New Drug reports
     to the Food and Drug Administration. The CTCAE contain a grading scale for each
     adverse event term representing the severity of the event.
+  - SN001072
   - S017644
-  - Death Related to Adverse Event
   - '5'
   - ''
   - ''
   - ''
+  - Numeric value 6, that indicate the termination of life as a result of an adverse
+    event. (NCI)
+  - integer
+  - ''
+  - '6'
   - '6'
   - 'false'
   - 'false'
   - 'true'
+  - 'false'
+LBPARMN:
+- - Laboratory Parameter Numeric
+  - LBPARMN
+  - 'true'
+  - Numeric representing analysis parameter name given to the parameter that analyzes
+    laboratory tests in standard units including Albumin, Creatine Kinase, Glucose,
+    etc.
+  - SN000938
+  - S008915
+  - '24009'
+  - ''
+  - ''
+  - ''
+  - 'A numeric representing analysis parameter for the combined laboratory test: Direct
+    Bilirubin and Bilirubin Potentially Clinically Significant Abnormalities.'
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - 'false'
+- - Laboratory Parameter Numeric
+  - LBPARMN
+  - 'true'
+  - Numeric representing analysis parameter name given to the parameter that analyzes
+    laboratory tests in standard units including Albumin, Creatine Kinase, Glucose,
+    etc.
+  - SN000938
+  - S008916
+  - '24008'
+  - ''
+  - ''
+  - ''
+  - 'A numeric representing analysis parameter for the combined laboratory test: Alanine
+    Aminotransferase and Bilirubin Potentially Clinically Significant Abnormalities.'
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - 'false'
+- - Laboratory Parameter Numeric
+  - LBPARMN
+  - 'true'
+  - Numeric representing analysis parameter name given to the parameter that analyzes
+    laboratory tests in standard units including Albumin, Creatine Kinase, Glucose,
+    etc.
+  - SN000938
+  - S008917
+  - '23007'
+  - ''
+  - ''
+  - ''
+  - 'A numeric representing analysis parameter for the laboratory test: Urate in standard
+    unit umol/L.'
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - 'false'
+- - Laboratory Parameter Numeric
+  - LBPARMN
+  - 'true'
+  - Numeric representing analysis parameter name given to the parameter that analyzes
+    laboratory tests in standard units including Albumin, Creatine Kinase, Glucose,
+    etc.
+  - SN000938
+  - S008919
+  - '21006'
+  - ''
+  - ''
+  - ''
+  - 'A numeric representing analysis parameter for the laboratory test: Triglycerides
+    in standard unit mmol/L.'
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - 'false'
+- - Laboratory Parameter Numeric
+  - LBPARMN
+  - 'true'
+  - Numeric representing analysis parameter name given to the parameter that analyzes
+    laboratory tests in standard units including Albumin, Creatine Kinase, Glucose,
+    etc.
+  - SN000938
+  - S008921
+  - '22001'
+  - ''
+  - ''
+  - ''
+  - 'A numeric representing analysis parameter for the laboratory test: Sodium in
+    standard unit mmol/L.'
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - 'false'
+- - Laboratory Parameter Numeric
+  - LBPARMN
+  - 'true'
+  - Numeric representing analysis parameter name given to the parameter that analyzes
+    laboratory tests in standard units including Albumin, Creatine Kinase, Glucose,
+    etc.
+  - SN000938
+  - S008923
+  - '22002'
+  - ''
+  - ''
+  - ''
+  - 'A numeric representing analysis parameter for the laboratory test: Potassium
+    in standard unit mmol/L.'
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - 'false'
+- - Laboratory Parameter Numeric
+  - LBPARMN
+  - 'true'
+  - Numeric representing analysis parameter name given to the parameter that analyzes
+    laboratory tests in standard units including Albumin, Creatine Kinase, Glucose,
+    etc.
+  - SN000938
+  - S008925
+  - '11007'
+  - ''
+  - ''
+  - ''
+  - 'A numeric representing analysis parameter for the laboratory test: Platelets
+    in standard unit 10^9/L.'
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - 'false'
+- - Laboratory Parameter Numeric
+  - LBPARMN
+  - 'true'
+  - Numeric representing analysis parameter name given to the parameter that analyzes
+    laboratory tests in standard units including Albumin, Creatine Kinase, Glucose,
+    etc.
+  - SN000938
+  - S008927
+  - '31001'
+  - ''
+  - ''
+  - ''
+  - 'A numeric representing analysis parameter for the laboratory test: pH.'
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - 'false'
+- - Laboratory Parameter Numeric
+  - LBPARMN
+  - 'true'
+  - Numeric representing analysis parameter name given to the parameter that analyzes
+    laboratory tests in standard units including Albumin, Creatine Kinase, Glucose,
+    etc.
+  - SN000938
+  - S008928
+  - '12002'
+  - ''
+  - ''
+  - ''
+  - 'A numeric representing analysis parameter for the laboratory test: Neutrophils
+    in standard unit 10^9/L.'
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - 'false'
+- - Laboratory Parameter Numeric
+  - LBPARMN
+  - 'true'
+  - Numeric representing analysis parameter name given to the parameter that analyzes
+    laboratory tests in standard units including Albumin, Creatine Kinase, Glucose,
+    etc.
+  - SN000938
+  - S008930
+  - '12004'
+  - ''
+  - ''
+  - ''
+  - 'A numeric representing analysis parameter for the laboratory test: Monocytes
+    in standard unit 10^9/L.'
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - 'false'
+- - Laboratory Parameter Numeric
+  - LBPARMN
+  - 'true'
+  - Numeric representing analysis parameter name given to the parameter that analyzes
+    laboratory tests in standard units including Albumin, Creatine Kinase, Glucose,
+    etc.
+  - SN000938
+  - S008932
+  - '12003'
+  - ''
+  - ''
+  - ''
+  - 'A numeric representing analysis parameter for the laboratory test: Lymphocytes
+    in standard unit 10^9/L.'
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - 'false'
+- - Laboratory Parameter Numeric
+  - LBPARMN
+  - 'true'
+  - Numeric representing analysis parameter name given to the parameter that analyzes
+    laboratory tests in standard units including Albumin, Creatine Kinase, Glucose,
+    etc.
+  - SN000938
+  - S008934
+  - '21010'
+  - ''
+  - ''
+  - ''
+  - 'A numeric representing analysis parameter for the laboratory test: Lipase in
+    standard unit IU/L.'
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - 'false'
+- - Laboratory Parameter Numeric
+  - LBPARMN
+  - 'true'
+  - Numeric representing analysis parameter name given to the parameter that analyzes
+    laboratory tests in standard units including Albumin, Creatine Kinase, Glucose,
+    etc.
+  - SN000938
+  - S008936
+  - '12001'
+  - ''
+  - ''
+  - ''
+  - 'A numeric representing analysis parameter for the laboratory test: Leukocytes
+    in standard unit 10^9/L.'
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - 'false'
+- - Laboratory Parameter Numeric
+  - LBPARMN
+  - 'true'
+  - Numeric representing analysis parameter name given to the parameter that analyzes
+    laboratory tests in standard units including Albumin, Creatine Kinase, Glucose,
+    etc.
+  - SN000938
+  - S008938
+  - '22006'
+  - ''
+  - ''
+  - ''
+  - 'A numeric representing analysis parameter for the laboratory test: Ionized Calcium
+    in standard unit mmol/L.'
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - 'false'
+- - Laboratory Parameter Numeric
+  - LBPARMN
+  - 'true'
+  - Numeric representing analysis parameter name given to the parameter that analyzes
+    laboratory tests in standard units including Albumin, Creatine Kinase, Glucose,
+    etc.
+  - SN000938
+  - S008940
+  - '21013'
+  - ''
+  - ''
+  - ''
+  - 'A numeric representing analysis parameter for the laboratory test: High Sensitivity
+    C Reactive Protein in standard unit mg/L.'
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - 'false'
+- - Laboratory Parameter Numeric
+  - LBPARMN
+  - 'true'
+  - Numeric representing analysis parameter name given to the parameter that analyzes
+    laboratory tests in standard units including Albumin, Creatine Kinase, Glucose,
+    etc.
+  - SN000938
+  - S008941
+  - '11001'
+  - ''
+  - ''
+  - ''
+  - 'A numeric representing analysis parameter for the laboratory test: Hemoglobin
+    in standard unit g/L.'
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - 'false'
+- - Laboratory Parameter Numeric
+  - LBPARMN
+  - 'true'
+  - Numeric representing analysis parameter name given to the parameter that analyzes
+    laboratory tests in standard units including Albumin, Creatine Kinase, Glucose,
+    etc.
+  - SN000938
+  - S008943
+  - '21002'
+  - ''
+  - ''
+  - ''
+  - 'A numeric representing analysis parameter for the laboratory test: Hemoglobin
+    A1C in standard unit %.'
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - 'false'
+- - Laboratory Parameter Numeric
+  - LBPARMN
+  - 'true'
+  - Numeric representing analysis parameter name given to the parameter that analyzes
+    laboratory tests in standard units including Albumin, Creatine Kinase, Glucose,
+    etc.
+  - SN000938
+  - S008944
+  - '11002'
+  - ''
+  - ''
+  - ''
+  - 'A numeric representing analysis parameter for the laboratory test: Hematocrit
+    in standard unit v/v.'
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - 'false'
+- - Laboratory Parameter Numeric
+  - LBPARMN
+  - 'true'
+  - Numeric representing analysis parameter name given to the parameter that analyzes
+    laboratory tests in standard units including Albumin, Creatine Kinase, Glucose,
+    etc.
+  - SN000938
+  - S008946
+  - '21001'
+  - ''
+  - ''
+  - ''
+  - 'A numeric representing analysis parameter for the laboratory test: Glucose in
+    standard unit mmol/L.'
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - 'false'
+- - Laboratory Parameter Numeric
+  - LBPARMN
+  - 'true'
+  - Numeric representing analysis parameter name given to the parameter that analyzes
+    laboratory tests in standard units including Albumin, Creatine Kinase, Glucose,
+    etc.
+  - SN000938
+  - S008948
+  - '23003'
+  - ''
+  - ''
+  - ''
+  - 'A numeric representing analysis parameter for the laboratory test: GFR from Creatinine
+    Adjusted for BSA in standard unit mL/min/1.73m2 using Modification of Diet in
+    Renal Disease Equation.'
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - 'false'
+- - Laboratory Parameter Numeric
+  - LBPARMN
+  - 'true'
+  - Numeric representing analysis parameter name given to the parameter that analyzes
+    laboratory tests in standard units including Albumin, Creatine Kinase, Glucose,
+    etc.
+  - SN000938
+  - S008949
+  - '23004'
+  - ''
+  - ''
+  - ''
+  - 'A numeric representing analysis parameter for the laboratory test: GFR from Creatinine
+    Adjusted for BSA in standard unit mL/min/1.73m2 using Bedside Schwartz Formula.'
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - 'false'
+- - Laboratory Parameter Numeric
+  - LBPARMN
+  - 'true'
+  - Numeric representing analysis parameter name given to the parameter that analyzes
+    laboratory tests in standard units including Albumin, Creatine Kinase, Glucose,
+    etc.
+  - SN000938
+  - S008950
+  - '11006'
+  - ''
+  - ''
+  - ''
+  - 'A numeric representing analysis parameter for the laboratory test: Erythrocytes
+    in standard unit 10^12/L.'
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - 'false'
+- - Laboratory Parameter Numeric
+  - LBPARMN
+  - 'true'
+  - Numeric representing analysis parameter name given to the parameter that analyzes
+    laboratory tests in standard units including Albumin, Creatine Kinase, Glucose,
+    etc.
+  - SN000938
+  - S008952
+  - '12006'
+  - ''
+  - ''
+  - ''
+  - 'A numeric representing analysis parameter for the laboratory test: Eosinophils
+    in standard unit 10^9/L.'
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - 'false'
+- - Laboratory Parameter Numeric
+  - LBPARMN
+  - 'true'
+  - Numeric representing analysis parameter name given to the parameter that analyzes
+    laboratory tests in standard units including Albumin, Creatine Kinase, Glucose,
+    etc.
+  - SN000938
+  - S008954
+  - '23001'
+  - ''
+  - ''
+  - ''
+  - 'A numeric representing analysis parameter for the laboratory test: Creatinine
+    in standard unit umol/L.'
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - 'false'
+- - Laboratory Parameter Numeric
+  - LBPARMN
+  - 'true'
+  - Numeric representing analysis parameter name given to the parameter that analyzes
+    laboratory tests in standard units including Albumin, Creatine Kinase, Glucose,
+    etc.
+  - SN000938
+  - S008956
+  - '23002'
+  - ''
+  - ''
+  - ''
+  - 'A numeric representing analysis parameter for the laboratory test: Creatinine
+    Clearance in standard unit mL/min using Cokcroft-Gault Equation.'
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - 'false'
+- - Laboratory Parameter Numeric
+  - LBPARMN
+  - 'true'
+  - Numeric representing analysis parameter name given to the parameter that analyzes
+    laboratory tests in standard units including Albumin, Creatine Kinase, Glucose,
+    etc.
+  - SN000938
+  - S008957
+  - '21009'
+  - ''
+  - ''
+  - ''
+  - 'A numeric representing analysis parameter for the laboratory test: Creatine Kinease
+    in standard unit IU/L.'
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - 'false'
+- - Laboratory Parameter Numeric
+  - LBPARMN
+  - 'true'
+  - Numeric representing analysis parameter name given to the parameter that analyzes
+    laboratory tests in standard units including Albumin, Creatine Kinase, Glucose,
+    etc.
+  - SN000938
+  - S008959
+  - '21003'
+  - ''
+  - ''
+  - ''
+  - 'A numeric representing analysis parameter for the laboratory test: Cholesterol
+    in standard unit mmol/L.'
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - 'false'
+- - Laboratory Parameter Numeric
+  - LBPARMN
+  - 'true'
+  - Numeric representing analysis parameter name given to the parameter that analyzes
+    laboratory tests in standard units including Albumin, Creatine Kinase, Glucose,
+    etc.
+  - SN000938
+  - S008961
+  - '22003'
+  - ''
+  - ''
+  - ''
+  - 'A numeric representing analysis parameter for the laboratory test: Chloride in
+    standard unit mmol/L.'
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - 'false'
+- - Laboratory Parameter Numeric
+  - LBPARMN
+  - 'true'
+  - Numeric representing analysis parameter name given to the parameter that analyzes
+    laboratory tests in standard units including Albumin, Creatine Kinase, Glucose,
+    etc.
+  - SN000938
+  - S008963
+  - '22005'
+  - ''
+  - ''
+  - ''
+  - 'A numeric representing analysis parameter for the laboratory test: Calcium in
+    standard unit mmol/L.'
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - 'false'
+- - Laboratory Parameter Numeric
+  - LBPARMN
+  - 'true'
+  - Numeric representing analysis parameter name given to the parameter that analyzes
+    laboratory tests in standard units including Albumin, Creatine Kinase, Glucose,
+    etc.
+  - SN000938
+  - S008965
+  - '21012'
+  - ''
+  - ''
+  - ''
+  - 'A numeric representing analysis parameter for the laboratory test: C Reactive
+    Protein in standard unit mg/L.'
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - 'false'
+- - Laboratory Parameter Numeric
+  - LBPARMN
+  - 'true'
+  - Numeric representing analysis parameter name given to the parameter that analyzes
+    laboratory tests in standard units including Albumin, Creatine Kinase, Glucose,
+    etc.
+  - SN000938
+  - S008969
+  - '24005'
+  - ''
+  - ''
+  - ''
+  - 'A numeric representing analysis parameter for the laboratory test: Total Bilirubin
+    in standard unit umol/L.'
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - 'false'
+- - Laboratory Parameter Numeric
+  - LBPARMN
+  - 'true'
+  - Numeric representing analysis parameter name given to the parameter that analyzes
+    laboratory tests in standard units including Albumin, Creatine Kinase, Glucose,
+    etc.
+  - SN000938
+  - S008971
+  - '22004'
+  - ''
+  - ''
+  - ''
+  - 'A numeric representing analysis parameter for the laboratory test: Bicarbonate
+    in standard unit mmol/L.'
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - 'false'
+- - Laboratory Parameter Numeric
+  - LBPARMN
+  - 'true'
+  - Numeric representing analysis parameter name given to the parameter that analyzes
+    laboratory tests in standard units including Albumin, Creatine Kinase, Glucose,
+    etc.
+  - SN000938
+  - S008973
+  - '12005'
+  - ''
+  - ''
+  - ''
+  - 'A numeric representing analysis parameter for the laboratory test: Basophils
+    in standard unit 10^9/L.'
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - 'false'
+- - Laboratory Parameter Numeric
+  - LBPARMN
+  - 'true'
+  - Numeric representing analysis parameter name given to the parameter that analyzes
+    laboratory tests in standard units including Albumin, Creatine Kinase, Glucose,
+    etc.
+  - SN000938
+  - S008975
+  - '24002'
+  - ''
+  - ''
+  - ''
+  - 'A numeric representing analysis parameter for the laboratory test: Aspartate
+    Aminotransferase in standard unit IU/L.'
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - 'false'
+- - Laboratory Parameter Numeric
+  - LBPARMN
+  - 'true'
+  - Numeric representing analysis parameter name given to the parameter that analyzes
+    laboratory tests in standard units including Albumin, Creatine Kinase, Glucose,
+    etc.
+  - SN000938
+  - S008977
+  - '21011'
+  - ''
+  - ''
+  - ''
+  - 'A numeric representing analysis parameter for the laboratory test: Amylase in
+    standard unit IU/L.'
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - 'false'
+- - Laboratory Parameter Numeric
+  - LBPARMN
+  - 'true'
+  - Numeric representing analysis parameter name given to the parameter that analyzes
+    laboratory tests in standard units including Albumin, Creatine Kinase, Glucose,
+    etc.
+  - SN000938
+  - S008979
+  - '24003'
+  - ''
+  - ''
+  - ''
+  - 'A numeric representing analysis parameter for the laboratory test: Alkaline Phosphatase
+    in standard unit IU/L.'
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - 'false'
+- - Laboratory Parameter Numeric
+  - LBPARMN
+  - 'true'
+  - Numeric representing analysis parameter name given to the parameter that analyzes
+    laboratory tests in standard units including Albumin, Creatine Kinase, Glucose,
+    etc.
+  - SN000938
+  - S008981
+  - '21008'
+  - ''
+  - ''
+  - ''
+  - 'A numeric representing analysis parameter for the laboratory test: Albumin in
+    standard unit g/L.'
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - 'false'
+- - Laboratory Parameter Numeric
+  - LBPARMN
+  - 'true'
+  - Numeric representing analysis parameter name given to the parameter that analyzes
+    laboratory tests in standard units including Albumin, Creatine Kinase, Glucose,
+    etc.
+  - SN000938
+  - S008983
+  - '24001'
+  - ''
+  - ''
+  - ''
+  - 'A numeric representing analysis parameter for the laboratory test: Alanine Aminotransferase
+    in standard unit IU/L.'
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - 'false'
+- - Laboratory Parameter Numeric
+  - LBPARMN
+  - 'true'
+  - Numeric representing analysis parameter name given to the parameter that analyzes
+    laboratory tests in standard units including Albumin, Creatine Kinase, Glucose,
+    etc.
+  - SN000938
+  - S008985
+  - '21004'
+  - ''
+  - ''
+  - ''
+  - 'A numeric representing analysis parameter for the laboratory test: HDL Cholesterol
+    in standard unit mmol/L.'
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - 'false'
+- - Laboratory Parameter Numeric
+  - LBPARMN
+  - 'true'
+  - Numeric representing analysis parameter name given to the parameter that analyzes
+    laboratory tests in standard units including Albumin, Creatine Kinase, Glucose,
+    etc.
+  - SN000938
+  - S008987
+  - '21014'
+  - ''
+  - ''
+  - ''
+  - 'A numeric representing analysis parameter for the laboratory test ULN Ratio:
+    Creatine Kinease ULN Ratio.'
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - 'false'
+- - Laboratory Parameter Numeric
+  - LBPARMN
+  - 'true'
+  - Numeric representing analysis parameter name given to the parameter that analyzes
+    laboratory tests in standard units including Albumin, Creatine Kinase, Glucose,
+    etc.
+  - SN000938
+  - S008988
+  - '21015'
+  - ''
+  - ''
+  - ''
+  - 'A numeric representing analysis parameter for the laboratory test ULN Ratio:
+    C Reactive Protein ULN Ratio.'
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - 'false'
+- - Laboratory Parameter Numeric
+  - LBPARMN
+  - 'true'
+  - Numeric representing analysis parameter name given to the parameter that analyzes
+    laboratory tests in standard units including Albumin, Creatine Kinase, Glucose,
+    etc.
+  - SN000938
+  - S008989
+  - '24013'
+  - ''
+  - ''
+  - ''
+  - 'A numeric representing analysis parameter for the laboratory test ULN Ratio:
+    Bilirubin ULN Ratio.'
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - 'false'
+- - Laboratory Parameter Numeric
+  - LBPARMN
+  - 'true'
+  - Numeric representing analysis parameter name given to the parameter that analyzes
+    laboratory tests in standard units including Albumin, Creatine Kinase, Glucose,
+    etc.
+  - SN000938
+  - S008990
+  - '24011'
+  - ''
+  - ''
+  - ''
+  - 'A numeric representing analysis parameter for the laboratory test ULN Ratio:
+    Aspartate Aminotransferase ULN Ratio.'
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - 'false'
+- - Laboratory Parameter Numeric
+  - LBPARMN
+  - 'true'
+  - Numeric representing analysis parameter name given to the parameter that analyzes
+    laboratory tests in standard units including Albumin, Creatine Kinase, Glucose,
+    etc.
+  - SN000938
+  - S008991
+  - '24012'
+  - ''
+  - ''
+  - ''
+  - 'A numeric representing analysis parameter for the laboratory test ULN Ratio:
+    Alkaline Phosphatase ULN Ratio.'
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - 'false'
+- - Laboratory Parameter Numeric
+  - LBPARMN
+  - 'true'
+  - Numeric representing analysis parameter name given to the parameter that analyzes
+    laboratory tests in standard units including Albumin, Creatine Kinase, Glucose,
+    etc.
+  - SN000938
+  - S008992
+  - '24010'
+  - ''
+  - ''
+  - ''
+  - 'A numeric representing analysis parameter for the laboratory test ULN Ratio:
+    Alanine Aminotransferase ULN Ratio.'
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - 'false'
+- - Laboratory Parameter Numeric
+  - LBPARMN
+  - 'true'
+  - Numeric representing analysis parameter name given to the parameter that analyzes
+    laboratory tests in standard units including Albumin, Creatine Kinase, Glucose,
+    etc.
+  - SN000938
+  - S008993
+  - '11003'
+  - ''
+  - ''
+  - ''
+  - 'A numeric representing analysis parameter for the laboratory test: Ery. Mean
+    Corpuscular Volume in standard unit fL.'
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - 'false'
+- - Laboratory Parameter Numeric
+  - LBPARMN
+  - 'true'
+  - Numeric representing analysis parameter name given to the parameter that analyzes
+    laboratory tests in standard units including Albumin, Creatine Kinase, Glucose,
+    etc.
+  - SN000938
+  - S008994
+  - '11004'
+  - ''
+  - ''
+  - ''
+  - 'A numeric representing analysis parameter for the laboratory test: Ery. Mean
+    Corpuscular HGB Concentration in standard unit g/L.'
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - 'false'
+- - Laboratory Parameter Numeric
+  - LBPARMN
+  - 'true'
+  - Numeric representing analysis parameter name given to the parameter that analyzes
+    laboratory tests in standard units including Albumin, Creatine Kinase, Glucose,
+    etc.
+  - SN000938
+  - S008996
+  - '11005'
+  - ''
+  - ''
+  - ''
+  - 'A numeric representing analysis parameter for the laboratory test: Ery. Mean
+    Corpuscular Hemoglobin in standard unit pg.'
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - 'false'
+- - Laboratory Parameter Numeric
+  - LBPARMN
+  - 'true'
+  - Numeric representing analysis parameter name given to the parameter that analyzes
+    laboratory tests in standard units including Albumin, Creatine Kinase, Glucose,
+    etc.
+  - SN000938
+  - S008998
+  - '11008'
+  - ''
+  - ''
+  - ''
+  - 'A numeric representing analysis parameter for the laboratory test: Prothrombin
+    Time in standard unit sec.'
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - 'false'
+- - Laboratory Parameter Numeric
+  - LBPARMN
+  - 'true'
+  - Numeric representing analysis parameter name given to the parameter that analyzes
+    laboratory tests in standard units including Albumin, Creatine Kinase, Glucose,
+    etc.
+  - SN000938
+  - S008999
+  - '11009'
+  - ''
+  - ''
+  - ''
+  - 'A numeric representing analysis parameter for the laboratory test: Activated
+    Partial Thromboplastin Time in standard unit sec.'
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - 'false'
+- - Laboratory Parameter Numeric
+  - LBPARMN
+  - 'true'
+  - Numeric representing analysis parameter name given to the parameter that analyzes
+    laboratory tests in standard units including Albumin, Creatine Kinase, Glucose,
+    etc.
+  - SN000938
+  - S009000
+  - '11010'
+  - ''
+  - ''
+  - ''
+  - 'A numeric representing analysis parameter for the laboratory test: Erythrocyte
+    Sedimentation Rate in standard unit mm/h.'
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - 'false'
+- - Laboratory Parameter Numeric
+  - LBPARMN
+  - 'true'
+  - Numeric representing analysis parameter name given to the parameter that analyzes
+    laboratory tests in standard units including Albumin, Creatine Kinase, Glucose,
+    etc.
+  - SN000938
+  - S009001
+  - '21005'
+  - ''
+  - ''
+  - ''
+  - 'A numeric representing analysis parameter for the laboratory test: LDL Cholesterol
+    in standard unit mmol/L.'
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - 'false'
+- - Laboratory Parameter Numeric
+  - LBPARMN
+  - 'true'
+  - Numeric representing analysis parameter name given to the parameter that analyzes
+    laboratory tests in standard units including Albumin, Creatine Kinase, Glucose,
+    etc.
+  - SN000938
+  - S009003
+  - '21007'
+  - ''
+  - ''
+  - ''
+  - 'A numeric representing analysis parameter for the laboratory test: Protein in
+    standard unit g/L.'
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - 'false'
+- - Laboratory Parameter Numeric
+  - LBPARMN
+  - 'true'
+  - Numeric representing analysis parameter name given to the parameter that analyzes
+    laboratory tests in standard units including Albumin, Creatine Kinase, Glucose,
+    etc.
+  - SN000938
+  - S009005
+  - '22007'
+  - ''
+  - ''
+  - ''
+  - 'A numeric representing analysis parameter for the laboratory test: Phosphate
+    in standard unit mmol/L.'
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - 'false'
+- - Laboratory Parameter Numeric
+  - LBPARMN
+  - 'true'
+  - Numeric representing analysis parameter name given to the parameter that analyzes
+    laboratory tests in standard units including Albumin, Creatine Kinase, Glucose,
+    etc.
+  - SN000938
+  - S009007
+  - '22008'
+  - ''
+  - ''
+  - ''
+  - 'A numeric representing analysis parameter for the laboratory test: Magnesium
+    in standard unit mmol/L.'
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - 'false'
+- - Laboratory Parameter Numeric
+  - LBPARMN
+  - 'true'
+  - Numeric representing analysis parameter name given to the parameter that analyzes
+    laboratory tests in standard units including Albumin, Creatine Kinase, Glucose,
+    etc.
+  - SN000938
+  - S009009
+  - '23006'
+  - ''
+  - ''
+  - ''
+  - 'A numeric representing analysis parameter for the laboratory test: Urea in standard
+    unit mmol/L.'
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - 'false'
+- - Laboratory Parameter Numeric
+  - LBPARMN
+  - 'true'
+  - Numeric representing analysis parameter name given to the parameter that analyzes
+    laboratory tests in standard units including Albumin, Creatine Kinase, Glucose,
+    etc.
+  - SN000938
+  - S009011
+  - '24004'
+  - ''
+  - ''
+  - ''
+  - 'A numeric representing analysis parameter for the laboratory test: Lactate Dehydrogenase
+    in standard unit IU/L.'
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - 'false'
+- - Laboratory Parameter Numeric
+  - LBPARMN
+  - 'true'
+  - Numeric representing analysis parameter name given to the parameter that analyzes
+    laboratory tests in standard units including Albumin, Creatine Kinase, Glucose,
+    etc.
+  - SN000938
+  - S009013
+  - '24006'
+  - ''
+  - ''
+  - ''
+  - 'A numeric representing analysis parameter for the laboratory test: Direct Bilirubin
+    in standard unit umol/L.'
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - 'false'
+- - Laboratory Parameter Numeric
+  - LBPARMN
+  - 'true'
+  - Numeric representing analysis parameter name given to the parameter that analyzes
+    laboratory tests in standard units including Albumin, Creatine Kinase, Glucose,
+    etc.
+  - SN000938
+  - S009015
+  - '24007'
+  - ''
+  - ''
+  - ''
+  - 'A numeric representing analysis parameter for the laboratory test Ratio: Direct
+    Bilirubin/Total Bilirubin Ratio.'
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - 'false'
+- - Laboratory Parameter Numeric
+  - LBPARMN
+  - 'true'
+  - Numeric representing analysis parameter name given to the parameter that analyzes
+    laboratory tests in standard units including Albumin, Creatine Kinase, Glucose,
+    etc.
+  - SN000938
+  - S013405
+  - '23005'
+  - ''
+  - ''
+  - ''
+  - 'A numeric representing analysis parameter for the laboratory test: Urea Nitrogen
+    in standard unit mmol/L.'
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - 'false'
+POEM9R:
+- - Patient-Oriented Eczema Measure Questionnaire Test Results
+  - POEM9R
+  - 'false'
+  - Patient-Oriented Eczema Measure Questionnaire results.
+  - SN000924
+  - S008577
+  - '0'
+  - No days
+  - ''
+  - ''
+  - Numerical result corresponding to no days.
+  - integer
+  - No days
+  - '1'
+  - ''
+  - 'false'
+  - 'false'
+  - 'false'
+  - 'false'
+- - Patient-Oriented Eczema Measure Questionnaire Test Results
+  - POEM9R
+  - 'false'
+  - Patient-Oriented Eczema Measure Questionnaire results.
+  - SN000924
+  - S008578
+  - '1'
+  - 1-2 days
+  - ''
+  - ''
+  - Numerical result corresponding to 1 to 2 days.
+  - integer
+  - 1-2 days
+  - '2'
+  - ''
+  - 'false'
+  - 'false'
+  - 'false'
+  - 'false'
+- - Patient-Oriented Eczema Measure Questionnaire Test Results
+  - POEM9R
+  - 'false'
+  - Patient-Oriented Eczema Measure Questionnaire results.
+  - SN000924
+  - S008579
+  - '2'
+  - 3-4 days
+  - ''
+  - ''
+  - Numerical result corresponding to 3 to 4 days.
+  - integer
+  - 3-4 days
+  - '3'
+  - ''
+  - 'false'
+  - 'false'
+  - 'false'
+  - 'false'
+- - Patient-Oriented Eczema Measure Questionnaire Test Results
+  - POEM9R
+  - 'false'
+  - Patient-Oriented Eczema Measure Questionnaire results.
+  - SN000924
+  - S008580
+  - '3'
+  - 5-6 days
+  - ''
+  - ''
+  - Numerical result corresponding to 5 to 6 days.
+  - integer
+  - 5-6 days
+  - '4'
+  - ''
+  - 'false'
+  - 'false'
+  - 'false'
+  - 'false'
+- - Patient-Oriented Eczema Measure Questionnaire Test Results
+  - POEM9R
+  - 'false'
+  - Patient-Oriented Eczema Measure Questionnaire results.
+  - SN000924
+  - S008581
+  - '4'
+  - Every day
+  - ''
+  - ''
+  - Numerical result corresponding to every day.
+  - integer
+  - Every day
+  - '5'
+  - ''
+  - 'false'
+  - 'false'
+  - 'false'
+  - 'false'

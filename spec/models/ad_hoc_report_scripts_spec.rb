@@ -15,6 +15,11 @@ RSpec.describe AdHocReport, type: :model do
   #   return "models/import/data/sponsor_one/ct"
   # end
 
+  C_CL_NOTATION = 1
+  C_CL_CODE_COL = 4
+  C_CLI_CODE_COL = 5
+  C_RANK_COL = 14
+
   def save_selected_results(results, filename, items, write_file)
     selected_results = {}
     full_results = key_data(results)
@@ -27,8 +32,8 @@ RSpec.describe AdHocReport, type: :model do
   def extract_ranks(rows)
     results = Hash.new {|h,k| h[k] = []}
     rows[:data].each do |row|
-      next if row[11].empty?
-      results[row[2]] << {item: row[5], rank: row[11]}
+      next if row[C_RANK_COL].empty? # <<< Important, the rank column. Might change!
+      results[row[C_CL_NOTATION]] << {item: row[C_CLI_CODE_COL], rank: row[C_RANK_COL]}
     end
     results
   end
@@ -36,7 +41,7 @@ RSpec.describe AdHocReport, type: :model do
   def key_data(rows)
     results = Hash.new {|h,k| h[k] = []}
     rows[:data].each do |row| 
-      results[row[2]] << row
+      results[row[C_CL_NOTATION]] << row
     end
     results
   end
@@ -91,49 +96,6 @@ RSpec.describe AdHocReport, type: :model do
       check_file_actual_expected(results, sub_dir, "missing_tags_expected_1.yaml", equate_method: :hash_equal)
     end
 
-  end
-
-  describe "Sponsor Extension Tests" do
-    
-    before :all do
-      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
-      load_files(schema_files, data_files)
-      load_cdisc_term_versions(CdiscCtHelpers.version_range)
-      load_data_file_into_triple_store("sponsor_one/ct/CT_V2-6.ttl") 
-      load_data_file_into_triple_store("sponsor_one/ct/CT_V3-0.ttl") 
-      AdHocReport.delete_all
-      delete_all_public_files
-    end
-
-    after :all do
-      delete_all_public_files
-    end
-
-    it "executes an extension count report I", :ad_hoc_report => 'slow' do
-      copy_report_to_public_files("extension_count_sparql.yaml", "test")
-      job = Background.create
-      report = AdHocReport.new
-      report.background_id = job.id
-      report.sparql_file = "extension_count_sparql.yaml"
-      report.results_file = "extension_count_results_1.yaml"
-      job.start("Rspec test", "Starting...") {report.execute([Uri.new(uri: "http://www.sanofi.com/2019_Release_1/V1#TH").to_id])}
-      results = AdHocReportFiles.read("extension_count_results_1.yaml")
-      check_file_actual_expected(results, sub_dir, "extension_count_expected_1.yaml", equate_method: :hash_equal)
-    end
-
-
-    it "executes an extension count report II", :ad_hoc_report => 'slow' do
-      copy_report_to_public_files("extension_count_sparql.yaml", "test")
-      job = Background.create
-      report = AdHocReport.new
-      report.background_id = job.id
-      report.sparql_file = "extension_count_sparql.yaml"
-      report.results_file = "extension_count_results_2.yaml"
-      job.start("Rspec test", "Starting...") {report.execute([Uri.new(uri: "http://www.sanofi.com/2020_Release_1/V1#TH").to_id])}
-      results = AdHocReportFiles.read("extension_count_results_2.yaml")
-      check_file_actual_expected(results, sub_dir, "extension_count_expected_2.yaml", equate_method: :hash_equal)
-    end
-  
   end
 
   describe "Change Instructions Export Tests" do
@@ -205,6 +167,8 @@ RSpec.describe AdHocReport, type: :model do
       load_data_file_into_triple_store("mdr_iso_concept_systems_migration_1.ttl")
       load_data_file_into_triple_store("mdr_iso_concept_systems_process.ttl")
       load_data_file_into_triple_store("sponsor_one/custom_property/custom_properties.ttl")
+      load_data_file_into_triple_store("sponsor_one/custom_property/custom_properties_migration_one.ttl")
+      load_data_file_into_triple_store("sponsor_one/custom_property/custom_properties_migration_two.ttl")
       load_data_file_into_triple_store("sponsor_one/ct/CT_V2-6.ttl")
       load_data_file_into_triple_store("sponsor_one/ct/CT_V3-0.ttl")
       load_data_file_into_triple_store("sponsor_one/ct/CT_V3-1.ttl")
@@ -226,10 +190,11 @@ RSpec.describe AdHocReport, type: :model do
       job.start("Rspec test", "Starting...") {report.execute([Uri.new(uri: "http://www.sanofi.com/2019_Release_1/V1#TH").to_id])}
       results = AdHocReportFiles.read("sponsor_ct_export_results_1.yaml")
       expect(results[:data].count).to eq(22321) 
-      save_selected_results(results, "sponsor_ct_export_selected_results_1.yaml", ["ACN_01", "ACN_03", "AERELA","SUAM_01", "LOC_01", "RACEC", "TRTEST", "NSA-16 TESTCD", "COWS TESTCD", "OUT", "AESEV"], false)
+      save_selected_results(results, "sponsor_ct_export_selected_results_1.yaml", ["ACN_01", "ACN_03", "AERELA","SUAM_01", "LOC_01", "RACEC", "TRTEST", "NSA-16 TESTCD", "COWS TESTCD", "OUT", "AESEV", "AGEGRPEN", "RACEN", "MRS01R"], false)
       ranks = extract_ranks(results)
       check_file_actual_expected(ranks, sub_dir, "sponsor_ct_export_rank_results_1.yaml", equate_method: :hash_equal)
       expect(ranks.count).to eq(44)
+    #Xwrite_yaml_file(key_data(results), sub_dir, "sponsor_ct_export_full_results_1.yaml")
     end
   
     it "executes an sponsor CT export report, 2020 R1", :ad_hoc_report => 'slow' do
@@ -243,10 +208,11 @@ RSpec.describe AdHocReport, type: :model do
       full_path = File.join(AdHocReportFiles.dir_path, "sponsor_ct_export_results_2.yaml")
       results = AdHocReportFiles.read("sponsor_ct_export_results_2.yaml")
       expect(results[:data].count).to eq(31929) 
-      save_selected_results(results, "sponsor_ct_export_selected_results_2.yaml", ["ACN_01", "ACN_03", "AERELA", "SUAM_01", "LOC_01", "RACEC", "TRTEST", "NSA-16 TESTCD", "COWS TESTCD", "OUT", "AESEV"], false)
+      save_selected_results(results, "sponsor_ct_export_selected_results_2.yaml", ["ACN_01", "ACN_03", "AERELA", "SUAM_01", "LOC_01", "RACEC", "TRTEST", "NSA-16 TESTCD", "COWS TESTCD", "OUT", "AESEV", "AGEGRPEN", "RACEN", "KPSSR_01"], false)
       ranks = extract_ranks(results)
       check_file_actual_expected(ranks, sub_dir, "sponsor_ct_export_rank_results_2.yaml", equate_method: :hash_equal)
       expect(ranks.count).to eq(47)
+    #Xwrite_yaml_file(key_data(results), sub_dir, "sponsor_ct_export_full_results_2.yaml")
     end
   
     it "executes an sponsor CT export report, 2020 R2", :ad_hoc_report => 'slow' do
@@ -260,34 +226,13 @@ RSpec.describe AdHocReport, type: :model do
       full_path = File.join(AdHocReportFiles.dir_path, "sponsor_ct_export_results_3.yaml")
       results = AdHocReportFiles.read("sponsor_ct_export_results_3.yaml")
       expect(results[:data].count).to eq(32780) 
-      save_selected_results(results, "sponsor_ct_export_selected_results_3.yaml", ["ACN", "AERELA", "AERELDEV_01", "AGEGRPE", "AGEGRPPN", "NORMEDN", "SEVRS", "SHIFT2N", "TOXGR_01", "TOXGRN"], false)
+      save_selected_results(results, "sponsor_ct_export_selected_results_3.yaml", ["ACN", "AERELA", "AERELDEV_01", "AGEGRPE", "AGEGRPPN", "NORMEDN", "SEVRS", "SHIFT2N", "TOXGR_01", "TOXGRN", "LBPARMN", "POEM9R", "NORMEDN"], false)
       ranks = extract_ranks(results)
       check_file_actual_expected(ranks, sub_dir, "sponsor_ct_export_rank_results_3.yaml", equate_method: :hash_equal)
       expect(ranks.count).to eq(30)
+    #Xwrite_yaml_file(key_data(results), sub_dir, "sponsor_ct_export_full_results_3.yaml")
     end
   
-  end
-
-  describe "Export Subsets Tests" do
-    
-    before :all do
-      load_files(schema_files, [])
-      load_all_cdisc_term_versions
-      load_data_file_into_triple_store("mdr_sponsor_one_identification.ttl")
-      load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
-      load_data_file_into_triple_store("mdr_iso_concept_systems_migration_1.ttl")
-      load_data_file_into_triple_store("mdr_iso_concept_systems_process.ttl")
-      load_data_file_into_triple_store("sponsor_one/ct/CT_V2-6.ttl")
-      load_data_file_into_triple_store("sponsor_one/ct/CT_V3-0.ttl")
-      #load_data_file_into_triple_store("sponsor_one/ct/CT_V3-1.ttl")
-      AdHocReport.delete_all
-      delete_all_public_files
-    end
-
-    after :all do
-      delete_all_public_files
-    end
-
     it "executes an sponsor CT export subsets report 2019", :ad_hoc_report => 'slow' do
       copy_report_to_public_files("sponsor_ct_export_subsets_sparql.yaml", "test")
       job = Background.create
@@ -320,6 +265,156 @@ RSpec.describe AdHocReport, type: :model do
       expect(ranks.count).to eq(3)
     end
   
+    it "executes an extension count report I", :ad_hoc_report => 'slow' do
+      copy_report_to_public_files("extension_count_sparql.yaml", "test")
+      job = Background.create
+      report = AdHocReport.new
+      report.background_id = job.id
+      report.sparql_file = "extension_count_sparql.yaml"
+      report.results_file = "extension_count_results_1.yaml"
+      job.start("Rspec test", "Starting...") {report.execute([Uri.new(uri: "http://www.sanofi.com/2019_Release_1/V1#TH").to_id])}
+      results = AdHocReportFiles.read("extension_count_results_1.yaml")
+      check_file_actual_expected(results, sub_dir, "extension_count_expected_1.yaml", equate_method: :hash_equal)
+    end
+
+
+    it "executes an extension count report II", :ad_hoc_report => 'slow' do
+      copy_report_to_public_files("extension_count_sparql.yaml", "test")
+      job = Background.create
+      report = AdHocReport.new
+      report.background_id = job.id
+      report.sparql_file = "extension_count_sparql.yaml"
+      report.results_file = "extension_count_results_2.yaml"
+      job.start("Rspec test", "Starting...") {report.execute([Uri.new(uri: "http://www.sanofi.com/2020_Release_1/V1#TH").to_id])}
+      results = AdHocReportFiles.read("extension_count_results_2.yaml")
+      check_file_actual_expected(results, sub_dir, "extension_count_expected_2.yaml", equate_method: :hash_equal)
+    end
+  
+  end
+
+  describe "Sponsor Export Checks" do
+    
+    before :all do
+      load_files(schema_files, [])
+    end
+
+    after :all do
+    end
+
+    def decode_column(index)
+      return "" if index < 0
+      %W(CODELIST_LONG_NAME  CODELIST_SHORT_NAME CODELIST_EXTENSIBLE CODELIST_DEFINITION CODELIST_CODE CODE  SUBMISSION_VALUE  DECODE  SYNONYM CODE_DEFINITION DATA_TYPE CRF_DISPLAY_VALUE DISPLAY_ORDER RANK  DC_STAGE  SDTM_STAGE  ADAM_STAGE  INACTIVE_F)[index]
+    end
+
+    def check_value(cl, cl_sub, cli, cli_sub, index, ss_value, actual_value)
+      return if ss_value == actual_value
+      report_error(cl, cl_sub, cli, cli_sub, index, ss_value, actual_value, "Data mismatch")
+    end
+
+    def report_error(cl, cl_sub, cli, cli_sub, index, ss_value, actual_value, reason)
+      column = decode_column(index)
+      puts colourize("\nError, cl: #{cl} (#{cl_sub}), cli: #{cli} (#{cli_sub}), column: #{column}, reason: #{reason}.\nSource v Actual Comparison:", "red") 
+      puts Diffy::Diff.new("#{ss_value}\n", "#{actual_value}\n") 
+      @results[:errors] << { cl: cl, cl_sub: cl_sub, cli: cli, cli_sub: cli_sub, column: column, reason: reason, diff: Diffy::Diff.new("#{ss_value}\n", "#{actual_value}\n").to_s(:text)}
+    end
+
+    def report_warning(cl, cl_sub, cli, cli_sub, index, ss_value, actual_value, reason)
+      column = decode_column(index)
+      puts colourize("\nWarning, cl: #{cl} (#{cl_sub}), cli: #{cli} (#{cli_sub}), column: #{column}.\nReason: #{reason}", "yellow")
+      @results[:warnings] << { cl: cl, cl_sub: cl_sub, cli: cli, cli_sub: cli_sub, column: column, reason: reason, diff: Diffy::Diff.new("#{ss_value}\n", "#{actual_value}\n").to_s(:text)}
+    end
+
+    def full_compare(version, with_decode=true)
+      @results = {warnings: [], errors: []}
+      Diffy::Diff.default_format = :color
+      version_map = {"1": "2-6", "2": "3-0", "3": "3-1"}
+      dt_cl = {}
+      ignore_col = [4, 5]
+      boolean_col = [false, false, true, false, false, false, false, false, false, false, false, false, false, false, true, true, true, true, false]
+      actual_map = [0, 1, 2, 3, 4, 5, 6, 7, 8, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
+      known_issues = read_yaml_file(sub_dir, "sponsor_ct_export_known_issues_#{version}.yaml")
+      export = read_yaml_file(sub_dir, "sponsor_ct_export_full_results_#{version}.yaml")
+      spreadsheet = read_yaml_file(sub_dir, "full_spreadsheet_export_#{version_map[version.to_sym]}.yaml")
+      spreadsheet.each do |cl, rows|
+        actual_cl = export[cl]
+        rows.each do |row|
+          ss_cli_sub = row[6].to_s.strip
+          actual_row = actual_cl.find{ |r| r[6].to_s.strip == ss_cli_sub }
+          if actual_row.nil? 
+            issue = known_issues.dig(cl.to_sym, ss_cli_sub.to_sym)
+            if issue.nil? || issue[:column] != 7
+              report_error(cl, "", "", "", -1, "", "", "Failed to match item '#{row[6]}' in the code list.")
+            else
+              report_warning(cl, "", "", "", -1, "", "", "Failed to match item '#{row[6]}' in the code list. Permitted exception: #{issue[:reason]}")
+            end
+            next
+          end
+          #next if actual_row.nil?      
+          row.each_with_index do |cell, index|
+            next if ignore_col.include?(index)
+            actual_index = actual_map[index]
+            cell_value = row[index].to_s
+            actual_value = actual_row[actual_index].to_s
+            cell_value = "" if cell_value.nil?
+            actual_value = "" if actual_value.nil?
+            cell_value = boolean_col[index] ? cell_value.strip.to_bool : cell_value.strip
+            actual_value = boolean_col[index] ? actual_value.strip.to_bool : actual_value.strip
+            next if index == 7 && !with_decode # Decode issue, mapping
+            next if cell_value != actual_value && index == 9 && actual_value == 'Not defined.' # Definitions cannot be empty
+            next if cell_value != actual_value && index == 8 && row[index] == actual_row[9] # Synonyms and the use of the custom property
+            next if cell_value != actual_value && index == 12 && row[0].include?("Subset") # Subsets have order
+            if cell_value != actual_value && index == 10 # Datatype issue
+              dt_cl[cl] = { cl: actual_row[4], cl_sub: actual_row[1] }
+            end
+            if cell_value != actual_value && index == 9 # truncated definition
+              if actual_value.start_with?(cell_value)
+                report_warning(actual_row[4], actual_row[1], actual_row[5], actual_row[6], index, cell_value, actual_value, "Truncated definition.")
+                next
+              end
+            end
+            issue = known_issues.dig(cl.to_sym, ss_cli_sub.to_sym)
+            if issue.nil? || issue[:column] != index + 1
+              check_value(actual_row[4], actual_row[1], actual_row[5], actual_row[6], index, cell_value, actual_value)
+            else
+              report_warning(actual_row[4], actual_row[1], actual_row[5], actual_row[6], index, cell_value, actual_value, issue[:reason])
+            end
+          end
+        end
+      end  
+      dt_cl.keys.each { |x| report_error(x[:cl], x[:cl_sub], "", "", -1, "", "", "Datatype mismatch.") }
+      @results
+    end
+
+    it "2019 R1 Compare, no decode" do
+      results = full_compare("1", false)
+      check_file_actual_expected(results, sub_dir, "export_checks_no_decode_expected_1.yaml", equate_method: :hash_equal)
+    end
+  
+    it "2020 R1 Compare, no decode" do
+      results = full_compare("2", false)
+      check_file_actual_expected(results, sub_dir, "export_checks_no_decode_expected_2.yaml", equate_method: :hash_equal)
+    end
+
+    it "2020 R2 Compare, no decode" do
+      results = full_compare("3", false)
+      check_file_actual_expected(results, sub_dir, "export_checks_no_decode_expected_3.yaml", equate_method: :hash_equal)
+    end
+
+    it "2019 R1 Compare, decode", :ad_hoc_report => 'slow' do
+      results = full_compare("1")
+      check_file_actual_expected(results, sub_dir, "export_checks_decode_expected_1.yaml", equate_method: :hash_equal)
+    end
+  
+    it "2020 R1 Compare, decode", :ad_hoc_report => 'slow' do
+      results = full_compare("2")
+      check_file_actual_expected(results, sub_dir, "export_checks_decode_expected_2.yaml", equate_method: :hash_equal)
+    end
+
+    it "2020 R2 Compare, decode", :ad_hoc_report => 'slow' do
+      results = full_compare("3")
+      check_file_actual_expected(results, sub_dir, "export_checks_decode_expected_3.yaml", equate_method: :hash_equal)
+    end
+
   end
 
   describe "Export Pair Tests" do

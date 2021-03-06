@@ -10,7 +10,10 @@ $(document).ready( () => {
     param: "sdtm_model",
     extraColumns: dtSDTMShowColumns(),
     count: 10,
-    buttons: [csvExportBtn(), excelExportBtn()],
+    buttons: [
+      csvExportBtn('th:not(:last-of-type)'), // Do not export the 'Show' button column
+      excelExportBtn('th:not(:last-of-type)')
+    ],
     paginated: true
   });
 
