@@ -1,5 +1,5 @@
 import IndexPanel from 'shared/custom/iso_managed/index_panel'
-import { thSearchUrlFromMIS } from 'shared/helpers/urls'
+import SearchManager from 'shared/custom/thesauri/search_manager'
 
 $(document).ready( () => {
 
@@ -8,5 +8,6 @@ $(document).ready( () => {
     param: "thesauri",
   });
 
-  let mis = new ManagedItemsSelect((s) => location.href = thSearchUrlFromMIS(s));
+  SearchManager.initialize() 
+
 });
