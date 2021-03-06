@@ -64,6 +64,4 @@
 
 <%= render partial: "shared/help_dialogs/sdtm_editor_help", :locals => { title: "How to use SDTM Sponsor Domain Editor" } %>
 
-<%= render partial: "shared/items_picker/items_picker", locals: { id: "sdtm-term-ref",
-    description: "Find and select a Code List to reference. <br>
-                  <i> You can also submit an empty selection </i>".html_safe } %>
+<%= render partial: "shared/items_picker/v2/items_picker", locals: { id: "sdtm-term-ref" } %>
