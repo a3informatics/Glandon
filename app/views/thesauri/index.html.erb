@@ -43,7 +43,4 @@
 
 <%= render partial: "shared/items_picker/v2/items_picker", :locals => { id: 'th-search' } %>
 
-<%#= render partial: "shared/iso_managed/managed_items_select_modal", :locals => {type: :thesauri,
-	description: "Select one or more Terminology version in which to search, or choose all Current / Latest versions."} %>
-
 <%= render partial: "shared/thesauri/new_terminology" if policy(Thesaurus).new? %>
