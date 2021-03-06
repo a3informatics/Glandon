@@ -56,8 +56,12 @@ export default class IPHelper {
 
     if ( name === 'Terminology' )
       return 'Terminologies'
-    else 
-      return name + 's'
+    
+    // Add 'es' if name ends in 's'
+    if ( name.charAt( name.length - 1 ) === 's' )
+      return name + 'es'
+
+    return name + 's'
 
   }
 
