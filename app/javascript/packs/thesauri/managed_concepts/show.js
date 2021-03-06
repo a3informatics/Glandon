@@ -25,12 +25,14 @@ $(document).ready( () => {
     ( async () => {
 
       // Import and init ItemsPicker for Thesaurus selection (create Subset, Extension actions)
-      let ItemsPicker = await import('shared/ui/items_picker/items_picker'),
+      let ItemsPicker = await import('shared/ui/items_picker/v2/items_picker'),
 
           thPicker = new ItemsPicker.default({
             id: 'thesaurus',
             multiple: false,
-            types: [ 'thesauri' ]
+            types: [ ItemsPicker.default.allTypes.TH ],
+            description: `Select the Terminology in which the newly created item be should be included.
+                          Click on 'Do not select' to skip selecting a Terminology.`
           });
 
       // Import and init ExtensionManager
