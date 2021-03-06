@@ -1,6 +1,6 @@
 import CreateItemView from 'shared/base/create_item_view'
 
-import ItemsPicker from 'shared/ui/items_picker/items_picker'
+import ItemsPicker from 'shared/ui/items_picker/v2/items_picker'
 import { managedItemRef } from 'shared/ui/strings'
 
 /**
@@ -128,8 +128,9 @@ export default class CreateSDTMSDView extends CreateItemView {
 
     return new ItemsPicker({
       id: 'new-sdtm-sd',
-      types: ['sdtm_ig_domain', 'sdtm_class'],
-      onSubmit: selection => this._onSelectBase( selection.asObjectsArray()[0] )
+      types: [ ItemsPicker.allTypes.SDTM_DOMAIN, ItemsPicker.allTypes.SDTM_CLASS ],
+      description: 'Select an IG Domain / Class to base the new SDTM Sponsor Domain on',
+      onSubmit: selection => this._onSelectBase( selection.asObjects()[0] )
     })
 
   }
