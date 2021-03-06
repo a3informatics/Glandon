@@ -1,5 +1,5 @@
 import FormNode from 'shared/custom/forms/edit/form_node'
-import ItemsPicker from 'shared/ui/items_picker/items_picker'
+import ItemsPicker from 'shared/ui/items_picker/v2/items_picker'
 
 import { $ajax } from 'shared/helpers/ajax'
 
@@ -199,38 +199,27 @@ export default class NodeHandler {
    */
   _pickChildren(type) {
 
-    let disableType,
-        onSubmit;
-
     // Pick from BCs
-    if ( type === rdfs.BC_GROUP.param ) {
+    if ( type === rdfs.BC_GROUP.param )
 
-      disableType = rdfs.TH_CLI.param;
-      onSubmit = s => this._addChild( type, s.asIDsArray() );
-
-    }
+      this.picker.setTypes([ rdfs.BC ])
+                 .setOnSubmit( s => this._addChild( type, s.asIDs() ) )
+                 .show()
 
     // Pick from Unmanaged Concepts
-    else if ( type === rdfs.TUC_REF.param ) {
+    else if ( type === rdfs.TUC_REF.param ) 
 
-      disableType = rdfs.BC.param;
-      onSubmit = (s) => {
+      this.picker.setTypes([ rdfs.TH_CLI ])
+                 .setOnSubmit( s => {
 
-        let ids = s.asObjectsArray()
-                   .map( o => { return { id: o.id, context_id: o.context.id } });
+                  let ids = s.asObjects().map( ({ id, _context }) => 
+                              Object.assign({}, { id, context_id: _context.id }) 
+                            )
 
-        this._addChild( type, ids );
+                  this._addChild( type, ids )
 
-      }
-    }
-
-    else
-      return;
-
-    // Init and show picker
-    this.picker.onSubmit = onSubmit;
-    this.picker.disableTypes( [ disableType ] )
-               .show();
+                 })
+                 .show()
 
   }
 
@@ -563,7 +552,6 @@ export default class NodeHandler {
 
     this.picker = new ItemsPicker({
       id: 'node-add-child',
-      types: [ rdfs.BC.param, rdfs.TH_CLI.param ],
       multiple: true,
       description: 'Pick one or more items to be added into the selected node.',
       onShow: () => this.editor.keysDisable(),
