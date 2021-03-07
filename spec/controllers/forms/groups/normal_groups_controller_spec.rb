@@ -147,7 +147,8 @@ describe Forms::Groups::NormalGroupsController do
       expect(AuditTrail.count).to eq(audit_count + 1)
       expect(JSON.parse(response.body).deep_symbolize_keys[:errors]).to eq(nil)
       actual = check_good_json_response(response)
-      fix_dates_hash(actual, sub_dir, "add_child_normal_group_expected_2.yaml", :creation_date, :last_change_date)
+      actual = actual[:data].sort_by{ |x| x[:label]}
+      fix_dates_array_hash(actual, sub_dir, "add_child_normal_group_expected_2.yaml", :creation_date, :last_change_date)
       check_file_actual_expected(actual, sub_dir, "add_child_normal_group_expected_2.yaml", equate_method: :hash_equal)
     end
 
@@ -235,8 +236,8 @@ describe Forms::Groups::NormalGroupsController do
       delete :destroy, params:{id: item.id, normal_group: {parent_id: form.id , form_id: form.id}}
       expect(AuditTrail.count).to eq(audit_count+1)
       actual = check_good_json_response(response)
-      fix_dates_hash(actual, sub_dir, "destroy_normal_group_expected_1.yaml", :creation_date, :last_change_date)
-      check_file_actual_expected(actual, sub_dir, "destroy_normal_group_expected_1.yaml", equate_method: :hash_equal)
+      fix_dates_hash(actual[:data], sub_dir, "destroy_normal_group_expected_1.yaml", :creation_date, :last_change_date)
+      check_file_actual_expected(actual[:data], sub_dir, "destroy_normal_group_expected_1.yaml", equate_method: :hash_equal)
     end
 
   end
