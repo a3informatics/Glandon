@@ -3,10 +3,7 @@ require 'rails_helper'
 describe SdtmIgDomainsController do
 
   include DataHelpers
-  include PauseHelpers
-  include PublicFileHelpers
   include UserAccountHelpers
-  include IsoHelpers
   include ControllerHelpers
 
   def sub_dir
@@ -18,8 +15,7 @@ describe SdtmIgDomainsController do
     login_reader
 
     before :all do
-      data_files = []
-      load_files(schema_files, data_files)
+      load_files(schema_files, [])
       load_data_file_into_triple_store("mdr_identification.ttl")
       load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
       load_data_file_into_triple_store("mdr_iso_concept_systems_migration_1.ttl")
@@ -47,10 +43,8 @@ describe SdtmIgDomainsController do
       request.env['HTTP_ACCEPT'] = "application/json"
       expect(SdtmIgDomain).to receive(:history_pagination).with({identifier: sdtm_ig_domain.has_identifier.identifier, scope: an_instance_of(IsoNamespace), offset: "0", count: "20"}).and_return([sdtm_ig_domain])
       get :history, params:{sdtm_ig_domain: {identifier: sdtm_ig_domain.has_identifier.identifier, scope_id: "aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0NVQkVE", count: 20, offset: 0}}
-      expect(response.content_type).to eq("application/json")
-      expect(response.code).to eq("200")
-      actual = JSON.parse(response.body).deep_symbolize_keys[:data]
-      check_file_actual_expected(actual, sub_dir, "history_expected_1.yaml", equate_method: :hash_equal)
+      actual = check_good_json_response(response)
+      check_file_actual_expected(actual[:data], sub_dir, "history_expected_1.yaml", equate_method: :hash_equal)
     end
 
     it "shows the history, initial view" do
@@ -67,11 +61,6 @@ describe SdtmIgDomainsController do
   describe "data actions" do
 
     login_curator
-
-    before :all do
-      @lock_user = ua_add_user(email: "lock@example.com")
-      Token.delete_all
-    end
 
     before :all do
       load_files(schema_files, [])
@@ -91,6 +80,8 @@ describe SdtmIgDomainsController do
       load_data_file_into_triple_store("cdisc/sdtm_ig/SDTM_IG_V2.ttl")
       load_data_file_into_triple_store("cdisc/sdtm_ig/SDTM_IG_V3.ttl")
       load_data_file_into_triple_store("cdisc/sdtm_ig/SDTM_IG_V4.ttl")
+      @lock_user = ua_add_user(email: "lock@example.com")
+      Token.delete_all
     end
 
     after :all do

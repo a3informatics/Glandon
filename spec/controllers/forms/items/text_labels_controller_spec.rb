@@ -7,14 +7,14 @@ describe Forms::Items::TextLabelsController do
   include UserAccountHelpers
   include IsoHelpers
   include ControllerHelpers
+
+  def sub_dir
+    return "controllers/forms/items"
+  end
   
   describe "Update" do
   	
     login_curator
-
-    def sub_dir
-      return "controllers/forms/items"
-    end
 
     after :all do
       ua_remove_user("lock@example.com")
@@ -83,10 +83,6 @@ describe Forms::Items::TextLabelsController do
     
     login_curator
 
-    def sub_dir
-      return "controllers/forms/items"
-    end
-
     after :all do
       ua_remove_user("lock@example.com")
     end
@@ -131,10 +127,6 @@ describe Forms::Items::TextLabelsController do
     
     login_curator
 
-    def sub_dir
-      return "controllers/forms/items"
-    end
-
     after :all do
       ua_remove_user("lock@example.com")
     end
@@ -178,10 +170,6 @@ describe Forms::Items::TextLabelsController do
   describe "Destroy" do
     
     login_curator
-
-    def sub_dir
-      return "controllers/forms/items"
-    end
 
     after :all do
       ua_remove_user("lock@example.com")

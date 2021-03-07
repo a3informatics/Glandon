@@ -110,12 +110,12 @@ describe FormsController do
     login_curator
 
     before :all do
-      data_files = ["forms/FN000150.ttl"]
+      data_files = ["forms/F003_simple_form.ttl"]
       load_files(schema_files, data_files)
-      load_cdisc_term_versions(1..59)
       load_data_file_into_triple_store("mdr_identification.ttl")
       @lock_user = ua_add_user(email: "lock@example.com")
       Token.delete_all
+      @form = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/F003/V1#F"))
     end
 
     after :all do
@@ -124,29 +124,24 @@ describe FormsController do
     end
 
     it "show, json" do
-      form = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F"))
       request.env['HTTP_ACCEPT'] = "application/json"
-      get :show_data, params:{id: form.id}
-      expect(response.content_type).to eq("application/json")
-      expect(response.code).to eq("200")
-      actual = JSON.parse(response.body).deep_symbolize_keys[:data]
+      get :show_data, params:{id: @form.id}
+      actual = check_good_json_response(response)
       check_file_actual_expected(actual, sub_dir, "show_results_expected_1.yaml", equate_method: :hash_equal)
     end
 
     it "edit, html request" do
-      instance = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F"))
-      get :edit, params:{id: instance.id}
-      expect(assigns(:form).uri).to eq(instance.uri)
-      expect(assigns(:close_path)).to eq("/forms/history?form%5Bidentifier%5D=FN000150&form%5Bscope_id%5D=aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0NVQkVE")
-      expect(assigns(:edit_tags_path)).to eq("/iso_concept/aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0Y=/edit_tags")
+      get :edit, params:{id: @form.id}
+      expect(assigns(:form).uri).to eq(@form.uri)
+      expect(assigns(:close_path)).to eq("/forms/history?form%5Bidentifier%5D=F003&form%5Bscope_id%5D=aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0NVQkVE")
+      expect(assigns(:edit_tags_path)).to eq("/iso_concept/aHR0cDovL3d3dy5zLWN1YmVkLmRrL0YwMDMvVjEjRg==/edit_tags")
       expect(response).to render_template("edit")
     end
 
     it "edit, json request" do
       request.env['HTTP_ACCEPT'] = "application/json"
-      instance = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F"))
-      token = Token.obtain(instance, @user)
-      get :edit, params:{id: instance.id}
+      token = Token.obtain(@form, @user)
+      get :edit, params:{id: @form.id}
       actual = check_good_json_response(response)
       expect(assigns[:lock].token.id).to eq(Token.all.last.id)  # Will change each test run
       actual[:token_id] = 9999                                  # So, fix for file compare
@@ -155,9 +150,8 @@ describe FormsController do
 
     it "edit, json request, already locked" do
       request.env['HTTP_ACCEPT'] = "application/json"
-      instance = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F"))
-      token = Token.obtain(instance, @user)
-      get :edit, params:{id: instance.id}
+      token = Token.obtain(@form, @user)
+      get :edit, params:{id: @form.id}
       actual = check_good_json_response(response)
       expect(assigns[:lock].token.id).to eq(Token.all.last.id)  # Will change each test run
       actual[:token_id] = 9999                                  # So, fix for file compare
@@ -165,19 +159,17 @@ describe FormsController do
     end
 
     it "edit, html request, standard and creates new draft" do
-      instance = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F"))
-      instance.has_state.registration_status = "Standard"
-      instance.has_state.save
-      get :edit, params:{id: instance.id}
-      expect(assigns[:form].uri).to eq(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V2#F"))
+      @form.has_state.registration_status = "Standard"
+      @form.has_state.save
+      get :edit, params:{id: @form.id}
+      expect(assigns[:form].uri).to eq(Uri.new(uri: "http://www.s-cubed.dk/F003/V2#F"))
       expect(assigns[:edit].lock.token.id).to eq(Token.all.last.id)
     end
 
     it "edit, json, locked by another user" do
       request.env['HTTP_ACCEPT'] = "application/json"
-      instance = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F"))
-      token = Token.obtain(instance, @lock_user)
-      get :edit, params:{id: instance.id}
+      token = Token.obtain(@form, @lock_user)
+      get :edit, params:{id: @form.id}
       actual = check_error_json_response(response)
       check_file_actual_expected(actual, sub_dir, "edit_json_expected_2.yaml", equate_method: :hash_equal)
     end

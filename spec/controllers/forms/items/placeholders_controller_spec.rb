@@ -7,14 +7,14 @@ describe Forms::Items::PlaceholdersController do
   include UserAccountHelpers
   include IsoHelpers
   include ControllerHelpers
+
+  def sub_dir
+    return "controllers/forms/items"
+  end
   
   describe "Update" do
   	
     login_curator
-
-    def sub_dir
-      return "controllers/forms/items"
-    end
 
     after :all do
       ua_remove_user("lock@example.com")
@@ -37,9 +37,6 @@ describe Forms::Items::PlaceholdersController do
       audit_count = AuditTrail.count
       put :update, params:{id: @placeholder.id, placeholder: update_params}
       expect(AuditTrail.count).to eq(audit_count+1)
-      @placeholder = Form::Item::Placeholder.find(Uri.new(uri: "http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG3_PL5"))
-      expect(response.content_type).to eq("application/json")
-      expect(response.code).to eq("200")
       actual = check_good_json_response(response)
       check_file_actual_expected(actual, sub_dir, "update_placeholder_expected_1.yaml", equate_method: :hash_equal)
     end
@@ -85,10 +82,6 @@ describe Forms::Items::PlaceholdersController do
     
     login_curator
 
-    def sub_dir
-      return "controllers/forms/items"
-    end
-
     after :all do
       ua_remove_user("lock@example.com")
     end
@@ -121,10 +114,6 @@ describe Forms::Items::PlaceholdersController do
   describe "Move up" do
     
     login_curator
-
-    def sub_dir
-      return "controllers/forms/items"
-    end
 
     after :all do
       ua_remove_user("lock@example.com")
@@ -183,10 +172,6 @@ describe Forms::Items::PlaceholdersController do
   describe "Move down" do
     
     login_curator
-
-    def sub_dir
-      return "controllers/forms/items"
-    end
 
     after :all do
       ua_remove_user("lock@example.com")
