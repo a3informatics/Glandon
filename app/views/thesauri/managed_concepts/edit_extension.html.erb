@@ -58,7 +58,4 @@
 <%= render partial: "shared/thesauri/managed_concepts/edit/edit_properties", :locals => { item: @tc } %>
 <%= render partial: "shared/thesauri/managed_concepts/rank/edit_ranks", :locals => {item: @tc} %>
 
-<% if !@tc.paired? %>
-  <%= render partial: "shared/items_picker/items_picker", :locals => { id: "pair",
-      description: "Select another Code List to pair this Code List with." } %>
-<% end %>
+<%= render partial: "shared/items_picker/v2/items_picker", :locals => { id: "pair" } if !@tc.paired? %>

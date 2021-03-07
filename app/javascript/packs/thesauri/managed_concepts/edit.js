@@ -1,6 +1,5 @@
 import CLEditor from 'shared/custom/thesauri/managed_concepts/code_list_editor'
 import TokenTimer from 'shared/custom/tokens/token_timer'
-import PairHandler from 'shared/custom/thesauri/managed_concepts/pair_handler'
 import PropertiesEditor from 'shared/custom/thesauri/managed_concepts/properties_editor'
 
 $(document).ready( () => {
@@ -18,7 +17,7 @@ $(document).ready( () => {
     extendTimer: () => tt.extend()
   });
 
-  // Init Rank
+  // Init Rank, TODO: Update to ES6
   let rm = new RankModal(tt.extend.bind(tt));
 
   // Code list Properties Editor
@@ -26,11 +25,18 @@ $(document).ready( () => {
     data: JSON.parse( editItemPropertiesData )
   });
 
-  // Init Pairing handler
-  let ps = new PairHandler({
-    pairUrl: pairSelectPath,
-    unpairUrl: unpairPath,
-    isPaired: isItemPaired
-  });
+  /**
+   * Asynchronously load additional modules
+   */
+  ( async () => {
+
+    // Import and init PairHandler
+    let PairHandler = await import('shared/custom/thesauri/managed_concepts/pair_handler'),
+
+        ph = new PairHandler.default({
+          ...pairOptions
+        })
+
+  }) ();
 
 });

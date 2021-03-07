@@ -1,0 +1,57 @@
+<% if local_assigns.fetch(:with_deps, true) %>
+  <%= stylesheet_link_tag 'shared/layouts/tabs_layout', 'shared/table_select' %>
+<% end %>
+
+<div id="items-picker-<%= id %>" class="modal fade modal-items-picker" tabindex="-1" role="dialog" aria-hidden="true">
+ 
+  <div class="modal-dialog modal-lg full-screen" role="document">
+
+    <div class="modal-content">
+
+      <div class="modal-header">
+
+        <span class="modal-title text-normal text-medium">
+          <span class="circular-badge small bg-prim-light" style="margin-right: 6px">
+            <span class="icon-selection text-white"></span>
+          </span>
+          Item Picker
+        </span>
+
+        <button type="button" class="close" data-dismiss="modal">
+          <span aria-hidden="true">&times;</span>
+        </button>
+
+      </div>
+
+      <div class="modal-body table-cardstyle table-minimal all-columns stack-bottom">
+
+        <div id="items-picker-description" class="text-centered"></div>
+
+        <br>
+
+        <div id="items-picker-selection" class="flex-total-center"></div>
+
+        <br>
+
+        <div id="items-picker-tabs" class="tabs-layout text-small"></div>
+
+      </div>
+
+      <div class="modal-footer">
+
+        <button class="btn medium light" id="items-picker-close" data-dismiss="modal">
+          Close
+        </button>
+
+        <span id="items-picker-custom-buttons"></span>
+        
+        <button class="btn medium green disabled" id="items-picker-submit">
+          Submit and proceed
+        </button>
+      
+      </div>
+
+    </div>
+
+  </div>
+</div>

@@ -1,6 +1,6 @@
 <%= javascript_tag "let createBCUrl = '#{create_from_template_biomedical_concept_instances_path}'" %>
 
-<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="tableModalLabel" aria-hidden="true" id="new-bc-modal">
+<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="tableModalLabel" aria-hidden="true" id="new-bc-modal">
   <div class="modal-dialog modal-lg medium-screen" role="document">
 
     <div class="modal-content">
@@ -47,4 +47,4 @@
   </div>
 </div>
 
-<%= render partial: "shared/items_picker/items_picker", locals: { id: "new-bc", description: "Select a Template to base the new Biomedical Concept on:" } %>
+<%= render partial: "shared/items_picker/v2/items_picker", locals: { id: "new-bc" } %>
