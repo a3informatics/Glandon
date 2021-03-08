@@ -30,7 +30,8 @@ var C_USERDOMAIN = "http://www.assero.co.uk/BusinessDomain#UserDomain";
 var C_IGDOMAIN = "http://www.assero.co.uk/BusinessDomain#IgDomain";
 var C_CLASSDOMAIN = "http://www.assero.co.uk/BusinessDomain#ClassDomain";
 var C_MODEL = "http://www.assero.co.uk/BusinessDomain#Model";
-var C_BC = "http://www.assero.co.uk/CDISCBiomedicalConcept#BiomedicalConceptInstance";
+var C_BC = "http://www.assero.co.uk/BiomedicalConcept#BiomedicalConceptInstance";
+var C_BC_A = "http://www.assero.co.uk/BiomedicalConcept#Assessment";
 var C_BCT = "http://www.assero.co.uk/CDISCBiomedicalConcept#BiomedicalConceptTemplate";
 var C_TH = "http://www.assero.co.uk/ISO25964#Thesaurus";
 
@@ -94,6 +95,7 @@ typeToString[C_IGDOMAIN] = "SDTM IG Domain";
 typeToString[C_CLASSDOMAIN] = "SDTM Class Domain";
 typeToString[C_MODEL] = "SDTM Model";
 typeToString[C_BC] = "Biomedical Concept";
+typeToString[C_BC_A] = "Assessment";
 typeToString[C_BCT] = "Biomedical Concept Template";
 typeToString[C_TH] = "Terminology";
 typeToString[C_TH_NEW] = "Terminology";

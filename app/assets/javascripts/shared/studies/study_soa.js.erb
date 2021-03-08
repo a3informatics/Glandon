@@ -112,6 +112,7 @@ StudySchedule.prototype.buildScheduleHTML = function(data, visitsOnly) {
  */
 StudySchedule.prototype.asmntHTML = function(index, asmnt) {
   var dataRow = this.div.find("table tbody tr").eq(index);
+
   // Type badge
   dataRow.append("<td>" +
                     typeToColorIconBadge(asmnt.rdf_type, {ttip: true, size: "med"}) +
