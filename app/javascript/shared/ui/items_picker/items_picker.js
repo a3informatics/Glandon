@@ -257,7 +257,7 @@ export default class ItemsPicker extends ModalView {
 
     this.selectionView._render();
 
-    $(`${this.selector} #items-picker-tabs .tab-option:not(.disabled)`)[0].click();
+    $(`${this.selector} #items-picker-tabs .tab-option:not(.disabled)`)[0]?.click();
 
   }
 

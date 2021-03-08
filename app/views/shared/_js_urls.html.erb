@@ -16,7 +16,6 @@
     history_sdtm_class_url = history_sdtm_classes_path(sdtm_class: {identifier: "miHistoryId", scope_id: "miScopeId"})
     index_sdtm_sd_url = sdtm_sponsor_domains_path
     history_sdtm_sd_url = history_sdtm_sponsor_domains_path(sdtm_sponsor_domain: {identifier: "miHistoryId", scope_id: "miScopeId"})
-    history_class_url = history_sdtm_classes_path(sdtm_class: {identifier: "miHistoryId", scope_id: "miScopeId"})
 
     index_protocol_url = protocols_path
     history_protocol_url = history_protocols_path(protocols: {identifier: "miHistoryId", scope_id: "miScopeId"})
@@ -67,7 +66,6 @@
                           sdtm_sponsor_domain: {
                             index: '#{index_sdtm_sd_url}',
                             history:  '#{history_sdtm_sd_url}'
-                            history:  '#{history_class_url}'
                           },
                           protocol: {
                             index: '#{index_protocol_url}',

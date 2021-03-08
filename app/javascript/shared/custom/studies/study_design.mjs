@@ -2,7 +2,7 @@ import TabsLayout from 'shared/ui/tabs_layout'
 import ItemsPicker from 'shared/ui/items_picker/items_picker'
 
 import { $post } from 'shared/helpers/ajax'
-import { managedConceptRef } from 'shared/ui/strings'
+import { managedItemRef } from 'shared/ui/strings'
 
 /**
  * Study Design and Interventions
@@ -57,7 +57,7 @@ export default class StudyDesign {
       done: r => {
 
         $( this.selector ).find( '#template-name' )
-                          .text( managedConceptRef( template ) );
+                          .text( managedItemRef( template ) );
         $( this.selector ).find( '#select-template' )
                           .addClass( 'disabled' )
                           .unbind();

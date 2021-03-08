@@ -1,5 +1,5 @@
 import TablePanel from 'shared/base/table_panel'
-import { dtTrueFalseColumn } from 'shared/helpers/dt/dt_columns'
+import { dtBooleanColumn } from 'shared/helpers/dt/dt_columns'
 import { renderSpinner } from 'shared/ui/spinners'
 import colors from 'shared/ui/colors'
 
@@ -80,7 +80,7 @@ export default class StudyTable extends TablePanel  {
         render: (data, type) => type === 'display' ? this._formatText( data ) : data
       },
       { data: 'type' },
-      dtTrueFalseColumn( 'selected', { orderable: false } )
+      dtBooleanColumn( 'selected', { orderable: false } )
     ];
 
   }
@@ -93,7 +93,7 @@ export default class StudyTable extends TablePanel  {
         data: 'text',
         render: (data, type) => type === 'display' ? this._formatText( data ) : data
       },
-      dtTrueFalseColumn( 'selected', { orderable: false } )
+      dtBooleanColumn( 'selected', { orderable: false } )
     ];
 
   }
