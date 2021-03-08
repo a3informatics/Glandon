@@ -18,7 +18,8 @@ export default class SearchManager {
       id: 'th-search',
       multiple: true,
       types: [ ItemsPicker.allTypes.TH ],
-      description: 'Select one or more Terminology version in which to search, or choose to search in all Latest / Current versions',
+      description: `Select one or more Terminology versions in which to search, 
+                    or choose to search in all Latest / Current versions by clicking one of the buttons below`,
       submitText: 'Search Selected',
       buttons: SearchManager.buttons,
       onSubmit: s => SearchManager.searchByIds( s.asIDs() )
