@@ -111,6 +111,7 @@ module ApplicationHelper
       forms: "Forms",
       sdtm: "SDTM",
       adam: "ADaM",
+      managed_collections: "Managed Collections",
     }
   end
 
@@ -145,6 +146,7 @@ module ApplicationHelper
 			forms: mdr_categories[:forms],
 			sdtm_models: mdr_categories[:sdtm], sdtm_igs: mdr_categories[:sdtm], sdtm_ig_domains: mdr_categories[:sdtm], sdtm_sponsor_domains: mdr_categories[:sdtm], sdtm_classes: mdr_categories[:sdtm],
       adam_igs: mdr_categories[:adam], adam_ig_datasets: mdr_categories[:adam],
+      managed_collections: mdr_categories[:managed_collections],
       
       studies: swb_categories[:studies]
 		}

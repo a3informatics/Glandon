@@ -145,6 +145,11 @@
 
       <% end %>
     <% end %>
+    <% if link_group_on_role([IsoManaged]) %>
+      <%= render partial: "shared/layouts/navigation/category", :locals => { category: :managed_collections, id: "mc", icon: "icon-collection", 
+          expandable: false, link_url: managed_collections_path } %>
+    <% end %>
+
 
   </div>
 
