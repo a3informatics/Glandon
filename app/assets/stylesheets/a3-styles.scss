@@ -2,8 +2,6 @@
 @import "shared/buttons";
 @import "shared/cards";
 
-@import "shared/layouts/navbar";
-@import "shared/layouts/sidebar";
 @import "shared/layouts/card_layout";
 @import "shared/layouts/context_menu";
 @import "shared/layouts/modal";
@@ -15,7 +13,7 @@
 @import "shared/scrollbar";
 @import "shared/ttip";
 @import "shared/expandable_content";
-@import "shared/confirmation_dialog";
+@import "shared/dialogs/confirmation_dialog";
 @import "shared/processing/datatables_loading";
 @import "shared/processing/spinner_animated";
 @import "shared/processing/element_loading";
@@ -65,6 +63,7 @@
 .breadcrumb a {
   font-size: 12px !important;
   margin-left: 0px !important;
+  color: $primary-color-light;
 }
 
 .breadcrumb li {
@@ -281,6 +280,13 @@ a.bg-label {
   font-size: 10pt;
 }
 
+.circular-badge.xsmall{
+  width: 15px;
+  min-width: 15px;
+  height: 15px;
+  min-height: 15px;
+}
+
 .circular-badge.tiny{
   width: 8px;
   min-width: 8px;
@@ -425,6 +431,10 @@ input[type="text"]:focus, input[type="password"]:focus, input[type="number"]:foc
 }
 
 // ARROW ROTATION
+
+.arrow-rotate{
+  transform: rotate(180deg);
+}
 
 .cir-ar-right{
   transform: rotate(90deg);

@@ -1,4 +1,9 @@
+import { initialize as initSidebar } from 'shared/ui/layouts/sidebar'
+
 function initialize() {
+
+  // Sidebar handle interaction events 
+  initSidebar();
 
   // Handles events of all Expandable Contents on page, if present
   initExpandable();

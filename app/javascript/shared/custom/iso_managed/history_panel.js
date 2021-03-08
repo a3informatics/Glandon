@@ -290,6 +290,12 @@ export default class HistoryPanel extends TablePanel {
         text: "Export TTL", 
         endOffset: 1, 
         types: ["form", "biomedical_concept_instance", "sdtm_sponsor_domain"] 
+      },{
+        url: data.build_path, 
+        icon: "icon-build", 
+        text: "Build", 
+        endOffset: 1, 
+        types: ["study"] 
       }
     ]
 

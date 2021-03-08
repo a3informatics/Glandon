@@ -353,7 +353,7 @@ describe "Users", :type => :feature do
       fill_in :placeholder => 'Current password', :with => 'Changeme1#'
       fill_in :placeholder => 'New password', :with => 'Changeme2#'
       fill_in :placeholder => 'Confirm new password', :with => 'Changeme2#'
-      click_button 'Change password'
+      click_button 'Change'
       expect(page).to have_content 'Your new password is saved'
 
       ua_logoff
@@ -387,7 +387,7 @@ describe "Users", :type => :feature do
       fill_in :placeholder => 'Current password', :with => 'Changeme1#'
       fill_in :placeholder => 'New password', :with => 'Changeme2#'
       fill_in :placeholder => 'Confirm new password', :with => 'Changeme2#'
-      click_button 'Change password'
+      click_button 'Change'
       expect(page).to have_content 'Your new password is saved'
 
       ua_logoff

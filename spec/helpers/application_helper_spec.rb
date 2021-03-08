@@ -51,36 +51,6 @@ describe ApplicationHelper do
 	  	expect(bootstrap_class_for("something")).to eq("something")
 	  end
 
-    it "current items, I" do
-    	test1 = new_test("1", true)
-    	test2 = new_test("2", false)
-    	test3 = new_test("3", false)
-    	test4 = new_test("4", false)
-    	items = [test1, test2, test3, test4]
-    	result = get_current_item(items)
-			expect(result.label).to eq("1")
-	  end
-
-    it "current items, II" do
-    	test1 = new_test("1", true)
-    	test2 = new_test("2", false)
-    	test3 = new_test("3", true)
-    	test4 = new_test("4", false)
-    	items = [test1, test2, test3, test4]
-    	result = get_current_item(items)
-			expect(result).to eq(nil)
-	  end
-
-    it "current items, III" do
-    	test1 = new_test("1", false)
-    	test2 = new_test("2", false)
-    	test3 = new_test("3", false)
-    	test4 = new_test("4", false)
-    	items = [test1, test2, test3, test4]
-    	result = get_current_item(items)
-			expect(result).to eq(nil)
-	  end
-
     it "difference glyphicon" do
     	data = {}
 			data[:status] = :no_change
@@ -99,12 +69,6 @@ describe ApplicationHelper do
       expect(true_false_cell(false, :right)).to eq("<td class=\"text-right\"><span class=\"text-normal icon-times-circle text-accent-2\"/></td>")
       expect(true_false_cell(false, :center)).to eq("<td class=\"text-center\"><span class=\"text-normal icon-times-circle text-accent-2\"/></td>")
     end
-
-		it "column ordering" do
-		  expect(column_order(1, :asc)).to eq("[[1, 'asc']]")
-		  expect(column_order(2, :desc)).to eq("[[2, 'desc']]")
-		  expect(column_order(3, :something)).to eq("[[3, 'asc']]")
-		end
 
 	end
 

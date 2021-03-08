@@ -1,0 +1,212 @@
+@import "shared/globals";
+
+body, html, .container{
+  padding: 0;
+  height: 100%;
+  background: $grey-bright;
+}
+
+body {
+  width: 100%;
+  position: relative;
+  overflow-y: auto;
+}
+
+#alerts {
+  top: 20px;
+}
+
+// Central container and half-cards 
+.container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+
+  .m-card {
+    min-width: 768px;
+    min-height: 600px;
+
+    max-width: 1400px;
+    max-height: 800px;
+
+    width: 60%;
+    height: 80%;
+    
+    display: flex;
+    margin: auto;
+
+    .half {
+      width: 50%;
+      margin: 0;
+      padding: 30px 60px;
+      display: inline-flex;
+
+      &:first-of-type {
+        justify-content: left;
+        align-items: center;
+        border-radius: $card-border-radius 0 0 $card-border-radius;
+        overflow-y: auto;
+      }
+
+      &:last-of-type {
+        justify-content: center;
+        background: $primary-color-dark;
+        border-radius: 0 $card-border-radius $card-border-radius 0;
+      }
+    }
+  }
+
+}
+
+// Texts 
+p {
+  font-family: $font-light;
+  color: $grey-medium;
+}
+
+h1, h2 {
+  font-family: $font-primary;
+  color: $grey-medium;
+}
+
+// Forms 
+form {
+  width: 100%;
+}
+
+.form-wrap {
+  margin: 30px 0;
+
+  input, .checkbox {
+    font-family: $font-light;
+    color: $grey-medium;
+    border: 0px;
+    outline: none;
+    background: transparent;
+  }
+
+  input[type="email"], input[type="password"] {
+    width: 80%;
+    max-width: 350px;
+    padding: 8px 5px;
+    border-bottom: 2px solid $secondary-color-light;
+  }
+
+  input[type="checkbox"] {
+    margin-left: 0;
+  }
+
+  .checkbox {
+    display: flex;
+    align-items: center;
+  }
+
+}
+
+// Buttons and links 
+.btn.submit-btn {
+  background: $primary-color-light;
+  color: $grey-white;
+  padding: 8px 60px;
+
+  &:hover {
+    background: $primary-color-medium;
+  }
+
+  &:focus {
+    outline: none !important;
+  }
+  
+}
+
+.form-link {
+  display: inline-block;
+  margin-top: 12px;
+  color: $grey-medium;
+  text-decoration: underline;
+  font-family: $font-light;
+
+  &:hover {
+    color: $grey-light;
+    cursor: pointer;
+  }
+
+  &:focus, :active {
+    color: $grey-light;
+    outline: none;
+  }
+}
+
+// Responsivness 
+@media (max-width: 1600px) {
+ 
+  .container .m-card {
+    width: 70%;
+  }
+
+}
+
+@media (max-width: 1300px) {
+ 
+  .container .m-card {
+    width: 80%;
+  }
+
+}
+
+
+// Vertical View
+@media (max-width: 768px) {
+
+  h1, h2 {
+    font-size: $font-large;
+  }
+
+  .form-wrap {
+    margin: 20px 0;
+  }
+
+  #a3-devise-logo {
+    width: 120px;
+  }
+
+  .container {
+    height: 100%;
+    padding: 20px 0;
+
+    .m-card {
+      width: 90%;
+      min-width: initial;
+
+      height: initial;
+      min-height: initial;
+
+      flex-direction: column-reverse;
+
+      .half {
+        width: 100%;
+
+        &:last-of-type {
+          padding: 40px 0;
+          border-radius: $card-border-radius $card-border-radius 0 0;
+        }
+
+        &:first-of-type {
+          align-items: flex-start;
+          padding: 30px 40px 60px 40px;
+        }
+      }
+    }
+
+  }
+
+}
+
+/* Chrome fix styling of autofill inputs */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active  {
+  -webkit-text-fill-color: $grey-medium;
+  -webkit-box-shadow: 0 0 0 30px white inset !important;
+}

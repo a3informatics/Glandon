@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe XSDDatatype do
-	
+
 	include DataHelpers
 
   def sub_dir

@@ -1,11 +1,11 @@
 require 'rails_helper'
 
 describe BiomedicalConcept::Item do
-  
+
   include DataHelpers
   include SparqlHelpers
   include IsoConceptsHelpers
-  include IsoManagedHelpers    
+  include IsoManagedHelpers
 
   def sub_dir
     return "models/biomedical_concept/item"
@@ -94,4 +94,3 @@ describe BiomedicalConcept::Item do
   end
 
 end
-  

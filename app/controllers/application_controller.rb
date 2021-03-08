@@ -31,6 +31,10 @@ class ApplicationController < ActionController::Base
     true
   end
 
+  def page_not_found
+    raise ActionController::RoutingError.new('Not Found')
+  end
+
   # CRUD exceptions
   rescue_from Exceptions::DestroyError, :with => :crud_error
   rescue_from Exceptions::CreateError, :with => :crud_error

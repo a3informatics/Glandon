@@ -1,12 +1,13 @@
 <% content_for :page_title do %> Log In <% end %>
 
 <%= form_for(resource, as: resource_name, url: user_session_path, class: "form-signin") do |f| %>
-	<div class="text-xxlarge font-regular text-light">
-		Welcome
-	</div>
-	<div class="p-justified font-light text-light text-normal">
+	
+	<h1>Welcome</h1>
+	
+	<p class="p-justified">
 		<%= ENV['welcome_text'] %>
-	</div>
+	</p>
+	
 	<div class="form-wrap">
 	  <div class="form-group">
 	    <%= f.email_field :email, class: "", id: "email-input", autofocus: true, placeholder: "Email" %>
@@ -26,7 +27,7 @@
 	  <% end %>
 	</div>
 
-  <%= f.submit "Log in", class: "btn big submit-btn", id: "login-btn" %>
+  <%= f.submit "Log in", class: "btn submit-btn", id: "login-btn" %>
   <br>
 
 	<% if APP_CONFIG['self_registration'] %>

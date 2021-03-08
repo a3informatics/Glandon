@@ -7,8 +7,8 @@ defaults: &defaults
     th: "http://www.assero.co.uk/Thesaurus"
     fr: "http://www.s-cubed.dk/Framework"
     cdt: "http://www.s-cubed.dk/ComplexDatatypes"
-    pr: "http://www.assero.co.uk/Protocol"    
-    en: "http://www.assero.co.uk/Enumerated"    
+    pr: "http://www.assero.co.uk/Protocol"
+    en: "http://www.assero.co.uk/Enumerated"
     bc: "http://www.assero.co.uk/BiomedicalConcept"
     bo: "http://www.assero.co.uk/BusinessOperational"
     ba: "http://www.assero.co.uk/Annotations"
@@ -25,10 +25,10 @@ defaults: &defaults
 development:
   <<: *defaults
 
-production: 
+production:
   <<: *defaults
-  
-test: 
+
+test:
   optional:
     <<: *default_optional
   required:

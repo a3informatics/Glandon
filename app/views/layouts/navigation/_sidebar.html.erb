@@ -1,0 +1,166 @@
+<div id="sidebar" class="collapsed-vertical page-scroll-styled shadow-medium <%= 'collapsed-horizontal' if sidebar_collapsed? %>">
+
+  <%# Sidebar Controls %>
+  <div id="sidebar-controls">
+
+    <div id="sidebar-toggle-horizontal" class="arrow icon-arrow-l"></div>
+
+    <%# TODO: Integrate User Role Policy with allowing to switch menu types between MDR & SWB %>
+    <div id="menu-type-wrap">
+      <div data-target="#menu-type-mdr" class="menu-type-button ttip <%= "active" if !is_swb_menu? %>">
+        MDR
+        <span class="ttip-text shadow-small">Meta Data Repository</span>
+      </div>
+      <div data-target="#menu-type-swb" class="menu-type-button ttip <%= "active" if is_swb_menu? %>">
+        SWB
+        <span class="ttip-text shadow-small">Study Workbench</span>
+      </div>
+    </div>
+
+  </div>
+
+  <%# Shared Menu Items %>
+  <% if link_group_on_role([Dashboard]) %>
+      <%= render partial: "shared/layouts/navigation/category", :locals => { category: :dashboard, id: 'd', icon: "icon-dashboard", 
+          expandable: false, link_url: dashboard_index_path } %>
+  <% end %>
+
+ <%# MDR Menu Items %>
+  <div id="menu-type-mdr" class="menu-type-wrap" <%= "hidden" if is_swb_menu? %>>
+
+    <% if link_group_on_role([IsoNamespace, IsoRegistrationAuthority, Token, AuditTrail]) %>
+      <%= render layout: "shared/layouts/navigation/category", :locals => { category: :sysadmin, id: 'sysadmin', icon: "icon-sysadmin" } do %>
+
+          <%= render partial: "shared/layouts/navigation/item", :locals => { klass: IsoNamespace, id: "in",
+              link_url: iso_namespaces_path, title: "Namespaces" } %>
+
+          <%= render partial: "shared/layouts/navigation/item", :locals => { klass: IsoRegistrationAuthority, id: "ira",
+              link_url: iso_registration_authorities_path, title: "Registration Authorities" } %>
+          
+          <%= render partial: "shared/layouts/navigation/item", :locals => { klass: Token, id: "el",
+              link_url: tokens_path, title: "Edit Locks" } %>
+
+          <%= render partial: "shared/layouts/navigation/item", :locals => { klass: AuditTrail, id: "at",
+              link_url: audit_trail_index_path, title: "Audit Trail" } %>
+
+      <% end %>
+    <% end %>
+
+    <% if link_group_on_role([Upload, Import, Background]) %>
+      <%= render layout: "shared/layouts/navigation/category", :locals => { category: :impexp, id: 'impexp', icon: "icon-impexp" } do %>
+
+          <%= render partial: "shared/layouts/navigation/item", :locals => { klass: Upload, id: "u",
+              link_url: uploads_path, title: "Upload" } %>
+
+          <%= render partial: "shared/layouts/navigation/item", :locals => { klass: Import, id: "i",
+              link_url: list_imports_path, title: "Import" } %>
+          
+          <%= render partial: "shared/layouts/navigation/item", :locals => { klass: Export, id: "e",
+              link_url: exports_path, title: "Export" } %>
+
+          <%= render partial: "shared/layouts/navigation/item", :locals => { klass: Background, id: "bj",
+              link_url: backgrounds_path, title: "Background Jobs" } %>
+
+      <% end %>
+    <% end %>
+
+    <% if link_group_on_role([IsoConceptSystem, MarkdownEngine, AdHocReport]) %>
+      <%= render layout: "shared/layouts/navigation/category", :locals => { category: :util, id: 'util', icon: "icon-utils" } do %>
+
+          <%= render partial: "shared/layouts/navigation/item", :locals => { klass: IsoConceptSystem, id: "ics",
+              link_url: iso_concept_systems_path, title: "Tags" } %>
+
+          <%= render partial: "shared/layouts/navigation/item", :locals => { klass: MarkdownEngine, id: "ma",
+              link_url: markdown_engines_path, title: "Markdown" } %>
+          
+          <%= render partial: "shared/layouts/navigation/item", :locals => { klass: AdHocReport, id: "ahr",
+              link_url: ad_hoc_reports_path, title: "Ad Hoc Reports" } %>
+
+      <% end %>
+    <% end %>
+
+    <% if link_group_on_role([Thesaurus, CdiscTerm]) %>
+      <%= render layout: "shared/layouts/navigation/category", :locals => { category: :term, id: 'term', icon: "icon-terminology" } do %>
+
+          <%= render partial: "shared/layouts/navigation/item", :locals => { klass: Thesaurus, id: "te",
+              link_url: thesauri_index_path, title: "Terminology" } %>
+
+          <%= render partial: "shared/layouts/navigation/item", :locals => { klass: CdiscTerm, id: "ct",
+              link_url: history_cdisc_terms_path, title: "CDISC Terminology" } %>
+          
+          <%= render partial: "shared/layouts/navigation/item", :locals => { klass: Thesaurus, id: "cl",
+              link_url: thesauri_managed_concepts_path, title: "Code Lists" } %>
+
+      <% end %>
+    <% end %>
+
+    <% if link_group_on_role([BiomedicalConceptTemplate, BiomedicalConceptInstance]) %>
+      <%= render layout: "shared/layouts/navigation/category", :locals => { category: :biocon, id: 'biocon', icon: "icon-biocon" } do %>
+
+          <%= render partial: "shared/layouts/navigation/item", :locals => { klass: BiomedicalConceptTemplate, id: "bct",
+              link_url: biomedical_concept_templates_path, title: "Biomedical Concept Templates" } %>
+
+          <%= render partial: "shared/layouts/navigation/item", :locals => { klass: BiomedicalConceptInstance, id: "bc",
+              link_url: biomedical_concept_instances_path, title: "Biomedical Concepts" } %>
+
+      <% end %>
+    <% end %>
+
+    <% if link_group_on_role([Form]) %>
+      <%= render layout: "shared/layouts/navigation/category", :locals => { category: :forms, id: 'forms', icon: "icon-forms" } do %>
+
+          <%= render partial: "shared/layouts/navigation/item", :locals => { klass: Form, id: "f",
+              link_url: forms_path, title: "Forms" } %>
+
+      <% end %>
+    <% end %>
+
+    <% if link_group_on_role([SdtmModel, SdtmIg, SdtmIgDomain, SdtmClass]) %>
+      <%= render layout: "shared/layouts/navigation/category", :locals => { category: :sdtm, id: 'sdtm', icon: "icon-sdtm" } do %>
+
+          <%= render partial: "shared/layouts/navigation/item", :locals => { klass: SdtmModel, id: "sm",
+              link_url: sdtm_models_path, title: "CDISC SDTM Model" } %>
+
+          <%= render partial: "shared/layouts/navigation/item", :locals => { klass: SdtmIg, id: "sig",
+              link_url: sdtm_igs_path, title: "CDISC SDTM IGs" } %>
+          
+          <%= render partial: "shared/layouts/navigation/item", :locals => { klass: SdtmIgDomain, id: "sd",
+              link_url: sdtm_ig_domains_path, title: "SDTM IG Domains" } %>
+
+          <%= render partial: "shared/layouts/navigation/item", :locals => { klass: SdtmSponsorDomain, id: "ssd",
+              link_url: sdtm_sponsor_domains_path, title: "SDTM Sponsor Domains" } %>
+
+          <%= render partial: "shared/layouts/navigation/item", :locals => { klass: SdtmClass, id: "sc",
+              link_url: sdtm_classes_path, title: "SDTM Classes" } %>
+      <% end %>
+    <% end %>
+
+    <% if link_group_on_role([AdamIg, AdamIgDataset]) %>
+      <%= render layout: "shared/layouts/navigation/category", :locals => { category: :adam, id: 'adam', icon: "icon-adam" } do %>
+
+          <%= render partial: "shared/layouts/navigation/item", :locals => { klass: AdamIg, id: "aig",
+              link_url: adam_igs_path, title: "CDISC ADaM IGs" } %>
+          <%= render partial: "shared/layouts/navigation/item", :locals => { klass: AdamIgDataset, id: "aigd",
+              link_url: adam_ig_datasets_path, title: "CDISC ADaM IG Datasets" } %>
+
+      <% end %>
+    <% end %>
+
+  </div>
+
+  <%# SWB Menu Items %>
+  <div id="menu-type-swb" class="menu-type-wrap" <%= "hidden" if !is_swb_menu? %>>
+
+    <%# TODO: Add Proper Study Policy %>
+    <% if link_group_on_role([Form]) %>
+        <%= render layout: "shared/layouts/navigation/category", :locals => { category: :studies, id: 'study', icon: "icon-study" } do %>
+
+          <%= render partial: "shared/layouts/navigation/item", :locals => { klass: Form, id: "studies",
+              link_url: studies_path, title: "Studies" } %>
+
+        <% end %>
+    <% end %>
+
+  </div>
+
+</div>

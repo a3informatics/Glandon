@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe Form::Group::Normal do
-  
+
   include DataHelpers
   include SparqlHelpers
   include SecureRandomHelpers
@@ -78,7 +78,7 @@ describe Form::Group::Normal do
   end
 
   describe "Add child" do
-    
+
     def check_normal_group(uri, filename, write_file=false)
       normal = Form::Group::Normal.find_full(uri)
       check_file_actual_expected(normal.to_h, sub_dir, filename, equate_method: :hash_equal, write_file: write_file)
@@ -89,7 +89,7 @@ describe Form::Group::Normal do
       load_files(schema_files, data_files)
       load_cdisc_term_versions(1..1)
       load_data_file_into_triple_store("mdr_identification.ttl")
-      load_data_file_into_triple_store("hackathon_thesaurus.ttl") 
+      load_data_file_into_triple_store("hackathon_thesaurus.ttl")
     end
 
     it "add child I, add normal groups" do
@@ -196,7 +196,7 @@ describe Form::Group::Normal do
   end
 
   describe "Add child, BC Groups" do
-    
+
     def check_normal_group(uri, filename, write_file=false)
       normal = Form::Group::Normal.find_full(uri)
       check_file_actual_expected(normal.to_h, sub_dir, filename, equate_method: :hash_equal, write_file: write_file)
@@ -207,7 +207,7 @@ describe Form::Group::Normal do
       load_files(schema_files, data_files)
       load_cdisc_term_versions(1..62)
       load_data_file_into_triple_store("mdr_identification.ttl")
-      load_data_file_into_triple_store("hackathon_thesaurus.ttl") 
+      load_data_file_into_triple_store("hackathon_thesaurus.ttl")
     end
 
     it "add child III, bc groups" do
@@ -296,12 +296,12 @@ describe Form::Group::Normal do
   end
 
   describe "Common Group Handling" do
-    
+
     before :all do
       data_files = ["biomedical_concept_instances.ttl", "biomedical_concept_templates.ttl"]
       load_files(schema_files, data_files)
       load_data_file_into_triple_store("mdr_identification.ttl")
-      load_data_file_into_triple_store("hackathon_thesaurus.ttl") 
+      load_data_file_into_triple_store("hackathon_thesaurus.ttl")
     end
 
     it "add normal groups" do
@@ -367,13 +367,13 @@ describe Form::Group::Normal do
   end
 
   describe "Delete" do
-    
+
     before :all do
       data_files = ["forms/FN000150.ttl", "forms/CRF TEST 1.ttl", "biomedical_concept_instances.ttl", "biomedical_concept_templates.ttl"]
       load_files(schema_files, data_files)
       load_cdisc_term_versions(1..15)
       load_data_file_into_triple_store("mdr_identification.ttl")
-      load_data_file_into_triple_store("hackathon_thesaurus.ttl") 
+      load_data_file_into_triple_store("hackathon_thesaurus.ttl")
     end
 
     it "delete I" do
@@ -700,4 +700,3 @@ describe Form::Group::Normal do
   end
   
 end
-  

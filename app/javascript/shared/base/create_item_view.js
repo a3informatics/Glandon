@@ -42,7 +42,7 @@ export default class CreateItemView extends ModalView {
     // Clear form validation results
     Validator._clear(this.form);
     // Clear form values
-    this.form.find('input').val('');
+    this.form.find('input, textarea').val('');
   }
 
 

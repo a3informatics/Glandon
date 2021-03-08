@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe ComplexDatatype do
-	
+
 	include DataHelpers
   include PublicFileHelpers
 

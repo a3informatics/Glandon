@@ -1,5 +1,5 @@
 defaults: &defaults
-  http://www.w3.org/2001/XMLSchema#string: 
+  http://www.w3.org/2001/XMLSchema#string:
     typed: :to_s
     literal: :to_s
     default: ""
@@ -17,24 +17,24 @@ defaults: &defaults
     typed: :to_time_with_default
     literal: :iso8601
     default: ""
-    default_method: :to_time_with_default 
+    default_method: :to_time_with_default
   http://www.w3.org/2001/XMLSchema#time:
     typed: :to_time_with_default
     literal: :iso8601
     default: ""
-    default_method: :to_time_with_default   
-  http://www.w3.org/2001/XMLSchema#integer: 
+    default_method: :to_time_with_default
+  http://www.w3.org/2001/XMLSchema#integer:
     typed: :to_i
     literal: :to_s
     default: 1
     default_format: "3"
-  http://www.w3.org/2001/XMLSchema#positiveInteger: 
-    typed: :to_i 
+  http://www.w3.org/2001/XMLSchema#positiveInteger:
+    typed: :to_i
     literal: :to_s
     default: 1
     default_format: "3"
-  http://www.w3.org/2001/XMLSchema#float: 
-    typed: :to_i 
+  http://www.w3.org/2001/XMLSchema#float:
+    typed: :to_i
     literal: :to_s
     default: 1.0
     default_format: "5.2"
@@ -42,8 +42,8 @@ defaults: &defaults
 development:
   <<: *defaults
 
-production: 
+production:
   <<: *defaults
-  
-test: 
+
+test:
   <<: *defaults

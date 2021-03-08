@@ -13,7 +13,7 @@ class ComplexDatatype::PropertyX < Fuseki::Base
   data_property :label
   data_property :simple_datatype
   object_property :is_a, cardinality: :one, model_class: "CanonicalReference"
-  
+
   validates :label, presence: true
   validates :simple_datatype, presence: true
 

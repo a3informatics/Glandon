@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe Sparql::Update::Statement do
-  
+
   include DataHelpers
   include PublicFileHelpers
   include TimeHelpers

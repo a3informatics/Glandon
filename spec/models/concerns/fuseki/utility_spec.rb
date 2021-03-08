@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe Fuseki::Utility do
-  
+
   include DataHelpers
   include PublicFileHelpers
 
@@ -20,7 +20,7 @@ describe Fuseki::Utility do
   end
 
   class BaseTestFU
- 
+
     include ActiveModel::Naming
     include ActiveModel::Conversion
     include ActiveModel::Validations
@@ -54,7 +54,7 @@ describe Fuseki::Utility do
       @properties
     end
 
-  end 
+  end
 
   class TestToH
 
@@ -79,7 +79,7 @@ describe Fuseki::Utility do
     attr_accessor :organization_identifier
 
     def initialize
-      props = 
+      props =
       {
         "owner".to_sym => {type: :data, cardinality: :one, predicate: "http://www.assero.co.uk/ISO11179Registration#owner", base_type: XSDDatatype.new("boolean")},
         "organization_identifier".to_sym => {type: :data, cardinality: :one, predicate: "http://www.assero.co.uk/ISO11179Registration#organizationIdentifier", base_type: XSDDatatype.new("string")},
@@ -93,16 +93,16 @@ describe Fuseki::Utility do
   end
 
   class TestFU2 < BaseTestFU
-    
+
     C_URI = Uri.new(uri: "http://www.assero.co.uk/ISO11179Registration#RegistrationState")
 
     attr_accessor :effective_date
     attr_accessor :ra_namespace
 
     def initialize
-      props = 
+      props =
       {
-        "ra_namespace".to_sym => {type: :object, cardinality: :one, predicate: "http://www.assero.co.uk/ISO11179Registration#raNamespace", base_type: XSDDatatype.new("string")}, 
+        "ra_namespace".to_sym => {type: :object, cardinality: :one, predicate: "http://www.assero.co.uk/ISO11179Registration#raNamespace", base_type: XSDDatatype.new("string")},
         "effective_date".to_sym => {type: :data, cardinality: :one, predicate: "http://www.assero.co.uk/ISO11179Registration#effectiveDate", base_type: XSDDatatype.new("dateTime")}
       }
       self.class.instance_variable_set(:@properties, props)
@@ -112,10 +112,10 @@ describe Fuseki::Utility do
       super(props)
     end
 
-  end 
+  end
 
   class TestFU3 < TestFU2
-    
+
     attr_accessor :effective_date
     attr_accessor :ra_namespace
 
@@ -126,13 +126,13 @@ describe Fuseki::Utility do
       @rdf_type = Uri.new(uri: "http://www.assero.co.uk/ISO11179Registration#RegistrationState")
     end
 
-  end 
+  end
 
   it "to hash, simple" do
     uri_s = Uri.new(uri: "http://www.assero.co.uk/Fragment#Subject")
     expected = {
-      owner: "12345", 
-      organization_identifier: "Hello World", 
+      owner: "12345",
+      organization_identifier: "Hello World",
       rdf_type: "http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority",
       uri: uri_s.to_s,
       id: uri_s.to_id
@@ -148,7 +148,7 @@ describe Fuseki::Utility do
     uri = Uri.new(uri: "http://www.assero.co.uk/Fragment#Test")
     uri_s = Uri.new(uri: "http://www.assero.co.uk/Fragment#Subject")
     expected = {
-      effective_date: "2016-01-01T00:00:00+00:00", 
+      effective_date: "2016-01-01T00:00:00+00:00",
       ra_namespace: [uri.to_s, uri.to_s],
       rdf_type: "http://www.assero.co.uk/ISO11179Registration#RegistrationState",
       uri: uri_s.to_s,
@@ -165,10 +165,10 @@ describe Fuseki::Utility do
     uri = Uri.new(uri: "http://www.assero.co.uk/Fragment#Test")
     uri_s = Uri.new(uri: "http://www.assero.co.uk/Fragment#Subject")
     expected = {
-      effective_date: "2016-01-01T00:00:00+00:00", 
+      effective_date: "2016-01-01T00:00:00+00:00",
       ra_namespace: uri.to_s,
       rdf_type: "http://www.assero.co.uk/ISO11179Registration#RegistrationState",
-      uri: uri_s.to_s, 
+      uri: uri_s.to_s,
       id: uri_s.to_id
     }
     item = TestFU3.new
@@ -176,11 +176,11 @@ describe Fuseki::Utility do
     item.ra_namespace = uri
     expect(item.to_h).to eq(expected)
   end
- 
+
   it "to hash, to_h method" do
     uri_s = Uri.new(uri: "http://www.assero.co.uk/Fragment#Subject")
     expected = {
-      effective_date: "2016-01-01T00:00:00+00:00", 
+      effective_date: "2016-01-01T00:00:00+00:00",
       ra_namespace: TestToH.new.to_h,
       rdf_type: "http://www.assero.co.uk/ISO11179Registration#RegistrationState",
       uri: uri_s.to_s,
@@ -191,7 +191,7 @@ describe Fuseki::Utility do
     item.ra_namespace = TestToH.new
     expect(item.to_h).to eq(expected)
   end
- 
+
   it "from hash, simple" do
     input = {owner: true, organization_identifier: "123"}
     result = TestFU1.from_h(input)

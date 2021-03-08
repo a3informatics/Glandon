@@ -1,4 +1,4 @@
-# Biomedical Concept, Property. 
+# Biomedical Concept, Property.
 #
 # @author Dave Iberson-Hurst
 # @since 3.1.0
@@ -48,7 +48,7 @@ class BiomedicalConcept::PropertyX < IsoConceptV2
   # @param [Hash] params a hash of properties to be updated
   # @return [Object] returns the object. Not saved if errors are returned.      
   def update(params)
-    if params.key?(:has_coded_value) 
+    if params.key?(:has_coded_value)
       self.has_coded_value_objects
       set = IsoConceptV2::CodedValueSet.new(self.has_coded_value, self)
       set.update(params)

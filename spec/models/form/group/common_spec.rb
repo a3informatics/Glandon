@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe Form::Group::Common do
-  
+
   include DataHelpers
   include OdmHelpers
   include SparqlHelpers
@@ -70,6 +70,5 @@ describe Form::Group::Common do
     # end
 
   end
-  
+
 end
-  

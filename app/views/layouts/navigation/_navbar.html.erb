@@ -1,0 +1,134 @@
+<nav class="navbar navbar-inverse navbar-fixed-top">
+
+  <div class="container-fluid">
+
+    <div class="navbar-header">
+
+      <%# Navbar Menu expand / collapse %>
+      <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-actions" aria-expanded="false" aria-controls="navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+
+      <%# Sidebar Menu expand / collapse (vertical) %>
+      <% if !current_user.is_only_community? %>
+        <button id="sidebar-toggle-vertical" class="navbar-toggle arrow-rotate">
+          <span class="icon-arrow-u text-white"></span>
+        </button>
+      <% end %>
+
+      <%# Application Logo and Title %>
+      <a class="navbar-brand logo" href="/">
+        <img alt='Logo' src='<%= image_path("a3-logo") %>' width='25'>
+      </a>
+
+      <a class="navbar-brand app-name" href="/">
+          <%= ENV['organization_navbar'] %><%= "#{APP_CONFIG['application_name']}"%> (v<%= Version::VERSION %>)
+      </a>
+
+    </div>
+
+    <%# Navbar Action Buttons %>
+    <div id="navbar-actions" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav navbar-right">
+
+        <%# Home %>
+        <li>
+          <a id="home_button" href="/">
+            <span class="icon-home text-light ttip">
+              <span class="ttip-text ttip-right shadow-small text-medium">
+                Home
+              </span>
+            </span>
+          </a>
+        </li>
+
+        <%# Print %>
+        <li>
+          <%= link_to "", id: 'print_button' do %>
+            <span class="icon-print text-light ttip">
+              <span class="ttip-text ttip-right shadow-small text-medium">
+                Print page
+              </span>
+            </span>
+          <% end %>
+        </li>
+
+        <%# Users %>
+        <% if policy(User).index? %>
+          <li>
+            <a id="users_button" href="/users">
+              <span class="icon-users text-light ttip">
+                <span class="ttip-text ttip-right shadow-small text-medium">
+                  Manage users
+                </span>
+              </span>
+            </a>
+          </li>
+        <% end %>
+
+        <%# Help (Community Only) %>
+        <% if current_user.is_only_community? %>
+        <li>
+          <a id="help_button" href="<%= APP_CONFIG['help_url'] %>" target="_blank">
+            <span class="icon-help text-light ttip">
+              <span class="ttip-text ttip-right shadow-small text-medium">
+                Help
+              </span>
+            </span>
+          </a>
+        </li>
+        <% end %>
+
+        <%# User Info & Badge %>
+        <li>
+          <span class="user-badge-wrap">
+
+            <span class="vertical-divider"></span>
+
+            <span class="user-icon bg-sec-light text-white">
+              <%= !current_user.name.nil? ? current_user.name[0] : '?' %>
+            </span>
+
+            <span class="navbar-text user-badge">
+              <div id="user-name" class="text-bright text-small">
+                <%= current_user.name if current_user.user_name_display == "Yes" %>
+              </div>
+              <div id="user-role" class="text-light text-tiny">
+                <%= current_user.role_list_stripped if current_user.user_role_display == "Yes" %>
+              </div>
+            </span>
+
+          </span>
+        </li>
+
+        <%# User Config %>
+        <% if policy(UserSetting).index? %>
+          <li>
+            <a id="settings_button" href="<%= user_settings_path %>">
+              <span class="icon-settings text-light ttip">
+                <span class="ttip-text ttip-left shadow-small text-medium">
+                  Preferences
+                </span>
+              </span>
+            </a>
+          </li>
+        <% end %>
+
+        <%# Log Out %>
+        <li>
+          <%= link_to destroy_user_session_path, :method => :delete, id: 'logoff_button' do %>
+            <span class="icon-sign-out text-light ttip">
+              <span class="ttip-text ttip-left shadow-small text-medium">
+                Sign out
+              </span>
+            </span>
+          <% end %>
+        </li>
+
+      </ul>
+    </div>
+    
+  </div>
+</nav>

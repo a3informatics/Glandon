@@ -221,7 +221,7 @@
   skos:definition "Label text."^^xsd:string
 .
 :ordinal
-  rdf:type owl:DatatypeProperty ; 
+  rdf:type owl:DatatypeProperty ;
   rdfs:subPropertyOf isoC:property ;
   rdfs:domain :Node ;
   rdfs:label "Node ordinal"^^xsd:string ;

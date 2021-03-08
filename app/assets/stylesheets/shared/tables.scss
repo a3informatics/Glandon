@@ -1,5 +1,11 @@
 // TABLES
 
+.table td.fit,
+.table th.fit {
+  white-space: nowrap;
+  width: 1%;
+}
+
 .table-cardstyle th{
   vertical-align: middle;
   color: $grey-medium;

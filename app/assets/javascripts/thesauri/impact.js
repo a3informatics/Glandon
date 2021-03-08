@@ -22,9 +22,5 @@ $(document).ready(function(){
       setTimeout(enableChangesPanel, 500);
   }
 
-  $("#sidebar-arrow").on("click", function(){
-    setTimeout(ig.graph.onRescale.bind(ig.graph), 500);
-  });
-
   ccp.sCallback = selectCallback;
 });

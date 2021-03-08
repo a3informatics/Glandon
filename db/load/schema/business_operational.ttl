@@ -44,6 +44,7 @@
   rdfs:subClassOf :Reference ;
   skos:definition "Holds the reference to a Biomedical Concept."^^xsd:string ;
 .
+# Deprecated
 :BctReference
   rdf:type owl:Class ;
   rdfs:label "Biomedical Concept Template Reference"^^xsd:string ;

@@ -47,13 +47,13 @@
   padding: 20px 20px;
 }
 
-.modal-open .modal-body {
+.modal .modal-body {
   min-width: auto !important;
   overflow-x: auto;
 }
 
 @media (max-width: 768px){
-  .modal-open .modal-dialog{
+  .modal .modal-dialog {
     width: calc(100% - 20px) !important;
   }
 }
@@ -68,6 +68,10 @@ img.modal-img{
 img.modal-img.large{
   width: 160px;
   margin: 10px 0px;
+}
+
+img.modal-img.wide{
+  width: 280px;
 }
 
 // Managed Items Select Modal
@@ -100,13 +104,39 @@ img.modal-img.large{
 
 
 @media (max-width: 1250px){
-  .modal-content .card {
-    max-width: calc(100% - 40px);
-    width: calc(100% - 40px);
+  
+  .modal {
+    .modal-content .card {
+      max-width: calc(100% - 40px);
+      width: calc(100% - 40px);
+    }
   }
+
 }
 
 // Overflow fix
 .modal.fade.bd-example-modal-lg {
   overflow-y: auto;
 }
+
+
+@media (max-width: 1250px){
+
+  // Items picker 
+  .modal[id^="items-picker-"] {
+
+    .modal-content .card {
+      max-width: 100% !important;
+      width: 100% !important;
+      margin-left: 0px !important;
+      margin-right: 0px !important;
+    }
+
+    .modal-body {
+      padding: 20px 5px !important;
+    }
+
+  }
+
+}
+

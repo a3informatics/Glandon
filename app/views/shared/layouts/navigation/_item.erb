@@ -1,0 +1,15 @@
+<% if policy(klass).index? %>
+
+	<%# TODO: Fix the way the Menu Items are highlited - can cause trouble in the future %>
+	<% is_active = link_url.include?(controller_name.to_s) %>
+
+	<%# Special case with thesauri/managed_concepts link (duplicate 'thesauri') %>
+	<% is_active = false if (link_url.eql? "/thesauri/managed_concepts") && (controller_name.to_s.eql? "thesauri") %>
+
+	<li>
+		<a href="<%= link_url %>" id="main_nav_<%= id %>" class="text-medium <%= "selected" if is_active %>">
+			<%= title %>
+		</a>
+	</li>
+
+<% end %>

@@ -1,4 +1,4 @@
-# Biomedical Concept Template. 
+# Biomedical Concept Template.
 #
 # @author Dave Iberson-Hurst
 # @since 3.1.0

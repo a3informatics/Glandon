@@ -114,7 +114,12 @@ export default class TokenTimer {
   _setListeners() {
     // Release token on window unload
     if (this.handleUnload)
-      window.onbeforeunload = () => this.release();
+      window.onbeforeunload = () => {
+
+        if ( this.handleUnload ) 
+          this.release();
+          
+      } 
 
     // Extend Token with click
     $(`${this.parentEl} ${this.timerEl}`).on('click', e => {

@@ -13,9 +13,9 @@ class Form::Group::Normal < Form::Group
 
   object_property :has_sub_group, cardinality: :many, model_classes: [ "Form::Group::Normal", "Form::Group::Bc" ]
   object_property :has_common, cardinality: :many, model_class: "Form::Group::Common"
-  object_property_class :has_item, model_classes: 
-    [ 
-      Form::Item::Mapping, Form::Item::Placeholder, Form::Item::Question, Form::Item::TextLabel 
+  object_property_class :has_item, model_classes:
+    [
+      Form::Item::Mapping, Form::Item::Placeholder, Form::Item::Question, Form::Item::TextLabel
     ]
 
   validates_with Validator::Field, attribute: :repeating, method: :valid_boolean?
@@ -38,7 +38,7 @@ class Form::Group::Normal < Form::Group
     self.has_sub_group + self.has_item + self.has_common
   end
 
-  # Children Ordered. Returns the set of children nodes ordered by ordinal. 
+  # Children Ordered. Returns the set of children nodes ordered by ordinal.
   #
   # @return [Form::Group::Normal] array of objects
   def children_ordered
@@ -103,7 +103,7 @@ class Form::Group::Normal < Form::Group
   # @params [Hash] params the parameters
   # @option params [String] :type the param name of the new node
   # @option params [Array] :id_set array of biomedical concept ids
-  # @return [Array] the created objects. May contain errors if unsuccesful.  
+  # @return [Array] the created objects. May contain errors if unsuccesful.
   def add_child(params)
     if self.repeating 
       if valid_repeating_child?(params)
@@ -153,7 +153,7 @@ class Form::Group::Normal < Form::Group
       result[:has_sub_group] << sg.full_data
     end
     self.has_common_objects.sort_by {|x| x.ordinal}.each do |cg|
-      result[:has_common] << cg.full_data 
+      result[:has_common] << cg.full_data
     end
     result
   end
@@ -193,7 +193,7 @@ class Form::Group::Normal < Form::Group
   end
 
   private
-    
+
     def add_bc_group(id)
       tx = transaction_begin
       bci = BiomedicalConceptInstance.find(id)
@@ -212,7 +212,7 @@ class Form::Group::Normal < Form::Group
             add_bc_property(property, bc_property)
             bc_group.add_link(:has_item, bc_property.uri)
             ordinal += 1
-          end 
+          end
         end
       end
       self.add_link(:has_sub_group, bc_group.uri)
@@ -262,9 +262,9 @@ class Form::Group::Normal < Form::Group
     end
 
     def common_group?
-      query_string = %Q{         
+      query_string = %Q{
         SELECT ?result WHERE {BIND ( EXISTS {#{self.uri.to_ref} bf:hasCommon ?c_g  } as ?result )}
-      }     
+      }
       query_results = Sparql::Query.new.query(query_string, "", [:bf])
       query_results.by_object(:result).first.to_bool
     end
@@ -286,10 +286,10 @@ class Form::Group::Normal < Form::Group
           if common_property?(bc_property, common_item) && bc_property.has_coded_value.empty?
             make_common(common_item, common_group, bc_property)
           elsif common_property?(bc_property, common_item) && common_terminologies?(bc_property, common_item)
-            make_common(common_item, common_group, bc_property) 
+            make_common(common_item, common_group, bc_property)
           end
         end
-      end 
+      end
     end
 
     def make_common(common_item, common_group, bc_property)
@@ -300,11 +300,11 @@ class Form::Group::Normal < Form::Group
     end
 
     def common_property?(bc_property,common_item)
-      query_string = %Q{         
+      query_string = %Q{
         SELECT ?result WHERE
-        {BIND ( EXISTS {#{bc_property.uri.to_ref} bf:hasProperty/bo:reference/bc:isA ?ref. 
-                        #{common_item.uri.to_ref} bf:hasProperty/bo:reference/bc:isA ?ref } as ?result )} 
-      }     
+        {BIND ( EXISTS {#{bc_property.uri.to_ref} bf:hasProperty/bo:reference/bc:isA ?ref.
+                        #{common_item.uri.to_ref} bf:hasProperty/bo:reference/bc:isA ?ref } as ?result )}
+      }
       query_results = Sparql::Query.new.query(query_string, "", [:bf, :bo, :bc])
       query_results.by_object(:result).first.to_bool
     end
@@ -312,8 +312,8 @@ class Form::Group::Normal < Form::Group
     def common_terminologies?(bc_property, common_item)
       query_string = %Q{
         SELECT ?result WHERE
-        {BIND ( EXISTS {#{bc_property.uri.to_ref} bf:hasCodedValue/bo:reference ?cli. 
-                        #{common_item.uri.to_ref} bf:hasCodedValue/bo:reference ?cli } as ?result )} 
+        {BIND ( EXISTS {#{bc_property.uri.to_ref} bf:hasCodedValue/bo:reference ?cli.
+                        #{common_item.uri.to_ref} bf:hasCodedValue/bo:reference ?cli } as ?result )}
       }
       query_results = Sparql::Query.new.query(query_string, "", [:bf, :bo])
       query_results.by_object(:result).first.to_bool

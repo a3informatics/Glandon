@@ -1,0 +1,1858 @@
+---
+- :label: Height
+  :identifier: HEIGHT
+  :based_on: http://www.s-cubed.dk/BASIC_OBS/V1#BCT
+  :identified_by:
+    :label: Test
+    :enabled: true
+    :collect: false
+    :complex_datatype:
+    - :short_name: CD
+      :has_property:
+      - :label: code
+        :question_text: ''
+        :prompt_text: ''
+        :format: '8'
+        :has_coded_value:
+        - :cl: C66741
+          :cli: C25347
+  :has_items:
+  - :label: Category Code
+    :enabled: false
+  - :label: Subcategory Code
+    :enabled: false
+  - :label: Position
+    :enabled: false
+  - :label: Site of Administration
+    :enabled: false
+  - :label: Laterality
+    :enabled: false
+  - :label: Method
+    :enabled: false
+  - :label: Not Done
+    :enabled: false
+  - :label: Reason Not Done
+    :enabled: false
+  - :label: Result
+    :enabled: true
+    :complex_datatype:
+    - :short_name: PQR
+      :has_property:
+      - :label: value
+        :question_text: Result
+        :prompt_text: Height
+        :format: '5.2'
+        :has_coded_value: []
+      - :label: code
+        :question_text: Unit
+        :prompt_text: Unit
+        :format: '20'
+        :has_coded_value:
+        - :cl: C66770
+          :cli: C49668
+        - :cl: C66770
+          :cli: C48500
+        - :cl: C71620
+          :cli: C41139
+        - :cl: C71620
+          :cli: C71253
+- :label: Weight
+  :identifier: WEIGHT
+  :based_on: http://www.s-cubed.dk/BASIC_OBS/V1#BCT
+  :identified_by:
+    :label: Test
+    :enabled: true
+    :collect: false
+    :complex_datatype:
+    - :short_name: CD
+      :has_property:
+      - :label: code
+        :question_text: ''
+        :prompt_text: ''
+        :format: '8'
+        :has_coded_value:
+        - :cl: C66741
+          :cli: C25208
+  :has_items:
+  - :label: Category Code
+    :enabled: false
+  - :label: Subcategory Code
+    :enabled: false
+  - :label: Position
+    :enabled: false
+  - :label: Site of Administration
+    :enabled: false
+  - :label: Laterality
+    :enabled: false
+  - :label: Method
+    :enabled: false
+  - :label: Not Done
+    :enabled: false
+  - :label: Reason Not Done
+    :enabled: false
+  - :label: Result
+    :enabled: true
+    :complex_datatype:
+    - :short_name: PQR
+      :has_property:
+      - :label: value
+        :question_text: Result
+        :prompt_text: Weight
+        :format: '5.1'
+        :has_coded_value: []
+      - :label: code
+        :question_text: Unit
+        :prompt_text: Unit
+        :format: '20'
+        :has_coded_value:
+        - :cl: C66770
+          :cli: C28252
+        - :cl: C66770
+          :cli: C48531
+- :label: BMI
+  :identifier: BMI
+  :based_on: http://www.s-cubed.dk/BASIC_OBS/V1#BCT
+  :identified_by:
+    :label: Test
+    :enabled: true
+    :collect: false
+    :complex_datatype:
+    - :short_name: CD
+      :has_property:
+      - :label: code
+        :question_text: ''
+        :prompt_text: ''
+        :format: '8'
+        :has_coded_value:
+        - :cl: C66741
+          :cli: C16358
+  :has_items:
+  - :label: Category Code
+    :enabled: false
+  - :label: Subcategory Code
+    :enabled: false
+  - :label: Position
+    :enabled: false
+  - :label: Site of Administration
+    :enabled: false
+  - :label: Laterality
+    :enabled: false
+  - :label: Method
+    :enabled: false
+  - :label: Not Done
+    :enabled: false
+  - :label: Reason Not Done
+    :enabled: false
+  - :label: Result
+    :enabled: true
+    :complex_datatype:
+    - :short_name: PQR
+      :has_property:
+      - :label: value
+        :question_text: Result
+        :prompt_text: BMI
+        :format: '4.1'
+        :has_coded_value: []
+      - :label: code
+        :question_text: Unit
+        :prompt_text: Unit
+        :format: '20'
+        :has_coded_value:
+        - :cl: C66770
+          :cli: C49671
+- :label: Race
+  :identifier: RACE
+  :based_on: http://www.s-cubed.dk/BASIC_OBS/V1#BCT
+  :identified_by:
+    :label: Test
+    :enabled: true
+    :collect: false
+    :complex_datatype:
+    - :short_name: CD
+      :has_property:
+      - :label: code
+        :question_text: ''
+        :prompt_text: ''
+        :format: '8'
+        :has_coded_value:
+        - :cl: H000002
+          :cli: HI000006
+  :has_items:
+  - :label: Category Code
+    :enabled: false
+  - :label: Subcategory Code
+    :enabled: false
+  - :label: Position
+    :enabled: false
+  - :label: Site of Administration
+    :enabled: false
+  - :label: Laterality
+    :enabled: false
+  - :label: Method
+    :enabled: false
+  - :label: Not Done
+    :enabled: false
+  - :label: Reason Not Done
+    :enabled: false
+  - :label: Result
+    :enabled: true
+    :complex_datatype:
+    - :short_name: CD
+      :has_property:
+      - :label: code
+        :question_text: Race
+        :prompt_text: Race
+        :format: '200'
+        :has_coded_value:
+        - :cl: C74457
+          :cli: C16352
+        - :cl: C74457
+          :cli: C41259
+        - :cl: C74457
+          :cli: C41260
+        - :cl: C74457
+          :cli: C41219
+        - :cl: C74457
+          :cli: C41261
+        - :cl: C74457
+          :cli: C17998
+        - :cl: C74457
+          :cli: C43234
+- :label: Sex
+  :identifier: SEX
+  :based_on: http://www.s-cubed.dk/BASIC_OBS/V1#BCT
+  :identified_by:
+    :label: Test
+    :enabled: true
+    :collect: false
+    :complex_datatype:
+    - :short_name: CD
+      :has_property:
+      - :label: code
+        :question_text: ''
+        :prompt_text: ''
+        :format: '8'
+        :has_coded_value:
+        - :cl: H000002
+          :cli: HI000008
+  :has_items:
+  - :label: Category Code
+    :enabled: false
+  - :label: Subcategory Code
+    :enabled: false
+  - :label: Position
+    :enabled: false
+  - :label: Site of Administration
+    :enabled: false
+  - :label: Laterality
+    :enabled: false
+  - :label: Method
+    :enabled: false
+  - :label: Not Done
+    :enabled: false
+  - :label: Reason Not Done
+    :enabled: false
+  - :label: Result
+    :enabled: true
+    :complex_datatype:
+    - :short_name: CD
+      :has_property:
+      - :label: code
+        :question_text: Sex
+        :prompt_text: Sex
+        :format: '20'
+        :has_coded_value:
+        - :cl: C66731
+          :cli: C16576
+        - :cl: C66731
+          :cli: C20197
+        - :cl: C66731
+          :cli: C45908
+        - :cl: C66731
+          :cli: C17998
+- :label: Age
+  :identifier: AGE
+  :based_on: http://www.s-cubed.dk/BASIC_OBS/V1#BCT
+  :identified_by:
+    :label: Test
+    :enabled: true
+    :collect: false
+    :complex_datatype:
+    - :short_name: CD
+      :has_property:
+      - :label: code
+        :question_text: ''
+        :prompt_text: ''
+        :format: '8'
+        :has_coded_value:
+        - :cl: H000002
+          :cli: HI000005
+  :has_items:
+  - :label: Category Code
+    :enabled: false
+  - :label: Subcategory Code
+    :enabled: false
+  - :label: Position
+    :enabled: false
+  - :label: Site of Administration
+    :enabled: false
+  - :label: Laterality
+    :enabled: false
+  - :label: Method
+    :enabled: false
+  - :label: Not Done
+    :enabled: false
+  - :label: Reason Not Done
+    :enabled: false
+  - :label: Result
+    :enabled: true
+    :complex_datatype:
+    - :short_name: PQR
+      :has_property:
+      - :label: value
+        :question_text: Age(yrs)
+        :prompt_text: Age(yrs)
+        :format: '3.0'
+        :has_coded_value: []
+      - :label: code
+        :collect: false
+        :question_text: []
+        :prompt_text: []
+        :format: '20'
+        :has_coded_value:
+        - :cl: C66781
+          :cli: C29848
+- :label: Ethnicity
+  :identifier: ETHNICITY
+  :based_on: http://www.s-cubed.dk/BASIC_OBS/V1#BCT
+  :identified_by:
+    :label: Test
+    :enabled: true
+    :complex_datatype:
+    - :short_name: CD
+      :has_property:
+      - :label: code
+        :question_text: ''
+        :prompt_text: ''
+        :format: '8'
+        :has_coded_value:
+        - :cl: H000002
+          :cli: HI000007
+  :has_items:
+  - :label: Category Code
+    :enabled: false
+  - :label: Subcategory Code
+    :enabled: false
+  - :label: Position
+    :enabled: false
+  - :label: Site of Administration
+    :enabled: false
+  - :label: Laterality
+    :enabled: false
+  - :label: Method
+    :enabled: false
+  - :label: Not Done
+    :enabled: false
+  - :label: Reason Not Done
+    :enabled: false
+  - :label: Result
+    :enabled: true
+    :complex_datatype:
+    - :short_name: CD
+      :has_property:
+      - :label: code
+        :question_text: Ethnicity
+        :prompt_text: Ethnicity
+        :format: '30'
+        :has_coded_value:
+        - :cl: C66790
+          :cli: C17459
+        - :cl: C66790
+          :cli: C41222
+        - :cl: C66790
+          :cli: C43234
+        - :cl: C66790
+          :cli: C17998
+- :label: Systolic Blood Pressure
+  :identifier: SYSBP
+  :based_on: http://www.s-cubed.dk/BASIC_OBS/V1#BCT
+  :identified_by:
+    :label: Test
+    :enabled: true
+    :complex_datatype:
+    - :short_name: CD
+      :has_property:
+      - :label: code
+        :question_text: ''
+        :prompt_text: ''
+        :format: '8'
+        :has_coded_value:
+        - :cl: C66741
+          :cli: C25298
+  :has_items:
+  - :label: Category Code
+    :enabled: false
+  - :label: Subcategory Code
+    :enabled: false
+  - :label: Position
+    :enabled: true
+    :complex_datatype:
+    - :short_name: CD
+      :has_property:
+      - :label: code
+        :question_text: Body Position
+        :prompt_text: Position
+        :format: '40'
+        :has_coded_value:
+        - :cl: C71148
+          :cli: C62166
+        - :cl: C71148
+          :cli: C62122
+        - :cl: C71148
+          :cli: C62167
+  - :label: Site of Administration
+    :enabled: true
+    :collet: false
+    :complex_datatype:
+    - :short_name: CD
+      :has_property:
+      - :label: code
+        :question_text: Location of Measurement
+        :prompt_text: Location
+        :format: '40'
+        :has_coded_value:
+        - :cl: C74456
+          :cli: C32141
+  - :label: Laterality
+    :enabled: true
+    :complex_datatype:
+    - :short_name: CD
+      :has_property:
+      - :label: code
+        :question_text: Laterality
+        :prompt_text: Laterality
+        :format: '40'
+        :has_coded_value:
+        - :cl: C99073
+          :cli: C25229
+        - :cl: C99073
+          :cli: C25228
+        - :cl: C99073
+          :cli: C13332
+  - :label: Method
+    :enabled: false
+  - :label: Not Done
+    :enabled: false
+  - :label: Reason Not Done
+    :enabled: false
+  - :label: Result
+    :enabled: true
+    :complex_datatype:
+    - :short_name: PQR
+      :has_property:
+      - :label: value
+        :question_text: Result
+        :prompt_text: Result
+        :format: '5.2'
+        :has_coded_value: []
+      - :label: code
+        :question_text: Unit
+        :prompt_text: Unit
+        :format: '20'
+        :has_coded_value:
+        - :cl: C66770
+          :cli: C49670
+        - :cl: C66770
+          :cli: C42547
+- :label: Diastolic Blood Pressure
+  :identifier: DIABP
+  :based_on: http://www.s-cubed.dk/BASIC_OBS/V1#BCT
+  :identified_by:
+    :label: Test
+    :enabled: true
+    :complex_datatype:
+    - :short_name: CD
+      :has_property:
+      - :label: code
+        :question_text: ''
+        :prompt_text: ''
+        :format: '8'
+        :has_coded_value:
+        - :cl: C66741
+          :cli: C25299
+  :has_items:
+  - :label: Category Code
+    :enabled: false
+  - :label: Subcategory Code
+    :enabled: false
+  - :label: Position
+    :enabled: true
+    :complex_datatype:
+    - :short_name: CD
+      :has_property:
+      - :label: code
+        :question_text: Body Position
+        :prompt_text: Position
+        :format: '40'
+        :has_coded_value:
+        - :cl: C71148
+          :cli: C62166
+        - :cl: C71148
+          :cli: C62122
+        - :cl: C71148
+          :cli: C62167
+  - :label: Site of Administration
+    :enabled: true
+    :collet: false
+    :complex_datatype:
+    - :short_name: CD
+      :has_property:
+      - :label: code
+        :question_text: Location of Measurement
+        :prompt_text: Location
+        :format: '40'
+        :has_coded_value:
+        - :cl: C74456
+          :cli: C32141
+  - :label: Laterality
+    :enabled: true
+    :complex_datatype:
+    - :short_name: CD
+      :has_property:
+      - :label: code
+        :question_text: Laterality
+        :prompt_text: Laterality
+        :format: '40'
+        :has_coded_value:
+        - :cl: C99073
+          :cli: C25229
+        - :cl: C99073
+          :cli: C25228
+        - :cl: C99073
+          :cli: C13332
+  - :label: Method
+    :enabled: false
+  - :label: Not Done
+    :enabled: false
+  - :label: Reason Not Done
+    :enabled: false
+  - :label: Result
+    :enabled: true
+    :complex_datatype:
+    - :short_name: PQR
+      :has_property:
+      - :label: value
+        :question_text: Result
+        :prompt_text: Result
+        :format: '5.2'
+        :has_coded_value: []
+      - :label: code
+        :question_text: Unit
+        :prompt_text: Unit
+        :format: '20'
+        :has_coded_value:
+        - :cl: C66770
+          :cli: C49670
+        - :cl: C66770
+          :cli: C42547
+- :label: Heart Rate
+  :identifier: HR
+  :based_on: http://www.s-cubed.dk/BASIC_OBS/V1#BCT
+  :identified_by:
+    :label: Test
+    :enabled: true
+    :complex_datatype:
+    - :short_name: CD
+      :has_property:
+      - :label: code
+        :question_text: ''
+        :prompt_text: ''
+        :format: '8'
+        :has_coded_value:
+        - :cl: C66741
+          :cli: C49677
+  :has_items:
+  - :label: Category Code
+    :enabled: false
+  - :label: Subcategory Code
+    :enabled: false
+  - :label: Position
+    :enabled: true
+    :complex_datatype:
+    - :short_name: CD
+      :has_property:
+      - :label: code
+        :question_text: Body Position
+        :prompt_text: Position
+        :format: '40'
+        :has_coded_value:
+        - :cl: C71148
+          :cli: C62166
+        - :cl: C71148
+          :cli: C62122
+        - :cl: C71148
+          :cli: C62167
+  - :label: Site of Administration
+    :enabled: true
+    :collet: false
+    :complex_datatype:
+    - :short_name: CD
+      :has_property:
+      - :label: code
+        :question_text: Location of Measurement
+        :prompt_text: Location
+        :format: '40'
+        :has_coded_value:
+        - :cl: C74456
+          :cli: C32141
+  - :label: Laterality
+    :enabled: true
+    :complex_datatype:
+    - :short_name: CD
+      :has_property:
+      - :label: code
+        :question_text: Laterality
+        :prompt_text: Laterality
+        :format: '40'
+        :has_coded_value:
+        - :cl: C99073
+          :cli: C25229
+        - :cl: C99073
+          :cli: C25228
+        - :cl: C99073
+          :cli: C13332
+  - :label: Method
+    :enabled: false
+  - :label: Not Done
+    :enabled: false
+  - :label: Reason Not Done
+    :enabled: false
+  - :label: Result
+    :enabled: true
+    :complex_datatype:
+    - :short_name: PQR
+      :has_property:
+      - :label: value
+        :question_text: Result
+        :prompt_text: Result
+        :format: '5.2'
+        :has_coded_value: []
+      - :label: code
+        :question_text: Unit
+        :prompt_text: Unit
+        :format: '20'
+        :has_coded_value:
+        - :cl: C66770
+          :cli: C49670
+        - :cl: C66770
+          :cli: C42547
+- :label: Temperature
+  :identifier: TEMP
+  :based_on: http://www.s-cubed.dk/BASIC_OBS/V1#BCT
+  :identified_by:
+    :label: Test
+    :enabled: true
+    :complex_datatype:
+    - :short_name: CD
+      :has_property:
+      - :label: code
+        :question_text: ''
+        :prompt_text: ''
+        :format: '8'
+        :has_coded_value:
+        - :cl: C66741
+          :cli: C25206
+  :has_items:
+  - :label: Category Code
+    :enabled: false
+  - :label: Subcategory Code
+    :enabled: false
+  - :label: Position
+    :enabled: true
+    :complex_datatype:
+    - :short_name: CD
+      :has_property:
+      - :label: code
+        :question_text: Body Position
+        :prompt_text: Position
+        :format: '40'
+        :has_coded_value:
+        - :cl: C71148
+          :cli: C62166
+        - :cl: C71148
+          :cli: C62122
+        - :cl: C71148
+          :cli: C62167
+  - :label: Site of Administration
+    :enabled: true
+    :collet: false
+    :complex_datatype:
+    - :short_name: CD
+      :has_property:
+      - :label: code
+        :question_text: Location of Measurement
+        :prompt_text: Location
+        :format: '40'
+        :has_coded_value:
+        - :cl: C74456
+          :cli: C32141
+  - :label: Laterality
+    :enabled: true
+    :complex_datatype:
+    - :short_name: CD
+      :has_property:
+      - :label: code
+        :question_text: Laterality
+        :prompt_text: Laterality
+        :format: '40'
+        :has_coded_value:
+        - :cl: C99073
+          :cli: C25229
+        - :cl: C99073
+          :cli: C25228
+        - :cl: C99073
+          :cli: C13332
+  - :label: Method
+    :enabled: false
+  - :label: Not Done
+    :enabled: false
+  - :label: Reason Not Done
+    :enabled: false
+  - :label: Result
+    :enabled: true
+    :complex_datatype:
+    - :short_name: PQR
+      :has_property:
+      - :label: value
+        :question_text: Result
+        :prompt_text: Result
+        :format: '5.2'
+        :has_coded_value: []
+      - :label: code
+        :question_text: Unit
+        :prompt_text: Unit
+        :format: '20'
+        :has_coded_value:
+        - :cl: C66770
+          :cli: C49670
+        - :cl: C66770
+          :cli: C42547
+- :label: HbA1c
+  :identifier: HBA1C
+  :based_on: http://www.s-cubed.dk/BASIC_OBS/V1#BCT
+  :identified_by:
+    :label: Test
+    :enabled: true
+    :complex_datatype:
+    - :short_name: CD
+      :has_property:
+      - :label: code
+        :question_text: ''
+        :prompt_text: ''
+        :format: '8'
+        :has_coded_value:
+        - :cl: C65047
+          :cli: C64849
+  :has_items:
+  - :label: Category Code
+    :enabled: false
+  - :label: Subcategory Code
+    :enabled: false
+  - :label: Position
+    :enabled: false
+  - :label: Site of Administration
+    :enabled: false
+  - :label: Laterality
+    :enabled: false
+  - :label: Method
+    :enabled: false
+  - :label: Not Done
+    :enabled: false
+  - :label: Reason Not Done
+    :enabled: false
+  - :label: Result
+    :enabled: true
+    :complex_datatype:
+    - :short_name: PQR
+      :has_property:
+      - :label: value
+        :question_text: Result
+        :prompt_text: Result
+        :format: '5.2'
+        :has_coded_value: []
+      - :label: code
+        :question_text: Unit
+        :prompt_text: Unit
+        :format: '20'
+        :has_coded_value:
+        - :cl: C71620
+          :cli: C25613
+        - :cl: C71620
+          :cli: C111253
+- :label: Adverse Event
+  :identifier: AE
+  :based_on: http://www.s-cubed.dk/BASIC_OBS/V1#BCT
+  :identified_by:
+    :label: Test
+    :enabled: true
+    :complex_datatype:
+    - :short_name: CD
+      :has_property:
+      - :label: code
+        :question_text: ''
+        :prompt_text: ''
+        :format: '8'
+        :has_coded_value:
+        - :cl: C66741
+          :cli: C25347
+  :has_items:
+  - :label: Category Code
+    :enabled: false
+  - :label: Subcategory Code
+    :enabled: false
+  - :label: Position
+    :enabled: false
+  - :label: Site of Administration
+    :enabled: false
+  - :label: Laterality
+    :enabled: false
+  - :label: Method
+    :enabled: false
+  - :label: Not Done
+    :enabled: false
+  - :label: Reason Not Done
+    :enabled: false
+  - :label: Result
+    :enabled: true
+    :complex_datatype:
+    - :short_name: PQR
+      :has_property:
+      - :label: value
+        :question_text: Height value?
+        :prompt_text: Height
+        :format: '5.2'
+        :has_coded_value: []
+      - :label: code
+        :question_text: Result unit?
+        :prompt_text: Unit
+        :format: '20'
+        :has_coded_value:
+        - :cl: C66770
+          :cli: C49668
+        - :cl: C66770
+          :cli: C48500
+        - :cl: C71620
+          :cli: C41139
+        - :cl: C71620
+          :cli: C71253
+- :label: Electrocardiogram Interpretation
+  :identifier: INTP
+  :based_on: http://www.s-cubed.dk/BASIC_OBS/V1#BCT
+  :identified_by:
+    :label: Test
+    :enabled: true
+    :complex_datatype:
+    - :short_name: CD
+      :has_property:
+      - :label: code
+        :question_text: ''
+        :prompt_text: ''
+        :format: '8'
+        :has_coded_value:
+        - :cl: C71153
+          :cli: C41255
+  :has_items:
+  - :label: Category Code
+    :enabled: false
+  - :label: Subcategory Code
+    :enabled: false
+  - :label: Position
+    :enabled: false
+  - :label: Site of Administration
+    :enabled: false
+  - :label: Laterality
+    :enabled: false
+  - :label: Method
+    :enabled: false
+  - :label: Not Done
+    :enabled: false
+  - :label: Reason Not Done
+    :enabled: false
+  - :label: Result
+    :enabled: true
+    :complex_datatype:
+    - :short_name: PQR
+      :has_property:
+      - :label: value
+        :question_text: Overall result
+        :prompt_text: Overall result
+        :format: '20'
+        :has_coded_value:
+        - :cl: C101834
+          :cli: C14165
+        - :cl: C101834
+          :cli: C25401
+- :label: DAD - Use the toilet without accidents
+  :identifier: DAD C105183
+  :based_on: http://www.s-cubed.dk/BASIC_OBS/V1#BCT
+  :identified_by:
+    :label: Test
+    :enabled: true
+    :complex_datatype:
+    - :short_name: CD
+      :has_property:
+      - :label: code
+        :bridg_path: DefinedObservation.nameCode.CD.code
+        :question_text: ''
+        :prompt_text: ''
+        :format: ''
+        :has_coded_value:
+        - :cl: C105130
+          :cli: C105183
+          :term: http://www.cdisc.org/C105130/V34#C105130_C105183
+          :notation: DAD0114
+  :has_items:
+  - :label: Category Code
+    :enabled: true
+    :complex_datatype:
+    - :short_name: CD
+      :has_property:
+      - :label: code
+        :bridg_path: DefinedObservation.categoryCode.CD.code
+        :question_text: ''
+        :prompt_text: ''
+        :format: ''
+        :has_coded_value:
+        - :term: http://www.cdisc.org/C100129/V34#C100129_C105165
+          :cl: C100129
+          :cli: C105165
+          :notation: DAD
+  - :label: Subcategory Code
+    :enabled: true
+    :complex_datatype:
+    - :short_name: CD
+      :has_property:
+      - :label: code
+        :bridg_path: DefinedObservation.subcategoryCode.CD.code
+        :question_text: ''
+        :prompt_text: ''
+        :format: ''
+        :has_coded_value:
+        - :cl: H000003
+          :cli: HI000011
+  - :label: Position
+    :enabled: false
+  - :label: Site Of Administration
+    :enabled: false
+  - :label: Laterality
+    :enabled: false
+  - :label: Method
+    :enabled: false
+  - :label: DateTime
+    :enabled: 
+  - :label: Not Done
+    :enabled: false
+  - :label: Reason Not Done
+    :enabled: 
+  - :label: Result
+    :enabled: true
+    :complex_datatype:
+    - :short_name: CD
+      :has_property:
+      - :label: code
+        :bridg_path: PerformedClinicalResult.value.CD.code
+        :question_text: Use the toilet without accidents
+        :prompt_text: Use the toilet without accidents
+        :format: ''
+        :has_coded_value:
+        - :term: http://www.cdisc.org/C66742/V4#C66742_C49488
+          :cl: C66742
+          :cli: C49488
+          :notation: Y
+        - :term: http://www.cdisc.org/C66742/V4#C66742_C49487
+          :cl: C66742
+          :cli: C49487
+          :notation: N
+        - :term: http://www.cdisc.org/C66742/V4#C66742_C48660
+          :cl: C66742
+          :cli: C48660
+          :notation: NA
+  - :label: Baseline
+    :enabled: false
+- :label: DAD - Undress himself/herself completely
+  :identifier: DAD C105181
+  :based_on: http://www.s-cubed.dk/BASIC_OBS/V1#BCT
+  :identified_by:
+    :label: Test
+    :enabled: true
+    :complex_datatype:
+    - :short_name: CD
+      :has_property:
+      - :label: code
+        :bridg_path: DefinedObservation.nameCode.CD.code
+        :question_text: ''
+        :prompt_text: ''
+        :format: ''
+        :has_coded_value:
+        - :term: http://www.cdisc.org/C105130/V34#C105130_C105181
+          :cl: C105130
+          :cli: C105181
+          :notation: DAD0112
+  :has_items:
+  - :label: Category Code
+    :enabled: true
+    :complex_datatype:
+    - :short_name: CD
+      :has_property:
+      - :label: code
+        :bridg_path: DefinedObservation.categoryCode.CD.code
+        :question_text: ''
+        :prompt_text: ''
+        :format: ''
+        :has_coded_value:
+        - :term: http://www.cdisc.org/C100129/V34#C100129_C105165
+          :cl: C100129
+          :cli: C105165
+          :notation: DAD
+  - :label: Subcategory Code
+    :enabled: true
+    :complex_datatype:
+    - :short_name: CD
+      :has_property:
+      - :label: code
+        :bridg_path: DefinedObservation.subcategoryCode.CD.code
+        :question_text: ''
+        :prompt_text: ''
+        :format: ''
+        :has_coded_value:
+        - :cl: H000003
+          :cli: HI000010
+  - :label: Position
+    :enabled: false
+  - :label: Site Of Administration
+    :enabled: false
+  - :label: Laterality
+    :enabled: false
+  - :label: Method
+    :enabled: false
+  - :label: DateTime
+    :enabled: 
+  - :label: Not Done
+    :enabled: false
+  - :label: Reason Not Done
+    :enabled: 
+  - :label: Result
+    :enabled: true
+    :complex_datatype:
+    - :short_name: CD
+      :has_property:
+      - :label: code
+        :bridg_path: PerformedClinicalResult.value.CD.code
+        :question_text: Undress himself/herself completely
+        :prompt_text: Undress himself/herself completely
+        :format: ''
+        :has_coded_value:
+        - :term: http://www.cdisc.org/C66742/V4#C66742_C49488
+          :cl: C66742
+          :cli: C49488
+          :notation: Y
+        - :term: http://www.cdisc.org/C66742/V4#C66742_C49487
+          :cl: C66742
+          :cli: C49487
+          :notation: N
+        - :term: http://www.cdisc.org/C66742/V4#C66742_C48660
+          :cl: C66742
+          :cli: C48660
+          :notation: NA
+  - :label: Baseline
+    :enabled: false
+- :label: DAD - Undertake to brush his/her teeth or care for his/her dentures
+  :identifier: DAD C105171
+  :based_on: http://www.s-cubed.dk/BASIC_OBS/V1#BCT
+  :identified_by:
+    :label: Test
+    :enabled: true
+    :complex_datatype:
+    - :short_name: CD
+      :has_property:
+      - :label: code
+        :bridg_path: DefinedObservation.nameCode.CD.code
+        :question_text: ''
+        :prompt_text: ''
+        :format: ''
+        :has_coded_value:
+        - :cl: H000003
+          :cli: HI000010
+  :has_items:
+  - :label: Category Code
+    :enabled: true
+    :complex_datatype:
+    - :short_name: CD
+      :has_property:
+      - :label: code
+        :bridg_path: DefinedObservation.categoryCode.CD.code
+        :question_text: ''
+        :prompt_text: ''
+        :format: ''
+        :has_coded_value:
+        - :term: http://www.cdisc.org/C100129/V34#C100129_C105165
+          :cl: C100129
+          :cli: C105165
+          :notation: DAD
+  - :label: Subcategory Code
+    :enabled: true
+    :complex_datatype:
+    - :short_name: CD
+      :has_property:
+      - :label: code
+        :bridg_path: DefinedObservation.subcategoryCode.CD.code
+        :question_text: ''
+        :prompt_text: ''
+        :format: ''
+        :has_coded_value:
+        - :cl: H000003
+          :cli: HI000009
+  - :label: Position
+    :enabled: false
+  - :label: Site Of Administration
+    :enabled: false
+  - :label: Laterality
+    :enabled: false
+  - :label: Method
+    :enabled: false
+  - :label: DateTime
+    :enabled: 
+  - :label: Not Done
+    :enabled: false
+  - :label: Reason Not Done
+    :enabled: 
+  - :label: Result
+    :enabled: true
+    :complex_datatype:
+    - :short_name: CD
+      :has_property:
+      - :label: code
+        :bridg_path: PerformedClinicalResult.value.CD.code
+        :question_text: Undertake to brush his/her teeth or care for his/her dentures
+        :prompt_text: Undertake to brush his/her teeth or care for his/her dentures
+        :format: ''
+        :has_coded_value:
+        - :term: http://www.cdisc.org/C66742/V4#C66742_C49488
+          :cl: C66742
+          :cli: C49488
+          :notation: Y
+        - :term: http://www.cdisc.org/C66742/V4#C66742_C49487
+          :cl: C66742
+          :cli: C49487
+          :notation: N
+        - :term: http://www.cdisc.org/C66742/V4#C66742_C48660
+          :cl: C66742
+          :cli: C48660
+          :notation: NA
+  - :label: Baseline
+    :enabled: false
+- :label: DAD - Take his/her medications as prescribed
+  :identifier: DAD C105204
+  :based_on: http://www.s-cubed.dk/BASIC_OBS/V1#BCT
+  :identified_by:
+    :label: Test
+    :enabled: true
+    :complex_datatype:
+    - :short_name: CD
+      :has_property:
+      - :label: code
+        :bridg_path: DefinedObservation.nameCode.CD.code
+        :question_text: ''
+        :prompt_text: ''
+        :format: ''
+        :has_coded_value:
+        - :term: http://www.cdisc.org/C105130/V34#C105130_C105204
+          :cl: C105130
+          :cli: C105204
+          :notation: DAD0135
+  :has_items:
+  - :label: Category Code
+    :enabled: true
+    :complex_datatype:
+    - :short_name: CD
+      :has_property:
+      - :label: code
+        :bridg_path: DefinedObservation.categoryCode.CD.code
+        :question_text: ''
+        :prompt_text: ''
+        :format: ''
+        :has_coded_value:
+        - :term: http://www.cdisc.org/C100129/V34#C100129_C105165
+          :cl: C100129
+          :cli: C105165
+          :notation: DAD
+  - :label: Subcategory Code
+    :enabled: true
+    :complex_datatype:
+    - :short_name: CD
+      :has_property:
+      - :label: code
+        :bridg_path: DefinedObservation.subcategoryCode.CD.code
+        :question_text: ''
+        :prompt_text: ''
+        :format: ''
+        :has_coded_value:
+        - :cl: H000003
+          :cli: HI000017
+  - :label: Position
+    :enabled: false
+  - :label: Site Of Administration
+    :enabled: false
+  - :label: Laterality
+    :enabled: false
+  - :label: Method
+    :enabled: false
+  - :label: DateTime
+    :enabled: 
+  - :label: Not Done
+    :enabled: false
+  - :label: Reason Not Done
+    :enabled: 
+  - :label: Result
+    :enabled: true
+    :complex_datatype:
+    - :short_name: CD
+      :has_property:
+      - :label: code
+        :bridg_path: PerformedClinicalResult.value.CD.code
+        :question_text: Take his/her medications as prescribed (according to the right
+          dosage)
+        :prompt_text: Take his/her medications as prescribed (according to the right
+          dosage)
+        :format: ''
+        :has_coded_value:
+        - :term: http://www.cdisc.org/C66742/V4#C66742_C49488
+          :cl: C66742
+          :cli: C49488
+          :notation: Y
+        - :term: http://www.cdisc.org/C66742/V4#C66742_C49487
+          :cl: C66742
+          :cli: C49487
+          :notation: N
+        - :term: http://www.cdisc.org/C66742/V4#C66742_C48660
+          :cl: C66742
+          :cli: C48660
+          :notation: NA
+  - :label: Baseline
+    :enabled: false
+- :label: DAD - Show an interest in his/her personal affairs
+  :identifier: DAD C105199
+  :based_on: http://www.s-cubed.dk/BASIC_OBS/V1#BCT
+  :identified_by:
+    :label: Test
+    :enabled: true
+    :complex_datatype:
+    - :short_name: CD
+      :has_property:
+      - :label: code
+        :bridg_path: DefinedObservation.nameCode.CD.code
+        :question_text: ''
+        :prompt_text: ''
+        :format: ''
+        :has_coded_value:
+        - :term: http://www.cdisc.org/C105130/V34#C105130_C105199
+          :cl: C105130
+          :cli: C105199
+          :notation: DAD0130
+  :has_items:
+  - :label: Category Code
+    :enabled: true
+    :complex_datatype:
+    - :short_name: CD
+      :has_property:
+      - :label: code
+        :bridg_path: DefinedObservation.categoryCode.CD.code
+        :question_text: ''
+        :prompt_text: ''
+        :format: ''
+        :has_coded_value:
+        - :term: http://www.cdisc.org/C100129/V34#C100129_C105165
+          :cl: C100129
+          :cli: C105165
+          :notation: DAD
+  - :label: Subcategory Code
+    :enabled: true
+    :complex_datatype:
+    - :short_name: CD
+      :has_property:
+      - :label: code
+        :bridg_path: DefinedObservation.subcategoryCode.CD.code
+        :question_text: ''
+        :prompt_text: ''
+        :format: ''
+        :has_coded_value:
+        - :cl: H000003
+          :cli: HI000016
+  - :label: Position
+    :enabled: false
+  - :label: Site Of Administration
+    :enabled: false
+  - :label: Laterality
+    :enabled: false
+  - :label: Method
+    :enabled: false
+  - :label: DateTime
+    :enabled: 
+  - :label: Not Done
+    :enabled: false
+  - :label: Reason Not Done
+    :enabled: 
+  - :label: Result
+    :enabled: true
+    :complex_datatype:
+    - :short_name: CD
+      :has_property:
+      - :label: code
+        :bridg_path: PerformedClinicalResult.value.CD.code
+        :question_text: Show an interest in his/her personal affairs such as his/her
+          finances and written correspondence
+        :prompt_text: Show an interest in his/her personal affairs such as his/her
+          finances and written correspondence
+        :format: ''
+        :has_coded_value:
+        - :term: http://www.cdisc.org/C66742/V4#C66742_C49488
+          :cl: C66742
+          :cli: C49488
+          :notation: Y
+        - :term: http://www.cdisc.org/C66742/V4#C66742_C49487
+          :cl: C66742
+          :cli: C49487
+          :notation: N
+        - :term: http://www.cdisc.org/C66742/V4#C66742_C48660
+          :cl: C66742
+          :cli: C48660
+          :notation: NA
+  - :label: Baseline
+    :enabled: false
+- :label: DAD - Prepare the water, towels, and soap for washing, taking a bath, or
+    a shower
+  :identifier: DAD C105173
+  :based_on: http://www.s-cubed.dk/BASIC_OBS/V1#BCT
+  :identified_by:
+    :label: Test
+    :enabled: true
+    :complex_datatype:
+    - :short_name: CD
+      :has_property:
+      - :label: code
+        :bridg_path: DefinedObservation.nameCode.CD.code
+        :question_text: ''
+        :prompt_text: ''
+        :format: ''
+        :has_coded_value:
+        - :term: http://www.cdisc.org/C105130/V34#C105130_C105173
+          :cl: C105130
+          :cli: C105173
+          :notation: DAD0104
+  :has_items:
+  - :label: Category Code
+    :enabled: true
+    :complex_datatype:
+    - :short_name: CD
+      :has_property:
+      - :label: code
+        :bridg_path: DefinedObservation.categoryCode.CD.code
+        :question_text: ''
+        :prompt_text: ''
+        :format: ''
+        :has_coded_value:
+        - :term: http://www.cdisc.org/C100129/V34#C100129_C105165
+          :cl: C100129
+          :cli: C105165
+          :notation: DAD
+  - :label: Subcategory Code
+    :enabled: true
+    :complex_datatype:
+    - :short_name: CD
+      :has_property:
+      - :label: code
+        :bridg_path: DefinedObservation.subcategoryCode.CD.code
+        :question_text: ''
+        :prompt_text: ''
+        :format: ''
+        :has_coded_value:
+        - :cl: H000003
+          :cli: HI000009
+  - :label: Position
+    :enabled: false
+  - :label: Site Of Administration
+    :enabled: false
+  - :label: Laterality
+    :enabled: false
+  - :label: Method
+    :enabled: false
+  - :label: DateTime
+    :enabled: 
+  - :label: Not Done
+    :enabled: false
+  - :label: Reason Not Done
+    :enabled: 
+  - :label: Result
+    :enabled: true
+    :complex_datatype:
+    - :short_name: CD
+      :has_property:
+      - :label: code
+        :bridg_path: PerformedClinicalResult.value.CD.code
+        :question_text: Prepare the water, towels, and soap for washing, taking a
+          bath, or a shower
+        :prompt_text: Prepare the water, towels, and soap for washing, taking a bath,
+          or a shower
+        :format: ''
+        :has_coded_value:
+        - :term: http://www.cdisc.org/C66742/V4#C66742_C49488
+          :cl: C66742
+          :cli: C49488
+          :notation: Y
+        - :term: http://www.cdisc.org/C66742/V4#C66742_C49487
+          :cl: C66742
+          :cli: C49487
+          :notation: N
+        - :term: http://www.cdisc.org/C66742/V4#C66742_C48660
+          :cl: C66742
+          :cli: C48660
+          :notation: NA
+  - :label: Baseline
+    :enabled: false
+- :label: DAD - Handle adequately his/her money
+  :identifier: DAD C105202
+  :based_on: http://www.s-cubed.dk/BASIC_OBS/V1#BCT
+  :identified_by:
+    :label: Test
+    :enabled: true
+    :complex_datatype:
+    - :short_name: CD
+      :has_property:
+      - :label: code
+        :bridg_path: DefinedObservation.nameCode.CD.code
+        :question_text: ''
+        :prompt_text: ''
+        :format: ''
+        :has_coded_value:
+        - :term: http://www.cdisc.org/C105130/V34#C105130_C105202
+          :cl: C105130
+          :cli: C105202
+          :notation: DAD0133
+  :has_items:
+  - :label: Category Code
+    :enabled: true
+    :complex_datatype:
+    - :short_name: CD
+      :has_property:
+      - :label: code
+        :bridg_path: DefinedObservation.categoryCode.CD.code
+        :question_text: ''
+        :prompt_text: ''
+        :format: ''
+        :has_coded_value:
+        - :term: http://www.cdisc.org/C100129/V34#C100129_C105165
+          :cl: C100129
+          :cli: C105165
+          :notation: DAD
+  - :label: Subcategory Code
+    :enabled: true
+    :complex_datatype:
+    - :short_name: CD
+      :has_property:
+      - :label: code
+        :bridg_path: DefinedObservation.subcategoryCode.CD.code
+        :question_text: ''
+        :prompt_text: ''
+        :format: ''
+        :has_coded_value:
+        - :cl: H000003
+          :cli: HI000016
+  - :label: Position
+    :enabled: false
+  - :label: Site Of Administration
+    :enabled: false
+  - :label: Laterality
+    :enabled: false
+  - :label: Method
+    :enabled: false
+  - :label: DateTime
+    :enabled: 
+  - :label: Not Done
+    :enabled: false
+  - :label: Reason Not Done
+    :enabled: 
+  - :label: Result
+    :enabled: true
+    :complex_datatype:
+    - :short_name: CD
+      :has_property:
+      - :label: code
+        :bridg_path: PerformedClinicalResult.value.CD.code
+        :question_text: Handle adequately his/her money (make change)
+        :prompt_text: Handle adequately his/her money (make change)
+        :format: ''
+        :has_coded_value:
+        - :term: http://www.cdisc.org/C66742/V4#C66742_C49488
+          :cl: C66742
+          :cli: C49488
+          :notation: Y
+        - :term: http://www.cdisc.org/C66742/V4#C66742_C49487
+          :cl: C66742
+          :cli: C49487
+          :notation: N
+        - :term: http://www.cdisc.org/C66742/V4#C66742_C48660
+          :cl: C66742
+          :cli: C48660
+          :notation: NA
+  - :label: Baseline
+    :enabled: false
+- :label: DAD - Decide to take his/her medications at the correct time
+  :identifier: DAD C105203
+  :based_on: http://www.s-cubed.dk/BASIC_OBS/V1#BCT
+  :identified_by:
+    :label: Test
+    :enabled: true
+    :complex_datatype:
+    - :short_name: CD
+      :has_property:
+      - :label: code
+        :bridg_path: DefinedObservation.nameCode.CD.code
+        :question_text: ''
+        :prompt_text: ''
+        :format: ''
+        :has_coded_value:
+        - :term: http://www.cdisc.org/C105130/V34#C105130_C105203
+          :cl: C105130
+          :cli: C105203
+          :notation: DAD0134
+  :has_items:
+  - :label: Category Code
+    :enabled: true
+    :complex_datatype:
+    - :short_name: CD
+      :has_property:
+      - :label: code
+        :bridg_path: DefinedObservation.categoryCode.CD.code
+        :question_text: ''
+        :prompt_text: ''
+        :format: ''
+        :has_coded_value:
+        - :term: http://www.cdisc.org/C100129/V34#C100129_C105165
+          :cl: C100129
+          :cli: C105165
+          :notation: DAD
+  - :label: Subcategory Code
+    :enabled: true
+    :complex_datatype:
+    - :short_name: CD
+      :has_property:
+      - :label: code
+        :bridg_path: DefinedObservation.subcategoryCode.CD.code
+        :question_text: ''
+        :prompt_text: ''
+        :format: ''
+        :has_coded_value:
+        - :cl: H000003
+          :cli: HI000017
+  - :label: Position
+    :enabled: false
+  - :label: Site Of Administration
+    :enabled: false
+  - :label: Laterality
+    :enabled: false
+  - :label: Method
+    :enabled: false
+  - :label: DateTime
+    :enabled: 
+  - :label: Not Done
+    :enabled: false
+  - :label: Reason Not Done
+    :enabled: 
+  - :label: Result
+    :enabled: true
+    :complex_datatype:
+    - :short_name: CD
+      :has_property:
+      - :label: code
+        :bridg_path: PerformedClinicalResult.value.CD.code
+        :question_text: Decide to take his/her medications at the correct time
+        :prompt_text: v
+        :format: ''
+        :has_coded_value:
+        - :term: http://www.cdisc.org/C66742/V4#C66742_C49488
+          :cl: C66742
+          :cli: C49488
+          :notation: Y
+        - :term: http://www.cdisc.org/C66742/V4#C66742_C49487
+          :cl: C66742
+          :cli: C49487
+          :notation: N
+        - :term: http://www.cdisc.org/C66742/V4#C66742_C48660
+          :cl: C66742
+          :cli: C48660
+          :notation: NA
+  - :label: Baseline
+    :enabled: false
+- :label: DAD - Decide to care for his/her hair (wash and comb)
+  :identifier: DAD C105172
+  :based_on: http://www.s-cubed.dk/BASIC_OBS/V1#BCT
+  :identified_by:
+    :label: Test
+    :enabled: true
+    :complex_datatype:
+    - :short_name: CD
+      :has_property:
+      - :label: code
+        :bridg_path: DefinedObservation.nameCode.CD.code
+        :question_text: ''
+        :prompt_text: ''
+        :format: ''
+        :has_coded_value:
+        - :term: http://www.cdisc.org/C105130/V34#C105130_C105172
+          :cl: C105130
+          :cli: C105172
+          :notation: DAD0103
+  :has_items:
+  - :label: Category Code
+    :enabled: true
+    :complex_datatype:
+    - :short_name: CD
+      :has_property:
+      - :label: code
+        :bridg_path: DefinedObservation.categoryCode.CD.code
+        :question_text: ''
+        :prompt_text: ''
+        :format: ''
+        :has_coded_value:
+        - :term: http://www.cdisc.org/C100129/V34#C100129_C105165
+          :cl: C100129
+          :cli: C105165
+          :notation: DAD
+  - :label: Subcategory Code
+    :enabled: true
+    :complex_datatype:
+    - :short_name: CD
+      :has_property:
+      - :label: code
+        :bridg_path: DefinedObservation.subcategoryCode.CD.code
+        :question_text: ''
+        :prompt_text: ''
+        :format: ''
+        :has_coded_value:
+        - :cl: H000003
+          :cli: HI000009
+  - :label: Position
+    :enabled: false
+  - :label: Site Of Administration
+    :enabled: false
+  - :label: Laterality
+    :enabled: false
+  - :label: Method
+    :enabled: false
+  - :label: DateTime
+    :enabled: 
+  - :label: Not Done
+    :enabled: false
+  - :label: Reason Not Done
+    :enabled: 
+  - :label: Result
+    :enabled: true
+    :complex_datatype:
+    - :short_name: CD
+      :has_property:
+      - :label: code
+        :bridg_path: PerformedClinicalResult.value.CD.code
+        :question_text: Decide to care for his/her hair (wash and comb)
+        :prompt_text: Decide to care for his/her hair (wash and comb)
+        :format: ''
+        :has_coded_value:
+        - :term: http://www.cdisc.org/C66742/V4#C66742_C49488
+          :cl: C66742
+          :cli: C49488
+          :notation: Y
+        - :term: http://www.cdisc.org/C66742/V4#C66742_C49487
+          :cl: C66742
+          :cli: C49487
+          :notation: N
+        - :term: http://www.cdisc.org/C66742/V4#C66742_C48660
+          :cl: C66742
+          :cli: C48660
+          :notation: NA
+  - :label: Baseline
+    :enabled: false
+- :label: DAD - Choose appropriate utensils and seasonings when eating
+  :identifier: DAD C105185
+  :based_on: http://www.s-cubed.dk/BASIC_OBS/V1#BCT
+  :identified_by:
+    :label: Test
+    :enabled: true
+    :complex_datatype:
+    - :short_name: CD
+      :has_property:
+      - :label: code
+        :bridg_path: DefinedObservation.nameCode.CD.code
+        :question_text: ''
+        :prompt_text: ''
+        :format: ''
+        :has_coded_value:
+        - :term: http://www.cdisc.org/C105130/V34#C105130_C105185
+          :cl: C105130
+          :cli: C105185
+          :notation: DAD0116
+  :has_items:
+  - :label: Category Code
+    :enabled: true
+    :complex_datatype:
+    - :short_name: CD
+      :has_property:
+      - :label: code
+        :bridg_path: DefinedObservation.categoryCode.CD.code
+        :question_text: ''
+        :prompt_text: ''
+        :format: ''
+        :has_coded_value:
+        - :term: http://www.cdisc.org/C100129/V34#C100129_C105165
+          :cl: C100129
+          :cli: C105165
+          :notation: DAD
+  - :label: Subcategory Code
+    :enabled: true
+    :complex_datatype:
+    - :short_name: CD
+      :has_property:
+      - :label: code
+        :bridg_path: DefinedObservation.subcategoryCode.CD.code
+        :question_text: ''
+        :prompt_text: ''
+        :format: ''
+        :has_coded_value:
+        - :cl: H000003
+          :cli: HI000012
+  - :label: Position
+    :enabled: false
+  - :label: Site Of Administration
+    :enabled: false
+  - :label: Laterality
+    :enabled: false
+  - :label: Method
+    :enabled: false
+  - :label: DateTime
+    :enabled: 
+  - :label: Not Done
+    :enabled: false
+  - :label: Reason Not Done
+    :enabled: 
+  - :label: Result
+    :enabled: true
+    :complex_datatype:
+    - :short_name: CD
+      :has_property:
+      - :label: code
+        :bridg_path: PerformedClinicalResult.value.CD.code
+        :question_text: Choose appropriate utensils and seasonings when eating
+        :prompt_text: Choose appropriate utensils and seasonings when eating
+        :format: ''
+        :has_coded_value:
+        - :term: http://www.cdisc.org/C66742/V4#C66742_C49488
+          :cl: C66742
+          :cli: C49488
+          :notation: Y
+        - :term: http://www.cdisc.org/C66742/V4#C66742_C49487
+          :cl: C66742
+          :cli: C49487
+          :notation: N
+        - :term: http://www.cdisc.org/C66742/V4#C66742_C48660
+          :cl: C66742
+          :cli: C48660
+          :notation: NA
+  - :label: Baseline
+    :enabled: false
+- :label: DAD - Choose appropriate clothing
+  :identifier: DAD C105178
+  :based_on: http://www.s-cubed.dk/BASIC_OBS/V1#BCT
+  :identified_by:
+    :label: Test
+    :enabled: true
+    :complex_datatype:
+    - :short_name: CD
+      :has_property:
+      - :label: code
+        :bridg_path: DefinedObservation.nameCode.CD.code
+        :question_text: ''
+        :prompt_text: ''
+        :format: ''
+        :has_coded_value:
+        - :term: http://www.cdisc.org/C105130/V34#C105130_C105178
+          :cl: C105130
+          :cli: C105178
+          :notation: DAD0109
+  :has_items:
+  - :label: Category Code
+    :enabled: true
+    :complex_datatype:
+    - :short_name: CD
+      :has_property:
+      - :label: code
+        :bridg_path: DefinedObservation.categoryCode.CD.code
+        :question_text: ''
+        :prompt_text: ''
+        :format: ''
+        :has_coded_value:
+        - :term: http://www.cdisc.org/C100129/V34#C100129_C105165
+          :cl: C100129
+          :cli: C105165
+          :notation: DAD
+  - :label: Subcategory Code
+    :enabled: true
+    :complex_datatype:
+    - :short_name: CD
+      :has_property:
+      - :label: code
+        :bridg_path: DefinedObservation.subcategoryCode.CD.code
+        :question_text: ''
+        :prompt_text: ''
+        :format: ''
+        :has_coded_value:
+        - :cl: H000003
+          :cli: HI000010
+  - :label: Position
+    :enabled: false
+  - :label: Site Of Administration
+    :enabled: false
+  - :label: Laterality
+    :enabled: false
+  - :label: Method
+    :enabled: false
+  - :label: DateTime
+    :enabled: 
+  - :label: Not Done
+    :enabled: false
+  - :label: Reason Not Done
+    :enabled: 
+  - :label: Result
+    :enabled: true
+    :complex_datatype:
+    - :short_name: CD
+      :has_property:
+      - :label: code
+        :bridg_path: PerformedClinicalResult.value.CD.code
+        :question_text: Choose appropriate clothing (with regard to the occasion,
+          neatness, the weather, and color combination)
+        :prompt_text: Choose appropriate clothing (with regard to the occasion, neatness,
+          the weather, and color combination)
+        :format: ''
+        :has_coded_value:
+        - :term: http://www.cdisc.org/C66742/V4#C66742_C49488
+          :cl: C66742
+          :cli: C49488
+          :notation: Y
+        - :term: http://www.cdisc.org/C66742/V4#C66742_C49487
+          :cl: C66742
+          :cli: C49487
+          :notation: N
+        - :term: http://www.cdisc.org/C66742/V4#C66742_C48660
+          :cl: C66742
+          :cli: C48660
+          :notation: NA
+  - :label: Baseline
+    :enabled: false

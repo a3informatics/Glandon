@@ -157,7 +157,7 @@ describe Form::Item::BcProperty do
       check_file_actual_expected(result, sub_dir, "make_common_expected_1.yaml", equate_method: :hash_equal)
     end
 
-    it "make common III, check terminologies" do 
+    it "make common III, check terminologies" do
       allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
       normal = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1"))
       cg = normal.add_child({type:"common_group"})
@@ -174,7 +174,7 @@ describe Form::Item::BcProperty do
       check_file_actual_expected(result, sub_dir, "make_common_expected_3.yaml", equate_method: :hash_equal)
     end
 
-    # it "make common IV, check terminologies" do 
+    # it "make common IV, check terminologies" do
     #   allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
     #   normal = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1"))
     #   cg = normal.add_child({type:"common_group"})
@@ -256,4 +256,3 @@ describe Form::Item::BcProperty do
   end
 
 end
-  

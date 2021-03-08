@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe BiomedicalConcept do
-  
+
   include DataHelpers
   include PublicFileHelpers
 
@@ -30,7 +30,7 @@ describe BiomedicalConcept do
     params[:has_complex_datatype].each do |datatype|
       datatype[:short_name] = datatype[:label] unless datatype.key?(:short_name) # Fix short_name if using template
       cdt = find_complex_datatype(datatype[:short_name])
-      cdt = create_complex_datatype(datatype, cdt, t_item) 
+      cdt = create_complex_datatype(datatype, cdt, t_item)
       item.has_complex_datatype_push(cdt)
     end
     #puts "I Alias=#{item.to_h[:has_complex_datatype].map{|x| x[:has_property].map{|y| y[:alias]}}}"
@@ -85,17 +85,17 @@ describe BiomedicalConcept do
       ref = CanonicalReference.where(label: params[:is_a])
       property.is_a = ref.first.uri unless ref.empty?
       puts colourize("***** Error finding Canonical ref: #{params[:alias]} #{params[:is_a]} *****", "red") if ref.empty?
-      cdt_property = t_cdt.has_property.find{|x| x.label == params[:label]} 
+      cdt_property = t_cdt.has_property.find{|x| x.label == params[:label]}
       property.is_complex_datatype_property = cdt_property
       puts colourize("***** Error finding CDT property: #{params[:alias]} #{params[:label]} *****", "red") if cdt_property.nil?
     else
       t_cdt.has_property_objects
-      t_property = t_cdt.has_property.find{|x| x.label == params[:label]} 
+      t_property = t_cdt.has_property.find{|x| x.label == params[:label]}
       property.alias = t_property.alias
       #puts "Template=#{t_property.to_h}"
       property.is_a = t_property.is_a
       cdt_properties = ComplexDatatype.find_children(t_cdt.is_complex_datatype)
-      cdt_property = cdt_properties.has_property.find{|x| x.label == params[:label]} 
+      cdt_property = cdt_properties.has_property.find{|x| x.label == params[:label]}
       property.is_complex_datatype_property = cdt_property
       refs.each_with_index do |term, index|
         if term[:cl].start_with?("C")
@@ -106,7 +106,7 @@ describe BiomedicalConcept do
         cl_uri = items[term[:cl]]
         cli_uri = items[term[:cli]]
         op_ref = OperationalReferenceV3::TucReference.new(context: cl_uri, reference: cli_uri, optional: true, ordinal: index+1)
-        property.has_coded_value_push(op_ref) 
+        property.has_coded_value_push(op_ref)
       end
     end
     #puts "CP Alias=#{property.to_h[:alias]}"
@@ -121,7 +121,7 @@ describe BiomedicalConcept do
       id_item = create_item(template[:identified_by], 1)
       object.has_item_push(id_item)
       object.identified_by = id_item
-      template[:has_items].each_with_index do |x, index| 
+      template[:has_items].each_with_index do |x, index|
         object.has_item_push(create_item(x, index+2))
       end
       object.set_initial(template[:identifier])
@@ -145,7 +145,7 @@ describe BiomedicalConcept do
       id_item = create_item(instance[:identified_by], 1, template)
       object.has_item_push(id_item)
       object.identified_by = id_item
-      instance[:has_items].each_with_index do |item, index| 
+      instance[:has_items].each_with_index do |item, index|
         object.has_item_push(create_item(item, index+2, template))
       end
       #puts "Obj Final Alias=#{object.to_h[:has_item].map{|z| z[:has_complex_datatype].map{|x| x[:has_property].map{|y| y[:alias]}}}}"

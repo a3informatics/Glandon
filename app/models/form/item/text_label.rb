@@ -6,12 +6,12 @@
 class Form::Item::TextLabel < Form::Item
 
   configure rdf_type: "http://www.assero.co.uk/BusinessForm#TextLabel",
-            uri_suffix: "TL", 
-            uri_unique: true 
+            uri_suffix: "TL",
+            uri_unique: true
 #           uri_property: :ordinal
 
   data_property :label_text
-  
+
   validates_with Validator::Field, attribute: :label_text, method: :valid_markdown?
 
   # Get Item

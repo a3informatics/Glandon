@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+
+<html lang="en" class="<%= "no-sidebar" if current_user.is_only_community? %>">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,209 +14,39 @@
       <%= yield :page_title %> - <%= APP_CONFIG['application_name'] %>
     </title>
 
-    <% if !Rails.application.config.assets.precompile.include? "#{params[:controller]}.js" %>
-      <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= stylesheet_link_tag 'application', media: 'all' %>
+    <%= stylesheet_link_tag 'print', :media => 'print' %>
 
-      <%= javascript_include_tag 'application' %>
-  	<% else %>
-      <%= stylesheet_link_tag    'application', params[:controller], media: 'all' %>
-      <%= javascript_include_tag 'application', params[:controller] %>
-  	<% end %>
+    <%# JS & dependencies defined in assets/javascript/application.js (deprecated) %>
+    <%= javascript_include_tag 'application' %>
 
-    <%= stylesheet_link_tag 'print', :media => 'print'%>
+    <%# JS defined in javascript/application.js %>
+    <%= javascript_pack_tag 'application' %>
 
     <%= javascript_include_tag 'locked_items' if Rails.env != "test" %>
 
-    <%= javascript_pack_tag 'application' %>
+    <%# Preload fonts %>
+    <% if Rails.env != "test" %>
+      <%= preload_link_tag(asset_path("Roboto-Light.ttf"), ) %>
+      <%= preload_link_tag(asset_path("Roboto-Medium.ttf")) %>
+      <%= preload_link_tag(asset_path("Roboto-Regular.ttf")) %>
+      <%= preload_link_tag(asset_path("icon-fonts/icomoon.ttf")) %>
+    <% end %>
 
     <%= csrf_meta_tags %>
 
-    <% menu_category_title = controller_to_menu %>
-    <% c_sysadmin, c_impexp, c_util, c_term, c_biocon, c_forms, c_sdtm, c_adam =
-      "System Admin", "Import/Export", "Utilities", "Terminology", "Biomedical Concepts", "Forms", "SDTM", "ADaM"%>
-
-    <style>
-      html, body {
-        height: 100%;
-        overflow-y: auto;
-      }
-
-      body {
-      	padding-top: 51px;
-      }
-
-      .container-fluid, .full {
-      	height:100%;
-      }
-
-      #main_area {
-        width: 100%;
-        min-height: 100%;
-        padding: 0px 10px;
-        overflow-y: auto;
-        margin: 0px;
-      }
-
-      @media (min-width:768px) {
-
-        #main_area {
-          width: <%= if current_user.is_only_community? then "100%" else "calc(100% - 270px)" end %>;
-          max-height: 100%;
-          padding: 0 30px;
-        }
-
-        html, body {
-          overflow-y: <%= if current_user.is_only_community? then "auto" else "hidden" end %>;
-        }
-
-        .ma-sb-col{
-          transition: width .4s;
-          transition-delay: .1s;
-          width: calc(100% - 60px) !important;
-        }
-
-        .ma-sb-exp{
-          transition: width .2s;
-          width: calc(100% - 270px);
-        }
-
-      }
-
-      .table td.fit,
-			.table th.fit {
-    		white-space: nowrap;
-    		width: 1%;
-			}
-    </style>
   </head>
-  <body class="bg-grey-bright page-scroll-styled">
+
+  <body class="page-scroll-styled">
     <div class="container-fluid">
-      <!-- NAVBAR BEGIN -->
-      <nav class="navbar navbar-inverse navbar-fixed-top bg-prim-dark">
-        <div class="container-fluid">
-          <div class="navbar-header">
-            <!-- NAVBAR EXPAND BUTTON FOR VERTICAL SCREENS -->
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-            <% if !current_user.is_only_community? %>
-              <button type="button" class="navbar-toggle arrow-rotate" id="sidebar-v-toggle" onclick="toggleSidebar()">
-                <span class="icon-arrow-u-nopad text-white"></span>
-              </button>
-            <% end %>
-            <!-- LOGO AND TITLE -->
-            <a class="navbar-brand" href="/">
-              <img alt='Brand' src='<%= image_path("a3-logo") %>' width='25'>
-            </a>
-            <a class="navbar-brand" href="/">
-              <span class='text-light'>
-                <small><%= ENV['organization_navbar'] %><%= "#{APP_CONFIG['application_name']}"%> (v<%= Version::VERSION %>)</small>
-              </span>
-            </a>
-          </div>
-          <!-- ICONS -->
-          <div id="navbar" class="navbar-collapse collapse">
-            <ul class="nav navbar-nav navbar-right">
-              <!-- HOME -->
-              <li>
-                <a id="home_button" href="/">
-                  <span class="icon-home text-light ttip">
-                    <span class="ttip-text ttip-right shadow-small text-medium">
-                      Home
-                    </span>
-                  </span>
-                </a>
-              </li>
-              <!-- PRINT -->
-              <li>
-                <%= link_to "", id: 'print_button' do %>
-                  <span class="icon-print text-light ttip">
-                    <span class="ttip-text ttip-right shadow-small text-medium">
-                      Print page
-                    </span>
-                  </span>
-                <% end %>
-              </li>
-              <!-- USERS -->
-              <% if policy(User).index? %>
-                <li>
-                  <a id="users_button" href="/users">
-                    <span class="icon-users text-light ttip">
-                      <span class="ttip-text ttip-right shadow-small text-medium">
-                        Manage users
-                      </span>
-                    </span>
-                  </a>
-                </li>
-              <% end %>
-              <% if current_user.is_only_community? %>
-              <li>
-                <a id="help_button" href="<%= APP_CONFIG['help_url'] %>" target="_blank">
-                  <span class="icon-help text-light ttip">
-                    <span class="ttip-text ttip-right shadow-small text-medium">
-                      Help
-                    </span>
-                  </span>
-                </a>
-              </li>
-              <% end %>
-              <!-- USER BADGE -->
-              <li>
-              <span class="user-badge-wrap">
-                <span class="vertical-divider"></span>
-                <span class="user-icon bg-sec-light text-white">
-                <% if current_user.name != nil %>
-                  <%="#{current_user.name[0]}"%>
-                <% else %>
-                  ?
-                <% end %>
-                </span>
-                <span class="navbar-text user-badge">
-                  <div id="user-name" class="text-bright text-small">
-                    <% if current_user.user_name_display == "Yes" %>
-                      <%= "#{current_user.name} "%>
-                    <% end %>
-                  </div>
-                  <div id="user-role" class="text-light text-tiny">
-                    <% if current_user.user_role_display == "Yes" %>
-                      <%= "#{current_user.role_list_stripped}"%>
-                    <% end %>
-                  </div>
-                </span>
-              </span>
-              </li>
-              <!-- USER CONFIG -->
-              <% if policy(UserSetting).index? %>
-                <li>
-                  <a id="settings_button" href="<%= user_settings_path %>">
-                    <span class="icon-settings text-light ttip">
-                      <span class="ttip-text ttip-left shadow-small text-medium">
-                        Preferences
-                      </span>
-                    </span>
-                  </a>
-                </li>
-              <% end %>
-              <!-- LOG OFF -->
-              <li>
-                <%= link_to destroy_user_session_path, :method => :delete, id: 'logoff_button' do %>
-                  <span class="icon-sign-out text-light ttip">
-                    <span class="ttip-text ttip-left shadow-small text-medium">
-                      Sign out
-                    </span>
-                  </span>
-                <% end %>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-      <!-- NAVBAR END -->
-      <!-- SIDEBAR BEGIN -->
-      <div class="row full">
+
+      <%# Navbar %>
+      <%= render "layouts/navigation/navbar" %>
+
+      <%# Main View %>
+      <div class="row full" id="page-content-wrap">
+
+        <%# Sidebar %>
         <% if !current_user.is_only_community? %>
           <div id="sidebar" class="col-sm-2 shadow-medium text-dark collapsed-vertical page-scroll-styled">
             <div class="nav nav_pills nav-stacked">
@@ -341,41 +172,41 @@
             </div>
           </div>
         <% end %>
-        <!-- SIDEBAR END -->
-        <% if current_user.is_only_community? then width_class = "col-sm-12" else width_class = "col-sm-10" end%>
-        <div id="main_area" class="<%= width_class %> ma-sb-exp page-scroll-styled">
+
+        <%# Main Area %>
+        <div id="main_area" class="page-scroll-styled">
+
           <div>
             <%= session[:breadcrumbs].html_safe %>
           </div>
-          <div id="datatables">
-            <!-- Datatables page length options-->
-            <%= javascript_tag "var pageLength = #{current_user.table_rows};" %>
-            <%= javascript_tag "var pageSettings = #{UserSettings.datatable_settings};" %>
-          </div>
+
+          <%# Datatables page length options %>
+          <%= javascript_tag "var pageLength = #{ current_user.table_rows },
+                                  pageSettings = #{ UserSettings.datatable_settings };" %>
+
+          <%# Flash alerts %>
           <div id="alerts">
             <% flash.each do |type, message| %>
+
               <div class="alert <%= bootstrap_class_for(type) %> fade in">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
                 <%= message %>
               </div>
+              
             <% end %>
           </div>
+
+          <%# Page Content %>
   				<%= yield %>
-  				<p>&nbsp;</p>
+  				<%# <p>&nbsp;</p> %>
+
         </div>
+
       </div>
+
     </div>
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="../../dist/js/bootstrap.min.js"></script>-->
-
-
-
-		<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <!--<script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>-->
   </body>
+
 </html>

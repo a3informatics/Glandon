@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe Fuseki::Resource::Property do
-  
+
   include DataHelpers
   include PublicFileHelpers
 
@@ -44,7 +44,7 @@ describe Fuseki::Resource::Property do
     expect(item.get).to eq("YYY")
     item.clear
     expect(item.get).to eq("")
-    
+
     ref_1 = TestFRP.new
     item = Fuseki::Resource::Property.new(ref_1, :fred, {model_classes: [], cardinality: :one, predicate: "XXX", type: :object, default: true, base_type: nil})
     expect(item.name).to eq(:fred)
@@ -66,7 +66,7 @@ describe Fuseki::Resource::Property do
     item.set_raw(uri)
     expect(item.get).to eq(uri)
     expect(item.uri?).to eq(true)
-    
+
     ref_2 = TestFRP.new
     ref_2.instance_variable_set(:@fred, [])
     item = Fuseki::Resource::Property.new(ref_2, :fred, {model_class: TestFRP, cardinality: :multiple, predicate: "XXX", type: :object, default: [], base_type: nil})
@@ -137,7 +137,7 @@ describe Fuseki::Resource::Property do
     item = Fuseki::Resource::Property.new(ref_7, :fred, {model_class: TestFRP, cardinality: :one, predicate: "XXX", type: :object, default: 0, base_type: XSDDatatype.new("integer")})
     item.set_simple(1)
     expect(item.get).to eq(1)
-    
+
   end
 
   it "schema predicate name" do
@@ -156,7 +156,7 @@ describe Fuseki::Resource::Property do
     expect(sparql.to_triples).to eq("<http://www.example.com/c#parent> isoI:name \"value\"^^xsd:string . \n")
     item.saved
     expect(item.to_be_saved?).to eq(false)
-    
+
     sparql = Sparql::Update.new
     ref.name = "updated name"
     expect(ref.properties.property(:name).to_be_saved?).to eq(true)

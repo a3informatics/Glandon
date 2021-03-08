@@ -1,58 +1,74 @@
-// Scroll views
-
+// Scrollable View (horizontal)
 .horizontal-scrollview {
-  display: inline-flex;
-  overflow-x: auto;
-  overflow-y: hidden;
-  margin: 0px 10px;
-  padding: 10px 6px;
-  flex-wrap: nowrap;
   width: calc(100% - 20px);
   min-height: 80px;
+
+  display: inline-flex;
   position: relative;
+
+  margin: 0px 10px;
+  padding: 10px 6px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  flex-wrap: nowrap;
+
+  .spinner-container {
+    position: absolute;
+    max-width: calc(100% - 12px);
+  }
 }
 
 .horizontal-scrollview > :nth-child(n):not(:last-child) {
   margin-right: 20px;
 }
 
-.horizontal-scrollview .spinner-container {
-  position: absolute;
-  max-width: calc(100% - 12px);
+// Scrollbar styles
+.page-scroll-styled, .list-wrap, .card-content, .dataTables_scrollBody, .scroll-styled {
+
+  &::-webkit-scrollbar {
+    width: 10px;
+
+    &.scroll-horizontal {
+      height: 8px;
+    }
+  }
+
 }
 
-// Scrollbar style
+// Page scrollbar 
+.page-scroll-styled {
+  &::-webkit-scrollbar-track {
+    background-color: $grey-bright;
+  }
 
-.page-scroll-styled::-webkit-scrollbar, .list-wrap::-webkit-scrollbar,
-.card-content::-webkit-scrollbar, .dataTables_scrollBody::-webkit-scrollbar, .scroll-styled::-webkit-scrollbar {
-  width: 10px;
-}
-
-.page-scroll-styled::-webkit-scrollbar-track {
-  background-color: $grey-bright;
-}
-
-.page-scroll-styled::-webkit-scrollbar-thumb {
-  background-color: #dedddd;
-}
-
-.dataTables_scrollBody::-webkit-scrollbar-track, .list-wrap::-webkit-scrollbar-track,
-.card-content::-webkit-scrollbar-track, .scroll-styled::-webkit-scrollbar-track{
-  background: white;
-}
-
-.dataTables_scrollBody::-webkit-scrollbar-thumb, .list-wrap::-webkit-scrollbar-thumb,
-.card-content::-webkit-scrollbar-thumb, .scroll-styled::-webkit-scrollbar-thumb{
-  background-color: $grey-bright;
-}
-
-@media (max-width: 768px){
-  .page-scroll-styled::-webkit-scrollbar-thumb, .page-scroll-styled::-webkit-scrollbar-track,
-  .page-scroll-styled::-webkit-scrollbar{
-    display: none;
+  &::-webkit-scrollbar-thumb {
+    background-color: #dedddd;
   }
 }
 
+// Scrollable elements 
+.dataTables_scrollBody, .list-wrap, .card-content, .scroll-styled {
+  &::-webkit-scrollbar-track {
+    background: white;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: $grey-bright;
+  }
+}
+
+// Mobile view only
+@media (max-width: 768px) {
+
+  .page-scroll-styled {
+    &::-webkit-scrollbar-thumb, &::-webkit-scrollbar-track, &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+}
+
+// IE 
 @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
   body{
     scrollbar-base-color: $grey-bright;
@@ -61,5 +77,12 @@
     scrollbar-arrow-color: #e8e8e8;
     scrollbar-shadow-color: $grey-bright;
     scrollbar-dark-shadow-color: $grey-bright;
+  }
+}
+
+// Firefox
+@-moz-document url-prefix() {
+  .scroll-styled {
+    scrollbar-width: thin;
   }
 }
