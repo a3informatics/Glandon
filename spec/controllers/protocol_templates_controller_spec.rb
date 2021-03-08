@@ -21,7 +21,6 @@ describe ProtocolTemplatesController do
     end
 
     it "index, JSON" do  
-      byebug
       request.env['HTTP_ACCEPT'] = "application/json"
       get :index
       actual = check_good_json_response(response)
