@@ -1,12 +1,11 @@
 ---
-:id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vSVRFTTEvVjEjTUM=
-:uri: http://www.acme-pharma.com/ITEM1/V1#MC
+:id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0lURU0xL1YxI01D
+:uri: http://www.s-cubed.dk/ITEM1/V1#MC
 :rdf_type: http://www.assero.co.uk/BusinessOperational#Collection
 :label: Item 1
-:tagged: []
 :has_state:
-  :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vSVRFTTEvVjEjTUNfUlM=
-  :uri: http://www.acme-pharma.com/ITEM1/V1#MC_RS
+  :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0lURU0xL1YxI01DX1JT
+  :uri: http://www.s-cubed.dk/ITEM1/V1#MC_RS
   :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationState
   :registration_status: Incomplete
   :administrative_note: ''
@@ -24,41 +23,41 @@
     :international_code_designator: DUNS
     :owner: true
     :ra_namespace:
-      :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQUNNRQ==
-      :uri: http://www.assero.co.uk/NS#ACME
+      :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0NVQkVE
+      :uri: http://www.assero.co.uk/NS#SCUBED
       :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
-      :short_name: ACME
-      :name: ACME Pharma
-      :authority: www.acme-pharma.com
+      :short_name: S-cubed
+      :name: S-cubed Aps
+      :authority: www.s-cubed.dk
 :has_identifier:
-  :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vSVRFTTEvVjEjTUNfU0k=
-  :uri: http://www.acme-pharma.com/ITEM1/V1#MC_SI
+  :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0lURU0xL1YxI01DX1NJ
+  :uri: http://www.s-cubed.dk/ITEM1/V1#MC_SI
   :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
   :identifier: ITEM1
   :version_label: ''
   :version: 1
   :semantic_version: 0.1.0
   :has_scope:
-    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQUNNRQ==
-    :uri: http://www.assero.co.uk/NS#ACME
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0NVQkVE
+    :uri: http://www.assero.co.uk/NS#SCUBED
     :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
-    :short_name: ACME
-    :name: ACME Pharma
-    :authority: www.acme-pharma.com
+    :short_name: S-cubed
+    :name: S-cubed Aps
+    :authority: www.s-cubed.dk
+:has_previous_version: 
 :origin: ''
 :change_description: ''
-:creation_date: '2020-03-24T20:34:09+01:00'
-:last_change_date: '2020-03-24T20:34:09+01:00'
+:creation_date: '2021-01-26T16:15:49+01:00'
+:last_change_date: '2021-01-26T16:15:49+01:00'
 :explanatory_comment: ''
 :has_managed:
-- :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vSVRFTTIvVjEjTUM=
-  :uri: http://www.acme-pharma.com/ITEM2/V1#MC
+- :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0lURU0yL1YxI01D
+  :uri: http://www.s-cubed.dk/ITEM2/V1#MC
   :rdf_type: http://www.assero.co.uk/BusinessOperational#Collection
   :label: Item 2
-  :tagged: []
   :has_state:
-    :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vSVRFTTIvVjEjTUNfUlM=
-    :uri: http://www.acme-pharma.com/ITEM2/V1#MC_RS
+    :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0lURU0yL1YxI01DX1JT
+    :uri: http://www.s-cubed.dk/ITEM2/V1#MC_RS
     :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationState
     :registration_status: Incomplete
     :administrative_note: ''
@@ -76,41 +75,41 @@
       :international_code_designator: DUNS
       :owner: true
       :ra_namespace:
-        :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQUNNRQ==
-        :uri: http://www.assero.co.uk/NS#ACME
+        :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0NVQkVE
+        :uri: http://www.assero.co.uk/NS#SCUBED
         :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
-        :short_name: ACME
-        :name: ACME Pharma
-        :authority: www.acme-pharma.com
+        :short_name: S-cubed
+        :name: S-cubed Aps
+        :authority: www.s-cubed.dk
   :has_identifier:
-    :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vSVRFTTIvVjEjTUNfU0k=
-    :uri: http://www.acme-pharma.com/ITEM2/V1#MC_SI
+    :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0lURU0yL1YxI01DX1NJ
+    :uri: http://www.s-cubed.dk/ITEM2/V1#MC_SI
     :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
     :identifier: ITEM2
     :version_label: ''
     :version: 1
     :semantic_version: 0.1.0
     :has_scope:
-      :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQUNNRQ==
-      :uri: http://www.assero.co.uk/NS#ACME
+      :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0NVQkVE
+      :uri: http://www.assero.co.uk/NS#SCUBED
       :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
-      :short_name: ACME
-      :name: ACME Pharma
-      :authority: www.acme-pharma.com
+      :short_name: S-cubed
+      :name: S-cubed Aps
+      :authority: www.s-cubed.dk
+  :has_previous_version: 
   :origin: ''
   :change_description: ''
-  :creation_date: '2020-03-24T20:34:09+01:00'
-  :last_change_date: '2020-03-24T20:34:09+01:00'
+  :creation_date: '2021-01-26T16:15:49+01:00'
+  :last_change_date: '2021-01-26T16:15:49+01:00'
   :explanatory_comment: ''
   :has_managed: []
-- :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vSVRFTTMvVjEjTUM=
-  :uri: http://www.acme-pharma.com/ITEM3/V1#MC
+- :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0lURU0zL1YxI01D
+  :uri: http://www.s-cubed.dk/ITEM3/V1#MC
   :rdf_type: http://www.assero.co.uk/BusinessOperational#Collection
   :label: Item 3
-  :tagged: []
   :has_state:
-    :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vSVRFTTMvVjEjTUNfUlM=
-    :uri: http://www.acme-pharma.com/ITEM3/V1#MC_RS
+    :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0lURU0zL1YxI01DX1JT
+    :uri: http://www.s-cubed.dk/ITEM3/V1#MC_RS
     :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationState
     :registration_status: Incomplete
     :administrative_note: ''
@@ -128,30 +127,31 @@
       :international_code_designator: DUNS
       :owner: true
       :ra_namespace:
-        :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQUNNRQ==
-        :uri: http://www.assero.co.uk/NS#ACME
+        :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0NVQkVE
+        :uri: http://www.assero.co.uk/NS#SCUBED
         :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
-        :short_name: ACME
-        :name: ACME Pharma
-        :authority: www.acme-pharma.com
+        :short_name: S-cubed
+        :name: S-cubed Aps
+        :authority: www.s-cubed.dk
   :has_identifier:
-    :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vSVRFTTMvVjEjTUNfU0k=
-    :uri: http://www.acme-pharma.com/ITEM3/V1#MC_SI
+    :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0lURU0zL1YxI01DX1NJ
+    :uri: http://www.s-cubed.dk/ITEM3/V1#MC_SI
     :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
     :identifier: ITEM3
     :version_label: ''
     :version: 1
     :semantic_version: 0.1.0
     :has_scope:
-      :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQUNNRQ==
-      :uri: http://www.assero.co.uk/NS#ACME
+      :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0NVQkVE
+      :uri: http://www.assero.co.uk/NS#SCUBED
       :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
-      :short_name: ACME
-      :name: ACME Pharma
-      :authority: www.acme-pharma.com
+      :short_name: S-cubed
+      :name: S-cubed Aps
+      :authority: www.s-cubed.dk
+  :has_previous_version: 
   :origin: ''
   :change_description: ''
-  :creation_date: '2020-03-24T20:34:09+01:00'
-  :last_change_date: '2020-03-24T20:34:09+01:00'
+  :creation_date: '2021-01-26T16:15:49+01:00'
+  :last_change_date: '2021-01-26T16:15:49+01:00'
   :explanatory_comment: ''
   :has_managed: []

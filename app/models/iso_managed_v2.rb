@@ -1,3 +1,4 @@
+
 # ISO Managed (V2)
 #
 # @author Dave Iberson-Hurst
@@ -26,6 +27,9 @@ class IsoManagedV2 < IsoConceptV2
   include IsoManagedV2::PreviousVersion
   include IsoManagedV2::ImCustomProperties
   include IsoManagedV2::UriManagement
+  include IsoManagedV2::Associations
+  include IsoManagedV2::Export
+  include IsoManagedV2::RegistrationStatus
   
   # Initialize
   #
@@ -67,7 +71,8 @@ class IsoManagedV2 < IsoConceptV2
   #
   # @return [Boolean] Returns true of latest
   def latest?
-    return self.version == IsoScopedIdentifierV2.latest_integer_version(self.scoped_identifier, self.has_identifier.has_scope)
+    #return self.version == IsoScopedIdentifierV2.latest_integer_version(self.scoped_identifier, self.has_identifier.has_scope)
+    !Sparql::Query.new.query("ASK {#{self.uri.to_ref} ^isoT:hasPreviousVersion ?o}", "", [:isoT]).ask? 
   end
 
   # Later Version? Is this a later version than the other item
@@ -155,22 +160,6 @@ class IsoManagedV2 < IsoConceptV2
     return self.owner.ra_namespace.uri == cdisc_ns.uri
   end
 
-  # Return the registration status
-  #
-  # @return [string] The status
-  def registration_status
-    return "na" if self.has_state.nil?
-    return self.has_state.registration_status
-  end
-
-  # Checks if item is regsitered
-  #
-  # @return [Boolean] True if registered, false otherwise
-  def registered?
-    return false if self.has_state.nil?
-    return self.has_state.registered?
-  end
-
   # Determines if edit is allowed.
   #
   # @return [Boolean] True if edit is permitted, false otherwise.
@@ -200,22 +189,6 @@ class IsoManagedV2 < IsoConceptV2
   def new_version?
     return false if self.has_state.nil?
     return self.has_state.new_version?
-  end
-
-  # Get the state after an edit.
-  #
-  # @return [string] The state.
-  def state_on_edit
-    return IsoRegistrationState.no_state if self.has_state.nil?
-    return self.has_state.state_on_edit
-  end
-
-  # Checks if item can be the current item.
-  #
-  # @return [Boolean] True if can be current, false otherwise.
-  def can_be_current?
-    return false if self.has_state.nil?
-    return self.has_state.can_be_current?
   end
 
   # Next Integer Version. Return the next integer version
@@ -294,9 +267,9 @@ class IsoManagedV2 < IsoConceptV2
       if uris[:uris].length <= 1
         si = self.has_identifier
         si.update(semantic_version: sv.to_s)
-        si.save
       else
         update_previous_releases(uris: uris[:uris], semantic_version: sv.to_s)
+        self.has_identifier = IsoScopedIdentifierV2.find_children(self.has_identifier.uri) 
       end
     end
     true
@@ -743,20 +716,6 @@ class IsoManagedV2 < IsoConceptV2
     partial_update(update_query(params), [:isoT])
   end
 
-  # Update Status. Update the status.
-  #
-  # @params [Hash] params the parameters
-  # @option params [String] Registration Status, the new state
-  # @return [Null] errors are in the error object, if any
-  def update_status(params)
-    params[:multiple_edit] = false
-    self.has_state.update(params)
-    return if merge_errors(self.has_state, "Registration Status")
-    sv = SemanticVersion.from_s(self.semantic_version)
-    self.has_identifier.update(semantic_version: sv.to_s) if self.has_state.released_state?
-    merge_errors(self.has_identifier, "Scoped Identifier")
-  end
-
   # Set URIs. Sets the URIs for the managed item and all children
   #
   # @param [IsoRegistrationAuthority] ra the registration authority under which the item is being registered
@@ -1028,10 +987,6 @@ SELECT ?s ?l ?v ?i ?vl WHERE {
 
   def audit_message(operation, extra="")
     "#{self.audit_type} owner: #{self.owner_short_name}, identifier: #{self.scoped_identifier},#{extra.empty? ? "" : " (#{extra})"} was #{operation}."
-  end
-
-  def audit_message_status_update
-    "#{self.audit_type} owner: #{self.owner_short_name}, identifier: #{self.scoped_identifier}, state was updated from #{self.has_state.previous_state} to #{self.has_state.registration_status}."
   end
 
   def audit_type

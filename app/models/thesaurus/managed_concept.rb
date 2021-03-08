@@ -38,6 +38,7 @@ class Thesaurus::ManagedConcept < IsoManagedV2
   include Thesaurus::Ranked
   include Thesaurus::Paired
   include Thesaurus::McCustomProperties
+  include Thesaurus::McRegistrationStatus
 
   # Replace If No Change. Replace the current with the previous if no differences.
   #
@@ -443,9 +444,6 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{s
       {
         SELECT DISTINCT ?i ?n ?d ?l ?pt ?e ?s ?sy ?t ?eo ?ei ?so ?si ?ranked ?o ?v ?sci ?ns ?count ?ci ?cn WHERE
         {
-          ?s isoT:hasIdentifier/isoI:identifier ?sci . 
-          ?s isoT:hasIdentifier/isoI:hasScope ?ns .  
-          ?s isoT:hasIdentifier/isoI:version ?v .  
           {
             SELECT DISTINCT ?sci ?ns (max(?lv) AS ?v) (count(?lv) AS ?count) WHERE
             {
@@ -455,6 +453,9 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{s
               #{owner_clause}
             } group by ?sci ?ns
           }
+          ?s isoT:hasIdentifier/isoI:identifier ?sci . 
+          ?s isoT:hasIdentifier/isoI:hasScope ?ns .  
+          ?s isoT:hasIdentifier/isoI:version ?v .  
           BIND (EXISTS {?s th:extends ?xe1} as ?eo)
           BIND (EXISTS {?s th:subsets ?xs1} as ?so)
           BIND (EXISTS {?s ^th:extends ?xe2} as ?ei)
@@ -510,6 +511,13 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{s
       results << data
     end
     return results
+  end
+
+  # Newer source? Is there a newer source version?
+  #
+  # @return [Boolean] Returns true if there is a newer source version for a Subset or Extension
+  def newer_source?
+    Sparql::Query.new.query("ASK {#{self.uri.to_ref} th:extends|th:subsets ?x. ?x ^isoT:hasPreviousVersion ?o}", "", [:th, :isoT]).ask? 
   end
 
   # Create Next Version. Creates the next version of the managed object if necessary

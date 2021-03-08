@@ -42,17 +42,7 @@ describe SdtmSponsorDomainsController do
       expect(response).to render_template("show")
     end
 
-    it "show results" do
-      sdtm_sponsor_domain = SdtmSponsorDomain.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/AAA/V1#SPD"))
-      request.env['HTTP_ACCEPT'] = "application/json"
-      get :show_data, params:{id: sdtm_sponsor_domain.id}
-      expect(response.content_type).to eq("application/json")
-      expect(response.code).to eq("200")
-      actual = JSON.parse(response.body).deep_symbolize_keys[:data]
-      check_file_actual_expected(actual, sub_dir, "show_results_expected_1.yaml", equate_method: :hash_equal)
-    end
-
-    it "shows the history, page" do
+    it "history, JSON" do
       sdtm_sponsor_domain = SdtmSponsorDomain.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/AAA/V1#SPD"))
       request.env['HTTP_ACCEPT'] = "application/json"
       expect(SdtmSponsorDomain).to receive(:history_pagination).with({identifier: sdtm_sponsor_domain.has_identifier.identifier, scope: an_instance_of(IsoNamespace), offset: "0", count: "20"}).and_return([sdtm_sponsor_domain])
@@ -63,13 +53,57 @@ describe SdtmSponsorDomainsController do
       check_file_actual_expected(actual, sub_dir, "history_expected_1.yaml", equate_method: :hash_equal)
     end
 
-    it "shows the history, initial view" do
+    it "history, HTML" do
       params = {}
       expect(SdtmSponsorDomain).to receive(:latest).and_return(SdtmSponsorDomain.new)
       get :history, params:{sdtm_sponsor_domain: {identifier: "AAA", scope_id: "aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0NVQkVE"}}
       expect(assigns(:identifier)).to eq("AAA")
       expect(assigns(:scope_id)).to eq("aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0NVQkVE")
       expect(response).to render_template("history")
+    end
+
+  end
+
+  describe "data actions" do
+
+    login_curator
+
+    before :all do
+      @lock_user = ua_add_user(email: "lock@example.com")
+      Token.delete_all
+    end
+
+    before :all do
+      data_files = ["SDTM_Sponsor_Domain.ttl"]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..8)
+      load_data_file_into_triple_store("mdr_identification.ttl")
+      load_data_file_into_triple_store("mdr_iso_concept_systems_migration_1.ttl")
+      load_data_file_into_triple_store("mdr_iso_concept_systems_migration_2.ttl")
+      load_data_file_into_triple_store("mdr_iso_concept_systems_migration_3.ttl")
+      load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V1.ttl")
+      load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V2.ttl")
+      load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V3.ttl")
+      load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V4.ttl")
+      load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V5.ttl")
+      load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V6.ttl")
+      load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V7.ttl")
+      load_data_file_into_triple_store("cdisc/sdtm_ig/SDTM_IG_V1.ttl")
+      load_data_file_into_triple_store("cdisc/sdtm_ig/SDTM_IG_V2.ttl")
+      load_data_file_into_triple_store("cdisc/sdtm_ig/SDTM_IG_V3.ttl")
+      load_data_file_into_triple_store("cdisc/sdtm_ig/SDTM_IG_V4.ttl")
+    end
+
+    after :all do
+      ua_remove_user("lock@example.com")
+    end
+
+    it "show data" do
+      sdtm_sponsor_domain = SdtmSponsorDomain.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/AAA/V1#SPD"))
+      request.env['HTTP_ACCEPT'] = "application/json"
+      get :show_data, params:{id: sdtm_sponsor_domain.id}
+      actual = check_good_json_response(response)
+      check_file_actual_expected(actual, sub_dir, "show_data_expected_1.yaml", equate_method: :hash_equal)
     end
 
   end
@@ -81,6 +115,7 @@ describe SdtmSponsorDomainsController do
     before :each do
       data_files = ["SDTM_Sponsor_Domain.ttl"]
       load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..8)
       load_data_file_into_triple_store("mdr_identification.ttl")
       load_data_file_into_triple_store("complex_datatypes.ttl")
       load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
@@ -139,6 +174,7 @@ describe SdtmSponsorDomainsController do
     before :all do
       data_files = ["SDTM_Sponsor_Domain.ttl"]
       load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..8)
       load_data_file_into_triple_store("mdr_identification.ttl")
       load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
       load_data_file_into_triple_store("mdr_iso_concept_systems_migration_1.ttl")
@@ -205,53 +241,6 @@ describe SdtmSponsorDomainsController do
 
   end
 
-  describe "toggle actions" do
-
-    before :all do
-      @lock_user = ua_add_user(email: "lock@example.com")
-      Token.delete_all
-    end
-
-    login_curator
-
-    before :each do
-      data_files = ["SDTM_Sponsor_Domain.ttl"]
-      load_files(schema_files, data_files)
-      load_data_file_into_triple_store("mdr_identification.ttl")
-      load_data_file_into_triple_store("complex_datatypes.ttl")
-      load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
-      load_data_file_into_triple_store("mdr_iso_concept_systems_migration_1.ttl")
-      load_data_file_into_triple_store("mdr_iso_concept_systems_migration_2.ttl")
-      load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V1.ttl")
-      load_data_file_into_triple_store("cdisc/sdtm_ig/SDTM_IG_V1.ttl")
-    end
-
-    after :all do
-      ua_remove_user("lock@example.com")
-    end
-
-    it "toggle" do
-      @request.env['HTTP_REFERER'] = '/path'
-      sdtm_sponsor_domain = SdtmSponsorDomain.find_full(Uri.new(uri: "http://www.s-cubed.dk/AAA/V1#SPD"))
-      token = Token.obtain(sdtm_sponsor_domain, @user)
-      sponsor_variable = SdtmSponsorDomain::Var.find(Uri.new(uri:"http://www.s-cubed.dk/AAA/V1#SPD_STUDYID"))
-      put :toggle_used, params:{id: sdtm_sponsor_domain.id, sdtm_sponsor_domain: {non_standard_var_id: sponsor_variable.id}}
-      actual = check_good_json_response(response)
-      check_file_actual_expected(actual, sub_dir, "toggle_expected_1.yaml", equate_method: :hash_equal)
-    end
-
-    it "toggle, locked by another user" do
-      @request.env['HTTP_REFERER'] = '/path'
-      sdtm_sponsor_domain = SdtmSponsorDomain.find_full(Uri.new(uri: "http://www.s-cubed.dk/AAA/V1#SPD"))
-      sponsor_variable = SdtmSponsorDomain::Var.find(Uri.new(uri:"http://www.s-cubed.dk/AAA/V1#SPD_STUDYID"))
-      token = Token.obtain(sdtm_sponsor_domain, @lock_user)
-      put :toggle_used, params:{id: sdtm_sponsor_domain.id, sdtm_sponsor_domain: {non_standard_var_id: sponsor_variable.id}}
-      expect(flash[:error]).to be_present
-      expect(flash[:error]).to match(/The item is locked for editing by user: lock@example.com./)
-    end
-
-  end
-
   describe "editor metadata" do
 
     login_curator
@@ -288,6 +277,7 @@ describe SdtmSponsorDomainsController do
     before :each do
       data_files = ["SDTM_Sponsor_Domain.ttl"]
       load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..8)
       load_data_file_into_triple_store("mdr_identification.ttl")
       load_data_file_into_triple_store("complex_datatypes.ttl")
       load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
@@ -306,7 +296,7 @@ describe SdtmSponsorDomainsController do
     it "update" do
       request.env['HTTP_ACCEPT'] = "application/json"
       token = Token.obtain(@instance, @user)
-      sponsor_domain = SdtmSponsorDomain::Var.find_full(Uri.new(uri:"http://www.s-cubed.dk/AAA/V1#SPD_STUDYID"))
+      sponsor_domain = SdtmSponsorDomain::VariableSSD.find_full(Uri.new(uri:"http://www.s-cubed.dk/AAA/V1#SPD_STUDYID"))
       put :update, params:{id: @instance.id, sdtm_sponsor_domain: {label: "Label updated"}}
       actual = check_good_json_response(response)
       check_file_actual_expected(actual, sub_dir, "update_expected_1.yaml", equate_method: :hash_equal)
@@ -315,7 +305,7 @@ describe SdtmSponsorDomainsController do
     it "update variable, error" do
       request.env['HTTP_ACCEPT'] = "application/json"
       token = Token.obtain(@instance, @user)
-      sponsor_variable = SdtmSponsorDomain::Var.find_full(Uri.new(uri:"http://www.s-cubed.dk/AAA/V1#SPD_STUDYID"))
+      sponsor_variable = SdtmSponsorDomain::VariableSSD.find_full(Uri.new(uri:"http://www.s-cubed.dk/AAA/V1#SPD_STUDYID"))
       put :update_variable, params:{id: @instance.id, sdtm_sponsor_domain: {label: "ABC", non_standard_var_id: sponsor_variable.id}}
       actual = check_error_json_response(response)
       check_file_actual_expected(actual, sub_dir, "update_variable_expected_1.yaml", equate_method: :hash_equal)
@@ -324,7 +314,7 @@ describe SdtmSponsorDomainsController do
     it "update variable" do
       request.env['HTTP_ACCEPT'] = "application/json"
       token = Token.obtain(@instance, @user)
-      sponsor_variable = SdtmSponsorDomain::Var.find_full(Uri.new(uri:"http://www.s-cubed.dk/AAA/V1#SPD_STUDYID"))
+      sponsor_variable = SdtmSponsorDomain::VariableSSD.find_full(Uri.new(uri:"http://www.s-cubed.dk/AAA/V1#SPD_STUDYID"))
       put :update_variable, params:{id: @instance.id, sdtm_sponsor_domain: {used: false, non_standard_var_id: sponsor_variable.id}}
       actual = check_good_json_response(response)
       check_file_actual_expected(actual, sub_dir, "update_variable_expected_2.yaml", equate_method: :hash_equal)
@@ -338,7 +328,7 @@ describe SdtmSponsorDomainsController do
       post :add_non_standard_variable, params: {id: sdtm_sponsor_domain.id}
     
       # Update non standard var field other than 'name' 
-      sponsor_variable = SdtmSponsorDomain::Var.find_full(Uri.new(uri:"http://www.assero.co.uk/SDV#1760cbb1-a370-41f6-a3b3-493c1d9c2238"))
+      sponsor_variable = SdtmSponsorDomain::VariableSSD.find_full(Uri.new(uri:"http://www.assero.co.uk/SDV#1760cbb1-a370-41f6-a3b3-493c1d9c2238"))
       put :update_variable, params:{id: @instance.id, sdtm_sponsor_domain: {label: "ABC", non_standard_var_id: sponsor_variable.id}}
       actual = check_good_json_response(response)
       check_file_actual_expected(actual, sub_dir, "update_variable_expected_3.yaml", equate_method: :hash_equal)
@@ -361,10 +351,46 @@ describe SdtmSponsorDomainsController do
       token = Token.obtain(@instance, @user)
       sdtm_sponsor_domain = SdtmSponsorDomain.find_full(Uri.new(uri: "http://www.s-cubed.dk/AAA/V1#SPD"))
       post :add_non_standard_variable, params: {id: sdtm_sponsor_domain.id}
-      sponsor_variable = SdtmSponsorDomain::Var.find_full(Uri.new(uri:"http://www.assero.co.uk/SDV#1760cbb1-a370-41f6-a3b3-493c1d9c2238"))
+      sponsor_variable = SdtmSponsorDomain::VariableSSD.find_full(Uri.new(uri:"http://www.assero.co.uk/SDV#1760cbb1-a370-41f6-a3b3-493c1d9c2238"))
       put :update_variable, params:{id: @instance.id, sdtm_sponsor_domain: {classified_as: "aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzgxOGE5NzU3LTFlZTUtNGJkMy1hMTc5LWU2NjJlMjZiNWI0Nw==", non_standard_var_id: sponsor_variable.id}}
       actual = check_good_json_response(response)
       check_file_actual_expected(actual, sub_dir, "update_variable_expected_7.yaml", equate_method: :hash_equal) 
+    end
+
+    it "update non-standard variable, ct reference" do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      token = Token.obtain(@instance, @user)
+      sdtm_sponsor_domain = SdtmSponsorDomain.find_full(Uri.new(uri: "http://www.s-cubed.dk/AAA/V1#SPD"))
+      post :add_non_standard_variable, params: {id: sdtm_sponsor_domain.id}
+      cl_1 = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C66767/V4#C66767"))
+      sponsor_variable = SdtmSponsorDomain::VariableSSD.find_full(Uri.new(uri:"http://www.assero.co.uk/SDV#1760cbb1-a370-41f6-a3b3-493c1d9c2238"))
+      put :update_variable, params:{id: @instance.id, sdtm_sponsor_domain: {label: "ABC", ct_reference: [cl_1.id], non_standard_var_id: sponsor_variable.id}}
+      actual = check_good_json_response(response)
+      check_file_actual_expected(actual, sub_dir, "update_variable_expected_8a.yaml", equate_method: :hash_equal) 
+      cl_2 = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C66768/V4#C66768"))
+      put :update_variable, params:{id: @instance.id, sdtm_sponsor_domain: {ct_reference: [cl_2.id], non_standard_var_id: sponsor_variable.id}}
+      actual = check_good_json_response(response)
+      check_file_actual_expected(actual, sub_dir, "update_variable_expected_8b.yaml", equate_method: :hash_equal)
+    end
+
+    it "update non-standard variable, ct reference" do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      token = Token.obtain(@instance, @user)
+      sdtm_sponsor_domain = SdtmSponsorDomain.find_full(Uri.new(uri: "http://www.s-cubed.dk/AAA/V1#SPD"))
+      post :add_non_standard_variable, params: {id: sdtm_sponsor_domain.id}
+      cl_1 = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C66767/V4#C66767"))
+      sponsor_variable = SdtmSponsorDomain::VariableSSD.find_full(Uri.new(uri:"http://www.assero.co.uk/SDV#1760cbb1-a370-41f6-a3b3-493c1d9c2238"))
+      put :update_variable, params:{id: @instance.id, sdtm_sponsor_domain: {label: "ABC", ct_reference: [cl_1.id], non_standard_var_id: sponsor_variable.id}}
+      actual = check_good_json_response(response)
+      check_file_actual_expected(actual, sub_dir, "update_variable_expected_9a.yaml", equate_method: :hash_equal)
+      sponsor_variable = SdtmSponsorDomain::VariableSSD.find_full(Uri.new(uri:"http://www.assero.co.uk/SDV#1760cbb1-a370-41f6-a3b3-493c1d9c2238"))
+      put :update_variable, params:{id: @instance.id, sdtm_sponsor_domain: {label: "ABC", ct_reference: [], non_standard_var_id: sponsor_variable.id}}, as: :json
+      actual = check_good_json_response(response)
+      check_file_actual_expected(actual, sub_dir, "update_variable_expected_9b.yaml", equate_method: :hash_equal)  
+      cl_2 = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C66768/V4#C66768"))
+      put :update_variable, params:{id: @instance.id, sdtm_sponsor_domain: {ct_reference: [cl_2.id], non_standard_var_id: sponsor_variable.id}}
+      actual = check_good_json_response(response)
+      check_file_actual_expected(actual, sub_dir, "update_variable_expected_9c.yaml", equate_method: :hash_equal)
     end
 
   end
@@ -381,6 +407,7 @@ describe SdtmSponsorDomainsController do
     before :each do
       data_files = ["SDTM_Sponsor_Domain.ttl"]
       load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..8)
       load_data_file_into_triple_store("mdr_identification.ttl")
       load_data_file_into_triple_store("complex_datatypes.ttl")
       load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
@@ -400,8 +427,8 @@ describe SdtmSponsorDomainsController do
       sponsor_domain = SdtmSponsorDomain.find_full(Uri.new(uri: "http://www.s-cubed.dk/AAA/V1#SPD"))
       token = Token.obtain(sponsor_domain, @user)
       uri = Uri.new(uri: "http://www.assero.co.uk/eee#aaa")
-      sponsor_variable = SdtmSponsorDomain::Var.new(uri: uri, name: "AENEWAAA")
-      expect(SdtmSponsorDomain::Var).to receive(:find_full).and_return(sponsor_variable)
+      sponsor_variable = SdtmSponsorDomain::VariableSSD.new(uri: uri, name: "AENEWAAA")
+      expect(SdtmSponsorDomain::VariableSSD).to receive(:find_full).and_return(sponsor_variable)
       delete :delete_non_standard_variable, params:{id: sponsor_domain.id, sdtm_sponsor_domain: {non_standard_var_id: sponsor_variable}}
       actual = check_good_json_response(response)
       check_file_actual_expected(actual, sub_dir, "delete_variable_expected_1.yaml", equate_method: :hash_equal)
@@ -410,7 +437,7 @@ describe SdtmSponsorDomainsController do
     it "delete variable, error" do
       request.env['HTTP_ACCEPT'] = "application/json"
       token = Token.obtain(@instance, @user)
-      sponsor_variable = SdtmSponsorDomain::Var.find_full(Uri.new(uri:"http://www.s-cubed.dk/AAA/V1#SPD_STUDYID"))
+      sponsor_variable = SdtmSponsorDomain::VariableSSD.find_full(Uri.new(uri:"http://www.s-cubed.dk/AAA/V1#SPD_STUDYID"))
       put :update_variable, params:{id: @instance.id, sdtm_sponsor_domain: {non_standard_var_id: sponsor_variable.id}}
       actual = check_error_json_response(response)
       check_file_actual_expected(actual, sub_dir, "delete_variable_expected_2.yaml", equate_method: :hash_equal)
@@ -448,6 +475,169 @@ describe SdtmSponsorDomainsController do
       sponsor_domain = SdtmSponsorDomain.find_full(Uri.new(uri: "http://www.s-cubed.dk/AAA/V1#SPD"))
       delete :destroy, params:{id: sponsor_domain.id}
       actual = check_good_json_response(response)
+    end
+
+  end
+
+  describe "bc associations actions" do
+
+    login_curator
+
+    before :all do
+      data_files = ["SDTM_Sponsor_Domain.ttl", "association.ttl"]
+      load_files(schema_files, data_files)
+      load_data_file_into_triple_store("mdr_identification.ttl")
+      load_data_file_into_triple_store("biomedical_concept_templates.ttl")
+      load_data_file_into_triple_store("biomedical_concept_instances.ttl")
+      @lock_user = ua_add_user(email: "lock@example.com")
+      Token.delete_all
+    end
+
+    after :all do
+      ua_remove_user("lock@example.com")
+      Token.delete_all
+    end
+
+    it "bc associations, html request" do
+      instance = SdtmSponsorDomain.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/AAA/V1#SPD"))
+      get :bc_associations, params:{id: instance.id}
+      expect(assigns(:sdtm_sponsor_domain).uri).to eq(instance.uri)
+      expect(assigns(:close_path)).to eq("/sdtm_sponsor_domains/history?sdtm_sponsor_domain%5Bidentifier%5D=AAA&sdtm_sponsor_domain%5Bscope_id%5D=aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0NVQkVE")
+      expect(response).to render_template("bc_associations")
+    end
+
+    it "bc associations, json request" do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      instance = SdtmSponsorDomain.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/AAA/V1#SPD"))
+      token = Token.obtain(instance, @user)
+      get :bc_associations, params:{id: instance.id}
+      actual = check_good_json_response(response)
+      expect(assigns[:lock].token.id).to eq(Token.all.last.id)  # Will change each test run
+      actual[:token_id] = 9999                                  # So, fix for file compare
+      check_file_actual_expected(actual, sub_dir, "bc_associations_json_expected_1.yaml", equate_method: :hash_equal)
+    end
+
+    it "bc associations, json, locked by another user" do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      instance = SdtmSponsorDomain.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/AAA/V1#SPD"))
+      token = Token.obtain(instance, @lock_user)
+      get :bc_associations, params:{id: instance.id}
+      actual = check_error_json_response(response)
+      check_file_actual_expected(actual, sub_dir, "bc_associations_json_expected_2.yaml", equate_method: :hash_equal)
+    end
+
+  end
+
+  describe "add bcs actions" do
+
+    login_curator
+
+    before :all do
+      data_files = ["SDTM_Sponsor_Domain.ttl"]
+      load_files(schema_files, data_files)
+      load_data_file_into_triple_store("mdr_identification.ttl")
+      load_data_file_into_triple_store("biomedical_concept_templates.ttl")
+      load_data_file_into_triple_store("biomedical_concept_instances.ttl")
+      @lock_user = ua_add_user(email: "lock@example.com")
+      Token.delete_all
+    end
+
+    after :all do
+      ua_remove_user("lock@example.com")
+      Token.delete_all
+    end
+
+    it "add bcs, json request" do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      domain = SdtmSponsorDomain.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/AAA/V1#SPD"))
+      bc_1 = BiomedicalConceptInstance.find(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
+      token = Token.obtain(domain, @user)
+      post :add_bcs, params:{id: domain.id, sdtm_sponsor_domain: {bc_id_set: [bc_1.id]}}
+      actual = check_good_json_response(response)
+      check_file_actual_expected(actual, sub_dir, "add_bcs_json_expected_1a.yaml", equate_method: :hash_equal)
+      bc_2 = BiomedicalConceptInstance.find(Uri.new(uri: "http://www.s-cubed.dk/WEIGHT/V1#BCI"))
+      bc_3 = BiomedicalConceptInstance.find(Uri.new(uri: "http://www.s-cubed.dk/BMI/V1#BCI"))
+      post :add_bcs, params:{id: domain.id, sdtm_sponsor_domain: {bc_id_set: [bc_2.id, bc_3.id]}}
+      actual = check_good_json_response(response)
+      check_file_actual_expected(actual, sub_dir, "add_bcs_json_expected_1b.yaml", equate_method: :hash_equal)
+    end
+
+  end
+
+  describe "remove bcs actions" do
+
+    login_curator
+
+    before :all do
+      data_files = ["SDTM_Sponsor_Domain.ttl"]
+      load_files(schema_files, data_files)
+      load_data_file_into_triple_store("mdr_identification.ttl")
+      load_data_file_into_triple_store("biomedical_concept_templates.ttl")
+      load_data_file_into_triple_store("biomedical_concept_instances.ttl")
+      @lock_user = ua_add_user(email: "lock@example.com")
+      Token.delete_all
+    end
+
+    after :all do
+      ua_remove_user("lock@example.com")
+      Token.delete_all
+    end
+
+    it "remove bcs, json request" do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      domain = SdtmSponsorDomain.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/AAA/V1#SPD"))
+      bc_1 = BiomedicalConceptInstance.find(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
+      bc_2 = BiomedicalConceptInstance.find(Uri.new(uri: "http://www.s-cubed.dk/WEIGHT/V1#BCI"))
+      bc_3 = BiomedicalConceptInstance.find(Uri.new(uri: "http://www.s-cubed.dk/BMI/V1#BCI"))
+      token = Token.obtain(domain, @user)
+      post :add_bcs, params:{id: domain.id, sdtm_sponsor_domain: {bc_id_set: [bc_1.id, bc_2.id, bc_3.id]}}
+      check_good_json_response(response)
+      domain = SdtmSponsorDomain.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/AAA/V1#SPD"))
+      expect(domain.associated.count).to eq(3)
+      put :remove_bcs, params:{id: domain.id, sdtm_sponsor_domain: {bc_id_set: [bc_2.id]}}
+      check_good_json_response(response)
+      domain = SdtmSponsorDomain.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/AAA/V1#SPD"))
+      expect(domain.associated.count).to eq(2)
+      put :remove_bcs, params:{id: domain.id, sdtm_sponsor_domain: {bc_id_set: [bc_1.id, bc_3.id]}}
+      check_good_json_response(response)
+      domain = SdtmSponsorDomain.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/AAA/V1#SPD"))
+      expect(domain.associated.count).to eq(0)
+    end
+
+  end
+
+  describe "remove all bcs actions" do
+
+    login_curator
+
+    before :all do
+      data_files = ["SDTM_Sponsor_Domain.ttl"]
+      load_files(schema_files, data_files)
+      load_data_file_into_triple_store("mdr_identification.ttl")
+      load_data_file_into_triple_store("biomedical_concept_templates.ttl")
+      load_data_file_into_triple_store("biomedical_concept_instances.ttl")
+      @lock_user = ua_add_user(email: "lock@example.com")
+      Token.delete_all
+    end
+
+    after :all do
+      ua_remove_user("lock@example.com")
+      Token.delete_all
+    end
+
+    it "remove all bcs, json request" do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      domain = SdtmSponsorDomain.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/AAA/V1#SPD"))
+      bc_1 = BiomedicalConceptInstance.find(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
+      bc_2 = BiomedicalConceptInstance.find(Uri.new(uri: "http://www.s-cubed.dk/WEIGHT/V1#BCI"))
+      token = Token.obtain(domain, @user)
+      post :add_bcs, params:{id: domain.id, sdtm_sponsor_domain: {bc_id_set: [bc_1.id, bc_2.id]}}
+      domain = SdtmSponsorDomain.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/AAA/V1#SPD"))
+      expect(domain.association?).to eq(true)
+      check_good_json_response(response)
+      put :remove_all_bcs, params:{id: domain.id}
+      check_good_json_response(response)
+      expect(domain.association?).to eq(false)
     end
 
   end

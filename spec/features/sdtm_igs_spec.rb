@@ -8,6 +8,10 @@ describe "SDTM IGs", :type => :feature do
   include UiHelpers
   include WaitForAjaxHelper
 
+  def sub_dir 
+    "features/sdtm_igs"
+  end 
+
   describe "Basic Operations, curator", :type => :feature, js:true do
 
     before :all do
@@ -33,7 +37,7 @@ describe "SDTM IGs", :type => :feature do
       ua_logoff
     end
 
-    it "allows access to index page (REQ-MDR-MIT-015)", js:true do
+    it "allows access to index page (REQ-MDR-MIT-015)" do
       click_navbar_ig
       wait_for_ajax 10
       find(:xpath, "//a[@href='/sdtm_igs']").click
@@ -43,7 +47,7 @@ describe "SDTM IGs", :type => :feature do
       ui_check_table_cell("index", 1, 3, "SDTM Implementation Guide")
     end
 
-    it "allows the history page to be viewed", js:true do
+    it "allows the history page to be viewed" do
       click_navbar_ig
       wait_for_ajax 10
       find(:xpath, "//tr[contains(.,'SDTM IG')]/td/a", :text => 'History').click
@@ -54,7 +58,7 @@ describe "SDTM IGs", :type => :feature do
       ui_check_table_cell("history", 1, 7, "Standard")
     end
 
-    it "history allows the show page to be viewed (REQ-MDR-BC-010)", js:true do
+    it "history allows the show page to be viewed (REQ-MDR-BC-010)" do
       click_navbar_ig
       wait_for_ajax 10
       find(:xpath, "//tr[contains(.,'SDTM IG')]/td/a", :text => 'History').click
@@ -66,6 +70,20 @@ describe "SDTM IGs", :type => :feature do
       ui_check_table_info("show", 1, 10, 48)
       ui_check_table_cell("show", 5, 2, "Tumor/Lesion Results")
       ui_check_table_cell("show", 5, 1, "SDTM IG TR")
+    end
+    
+    it "show page allows to export SDTM IG Domain as CSV" do
+      click_navbar_ig
+      wait_for_ajax 10
+      find(:xpath, "//tr[contains(.,'SDTM IG')]/td/a", :text => 'History').click
+      wait_for_ajax 10
+      expect(page).to have_content 'Version History of \'SDTM IG\''
+      context_menu_element('history', 4, 'SDTM IG', :show)
+      wait_for_ajax 10
+      click_on 'CSV'
+
+      file = download_content
+      check_file_actual_expected(file, sub_dir, "sdtm_ig_csv_expected.csv")
     end
 
   end

@@ -65,8 +65,8 @@ describe Form::Item::Common do
       uri1 = Uri.new(uri: "http://www.cdisc.org/C66769/V2#C66769_C41338")
       uri2 = Uri.new(uri: "http://www.cdisc.org/C66769/V2#C66769_C41339")
       item = Form::Item::Common.create(uri: Uri.new(uri: "http://www.s-cubed.dk/CI2"), ordinal: 1, has_property: ref.uri)
-      ref_cl1 = OperationalReferenceV3.create({uri: Uri.new(uri: "http://www.s-cubed.dk/Ref2"), ordinal: 1, reference: uri1}, item)
-      ref_cl2 = OperationalReferenceV3.create({uri: Uri.new(uri: "http://www.s-cubed.dk/Ref3"), ordinal: 2, reference: uri2}, item)
+      ref_cl1 = OperationalReferenceV3::TucReference.create({uri: Uri.new(uri: "http://www.s-cubed.dk/Ref2"), ordinal: 1, reference: uri1, local_label: "Mild Adverse Event"}, item)
+      ref_cl2 = OperationalReferenceV3::TucReference.create({uri: Uri.new(uri: "http://www.s-cubed.dk/Ref3"), ordinal: 2, reference: uri2, local_label: "Moderate Adverse Event"}, item)
       item.has_coded_value_push(ref_cl1)
       item.has_coded_value_push(ref_cl2)
       item.save

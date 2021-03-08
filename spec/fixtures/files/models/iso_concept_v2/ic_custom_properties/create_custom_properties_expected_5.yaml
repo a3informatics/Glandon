@@ -1,33 +1,17 @@
 ---
-- :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1BWIzE3NjBjYmIxLWEzNzAtNDFmNi1hM2IzLTQ5M2MxZDljMjIzOA==
-  :uri: http://www.assero.co.uk/CPV#1760cbb1-a370-41f6-a3b3-493c1d9c2238
+- :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1BWIzkyYmY4Yjc0LWVjNzgtNDM0OC05YTFiLTE1NGE2Y2NiOWI5Zg==
+  :uri: http://www.assero.co.uk/CPV#92bf8b74-ec78-4348-9a1b-154a6ccb9b9f
   :rdf_type: http://www.assero.co.uk/ISO11179Concepts#CustomProperty
-  :applies_to: http://www.example.com/A#object1
+  :applies_to: http://www.example.com/A#object2
   :context:
   - http://www.example.com/A#context1
   :value: TX TX TX
-  :custom_property_defined_by:
-    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvVGVzdCNDVkQx
-    :uri: http://www.assero.co.uk/Test#CVD1
-    :rdf_type: http://www.assero.co.uk/ISO11179Concepts#CustomPropertyDefinition
-    :datatype: string
-    :default: Default String
-    :label: Some String
-    :description: A description XXX
-    :custom_property_of: http://www.assero.co.uk/ISO11179Concepts#Concept
-- :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1BWIzQ2NDZiNDdhLTRhZTQtNGYyMS1iNWUyLTU2NTgxNWM4Y2RlZA==
-  :uri: http://www.assero.co.uk/CPV#4646b47a-4ae4-4f21-b5e2-565815c8cded
+  :custom_property_defined_by: http://www.assero.co.uk/Test#CVD1
+- :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1BWI2I3NjU5N2Y3LTk3MmYtNDBmNC1iZWQ3LWUxMzQ3MjVjZjI5Ng==
+  :uri: http://www.assero.co.uk/CPV#b76597f7-972f-40f4-bed7-e134725cf296
   :rdf_type: http://www.assero.co.uk/ISO11179Concepts#CustomProperty
-  :applies_to: http://www.example.com/A#object1
+  :applies_to: http://www.example.com/A#object2
   :context:
   - http://www.example.com/A#context1
   :value: 'false'
-  :custom_property_defined_by:
-    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvVGVzdCNDVkQy
-    :uri: http://www.assero.co.uk/Test#CVD2
-    :rdf_type: http://www.assero.co.uk/ISO11179Concepts#CustomPropertyDefinition
-    :datatype: boolean
-    :default: 'false'
-    :label: A Flag
-    :description: A description YYY
-    :custom_property_of: http://www.assero.co.uk/ISO11179Concepts#Concept
+  :custom_property_defined_by: http://www.assero.co.uk/Test#CVD2

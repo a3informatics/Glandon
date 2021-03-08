@@ -173,7 +173,7 @@ describe "Ad Hoc Reports", :type => :feature do
       expect(page).to have_content("Report: Terminology List")
       click_link "Export CSV"
       file = download_content
-      # write_text_file_2(file, sub_dir, "ad_hoc_csv_report.csv")
+    #Xwrite_text_file_2(file, sub_dir, "ad_hoc_csv_report.csv")
       expected = read_text_file_2(sub_dir, "ad_hoc_csv_report.csv")
       expect(file).to eq(expected)
     end

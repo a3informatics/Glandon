@@ -138,6 +138,12 @@ module Sparql
       triples_to_file
     end
 
+    # Sparql Update
+    #
+    # @param [String] sparql the sparql update query to be executed
+    # @param [String] default_namespace the default namespace to be used. Can be empty.
+    # @param prefixes [Array] an array of prefixes for building the namespaces
+    # @return [Void] no return
     def sparql_update(sparql, default_namespace, prefixes)
       execute_update(:update, "#{build_clauses(default_namespace, prefixes)}\n#{sparql}")
     end

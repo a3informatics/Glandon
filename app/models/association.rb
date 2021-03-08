@@ -11,15 +11,7 @@ class Association < IsoConceptV2
   data_property :semantic
   object_property :the_subject, cardinality: :one, model_class: "IsoManagedV2", delete_exclude: true, read_exclude: true
   object_property :associated_with, cardinality: :many, model_class: "IsoManagedV2", delete_exclude: true, read_exclude: true
-  
-  # Create
-  #
-  # @param params [Hash] parameters for the class
-  # @param parent [Object] the parent object, used for building the URI of the reference
-  # @return [Association] the new object. May contain errros if unsuccesful
-  def self.create(params, parent)
-    params[:parent_uri] = parent.uri
-    super(params)
-  end
+
+  include IsoManagedV2::Associations
 
 end

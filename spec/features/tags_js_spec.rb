@@ -204,7 +204,7 @@ describe "Tags", :type => :feature do
       find_node('Tag1_1').double_click
       # Items tagged
       ui_in_modal do
-        ui_check_table_row('managed-items', 1, ["TEST", '1', 'Test Thesaurus'] )
+        ui_check_table_row('managed-items', 1, ["1", 'TEST', 'Test Thesaurus'] )
         click_on 'Close'
       end
 
@@ -214,8 +214,8 @@ describe "Tags", :type => :feature do
         ui_check_table_info('managed-items', 1, 3, 3, )
         #ui_check_table_row('managed-items', 2, ["NP000011P", '1', 'Not Set'] )
         ui_table_search('managed-items', 'NP000011P')
-        ui_check_table_cell('managed-items', 1, 1, 'NP000011P')
-        ui_check_table_cell('managed-items', 1, 2, '1')
+        ui_check_table_cell('managed-items', 1, 1, '1')
+        ui_check_table_cell('managed-items', 1, 2, 'NP000011P')
         ui_check_table_cell('managed-items', 1, 4, '')
         click_on 'Close'
       end
@@ -253,8 +253,8 @@ describe "Tags", :type => :feature do
         #expect(page).to have_xpath('//tr[contains(.,"Controlled Terminology")]', count: 3)
 
         ui_table_search('managed-items', 'C25681')
-        ui_check_table_cell('managed-items', 1, 1, 'C25681')
-        ui_check_table_cell('managed-items', 1, 2, '1')
+        ui_check_table_cell('managed-items', 1, 1, '1')
+        ui_check_table_cell('managed-items', 1, 2, 'C25681')
         ui_check_table_cell('managed-items', 1, 4, '2007-03-06 Release')
 
         click_on 'Close'
@@ -285,6 +285,7 @@ describe "Tags", :type => :feature do
       load_data_file_into_triple_store("mdr_iso_concept_systems_migration_3.ttl")
       load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V1.ttl")
       load_data_file_into_triple_store("cdisc/sdtm_ig/SDTM_IG_V1.ttl")
+      load_cdisc_term_versions(1..8)
       nv_destroy
       nv_create({ parent: '10', child: '999' })
       ua_curator_login
@@ -391,8 +392,10 @@ describe "Tags", :type => :feature do
     end
 
     it "view and attach tags on a SDTM Sponsor Domain" do
+      load_cdisc_term_versions(1..8)
 
       view_attach_detach_tags do
+
         click_navbar_sdtm_sponsor_domains
         wait_for_ajax 20
 
@@ -400,6 +403,22 @@ describe "Tags", :type => :feature do
         wait_for_ajax 20
         context_menu_element_v2('history', '0.1.0', :show)
         edit_tags 'SDTM Sponsor Domain'
+
+      end
+
+    end
+
+    it "view and attach tags on a Managed Collection" do
+      mc = ManagedCollection.create({identifier: 'TSTMC', label:'Test Managed Collection'})
+
+      view_attach_detach_tags do
+        click_navbar_mcs
+        wait_for_ajax 20
+
+        find(:xpath, '//tr[contains(.,"TSTMC")]/td/a').click
+        wait_for_ajax 20
+        context_menu_element_v2('history', '0.1.0', :show)
+        edit_tags 'TSTMC'
 
       end
 

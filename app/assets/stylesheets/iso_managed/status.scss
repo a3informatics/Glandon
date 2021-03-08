@@ -1,79 +1,139 @@
 @import "shared/vars.scss";
 
-.status-wrap .boxed-title, .status-wrap .status-paragraph{
-  margin-top: 10px;
-  margin-right: 20px;
-}
-
-.status-wrap .status{
-  margin-top: 20px;
-  display: block;
-  width: 45%;
-  min-width: 300px;
-}
-
-.status-paragraph{
-  text-align: justify;
-  font-size: $font-small;
-  color: $grey-medium;
-  display: block;
-}
-
-.status-wrap{
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin-top: -20px;
-}
-
-.status.form-group{
-  max-width: 500px;
+#status-panel {
+  min-height: 300px;
   font-family: $font-light;
-  display: block;
-}
 
-.status-wrap .status-arrow{
-  font-family: $font-light;
-  font-size: $font-xnormal;
-  color: $grey-light;
-  margin-right: 20px;
-  margin-top: 64px;
-}
+  #version-info {
+    width: unset !important;
+    margin: 0 auto;
 
-.content-editable{
-  position: relative;
-  margin: 3px 8px !important;
-  cursor: pointer !important;
-}
+    td {
+      padding: 4px 6px;
+      height: 40px;
+    }
+    
+    .btn, .bg-label {
+      margin: 0px 2px;
+      max-width: 300px;
+    }
 
-.content-editable::after{
-  display: inline-block;
-  font-family: 'icomoon';
-  content: "\e931";
-  color: $grey-light;
-  margin: 0px 5px;
-  font-size: $font-small;
-  position: absolute;
-  right: -25px;
-  top: 10%;
-}
+    select {
+      text-transform: capitalize;
+    }
 
-#version-edit-after, #version-label-edit-after{
-  display: none;
-}
+    // Fix positioning of the checkmark icon in Current field
+    #current [class^="icon"] {
+      margin-left: 6px;
+    }
 
-#select-release{
-  height: 30px;
-}
-
-@media (max-width: 1410px){
-  .status-wrap .status{
-    width: 90%;
   }
 
-  .status-wrap .status-arrow{
-    margin: 20px 50px 0 50px;
-    transform: rotate(90deg);
+  #status-info {
+
+    .status-block-wrap {
+      display: flex; 
+      justify-content: center;
+      flex-wrap: wrap; 
+    }
+
+    .status-block {
+      width: calc(50% - 20px);
+      min-width: 350px;
+      max-width: 600px;
+      padding: 10px 20px;
+
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+
+      .description {
+        text-align: justify;
+        font-size: $font-small;
+      }
+    }
+    
+    #status-next {
+      opacity: .7;
+    }
+
+    #status-arrow {
+      margin: 50px 0;
+      color: $grey-light;
+    }
+
+    .status {
+      padding: 8px 0;
+      margin: 6px 0;
+      border-radius: 10px;
+
+      color: white;
+      font-family: $font-bold;
+      font-size: $font-xnormal;
+
+      &.current {
+        background-color: $secondary-color-light;
+      }
+      &.next {
+        background-color: $grey-light;
+      }
+    }
+
+    #details-wrap {
+      margin-top: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      textarea {
+        width: 50%;
+        max-width: 350px;
+        min-height: 60px;
+        max-height: 150px;
+        resize: vertical; 
+        margin: 10px 0;
+      }
+
+    }
+
   }
+
+  // Loading
+  .spinner-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(255, 255, 255, 0.5)
+  }
+
+}
+
+@media(max-width: 1100px) {
+
+  #status-panel #status-info {
+
+    .status-block-wrap{
+      flex-direction: column;
+      align-items: center;
+    }    
+
+    .status-block {
+      width: 100%;
+      padding: 10px 5px;
+      min-width: 200px;
+    }
+
+    #status-arrow {
+      margin: 10px 0;
+      transform: rotate(90deg);
+    }
+
+    #details-wrap textarea {
+      width: 100%;
+    }
+    
+  }
+
 }

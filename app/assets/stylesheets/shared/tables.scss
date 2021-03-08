@@ -284,3 +284,19 @@ table th.th-xsmall{
 .table-cardstyle table.table-row-clickable tbody tr.selected {
   background-color: #fafafa !important;
 }
+
+.table-cardstyle tr.row-error {
+  td:first-of-type {
+    position: relative;
+    padding-left: 20px; 
+
+    &:before {
+      left: 0;
+      position: absolute;
+      display: block;
+      font-family: 'icomoon';
+      color: $accent-color-2;
+      content: "\e972";
+    } 
+  } 
+}

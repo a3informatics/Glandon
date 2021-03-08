@@ -196,31 +196,31 @@ RSpec::Matchers.define :sparql_results_equal_v2 do |expected|
 
   def references_match?
     return false if !reference_keys_match?
-    puts colourize("Matching reference keys", "blue") 
+    #puts colourize("Matching reference keys", "blue") 
     true
   end
 
   def classifications_keys_match?
     return false unless classifications_keys_equal?
-    puts colourize("Matching classification keys", "blue") 
+    #puts colourize("Matching classification keys", "blue") 
     true
   end
 
   def custom_keys_match?
     return false unless custom_keys_equal?
-    puts colourize("Matching custom keys", "blue") 
+    #puts colourize("Matching custom keys", "blue") 
     true
   end
 
   def classifications_values_match?
     return false unless classifications_values_equal?
-    puts colourize("Matching classification values", "blue") 
+    #puts colourize("Matching classification values", "blue") 
     true
   end
 
   def custom_values_match?
     return false unless custom_values_equal?
-    puts colourize("Matching custom values", "blue") 
+    #puts colourize("Matching custom values", "blue") 
     true
   end
 
@@ -299,7 +299,7 @@ RSpec::Matchers.define :sparql_results_equal_v2 do |expected|
   private
 
     def subset_list(uri, depth=0)
-    puts colourize("Subset List: #{uri}, Depth: #{depth}", "blue") 
+      #puts colourize("Subset List: #{uri}, Depth: #{depth}", "blue") 
       subject = @subjects[uri]
       object = subject.object_for("<http://www.assero.co.uk/Thesaurus#memberNext>")
       return [subject.object_for("<http://www.assero.co.uk/Thesaurus#item>")] if object.nil?
@@ -307,7 +307,7 @@ RSpec::Matchers.define :sparql_results_equal_v2 do |expected|
     end
 
     def rank_list(uri, depth=0)
-    puts colourize("Rank List: #{uri}, Depth: #{depth}", "blue") 
+      #puts colourize("Rank List: #{uri}, Depth: #{depth}", "blue") 
       subject = @subjects[uri]
       object = subject.object_for("<http://www.assero.co.uk/Thesaurus#memberNext>")
       return [subject.object_for("<http://www.assero.co.uk/Thesaurus#item>")] if object.nil?

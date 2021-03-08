@@ -32,6 +32,10 @@
           <%= render partial: "shared/thesauri/managed_concepts/rank/enable_rank", :locals => { item: @subset_mc } %>
         <% end %>
 
+        <% if @upgradable %>
+          <%= render partial: "shared/thesauri/managed_concepts/upgrade/upgrade_button", :locals => { item: @subset_mc } %>
+        <% end %>
+
       <% end %>
     </div>
 

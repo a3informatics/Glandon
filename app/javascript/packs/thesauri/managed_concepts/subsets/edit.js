@@ -1,7 +1,10 @@
 import SubsetEditor from 'shared/custom/thesauri/managed_concepts/subsets/editor'
+
 import TokenTimer from 'shared/custom/tokens/token_timer'
 import TabsLayout from 'shared/ui/tabs_layout'
+
 import PropertiesEditor from 'shared/custom/thesauri/managed_concepts/properties_editor'
+import UpgradeHandler from 'shared/custom/thesauri/managed_concepts/upgrade/upgrade_handler'
 
 $(document).ready(() => {
 
@@ -28,5 +31,8 @@ $(document).ready(() => {
   let pe = new PropertiesEditor({
     data: JSON.parse( editItemPropertiesData )
   });
+
+  // Upgrade button handler
+  new UpgradeHandler()
 
 });

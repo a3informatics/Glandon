@@ -29,7 +29,7 @@ describe 'triple store triple_count' do
 
     it "count" do
       result = run_and_capture_output.split("\n")
-      expect(result).to eq(["Triple count: 1696"])
+      expect(result).to eq(["Triple count: 1664"])
     end
 
   end

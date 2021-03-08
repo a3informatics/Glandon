@@ -105,9 +105,12 @@ Rails.application.routes.draw do
     member do
       get :status
       get :impact
-      get :make_current
-      post :update_status
+      post :make_current
+      post :next_state
+      post :state_change
+      get :state_change_impacted_items
       put :update_semantic_version
+      put :update_version_label
       get :list_change_notes
       get :list_change_notes_data
       get :custom_properties
@@ -216,6 +219,8 @@ Rails.application.routes.draw do
         get :children_ranked
         post :pair
         post :unpair
+        put :upgrade_extension
+        put :upgrade_subset
       end
     end
     resources :unmanaged_concepts, only: [:show, :edit, :update, :destroy] do
@@ -543,9 +548,12 @@ Rails.application.routes.draw do
     member do
       get :show_data
       post :add_non_standard_variable
-      put :toggle_used
       delete :delete_non_standard_variable
       put :update_variable
+      get :bc_associations
+      post :add_bcs
+      put :remove_bcs
+      put :remove_all_bcs
     end
   end
 
@@ -568,6 +576,19 @@ Rails.application.routes.draw do
       get :show_data
       # get :export_json
       # get :export_ttl
+    end
+  end
+
+  # Managed Collections
+  resources :managed_collections do
+    member do
+      get :show_data
+      post :add
+      put :remove
+      put :remove_all
+    end
+    collection do
+      get :history
     end
   end
 

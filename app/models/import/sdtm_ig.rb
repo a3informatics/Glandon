@@ -85,16 +85,24 @@ private
     latest = ::SdtmIg.latest({scope: parent.scope, identifier: parent.scoped_identifier})
     parent.has_previous_version = latest.nil? ? nil : latest.uri
 
+    # Add class
+    results[:managed_children].each_with_index do |domain, index| 
+      find_base_class(domain)
+      domain.children.each do |variable|
+        find_base_class_variable(domain.based_on_class, domain, variable)
+      end
+    end
+
     # Check for differences. If no change then use previous version.
     filtered = []
-    results[:managed_children].each_with_index do |child, index| 
-      previous_info = SdtmIgDomain.latest({scope: child.scope, identifier: child.scoped_identifier})
+    results[:managed_children].each_with_index do |domain, index| 
+      previous_info = SdtmIgDomain.latest({scope: domain.scope, identifier: domain.scoped_identifier})
       previous = previous_info.nil? ? nil : SdtmIgDomain.find_full(previous_info.id) 
-      actual = child.replace_if_no_change(previous)
-      parent.add_no_save(actual, index + 1) # Parent needs ref to child whatever new or previous
-      next if actual.uri != child.uri # No changes if actual = previous, so skip next
-      filtered << child 
-      child.has_previous_version = previous.nil? ? nil : previous.uri
+      actual = domain.replace_if_no_change(previous)
+      parent.add_no_save(actual, index + 1) # Parent needs ref to domain whatever new or previous
+      next if actual.uri != domain.uri # No changes if actual = previous, so skip next
+      filtered << domain 
+      domain.has_previous_version = previous.nil? ? nil : previous.uri
     end
 
     # Add terminology
@@ -102,7 +110,6 @@ private
 puts colourize("Domain: #{domain.prefix}, Class: #{get_temporary(domain,"referenced_class")}", "green")
       found = find_base_class(domain)
       domain.children.each do |variable|
-        found = find_base_class_variable(domain.based_on_class, domain, variable)
         next if variable.ct_and_format.empty?
         notations = extract_notations(variable.ct_and_format) 
         notations.each do |notation|
@@ -129,11 +136,28 @@ puts colourize("Domain: #{domain.prefix}, No class found.", "red") if uri.nil?
   def find_base_class_variable(the_class, domain, variable)
     return false if the_class.nil?
     result = the_class.find_variable(variable.name, domain.prefix)
-puts colourize("***** Error finding variable: #{variable.name} *****", "red") if result.nil?
-    return false if result.nil?
-    variable.based_on_class_variable = SdtmClass::Variable.find(result)
+    if result.nil?
+      if domain_specific_variables.include?variable.name
+        the_class = ::SdtmClass.find_minimum(Uri.new(uri:"http://www.s-cubed.dk/SDTM_CLASS_EXTRA/V1#CL"))
+        result = the_class.find_variable(variable.name, domain.prefix)
+        set_based_on_class_variable(variable, result)
+      else
+        puts colourize("***** Error finding variable: #{variable.name} *****", "red") if result.nil?
+        false
+      end
+    else
+      set_based_on_class_variable(variable, result)
+    end
+  end
+
+  def set_based_on_class_variable(variable, class_variable_uri)
+    variable.based_on_class_variable = SdtmClass::Variable.find(class_variable_uri)
     variable.is_a = variable.based_on_class_variable.is_a
     true
+  end
+
+  def domain_specific_variables
+    ["MSAGENT", "MSCONCU", "MSCONC", "EGBEATNO", "MHEVDTYP"]
   end
 
   def extract_notations(value)
@@ -150,6 +174,7 @@ puts colourize("***** Error finding variable: #{variable.name} *****", "red") if
     return "#{SdtmModel.identifier} #{prefix}" if the_class == "SDTM TRIAL DESIGN"
     return "#{SdtmModel.identifier} #{prefix}" if the_class == "SDTM RELATIONSHIPS"
     return "#{SdtmModel.identifier} #{prefix}" if the_class == "SDTM STUDY REFERENCE"
+    return "#{SdtmModel.identifier} #{prefix}" if the_class == "SDTM ASSOCIATED PERSONS"
     the_class
   end
 

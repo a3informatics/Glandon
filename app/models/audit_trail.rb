@@ -99,7 +99,7 @@ class AuditTrail < ApplicationRecord
   # @return [Object] the CSV serialization
   def self.to_csv
   	items = AuditTrail.order(:id)
-    csv_data = CSV.generate do |csv|
+    csv_data = CSV.generate(force_quotes: true) do |csv|
       csv << ["Date Time", "User", "Owner", "Identifier", "Version", "Event", "Details"]
       items.each do |item|
         csv << [Timestamp.new(item.date_time).to_datetime, item.user, item.owner, item.identifier, item.version, item.event_to_s, item.description]

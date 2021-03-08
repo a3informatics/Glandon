@@ -1525,6 +1525,7 @@
 	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V5#CL_--REASEX> ;
 	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V5#CL_--USCHFL> ;
 	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V5#CL_--REPNUM> ;
+	bd:includesColumn <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V5#CL_--OBJ> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V5#CL_RS>
 	rdf:type isoR:RegistrationState ;
@@ -2229,6 +2230,17 @@
 	bd:prefixed "true"^^xsd:boolean ;
 	bd:description "The instance number of a test that is repeated within a given timeframe for the same test. The level of granularity can vary, e.g., within a time point or within a visit. For example, multiple measurements of blood pressure or multiple analyses of a sample."^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
+	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
+.
+<http://www.cdisc.org/SDTM_MODEL_FINDINGS/V5#CL_--OBJ>
+	rdf:type bd:SdtmClassVariable ;
+	isoC:label "Object of the Observation"^^xsd:string ;
+	bd:rule ""^^xsd:string ;
+	bd:ordinal "118"^^xsd:positiveInteger ;
+	bd:name "--OBJ"^^xsd:string ;
+	bd:prefixed "true"^^xsd:boolean ;
+	bd:description "Used in domains modeled as Findings About Events or Findings About Interventions. Describes the event or intervention whose property is being measured in --TESTCD/--TEST. Example: an event of vomiting which has findings, where --OBJ = \"VOMIT\" and the volume of VOMIT is being measured where --TESTCD = \"VOLUME\"."^^xsd:string ;
+	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V5#CL>

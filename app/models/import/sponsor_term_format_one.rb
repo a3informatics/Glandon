@@ -122,8 +122,9 @@ private
         ref = child.to_extension(@th, @fixes)
       elsif child.future_referenced?(@th)
         add_log("Future Reference Sponsor detected: #{child.identifier}")
-        child.update_identifier(child.identifier)
-        ref = child
+        #child.update_identifier(child.identifier)
+        #ref = child
+        ref = child.to_sponsor
       elsif child.subset_of_extension?(@extensions)
         add_log("Subset of extension detected: #{child.identifier}")
         ref = child.to_subset_of_extension(@extensions)
@@ -176,8 +177,18 @@ private
 
   # Check for a change in an item
   def check_and_add(ref, index, existing_ref)
+    check_synonyms(ref)
     check_duplicates(ref)
     existing_ref ? @parent.add(ref, index + 1) : check_against_previous(ref, index)
+  end
+
+  def check_synonyms(ref)
+    ref.narrower.each do |child|
+      std_sym = child.synonyms_to_a
+      property = child.custom_properties.property("Synonym Sponsor")
+      extra_sym = property.value.split(";").map(&:strip).sort
+      add_warning("Synonyms mismatch: Ref: #{ref.identifier}, #{child.identifier}. Synonyms: '#{std_sym}' v '#{extra_sym}'") unless std_sym == extra_sym
+    end
   end
 
   def check_duplicates(ref)
@@ -240,10 +251,16 @@ private
     object.errors.add(:base, msg)
   end
 
-  # Add error
+  # Add log
   def add_log(msg)
-    puts colourize("#{msg}", "blue")
+    #puts colourize("#{msg}", "blue")
     ConsoleLogger.info(self.class.name, "add_log", msg)
+  end
+
+  # Add warning
+  def add_warning(msg)
+    puts colourize("#{msg}", "yellow")
+    ConsoleLogger.info(self.class.name, "add_warning", msg)
   end
 
   # Check subset item sets match.
@@ -300,7 +317,6 @@ private
     def override?(cl, cli)
       return nil if @config.nil?
       entry = @config.dig(:override, cl.to_sym, cli.to_sym)
-    puts colourize("Checking override #{cl}, #{cli}, entry=#{entry}", "brown")
       return false if entry.nil?
       true
     end
@@ -308,7 +324,6 @@ private
     def qualify(cl, cli)
       return nil if @config.nil?
       uri = @config.dig(:qualify, cl.to_sym, cli.to_sym)
-    puts colourize("Checking qualify #{cl}, #{cli}, uri=#{uri}", "blue")
       return nil if uri.nil?
       Uri.new(uri: uri)
     end

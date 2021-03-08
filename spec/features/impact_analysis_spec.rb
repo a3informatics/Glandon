@@ -43,7 +43,6 @@ describe "Impact Analysis", type: :feature  do
 
     def prep_data 
       @thesaurus = Thesaurus.create({ identifier: 'TEST', label: 'Test Thesaurus' })
-      # @thesaurus = edit_item(@thesaurus)
 
       @codelist = Thesaurus::ManagedConcept.find_minimum(Uri.new( uri: 'http://www.cdisc.org/C20587/V1#C20587' ))
       @subset = @codelist.create_subset 
@@ -113,8 +112,7 @@ describe "Impact Analysis", type: :feature  do
       wait_for_ajax 10 
 
       check_node_count 6
-#      Not Working 
-#      check_node 'TEST', :thesaurus
+      check_node 'TEST', :terminology
     end
 
     it "allows to show and download Impact of a Code List, table view" do
@@ -125,8 +123,8 @@ describe "Impact Analysis", type: :feature  do
       # Check table data and info
       find('.tab-option', text: 'Table View').click 
       ui_check_table_info('managed-items', 1, 4, 4)
-      ui_check_table_cell('managed-items', 1, 2, 'C20587')
-      ui_check_table_cell('managed-items', 1, 3, '1.0.0')
+      ui_check_table_cell('managed-items', 1, 2, '1.0.0')
+      ui_check_table_cell('managed-items', 1, 3, 'C20587')
       ui_check_table_cell('managed-items', 1, 4, 'Age Group')
       ui_check_table_cell('managed-items', 1, 5, '2007-03-06 Release')
 
@@ -137,6 +135,51 @@ describe "Impact Analysis", type: :feature  do
       click_button "CSV"
       file = download_content 
       expect(file).to eq read_text_file_2(sub_dir, "impact_csv_expected.csv")
+    end
+
+  end
+
+
+  describe "Impact Analysis, BC, Curator user", type: :feature, js: true do
+
+    before :all do
+      data_files = ["SDTM_Sponsor_Domain.ttl"]
+      load_files(schema_files, data_files)
+      load_data_file_into_triple_store("mdr_identification.ttl")
+      load_data_file_into_triple_store("complex_datatypes.ttl")
+      load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
+      load_data_file_into_triple_store("mdr_iso_concept_systems_migration_1.ttl")
+      load_data_file_into_triple_store("mdr_iso_concept_systems_migration_2.ttl")
+      load_data_file_into_triple_store("mdr_iso_concept_systems_migration_3.ttl")
+      load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V1.ttl")
+      load_data_file_into_triple_store("cdisc/sdtm_ig/SDTM_IG_V1.ttl")
+      load_data_file_into_triple_store("biomedical_concept_instances.ttl")
+      load_test_file_into_triple_store("forms/VSTADIABETES.ttl")
+      ua_create
+      prep_data
+    end
+
+    before :each do
+      ua_curator_login
+    end
+
+    def prep_data 
+      @bc = BiomedicalConceptInstance.find(Uri.new(uri: 'http://www.s-cubed.dk/HEIGHT/V1#BCI'))
+      @sdtm_sd = SdtmSponsorDomain.find(Uri.new(uri: 'http://www.s-cubed.dk/AAA/V1#SPD').to_id)
+      @sdtm_sd.associate([@bc.id], "SDTM BC Association")
+    end
+
+    it "allows to show Impact of a BC, graph view" do
+      click_navbar_bc
+      wait_for_ajax 20 
+
+      impact_analysis 'HEIGHT', '0.1.0' 
+      expect(page).to have_content 'Showing Managed Items impacted by Height HEIGHT v0.1.0.'
+
+      check_node_count 3
+      check_node "HEIGHT", :bc
+      check_node "AAA", :sdtm
+      check_node "VSTADIABET", :form
     end
 
   end

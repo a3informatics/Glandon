@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe Form::Item::Question do
-
+  
   include DataHelpers
   include SparqlHelpers
   include IsoManagedHelpers
@@ -11,8 +11,12 @@ describe Form::Item::Question do
     return "models/form/item/question"
   end
 
+  def make_standard(item)
+    IsoManagedHelpers.make_item_standard(item)
+  end
+    
   describe "Validations" do
-
+    
     before :all do
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
       load_files(schema_files, data_files)
@@ -55,7 +59,7 @@ describe Form::Item::Question do
   end
 
   describe "Basic tests" do
-
+    
     before :all do
       load_files(schema_files, [])
       load_cdisc_term_versions(1..1)
@@ -120,7 +124,7 @@ describe Form::Item::Question do
       result = item.to_crf(nil)
       check_file_actual_expected(result, sub_dir, "to_crf_expected_2b.yaml", equate_method: :hash_equal)
     end
-
+  
     it "returns the children in ordinal order" do
       item = Form::Item::Question.create(uri: Uri.new(uri: "http://www.s-cubed.dk/Q1"), ordinal: 1, datatype: "string", format: "20", question_text: "Hello")
       expect(item.children_ordered).to eq([])
@@ -179,13 +183,6 @@ describe Form::Item::Question do
   end
 
   describe "Add child" do
-
-    def make_standard(item)
-      params = {}
-      params[:registration_status] = "Standard"
-      params[:previous_state] = "Incomplete"
-      item.update_status(params)
-    end
 
     before :each do
       data_files = ["forms/form_test_2.ttl", "biomedical_concept_instances.ttl", "biomedical_concept_templates.ttl" ]
@@ -259,13 +256,6 @@ describe Form::Item::Question do
 
   describe "Delete TUc Reference" do
 
-    def make_standard(item)
-      params = {}
-      params[:registration_status] = "Standard"
-      params[:previous_state] = "Incomplete"
-      item.update_status(params)
-    end
-
     before :each do
       data_files = ["forms/FN000150.ttl", "biomedical_concept_instances.ttl", "biomedical_concept_templates.ttl" ]
       load_files(schema_files, data_files)
@@ -324,4 +314,4 @@ describe Form::Item::Question do
 
   end
 
-end
+end  

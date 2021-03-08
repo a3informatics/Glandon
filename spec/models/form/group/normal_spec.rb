@@ -6,16 +6,14 @@ describe Form::Group::Normal do
   include SparqlHelpers
   include SecureRandomHelpers
   include IsoManagedHelpers
+  include BiomedicalConceptInstanceFactory
 
   def sub_dir
     return "models/form/group/normal"
   end
 
   def make_standard(item)
-    params = {}
-    params[:registration_status] = "Standard"
-    params[:previous_state] = "Incomplete"
-    item.update_status(params)
+    IsoManagedHelpers.make_item_standard(item)
   end
 
   describe "Validation tests" do
@@ -403,7 +401,7 @@ describe Form::Group::Normal do
       load_data_file_into_triple_store("mdr_identification.ttl") 
     end
 
-    it "returns the CRF rendition" do
+    it "returns the CRF rendition I" do
       allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
       form = Form.create(label: "Form1", identifier: "XXX")
       form.add_child({type:"normal_group"})
@@ -412,7 +410,7 @@ describe Form::Group::Normal do
       check_file_actual_expected(result, sub_dir, "to_crf_expected_1.yaml", equate_method: :hash_equal)
     end
 
-    it "returns the CRF rendition" do
+    it "returns the CRF rendition II" do
       allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
       form = Form.create(label: "Form1", identifier: "XXX")
       form = Form.find_full(form.uri)
@@ -422,7 +420,8 @@ describe Form::Group::Normal do
       normal_group.add_child({type: "question"})
       normal_group = Form::Group::Normal.find_full(form.has_group.first.uri)
       question = Form::Item::Question.find_full(normal_group.has_item.first.uri)
-      question.datatype = "float" 
+      question.datatype = "float"
+      question.format = "5.1"  
       question.question_text = "Question text 1"
       question.save
       normal_group = Form::Group::Normal.find_full(form.has_group.first.uri)
@@ -430,7 +429,7 @@ describe Form::Group::Normal do
       check_file_actual_expected(result, sub_dir, "to_crf_expected_2.yaml", equate_method: :hash_equal)
     end
 
-    it "returns the CRF rendition" do
+    it "returns the CRF rendition III" do
       allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
       form = Form.create(label: "Form1", identifier: "XXX")
       form = Form.find_full(form.uri)
@@ -440,7 +439,8 @@ describe Form::Group::Normal do
       normal_group.add_child({type: "question"})
       normal_group = Form::Group::Normal.find_full(form.has_group.first.uri)
       question = Form::Item::Question.find_full(normal_group.has_item.first.uri)
-      question.datatype = "float" 
+      question.datatype = "float"
+      question.format = "5.1"   
       question.question_text = "Question text 1"
       question.save
       normal_group = Form::Group::Normal.find_full(form.has_group.first.uri)
@@ -454,7 +454,8 @@ describe Form::Group::Normal do
       normal_group.add_child({type: "question"})
       normal_group = Form::Group::Normal.find_full(form.has_group.first.uri)
       question = Form::Item::Question.find_full(normal_group.has_item.third.uri)
-      question.datatype = "float" 
+      question.datatype = "float"
+      question.format = "5.1"   
       question.question_text = "Question text 3"
       question.save
       normal_group = Form::Group::Normal.find_full(form.has_group.first.uri)
@@ -462,8 +463,7 @@ describe Form::Group::Normal do
       check_file_actual_expected(result, sub_dir, "to_crf_expected_3.yaml", equate_method: :hash_equal)
     end
 
-
-    it "returns the CRF rendition, repeating, is only question group" do
+    it "returns the CRF rendition, repeating, is only question group true" do
       allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
       form = Form.create(label: "Form1", identifier: "XXX")
       form = Form.find_full(form.uri)
@@ -475,7 +475,8 @@ describe Form::Group::Normal do
       normal_group.add_child({type: "question"})
       normal_group = Form::Group::Normal.find_full(form.has_group.first.uri)
       question = Form::Item::Question.find_full(normal_group.has_item.first.uri)
-      question.datatype = "float" 
+      question.datatype = "float"
+      question.format = "5.1" 
       question.question_text = "Question text 1"
       question.save
       normal_group = Form::Group::Normal.find_full(form.has_group.first.uri)
@@ -489,7 +490,8 @@ describe Form::Group::Normal do
       normal_group.add_child({type: "question"})
       normal_group = Form::Group::Normal.find_full(form.has_group.first.uri)
       question = Form::Item::Question.find_full(normal_group.has_item.third.uri)
-      question.datatype = "float" 
+      question.datatype = "float"
+      question.format = "5.1"    
       question.question_text = "Question text 3"
       question.save
       normal_group = Form::Group::Normal.find_full(form.has_group.first.uri)
@@ -509,24 +511,190 @@ describe Form::Group::Normal do
       normal_group.add_child({type: "question"})
       normal_group = Form::Group::Normal.find_full(form.has_group.first.uri)
       question = Form::Item::Question.find_full(normal_group.has_item.first.uri)
-      question.datatype = "float" 
+      question.datatype = "float"
+      question.format = "5.1"    
       question.question_text = "Question text 1"
       question.save
+      normal_group.add_child({type: "question"})
+      normal_group = Form::Group::Normal.find_full(form.has_group.first.uri)
+      question = Form::Item::Question.find_full(normal_group.has_item.second.uri)
+      question.datatype = "float"
+      question.format = "5.1" 
+      question.question_text = "Question text 2"
+      question.save
+      normal_group.add_child({type: "placeholder"})
+      expect(normal_group.errors.full_messages.to_sentence).to eq("Attempting to add an invalid child type to Repeating")
+      check_file_actual_expected(normal_group.errors.full_messages, sub_dir, "to_crf_expected_5.yaml", equate_method: :hash_equal)
+    end
+
+    it "returns the CRF rendition, repeating, is only BC group" do
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
+      form = Form.create(label: "Form1", identifier: "XXX")
+      form = Form.find_full(form.uri)
+      form.add_child({type:"normal_group"})
+      form = Form.find_full(form.uri)
+      normal_group = Form::Group::Normal.find_full(form.has_group.first.uri)
+      normal_group.repeating = true
+      normal_group.save
+      bci_1 = create_biomedical_concept_instance("BC1", "BC1")
+      bci_2 = create_biomedical_concept_instance("BC2", "BC2")
+      bci_3 = create_biomedical_concept_instance("BC3", "BC3")
+      normal_group = Form::Group::Normal.find_full(form.has_group.first.uri)
+      result = normal_group.add_child({type:"bc_group", id_set:[bci_1.id, bci_2.id, bci_3.id]})
+      normal_group = Form::Group::Normal.find_full(form.has_group.first.uri)
+      result = normal_group.to_crf(nil)
+      check_file_actual_expected(result, sub_dir, "to_crf_expected_6.yaml", equate_method: :hash_equal)
+    end
+
+  end
+
+  describe "CRF Tests (Bug)" do
+
+    before :each do
+      load_files(schema_files, [])
+      load_data_file_into_triple_store("mdr_identification.ttl")
+      load_data_file_into_triple_store("complex_datatypes.ttl")        
+    end
+
+    it "returns the CRF rendition, repeating, is only question group and is only bc group false" do
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
+      form = Form.create(label: "Form1", identifier: "XXX")
+      form = Form.find_full(form.uri)
+      form.add_child({type:"normal_group"})
+      form = Form.find_full(form.uri)
+      normal_group = Form::Group::Normal.find_full(form.has_group.first.uri)
+      normal_group.repeating = true
+      normal_group.save
+      normal_group.add_child({type: "question"})
+      normal_group = Form::Group::Normal.find_full(form.has_group.first.uri)
+      question = Form::Item::Question.find_full(normal_group.has_item.first.uri)
+      question.question_text = "Question text 1"
+      question.save
+      bci_1 = create_biomedical_concept_instance("BC1", "BC1")
+      normal_group = Form::Group::Normal.find_full(form.has_group.first.uri)
+      normal_group.add_child({type:"bc_group", id_set:[bci_1.id]})
+      expect(normal_group.errors.full_messages.to_sentence).to eq("Attempting to add an invalid child type to Repeating")
+      check_file_actual_expected(normal_group.errors.full_messages, sub_dir, "to_crf_expected_7.yaml", equate_method: :hash_equal)
+    end
+
+    it "returns the CRF rendition, repeating, is only bc group true" do
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
+      bci_1 = create_biomedical_concept_instance("BC1", "BC1")
+      form = Form.create(label: "Form1", identifier: "XXX")
+      form = Form.find_full(form.uri)
+      form.add_child({type:"normal_group"})
+      form = Form.find_full(form.uri)
+      normal_group = Form::Group::Normal.find_full(form.has_group.first.uri)
+      normal_group.repeating = true
+      normal_group.save
+      normal_group.add_child({type:"bc_group", id_set:[bci_1.id]})
+      normal_group = Form::Group::Normal.find_full(form.has_group.first.uri)
+      normal_group.add_child({type:"bc_group", id_set:[bci_1.id]})
+      normal_group = Form::Group::Normal.find_full(form.has_group.first.uri)
+      normal_group.add_child({type:"bc_group", id_set:[bci_1.id]})
+      normal_group = Form::Group::Normal.find_full(form.has_group.first.uri)
+      result = normal_group.to_crf(nil)
+      check_file_actual_expected(result, sub_dir, "to_crf_expected_8.yaml", equate_method: :hash_equal)
+    end
+
+  end
+
+  describe "Set repeating" do
+
+    before :each do
+      load_files(schema_files, [])
+      load_data_file_into_triple_store("mdr_identification.ttl")
+      load_data_file_into_triple_store("complex_datatypes.ttl")        
+    end
+
+    it "repeating true, only question group" do
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
+      form = Form.create(label: "Form1", identifier: "XXX")
+      form = Form.find_full(form.uri)
+      form.add_child({type:"normal_group"})
+      form = Form.find_full(form.uri)
+      normal_group = Form::Group::Normal.find_full(form.has_group.first.uri)
+      normal_group.add_child({type: "question"})
+      normal_group = Form::Group::Normal.find_full(form.has_group.first.uri)
+      question = Form::Item::Question.find_full(normal_group.has_item.first.uri)
+      question.question_text = "Question text 1"
+      question.save
+      normal_group = Form::Group::Normal.find_full(form.has_group.first.uri)
+      normal_group.update_with_clone({repeating: true}, nil)
+      normal_group = Form::Group::Normal.find_full(form.has_group.first.uri)
+      check_file_actual_expected(normal_group.to_h, sub_dir, "set_repeating_expected_1.yaml", equate_method: :hash_equal)
+    end
+
+    it "repeating true, empty group" do
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
+      form = Form.create(label: "Form1", identifier: "XXX")
+      form = Form.find_full(form.uri)
+      form.add_child({type:"normal_group"})
+      form = Form.find_full(form.uri)
+      normal_group = Form::Group::Normal.find_full(form.has_group.first.uri)
+      normal_group.update_with_clone({repeating: true}, nil)
+      normal_group = Form::Group::Normal.find_full(form.has_group.first.uri)
+      check_file_actual_expected(normal_group.to_h, sub_dir, "set_repeating_expected_2.yaml", equate_method: :hash_equal)
+    end
+
+    it "repeating true, error, not question or bc group I" do
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
+      form = Form.create(label: "Form1", identifier: "XXX")
+      form = Form.find_full(form.uri)
+      form.add_child({type:"normal_group"})
+      form = Form.find_full(form.uri)
+      normal_group = Form::Group::Normal.find_full(form.has_group.first.uri)
+      normal_group.add_child({type: "question"})
+      normal_group = Form::Group::Normal.find_full(form.has_group.first.uri)
+      question = Form::Item::Question.find_full(normal_group.has_item.first.uri)
+      question.question_text = "Question text 1"
+      question.save
+      normal_group = Form::Group::Normal.find_full(form.has_group.first.uri)
       normal_group.add_child({type: "placeholder"})
       normal_group = Form::Group::Normal.find_full(form.has_group.first.uri)
       placeholder = Form::Item::Placeholder.find_full(normal_group.has_item.second.uri)
       placeholder.free_text = "Placeholder 1"
       placeholder.save
       normal_group = Form::Group::Normal.find_full(form.has_group.first.uri)
+      result = normal_group.update_with_clone({repeating: true}, nil)
+      expect(result.errors.full_messages.to_sentence).to eq("Failed to set repeating, other items exist")
+    end
+
+    it "repeating true, only bc group" do
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
+      form = Form.create(label: "Form1", identifier: "XXX")
+      form = Form.find_full(form.uri)
+      form.add_child({type:"normal_group"})
+      form = Form.find_full(form.uri)
+      normal_group = Form::Group::Normal.find_full(form.has_group.first.uri)
+      bci_1 = create_biomedical_concept_instance("BC1", "BC1")
+      normal_group.add_child({type:"bc_group", id_set:[bci_1.id]})
+      normal_group = Form::Group::Normal.find_full(form.has_group.first.uri)
+      normal_group.add_child({type:"bc_group", id_set:[bci_1.id]})
+      normal_group = Form::Group::Normal.find_full(form.has_group.first.uri)
+      normal_group.update_with_clone({repeating: true}, nil)
+      normal_group = Form::Group::Normal.find_full(form.has_group.first.uri)
+      check_file_actual_expected(normal_group.to_h, sub_dir, "set_repeating_expected_3.yaml", equate_method: :hash_equal)
+    end
+
+    it "repeating true, error, not question or bc group II" do
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
+      form = Form.create(label: "Form1", identifier: "XXX")
+      form = Form.find_full(form.uri)
+      form.add_child({type:"normal_group"})
+      form = Form.find_full(form.uri)
+      normal_group = Form::Group::Normal.find_full(form.has_group.first.uri)
       normal_group.add_child({type: "question"})
       normal_group = Form::Group::Normal.find_full(form.has_group.first.uri)
-      question = Form::Item::Question.find_full(normal_group.has_item.second.uri)
-      question.datatype = "float" 
-      question.question_text = "Question text 3"
+      question = Form::Item::Question.find_full(normal_group.has_item.first.uri)
+      question.question_text = "Question text 1"
       question.save
       normal_group = Form::Group::Normal.find_full(form.has_group.first.uri)
-      result = normal_group.to_crf(nil)
-      check_file_actual_expected(result, sub_dir, "to_crf_expected_5.yaml", equate_method: :hash_equal)
+      bci_1 = create_biomedical_concept_instance("BC1", "BC1")
+      normal_group.add_child({type:"bc_group", id_set:[bci_1.id]})
+      normal_group = Form::Group::Normal.find_full(form.has_group.first.uri)
+      result = normal_group.update_with_clone({repeating: true}, nil)
+      expect(result.errors.full_messages.to_sentence).to eq("Failed to set repeating, other items exist")
     end
 
   end

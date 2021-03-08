@@ -51,9 +51,19 @@ class Thesaurus
     end
 
     # Synonyms To String
+    #
     # @return [String] string of synonyms separated by a separator character
     def synonyms_to_s
       self.synonym.map {|x| x.label}.sort.join("#{self.class.synonym_separator} ")
+    rescue => e
+      byebug
+    end
+
+    # Synonyms To Array
+    #
+    # @return [Array] array of synonyms ordered
+    def synonyms_to_a
+      self.synonym.map {|x| x.label}.sort
     end
 
   end

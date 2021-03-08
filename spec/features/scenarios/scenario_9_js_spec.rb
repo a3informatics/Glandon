@@ -13,6 +13,7 @@ describe "Scenario 9 - Terminology Release, Clone, Impact and Upgrade", :type =>
   include NameValueHelpers
   include EditorHelpers
   include ItemsPickerHelpers
+  include IsoManagedHelpers 
 
   def sub_dir
     return "features/scenarios"
@@ -33,7 +34,7 @@ describe "Scenario 9 - Terminology Release, Clone, Impact and Upgrade", :type =>
     wait_for_ajax 20
   end
 
-  describe "Curator User", :type => :feature do
+  describe "Curator User", type: :feature, js: true do
 
     before :all do
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
@@ -52,14 +53,14 @@ describe "Scenario 9 - Terminology Release, Clone, Impact and Upgrade", :type =>
       set_transactional_tests true
     end
 
-    it "Prepares a tag, system admin", scenario: true, js: true do
+    it "Prepares a tag, system admin", scenario: true do
       ua_sys_and_content_admin_login
       go_to_tags
       create_tag('Tags', 'TstTag', 'Tag for Test')
       ua_logoff
     end
 
-    it "Build Terminology Release, Clone and Upgrade", scenario: true, js: true do
+    it "Build Terminology Release, Clone and Upgrade", scenario: true do
       ua_curator_login
 
       # Create Thesaurus
@@ -109,11 +110,10 @@ describe "Scenario 9 - Terminology Release, Clone, Impact and Upgrade", :type =>
 
       # Document Control, Make Extension Standard
       context_menu_element_v2("history", "0.1.0", :document_control)
-      click_on "Submit Status Change"
-      click_on "Submit Status Change"
-      click_on "Submit Status Change"
-      click_on "Submit Status Change"
-      click_link "Return"
+      wait_for_ajax 10
+      click_on('Forward to Release')
+      wait_for_ajax 10
+      click_on "Return"
       wait_for_ajax 10
 
       # Create a Subset
@@ -153,11 +153,10 @@ describe "Scenario 9 - Terminology Release, Clone, Impact and Upgrade", :type =>
 
       # Document Control, Make Subset Standard
       context_menu_element_v2("history", "0.1.0", :document_control)
-      click_on "Submit Status Change"
-      click_on "Submit Status Change"
-      click_on "Submit Status Change"
-      click_on "Submit Status Change"
-      click_link "Return"
+      wait_for_ajax 10
+      click_on('Forward to Release')
+      wait_for_ajax 10
+      click_on "Return"
       wait_for_ajax 10
 
 
@@ -181,17 +180,11 @@ describe "Scenario 9 - Terminology Release, Clone, Impact and Upgrade", :type =>
 
       # Document Control, Make CL Standard, Add Version Label
       context_menu_element_v2("history", "0.1.0", :document_control)
-
-      page.find('#version-label-edit').click
-      fill_in 'iso_scoped_identifier[version_label]', with: 'Standard Version Label'
-      page.find('#version-label-submit').click
-
-      click_on "Submit Status Change"
-      click_on "Submit Status Change"
-      click_on "Submit Status Change"
-      click_on "Submit Status Change"
-
-      click_link "Return"
+      wait_for_ajax 10
+      dc_update_version_label('Standard Version Label')
+      click_on('Forward to Release')
+      wait_for_ajax 10
+      click_on "Return"
       wait_for_ajax 10
 
       # Create a Subset of a Sponsor Extension
@@ -231,11 +224,10 @@ describe "Scenario 9 - Terminology Release, Clone, Impact and Upgrade", :type =>
 
       # Document Control, Make Subset Standard
       context_menu_element_v2("history", "0.1.0", :document_control)
-      click_on "Submit Status Change"
-      click_on "Submit Status Change"
-      click_on "Submit Status Change"
-      click_on "Submit Status Change"
-      click_link "Return"
+      wait_for_ajax 10
+      click_on('Forward to Release')
+      wait_for_ajax 10
+      click_on "Return"
       wait_for_ajax 10
 
       # Edit Thesaurus, add items
@@ -262,17 +254,11 @@ describe "Scenario 9 - Terminology Release, Clone, Impact and Upgrade", :type =>
 
       # Document Control, Make Thesaurus Standard
       context_menu_element_v2("history", "0.1.0", :document_control)
-
-      page.find('#version-label-edit').click
-      fill_in 'iso_scoped_identifier[version_label]', with: 'Standard Test TH'
-      page.find('#version-label-submit').click
-
-      click_on "Submit Status Change"
-      click_on "Submit Status Change"
-      click_on "Submit Status Change"
-      click_on "Submit Status Change"
-
-      click_link "Return"
+      wait_for_ajax 10 
+      dc_update_version_label('Standard Test TH')
+      click_on('Forward to Release')
+      wait_for_ajax 10
+      click_on "Return"
       wait_for_ajax 10
 
       # Clone Thesaurus
@@ -293,7 +279,7 @@ describe "Scenario 9 - Terminology Release, Clone, Impact and Upgrade", :type =>
       change_cdisc_version("2019-12-20")
 
       # Upgrade Terms
-      context_menu_element_header :upgrade
+      context_menu_element_header :upgrade_cls
       wait_for_ajax 20
       expect(page).to have_content("Upgrade Code Lists CLONE v0.1.0")
 
@@ -317,7 +303,7 @@ describe "Scenario 9 - Terminology Release, Clone, Impact and Upgrade", :type =>
       ui_check_table_cell("table-selection-overview", 3, 6, "0.2.0")
       ui_check_table_row_indicators("table-selection-overview", 3, 8, ["2 versions", "subset"])
 
-      context_menu_element_header :upgrade
+      context_menu_element_header :upgrade_cls
       wait_for_ajax 20
 
       # Upgrade Extension and Subset of Extension
@@ -344,7 +330,7 @@ describe "Scenario 9 - Terminology Release, Clone, Impact and Upgrade", :type =>
 
   end
 
-  describe "Curator User", :type => :feature do
+  describe "Curator User", type: :feature, js: true do
 
     before :all do
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
@@ -362,7 +348,7 @@ describe "Scenario 9 - Terminology Release, Clone, Impact and Upgrade", :type =>
       ua_destroy
     end
 
-    it "Upgrade of a Subset of an Extension, prevents upgrade of Subset before Extension. Status: Incomplete, WILL CURRENTLY FAIL", scenario: true, js: true do
+    it "Upgrade of a Subset of an Extension, prevents upgrade of Subset before Extension. Status: Incomplete, WILL CURRENTLY FAIL", scenario: true do
       ua_curator_login
 
       # Create Thesaurus
@@ -426,7 +412,7 @@ describe "Scenario 9 - Terminology Release, Clone, Impact and Upgrade", :type =>
       change_cdisc_version("2019-12-20")
 
       # Upgrade Terms
-      context_menu_element_header :upgrade
+      context_menu_element_header :upgrade_cls
       wait_for_ajax 20
       click_row_contains("changes-cdisc-table", "Epoch")
       wait_for_ajax 10

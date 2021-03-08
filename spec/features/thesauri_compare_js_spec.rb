@@ -9,6 +9,7 @@ describe "Thesauri Compare", :type => :feature do
   include UiHelpers
   include NameValueHelpers
   include DownloadHelpers
+  include IsoManagedHelpers
 
   def sub_dir
     return "features/thesaurus"
@@ -98,11 +99,8 @@ describe "Thesauri Compare", :type => :feature do
       click_navbar_code_lists
       identifier = ui_new_code_list
       context_menu_element('history', 4, identifier, :document_control)
-      click_on "Submit Status Change"
-      click_on "Submit Status Change"
-      click_on "Submit Status Change"
-      click_on "Submit Status Change"
-      expect(page).to have_content "Update to current"
+      wait_for_ajax 10 
+      dc_forward_to('Standard')
       click_navbar_terminology
       wait_for_ajax 10
       find(:xpath, "//tr[contains(.,'TST')]/td/a").click
@@ -133,11 +131,8 @@ describe "Thesauri Compare", :type => :feature do
       find(:xpath, "//tr[contains(.,'TST')]/td/a").click
       wait_for_ajax 10
       context_menu_element("history", 5, "0.1.0", :document_control)
-      click_on "Submit Status Change"
-      click_on "Submit Status Change"
-      click_on "Submit Status Change"
-      click_on "Submit Status Change"
-      expect(page).to have_content "Update to current"
+      wait_for_ajax 10
+      dc_forward_to('Standard')
       click_link "Return"
       wait_for_ajax 10
       context_menu_element("history", 5, "0.1.0", :edit)
@@ -183,7 +178,7 @@ describe "Thesauri Compare", :type => :feature do
       expect(page).to have_content "Changes between CT v15.0.0 and CT v20.0.0"
       click_link "CSV Report"
       file = download_content
-      # write_text_file_2(file, sub_dir, "compare_report_expected.csv")
+    #Xwrite_text_file_2(file, sub_dir, "compare_report_expected.csv")
       expected = read_text_file_2(sub_dir, "compare_report_expected.csv")
       expect(file).to eq(expected)
     end

@@ -3,6 +3,8 @@ class SdtmSponsorDomain < SdtmIgDomain
   configure rdf_type: "http://www.assero.co.uk/Tabulation#SdtmSponsorDomain",
             uri_suffix: "SPD"
 
+  object_property_class :includes_column, model_class: "SdtmSponsorDomain::VariableSSD"
+
   include Tabulation::Ordinal
 
   # Clone. Clone the Sponsor SDTM Domain
@@ -26,10 +28,10 @@ class SdtmSponsorDomain < SdtmIgDomain
     object.ordinal = 1
     object.set_initial(params[:identifier])
     object.structure = ig_domain.structure
-    object.based_on_class = ig_domain.based_on_class.uri
+    object.based_on_class = ig_domain.based_on_class
     ig_domain.includes_column.sort_by {|x| x.ordinal}.each do |domain_variable|
       sponsor_variable_name = SdtmVariableName.new(domain_variable.name, ig_domain.prefix, domain_variable.based_on_class_variable.prefixed).with_prefix(object.prefix)
-      sponsor_variable = SdtmSponsorDomain::Var.new(label: domain_variable.label, name: sponsor_variable_name, ordinal: domain_variable.ordinal)
+      sponsor_variable = SdtmSponsorDomain::VariableSSD.new(label: domain_variable.label, name: sponsor_variable_name, ordinal: domain_variable.ordinal)
       sponsor_variable.uri = sponsor_variable.create_uri(object.uri)
       sponsor_variable.description = domain_variable.description
       sponsor_variable.format = domain_variable.format
@@ -39,6 +41,7 @@ class SdtmSponsorDomain < SdtmIgDomain
       sponsor_variable.compliance = domain_variable.compliance.uri
       sponsor_variable.classified_as = domain_variable.based_on_class_variable.classified_as.uri
       sponsor_variable.ct_reference = domain_variable.ct_reference
+      sponsor_variable.is_a = domain_variable.is_a
       sponsor_variable.based_on_ig_variable = domain_variable.uri
       object.includes_column << sponsor_variable
     end
@@ -61,7 +64,7 @@ class SdtmSponsorDomain < SdtmIgDomain
     object.based_on_class = sdtm_class.uri
     sdtm_class.includes_column.sort_by {|x| x.ordinal}.each do |class_variable|
       sponsor_variable_name = SdtmVariableName.new(class_variable.name, "", class_variable.prefixed).with_prefix(object.prefix)
-      sponsor_variable = SdtmSponsorDomain::Var.new(label: class_variable.label, name: sponsor_variable_name, ordinal: class_variable.ordinal)
+      sponsor_variable = SdtmSponsorDomain::VariableSSD.new(label: class_variable.label, name: sponsor_variable_name, ordinal: class_variable.ordinal)
       sponsor_variable.uri = sponsor_variable.create_uri(object.uri)
       sponsor_variable.description = class_variable.description
       sponsor_variable.format = ""
@@ -71,6 +74,7 @@ class SdtmSponsorDomain < SdtmIgDomain
       sponsor_variable.typed_as = class_variable.typed_as.uri 
       sponsor_variable.classified_as = class_variable.classified_as.uri
       sponsor_variable.ct_reference = []
+      sponsor_variable.is_a = class_variable.is_a
       sponsor_variable.based_on_ig_variable = nil
       sponsor_variable.based_on_class_variable = class_variable.uri
       object.includes_column << sponsor_variable
@@ -83,7 +87,7 @@ class SdtmSponsorDomain < SdtmIgDomain
   #
   # @return [SdtmSponsorDomain] the new sponsor domain object
   def add_non_standard_variable
-    non_standard_variable = SdtmSponsorDomain::Var.new
+    non_standard_variable = SdtmSponsorDomain::VariableSSD.new
     ordinal = next_ordinal
     non_standard_variable.name = "#{self.prefix}XXX#{ordinal.to_s.rjust(3,'0')}"
     non_standard_variable.ordinal = ordinal
@@ -94,6 +98,17 @@ class SdtmSponsorDomain < SdtmIgDomain
     non_standard_variable.save
     self.add_link(:includes_column, non_standard_variable.uri)
     non_standard_variable
+  end
+
+  # Dependency Paths. Returns the paths for any dependencies this class may have.
+  #
+  # @return [Array] array of strings suitable for inclusion in a sparql query
+  def self.dependency_paths
+    [
+      '^<http://www.assero.co.uk/BusinessOperational#theSubject>/'\
+      '<http://www.assero.co.uk/BusinessOperational#associatedWith>',
+      '<http://www.assero.co.uk/Tabulation#basedOnClass>'
+    ]
   end
 
   private

@@ -8,6 +8,7 @@ describe Forms::Groups::NormalGroupsController do
   include IsoHelpers
   include ControllerHelpers
   include SecureRandomHelpers
+  include IsoManagedHelpers
   
   describe "Update" do
   	
@@ -18,10 +19,7 @@ describe Forms::Groups::NormalGroupsController do
     end
 
     def make_standard(item)
-      params = {}
-      params[:registration_status] = "Standard"
-      params[:previous_state] = "Incomplete"
-      item.update_status(params)
+      IsoManagedHelpers.make_item_standard(item)
     end
 
     after :all do
@@ -105,7 +103,7 @@ describe Forms::Groups::NormalGroupsController do
       audit_count = AuditTrail.count
       put :update, params:{id: @normal.id, normal_group: update_params}
       expect(AuditTrail.count).to eq(audit_count)
-      actual = check_good_json_response(response)
+      actual = check_error_json_response(response)
       check_file_actual_expected(actual, sub_dir, "update_normal_expected_4.yaml", equate_method: :hash_equal)
     end
 

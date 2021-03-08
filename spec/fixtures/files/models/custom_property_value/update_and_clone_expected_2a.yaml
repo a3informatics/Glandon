@@ -1,0 +1,21 @@
+---
+:id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1BWIzE3NjBjYmIxLWEzNzAtNDFmNi1hM2IzLTQ5M2MxZDljMjIzOA==
+:uri: http://www.assero.co.uk/CPV#1760cbb1-a370-41f6-a3b3-493c1d9c2238
+:rdf_type: http://www.assero.co.uk/ISO11179Concepts#CustomProperty
+:applies_to: http://www.assero.co.uk/Test#Target1
+:context:
+- http://www.assero.co.uk/Test#Context2
+:value: step 2
+:custom_property_defined_by:
+  :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvVGVzdCNDVkQx
+  :uri: http://www.assero.co.uk/Test#CVD1
+  :rdf_type: http://www.assero.co.uk/ISO11179Concepts#CustomPropertyDefinition
+  :datatype: string
+  :default: Default String
+  :label: Name
+  :description: A description
+  :custom_property_of:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvVGVzdCNVbm1hbmFnZWRDb25jZXB0
+    :uri: http://www.assero.co.uk/Test#UnmanagedConcept
+    :rdf_type: http://www.assero.co.uk/ISO11179Concepts#Concept
+    :label: Concept System

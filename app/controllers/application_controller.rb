@@ -77,26 +77,26 @@ class ApplicationController < ActionController::Base
     new_params
   end
 
-  # Convert triples to a string
-  # @todo Move to a better location?
-  def to_turtle(triples)
-    result = ""
-    triples.each do |key, triple_array|
-      triple_array.each do |triple|
-        if triple[:object].start_with?('http://')
-          result += "<#{triple[:subject]}> \t\t\t<#{triple[:predicate]}> \t\t\t<#{triple[:object]}> . \n"
-        else
-          object_text = triple[:object]
-          # TODO: Compare with SparqlUtility::replace_special_char
-          object_text.gsub!("\r", "\\r")
-          object_text.gsub!("\n", "\\n")
-          object_text.gsub!("\"", "\\\"")
-          result += "<#{triple[:subject]}> \t\t\t<#{triple[:predicate]}> \t\t\t\"#{object_text}\" . \n"
-        end
-      end
-    end
-    return result
-  end
+  # # Convert triples to a string
+  # # @todo Move to a better location?
+  # def to_turtle(triples)
+  #   result = ""
+  #   triples.each do |key, triple_array|
+  #     triple_array.each do |triple|
+  #       if triple[:object].start_with?('http://')
+  #         result += "<#{triple[:subject]}> \t\t\t<#{triple[:predicate]}> \t\t\t<#{triple[:object]}> . \n"
+  #       else
+  #         object_text = triple[:object]
+  #         # TODO: Compare with SparqlUtility::replace_special_char
+  #         object_text.gsub!("\r", "\\r")
+  #         object_text.gsub!("\n", "\\n")
+  #         object_text.gsub!("\"", "\\\"")
+  #         result += "<#{triple[:subject]}> \t\t\t<#{triple[:predicate]}> \t\t\t\"#{object_text}\" . \n"
+  #       end
+  #     end
+  #   end
+  #   return result
+  # end
 
   # Clear the breadcrumbs session variable before any controller action.
   def before_action_steps

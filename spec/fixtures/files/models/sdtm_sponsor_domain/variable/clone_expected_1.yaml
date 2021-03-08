@@ -1,0 +1,31 @@
+---
+:id: 
+:uri: {}
+:rdf_type: http://www.assero.co.uk/Tabulation#SdtmSponsorDomainVariable
+:label: Study Identifier
+:rule: ''
+:ordinal: 1
+:name: STUDYID
+:description: Unique identifier for a study.
+:format: ''
+:ct_and_format: ''
+:compliance:
+  :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzUyMDcwMDg0LWNkZDMtNGJhOC04Mzc3LWY2NzBlNGIwMjc2Yw==
+  :uri: http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c
+  :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+  :pref_label: Required
+  :description: Any variable that is basic to the identification of a data record
+    (i.e., essential key variables and a topic variable) or is necessary to make the
+    record meaningful. Required variables must always be included in the dataset and
+    cannot be null for any record
+  :narrower: []
+:ct_reference: []
+:based_on_class_variable: 
+:is_a: 
+:comment: ''
+:used: true
+:notes: ''
+:method: ''
+:typed_as: 
+:based_on_ig_variable: http://www.cdisc.org/SDTM_IG_AE/V1#IGD_STUDYID
+:classified_as: 

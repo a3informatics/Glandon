@@ -1,0 +1,119 @@
+---
+:warnings:
+- :cl: C101847
+  :cl_sub: CVTESTCD
+  :cli: C135381
+  :cli_sub: RVEF_E
+  :column: CODE_DEFINITION
+  :reason: Definition set to null in CDISC 2017-06-30 version. Corrected in the 2018-03-30
+    version.
+  :diff: |
+    -A visual estimation of the percent or fraction of the volume of blood ejected from the right ventricle during right ventricular systole.
+    +null
+- :cl: C101846
+  :cl_sub: CVTEST
+  :cli: C135381
+  :cli_sub: Right Ventricular Ejection Fraction, Est
+  :column: CODE_DEFINITION
+  :reason: Definition set to null in CDISC 2017-06-30 version. Corrected in the 2018-03-30
+    version.
+  :diff: |
+    -A visual estimation of the percent or fraction of the volume of blood ejected from the right ventricle during right ventricular systole.
+    +null
+- :cl: SN000193
+  :cl_sub: ECOG1R_01
+  :cli: S002089
+  :cli_sub: '1'
+  :column: CODE_DEFINITION
+  :reason: Definition in the subset is different to the master. Subset values cannot
+    deviate.
+  :diff: |
+    -(Synonym 1 NCI) Restricted in physically strenuous activity but ambulatory and able to carry out work of a light or (Synonym 1 NCI) sedentary nature, e.g., light house work, office work.
+    +(Synonym 1 NCI) Restricted in physically strenuous activity but ambulatory and able to carry out work of a light or sedentary nature, e.g., light house work, office work.
+- :cl: C65047
+  :cl_sub: LBTESTCD
+  :cli: C138970
+  :cli_sub: CHCMR
+  :column: CODE_DEFINITION
+  :reason: Definition set to null in CDISC 2017-06-30 version. Corrected in the 2017-12-22
+    version.
+  :diff: |
+    -An indirect measurement of the average concentration of hemoglobin per reticulocyte in a biological specimen, calculated as the ratio of hemoglobin to hematocrit.
+    +null
+- :cl: C67154
+  :cl_sub: LBTEST
+  :cli: C138970
+  :cli_sub: Ret. Corpuscular HGB Concentration Mean
+  :column: CODE_DEFINITION
+  :reason: Definition set to null in CDISC 2017-06-30 version. Corrected in the 2017-12-22
+    version.
+  :diff: |
+    -An indirect measurement of the average concentration of hemoglobin per reticulocyte in a biological specimen, calculated as the ratio of hemoglobin to hematocrit.
+    +null
+- :cl: SN000583
+  :cl_sub: TRTRSN_02
+  :cli: S003012
+  :cli_sub: RADIO-SENSITIZER
+  :column: CODE_DEFINITION
+  :reason: Definition in the subset is different to the master. Subset values cannot
+    deviate.
+  :diff: |
+    -Treatment that makes tumor cells more sensitive to radiation therapy.
+    +An agent that makes tumor cells more sensitive to radiation therapy.
+- :cl: SN001929
+  :cl_sub: VSLPARM
+  :cli: C25298
+  :cli_sub: Systolic Blood Pressure
+  :column: CODE_DEFINITION
+  :reason: Using an earlier definition and not the definition in the version of the
+    CT referenced.
+  :diff: |
+    -The maximum blood pressure in the systemic arterial circulation during the cardiac cycle.
+    +The blood pressure during the contraction of the left ventricle of the heart. (NCI)
+- :cl: SN001929
+  :cl_sub: VSLPARM
+  :cli: C25299
+  :cli_sub: Diastolic Blood Pressure
+  :column: CODE_DEFINITION
+  :reason: Using an earlier definition and not the definition in the version of the
+    CT referenced.
+  :diff: |
+    -The minimum blood pressure in the systemic arterial circulation during the cardiac cycle.
+    +The blood pressure after the contraction of the heart while the chambers of the heart refill with blood. (NCI)
+- :cl: SN000697
+  :cl_sub: CESCAT_01
+  :cli: S000038
+  :cli_sub: ADMINISTRATION SITE
+  :column: CODE_DEFINITION
+  :reason: Definition in the subset is different to the master. Subset values cannot
+    deviate.
+  :diff: |
+    -Body site at which a pharmaceutical product is administered.
+    +Particular site on which the administration of treatment performed.
+- :cl: C66736
+  :cl_sub: TINDTP
+  :cli: C48262
+  :cli_sub: SCREENING
+  :column: CODE_DEFINITION
+  :reason: Small difference in the definiton. (Clinicaltrials.gov) v (ClinicalTrials.gov)
+  :diff: |
+    -A type of study designed to assess or examine methods of identifying a condition (or risk factors for a condition) in people who are not yet known to have the condition (or risk factor). (Clinicaltrials.gov)
+    +A type of study designed to assess or examine methods of identifying a condition (or risk factors for a condition) in people who are not yet known to have the condition (or risk factor). (ClinicalTrials.gov)
+- :cl: TRTEST
+  :cl_sub: ''
+  :cli: ''
+  :cli_sub: ''
+  :column: ''
+  :reason: 'Failed to match item ''Sum of Products of Perpendicular Diam'' in the
+    code list. Permitted exception: CDISC submission value for C132261 different but
+    is over 40 characters ''Sum of Products of Perpendicular Diameters'''
+  :diff: ''
+- :cl: UNIT
+  :cl_sub: ''
+  :cli: ''
+  :cli_sub: ''
+  :column: ''
+  :reason: 'Failed to match item ''day'' in the code list. Permitted exception: CDISC
+    submission value for C25301 different ''DAYS'' not ''day'''
+  :diff: ''
+:errors: []

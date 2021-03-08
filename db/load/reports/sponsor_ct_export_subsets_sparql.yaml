@@ -8,9 +8,6 @@
   :clln:
     :label: CODELIST_LONG_NAME
     :type: literal
-  :clc:
-    :label: CODELIST_CODE
-    :type: literal
   :clsn:
     :label: CODELIST_SHORT_NAME
     :type: literal
@@ -20,17 +17,29 @@
   :cld:
     :label: CODELIST_DEFINITION
     :type: literal
+  :clc:
+    :label: CODELIST_CODE
+    :type: literal
   :code:
     :label: CODE
-    :type: literal
-  :decode:
-    :label: DECODE
     :type: literal
   :svalue:
     :label: SUBMISSION_VALUE
     :type: literal
+  :decode:
+    :label: DECODE
+    :type: literal
   :synonym:
     :label: SYNONYM
+    :type: literal
+  :synonym_sponsor:
+    :label: SYNONYM_SPONSOR
+    :type: literal
+  :clid:
+    :label: CODE_DEFINITION
+    :type: literal
+  :cldt:
+    :label: DATA_TYPE
     :type: literal
   :crfdv:
     :label: CRF_DISPLAY_VALUE
@@ -49,6 +58,9 @@
     :type: literal
   :adam_stage:
     :label: ADAM_STAGE
+    :type: literal
+  :ed_use:
+    :label: ED_USE
     :type: literal
 :label: Sponsor CT Subsets Export
 :query: 'PREFIX th: <http://www.assero.co.uk/Thesaurus#>
@@ -82,17 +94,57 @@ SELECT ?clln ?clc ?clsn ?cle ?cld ?code ?decode ?svalue (GROUP_CONCAT(DISTINCT ?
   ?cl th:definition ?cld .
   ?cl th:preferredTerm/isoC:label ?clln .
   ?cli th:identifier ?code .  
-  ?cli th:preferredTerm/isoC:label ?decode .
   ?cli th:notation ?svalue .
-  ?cli isoC:label ?crfdv
+
+  BIND (?clsn NOT IN ( "TOXGR_01" ) as ?dt_ok)
+  BIND (IF(regex(?svalue, "^-?[0-9]+$") && ?dt_ok, "integer", "text") as ?cldt) 
+
+  ?cli th:definition ?clid .
+
+  ?cli ^isoC:appliesTo ?ext1 .
+  ?ext1 isoC:context ?cl . 
+  ?ext1 isoC:customPropertyDefinedBy/isoC:label "SDTM Stage" .
+  ?ext1 isoC:value ?sdtm_stage .
+
+  ?cli ^isoC:appliesTo ?ext2 .
+  ?ext2 isoC:context ?cl . 
+  ?ext2 isoC:customPropertyDefinedBy/isoC:label "DC Stage" .
+  ?ext2 isoC:value ?dc_stage .
+
+  ?cli ^isoC:appliesTo ?ext3 .
+  ?ext3 isoC:context ?cl . 
+  ?ext3 isoC:customPropertyDefinedBy/isoC:label "ADaM Stage" .
+  ?ext3 isoC:value ?adam_stage .
+
+  ?cli ^isoC:appliesTo ?ext4 .
+  ?ext4 isoC:context ?cl . 
+  ?ext4 isoC:customPropertyDefinedBy/isoC:label "CRF Display Value" .
+  ?ext4 isoC:value ?crfdv .
+
+  ?cli ^isoC:appliesTo ?ext6 .
+  ?ext6 isoC:context ?cl . 
+  ?ext6 isoC:customPropertyDefinedBy/isoC:label "Synonym Sponsor" .
+  ?ext6 isoC:value ?synonym_sponsor .   
+
+  ?cli th:preferredTerm/isoC:label ?pt .
+  BIND (IF(CONTAINS(?clln, "Test Code"), true, false) as ?testcd)
+  BIND (IF(?testcd, true, false) AS ?use_pt1)
+  BIND (IF(?testcd = false && ?svalue = ?crfdv && ?dc_stage = "true", true, false) AS ?use_pt2)
+  BIND (IF(?use_pt1 = false && ?use_pt2 = false, ?crfdv, ?pt) AS ?decode)
+  
+  OPTIONAL
+  {
+    ?cli ^isoC:appliesTo ?ext7 .
+    ?ext7 isoC:context ?cl . 
+    ?ext7 isoC:customPropertyDefinedBy/isoC:label "ED Use" .
+    ?ext7 isoC:value ?ed_use .   
+  }
+
   OPTIONAL 
   {
     ?cli ^(th:item) ?rank_member . 
     FILTER (EXISTS {?cl th:isRanked/th:members/th:memberNext* ?rank_member })  
     ?rank_member th:rank ?rank 
   }
-  BIND (EXISTS {?cli isoC:tagged/isoC:prefLabel "DC Stage"} AS ?dc_stage)
-  BIND (EXISTS {?cli isoC:tagged/isoC:prefLabel "SDTM Stage"} AS ?sdtm_stage)
-  BIND (EXISTS {?cli isoC:tagged/isoC:prefLabel "ADaM Stage"} AS ?adam_stage)
-} GROUP BY ?clln ?clc ?clsn ?cle ?cld ?code ?decode ?svalue ?crfdv ?displayorder ?rank ?dc_stage ?sdtm_stage ?adam_stage ORDER BY ?clisyn ?clc ?code ?displayorder ?rank'
+} GROUP BY ?clln ?clc ?clsn ?cle ?cld ?clid ?cldt ?code ?decode ?svalue ?synonym_sponsor ?crfdv ?displayorder ?rank ?dc_stage ?sdtm_stage ?adam_stage ?ed_use ORDER BY ?clc ?code ?displayorder ?rank'
 :type: Ad Hoc Report Definition

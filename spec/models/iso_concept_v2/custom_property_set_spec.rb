@@ -6,7 +6,7 @@ describe IsoConceptV2::CustomPropertySet do
   include SecureRandomHelpers
 
   def sub_dir
-    return "models/custom_property_set"
+    return "models/iso_concept_v2/custom_property_set"
   end
 
   before :each do
@@ -22,22 +22,45 @@ describe IsoConceptV2::CustomPropertySet do
        uri: {}
       },
       {id: nil,
-       label: "1",
+       label: "2",
        rdf_type: "http://www.assero.co.uk/ISO11179Concepts#Concept",
        uri: {}
       },
       {id: nil,
-       label: "1",
+       label: "3",
        rdf_type: "http://www.assero.co.uk/ISO11179Concepts#Concept",
        uri: {}
       }
     ]
     item = IsoConceptV2::CustomPropertySet.new
     item << IsoConceptV2.new(label: "1")
-    item << IsoConceptV2.new(label: "1")
-    item << IsoConceptV2.new(label: "1")
+    item << IsoConceptV2.new(label: "2")
+    item << IsoConceptV2.new(label: "3")
     expect(item.to_h).to eq(expected)
 	end
+
+  it "=" do
+    expected = [
+      {id: nil,
+       label: "1",
+       rdf_type: "http://www.assero.co.uk/ISO11179Concepts#Concept",
+       uri: {}
+      },
+      {id: nil,
+       label: "2",
+       rdf_type: "http://www.assero.co.uk/ISO11179Concepts#Concept",
+       uri: {}
+      },
+      {id: nil,
+       label: "3",
+       rdf_type: "http://www.assero.co.uk/ISO11179Concepts#Concept",
+       uri: {}
+      }
+    ]
+    item = IsoConceptV2::CustomPropertySet.new
+    item.items = [IsoConceptV2.new(label: "1"), IsoConceptV2.new(label: "2"), IsoConceptV2.new(label: "3")]
+    expect(item.to_h).to eq(expected)
+  end
 
   def create_definition_1
     @definition_1 = CustomPropertyDefinition.create(datatype: "string", label: "Name", 
@@ -83,6 +106,18 @@ describe IsoConceptV2::CustomPropertySet do
     expected = [{:name=>"Switch", :value=>true}, {:name=>"Switch", :value=>false}]
     custom_set = IsoConceptV2::CustomPropertySet.new
     custom_set << create_value("true", 1, @definition_3)
+    custom_set << create_value("false", 2, @definition_3)
+    expect(custom_set.name_value_pairs).to eq(expected)
+  end
+
+  it "name_values_pairs III" do
+    create_definition_1
+    create_definition_2
+    create_definition_3
+    expected = [{:name=>"Name", :value=>"A string"}, {:name=>"Other", :value=>"Other string"}, {:name=>"Switch", :value=>false}]
+    custom_set = IsoConceptV2::CustomPropertySet.new
+    custom_set << create_value("Other string", 1, @definition_2)
+    custom_set << create_value("A string", 1, @definition_1)
     custom_set << create_value("false", 2, @definition_3)
     expect(custom_set.name_value_pairs).to eq(expected)
   end
@@ -152,6 +187,36 @@ describe IsoConceptV2::CustomPropertySet do
     custom_set_2 << create_value("First", 1, @definition_1)
     custom_set_2 << create_value("Second", 2, @definition_2)
     expect(custom_set_1.diff?(custom_set_2)).to eq(true)
+  end
+
+  it "merge" do
+    create_definition_1
+    create_definition_2
+    custom_set_1 = IsoConceptV2::CustomPropertySet.new
+    custom_set_1 << create_value("First", 1, @definition_1)
+    custom_set_2 = IsoConceptV2::CustomPropertySet.new
+    custom_set_2 << create_value("Second", 2, @definition_2)
+    custom_set_1.merge(custom_set_2)
+    expect(custom_set_1.name_value_pairs).to eq([{:name=>"Name", :value=>"First"}, {:name=>"Other", :value=>"Second"}])
+  end
+
+  it "items" do
+    create_definition_1
+    create_definition_2
+    custom_set_1 = IsoConceptV2::CustomPropertySet.new
+    custom_set_1 << create_value("First", 1, @definition_1)
+    custom_set_1 << create_value("Second", 2, @definition_2)
+    check_file_actual_expected(custom_set_1.items.map{|x| x.to_h}, sub_dir, "items_expected_1.yaml")
+  end
+
+  it "property" do
+    create_definition_1
+    create_definition_2
+    custom_set_1 = IsoConceptV2::CustomPropertySet.new
+    custom_set_1 << create_value("First", 1, @definition_1)
+    custom_set_1 << create_value("Second", 2, @definition_2)
+    property = custom_set_1.property("Name")
+    check_file_actual_expected(property.to_h, sub_dir, "property_expected_1.yaml")
   end
 
 end

@@ -1,0 +1,20 @@
+@prefix : <http://www.assero.co.uk/CPD#> .
+@prefix isoC: <http://www.assero.co.uk/ISO11179Concepts#> .
+@prefix th: <http://www.assero.co.uk/Thesaurus#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+<http://www.assero.co.uk/CPD>
+	rdf:type owl:Ontology ;
+.
+:5fa84a9a-4f15-49b9-86bf-46041eba2093
+	rdf:type isoC:CustomPropertyDefinition ;
+	isoC:datatype "string"^^xsd:string ;
+	isoC:default ""^^xsd:string ;
+	isoC:label "Display Order"^^xsd:string ;
+	isoC:description "The desired display order."^^xsd:string ;
+	isoC:customPropertyOf th:UnmanagedConcept ;
+.

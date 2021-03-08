@@ -27,6 +27,7 @@ module ApplicationHelper
     sdtm_classes: {link: "/sdtm_classes", text: "Classes", icon: "icon-sdtm"},
     adam_igs: {link: "/adam_igs/history", text: "CDISC ADaM IGs", icon: "icon-sdtm"},
     adam_ig_datasets: {link: "/adam_ig_datasets/history", text: "CDISC ADaM IG Datasets", icon: "icon-sdtm"},
+    managed_collections: {link: "/managed_collections", text: "Managed Collections", icon: "icon-collection"},
     user_settings: {link: "/user_settings", text: "User Settings"},
     users: {link: "/users", text: "Users"},
     studies: {link: "/studies", text: "Studies", icon: "icon-study"},
@@ -239,6 +240,7 @@ module ApplicationHelper
 		@category_forms = "Forms"
 		@category_sdtm = "SDTM"
 		@category_adam = "ADaM"
+		@category_mc = "Managed Collections"
 
 		@controller_map = {
 			dashboard: @category_dashboard,
@@ -249,7 +251,8 @@ module ApplicationHelper
 			biomedical_concept_templates: @category_biocon, biomedical_concept_instances: @category_biocon,
 			forms: @category_forms,
 			sdtm_models: @category_sdtm, sdtm_igs: @category_sdtm, sdtm_ig_domains: @category_sdtm, sdtm_sponsor_domains: @category_sdtm, sdtm_classes: @category_sdtm,
-			adam_igs: @category_adam, adam_ig_datasets: @category_adam
+      adam_igs: @category_adam, adam_ig_datasets: @category_adam,
+      managed_collections: @category_mc
 		}
 
 		@controller_map[controller_name.to_sym]

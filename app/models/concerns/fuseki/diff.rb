@@ -72,12 +72,12 @@ module Fuseki
             a = ""
             status = other_object.nil? ? :no_change : :deleted
             b = other_object.nil? ? "" : other_object
-            results[name] = difference_record(:not_present, a, b)
+            results[name] = difference_record_x(:not_present, a, b)
           elsif self_object.respond_to? :difference
             results[name] = self_object.difference(other_object, options)
           else
             status = self_object == other_object ? :no_change : :updated
-            results[name] = difference_record(status, self_object, other_object)
+            results[name] = difference_record_x(status, self_object, other_object)
           end
         end
       end
@@ -175,7 +175,7 @@ module Fuseki
             results << current_obj.difference(previous_obj, options)
           else
             status = current_obj == previous_obj ? :no_change : :updated
-            results << difference_record(status, current_obj, previous_obj)
+            results << difference_record_x(status, current_obj, previous_obj)
           end
         end    
       end
@@ -196,7 +196,7 @@ module Fuseki
     end
 
     # Difference Record
-    def difference_record(status, current, previous)
+    def difference_record_x(status, current, previous)
       {status: status, previous: previous, current: current, difference: Diffy::Diff.new(previous, current).to_s(:html)}
     end
 

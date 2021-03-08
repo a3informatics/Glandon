@@ -1,2643 +1,3919 @@
 ---
 ACN_01:
 - - Action Taken with Study Treatment Subset 01
-  - C66767
   - ACN_01
   - 'false'
   - Terminology specifying changes to the study treatment as a result of an adverse
     event.
+  - C66767
   - C48660
-  - Not Applicable
   - NOT APPLICABLE
-  - NA;Not Applicable
+  - Not Applicable
+  - NA; Not Applicable
+  - NA; Not Applicable
+  - Determination of a value is not relevant in the current context. (NCI)
+  - text
   - Not Applicable
   - '6'
   - ''
   - 'true'
   - 'false'
   - 'false'
+  - ''
 - - Action Taken with Study Treatment Subset 01
-  - C66767
   - ACN_01
   - 'false'
   - Terminology specifying changes to the study treatment as a result of an adverse
     event.
+  - C66767
   - C49501
-  - Drug Interrupted
   - DRUG INTERRUPTED
+  - Drug Interrupted
   - ''
+  - ''
+  - An indication that a medication schedule was modified by temporarily terminating
+    a prescribed regimen of medication. (NCI)
+  - text
   - Drug Interrupted
   - '3'
   - ''
   - 'true'
   - 'false'
   - 'false'
+  - ''
 - - Action Taken with Study Treatment Subset 01
-  - C66767
   - ACN_01
   - 'false'
   - Terminology specifying changes to the study treatment as a result of an adverse
     event.
+  - C66767
   - C49502
-  - Drug Withdrawn
   - DRUG WITHDRAWN
+  - Drug Withdrawn
   - ''
+  - ''
+  - An indication that a medication schedule was modified through termination of a
+    prescribed regimen of medication. (NCI)
+  - text
   - Drug Withdrawn
   - '4'
   - ''
   - 'true'
   - 'false'
   - 'false'
+  - ''
 - - Action Taken with Study Treatment Subset 01
-  - C66767
   - ACN_01
   - 'false'
   - Terminology specifying changes to the study treatment as a result of an adverse
     event.
+  - C66767
   - C49503
-  - Dose Increased
   - DOSE INCREASED
+  - Dose Increased
   - ''
+  - ''
+  - An indication that a medication schedule was modified by addition; either by changing
+    the frequency, strength or amount. (NCI)
+  - text
   - Dose Increased
   - '5'
   - ''
   - 'true'
   - 'false'
   - 'false'
+  - ''
 - - Action Taken with Study Treatment Subset 01
-  - C66767
   - ACN_01
   - 'false'
   - Terminology specifying changes to the study treatment as a result of an adverse
     event.
+  - C66767
   - C49504
-  - Dose Not Changed
   - DOSE NOT CHANGED
+  - Dose Not Changed
   - ''
+  - ''
+  - An indication that a medication schedule was maintained. (NCI)
+  - text
   - Dose Not Changed
   - '1'
   - ''
   - 'true'
   - 'false'
   - 'false'
+  - ''
 - - Action Taken with Study Treatment Subset 01
-  - C66767
   - ACN_01
   - 'false'
   - Terminology specifying changes to the study treatment as a result of an adverse
     event.
+  - C66767
   - C49505
-  - Dose Reduced
   - DOSE REDUCED
+  - Dose Reduced
   - ''
+  - ''
+  - An indication that a medication schedule was modified by subtraction, either by
+    changing the frequency, strength or amount. (NCI)
+  - text
   - Dose Reduced
   - '2'
   - ''
   - 'true'
   - 'false'
   - 'false'
+  - ''
 ACN_03:
 - - Action Taken with Study Treatment Subset 03
-  - C66767
   - ACN_03
   - 'false'
   - Terminology specifying changes to the study treatment as a result of an adverse
     event.
+  - C66767
   - C48660
-  - Not Applicable
   - NOT APPLICABLE
-  - NA;Not Applicable
+  - Not Applicable
+  - NA; Not Applicable
+  - NA; Not Applicable
+  - Determination of a value is not relevant in the current context. (NCI)
+  - text
   - Not Applicable
   - '1'
   - ''
   - 'true'
   - 'false'
   - 'false'
+  - ''
 - - Action Taken with Study Treatment Subset 03
-  - C66767
   - ACN_03
   - 'false'
   - Terminology specifying changes to the study treatment as a result of an adverse
     event.
+  - C66767
   - C49502
-  - Drug Withdrawn
   - DRUG WITHDRAWN
+  - Drug Withdrawn
   - ''
+  - ''
+  - An indication that a medication schedule was modified through termination of a
+    prescribed regimen of medication. (NCI)
+  - text
   - Drug Withdrawn
   - '2'
   - ''
   - 'true'
   - 'false'
   - 'false'
+  - ''
 AERELA:
 - - Relationship to Study Treatment
-  - SN000012
   - AERELA
   - 'false'
   - Used to determine the relationship of Adverse Event to study treatment.
+  - SN000012
   - C78728
-  - Many
   - MULTIPLE
-  - Many;Several
   - ''
+  - Many; Several
+  - Many; Several
+  - More than one. (NCI)
+  - text
   - ''
+  - '5'
   - ''
   - 'false'
   - 'true'
   - 'true'
+  - ''
 - - Relationship to Study Treatment
-  - SN000012
   - AERELA
   - 'false'
   - Used to determine the relationship of Adverse Event to study treatment.
+  - SN000012
   - S000090
-  - Not Related
   - NOT RELATED
-  - ''
   - Not Related
   - ''
+  - ''
+  - A characteristic used to qualify the adverse event as clearly not related to the
+    study treatment.
+  - text
+  - Not Related
+  - '1'
   - '1'
   - 'true'
   - 'true'
   - 'true'
+  - ''
 - - Relationship to Study Treatment
-  - SN000012
   - AERELA
   - 'false'
   - Used to determine the relationship of Adverse Event to study treatment.
+  - SN000012
   - S000092
-  - Possibly Related
   - POSSIBLY RELATED
-  - ''
   - Possibly Related
   - ''
+  - ''
+  - A characteristic indicating that an adverse event may be related to the study
+    treatment.
+  - text
+  - Possibly Related
+  - '3'
   - '3'
   - 'true'
   - 'true'
   - 'true'
+  - ''
 - - Relationship to Study Treatment
-  - SN000012
   - AERELA
   - 'false'
   - Used to determine the relationship of Adverse Event to study treatment.
+  - SN000012
   - S000093
-  - Related
   - RELATED
-  - ''
   - Related
   - ''
+  - ''
+  - A characteristic used to qualify the adverse event as related to the study treatment.
+  - text
+  - Related
+  - '4'
   - '4'
   - 'true'
   - 'true'
   - 'true'
+  - ''
 - - Relationship to Study Treatment
-  - SN000012
   - AERELA
   - 'false'
   - Used to determine the relationship of Adverse Event to study treatment.
+  - SN000012
   - S000094
-  - Unlikely Related
   - UNLIKELY RELATED
-  - ''
   - Unlikely Related
   - ''
+  - ''
+  - A characteristic used to qualify the adverse event as unlikely related to the
+    study treatment.
+  - text
+  - Unlikely Related
+  - '2'
   - '2'
   - 'true'
   - 'true'
   - 'true'
+  - ''
 SUAM_01:
 - - Amount of Substance Subset 01
-  - SN000566
   - SUAM_01
   - 'false'
   - Used to collect predefined options for amount of substance.
+  - SN000566
   - S001121
-  - 1 or 2
   - 1 OR 2
+  - 1 or 2
   - ''
+  - ''
+  - A response indicating that amount of the pack of substance used is one or two.
+  - text
   - 1 or 2
   - '1'
   - ''
   - 'true'
   - 'false'
   - 'false'
+  - ''
 - - Amount of Substance Subset 01
-  - SN000566
   - SUAM_01
   - 'false'
   - Used to collect predefined options for amount of substance.
+  - SN000566
   - S003703
-  - Greater Than 2
   - GREATER THAN 2
+  - Greater Than 2
   - ''
+  - ''
+  - A response indicating that amount of the pack of substance used is greater than
+    two.
+  - text
   - Greater Than 2
   - '2'
   - ''
   - 'true'
   - 'false'
   - 'false'
+  - ''
 LOC_01:
 - - Anatomical Location Subset 01
-  - C74456
   - LOC_01
   - 'false'
   - Terminology codelist used for anatomical location within CDISC.
+  - C74456
   - C33763
-  - Thigh
   - THIGH
   - Thigh
   - Thigh
+  - Thigh
+  - A part of the lower limb, located between hip and knee. (NCI)
+  - text
+  - Thigh
   - '1'
   - ''
   - 'true'
   - 'true'
   - 'true'
+  - ''
 - - Anatomical Location Subset 01
-  - C74456
   - LOC_01
   - 'false'
   - Terminology codelist used for anatomical location within CDISC.
+  - C74456
   - C89806
-  - Buttock
   - BUTTOCK
   - Buttock
+  - Buttock
+  - Buttock
+  - Either of the fleshy mounds in the rear pelvic area of the human body formed by
+    the gluteal muscles.
+  - text
   - Buttock
   - '2'
   - ''
   - 'true'
   - 'true'
   - 'true'
+  - ''
 - - Anatomical Location Subset 01
-  - C74456
   - LOC_01
   - 'false'
   - Terminology codelist used for anatomical location within CDISC.
+  - C74456
   - S001153
-  - Upper Arm
   - UPPER ARM
-  - Arm;Brachium;Upper Arm
+  - Upper Arm
+  - Arm; Brachium; Upper Arm
+  - Arm; Brachium; Upper Arm
+  - "(Synonym 1 for C32141 ARM) The portion of the upper extremity between the shoulder
+    and the elbow."
+  - text
   - Upper Arm
   - '3'
   - ''
   - 'true'
   - 'false'
   - 'false'
+  - ''
 RACEC:
 - - Race As Collected
-  - C128689
   - RACEC
   - 'true'
   - A terminology codelist relevant to the race of an individual as collected on the
     case report form.
+  - C128689
   - C128937
-  - African American
   - AFRICAN AMERICAN
+  - African American
   - ''
+  - ''
+  - A person having origins in the original peoples of sub-Saharan Africa and the
+    United States.
+  - text
   - African American
   - ''
   - ''
   - 'false'
   - 'true'
   - 'true'
+  - ''
 - - Race As Collected
-  - C128689
   - RACEC
   - 'true'
   - A terminology codelist relevant to the race of an individual as collected on the
     case report form.
+  - C128689
   - C128938
-  - Black
   - BLACK
+  - Black
   - ''
+  - ''
+  - A person having origins in the original peoples of sub-Saharan Africa or the Caribbean.
+  - text
   - Black
   - ''
   - ''
   - 'false'
   - 'true'
   - 'true'
+  - ''
 - - Race As Collected
-  - C128689
   - RACEC
   - 'true'
   - A terminology codelist relevant to the race of an individual as collected on the
     case report form.
+  - C128689
   - C128991
-  - Black Central American
   - BLACK CENTRAL AMERICAN
+  - Black Central American
   - ''
+  - ''
+  - A person having origins in the original peoples of sub-Saharan Africa and Central
+    America.
+  - text
   - Black Central American
   - ''
   - ''
   - 'false'
   - 'true'
   - 'true'
+  - ''
 - - Race As Collected
-  - C128689
   - RACEC
   - 'true'
   - A terminology codelist relevant to the race of an individual as collected on the
     case report form.
+  - C128689
   - C128992
-  - Black South American
   - BLACK SOUTH AMERICAN
+  - Black South American
   - ''
+  - ''
+  - A person having origins in the original peoples of sub-Saharan Africa and South
+    America.
+  - text
   - Black South American
   - ''
   - ''
   - 'false'
   - 'true'
   - 'true'
+  - ''
 - - Race As Collected
-  - C128689
   - RACEC
   - 'true'
   - A terminology codelist relevant to the race of an individual as collected on the
     case report form.
+  - C128689
   - C128993
-  - White Central American
   - WHITE CENTRAL AMERICAN
+  - White Central American
   - ''
+  - ''
+  - A person having origins in the original peoples of Europe, the Middle East, or
+    North Africa, and Central America.
+  - text
   - White Central American
   - ''
   - ''
   - 'false'
   - 'true'
   - 'true'
+  - ''
 - - Race As Collected
-  - C128689
   - RACEC
   - 'true'
   - A terminology codelist relevant to the race of an individual as collected on the
     case report form.
+  - C128689
   - C128994
-  - White South American
   - WHITE SOUTH AMERICAN
+  - White South American
   - ''
+  - ''
+  - A person having origins in the original peoples of Europe, the Middle East, or
+    North Africa, and South America.
+  - text
   - White South American
   - ''
   - ''
   - 'false'
   - 'true'
   - 'true'
+  - ''
 - - Race As Collected
-  - C128689
   - RACEC
   - 'true'
   - A terminology codelist relevant to the race of an individual as collected on the
     case report form.
+  - C128689
   - C16310
-  - Asian American
   - ASIAN AMERICAN
+  - Asian American
   - ''
+  - ''
+  - A person having origins in the original peoples of Asia and the United States.
+  - text
   - Asian American
   - ''
   - ''
   - 'false'
   - 'true'
   - 'true'
+  - ''
 - - Race As Collected
-  - C128689
   - RACEC
   - 'true'
   - A terminology codelist relevant to the race of an individual as collected on the
     case report form.
+  - C128689
   - C16352
-  - Black or African American
   - BLACK OR AFRICAN AMERICAN
+  - Black or African American
   - ''
+  - ''
+  - A person having origins in any of the black racial groups of Africa. Terms such
+    as "Haitian" or "Negro" can be used in addition to "Black or African American."
+    (FDA)
+  - text
   - Black or African American
   - ''
   - ''
   - 'false'
   - 'true'
   - 'true'
+  - ''
 - - Race As Collected
-  - C128689
   - RACEC
   - 'true'
   - A terminology codelist relevant to the race of an individual as collected on the
     case report form.
+  - C128689
   - C17649
-  - Other
   - OTHER
   - Other
   - Other
+  - Other
+  - Different than the one(s) previously specified or mentioned. (NCI)
+  - text
+  - Other
   - ''
   - ''
   - 'false'
   - 'true'
   - 'true'
+  - ''
 - - Race As Collected
-  - C128689
   - RACEC
   - 'true'
   - A terminology codelist relevant to the race of an individual as collected on the
     case report form.
+  - C128689
   - C17998
-  - Unknown
   - UNKNOWN
-  - U;Unknown
+  - Unknown
+  - U; Unknown
+  - U; Unknown
+  - Not known, not observed, not recorded, or refused. (NCI)
+  - text
   - Unknown
   - ''
   - ''
   - 'false'
   - 'true'
   - 'true'
+  - ''
 - - Race As Collected
-  - C128689
   - RACEC
   - 'true'
   - A terminology codelist relevant to the race of an individual as collected on the
     case report form.
+  - C128689
   - C18237
-  - Alaska Native
   - ALASKA NATIVE
+  - Alaska Native
   - ''
+  - ''
+  - The native people of Alaska.
+  - text
   - Alaska Native
   - ''
   - ''
   - 'false'
   - 'true'
   - 'true'
+  - ''
 - - Race As Collected
-  - C128689
   - RACEC
   - 'true'
   - A terminology codelist relevant to the race of an individual as collected on the
     case report form.
+  - C128689
   - C41219
-  - Native Hawaiian or Other Pacific Islander
   - NATIVE HAWAIIAN OR OTHER PACIFIC ISLANDER
+  - Native Hawaiian or Other Pacific Islander
   - ''
+  - ''
+  - Denotes a person having origins in any of the original peoples of Hawaii, Guam,
+    Samoa, or other Pacific Islands. The term covers particularly people who identify
+    themselves as part-Hawaiian, Native Hawaiian, Guamanian or Chamorro, Carolinian,
+    Samoan, Chuu. (FDA)
+  - text
   - Native Hawaiian or Other Pacific Islander
   - ''
   - ''
   - 'false'
   - 'true'
   - 'true'
+  - ''
 - - Race As Collected
-  - C128689
   - RACEC
   - 'true'
   - A terminology codelist relevant to the race of an individual as collected on the
     case report form.
+  - C128689
   - C41226
-  - African Caribbean
   - AFRICAN CARIBBEAN
+  - African Caribbean
   - ''
+  - ''
+  - A person having origins in the original peoples of sub-Saharan Africa and the
+    Caribbean.
+  - text
   - African Caribbean
   - ''
   - ''
   - 'false'
   - 'true'
   - 'true'
+  - ''
 - - Race As Collected
-  - C128689
   - RACEC
   - 'true'
   - A terminology codelist relevant to the race of an individual as collected on the
     case report form.
+  - C128689
   - C41259
-  - American Indian or Alaska Native
   - AMERICAN INDIAN OR ALASKA NATIVE
+  - American Indian or Alaska Native
   - ''
+  - ''
+  - A person having origins in any of the original peoples of North and South America
+    (including Central America), and who maintains tribal affiliation or community
+    attachment. (FDA)
+  - text
   - American Indian or Alaska Native
   - ''
   - ''
   - 'false'
   - 'true'
   - 'true'
+  - ''
 - - Race As Collected
-  - C128689
   - RACEC
   - 'true'
   - A terminology codelist relevant to the race of an individual as collected on the
     case report form.
+  - C128689
   - C41260
-  - Asian
   - ASIAN
+  - Asian
   - ''
+  - ''
+  - A person having origins in any of the original peoples of the Far East, Southeast
+    Asia, or the Indian subcontinent including, for example, Cambodia, China, India,
+    Japan, Korea, Malaysia, Pakistan, the Philippine Islands, Thailand, and Vietnam.
+    (FDA)
+  - text
   - Asian
   - ''
   - ''
   - 'false'
   - 'true'
   - 'true'
+  - ''
 - - Race As Collected
-  - C128689
   - RACEC
   - 'true'
   - A terminology codelist relevant to the race of an individual as collected on the
     case report form.
+  - C128689
   - C41261
-  - White
   - WHITE
+  - White
   - ''
+  - ''
+  - Denotes a person with European, Middle Eastern, or North African ancestral origin
+    who identifies, or is identified, as White. (FDA)
+  - text
   - White
   - ''
   - ''
   - 'false'
   - 'true'
   - 'true'
+  - ''
 - - Race As Collected
-  - C128689
   - RACEC
   - 'true'
   - A terminology codelist relevant to the race of an individual as collected on the
     case report form.
+  - C128689
   - C41262
-  - Asian Indian
   - ASIAN INDIAN
+  - Asian Indian
   - ''
+  - ''
+  - A person having origins in any of the original peoples of the Indian subcontinent.
+  - text
   - Asian Indian
   - ''
   - ''
   - 'false'
   - 'true'
   - 'true'
+  - ''
 - - Race As Collected
-  - C128689
   - RACEC
   - 'true'
   - A terminology codelist relevant to the race of an individual as collected on the
     case report form.
+  - C128689
   - C42331
-  - African
   - AFRICAN
+  - African
   - ''
+  - ''
+  - A person having origins in any of the original peoples of sub-Saharan Africa.
+  - text
   - African
   - ''
   - ''
   - 'false'
   - 'true'
   - 'true'
+  - ''
 - - Race As Collected
-  - C128689
   - RACEC
   - 'true'
   - A terminology codelist relevant to the race of an individual as collected on the
     case report form.
+  - C128689
   - C43391
-  - Chinese
   - CHINESE
+  - Chinese
   - ''
+  - ''
+  - A person having origins in any of the original peoples of China.
+  - text
   - Chinese
   - ''
   - ''
   - 'false'
   - 'true'
   - 'true'
+  - ''
 - - Race As Collected
-  - C128689
   - RACEC
   - 'true'
   - A terminology codelist relevant to the race of an individual as collected on the
     case report form.
+  - C128689
   - C43392
-  - Japanese
   - JAPANESE
+  - Japanese
   - ''
+  - ''
+  - A person having origins in any of the original peoples of Japan.
+  - text
   - Japanese
   - ''
   - ''
   - 'false'
   - 'true'
   - 'true'
+  - ''
 - - Race As Collected
-  - C128689
   - RACEC
   - 'true'
   - A terminology codelist relevant to the race of an individual as collected on the
     case report form.
+  - C128689
   - C43393
-  - Filipino
   - FILIPINO
+  - Filipino
   - ''
+  - ''
+  - A person having origins in any of the original peoples of the Philippines.
+  - text
   - Filipino
   - ''
   - ''
   - 'false'
   - 'true'
   - 'true'
+  - ''
 - - Race As Collected
-  - C128689
   - RACEC
   - 'true'
   - A terminology codelist relevant to the race of an individual as collected on the
     case report form.
+  - C128689
   - C43395
-  - Korean
   - KOREAN
+  - Korean
   - ''
+  - ''
+  - A person having origins in any of the original peoples of North and South Korea.
+  - text
   - Korean
   - ''
   - ''
   - 'false'
   - 'true'
   - 'true'
+  - ''
 - - Race As Collected
-  - C128689
   - RACEC
   - 'true'
   - A terminology codelist relevant to the race of an individual as collected on the
     case report form.
+  - C128689
   - C43396
-  - Vietnamese
   - VIETNAMESE
+  - Vietnamese
   - ''
+  - ''
+  - A person having origins in any of the original peoples of Viet Nam.
+  - text
   - Vietnamese
   - ''
   - ''
   - 'false'
   - 'true'
   - 'true'
+  - ''
 - - Race As Collected
-  - C128689
   - RACEC
   - 'true'
   - A terminology codelist relevant to the race of an individual as collected on the
     case report form.
+  - C128689
   - C43397
-  - Laotian
   - LAOTIAN
+  - Laotian
   - ''
+  - ''
+  - A person having origins in any of the original peoples of Laos.
+  - text
   - Laotian
   - ''
   - ''
   - 'false'
   - 'true'
   - 'true'
+  - ''
 - - Race As Collected
-  - C128689
   - RACEC
   - 'true'
   - A terminology codelist relevant to the race of an individual as collected on the
     case report form.
+  - C128689
   - C43398
-  - Hmong
   - HMONG
+  - Hmong
   - ''
+  - ''
+  - The native people originating in China around the Yellow River or Hoang Ho.
+  - text
   - Hmong
   - ''
   - ''
   - 'false'
   - 'true'
   - 'true'
+  - ''
 - - Race As Collected
-  - C128689
   - RACEC
   - 'true'
   - A terminology codelist relevant to the race of an individual as collected on the
     case report form.
+  - C128689
   - C43399
-  - Cambodian
   - CAMBODIAN
+  - Cambodian
   - ''
+  - ''
+  - A person having origins in any of the original peoples of Cambodia (formerly Kampuchea).
+  - text
   - Cambodian
   - ''
   - ''
   - 'false'
   - 'true'
   - 'true'
+  - ''
 - - Race As Collected
-  - C128689
   - RACEC
   - 'true'
   - A terminology codelist relevant to the race of an individual as collected on the
     case report form.
+  - C128689
   - C43400
-  - Thai
   - THAI
+  - Thai
   - ''
+  - ''
+  - A person having origins in any of the original peoples of Thailand.
+  - text
   - Thai
   - ''
   - ''
   - 'false'
   - 'true'
   - 'true'
+  - ''
 - - Race As Collected
-  - C128689
   - RACEC
   - 'true'
   - A terminology codelist relevant to the race of an individual as collected on the
     case report form.
+  - C128689
   - C43402
-  - Micronesian
   - MICRONESIAN
+  - Micronesian
   - ''
+  - ''
+  - A person having origins in any of the original peoples of Micronesia.
+  - text
   - Micronesian
   - ''
   - ''
   - 'false'
   - 'true'
   - 'true'
+  - ''
 - - Race As Collected
-  - C128689
   - RACEC
   - 'true'
   - A terminology codelist relevant to the race of an individual as collected on the
     case report form.
+  - C128689
   - C43405
-  - Polynesian
   - POLYNESIAN
+  - Polynesian
   - ''
+  - ''
+  - A person having origins in any of the original peoples of Polynesia.
+  - text
   - Polynesian
   - ''
   - ''
   - 'false'
   - 'true'
   - 'true'
+  - ''
 - - Race As Collected
-  - C128689
   - RACEC
   - 'true'
   - A terminology codelist relevant to the race of an individual as collected on the
     case report form.
+  - C128689
   - C43409
-  - Melanesian
   - MELANESIAN
+  - Melanesian
   - ''
+  - ''
+  - A person having origins in any of the original peoples of Melanesia.
+  - text
   - Melanesian
   - ''
   - ''
   - 'false'
   - 'true'
   - 'true'
+  - ''
 - - Race As Collected
-  - C128689
   - RACEC
   - 'true'
   - A terminology codelist relevant to the race of an individual as collected on the
     case report form.
+  - C128689
   - C43427
-  - Pakistani
   - PAKISTANI
+  - Pakistani
   - ''
+  - ''
+  - A person having origins in any of the original peoples of Pakistan.
+  - text
   - Pakistani
   - ''
   - ''
   - 'false'
   - 'true'
   - 'true'
+  - ''
 - - Race As Collected
-  - C128689
   - RACEC
   - 'true'
   - A terminology codelist relevant to the race of an individual as collected on the
     case report form.
+  - C128689
   - C43671
-  - Bangladeshi
   - BANGLADESHI
+  - Bangladeshi
   - ''
+  - ''
+  - A person having origins in any of the original peoples of Bangladesh.
+  - text
   - Bangladeshi
   - ''
   - ''
   - 'false'
   - 'true'
   - 'true'
+  - ''
 - - Race As Collected
-  - C128689
   - RACEC
   - 'true'
   - A terminology codelist relevant to the race of an individual as collected on the
     case report form.
+  - C128689
   - C43672
-  - Sri Lankan
   - SRI LANKAN
+  - Sri Lankan
   - ''
+  - ''
+  - A person having origins in any of the original peoples of Sri Lanka.
+  - text
   - Sri Lankan
   - ''
   - ''
   - 'false'
   - 'true'
   - 'true'
+  - ''
 - - Race As Collected
-  - C128689
   - RACEC
   - 'true'
   - A terminology codelist relevant to the race of an individual as collected on the
     case report form.
+  - C128689
   - C43673
-  - Bhutanese
   - BHUTANESE
+  - Bhutanese
   - ''
+  - ''
+  - A person having origins in any of the original peoples of Bhutan.
+  - text
   - Bhutanese
   - ''
   - ''
   - 'false'
   - 'true'
   - 'true'
+  - ''
 - - Race As Collected
-  - C128689
   - RACEC
   - 'true'
   - A terminology codelist relevant to the race of an individual as collected on the
     case report form.
+  - C128689
   - C43674
-  - Burmese
   - BURMESE
+  - Burmese
   - ''
+  - ''
+  - A person having origins in any of the original peoples of Myanmar (formerly Burma).
+  - text
   - Burmese
   - ''
   - ''
   - 'false'
   - 'true'
   - 'true'
+  - ''
 - - Race As Collected
-  - C128689
   - RACEC
   - 'true'
   - A terminology codelist relevant to the race of an individual as collected on the
     case report form.
+  - C128689
   - C43675
-  - Taiwanese
   - TAIWANESE
+  - Taiwanese
   - ''
+  - ''
+  - A person having origins in any of the original peoples of Taiwan.
+  - text
   - Taiwanese
   - ''
   - ''
   - 'false'
   - 'true'
   - 'true'
+  - ''
 - - Race As Collected
-  - C128689
   - RACEC
   - 'true'
   - A terminology codelist relevant to the race of an individual as collected on the
     case report form.
+  - C128689
   - C43715
-  - Indonesian
   - INDONESIAN
+  - Indonesian
   - ''
+  - ''
+  - A person having origins in any of the original peoples of Indonesia.
+  - text
   - Indonesian
   - ''
   - ''
   - 'false'
   - 'true'
   - 'true'
+  - ''
 - - Race As Collected
-  - C128689
   - RACEC
   - 'true'
   - A terminology codelist relevant to the race of an individual as collected on the
     case report form.
+  - C128689
   - C43716
-  - Malaysian
   - MALAYSIAN
+  - Malaysian
   - ''
+  - ''
+  - A person having origins in any of the original peoples of Malaysia.
+  - text
   - Malaysian
   - ''
   - ''
   - 'false'
   - 'true'
   - 'true'
+  - ''
 - - Race As Collected
-  - C128689
   - RACEC
   - 'true'
   - A terminology codelist relevant to the race of an individual as collected on the
     case report form.
+  - C128689
   - C43717
-  - Okinawan
   - OKINAWAN
+  - Okinawan
   - ''
+  - ''
+  - A person having origins in any of the original peoples of Okinawa.
+  - text
   - Okinawan
   - ''
   - ''
   - 'false'
   - 'true'
   - 'true'
+  - ''
 - - Race As Collected
-  - C128689
   - RACEC
   - 'true'
   - A terminology codelist relevant to the race of an individual as collected on the
     case report form.
+  - C128689
   - C43718
-  - Iwo Jiman
   - IWO JIMAN
+  - Iwo Jiman
   - ''
+  - ''
+  - A person having origins in any of the original peoples of Iwo Jima.
+  - text
   - Iwo Jiman
   - ''
   - ''
   - 'false'
   - 'true'
   - 'true'
+  - ''
 - - Race As Collected
-  - C128689
   - RACEC
   - 'true'
   - A terminology codelist relevant to the race of an individual as collected on the
     case report form.
+  - C128689
   - C43719
-  - Maldivian
   - MALDIVIAN
+  - Maldivian
   - ''
+  - ''
+  - A person having origins in any of the original peoples of the Maldives.
+  - text
   - Maldivian
   - ''
   - ''
   - 'false'
   - 'true'
   - 'true'
+  - ''
 - - Race As Collected
-  - C128689
   - RACEC
   - 'true'
   - A terminology codelist relevant to the race of an individual as collected on the
     case report form.
+  - C128689
   - C43720
-  - Nepalese
   - NEPALESE
+  - Nepalese
   - ''
+  - ''
+  - A person having origins in any of the original peoples of Nepal.
+  - text
   - Nepalese
   - ''
   - ''
   - 'false'
   - 'true'
   - 'true'
+  - ''
 - - Race As Collected
-  - C128689
   - RACEC
   - 'true'
   - A terminology codelist relevant to the race of an individual as collected on the
     case report form.
+  - C128689
   - C43721
-  - Singaporean
   - SINGAPOREAN
+  - Singaporean
   - ''
+  - ''
+  - A person having origins in any of the original peoples of Singapore.
+  - text
   - Singaporean
   - ''
   - ''
   - 'false'
   - 'true'
   - 'true'
+  - ''
 - - Race As Collected
-  - C128689
   - RACEC
   - 'true'
   - A terminology codelist relevant to the race of an individual as collected on the
     case report form.
+  - C128689
   - C43722
-  - Malagasy
   - MALAGASY
+  - Malagasy
   - ''
+  - ''
+  - A person having origins in any of the original peoples of Madagascar.
+  - text
   - Malagasy
   - ''
   - ''
   - 'false'
   - 'true'
   - 'true'
+  - ''
 - - Race As Collected
-  - C128689
   - RACEC
   - 'true'
   - A terminology codelist relevant to the race of an individual as collected on the
     case report form.
+  - C128689
   - C43823
-  - Barbadian
   - BARBADIAN
+  - Barbadian
   - ''
+  - ''
+  - A person having origins in any of the original peoples of Barbados.
+  - text
   - Barbadian
   - ''
   - ''
   - 'false'
   - 'true'
   - 'true'
+  - ''
 - - Race As Collected
-  - C128689
   - RACEC
   - 'true'
   - A terminology codelist relevant to the race of an individual as collected on the
     case report form.
+  - C128689
   - C43824
-  - Dominica Islander
   - DOMINICA ISLANDER
+  - Dominica Islander
   - ''
+  - ''
+  - A person having origins in any of the original peoples of Dominica.
+  - text
   - Dominica Islander
   - ''
   - ''
   - 'false'
   - 'true'
   - 'true'
+  - ''
 - - Race As Collected
-  - C128689
   - RACEC
   - 'true'
   - A terminology codelist relevant to the race of an individual as collected on the
     case report form.
+  - C128689
   - C43825
-  - Haitian
   - HAITIAN
+  - Haitian
   - ''
+  - ''
+  - A person having origins in any of the original peoples of Haiti.
+  - text
   - Haitian
   - ''
   - ''
   - 'false'
   - 'true'
   - 'true'
+  - ''
 - - Race As Collected
-  - C128689
   - RACEC
   - 'true'
   - A terminology codelist relevant to the race of an individual as collected on the
     case report form.
+  - C128689
   - C43826
-  - Jamaican
   - JAMAICAN
+  - Jamaican
   - ''
+  - ''
+  - A person having origins in any of the original peoples of Jamaica.
+  - text
   - Jamaican
   - ''
   - ''
   - 'false'
   - 'true'
   - 'true'
+  - ''
 - - Race As Collected
-  - C128689
   - RACEC
   - 'true'
   - A terminology codelist relevant to the race of an individual as collected on the
     case report form.
+  - C128689
   - C43827
-  - Tobagoan
   - TOBAGOAN
+  - Tobagoan
   - ''
+  - ''
+  - A person having origins in any of the original peoples of Tobago.
+  - text
   - Tobagoan
   - ''
   - ''
   - 'false'
   - 'true'
   - 'true'
+  - ''
 - - Race As Collected
-  - C128689
   - RACEC
   - 'true'
   - A terminology codelist relevant to the race of an individual as collected on the
     case report form.
+  - C128689
   - C43828
-  - Trinidadian
   - TRINIDADIAN
+  - Trinidadian
   - ''
+  - ''
+  - A person having origins in any of the original peoples of Trinidad.
+  - text
   - Trinidadian
   - ''
   - ''
   - 'false'
   - 'true'
   - 'true'
+  - ''
 - - Race As Collected
-  - C128689
   - RACEC
   - 'true'
   - A terminology codelist relevant to the race of an individual as collected on the
     case report form.
+  - C128689
   - C43829
-  - West Indian
   - WEST INDIAN
+  - West Indian
   - ''
+  - ''
+  - A person having origins in any of the original peoples of the West Indies.
+  - text
   - West Indian
   - ''
   - ''
   - 'false'
   - 'true'
   - 'true'
+  - ''
 - - Race As Collected
-  - C128689
   - RACEC
   - 'true'
   - A terminology codelist relevant to the race of an individual as collected on the
     case report form.
+  - C128689
   - C43830
-  - Botswanan
   - BOTSWANAN
+  - Botswanan
   - ''
+  - ''
+  - A person having origins in any of the original peoples of Botswana.
+  - text
   - Botswanan
   - ''
   - ''
   - 'false'
   - 'true'
   - 'true'
+  - ''
 - - Race As Collected
-  - C128689
   - RACEC
   - 'true'
   - A terminology codelist relevant to the race of an individual as collected on the
     case report form.
+  - C128689
   - C43831
-  - Ethiopian
   - ETHIOPIAN
+  - Ethiopian
   - ''
+  - ''
+  - A person having origins in any of the original peoples of Ethiopia.
+  - text
   - Ethiopian
   - ''
   - ''
   - 'false'
   - 'true'
   - 'true'
+  - ''
 - - Race As Collected
-  - C128689
   - RACEC
   - 'true'
   - A terminology codelist relevant to the race of an individual as collected on the
     case report form.
+  - C128689
   - C43832
-  - Liberian
   - LIBERIAN
+  - Liberian
   - ''
+  - ''
+  - A person having origins in any of the original peoples of Liberia.
+  - text
   - Liberian
   - ''
   - ''
   - 'false'
   - 'true'
   - 'true'
+  - ''
 - - Race As Collected
-  - C128689
   - RACEC
   - 'true'
   - A terminology codelist relevant to the race of an individual as collected on the
     case report form.
+  - C128689
   - C43833
-  - Namibian
   - NAMIBIAN
+  - Namibian
   - ''
+  - ''
+  - A person having origins in any of the original peoples of Namibia.
+  - text
   - Namibian
   - ''
   - ''
   - 'false'
   - 'true'
   - 'true'
+  - ''
 - - Race As Collected
-  - C128689
   - RACEC
   - 'true'
   - A terminology codelist relevant to the race of an individual as collected on the
     case report form.
+  - C128689
   - C43834
-  - Nigerian
   - NIGERIAN
+  - Nigerian
   - ''
+  - ''
+  - A person having origins in any of the original peoples of Nigeria.
+  - text
   - Nigerian
   - ''
   - ''
   - 'false'
   - 'true'
   - 'true'
+  - ''
 - - Race As Collected
-  - C128689
   - RACEC
   - 'true'
   - A terminology codelist relevant to the race of an individual as collected on the
     case report form.
+  - C128689
   - C43835
-  - Zairean
   - ZAIREAN
+  - Zairean
   - ''
+  - ''
+  - A person having origins in any of the original peoples of Zaire.
+  - text
   - Zairean
   - ''
   - ''
   - 'false'
   - 'true'
   - 'true'
+  - ''
 - - Race As Collected
-  - C128689
   - RACEC
   - 'true'
   - A terminology codelist relevant to the race of an individual as collected on the
     case report form.
+  - C128689
   - C43851
-  - European
   - EUROPEAN
+  - European
   - ''
+  - ''
+  - A person having origins in any of the original peoples of Europe.
+  - text
   - European
   - ''
   - ''
   - 'false'
   - 'true'
   - 'true'
+  - ''
 - - Race As Collected
-  - C128689
   - RACEC
   - 'true'
   - A terminology codelist relevant to the race of an individual as collected on the
     case report form.
+  - C128689
   - C43860
-  - Russian
   - RUSSIAN
+  - Russian
   - ''
+  - ''
+  - A person having origins in any of the original peoples of Russia.
+  - text
   - Russian
   - ''
   - ''
   - 'false'
   - 'true'
   - 'true'
+  - ''
 - - Race As Collected
-  - C128689
   - RACEC
   - 'true'
   - A terminology codelist relevant to the race of an individual as collected on the
     case report form.
+  - C128689
   - C43864
-  - Mongolian
   - MONGOLIAN
+  - Mongolian
   - ''
+  - ''
+  - A person having origins in any of the original peoples of Mongolia.
+  - text
   - Mongolian
   - ''
   - ''
   - 'false'
   - 'true'
   - 'true'
+  - ''
 - - Race As Collected
-  - C128689
   - RACEC
   - 'true'
   - A terminology codelist relevant to the race of an individual as collected on the
     case report form.
+  - C128689
   - C43876
-  - Arab
   - ARAB
+  - Arab
   - ''
+  - ''
+  - A person having origins in any of the original peoples of the Arabian peninsula
+    and surrounding territories in the Middle East and northern Africa.
+  - text
   - Arab
   - ''
   - ''
   - 'false'
   - 'true'
   - 'true'
+  - ''
 - - Race As Collected
-  - C128689
   - RACEC
   - 'true'
   - A terminology codelist relevant to the race of an individual as collected on the
     case report form.
+  - C128689
   - C43877
-  - American Indian
   - AMERICAN INDIAN
+  - American Indian
   - ''
+  - ''
+  - The native people of North America.
+  - text
   - American Indian
   - ''
   - ''
   - 'false'
   - 'true'
   - 'true'
+  - ''
 - - Race As Collected
-  - C128689
   - RACEC
   - 'true'
   - A terminology codelist relevant to the race of an individual as collected on the
     case report form.
+  - C128689
   - C44265
-  - Greenland Eskimo
   - GREENLAND INUIT
+  - Greenland Eskimo
   - ''
+  - ''
+  - The native people of Greenland.
+  - text
   - Greenland Eskimo
   - ''
   - ''
   - 'false'
   - 'true'
   - 'true'
+  - ''
 - - Race As Collected
-  - C128689
   - RACEC
   - 'true'
   - A terminology codelist relevant to the race of an individual as collected on the
     case report form.
+  - C128689
   - C44268
-  - Inupiat Eskimo
   - INUPIAT INUIT
+  - Inupiat Eskimo
   - ''
+  - ''
+  - The native people inhabiting the territory spanning the Norton Sound on the Bering
+    Sea to the Canadian border.
+  - text
   - Inupiat Eskimo
   - ''
   - ''
   - 'false'
   - 'true'
   - 'true'
+  - ''
 - - Race As Collected
-  - C128689
   - RACEC
   - 'true'
   - A terminology codelist relevant to the race of an individual as collected on the
     case report form.
+  - C128689
   - C44269
-  - Siberian Eskimo
   - SIBERIAN ESKIMO
+  - Siberian Eskimo
   - ''
+  - ''
+  - The native Yupik people inhabiting the coast of the Chukchi Peninsula in the far
+    northeast of the Russian Federation and on St. Lawrence Island in Alaska.
+  - text
   - Siberian Eskimo
   - ''
   - ''
   - 'false'
   - 'true'
   - 'true'
+  - ''
 - - Race As Collected
-  - C128689
   - RACEC
   - 'true'
   - A terminology codelist relevant to the race of an individual as collected on the
     case report form.
+  - C128689
   - C44270
-  - Yupik Eskimo
   - YUPIK ESKIMO
+  - Yupik Eskimo
   - ''
+  - ''
+  - The native people inhabiting western, southwestern, and southcentral Alaska and
+    the Russian Far East.
+  - text
   - Yupik Eskimo
   - ''
   - ''
   - 'false'
   - 'true'
   - 'true'
+  - ''
 - - Race As Collected
-  - C128689
   - RACEC
   - 'true'
   - A terminology codelist relevant to the race of an individual as collected on the
     case report form.
+  - C128689
   - C44950
-  - Central American Indian
   - CENTRAL AMERICAN INDIAN
+  - Central American Indian
   - ''
+  - ''
+  - The native people of Central America.
+  - text
   - Central American Indian
   - ''
   - ''
   - 'false'
   - 'true'
   - 'true'
+  - ''
 - - Race As Collected
-  - C128689
   - RACEC
   - 'true'
   - A terminology codelist relevant to the race of an individual as collected on the
     case report form.
+  - C128689
   - C44953
-  - South American Indian
   - SOUTH AMERICAN INDIAN
+  - South American Indian
   - ''
+  - ''
+  - The native people of South America.
+  - text
   - South American Indian
   - ''
   - ''
   - 'false'
   - 'true'
   - 'true'
+  - ''
 - - Race As Collected
-  - C128689
   - RACEC
   - 'true'
   - A terminology codelist relevant to the race of an individual as collected on the
     case report form.
+  - C128689
   - C67117
-  - Dominican
   - DOMINICAN
+  - Dominican
   - ''
+  - ''
+  - A person having origins in any of the original peoples of the Dominican Republic.
+  - text
   - Dominican
   - ''
   - ''
   - 'false'
   - 'true'
   - 'true'
+  - ''
 - - Race As Collected
-  - C128689
   - RACEC
   - 'true'
   - A terminology codelist relevant to the race of an individual as collected on the
     case report form.
+  - C128689
   - C67271
-  - Bahamian
   - BAHAMIAN
+  - Bahamian
   - ''
+  - ''
+  - A person having origins in any of the original peoples of the Bahamas.
+  - text
   - Bahamian
   - ''
   - ''
   - 'false'
   - 'true'
   - 'true'
+  - ''
 - - Race As Collected
-  - C128689
   - RACEC
   - 'true'
   - A terminology codelist relevant to the race of an individual as collected on the
     case report form.
+  - C128689
   - C77810
-  - Caribbean Indian
   - CARIBBEAN INDIAN
+  - Caribbean Indian
   - ''
+  - ''
+  - The native people of the Caribbean.
+  - text
   - Caribbean Indian
   - ''
   - ''
   - 'false'
   - 'true'
   - 'true'
+  - ''
 - - Race As Collected
-  - C128689
   - RACEC
   - 'true'
   - A terminology codelist relevant to the race of an individual as collected on the
     case report form.
+  - C128689
   - C77811
-  - Mediterranean
   - MEDITERRANEAN
+  - Mediterranean
   - ''
+  - ''
+  - A person having origins in any of the original peoples of the countries surrounding
+    the Mediterranean sea.
+  - text
   - Mediterranean
   - ''
   - ''
   - 'false'
   - 'true'
   - 'true'
+  - ''
 - - Race As Collected
-  - C128689
   - RACEC
   - 'true'
   - A terminology codelist relevant to the race of an individual as collected on the
     case report form.
+  - C128689
   - C77813
-  - North Coast of Africa
   - NORTH AFRICAN
+  - North Coast of Africa
   - ''
+  - ''
+  - A person having origins in any of the original peoples of North Africa.
+  - text
   - North Coast of Africa
   - ''
   - ''
   - 'false'
   - 'true'
   - 'true'
+  - ''
 - - Race As Collected
-  - C128689
   - RACEC
   - 'true'
   - A terminology codelist relevant to the race of an individual as collected on the
     case report form.
+  - C128689
   - C77814
-  - Northern European
   - NORTHERN EUROPEAN
+  - Northern European
   - ''
+  - ''
+  - A person having origins in any of the original peoples of Northern Europe.
+  - text
   - Northern European
   - ''
   - ''
   - 'false'
   - 'true'
   - 'true'
+  - ''
 - - Race As Collected
-  - C128689
   - RACEC
   - 'true'
   - A terminology codelist relevant to the race of an individual as collected on the
     case report form.
+  - C128689
   - C77816
-  - White Caribbean
   - WHITE CARIBBEAN
+  - White Caribbean
   - ''
+  - ''
+  - A person having origins in the original peoples of Europe, the Middle East, or
+    North Africa, and the Caribbean.
+  - text
   - White Caribbean
   - ''
   - ''
   - 'false'
   - 'true'
   - 'true'
+  - ''
 - - Race As Collected
-  - C128689
   - RACEC
   - 'true'
   - A terminology codelist relevant to the race of an individual as collected on the
     case report form.
+  - C128689
   - C77817
-  - Western European
   - WESTERN EUROPEAN
+  - Western European
   - ''
+  - ''
+  - A person having origins in any of the original peoples of Western Europe.
+  - text
   - Western European
   - ''
   - ''
   - 'false'
   - 'true'
   - 'true'
+  - ''
 - - Race As Collected
-  - C128689
   - RACEC
   - 'true'
   - A terminology codelist relevant to the race of an individual as collected on the
     case report form.
+  - C128689
   - C77819
-  - Eastern European
   - EASTERN EUROPEAN
+  - Eastern European
   - ''
+  - ''
+  - A person having origins in any of the original peoples of Eastern Europe.
+  - text
   - Eastern European
   - ''
   - ''
   - 'false'
   - 'true'
   - 'true'
+  - ''
 - - Race As Collected
-  - C128689
   - RACEC
   - 'true'
   - A terminology codelist relevant to the race of an individual as collected on the
     case report form.
+  - C128689
   - C77820
-  - Middle Eastern
   - MIDDLE EASTERN
+  - Middle Eastern
   - ''
+  - ''
+  - A person having origins in any of the original peoples of the Middle East.
+  - text
   - Middle Eastern
   - ''
   - ''
   - 'false'
   - 'true'
   - 'true'
+  - ''
 - - Race As Collected
-  - C128689
   - RACEC
   - 'true'
   - A terminology codelist relevant to the race of an individual as collected on the
     case report form.
+  - C128689
   - S013095
-  - Other Asian Origin
   - OTHER ASIAN ORIGIN
+  - Other Asian Origin
   - ''
+  - ''
+  - Different than the asian origin(s) previously specified or mentioned.
+  - text
   - Other Asian Origin
   - ''
   - ''
   - 'false'
   - 'true'
   - 'true'
+  - ''
 - - Race As Collected
-  - C128689
   - RACEC
   - 'true'
   - A terminology codelist relevant to the race of an individual as collected on the
     case report form.
+  - C128689
   - S013096
-  - Asian Origin Unknown
   - ASIAN ORIGIN UNKNOWN
+  - Asian Origin Unknown
   - ''
+  - ''
+  - Asian origin not known, not observed, not recorded, or refused.
+  - text
   - Asian Origin Unknown
   - ''
   - ''
   - 'false'
   - 'true'
   - 'true'
+  - ''
 - - Race As Collected
-  - C128689
   - RACEC
   - 'true'
   - A terminology codelist relevant to the race of an individual as collected on the
     case report form.
+  - C128689
   - S013097
-  - Asian Origin Not Reported
   - ASIAN ORIGIN NOT REPORTED
+  - Asian Origin Not Reported
   - ''
+  - ''
+  - Asian origin not reported record means that data on asian origin is not provided
+    or available.
+  - text
   - Asian Origin Not Reported
   - ''
   - ''
   - 'false'
   - 'true'
   - 'true'
+  - ''
 TRTEST:
 - - Tumor or Lesion Properties Test Name
-  - C96778
   - TRTEST
   - 'true'
   - Terminology relevant to the test names that describe the assessment or measurement
     of a tumor, lesion or site of disease.
+  - C96778
   - C103347
   - Absolute Change From Nadir
+  - Absolute Change from Nadir
   - Absolute Change From Nadir
   - Absolute Change From Nadir
+  - The current value minus the lowest value previously recorded.
+  - text
   - Absolute Change from Nadir
   - ''
   - ''
   - 'true'
   - 'true'
   - 'false'
+  - ''
 - - Tumor or Lesion Properties Test Name
-  - C96778
   - TRTEST
   - 'true'
   - Terminology relevant to the test names that describe the assessment or measurement
     of a tumor, lesion or site of disease.
+  - C96778
   - C103421
+  - New Tumor Confirmed
   - New Tumor Confirmation
   - New Tumor Confirmed
   - New Tumor Confirmed
+  - The verification/confirmation by other methods or modalities that a tumor, which
+    has not been previously seen or characterized, is present in the subject.
+  - text
   - New Tumor Confirmation
   - ''
   - ''
   - 'true'
   - 'true'
   - 'false'
+  - ''
 - - Tumor or Lesion Properties Test Name
-  - C96778
   - TRTEST
   - 'true'
   - Terminology relevant to the test names that describe the assessment or measurement
     of a tumor, lesion or site of disease.
+  - C96778
   - C103441
+  - Sum Diameters of Non Lymph Node Tumors
   - Sum of Diameters of Non Lymph Node Tumors
   - Sum Diameters of Non Lymph Node Tumors
   - Sum Diameters of Non Lymph Node Tumors
+  - A calculation of the aggregated diameter values for tumors other than the lymph
+    nodes.
+  - text
   - Sum of Diameters of Non Lymph Node Tumors
   - ''
   - ''
   - 'true'
   - 'true'
   - 'false'
+  - ''
 - - Tumor or Lesion Properties Test Name
-  - C96778
   - TRTEST
   - 'true'
   - Terminology relevant to the test names that describe the assessment or measurement
     of a tumor, lesion or site of disease.
+  - C96778
   - C112218
-  - Absolute Change From Nadir in Sum of Diameter
+  - Absolute Change Nadir in Sum of Diam
+  - Absolute Change from Nadir in Sum of Diameter
   - Absolute Change Nadir in Sum of Diam
   - Absolute Change Nadir in Sum of Diam
+  - The current sum of diameters minus the lowest sum of diameters previously recorded.
+  - text
   - Absolute Change from Nadir in Sum of Diameter
   - ''
   - ''
   - 'true'
   - 'true'
   - 'false'
+  - ''
 - - Tumor or Lesion Properties Test Name
-  - C96778
   - TRTEST
   - 'true'
   - Terminology relevant to the test names that describe the assessment or measurement
     of a tumor, lesion or site of disease.
+  - C96778
   - C112370
-  - Percent Change From Baseline in Sum of Diameter
+  - Percent Change Baseline in Sum of Diam
+  - Percent Change from Baseline in Sum of Diameter
   - Percent Change Baseline in Sum of Diam
   - Percent Change Baseline in Sum of Diam
+  - The (current sum of diameters minus the baseline sum of diameters) divided by
+    the baseline sum of diameters, multiplied by 100.
+  - text
   - Percent Change from Baseline in Sum of Diameter
   - ''
   - ''
   - 'true'
   - 'true'
   - 'false'
+  - ''
 - - Tumor or Lesion Properties Test Name
-  - C96778
   - TRTEST
   - 'true'
   - Terminology relevant to the test names that describe the assessment or measurement
     of a tumor, lesion or site of disease.
+  - C96778
   - C112371
-  - Percent Change From Baseline in Sum of Longest Diameter
+  - Percent Change Baseline Sum Longest Diam
+  - Percent Change from Baseline in Sum of Longest Diameter
   - Percent Change Baseline Sum Longest Diam
   - Percent Change Baseline Sum Longest Diam
+  - The (current sum of longest diameters minus the baseline sum of longest diameters)
+    divided by the baseline sum of longest diameters, multiplied by 100.
+  - text
   - Percent Change from Baseline in Sum of Longest Diameter
   - ''
   - ''
   - 'true'
   - 'true'
   - 'false'
+  - ''
 - - Tumor or Lesion Properties Test Name
-  - C96778
   - TRTEST
   - 'true'
   - Terminology relevant to the test names that describe the assessment or measurement
     of a tumor, lesion or site of disease.
+  - C96778
   - C112372
-  - Percent Change From Baseline in Sum of Volume
+  - Percent Change Baseline in Sum of Volume
+  - Percent Change from Baseline in Sum of Volume
   - Percent Change Baseline in Sum of Volume
   - Percent Change Baseline in Sum of Volume
+  - The (current sum of volumes minus the baseline sum of volumes) divided by the
+    baseline sum of volumes, multiplied by 100.
+  - text
   - Percent Change from Baseline in Sum of Volume
   - ''
   - ''
   - 'true'
   - 'true'
   - 'false'
+  - ''
 - - Tumor or Lesion Properties Test Name
-  - C96778
   - TRTEST
   - 'true'
   - Terminology relevant to the test names that describe the assessment or measurement
     of a tumor, lesion or site of disease.
+  - C96778
   - C112373
-  - Percent Change From Nadir in Sum of Diameter
+  - Percent Change Nadir in Sum of Diam
+  - Percent Change from Nadir in Sum of Diameter
   - Percent Change Nadir in Sum of Diam
   - Percent Change Nadir in Sum of Diam
+  - The (current sum of diameters minus the lowest sum of diameters previously recorded)
+    divided by the lowest sum of diameters previously recorded, multiplied by 100.
+  - text
   - Percent Change from Nadir in Sum of Diameter
   - ''
   - ''
   - 'true'
   - 'true'
   - 'false'
+  - ''
 - - Tumor or Lesion Properties Test Name
-  - C96778
   - TRTEST
   - 'true'
   - Terminology relevant to the test names that describe the assessment or measurement
     of a tumor, lesion or site of disease.
+  - C96778
   - C112374
-  - Percent Change From Nadir in Sum of Longest Diameter
+  - Percent Change Nadir in Sum Longest Diam
+  - Percent Change from Nadir in Sum of Longest Diameter
   - Percent Change Nadir in Sum Longest Diam
   - Percent Change Nadir in Sum Longest Diam
+  - The (current sum of longest diameters minus the lowest sum of longest diameters
+    previously recorded) divided by the lowest sum of longest diameters previously
+    recorded, multiplied by 100.
+  - text
   - Percent Change from Nadir in Sum of Longest Diameter
   - ''
   - ''
   - 'true'
   - 'true'
   - 'false'
+  - ''
 - - Tumor or Lesion Properties Test Name
-  - C96778
   - TRTEST
   - 'true'
   - Terminology relevant to the test names that describe the assessment or measurement
     of a tumor, lesion or site of disease.
+  - C96778
   - C119551
   - Lesion Failure Indicator
   - Lesion Failure Indicator
   - Lesion Failure Indicator
   - Lesion Failure Indicator
+  - An indication as to whether lesion failure occurred.
+  - text
+  - Lesion Failure Indicator
   - ''
   - ''
   - 'true'
   - 'true'
   - 'false'
+  - ''
 - - Tumor or Lesion Properties Test Name
-  - C96778
   - TRTEST
   - 'true'
   - Terminology relevant to the test names that describe the assessment or measurement
     of a tumor, lesion or site of disease.
+  - C96778
   - C119552
   - Lesion Revascularization Indicator
   - Lesion Revascularization Indicator
   - Lesion Revascularization Indicator
   - Lesion Revascularization Indicator
+  - An indication as to whether repeat revascularization of a lesion occurred.
+  - text
+  - Lesion Revascularization Indicator
   - ''
   - ''
   - 'true'
   - 'true'
   - 'false'
+  - ''
 - - Tumor or Lesion Properties Test Name
-  - C96778
   - TRTEST
   - 'true'
   - Terminology relevant to the test names that describe the assessment or measurement
     of a tumor, lesion or site of disease.
+  - C96778
   - C119553
   - Lesion Success Indicator
   - Lesion Success Indicator
   - Lesion Success Indicator
   - Lesion Success Indicator
+  - An indication as to whether a performed procedure of a target lesion is considered
+    successful.
+  - text
+  - Lesion Success Indicator
   - ''
   - ''
   - 'true'
   - 'true'
   - 'false'
+  - ''
 - - Tumor or Lesion Properties Test Name
-  - C96778
   - TRTEST
   - 'true'
   - Terminology relevant to the test names that describe the assessment or measurement
     of a tumor, lesion or site of disease.
+  - C96778
   - C119554
   - Limb Failure Indicator
   - Limb Failure Indicator
   - Limb Failure Indicator
   - Limb Failure Indicator
+  - An indication as to whether limb failure occurred.
+  - text
+  - Limb Failure Indicator
   - ''
   - ''
   - 'true'
   - 'true'
   - 'false'
+  - ''
 - - Tumor or Lesion Properties Test Name
-  - C96778
   - TRTEST
   - 'true'
   - Terminology relevant to the test names that describe the assessment or measurement
     of a tumor, lesion or site of disease.
+  - C96778
   - C119555
+  - Lesion Revas Ischemia Indicator
   - Lesion Revascularization Ischemia Indicator
   - Lesion Revas Ischemia Indicator
   - Lesion Revas Ischemia Indicator
+  - An indication as to whether clinical or functional ischemia is present before
+    lesion revascularization occurred.
+  - text
   - Lesion Revas Ischemia Indicator
   - ''
   - ''
   - 'true'
   - 'true'
   - 'false'
+  - ''
 - - Tumor or Lesion Properties Test Name
-  - C96778
   - TRTEST
   - 'true'
   - Terminology relevant to the test names that describe the assessment or measurement
     of a tumor, lesion or site of disease.
+  - C96778
   - C119556
+  - Lesion Revas Clinical Indicator
   - Lesion Revascularization Clinical Indicator
   - Lesion Revas Clinical Indicator
   - Lesion Revas Clinical Indicator
+  - An indication as to whether an appropriate clinical context was present before
+    lesion revascularization occurred.
+  - text
   - Lesion Revas Clinical Indicator
   - ''
   - ''
   - 'true'
   - 'true'
   - 'false'
+  - ''
 - - Tumor or Lesion Properties Test Name
-  - C96778
   - TRTEST
   - 'true'
   - Terminology relevant to the test names that describe the assessment or measurement
     of a tumor, lesion or site of disease.
+  - C96778
   - C119557
   - Vessel Failure Indicator
   - Vessel Failure Indicator
   - Vessel Failure Indicator
   - Vessel Failure Indicator
+  - An indication as to whether vessel failure occurred.
+  - text
+  - Vessel Failure Indicator
   - ''
   - ''
   - 'true'
   - 'true'
   - 'false'
+  - ''
 - - Tumor or Lesion Properties Test Name
-  - C96778
   - TRTEST
   - 'true'
   - Terminology relevant to the test names that describe the assessment or measurement
     of a tumor, lesion or site of disease.
+  - C96778
   - C119558
   - Vessel Patency Indicator
   - Vessel Patency Indicator
   - Vessel Patency Indicator
   - Vessel Patency Indicator
+  - An indication as to whether an artery is patent (free of TLR or restenosis) following
+    intervention.
+  - text
+  - Vessel Patency Indicator
   - ''
   - ''
   - 'true'
   - 'true'
   - 'false'
+  - ''
 - - Tumor or Lesion Properties Test Name
-  - C96778
   - TRTEST
   - 'true'
   - Terminology relevant to the test names that describe the assessment or measurement
     of a tumor, lesion or site of disease.
+  - C96778
   - C119559
   - Vessel Revascularization Indicator
   - Vessel Revascularization Indicator
   - Vessel Revascularization Indicator
   - Vessel Revascularization Indicator
+  - An indication as to whether repeat revascularization of an artery containing a
+    lesion occurred.
+  - text
+  - Vessel Revascularization Indicator
   - ''
   - ''
   - 'true'
   - 'true'
   - 'false'
+  - ''
 - - Tumor or Lesion Properties Test Name
-  - C96778
   - TRTEST
   - 'true'
   - Terminology relevant to the test names that describe the assessment or measurement
     of a tumor, lesion or site of disease.
+  - C96778
   - C124446
   - Number of Lymph Nodes Examined
   - Number of Lymph Nodes Examined
   - Number of Lymph Nodes Examined
   - Number of Lymph Nodes Examined
+  - The number of lymph nodes that were examined.
+  - text
+  - Number of Lymph Nodes Examined
   - ''
   - ''
   - 'true'
   - 'true'
   - 'false'
+  - ''
 - - Tumor or Lesion Properties Test Name
-  - C96778
   - TRTEST
   - 'true'
   - Terminology relevant to the test names that describe the assessment or measurement
     of a tumor, lesion or site of disease.
+  - C96778
   - C124447
   - Number of Lymph Nodes Positive
   - Number of Lymph Nodes Positive
   - Number of Lymph Nodes Positive
   - Number of Lymph Nodes Positive
+  - The number of subject lymph nodes that were positive for presence of disease.
+  - text
+  - Number of Lymph Nodes Positive
   - ''
   - ''
   - 'true'
   - 'true'
   - 'false'
+  - ''
 - - Tumor or Lesion Properties Test Name
-  - C96778
   - TRTEST
   - 'true'
   - Terminology relevant to the test names that describe the assessment or measurement
     of a tumor, lesion or site of disease.
+  - C96778
   - C124448
   - Lymph Node State
   - Lymph Node State
   - Lymph Node State
   - Lymph Node State
+  - A condition or state of a lymph node at a particular time.
+  - text
+  - Lymph Node State
   - ''
   - ''
   - 'true'
   - 'true'
   - 'false'
+  - ''
 - - Tumor or Lesion Properties Test Name
-  - C96778
   - TRTEST
   - 'true'
   - Terminology relevant to the test names that describe the assessment or measurement
     of a tumor, lesion or site of disease.
+  - C96778
   - C124449
   - Palpable State
   - Palpable State
   - Palpable State
   - Palpable State
+  - A condition or state of the tumor with regards to its palpability status at a
+    particular point in time.
+  - text
+  - Palpable State
   - ''
   - ''
   - 'true'
   - 'true'
   - 'false'
+  - ''
 - - Tumor or Lesion Properties Test Name
-  - C96778
   - TRTEST
   - 'true'
   - Terminology relevant to the test names that describe the assessment or measurement
     of a tumor, lesion or site of disease.
+  - C96778
   - C126056
   - Calcification Indicator
   - Calcification Indicator
   - Calcification Indicator
   - Calcification Indicator
+  - An indication as to whether calcification is present.
+  - text
+  - Calcification Indicator
   - ''
   - ''
   - 'true'
   - 'true'
   - 'false'
+  - ''
 - - Tumor or Lesion Properties Test Name
-  - C96778
   - TRTEST
   - 'true'
   - Terminology relevant to the test names that describe the assessment or measurement
     of a tumor, lesion or site of disease.
+  - C96778
   - C132261
   - Sum of Products of Perpendicular Diameters
   - Sum of Products of Perpendicular Diameters
-  - SPD;Sum of Products of Perpendicular Diameters
+  - SPD; Sum of Products of Perpendicular Diameters
+  - SPD; Sum of Products of Perpendicular Diam; Sum of Products of Perpendicular Diameters
+  - The result of the addition of the products of perpendicular diameters.
+  - text
   - Sum of Products of Perpendicular Diameters
   - ''
   - ''
   - 'true'
   - 'true'
   - 'false'
+  - ''
 - - Tumor or Lesion Properties Test Name
-  - C96778
   - TRTEST
   - 'true'
   - Terminology relevant to the test names that describe the assessment or measurement
     of a tumor, lesion or site of disease.
+  - C96778
   - C132264
+  - Percent Change Baseline in Sum of PPD
   - Percent Change From Baseline in Sum of Products of Perpendicular Diameter
   - Percent Change Baseline in Sum of PPD
   - Percent Change Baseline in Sum of PPD
+  - The (current sum of products of perpendicular diameters minus the baseline sum
+    of products of perpendicular diameters) divided by the baseline sum of products
+    of perpendicular diameters, multiplied by 100.
+  - text
   - Percent Change From Baseline in Sum of Products of Perpendicular Diameter
   - ''
   - ''
   - 'true'
   - 'true'
   - 'false'
+  - ''
 - - Tumor or Lesion Properties Test Name
-  - C96778
   - TRTEST
   - 'true'
   - Terminology relevant to the test names that describe the assessment or measurement
     of a tumor, lesion or site of disease.
+  - C96778
   - C132265
+  - Percent Change Nadir in Sum of PPD
   - Percent Change From Nadir in Sum of Products of Perpendicular Diameters
   - Percent Change Nadir in Sum of PPD
   - Percent Change Nadir in Sum of PPD
+  - The (current sum of products of perpendicular diameters minus the lowest sum of
+    products of perpendicular diameters previously recorded) divided by the lowest
+    sum of products of perpendicular diameters previously recorded, multiplied by
+    100.
+  - text
   - Percent Change From Nadir in Sum of Products of Perpendicular Diameters
   - ''
   - ''
   - 'true'
   - 'true'
   - 'false'
+  - ''
 - - Tumor or Lesion Properties Test Name
-  - C96778
   - TRTEST
   - 'true'
   - Terminology relevant to the test names that describe the assessment or measurement
     of a tumor, lesion or site of disease.
+  - C96778
   - C132463
   - Number of Bone Lesions
   - Number of Bone Lesions
   - Number of Bone Lesions
   - Number of Bone Lesions
+  - The number of lesions within the bone.
+  - text
+  - Number of Bone Lesions
   - ''
   - ''
   - 'true'
   - 'true'
   - 'false'
+  - ''
 - - Tumor or Lesion Properties Test Name
-  - C96778
   - TRTEST
   - 'true'
   - Terminology relevant to the test names that describe the assessment or measurement
     of a tumor, lesion or site of disease.
+  - C96778
   - C132464
   - Number of New Bone Lesions
   - Number of New Bone Lesions
   - Number of New Bone Lesions
   - Number of New Bone Lesions
+  - The number of new lesions within the bone, in comparison to a reference timepoint.
+  - text
+  - Number of New Bone Lesions
   - ''
   - ''
   - 'true'
   - 'true'
   - 'false'
+  - ''
 - - Tumor or Lesion Properties Test Name
-  - C96778
   - TRTEST
   - 'true'
   - Terminology relevant to the test names that describe the assessment or measurement
     of a tumor, lesion or site of disease.
+  - C96778
   - C132465
-  - Two or More Persisting New Bone Lesions Indicator
   - Two or More Persist New Bone Lesions Ind
-  - Two or More Persist New Bone Lesions Ind;Two or More Persisting New Bone Lesions
+  - Two or More Persisting New Bone Lesions Indicator
+  - Two or More Persist New Bone Lesions Ind; Two or More Persisting New Bone Lesions
     Indicator
+  - Two or More Persist New Bone Lesions Ind; Two or More Persisting New Bone Lesions
+    Indicator
+  - An indication as to whether there are two or more bone lesions previously identified
+    as new and are considered to be persisting.
+  - text
   - Two or More Persisting New Bone Lesions Indicator
   - ''
   - ''
   - 'true'
   - 'true'
   - 'false'
+  - ''
 - - Tumor or Lesion Properties Test Name
-  - C96778
   - TRTEST
   - 'true'
   - Terminology relevant to the test names that describe the assessment or measurement
     of a tumor, lesion or site of disease.
+  - C96778
   - C132490
   - Two or More New Bone Lesions Indicator
   - Two or More New Bone Lesions Indicator
   - Two or More New Bone Lesions Indicator
   - Two or More New Bone Lesions Indicator
+  - An indication as to whether there are two or more new bone lesions, in comparison
+    to a reference timepoint.
+  - text
+  - Two or More New Bone Lesions Indicator
   - ''
   - ''
   - 'true'
   - 'true'
   - 'false'
+  - ''
 - - Tumor or Lesion Properties Test Name
-  - C96778
   - TRTEST
   - 'true'
   - Terminology relevant to the test names that describe the assessment or measurement
     of a tumor, lesion or site of disease.
+  - C96778
   - C135506
-  - Absolute Change from Nadir in Organ Enlargement
   - Absolute Change Nadir in Organ Enlarge
-  - Absolute Change Nadir in Organ Enlarge;Absolute Change Nadir in Organ Enlargement
+  - Absolute Change from Nadir in Organ Enlargement
+  - Absolute Change Nadir in Organ Enlarge; Absolute Change Nadir in Organ Enlargement
+  - Absolute Change Nadir in Organ Enlarge; Absolute Change Nadir in Organ Enlargement
+  - The current organ enlargement minus the lowest organ enlargement previously recorded.
+    (NCI)
+  - text
   - Absolute Change from Nadir in Organ Enlargement
   - ''
   - ''
   - 'true'
   - 'true'
   - 'false'
+  - ''
 - - Tumor or Lesion Properties Test Name
-  - C96778
   - TRTEST
   - 'true'
   - Terminology relevant to the test names that describe the assessment or measurement
     of a tumor, lesion or site of disease.
+  - C96778
   - C135507
+  - Organ Enlargement, Quantitative
   - Quantitative Organ Enlargement Assessment
   - Organ Enlargement, Quantitative
   - Organ Enlargement, Quantitative
+  - A quantitative measurement of the increase in organ size or dimension, relative
+    to a defined value.
+  - text
   - Quantitative Organ Enlargement Assessment
   - ''
   - ''
   - 'true'
   - 'true'
   - 'false'
+  - ''
 - - Tumor or Lesion Properties Test Name
-  - C96778
   - TRTEST
   - 'true'
   - Terminology relevant to the test names that describe the assessment or measurement
     of a tumor, lesion or site of disease.
+  - C96778
   - C135508
   - Organ State
   - Organ State
   - Organ State
   - Organ State
+  - A condition or state of an organ at a particular time.
+  - text
+  - Organ State
   - ''
   - ''
   - 'true'
   - 'true'
   - 'false'
+  - ''
 - - Tumor or Lesion Properties Test Name
-  - C96778
   - TRTEST
   - 'true'
   - Terminology relevant to the test names that describe the assessment or measurement
     of a tumor, lesion or site of disease.
+  - C96778
   - C135509
+  - Organ Vertical Length
   - Organ Craniocaudal Length Measurement
   - Organ Vertical Length
   - Organ Vertical Length
+  - The linear extent along the craniocaudal axis from one end of an organ to the
+    other end. (NCI)
+  - text
   - Organ Vertical Length
   - ''
   - ''
   - 'true'
   - 'true'
   - 'false'
+  - ''
 - - Tumor or Lesion Properties Test Name
-  - C96778
   - TRTEST
   - 'true'
   - Terminology relevant to the test names that describe the assessment or measurement
     of a tumor, lesion or site of disease.
+  - C96778
   - C135510
-  - Percent Change from Baseline in Organ Enlargement
   - Percent Change Baseline in Organ Enlarge
-  - Percent Change Baseline in Organ Enlarge;Percent Change Baseline in Organ Enlargement
+  - Percent Change from Baseline in Organ Enlargement
+  - Percent Change Baseline in Organ Enlarge; Percent Change Baseline in Organ Enlargement
+  - Percent Change Baseline in Organ Enlarge; Percent Change Baseline in Organ Enlargement
+  - The (current organ enlargement minus the baseline organ enlargement) divided by
+    the baseline organ enlargement, multiplied by 100. (NCI)
+  - text
   - Percent Change from Baseline in Organ Enlargement
   - ''
   - ''
   - 'true'
   - 'true'
   - 'false'
+  - ''
 - - Tumor or Lesion Properties Test Name
-  - C96778
   - TRTEST
   - 'true'
   - Terminology relevant to the test names that describe the assessment or measurement
     of a tumor, lesion or site of disease.
+  - C96778
   - C135511
-  - Percent Change from Nadir in Organ Enlargement
   - Percent Change Nadir in Organ Enlarge
-  - Percent Change Nadir in Organ Enlarge;Percent Change Nadir in Organ Enlargement
+  - Percent Change from Nadir in Organ Enlargement
+  - Percent Change Nadir in Organ Enlarge; Percent Change Nadir in Organ Enlargement
+  - Percent Change Nadir in Organ Enlarge; Percent Change Nadir in Organ Enlargement
+  - The (current organ enlargement minus the lowest organ enlargement previously recorded)
+    divided by the lowest organ enlargement previously recorded, multiplied by 100.
+    (NCI)
+  - text
   - Percent Change from Nadir in Organ Enlargement
   - ''
   - ''
   - 'true'
   - 'true'
   - 'false'
+  - ''
 - - Tumor or Lesion Properties Test Name
-  - C96778
   - TRTEST
   - 'true'
   - Terminology relevant to the test names that describe the assessment or measurement
     of a tumor, lesion or site of disease.
+  - C96778
   - C135512
+  - Percent Change Nadir in PPD
   - Percent Change from Nadir in Product of Perpendicular Diameters
   - Percent Change Nadir in PPD
   - Percent Change Nadir in PPD
+  - The (current product of perpendicular diameters minus the lowest product of perpendicular
+    diameters previously recorded) divided by the lowest product of perpendicular
+    diameters previously recorded, multiplied by 100.
+  - text
   - Percent Change from Nadir in Product of Perpendicular Diameters
   - ''
   - ''
   - 'true'
   - 'true'
   - 'false'
+  - ''
 - - Tumor or Lesion Properties Test Name
-  - C96778
   - TRTEST
   - 'true'
   - Terminology relevant to the test names that describe the assessment or measurement
     of a tumor, lesion or site of disease.
+  - C96778
   - C135513
   - Product of Perpendicular Diameters
   - Product of Perpendicular Diameters
-  - PPD;Product of Perpendicular Diameters
+  - PPD; Product of Perpendicular Diameters
+  - PPD; Product of Perpendicular Diameters
+  - The longest diameter multiplied by its longest perpendicular diameter.
+  - text
   - Product of Perpendicular Diameters
   - ''
   - ''
   - 'true'
   - 'true'
   - 'false'
+  - ''
 - - Tumor or Lesion Properties Test Name
-  - C96778
   - TRTEST
   - 'true'
   - Terminology relevant to the test names that describe the assessment or measurement
     of a tumor, lesion or site of disease.
+  - C96778
   - C139128
-  - Overall Tracer Uptake Compared to Baseline
   - Overall Tracer Uptake Compared to BL
-  - Overall Tracer Uptake Compared to BL;Overall Tracer Uptake Compared to Baseline
+  - Overall Tracer Uptake Compared to Baseline
+  - Overall Tracer Uptake Compared to BL; Overall Tracer Uptake Compared to Baseline
+  - Overall Tracer Uptake Compared to BL; Overall Tracer Uptake Compared to Baseline
+  - A visually assessed combination of extent and intensity of tracer uptake, as compared
+    to baseline.
+  - text
   - Overall Tracer Uptake Compared to BL
   - ''
   - ''
   - 'true'
   - 'true'
   - 'false'
+  - ''
 - - Tumor or Lesion Properties Test Name
-  - C96778
   - TRTEST
   - 'true'
   - Terminology relevant to the test names that describe the assessment or measurement
     of a tumor, lesion or site of disease.
+  - C96778
   - C25244
   - Area
   - Area
   - Area
   - Area
+  - The extent of a 2-dimensional surface enclosed within a boundary. (NCI)
+  - text
+  - Area
   - ''
   - ''
   - 'true'
   - 'true'
   - 'false'
+  - ''
 - - Tumor or Lesion Properties Test Name
-  - C96778
   - TRTEST
   - 'true'
   - Terminology relevant to the test names that describe the assessment or measurement
     of a tumor, lesion or site of disease.
+  - C96778
   - C25285
   - Diameter
   - Diameter
   - Diameter
   - Diameter
+  - The length of a straight line passing through the center of a circle or sphere
+    and connecting two points on the circumference. (NCI)
+  - text
+  - Diameter
   - ''
   - ''
   - 'true'
   - 'true'
   - 'false'
+  - ''
 - - Tumor or Lesion Properties Test Name
-  - C96778
   - TRTEST
   - 'true'
   - Terminology relevant to the test names that describe the assessment or measurement
     of a tumor, lesion or site of disease.
+  - C96778
   - C25335
   - Volume
   - Volume
   - Volume
   - Volume
+  - The amount of three dimensional space occupied by an object or the capacity of
+    a space or container. (NCI)
+  - text
+  - Volume
   - ''
   - ''
   - 'true'
   - 'true'
   - 'false'
+  - ''
 - - Tumor or Lesion Properties Test Name
-  - C96778
   - TRTEST
   - 'true'
   - Terminology relevant to the test names that describe the assessment or measurement
     of a tumor, lesion or site of disease.
+  - C96778
   - C96566
   - Average Metabolic Standard Uptake Value
   - Average Metabolic Standard Uptake Value
   - Average Metabolic Standard Uptake Value
   - Average Metabolic Standard Uptake Value
+  - A semiquantitative analysis of the average uptake of analyte by body tissue in
+    relation to the total administered dose of the analyte.
+  - text
+  - Average Metabolic Standard Uptake Value
   - ''
   - ''
   - 'true'
   - 'true'
   - 'false'
+  - ''
 - - Tumor or Lesion Properties Test Name
-  - C96778
   - TRTEST
   - 'true'
   - Terminology relevant to the test names that describe the assessment or measurement
     of a tumor, lesion or site of disease.
+  - C96778
   - C96621
   - Percent Change From Baseline
+  - Percent Change from Baseline
   - Percent Change From Baseline
   - Percent Change From Baseline
+  - The (current value minus the baseline value) divided by the baseline value, multiplied
+    by 100.
+  - text
   - Percent Change from Baseline
   - ''
   - ''
   - 'true'
   - 'true'
   - 'false'
+  - ''
 - - Tumor or Lesion Properties Test Name
-  - C96778
   - TRTEST
   - 'true'
   - Terminology relevant to the test names that describe the assessment or measurement
     of a tumor, lesion or site of disease.
+  - C96778
   - C96622
   - Percent Change From Nadir
+  - Percent Change from Nadir
   - Percent Change From Nadir
   - Percent Change From Nadir
+  - The (current value minus the lowest value previously recorded) divided by the
+    lowest value previously recorded, multiplied by 100.
+  - text
   - Percent Change from Nadir
   - ''
   - ''
   - 'true'
   - 'true'
   - 'false'
+  - ''
 - - Tumor or Lesion Properties Test Name
-  - C96778
   - TRTEST
   - 'true'
   - Terminology relevant to the test names that describe the assessment or measurement
     of a tumor, lesion or site of disease.
+  - C96778
   - C96627
   - Radiodensity
   - Radiodensity
   - Radiodensity
   - Radiodensity
+  - The transparency of a material to the passage of X-rays and other forms of radiation.
+  - text
+  - Radiodensity
   - ''
   - ''
   - 'true'
   - 'true'
   - 'false'
+  - ''
 - - Tumor or Lesion Properties Test Name
-  - C96778
   - TRTEST
   - 'true'
   - Terminology relevant to the test names that describe the assessment or measurement
     of a tumor, lesion or site of disease.
+  - C96778
   - C96631
+  - Sum of Diameter
   - Sum of Diameters
   - Sum of Diameter
   - Sum of Diameter
+  - A calculation of the aggregated diameter values.
+  - text
   - Sum of Diameters
   - ''
   - ''
   - 'true'
   - 'true'
   - 'false'
+  - ''
 - - Tumor or Lesion Properties Test Name
-  - C96778
   - TRTEST
   - 'true'
   - Terminology relevant to the test names that describe the assessment or measurement
     of a tumor, lesion or site of disease.
+  - C96778
   - C96632
+  - Sum of Longest Diameter
   - Sum of Longest Diameters
   - Sum of Longest Diameter
   - Sum of Longest Diameter
+  - A calculation of the aggregated longest diameter values.
+  - text
   - Sum of Longest Diameters
   - ''
   - ''
   - 'true'
   - 'true'
   - 'false'
+  - ''
 - - Tumor or Lesion Properties Test Name
-  - C96778
   - TRTEST
   - 'true'
   - Terminology relevant to the test names that describe the assessment or measurement
     of a tumor, lesion or site of disease.
+  - C96778
   - C96633
+  - Sum of Longest Perpendicular
   - Sum of Longest Perpendiculars
   - Sum of Longest Perpendicular
   - Sum of Longest Perpendicular
+  - A calculation of the aggregated longest perpendicular values.
+  - text
   - Sum of Longest Perpendiculars
   - ''
   - ''
   - 'true'
   - 'true'
   - 'false'
+  - ''
 - - Tumor or Lesion Properties Test Name
-  - C96778
   - TRTEST
   - 'true'
   - Terminology relevant to the test names that describe the assessment or measurement
     of a tumor, lesion or site of disease.
+  - C96778
   - C96634
+  - Sum of Viable Diameter
   - Sum of Viable Diameters
   - Sum of Viable Diameter
   - Sum of Viable Diameter
+  - A calculation of the aggregated diameter values taken from the viable portion
+    of the tumor mass.
+  - text
   - Sum of Viable Diameters
   - ''
   - ''
   - 'true'
   - 'true'
   - 'false'
+  - ''
 - - Tumor or Lesion Properties Test Name
-  - C96778
   - TRTEST
   - 'true'
   - Terminology relevant to the test names that describe the assessment or measurement
     of a tumor, lesion or site of disease.
+  - C96778
   - C96635
+  - Sum of Volume
   - Sum of Volumes
   - Sum of Volume
   - Sum of Volume
+  - A calculation of the aggregated volume values.
+  - text
   - Sum of Volumes
   - ''
   - ''
   - 'true'
   - 'true'
   - 'false'
+  - ''
 - - Tumor or Lesion Properties Test Name
-  - C96778
   - TRTEST
   - 'true'
   - Terminology relevant to the test names that describe the assessment or measurement
     of a tumor, lesion or site of disease.
+  - C96778
   - C96643
+  - Tumor State
   - Tumor Status
   - Tumor State
   - Tumor State
+  - A condition or state of a tumor at a particular time.
+  - text
   - Tumor Status
   - ''
   - ''
   - 'true'
   - 'true'
   - 'false'
+  - ''
 - - Tumor or Lesion Properties Test Name
-  - C96778
   - TRTEST
   - 'true'
   - Terminology relevant to the test names that describe the assessment or measurement
     of a tumor, lesion or site of disease.
+  - C96778
   - C96646
+  - Viable Diameter
   - Viable Tumor Diameter
   - Viable Diameter
   - Viable Diameter
+  - The diameter of the portion of the tumor mass that is capable of growth, proliferation
+    and metastasis.
+  - text
   - Viable Tumor Diameter
   - ''
   - ''
   - 'true'
   - 'true'
   - 'false'
+  - ''
 - - Tumor or Lesion Properties Test Name
-  - C96778
   - TRTEST
   - 'true'
   - Terminology relevant to the test names that describe the assessment or measurement
     of a tumor, lesion or site of disease.
+  - C96778
   - C96684
   - Longest Diameter
   - Longest Diameter
   - Longest Diameter
   - Longest Diameter
+  - The longest possible length of a straight line passing through the center of a
+    circular or spheroid object that connects two points on the circumference.
+  - text
+  - Longest Diameter
   - ''
   - ''
   - 'true'
   - 'true'
   - 'false'
+  - ''
 - - Tumor or Lesion Properties Test Name
-  - C96778
   - TRTEST
   - 'true'
   - Terminology relevant to the test names that describe the assessment or measurement
     of a tumor, lesion or site of disease.
+  - C96778
   - C96685
   - Longest Perpendicular
   - Longest Perpendicular
   - Longest Perpendicular
   - Longest Perpendicular
+  - The longest possible straight line or plane through a body or figure that is at
+    a right angle to a given line or plane.
+  - text
+  - Longest Perpendicular
   - ''
   - ''
   - 'true'
   - 'true'
   - 'false'
+  - ''
 - - Tumor or Lesion Properties Test Name
-  - C96778
   - TRTEST
   - 'true'
   - Terminology relevant to the test names that describe the assessment or measurement
     of a tumor, lesion or site of disease.
+  - C96778
   - C99723
+  - FDG PET Lymphoma 5PS Score
   - London Deauville Criteria Point Scale
   - FDG PET Lymphoma 5PS Score
   - FDG PET Lymphoma 5PS Score
+  - 'A 5 point scale devised to assess the response to treatment of Hodgkin and aggressive
+    Non-Hodgkin lymphoma. (Barrington SF, Mikhaeel NG, Kostakoglu L, Meignan M, et
+    al. Role of imaging in the staging and response assessment of lymphoma: consensus
+    of the International Conference on Malignant Lymphomas Imaging Working Group.
+    J Clin Oncol. 2014 Sep 20;32(27):3048-58.)'
+  - text
   - FDG PET Lymphoma 5PS Score
   - ''
   - ''
   - 'true'
   - 'true'
   - 'false'
+  - ''
 - - Tumor or Lesion Properties Test Name
-  - C96778
   - TRTEST
   - 'true'
   - Terminology relevant to the test names that describe the assessment or measurement
     of a tumor, lesion or site of disease.
+  - C96778
   - S009966
   - Tumor Results All
   - Tumor Results All
   - ''
+  - ''
+  - Generic test derived in SDTM when all tumor results tests are not done.
+  - text
   - Tumor Results All
   - ''
   - ''
   - 'false'
   - 'true'
   - 'false'
+  - ''
 NSA-16 TESTCD: []
 COWS TESTCD: []
 OUT:
 - - Outcome of Event
-  - C66768
   - OUT
   - 'false'
   - A condition or event that is attributed to the adverse event and is the result
     or conclusion of the adverse event. (NCI)
+  - C66768
   - C17998
-  - Unknown
   - UNKNOWN
-  - U;Unknown
   - Unknown
-  - ''
+  - U; Unknown
+  - U; Unknown
+  - Not known, not observed, not recorded, or refused. (NCI)
+  - text
+  - Unknown
+  - '6'
   - '6'
   - 'true'
   - 'true'
   - 'true'
+  - ''
 - - Outcome of Event
-  - C66768
   - OUT
   - 'false'
   - A condition or event that is attributed to the adverse event and is the result
     or conclusion of the adverse event. (NCI)
+  - C66768
   - C48275
-  - Death Related to Adverse Event
   - FATAL
-  - 5;FATAL;Grade 5
   - Fatal
-  - ''
+  - 5; FATAL; Grade 5
+  - 5; FATAL; Grade 5
+  - The termination of life as a result of an adverse event. (NCI)
+  - text
+  - Fatal
+  - '5'
   - '5'
   - 'true'
   - 'true'
   - 'true'
+  - ''
 - - Outcome of Event
-  - C66768
   - OUT
   - 'false'
   - A condition or event that is attributed to the adverse event and is the result
     or conclusion of the adverse event. (NCI)
+  - C66768
   - C49494
-  - Not Recovered or Not Resolved
   - NOT RECOVERED/NOT RESOLVED
-  - ''
   - Not Recovered or Not Resolved
   - ''
+  - ''
+  - One of the possible results of an adverse event outcome that indicates that the
+    event has not improved or recuperated. (NCI)
+  - text
+  - Not Recovered or Not Resolved
+  - '4'
   - '4'
   - 'true'
   - 'true'
   - 'true'
+  - ''
 - - Outcome of Event
-  - C66768
   - OUT
   - 'false'
   - A condition or event that is attributed to the adverse event and is the result
     or conclusion of the adverse event. (NCI)
+  - C66768
   - C49495
-  - Recovered or Resolved with Sequelae
   - RECOVERED/RESOLVED WITH SEQUELAE
-  - ''
   - Recovered or Resolved with Sequelae
   - ''
+  - ''
+  - One of the possible results of an adverse event outcome where the subject recuperated
+    but retained pathological conditions resulting from the prior disease or injury.
+    (NCI)
+  - text
+  - Recovered or Resolved with Sequelae
+  - '2'
   - '2'
   - 'true'
   - 'true'
   - 'true'
+  - ''
 - - Outcome of Event
-  - C66768
   - OUT
   - 'false'
   - A condition or event that is attributed to the adverse event and is the result
     or conclusion of the adverse event. (NCI)
+  - C66768
   - C49496
-  - Recovering or Resolving
   - RECOVERING/RESOLVING
-  - ''
   - Recovering or Resolving
   - ''
+  - ''
+  - One of the possible results of an adverse event outcome that indicates that the
+    event is improving. (NCI)
+  - text
+  - Recovering or Resolving
+  - '3'
   - '3'
   - 'true'
   - 'true'
   - 'true'
+  - ''
 - - Outcome of Event
-  - C66768
   - OUT
   - 'false'
   - A condition or event that is attributed to the adverse event and is the result
     or conclusion of the adverse event. (NCI)
+  - C66768
   - C49498
-  - Recovered or Resolved
   - RECOVERED/RESOLVED
-  - ''
   - Recovered or Resolved
   - ''
+  - ''
+  - One of the possible results of an adverse event outcome that indicates that the
+    event has improved or recuperated. (NCI)
+  - text
+  - Recovered or Resolved
+  - '1'
   - '1'
   - 'true'
   - 'true'
   - 'true'
+  - ''
 AESEV:
 - - Severity/Intensity Scale for Adverse Events
-  - C66769
   - AESEV
   - 'false'
   - A scale that defines the degree or state of disease existing in a patient as a
     result of the occurrence of an adverse event. (NCI)
+  - C66769
   - C41338
-  - Mild Adverse Event
   - MILD
-  - 1;Grade 1
   - Mild
-  - ''
+  - 1; Grade 1
+  - 1; Grade 1
+  - A type of adverse event that is usually transient and may require only minimal
+    treatment or therapeutic intervention. The event does not generally interfere
+    with usual activities of daily living.
+  - text
+  - Mild
+  - '1'
   - '1'
   - 'true'
   - 'true'
   - 'true'
+  - ''
 - - Severity/Intensity Scale for Adverse Events
-  - C66769
   - AESEV
   - 'false'
   - A scale that defines the degree or state of disease existing in a patient as a
     result of the occurrence of an adverse event. (NCI)
+  - C66769
   - C41339
-  - Moderate Adverse Event
   - MODERATE
-  - 2;Grade 2
   - Moderate
-  - ''
+  - 2; Grade 2
+  - 2; Grade 2
+  - A type of adverse event that is usually alleviated with additional specific therapeutic
+    intervention. The event interferes with usual activities of daily living, causing
+    discomfort but poses no significant or permanent risk of harm to the research
+    participant.
+  - text
+  - Moderate
+  - '2'
   - '2'
   - 'true'
   - 'true'
   - 'true'
+  - ''
 - - Severity/Intensity Scale for Adverse Events
-  - C66769
   - AESEV
   - 'false'
   - A scale that defines the degree or state of disease existing in a patient as a
     result of the occurrence of an adverse event. (NCI)
+  - C66769
   - C41340
-  - Severe Adverse Event
   - SEVERE
-  - 3;Grade 3
   - Severe
-  - ''
+  - 3; Grade 3
+  - 3; Grade 3
+  - A type of adverse event that interrupts usual activities of daily living, or significantly
+    affects clinical status, or may require intensive therapeutic intervention.
+  - text
+  - Severe
+  - '3'
   - '3'
   - 'true'
   - 'true'
   - 'true'
+  - ''
+AGEGRPEN:
+- - Age Group (EudraCT) Numeric
+  - AGEGRPEN
+  - 'false'
+  - Numeric - Age category used for EudraCT demographics table.
+  - SN000019
+  - S000118
+  - '1'
+  - ''
+  - ''
+  - ''
+  - A numeric value, one, that indicate fetus.
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - ''
+- - Age Group (EudraCT) Numeric
+  - AGEGRPEN
+  - 'false'
+  - Numeric - Age category used for EudraCT demographics table.
+  - SN000019
+  - S000126
+  - '2'
+  - ''
+  - ''
+  - ''
+  - A numeric value, two, that indicate preterm newborn infants (gestational age <37
+    wks).
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - ''
+- - Age Group (EudraCT) Numeric
+  - AGEGRPEN
+  - 'false'
+  - Numeric - Age category used for EudraCT demographics table.
+  - SN000019
+  - S000131
+  - '3'
+  - ''
+  - ''
+  - ''
+  - A numeric value, three, that indicate newborns (0-27 days).
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - ''
+- - Age Group (EudraCT) Numeric
+  - AGEGRPEN
+  - 'false'
+  - Numeric - Age category used for EudraCT demographics table.
+  - SN000019
+  - S000134
+  - '4'
+  - ''
+  - ''
+  - ''
+  - A numeric value, four, that indicate infants and toddlers (28 days - 23 months).
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - ''
+- - Age Group (EudraCT) Numeric
+  - AGEGRPEN
+  - 'false'
+  - Numeric - Age category used for EudraCT demographics table.
+  - SN000019
+  - S000135
+  - '5'
+  - ''
+  - ''
+  - ''
+  - A numeric value, five, that indicate children (2-11 years).
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - ''
+- - Age Group (EudraCT) Numeric
+  - AGEGRPEN
+  - 'false'
+  - Numeric - Age category used for EudraCT demographics table.
+  - SN000019
+  - S000136
+  - '6'
+  - ''
+  - ''
+  - ''
+  - A numeric value, six, that indicate adolescents (12-17 years).
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - ''
+- - Age Group (EudraCT) Numeric
+  - AGEGRPEN
+  - 'false'
+  - Numeric - Age category used for EudraCT demographics table.
+  - SN000019
+  - S000137
+  - '7'
+  - ''
+  - ''
+  - ''
+  - A numeric value, seven, that indicate adults (18-64 years).
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - ''
+- - Age Group (EudraCT) Numeric
+  - AGEGRPEN
+  - 'false'
+  - Numeric - Age category used for EudraCT demographics table.
+  - SN000019
+  - S000138
+  - '8'
+  - ''
+  - ''
+  - ''
+  - A numeric value, eight, that indicate adults (65-84 years).
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - ''
+- - Age Group (EudraCT) Numeric
+  - AGEGRPEN
+  - 'false'
+  - Numeric - Age category used for EudraCT demographics table.
+  - SN000019
+  - S000139
+  - '9'
+  - ''
+  - ''
+  - ''
+  - A numeric value, nine, that indicate adults (85 years and over).
+  - integer
+  - ''
+  - ''
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - ''
+RACEN:
+- - Race Numeric
+  - RACEN
+  - 'false'
+  - Numeric - Terminology codelist used to identify the race of an individual within
+    the Clinical Data Interchange Standards Consortium Study Data Tabulation Model.
+  - SN000517
+  - S000222
+  - '5'
+  - ''
+  - ''
+  - ''
+  - A person having origins in any of the original peoples of North and South America
+    (including Central America), and who maintains tribal affiliation or community
+    attachment.
+  - integer
+  - ''
+  - '1'
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - ''
+- - Race Numeric
+  - RACEN
+  - 'false'
+  - Numeric - Terminology codelist used to identify the race of an individual within
+    the Clinical Data Interchange Standards Consortium Study Data Tabulation Model.
+  - SN000517
+  - S000249
+  - '1'
+  - ''
+  - ''
+  - ''
+  - Denotes a person with European, Middle Eastern, or North African ancestral origin
+    who identifies, or is identified, as White.
+  - integer
+  - ''
+  - '5'
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - ''
+- - Race Numeric
+  - RACEN
+  - 'false'
+  - Numeric - Terminology codelist used to identify the race of an individual within
+    the Clinical Data Interchange Standards Consortium Study Data Tabulation Model.
+  - SN000517
+  - S002996
+  - '2'
+  - ''
+  - ''
+  - ''
+  - A person having origins in any of the black racial groups of Africa. Terms such
+    as "Haitian" or "Negro" can be used in addition to "Black or African American".
+  - integer
+  - ''
+  - '3'
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - ''
+- - Race Numeric
+  - RACEN
+  - 'false'
+  - Numeric - Terminology codelist used to identify the race of an individual within
+    the Clinical Data Interchange Standards Consortium Study Data Tabulation Model.
+  - SN000517
+  - S002997
+  - '3'
+  - ''
+  - ''
+  - ''
+  - A person having origins in any of the original peoples of the Far East, Southeast
+    Asia, or the Indian subcontinent including, for example, Cambodia, China, India,
+    Japan, Korea, Malaysia, Pakistan, the Philippine Islands, Thailand, and Vietnam.
+  - integer
+  - ''
+  - '2'
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - ''
+- - Race Numeric
+  - RACEN
+  - 'false'
+  - Numeric - Terminology codelist used to identify the race of an individual within
+    the Clinical Data Interchange Standards Consortium Study Data Tabulation Model.
+  - SN000517
+  - S002998
+  - '4'
+  - ''
+  - ''
+  - ''
+  - Denotes a person having origins in any of the original peoples of Hawaii, Guam,
+    Samoa, or other Pacific Islands. The term covers particularly people who identify
+    themselves as part-Hawaiian, Native Hawaiian, Guamanian or Chamorro, Carolinian,
+    Samoan, Chuu.
+  - integer
+  - ''
+  - '4'
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - ''
+- - Race Numeric
+  - RACEN
+  - 'false'
+  - Numeric - Terminology codelist used to identify the race of an individual within
+    the Clinical Data Interchange Standards Consortium Study Data Tabulation Model.
+  - SN000517
+  - S014020
+  - '7'
+  - ''
+  - ''
+  - ''
+  - A numeric value, seven, that indicate not known, not observed, not recorded, or
+    refused. (NCI)
+  - integer
+  - ''
+  - '7'
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - ''
+- - Race Numeric
+  - RACEN
+  - 'false'
+  - Numeric - Terminology codelist used to identify the race of an individual within
+    the Clinical Data Interchange Standards Consortium Study Data Tabulation Model.
+  - SN000517
+  - S014021
+  - '6'
+  - ''
+  - ''
+  - ''
+  - Denotes multiple races reported.
+  - integer
+  - ''
+  - '6'
+  - ''
+  - 'false'
+  - 'false'
+  - 'true'
+  - ''
+KPSSR_01:
+- - Karnofsky Performance Status Scale Questionnaire Results Subset 01
+  - KPSSR_01
+  - 'false'
+  - Karnofsky Performance Status Scale results.
+  - SN000897
+  - S002687
+  - '90'
+  - 90-Able to carry on normal activity; minor signs or symptoms of disease
+  - ''
+  - ''
+  - Karnofsky Performance Status Scale - 90-Able to carry on normal activity; minor
+    signs or symptoms of disease.
+  - integer
+  - 90-Able to carry on normal activity; minor signs or symptoms of disease
+  - '2'
+  - ''
+  - 'true'
+  - 'true'
+  - 'true'
+  - ''
+- - Karnofsky Performance Status Scale Questionnaire Results Subset 01
+  - KPSSR_01
+  - 'false'
+  - Karnofsky Performance Status Scale results.
+  - SN000897
+  - S002688
+  - '70'
+  - 70-Cares for self; unable to carry on normal activity or to do active work
+  - ''
+  - ''
+  - Karnofsky Performance Status Scale - 70-Cares for self; unable to carry on normal
+    activity or to do active work.
+  - integer
+  - 70-Cares for self; unable to carry on normal activity or to do active work
+  - '4'
+  - ''
+  - 'true'
+  - 'true'
+  - 'true'
+  - ''
+- - Karnofsky Performance Status Scale Questionnaire Results Subset 01
+  - KPSSR_01
+  - 'false'
+  - Karnofsky Performance Status Scale results.
+  - SN000897
+  - S002689
+  - '40'
+  - 40-Disabled; requires special care and assistance
+  - ''
+  - ''
+  - Karnofsky Performance Status Scale - 40-Disabled; requires special care and assistance.
+  - integer
+  - 40-Disabled; requires special care and assistance
+  - '7'
+  - ''
+  - 'true'
+  - 'true'
+  - 'true'
+  - ''
+- - Karnofsky Performance Status Scale Questionnaire Results Subset 01
+  - KPSSR_01
+  - 'false'
+  - Karnofsky Performance Status Scale results.
+  - SN000897
+  - S002690
+  - '10'
+  - 10-Moribund; fatal processes progressing rapidly
+  - ''
+  - ''
+  - Karnofsky Performance Status Scale - 10-Moribund; fatal processes progressing
+    rapidly.
+  - integer
+  - 10-Moribund; fatal processes progressing rapidly
+  - '10'
+  - ''
+  - 'true'
+  - 'true'
+  - 'true'
+  - ''
+- - Karnofsky Performance Status Scale Questionnaire Results Subset 01
+  - KPSSR_01
+  - 'false'
+  - Karnofsky Performance Status Scale results.
+  - SN000897
+  - S002691
+  - '80'
+  - 80-Normal activity with effort; some signs or symptoms of disease
+  - ''
+  - ''
+  - Karnofsky Performance Status Scale - 80-Normal activity with effort; some signs
+    or symptoms of disease.
+  - integer
+  - 80-Normal activity with effort; some signs or symptoms of disease
+  - '3'
+  - ''
+  - 'true'
+  - 'true'
+  - 'true'
+  - ''
+- - Karnofsky Performance Status Scale Questionnaire Results Subset 01
+  - KPSSR_01
+  - 'false'
+  - Karnofsky Performance Status Scale results.
+  - SN000897
+  - S002692
+  - '100'
+  - 100-Normal no complaints; no evidence of disease
+  - ''
+  - ''
+  - Karnofsky Performance Status Scale - 100-Normal no complaints; no evidence of
+    disease.
+  - integer
+  - 100-Normal no complaints; no evidence of disease
+  - '1'
+  - ''
+  - 'true'
+  - 'true'
+  - 'true'
+  - ''
+- - Karnofsky Performance Status Scale Questionnaire Results Subset 01
+  - KPSSR_01
+  - 'false'
+  - Karnofsky Performance Status Scale results.
+  - SN000897
+  - S002693
+  - '50'
+  - 50-Requires considerable assistance and frequent medical care
+  - ''
+  - ''
+  - Karnofsky Performance Status Scale - 50-Requires considerable assistance and frequent
+    medical care.
+  - integer
+  - 50-Requires considerable assistance and frequent medical care
+  - '6'
+  - ''
+  - 'true'
+  - 'true'
+  - 'true'
+  - ''
+- - Karnofsky Performance Status Scale Questionnaire Results Subset 01
+  - KPSSR_01
+  - 'false'
+  - Karnofsky Performance Status Scale results.
+  - SN000897
+  - S002694
+  - '60'
+  - 60-Requires occasional assistance, but is able to care for most of his personal
+    needs
+  - ''
+  - ''
+  - Karnofsky Performance Status Scale - 60-Requires occasional assistance, but is
+    able to care for most of his personal needs.
+  - integer
+  - 60-Requires occasional assistance, but is able to care for most of his personal
+    needs
+  - '5'
+  - ''
+  - 'true'
+  - 'true'
+  - 'true'
+  - ''
+- - Karnofsky Performance Status Scale Questionnaire Results Subset 01
+  - KPSSR_01
+  - 'false'
+  - Karnofsky Performance Status Scale results.
+  - SN000897
+  - S002695
+  - '30'
+  - 30-Severely disabled; hospital admission is indicated although death not imminent
+  - ''
+  - ''
+  - Karnofsky Performance Status Scale - 30-Severely disabled; hospital admission
+    is indicated although death not imminent.
+  - integer
+  - 30-Severely disabled; hospital admission is indicated although death not imminent
+  - '8'
+  - ''
+  - 'true'
+  - 'true'
+  - 'true'
+  - ''
+- - Karnofsky Performance Status Scale Questionnaire Results Subset 01
+  - KPSSR_01
+  - 'false'
+  - Karnofsky Performance Status Scale results.
+  - SN000897
+  - S002696
+  - '20'
+  - 20-Very sick; hospital admission necessary; active supportive treatment necessary
+  - ''
+  - ''
+  - Karnofsky Performance Status Scale - 20-Very sick; hospital admission necessary;
+    active supportive treatment necessary.
+  - integer
+  - 20-Very sick; hospital admission necessary; active supportive treatment necessary
+  - '9'
+  - ''
+  - 'true'
+  - 'true'
+  - 'true'
+  - ''

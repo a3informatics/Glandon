@@ -128,6 +128,7 @@ module UiHelpers
 
   def ui_table_search(table_id, text)
     input = find(:xpath, "//*[@id=\"#{table_id}_filter\"]/label/input")
+    input.click
     input.set(text)
   end
 
@@ -143,8 +144,8 @@ module UiHelpers
   end
 
 	def ui_check_table_cell_icon(table_id, row, col, icon)
-		td = find(:xpath, "//table[@id='#{table_id}']/tbody/tr[#{row}]/td[#{col}]")
-		expect(td.find("div .icon-#{icon}", visible: :all)).to_not eq(nil)
+    td = find(:xpath, "//table[@id='#{table_id}']/tbody/tr[#{row}]/td[#{col}]")
+    expect(td.find(".icon-#{icon}", visible: :all)).to_not eq(nil)
 	end
 
   def ui_check_table_cell_delete(table_id, row, col)
@@ -536,6 +537,10 @@ module UiHelpers
     ui_navbar_click('main_nav_aigd')
   end
 
+  def click_navbar_mcs
+    find('#main_nav_mc').click
+  end
+
   #Community Version
   def click_browse_every_version
     click_link 'btn-browse-cdisc'
@@ -587,14 +592,17 @@ module UiHelpers
 			compare: "Compare",
 			run: "Run",
 			results: "Results",
-      upgrade: "Upgrade Code Lists",
+      upgrade_cls: "Upgrade Code Lists",
+      upgrade: "Upgrade",
 			enable_rank: "Enable rank",
 			edit_ranks: "Edit ranks",
 			pair: "Pair",
 			unpair: "Unpair",
 			show_paired: "Show Paired",
       crf: "CRF",
-      acrf: "aCRF"
+      acrf: "aCRF",
+      bca: "BC Associations",
+      export_ttl: "Export TTL"
     }
 	end
 
@@ -852,16 +860,6 @@ module UiHelpers
     ui_click_node_key(to_key)
     #wait_for_ajax
     expect(ui_get_current_key).to eq(to_key)
-  end
-
-  # Status Page
-  def ui_manage_status_page(old_state, new_state, owner, identifier, version)
-    expect(page).to have_content 'Manage Status'
-    expect(page).to have_content "#{old_state}"
-    expect(page).to have_content "#{new_state}"
-    expect(page).to have_content "Owner: #{owner}"
-    expect(page).to have_content "Identifier: #{identifier}"
-    expect(page).to have_content version
   end
 
 	# Keys

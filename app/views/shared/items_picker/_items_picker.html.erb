@@ -64,6 +64,9 @@
               <span class="icon-sdtm bg-prim-light"></span>
               <span>SDTM Classes</span>
             </div>
+            <div class="tab-option with-icon" id="tab-sdtm-sponsor-domain">
+              <span class="icon-sdtm bg-prim-light"></span>
+              <span>SDTM Sponsor Domains</span>
             <div class="tab-option with-icon" id="tab-protocol">
               <span class="icon-protocol bg-prim-light"></span>
               <span>Protocols</span>
@@ -98,6 +101,9 @@
             <%= render partial: "shared/items_picker/managed_item_selector" %>
           </div>
           <div class="tab-wrap closed" data-tab="tab-sdtm-class" id="selector-sdtm-class">
+            <%= render partial: "shared/items_picker/managed_item_selector" %>
+          </div>
+          <div class="tab-wrap closed" data-tab="tab-sdtm-sponsor-domain" id="selector-sdtm-sponsor-domain">
             <%= render partial: "shared/items_picker/managed_item_selector" %>
           </div>
           <div class="tab-wrap closed" data-tab="tab-protocol" id="selector-protocol">

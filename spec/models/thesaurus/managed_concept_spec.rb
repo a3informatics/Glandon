@@ -2317,12 +2317,14 @@ describe "Thesaurus::ManagedConcept" do
       tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00002/V1#A00002"))
       expect(tc.narrower.count).to eq(2)
       result = tc.find_custom_property_values
-      check_thesaurus_concept_actual_expected(result, sub_dir, "add_referenced_children_custom_property_expected_2a.yaml")
+      result.each { |x| x.each {|k, v| v[:id] = "replaced for test" if v.is_a?(Hash) } } # CP definitions not returned in consistent order 
+      check_thesaurus_concept_actual_expected(result.sort_by{|x| x[:item_id]}, sub_dir, "add_referenced_children_custom_property_expected_2a.yaml")
       tc.add_referenced_children(tc.full_contexts([tc_3.uri.to_id]))
       tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00002/V1#A00002"))
       expect(tc.narrower.count).to eq(3)
       result = tc.find_custom_property_values
-      check_thesaurus_concept_actual_expected(result, sub_dir, "add_referenced_children_custom_property_expected_2b.yaml")
+      result.each { |x| x.each {|k, v| v[:id] = "replaced for test" if v.is_a?(Hash) } } # CP definitions not returned in consistent order 
+      check_thesaurus_concept_actual_expected(result.sort_by{|x| x[:item_id]}, sub_dir, "add_referenced_children_custom_property_expected_2b.yaml")
     end
 
     it "add and delete children to an extension, values" do
@@ -2361,10 +2363,7 @@ describe "Thesaurus::ManagedConcept" do
       tc_2 = Thesaurus::UnmanagedConcept.create({label: "Terminal 2A", identifier: "A00024", definition: "A definition", notation: "T2A"}, tc)
       tc_3 = Thesaurus::UnmanagedConcept.create({label: "Cow Shed", identifier: "A00025", definition: "A definition", notation: "T2B"}, tc)
       tc.add_referenced_children(tc.full_contexts([tc_1.uri.to_id, tc_2.uri.to_id, tc_3.uri.to_id]))
-      params = {}
-      params[:registration_status] = "Standard"
-      params[:previous_state] = "Incomplete"
-      tc.update_status(params)
+      IsoManagedHelpers.make_item_standard(tc)
       new_tc = tc.create_next_version
       cpv_uri = CustomPropertyValue.where_unique(tc_1, new_tc, :some_string)
       cpv = CustomPropertyValue.find(cpv_uri)
@@ -2570,6 +2569,30 @@ describe "Thesaurus::ManagedConcept" do
       triple_store.subject_present?(new_tc.uri, true)
       triple_store.subject_present?(new_child_3.uri, true)
       expect(triple_store.triple_count).to eq(before_count)
+    end
+
+  end
+
+  describe "Newer source?" do
+  
+    before :each do
+      load_files(schema_files, [])
+      load_data_file_into_triple_store("mdr_identification.ttl")
+      load_cdisc_term_versions(1..2)
+    end
+
+    it "newer source? I" do
+      tc_1 = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri:"http://www.cdisc.org/C49647/V1#C49647"))
+      item_1 = tc_1.create_extension
+      item_1 = Thesaurus::ManagedConcept.find_minimum(item_1.uri)
+      expect(item_1.newer_source?).to eq(true)
+    end
+
+    it "newer source? II" do
+      tc_1 = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri:"http://www.cdisc.org/C49499/V1#C49499"))
+      item_2 = tc_1.create_extension
+      item_2 = Thesaurus::ManagedConcept.find_minimum(item_2.uri)
+      expect(item_2.newer_source?).to eq(false)
     end
 
   end

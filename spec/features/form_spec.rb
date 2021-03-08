@@ -7,6 +7,7 @@ describe "Forms", :type => :feature do
   include UserAccountHelpers
   include UiHelpers
   include WaitForAjaxHelper
+  include IsoManagedHelpers
 
   def sub_dir
     return "features/forms"
@@ -93,6 +94,21 @@ describe "Forms", :type => :feature do
       wait_for_ajax 10
       expect(page).to have_content 'Not Set'
       expect(page).to have_content 'Compltion Status'
+    end
+
+    it "history allows ttl to be exported", js:true do
+      click_navbar_forms
+      wait_for_ajax 10
+      expect(page).to have_content 'Index: Forms'
+      ui_table_search('index', 'Height')
+      find(:xpath, "//tr[contains(.,'Height (Pilot)')]/td/a", :text => 'History').click
+      wait_for_ajax 10
+      expect(page).to have_content 'Version History of \'FN000150\''
+      context_menu_element_v2('history', 'Height (Pilot)', :export_ttl)
+      file = download_content
+    # write_text_file_2(file, sub_dir, "form_export_ttl_expected.ttl")
+      expected = read_text_file_2(sub_dir, "form_export_ttl_expected.ttl")
+      expect(file).to eq(expected)
     end
 
     it "show page has terminology reference links", js:true do
@@ -242,7 +258,7 @@ describe "Forms", :type => :feature do
       ui_confirmation_dialog true
       wait_for_ajax 10
 
-      expect(page).to have_content "Index: Forms"
+      expect(page).to have_content "No versions found"
       expect( Form.all.count ).to eq form_count-1
     end
 
@@ -261,7 +277,7 @@ describe "Forms", :type => :feature do
       ui_confirmation_dialog true
       wait_for_ajax 10
 
-      expect(page).to have_content "Index: Forms"
+      expect(page).to have_content "No versions found"
       expect( Form.all.count ).to eq form_count-1
     end
 
@@ -291,12 +307,6 @@ describe "Forms", :type => :feature do
       ua_logoff
     end
 
-    def check_version_info(*args)
-      args.each do |a|
-        expect( find('#imh_header') ).to have_content a
-      end
-    end
-
     it "allows to update a Form status, version and version label" do
       click_navbar_forms
       wait_for_ajax 20
@@ -308,29 +318,16 @@ describe "Forms", :type => :feature do
       context_menu_element_v2('history', '0.1.0', :document_control)
       wait_for_ajax 10
 
-      check_version_info('Incomplete', '0.1.0')
+      dc_check_status('Incomplete')
+      dc_check_version('0.1.0')
 
-      click_on 'Submit Status Change'
-      check_version_info('Candidate', '0.1.0')
+      dc_forward_to('Candidate')
+      dc_check_status('Candidate')
 
-      find('#version-edit').click
-      select 'Major: 1.0.0', from: 'select-release'
-      click_on 'Update Version'
+      dc_update_version('1.0.0')
+      dc_update_version_label('Form Version Label')
 
-      check_version_info('Candidate', '1.0.0')
-
-      find('#version-label-edit').click
-      fill_in 'Version label', with: 'Form Version Label'
-      click_on 'Update Version Label'
-
-      check_version_info('Candidate', '1.0.0', 'Form Version Label')
-
-      click_on 'Submit Status Change'
-      click_on 'Submit Status Change'
-      click_on 'Submit Status Change'
-
-      check_version_info('Standard', '1.0.0', 'Form Version Label')
-
+      dc_forward_to('Standard')
       click_on 'Return'
       wait_for_ajax 10
 
@@ -350,9 +347,7 @@ describe "Forms", :type => :feature do
       context_menu_element_v2('history', '0.1.0', :document_control)
       wait_for_ajax 10
 
-      click_on 'Submit Status Change'
-      click_on 'Submit Status Change'
-
+      dc_forward_to('Recorded')
       click_on 'Return'
       wait_for_ajax 10
 
@@ -394,15 +389,9 @@ describe "Forms", :type => :feature do
       # Creates a new version off of Standard
       context_menu_element_v2('history', '0.1.0', :document_control)
 
-      click_on 'Submit Status Change'
-      click_on 'Submit Status Change'
-
-      find('#version-edit').click
-      select 'Major: 1.0.0', from: 'select-release'
-      click_on 'Update Version'
-
-      click_on 'Submit Status Change'
-      click_on 'Submit Status Change'
+      dc_forward_to('Recorded')
+      dc_update_version('1.0.0')
+      dc_forward_to('Standard')
 
       click_on 'Return'
       wait_for_ajax 10
