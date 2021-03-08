@@ -8,9 +8,6 @@
   :clln:
     :label: CODELIST_LONG_NAME
     :type: literal
-  :clc:
-    :label: CODELIST_CODE
-    :type: literal
   :clsn:
     :label: CODELIST_SHORT_NAME
     :type: literal
@@ -20,17 +17,29 @@
   :cld:
     :label: CODELIST_DEFINITION
     :type: literal
+  :clc:
+    :label: CODELIST_CODE
+    :type: literal
   :code:
     :label: CODE
-    :type: literal
-  :decode:
-    :label: DECODE
     :type: literal
   :svalue:
     :label: SUBMISSION_VALUE
     :type: literal
+  :decode:
+    :label: DECODE
+    :type: literal
   :synonym:
     :label: SYNONYM
+    :type: literal
+  :synonym_sponsor:
+    :label: SYNONYM_SPONSOR
+    :type: literal
+  :clid:
+    :label: CODE_DEFINITION
+    :type: literal
+  :cldt:
+    :label: DATA_TYPE
     :type: literal
   :crfdv:
     :label: CRF_DISPLAY_VALUE
@@ -50,6 +59,9 @@
   :adam_stage:
     :label: ADAM_STAGE
     :type: literal
+  :ed_use:
+    :label: ED_USE
+    :type: literal
 :label: Sponsor CT Export
 :query: 'PREFIX th: <http://www.assero.co.uk/Thesaurus#>
 PREFIX isoI: <http://www.assero.co.uk/ISO11179Identification#> 
@@ -62,10 +74,10 @@ PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
 PREFIX skos: <http://www.w3.org/2004/02/skos/core#> 
   
-SELECT ?clln ?clc ?clsn ?cle ?cld ?code ?decode ?svalue (GROUP_CONCAT(DISTINCT ?clisyn;separator=";") as ?synonym) ?crfdv ?displayorder ?rank ?dc_stage ?sdtm_stage ?adam_stage WHERE  
+SELECT ?clln ?clc ?clsn ?cle ?cld ?clid ?cldt ?code ?decode ?svalue (GROUP_CONCAT(DISTINCT ?clisyn;separator="; ") as ?synonym) ?synonym_sponsor ?crfdv ?displayorder ?rank ?dc_stage ?sdtm_stage ?adam_stage ?ed_use WHERE  
 {
   {
-    SELECT ?clln ?clc ?clsn ?cle ?cld ?code ?decode ?svalue ?clisyn ?crfdv ?displayorder ?rank ?dc_stage ?sdtm_stage ?adam_stage WHERE  
+    SELECT ?clln ?clc ?clsn ?cle ?cld ?clid ?cldt ?code ?decode ?svalue ?clisyn ?synonym_sponsor ?crfdv ?displayorder ?rank ?dc_stage ?sdtm_stage ?adam_stage ?ed_use WHERE  
     {
       VALUES ?s {[[[parameter_1]]]}
       ?s th:isTopConceptReference/bo:reference ?cl .
@@ -96,30 +108,59 @@ SELECT ?clln ?clc ?clsn ?cle ?cld ?code ?decode ?svalue (GROUP_CONCAT(DISTINCT ?
       {
         FILTER (NOT EXISTS {?cl th:pairedWith ?y} && NOT EXISTS {?cl ^th:pairedWith ?z})
         ?cl th:narrower ?cli .
+        ?cli th:definition ?clid .
         ?cli th:identifier ?code .  
       }
 
-      ?cli th:preferredTerm/isoC:label ?decode .
       ?cli th:notation ?svalue .
+
+      BIND (?clsn NOT IN ( "BDI0216R", "BDI0218R", "TOXGR", "JNTASMTS", "GLASGWTS", "KFSS15R", "KFSS13R", "KFSS12R", "KFSS17R", "KFSS18R", "KFSS14R", "KFSS16R", "KFSS11R", "SF12103R", "SF12101R", "SF12102R", "SF12104R", "SF12105R", "SF12106R", "SF36301R", "SF36302R", "SF36303R", "SF36304R", "SF36305R", "SF36306R", "SF36307R", "SF36308R", "SF36309R" ) as ?dt_ok)
+      BIND (IF(regex(?svalue, "^-?[0-9]+$") && ?dt_ok, "integer", "text") as ?cldt) 
 
       ?cli ^isoC:appliesTo ?ext1 .
       ?ext1 isoC:context ?cl . 
       ?ext1 isoC:customPropertyDefinedBy/isoC:label "SDTM Stage" .
       ?ext1 isoC:value ?sdtm_stage .
+      
       ?cli ^isoC:appliesTo ?ext2 .
       ?ext2 isoC:context ?cl . 
       ?ext2 isoC:customPropertyDefinedBy/isoC:label "DC Stage" .
       ?ext2 isoC:value ?dc_stage .
+      
       ?cli ^isoC:appliesTo ?ext3 .
       ?ext3 isoC:context ?cl . 
       ?ext3 isoC:customPropertyDefinedBy/isoC:label "ADaM Stage" .
       ?ext3 isoC:value ?adam_stage .
+      
       ?cli ^isoC:appliesTo ?ext4 .
       ?ext4 isoC:context ?cl . 
       ?ext4 isoC:customPropertyDefinedBy/isoC:label "CRF Display Value" .
       ?ext4 isoC:value ?crfdv .
+      
+      ?cli ^isoC:appliesTo ?ext5 .
+      ?ext5 isoC:context ?cl . 
+      ?ext5 isoC:customPropertyDefinedBy/isoC:label "Display Order" .
+      ?ext5 isoC:value ?displayorder .
 
-      BIND ("" AS ?displayorder)
+      ?cli ^isoC:appliesTo ?ext6 .
+      ?ext6 isoC:context ?cl . 
+      ?ext6 isoC:customPropertyDefinedBy/isoC:label "Synonym Sponsor" .
+      ?ext6 isoC:value ?synonym_sponsor .   
+
+      ?cli th:preferredTerm/isoC:label ?pt .
+      BIND (IF(CONTAINS(?clln, "Test Code"), true, false) as ?testcd)
+      BIND (IF(?testcd, true, false) AS ?use_pt1)
+      BIND (IF(?testcd = false && ?svalue = ?crfdv && ?dc_stage = "true", true, false) AS ?use_pt2)
+      BIND (IF(?use_pt1 = false && ?use_pt2 = false, ?crfdv, ?pt) AS ?decode)
+
+      OPTIONAL
+      {
+        ?cli ^isoC:appliesTo ?ext7 .
+        ?ext7 isoC:context ?cl . 
+        ?ext7 isoC:customPropertyDefinedBy/isoC:label "ED Use" .
+        ?ext7 isoC:value ?ed_use .   
+      }
+
       OPTIONAL {?cli th:synonym/isoC:label ?clisyn .}
       OPTIONAL 
       {
@@ -149,25 +190,51 @@ SELECT ?clln ?clc ?clsn ?cle ?cld ?code ?decode ?svalue (GROUP_CONCAT(DISTINCT ?
     ?cl th:definition ?cld .
     ?cl th:preferredTerm/isoC:label ?clln .
     ?cli th:identifier ?code .  
-    ?cli th:preferredTerm/isoC:label ?decode .
     ?cli th:notation ?svalue .
+
+    BIND (?clsn NOT IN ( "TOXGR_01" ) as ?dt_ok)
+    BIND (IF(regex(?svalue, "^-?[0-9]+$") && ?dt_ok, "integer", "text") as ?cldt) 
+
+    ?cli th:definition ?clid .
 
     ?cli ^isoC:appliesTo ?ext1 .
     ?ext1 isoC:context ?cl . 
     ?ext1 isoC:customPropertyDefinedBy/isoC:label "SDTM Stage" .
     ?ext1 isoC:value ?sdtm_stage .
+
     ?cli ^isoC:appliesTo ?ext2 .
     ?ext2 isoC:context ?cl . 
     ?ext2 isoC:customPropertyDefinedBy/isoC:label "DC Stage" .
     ?ext2 isoC:value ?dc_stage .
+
     ?cli ^isoC:appliesTo ?ext3 .
     ?ext3 isoC:context ?cl . 
     ?ext3 isoC:customPropertyDefinedBy/isoC:label "ADaM Stage" .
     ?ext3 isoC:value ?adam_stage .
+
     ?cli ^isoC:appliesTo ?ext4 .
     ?ext4 isoC:context ?cl . 
     ?ext4 isoC:customPropertyDefinedBy/isoC:label "CRF Display Value" .
     ?ext4 isoC:value ?crfdv .
+
+    ?cli ^isoC:appliesTo ?ext6 .
+    ?ext6 isoC:context ?cl . 
+    ?ext6 isoC:customPropertyDefinedBy/isoC:label "Synonym Sponsor" .
+    ?ext6 isoC:value ?synonym_sponsor .   
+
+    ?cli th:preferredTerm/isoC:label ?pt .
+    BIND (IF(CONTAINS(?clln, "Test Code"), true, false) as ?testcd)
+    BIND (IF(?testcd, true, false) AS ?use_pt1)
+    BIND (IF(?testcd = false && ?svalue = ?crfdv && ?dc_stage = "true", true, false) AS ?use_pt2)
+    BIND (IF(?use_pt1 = false && ?use_pt2 = false, ?crfdv, ?pt) AS ?decode)
+    
+    OPTIONAL
+    {
+      ?cli ^isoC:appliesTo ?ext7 .
+      ?ext7 isoC:context ?cl . 
+      ?ext7 isoC:customPropertyDefinedBy/isoC:label "ED Use" .
+      ?ext7 isoC:value ?ed_use .   
+    }
 
     OPTIONAL 
     {
@@ -176,5 +243,5 @@ SELECT ?clln ?clc ?clsn ?cle ?cld ?code ?decode ?svalue (GROUP_CONCAT(DISTINCT ?
       ?rank_member th:rank ?rank 
     }
   }
-} GROUP BY ?clln ?clc ?clsn ?cle ?cld ?code ?decode ?svalue ?crfdv ?displayorder ?rank ?dc_stage ?sdtm_stage ?adam_stage ORDER BY ?clc ?code ?displayorder ?rank'
+} GROUP BY ?clln ?clc ?clsn ?cle ?cld ?clid ?cldt ?code ?decode ?svalue ?synonym_sponsor ?crfdv ?displayorder ?rank ?dc_stage ?sdtm_stage ?adam_stage ?ed_use ORDER BY ?clc ?code ?displayorder ?rank'
 :type: Ad Hoc Report Definition

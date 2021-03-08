@@ -136,11 +136,28 @@ puts colourize("Domain: #{domain.prefix}, No class found.", "red") if uri.nil?
   def find_base_class_variable(the_class, domain, variable)
     return false if the_class.nil?
     result = the_class.find_variable(variable.name, domain.prefix)
-puts colourize("***** Error finding variable: #{variable.name} *****", "red") if result.nil?
-    return false if result.nil?
-    variable.based_on_class_variable = SdtmClass::Variable.find(result)
+    if result.nil?
+      if domain_specific_variables.include?variable.name
+        the_class = ::SdtmClass.find_minimum(Uri.new(uri:"http://www.s-cubed.dk/SDTM_CLASS_EXTRA/V1#CL"))
+        result = the_class.find_variable(variable.name, domain.prefix)
+        set_based_on_class_variable(variable, result)
+      else
+        puts colourize("***** Error finding variable: #{variable.name} *****", "red") if result.nil?
+        false
+      end
+    else
+      set_based_on_class_variable(variable, result)
+    end
+  end
+
+  def set_based_on_class_variable(variable, class_variable_uri)
+    variable.based_on_class_variable = SdtmClass::Variable.find(class_variable_uri)
     variable.is_a = variable.based_on_class_variable.is_a
     true
+  end
+
+  def domain_specific_variables
+    ["MSAGENT", "MSCONCU", "MSCONC", "EGBEATNO", "MHEVDTYP"]
   end
 
   def extract_notations(value)
@@ -157,6 +174,7 @@ puts colourize("***** Error finding variable: #{variable.name} *****", "red") if
     return "#{SdtmModel.identifier} #{prefix}" if the_class == "SDTM TRIAL DESIGN"
     return "#{SdtmModel.identifier} #{prefix}" if the_class == "SDTM RELATIONSHIPS"
     return "#{SdtmModel.identifier} #{prefix}" if the_class == "SDTM STUDY REFERENCE"
+    return "#{SdtmModel.identifier} #{prefix}" if the_class == "SDTM ASSOCIATED PERSONS"
     the_class
   end
 

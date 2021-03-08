@@ -152,6 +152,15 @@ puts "Extra:    #{uri_result.sort - diff.sort}"
 
     it "to crf II" do
       form = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F"))
+      tuc_reference = OperationalReferenceV3::TucReference.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1_Q1_TUC1"))
+      tuc_reference.local_label = "Not Done"
+      tuc_reference.save
+      tuc_reference_2 = OperationalReferenceV3::TucReference.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1_Q4_TUC1"))
+      tuc_reference_2.local_label = "Inch"
+      tuc_reference_2.save
+      tuc_reference_3 = OperationalReferenceV3::TucReference.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1_Q4_TUC2"))
+      tuc_reference_3.local_label = "Centimeter"
+      tuc_reference_3.save
       check_file_actual_expected(form.crf, sub_dir, "to_crf_2.yaml", equate_method: :hash_equal)
     end
 
@@ -254,6 +263,15 @@ puts "Extra:    #{uri_result.sort - diff.sort}"
 
     it "to acrf II" do
       form = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F"))
+      tuc_reference = OperationalReferenceV3::TucReference.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1_Q1_TUC1"))
+      tuc_reference.local_label = "Not Done"
+      tuc_reference.save
+      tuc_reference_2 = OperationalReferenceV3::TucReference.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1_Q4_TUC1"))
+      tuc_reference_2.local_label = "Inch"
+      tuc_reference_2.save
+      tuc_reference_3 = OperationalReferenceV3::TucReference.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1_Q4_TUC2"))
+      tuc_reference_3.local_label = "Centimeter"
+      tuc_reference_3.save
       check_file_actual_expected(form.acrf, sub_dir, "to_acrf_2.yaml", equate_method: :hash_equal)
     end
 
@@ -1153,7 +1171,7 @@ puts "Extra:    #{uri_result.sort - diff.sort}"
 
   end
 
-  describe "Depednency Tests" do
+  describe "Dependency Tests" do
     
     before :each do
       data_files = [

@@ -318,6 +318,10 @@ describe "Forms", :type => :feature do
           wait_for_ajax 10
           expect(page).to have_content 'contains invalid characters'
 
+          # Reset label button
+          click_on 'Reset'
+          expect( find_field('local_label').value ).to eq('Inch')
+
           fill_in 'local_label', with: 'New Inch'
           click_on 'Save changes'
           wait_for_ajax 10
@@ -977,6 +981,7 @@ describe "Forms", :type => :feature do
 
       context_menu_element_v2('history', '0.1.0', :edit)
       wait_for_ajax 10 
+      find('#main_area').scroll_to(:bottom)
 
       # Add Group
       find_node('Test Form').click
