@@ -1,7 +1,7 @@
 import CreateItemView from 'shared/base/create_item_view'
 
 import ItemsPicker from 'shared/ui/items_picker/items_picker'
-import { managedConceptRef } from 'shared/ui/strings'
+import { managedItemRef } from 'shared/ui/strings'
 
 /**
  * Create a Study Modal View
@@ -93,7 +93,7 @@ export default class CreateStudyView extends CreateItemView {
   _onSelectTemplate(protocol) {
 
     this.form.find( '#new-item-template' )
-             .val( managedConceptRef( protocol ) )
+             .val( managedItemRef( protocol ) )
              .attr( 'data-id', protocol.id );
 
   }
