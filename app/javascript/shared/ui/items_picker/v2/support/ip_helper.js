@@ -41,7 +41,7 @@ export default class IPHelper {
   static typesDiffer(types, newTypes) {
 
     const filtered = types.filter( type => newTypes.includes( type ) )
-    return types.length === newTypes.length && newTypes.length === filtered.length
+    return newTypes.length !== filtered.length
 
   }
 
