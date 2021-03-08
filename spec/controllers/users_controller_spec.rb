@@ -91,7 +91,9 @@ describe UsersController do
       expect(user.has_role? :reader).to eq(true)
       expect(user.has_role? :curator).to eq(true)
       expect(user.has_role? :content_admin).to eq(true)
-      expect(response).to redirect_to("/users")
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200")
+      expect(JSON.parse(response.body).deep_symbolize_keys[:data][:redirect_url]).to eq("/users")
     end
 
     it "updates user name" do
@@ -134,8 +136,9 @@ describe UsersController do
       Role.create(name: :curator)
       current_user = User.find_by(:email => "base@example.com")
       put :update, params:{id: current_user.id, :user => {role_ids: ["#{Role.to_id(:curator)}"]}}
-      expect(flash[:error]).to be_present
-      expect(flash[:error]).to match(/You cannot remove the last system administrator.*/)
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("422")
+      expect(JSON.parse(response.body).deep_symbolize_keys[:errors]).to eq(["You cannot remove the last system administrator."])
     end
 
     it "allows removing sys admin user role if another sys admin exists" do
@@ -145,7 +148,8 @@ describe UsersController do
       put :update, params:{id: admin_user.id, :user => {role_ids: ["#{Role.to_id(:curator)}"]}}
       admin_user = User.find_by(:email => "admin@example.com")
       expect(admin_user.role_list_stripped).to eq("Curator")
-      expect(response).to redirect_to("/users")
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200")
     end
 
     it "allows removing any role that's not sys admin" do
@@ -156,7 +160,8 @@ describe UsersController do
       put :update, params:{id: curator_user.id, :user => {role_ids: ["#{Role.to_id(:reader)}"]}}
       curator_user = User.find_by(:email => "curator@example.com")
       expect(curator_user.role_list_stripped).to eq("Reader")
-      expect(response).to redirect_to("/users")
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200")
     end
 
     it "assigns user a default name if none is provided" do

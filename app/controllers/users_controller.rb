@@ -50,15 +50,14 @@ class UsersController < ApplicationController
     authorize User
     current_roles = @user.role_list
     if @user.removing_last_admin?(user_params)
-      flash[:error] = "You cannot remove the last system administrator."
-      redirect_to users_path
+      render json: { errors: [ "You cannot remove the last system administrator." ] }, status: 422 
     else
       if @user.update(user_params)
         AuditTrail.update_event(current_user, "User #{@user.email} roles updated from #{current_roles} to #{@user.role_list}")
-        redirect_to users_path, success: "User roles for #{@user.email} successfully updated."
+        render json: { data: { redirect_url: users_path }}, status: 200
+        flash[:success] = "User role for #{@user.email} successfully updated to: #{@user.role_list_stripped}."
       else
-        flash[:error] = "Failed to update roles for #{@user.email}."
-        redirect_to users_path
+        render json: { errors: [ "Failed to update roles for #{@user.email}." ] }, status: 422 
       end
     end
   end
