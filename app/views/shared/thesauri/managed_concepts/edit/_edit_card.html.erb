@@ -35,7 +35,7 @@
 
       </div>
 
-        <div id="editor-panel" class="table-cardstyle loading-with-btns">
+        <div id="editor-panel" class="table-cardstyle table-editable loading-with-btns">
           <%= render partial: "shared/iso_managed/children/children_panel", locals: { id: "editor",
               table_classes: '', btn_in_last?: true, custom_props?: true, item: item } %>
         </div>
@@ -44,5 +44,4 @@
 </div>
 
 <%= render partial: "shared/help_dialogs/codelist_editor_help", :locals => { title: "How to use Code List Editor" } %>
-<%= render partial: "shared/items_picker/items_picker", :locals => { id: "add-children",
-    description: "Select one or more Code List Items to add to the Code List." } %>
+<%= render partial: "shared/items_picker/v2/items_picker", :locals => { id: "add-children" } %>

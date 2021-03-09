@@ -7,14 +7,14 @@ describe Forms::Items::BcPropertiesController do
   include UserAccountHelpers
   include IsoHelpers
   include ControllerHelpers
+
+  def sub_dir
+    return "controllers/forms/items"
+  end
   
   describe "Update" do
   	
     login_curator
-
-    def sub_dir
-      return "controllers/forms/items"
-    end
 
     before :all do
       data_files = ["forms/CRF TEST 1.ttl"]
@@ -40,8 +40,6 @@ describe Forms::Items::BcPropertiesController do
       check_file_actual_expected(bc_property.to_h, sub_dir, "update_bc_property_expected_1a.yaml", equate_method: :hash_equal)
       put :update, params:{id: bc_property.id, bc_property: update_params}
       expect(AuditTrail.count).to eq(audit_count+1)
-      expect(response.content_type).to eq("application/json")
-      expect(response.code).to eq("200")
       actual = check_good_json_response(response)
       check_file_actual_expected(actual, sub_dir, "update_bc_property_expected_1b.yaml", equate_method: :hash_equal)
     end
@@ -86,10 +84,6 @@ describe Forms::Items::BcPropertiesController do
   describe "Move up" do
     
     login_curator
-
-    def sub_dir
-      return "controllers/forms/items"
-    end
 
     after :all do
       ua_remove_user("lock@example.com")
@@ -148,10 +142,6 @@ describe Forms::Items::BcPropertiesController do
     
     login_curator
 
-    def sub_dir
-      return "controllers/forms/items"
-    end
-
     after :all do
       ua_remove_user("lock@example.com")
     end
@@ -208,10 +198,6 @@ describe Forms::Items::BcPropertiesController do
   describe "Make common item" do
     
     login_curator
-
-    def sub_dir
-      return "controllers/forms/items"
-    end
 
     after :all do
       ua_remove_user("lock@example.com")

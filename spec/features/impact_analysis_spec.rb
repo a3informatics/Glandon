@@ -153,7 +153,7 @@ describe "Impact Analysis", type: :feature  do
       load_data_file_into_triple_store("mdr_iso_concept_systems_migration_3.ttl")
       load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V1.ttl")
       load_data_file_into_triple_store("cdisc/sdtm_ig/SDTM_IG_V1.ttl")
-      load_data_file_into_triple_store("biomedical_concept_instances.ttl")
+      load_test_bc_template_and_instances
       load_test_file_into_triple_store("forms/VSTADIABETES.ttl")
       ua_create
       prep_data

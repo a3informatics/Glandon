@@ -22,7 +22,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2021-02-18T12:58:50+01:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2021-03-04T15:41:11+01:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bc:hasItem :BCI_BCI5 ;
 	bc:hasItem :BCI_BCI6 ;
@@ -154,7 +154,7 @@
 	bo:optional "true"^^xsd:boolean ;
 	bo:ordinal "1"^^xsd:positiveInteger ;
 	bo:reference <http://www.cdisc.org/C66741/V4#C66741_C25347> ;
-	bo:context <http://www.cdisc.org/C66741/V61#C66741> ;
+	bo:context <http://www.cdisc.org/C66741/V55#C66741> ;
 	bo:localLabel ""^^xsd:string ;
 .
 :BCI_BCI7
@@ -369,7 +369,7 @@
 	bo:optional "true"^^xsd:boolean ;
 	bo:ordinal "3"^^xsd:positiveInteger ;
 	bo:reference <http://www.cdisc.org/C71620/V6#C71620_C41139> ;
-	bo:context <http://www.cdisc.org/C71620/V62#C71620> ;
+	bo:context <http://www.cdisc.org/C71620/V55#C71620> ;
 	bo:localLabel ""^^xsd:string ;
 .
 :BCI_BCI11_BCCDTPQR_BCPcode_TUC4
@@ -379,7 +379,7 @@
 	bo:optional "true"^^xsd:boolean ;
 	bo:ordinal "4"^^xsd:positiveInteger ;
 	bo:reference <http://www.cdisc.org/C71620/V6#C71620_C71253> ;
-	bo:context <http://www.cdisc.org/C71620/V62#C71620> ;
+	bo:context <http://www.cdisc.org/C71620/V55#C71620> ;
 	bo:localLabel ""^^xsd:string ;
 .
 :BCI_BCI11_BCCDTPQR_BCPcode_TUC1
@@ -389,7 +389,7 @@
 	bo:optional "true"^^xsd:boolean ;
 	bo:ordinal "1"^^xsd:positiveInteger ;
 	bo:reference <http://www.cdisc.org/C66770/V34#C66770_C49668> ;
-	bo:context <http://www.cdisc.org/C66770/V59#C66770> ;
+	bo:context <http://www.cdisc.org/C66770/V55#C66770> ;
 	bo:localLabel ""^^xsd:string ;
 .
 :BCI_BCI11_BCCDTPQR_BCPcode_TUC2
@@ -399,7 +399,7 @@
 	bo:optional "true"^^xsd:boolean ;
 	bo:ordinal "2"^^xsd:positiveInteger ;
 	bo:reference <http://www.cdisc.org/C66770/V42#C66770_C48500> ;
-	bo:context <http://www.cdisc.org/C66770/V59#C66770> ;
+	bo:context <http://www.cdisc.org/C66770/V55#C66770> ;
 	bo:localLabel ""^^xsd:string ;
 .
 :BCI_BCI11_BCCDTPQR_BCPvalue

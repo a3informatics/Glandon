@@ -7,14 +7,14 @@ describe Forms::Items::MappingsController do
   include UserAccountHelpers
   include IsoHelpers
   include ControllerHelpers
+
+  def sub_dir
+    return "controllers/forms/items"
+  end
   
   describe "Update" do
   	
     login_curator
-
-    def sub_dir
-      return "controllers/forms/items"
-    end
 
     after :all do
       ua_remove_user("lock@example.com")
@@ -37,9 +37,6 @@ describe Forms::Items::MappingsController do
       audit_count = AuditTrail.count
       put :update, params:{id: @mapping.id, mapping: update_params}
       expect(AuditTrail.count).to eq(audit_count+1)
-      @mapping = Form::Item::Mapping.find(Uri.new(uri: "http://www.s-cubed.dk/FN000120/V1#F_NG12_MA1"))
-      expect(response.content_type).to eq("application/json")
-      expect(response.code).to eq("200")
       actual = check_good_json_response(response)
       check_file_actual_expected(actual, sub_dir, "update_mapping_expected_1.yaml", equate_method: :hash_equal)
     end
@@ -84,10 +81,6 @@ describe Forms::Items::MappingsController do
   describe "Move up" do
     
     login_curator
-
-    def sub_dir
-      return "controllers/forms/items"
-    end
 
     after :all do
       ua_remove_user("lock@example.com")
@@ -147,10 +140,6 @@ describe Forms::Items::MappingsController do
   describe "Move down" do
     
     login_curator
-
-    def sub_dir
-      return "controllers/forms/items"
-    end
 
     after :all do
       ua_remove_user("lock@example.com")

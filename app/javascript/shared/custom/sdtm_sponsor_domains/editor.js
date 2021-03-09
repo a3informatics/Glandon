@@ -1,6 +1,6 @@
 import EditablePanel from 'shared/base/editable_panel'
 
-import ItemsPicker from 'shared/ui/items_picker/items_picker'
+import ItemsPicker from 'shared/ui/items_picker/v2/items_picker'
 
 import { $confirm } from 'shared/helpers/confirmable'
 import { alerts } from 'shared/ui/alerts'
@@ -162,8 +162,6 @@ export default class SDTMSDEditor extends EditablePanel {
       }).show()
     );
 
-setTimeout( () => console.log(this.rowDataToArray), 1500 )
-
   }
 
   /**
@@ -261,18 +259,19 @@ setTimeout( () => console.log(this.rowDataToArray), 1500 )
     // Initializes Terminology Reference Picker
     this.editor.pickers[ 'refPicker' ] = new ItemsPicker({
       id: 'sdtm-term-ref',
-      types: ['managed_concept'],
+      types: [ ItemsPicker.allTypes.TH_CL ],
+      submitEmpty: true,
       submitText: 'Submit selection',
-      emptyEnabled: true,
+      description: `Find and select a Code List to reference. <br>
+                    <i> You can also submit an empty selection </i>`,
       onShow: () => this.keysDisable(),
       onHide: () => {
         this.editor.close();
         this.keysEnable();
       }
-    })
+    }).initialize()
 
   }
-
 
   /**
    * Extend default Editable Panel options

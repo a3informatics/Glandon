@@ -12,14 +12,14 @@ describe Forms::Items::QuestionsController do
   def make_standard(item)
     IsoManagedHelpers.make_item_standard(item)
   end
+
+  def sub_dir
+    return "controllers/forms/items"
+  end
   
   describe "Update" do
   	
     login_curator
-
-    def sub_dir
-      return "controllers/forms/items"
-    end
 
     after :all do
       ua_remove_user("lock@example.com")
@@ -42,9 +42,6 @@ describe Forms::Items::QuestionsController do
       audit_count = AuditTrail.count
       put :update, params:{id: @question.id, question: {question_text: "something", optional: false, form_id: @form.id}}
       expect(AuditTrail.count).to eq(audit_count+1)
-      @question = Form::Item::Question.find(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F_NG1_Q1"))
-      expect(response.content_type).to eq("application/json")
-      expect(response.code).to eq("200")
       actual = check_good_json_response(response)
       check_file_actual_expected(actual, sub_dir, "update_question_expected_1.yaml", equate_method: :hash_equal)
     end
@@ -89,10 +86,6 @@ describe Forms::Items::QuestionsController do
   describe "Add child" do
 
     login_curator
-
-    def sub_dir
-      return "controllers/forms/items"
-    end
 
     before :all do
       data_files = ["forms/FN000120.ttl", "biomedical_concept_instances.ttl", "biomedical_concept_templates.ttl"]
@@ -155,16 +148,12 @@ describe Forms::Items::QuestionsController do
     
     login_curator
 
-    def sub_dir
-      return "controllers/forms/items"
-    end
-
     after :all do
       ua_remove_user("lock@example.com")
     end
 
     before :all do
-      data_files = ["forms/FN000150.ttl","forms/FN000120.ttl", "forms/CRF TEST 1.ttl","biomedical_concept_instances.ttl", "biomedical_concept_templates.ttl" ]
+      data_files = ["forms/FN000150.ttl"]
       load_files(schema_files, data_files)
       load_data_file_into_triple_store("mdr_identification.ttl")
       @lock_user = ua_add_user(email: "lock@example.com")
@@ -217,16 +206,12 @@ describe Forms::Items::QuestionsController do
     
     login_curator
 
-    def sub_dir
-      return "controllers/forms/items"
-    end
-
     after :all do
       ua_remove_user("lock@example.com")
     end
 
     before :all do
-      data_files = ["forms/FN000150.ttl","forms/FN000120.ttl", "forms/CRF TEST 1.ttl","biomedical_concept_instances.ttl", "biomedical_concept_templates.ttl" ]
+      data_files = ["forms/FN000150.ttl"]
       load_files(schema_files, data_files)
       load_data_file_into_triple_store("mdr_identification.ttl")
       @lock_user = ua_add_user(email: "lock@example.com")
@@ -279,16 +264,12 @@ describe Forms::Items::QuestionsController do
     
     login_curator
 
-    def sub_dir
-      return "controllers/forms/items"
-    end
-
     after :all do
       ua_remove_user("lock@example.com")
     end
 
     before :all do
-      data_files = ["forms/CRF TEST 1.ttl", "forms/FN000150.ttl"]
+      data_files = ["forms/FN000150.ttl"]
       load_files(schema_files, data_files)
       load_cdisc_term_versions(1..15)
       load_data_file_into_triple_store("mdr_identification.ttl")

@@ -41,6 +41,14 @@ export default class SelectablePanel extends TablePanel {
   }
 
   /**
+   * Set the multiple select option
+   * @param {boolean} multiple True if multiple selection enable, false if single selection enable
+   */
+  setMultiple(multiple) {
+    this.table.select.style( multiple ? 'multi' : 'single' )
+  }
+
+  /**
    * Enables row selection for the user
    */
   enableSelect() { 
@@ -152,8 +160,6 @@ export default class SelectablePanel extends TablePanel {
    */
   get _tableOpts() {
     const options = super._tableOpts;
-
-    options.language.emptyTable = "No items found.";
 
     // Selection settings
     options.select = {

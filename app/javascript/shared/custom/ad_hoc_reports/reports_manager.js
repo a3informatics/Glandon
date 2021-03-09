@@ -4,7 +4,9 @@ import { dtBooleanColumn, dtContextMenuColumn, dtDateTimeColumn } from 'shared/h
 import { render as renderMenu } from 'shared/ui/context_menu'
 import { $confirm } from 'shared/helpers/confirmable'
 import { $delete } from 'shared/helpers/ajax'
-import ItemsPicker from 'shared/ui/items_picker/items_picker'
+
+import ItemsPicker from 'shared/ui/items_picker/v2/items_picker'
+import { getRdfObject } from 'shared/helpers/rdf_types'
 
 /**
  * Ad Hoc Reports Index Manager
@@ -37,8 +39,7 @@ export default class ReportsManager extends TablePanel {
     Object.assign( this, {
       deleteAllowed,
       itemsPicker: new ItemsPicker({
-        id: 'report-param',
-        types: [ 'thesauri' ]
+        id: 'report-param'
       })
     });
 
@@ -78,22 +79,21 @@ export default class ReportsManager extends TablePanel {
    */
   pickTargets(report) {
 
-    let { description, type } = report.parameters[0];
+    let { description, type } = report.parameters[0]
+    
+    // Get RDF Object from param name 
+    type = getRdfObject( type, 'param' )
+    
+    this.itemsPicker
+      .setTypes([ type ])
+      .setDescription( description )
+      .setOnSubmit( s => {
 
-    this.itemsPicker.disableTypesExcept( [type] )
-                    .setDescription( description );
+        const ids = s.asIDs()
+        if ( ids.length )
+          location.href = this._reportUrlWithParameters( report, ids )
 
-    // On submit handler - redirect with parameters
-    this.itemsPicker.onSubmit = s => {
-
-      let ids = s.asIDsArray();
-
-      if ( ids.length )
-        location.href = this._reportUrlWithParameters( report, ids );
-
-    }
-
-    this.itemsPicker.show();
+      }).show()
 
   }
 

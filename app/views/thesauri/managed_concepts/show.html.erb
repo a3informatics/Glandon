@@ -12,10 +12,6 @@
                           extensionCreateInUrl = '#{ extension_thesauri_index_path(id: 'thId') }',
                           extendOpts = '#{ @extend_opts.to_json }'" %>
 
-  <%= render partial: "shared/items_picker/items_picker", locals: { id: "thesaurus",
-      description: "Select the Terminology in which the newly created item be should be included.
-                    Click on 'Do not select' to skip selecting a Terminology." } %>
-
 <% end %>
 
 <% third_level_breadcrumb(:thesauri, @tc, history_thesauri_managed_concepts_path({managed_concept: {identifier: @tc.scoped_identifier, scope_id: @tc.scope}})) %>
@@ -87,3 +83,5 @@
 <% if @tc.supporting_edit? %>
   <%= render partial: "shared/annotation/change_notes/change_notes_modal", :locals => { item_name: @tc.identifier, item_id: @tc.id, item_notes_url: change_notes_iso_concept_path(@tc.id) } %>
 <% end %>
+
+ <%= render partial: "shared/items_picker/v2/items_picker", locals: { id: "thesaurus" } if policy(Thesaurus).edit? %>

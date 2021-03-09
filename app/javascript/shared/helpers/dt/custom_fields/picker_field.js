@@ -33,15 +33,12 @@ export default function DTPickerField() {
           return
 
         // Set the Picker's onSubmit handler to submit the selection in the Editor
-        this.pickers[ pickerName ].onSubmit = s => {
+        this.pickers[ pickerName ].setOnSubmit(s => {
 
           this.set( conf.name, _mapSelectionToColumn(s) )
           this.submit()
 
-        }
-
-        // Show Picker
-        this.pickers[ pickerName ].show()
+        }).show()
 
       })
 
@@ -61,11 +58,7 @@ export default function DTPickerField() {
         return []
 
       // Return the Items Picker's selection
-      const selection = this.pickers[conf.pickerName]
-                              .selectionView
-                              .getSelection()
-
-      return _mapSelectionToColumn( selection )
+      return _mapSelectionToColumn( this.pickers[conf.pickerName].selection )
 
     },
 
@@ -87,8 +80,9 @@ export default function DTPickerField() {
 
       // Clear Picker
       pickerInstance.reset()
+
       // Add data from column to picker selection
-      pickerInstance.selectionView.add( _mapColumnToSelection(data) )
+      pickerInstance.selectionHandler.add( _mapColumnToSelection(data) )
 
     },
 
@@ -152,15 +146,15 @@ export default function DTPickerField() {
 
 /**
  * Map the selection object from the Picker to a references data object for the table
- * @param {Object} sel Reference to the SelectionView's getSelection object
+ * @param {Object} sel Reference to the SelectionHandler's selection object
  * @return {Array} Remapped data for the Term References column
  */
 function _mapSelectionToColumn(sel) {
 
-  return sel.asObjectsArray()
+  return sel.asObjects()
             .map( d => Object.assign({}, {
               reference: d,
-              context: d.context,
+              context: d._context,
               show_path: d.show_path
             }))
 
@@ -174,7 +168,7 @@ function _mapSelectionToColumn(sel) {
 function _mapColumnToSelection(data) {
 
   return data.map( d => 
-    Object.assign({}, d.reference, { context: d.context }) 
+    Object.assign({}, d.reference, { _context: d.context }) 
   )
 
 }

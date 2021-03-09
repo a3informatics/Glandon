@@ -1,6 +1,6 @@
 <%= javascript_tag "let createSDTMSDUrl = '#{create_from_sdtm_sponsor_domains_path}'" %>
 
-<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="tableModalLabel" aria-hidden="true" id="new-sdtm-sd-modal">
+<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="tableModalLabel" aria-hidden="true" id="new-sdtm-sd-modal">
   <div class="modal-dialog modal-lg medium-screen" role="document">
 
     <div class="modal-content">
@@ -50,4 +50,4 @@
   </div>
 </div>
 
-<%= render partial: "shared/items_picker/items_picker", locals: { id: "new-sdtm-sd", description: "Select an IG Domain / Class to base the new SDTM Sponsor Domain on:" } %>
+<%= render partial: "shared/items_picker/v2/items_picker", locals: { id: "new-sdtm-sd" } %>

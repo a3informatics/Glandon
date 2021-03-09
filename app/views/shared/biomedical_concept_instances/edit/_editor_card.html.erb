@@ -2,7 +2,7 @@
   <div class="card-header">
     Biomedical Concept Editor
   </div>
-  <div class="card-content">
+  <div class="card-content table-editable">
 
     <div class="btns-wrap">
       <a href="#" class="btn medium white ttip" id="refresh-bc-editor">
@@ -16,7 +16,4 @@
   </div>
 </div>
 
-<%= render partial: "shared/items_picker/items_picker", locals: { id: "bc-term-ref",
-  description: "Find one or more Code List Items and add them to the selection or modify the current selection by clicking on
-                <span class='text-link'>View</span>. <br>
-                <i> You can also submit an empty selection </i>".html_safe } %>
+<%= render partial: "shared/items_picker/v2/items_picker", locals: { id: "bc-term-ref" } %>
