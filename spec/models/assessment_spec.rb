@@ -29,7 +29,7 @@ describe Assessment do
 
     it "initialised" do
       item = Assessment.new
-      check_file_actual_expected(item.to_h, sub_dir, "new_expected_1.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(item.to_h, sub_dir, "new_expected_1.yaml", equate_method: :hash_equal)
     end
 
     it "validity - error" do
@@ -37,7 +37,7 @@ describe Assessment do
       valid = item.valid?
       expect(valid).to eq(false)
       expect(item.errors.count).to eq(3)
-      expect(item.errors.full_messages.to_sentence).to eq("Uri can't be blank, Has identifier: Empty object, and Has state: Empty object")
+      expect(item.errors.full_messages.to_sentence).to eq("Uri can't be blank, Has identifier empty object, and Has state empty object")
     end
 
     it "validity" do
