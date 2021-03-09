@@ -207,8 +207,7 @@ describe "SDTM Sponsor Domains Editor", :type => :feature do
       w.close
 
       # Has to force screen resize in order to continue, god knows why
-      find('#sidebar-arrow').click 
-      sleep 1 
+      ui_navbar_toggle
 
       # Change CT Reference
       ui_editor_select_by_location 3, 8, offset_y: 30
@@ -224,6 +223,9 @@ describe "SDTM Sponsor Domains Editor", :type => :feature do
         ip_submit('sdtm-term-ref')
       end 
       ui_editor_check_value 3, 8, ""
+
+      # Bring sidebar back to expanded state 
+      ui_navbar_toggle
     end
 
     it "allows to view editor help dialog" do
