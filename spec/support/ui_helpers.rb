@@ -426,6 +426,7 @@ module UiHelpers
   end 
 
   def ui_navbar_collapsed?
+    sleep 0.5
     page.evaluate_script("$('#sidebar').hasClass('collapsed-horizontal')")
   end
 
