@@ -63,7 +63,6 @@ describe "Impact Analysis", :type => :feature do
       click_button 'Select'
       wait_for_ajax 20
       expect(page).to have_content 'Impact Analysis SPONSORTHTEST2 v0.1.0'
-      expect(page).to have_content 'Impact Analysis SPONSORTHTEST2 v0.1.0'
       expect(page).to have_content 'CDISC CT update from: 2018-03-30 Release - to: 2019-12-20 Release.'
       find(:xpath, "//*[@id='changes-cdisc-table']/tbody/tr/td[2]/div[1]").click
       wait_for_ajax 20
