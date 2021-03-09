@@ -13,7 +13,7 @@ namespace :name_value do
 
     # Seed
     NameValue.destroy_all
-    NameValue.create(name: "thesaurus_parent_identifier", value: "4000")
+    NameValue.create(name: "thesaurus_parent_identifier", value: "0001")
     NameValue.create(name: "thesaurus_child_identifier", value: "100000")
 
     # Display
