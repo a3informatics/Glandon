@@ -1,6 +1,6 @@
 import CreateItemView from 'shared/base/create_item_view'
 
-import ItemsPicker from 'shared/ui/items_picker/items_picker'
+import ItemsPicker from 'shared/ui/items_picker/v2/items_picker'
 import { managedItemRef } from 'shared/ui/strings'
 
 /**
@@ -103,8 +103,10 @@ export default class CreateBCView extends CreateItemView {
   _initPicker() {
     return new ItemsPicker({
       id: 'new-bc',
-      types: ['biomedical_concept_template'],
-      onSubmit: (selection) => this._onSelectTemplate( selection.asObjectsArray()[0] )
+      types: [ ItemsPicker.allTypes.BCT ],
+      description: 'Select a Template to base the new Biomedical Concept on',
+      onSubmit: selection => 
+        this._onSelectTemplate( selection.asObjects()[0] )
     })
   }
 

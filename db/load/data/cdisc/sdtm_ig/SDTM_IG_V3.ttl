@@ -17059,7 +17059,7 @@
 .
 <http://www.cdisc.org/SDTM_IG_SUPPQUAL/V3#IGD>
 	rdf:type bd:SdtmDomain ;
-	isoC:label "SDTM Implementation Guide"^^xsd:string ;
+	isoC:label "Supplemental Qualifiers"^^xsd:string ;
 	isoT:hasState <http://www.cdisc.org/SDTM_IG_SUPPQUAL/V3#IGD_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/SDTM_IG_SUPPQUAL/V3#IGD_SI> ;
 	isoT:hasPreviousVersion <http://www.cdisc.org/SDTM_IG_SUPPQUAL/V2#IGD> ;
@@ -17081,7 +17081,7 @@
 	bd:includesColumn <http://www.cdisc.org/SDTM_IG_SUPPQUAL/V3#IGD_QORIG> ;
 	bd:includesColumn <http://www.cdisc.org/SDTM_IG_SUPPQUAL/V1#IGD_QEVAL> ;
 	bd:prefix "SUPPQUAL"^^xsd:string ;
-	bd:structure ""^^xsd:string ;
+	bd:structure "One record per IDVAR, IDVARVAL, and QNAM value per subject"^^xsd:string ;
 	bd:basedOnClass <http://www.cdisc.org/SDTM_MODEL_SUPPQUAL/V3#CL> ;
 .
 <http://www.cdisc.org/SDTM_IG_SUPPQUAL/V3#IGD_RS>

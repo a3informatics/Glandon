@@ -107,7 +107,7 @@ curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/cdisc/c
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/canonical_references.ttl" $FileEndPoint
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/complex_datatypes.ttl" $FileEndPoint
 # Biomedical Concepts
-curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/biomedical_concept_templates.ttl" $FileEndPoint
+curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/bc/biomedical_concept_templates.ttl" $FileEndPoint
 # SDTM Model
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/cdisc/sdtm_model/SDTM_MODEL_V1.ttl" $FileEndPoint
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/cdisc/sdtm_model/SDTM_MODEL_V2.ttl" $FileEndPoint

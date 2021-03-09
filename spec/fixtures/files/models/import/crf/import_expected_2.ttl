@@ -21,8 +21,8 @@
 	isoT:hasIdentifier :F_SI ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
-	isoT:creationDate "2020-11-25T18:31:02+01:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2020-11-25T18:31:02+01:00"^^xsd:dateTime ;
+	isoT:creationDate "2021-03-01T18:13:07+01:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2021-03-01T18:13:07+01:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bf:note ""^^xsd:string ;
 	bf:completion ""^^xsd:string ;
@@ -135,45 +135,51 @@
 	bf:format "1"^^xsd:string ;
 	bf:mapping "SEX"^^xsd:string ;
 	bf:questionText "Sex"^^xsd:string ;
-	bf:hasCodedValue <http://www.acme-pharma.com/FBASELINE/V1#Q_7948e614-fdba-484a-9dfc-c98ce368d4e7_R1> ;
-	bf:hasCodedValue <http://www.acme-pharma.com/FBASELINE/V1#Q_7948e614-fdba-484a-9dfc-c98ce368d4e7_R2> ;
+	bf:hasCodedValue <http://www.acme-pharma.com/FBASELINE/V1#Q_7948e614-fdba-484a-9dfc-c98ce368d4e7_TUC1> ;
+	bf:hasCodedValue <http://www.acme-pharma.com/FBASELINE/V1#Q_7948e614-fdba-484a-9dfc-c98ce368d4e7_TUC2> ;
 .
-<http://www.acme-pharma.com/FBASELINE/V1#Q_7948e614-fdba-484a-9dfc-c98ce368d4e7_R1>
-	rdf:type bo:Reference ;
+<http://www.acme-pharma.com/FBASELINE/V1#Q_7948e614-fdba-484a-9dfc-c98ce368d4e7_TUC1>
+	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "1"^^xsd:positiveInteger ;
 	bo:reference <http://www.cdisc.org/C66731/V16#C66731_C20197> ;
+	bo:context <http://www.cdisc.org/C66731/V39#C66731> ;
+	bo:localLabel "Male"^^xsd:string ;
 .
-<http://www.acme-pharma.com/FBASELINE/V1#Q_7948e614-fdba-484a-9dfc-c98ce368d4e7_R2>
-	rdf:type bo:Reference ;
+<http://www.acme-pharma.com/FBASELINE/V1#Q_7948e614-fdba-484a-9dfc-c98ce368d4e7_TUC2>
+	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "2"^^xsd:positiveInteger ;
 	bo:reference <http://www.cdisc.org/C66731/V4#C66731_C16576> ;
+	bo:context <http://www.cdisc.org/C66731/V39#C66731> ;
+	bo:localLabel "Female"^^xsd:string ;
 .
 <http://www.acme-pharma.com/FBASELINE/V1#Q_c9f7f7de-d227-4e15-b171-06c4306b77f4>
 	rdf:type bf:Question ;
 	isoC:label "DM - Race"^^xsd:string ;
 	bf:ordinal "3"^^xsd:integer ;
-	bf:note "* No entries found in code list 'C74457' for item with submission value: 'CAUCASIAN' or preferred term: 'Caucasian'.\n* No entries found in code list 'C74457' for item with submission value: 'BLACK' or preferred term: 'Black'.\n* No entries found in code list 'C74457' for item with submission value: 'OTHER' or preferred term: 'Other'.\n"^^xsd:string ;
+	bf:note ""^^xsd:string ;
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
 	bf:mapping "RACE"^^xsd:string ;
 	bf:questionText "Race"^^xsd:string ;
-	bf:hasCodedValue <http://www.acme-pharma.com/FBASELINE/V1#Q_c9f7f7de-d227-4e15-b171-06c4306b77f4_R1> ;
+	bf:hasCodedValue <http://www.acme-pharma.com/FBASELINE/V1#Q_c9f7f7de-d227-4e15-b171-06c4306b77f4_TUC1> ;
 .
-<http://www.acme-pharma.com/FBASELINE/V1#Q_c9f7f7de-d227-4e15-b171-06c4306b77f4_R1>
-	rdf:type bo:Reference ;
+<http://www.acme-pharma.com/FBASELINE/V1#Q_c9f7f7de-d227-4e15-b171-06c4306b77f4_TUC1>
+	rdf:type bo:TucReference ;
 	isoC:label ""^^xsd:string ;
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "1"^^xsd:positiveInteger ;
 	bo:reference <http://www.cdisc.org/C74457/V10#C74457_C41260> ;
+	bo:context <http://www.cdisc.org/C74457/V49#C74457> ;
+	bo:localLabel "Asian"^^xsd:string ;
 .
 <http://www.acme-pharma.com/FBASELINE/V1#NG_f9fe7128-4b63-482d-9a11-62250e24fe0c>
 	rdf:type bf:NormalGroup ;
@@ -189,7 +195,7 @@
 	rdf:type bf:Question ;
 	isoC:label "Smoking"^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
-	bf:note "* No entries found for code list, parameters ['notation=SMOKE'].\n* No entries found for code list, parameters ['notation=CLSMOKING'].\n"^^xsd:string ;
+	bf:note "\n\nTerminology Search:\n* No entries found for code list, parameters ['notation=SMOKE'].\n* No entries found for code list, parameters ['notation=CLSMOKING'].\n* No entries found for code list, parameters ['identifier='].\n* No entries found for code list, parameters ['label=Smoking']."^^xsd:string ;
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
@@ -211,7 +217,7 @@
 	rdf:type bf:Question ;
 	isoC:label "Drinking"^^xsd:string ;
 	bf:ordinal "1"^^xsd:integer ;
-	bf:note "* No entries found for code list, parameters ['notation=DRINK'].\n* No entries found for code list, parameters ['notation=CLDRINKING'].\n"^^xsd:string ;
+	bf:note "\n\nTerminology Search:\n* No entries found for code list, parameters ['notation=DRINK'].\n* No entries found for code list, parameters ['notation=CLDRINKING'].\n* No entries found for code list, parameters ['identifier='].\n* No entries found for code list, parameters ['label=Drinking']."^^xsd:string ;
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
@@ -252,13 +258,24 @@
 	rdf:type bf:Question ;
 	isoC:label "Height units"^^xsd:string ;
 	bf:ordinal "2"^^xsd:integer ;
-	bf:note "* Multiple entries [C48500,C48500] found for parameters ['notation=in'], ignored.\n"^^xsd:string ;
+	bf:note "* Multiple entries [C48500,C48500] found for parameters ['notation=in'], using first found."^^xsd:string ;
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
 	bf:format "20"^^xsd:string ;
 	bf:mapping "[NO MAPPING]"^^xsd:string ;
 	bf:questionText "Height units"^^xsd:string ;
+	bf:hasCodedValue <http://www.acme-pharma.com/FBASELINE/V1#Q_159a7d7f-1ef5-40f7-808b-d5d66ac7a06e_TUC1> ;
+.
+<http://www.acme-pharma.com/FBASELINE/V1#Q_159a7d7f-1ef5-40f7-808b-d5d66ac7a06e_TUC1>
+	rdf:type bo:TucReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C71620/V42#C71620_C48500> ;
+	bo:context <http://www.cdisc.org/C71620/V49#C71620> ;
+	bo:localLabel "Inch"^^xsd:string ;
 .
 <http://www.acme-pharma.com/FBASELINE/V1#Q_53dd87c3-1c29-4240-ba98-72341896b348>
 	rdf:type bf:Question ;
@@ -276,7 +293,7 @@
 	rdf:type bf:Question ;
 	isoC:label "Weight units"^^xsd:string ;
 	bf:ordinal "4"^^xsd:integer ;
-	bf:note "* No entries found for parameters ['notation=lbs'].\n"^^xsd:string ;
+	bf:note "* No entries found for parameters ['notation=lbs']."^^xsd:string ;
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
@@ -300,7 +317,7 @@
 	rdf:type bf:Question ;
 	isoC:label "Systolic BP units"^^xsd:string ;
 	bf:ordinal "6"^^xsd:integer ;
-	bf:note "* No entries found for parameters ['notation=mm Hg'].\n"^^xsd:string ;
+	bf:note "* No entries found for parameters ['notation=mm Hg']."^^xsd:string ;
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;
@@ -324,7 +341,7 @@
 	rdf:type bf:Question ;
 	isoC:label "Diastolic BP units"^^xsd:string ;
 	bf:ordinal "8"^^xsd:integer ;
-	bf:note "* No entries found for parameters ['notation=mm Hg'].\n"^^xsd:string ;
+	bf:note "* No entries found for parameters ['notation=mm Hg']."^^xsd:string ;
 	bf:completion ""^^xsd:string ;
 	bf:optional "false"^^xsd:boolean ;
 	bf:datatype "string"^^xsd:string ;

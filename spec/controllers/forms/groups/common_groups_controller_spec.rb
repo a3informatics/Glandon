@@ -7,14 +7,14 @@ describe Forms::Groups::CommonGroupsController do
   include UserAccountHelpers
   include IsoHelpers
   include ControllerHelpers
+
+  def sub_dir
+    return "controllers/forms/groups"
+  end
   
   describe "Update" do
   	
     login_curator
-
-    def sub_dir
-      return "controllers/forms/groups"
-    end
 
     after :all do
       ua_remove_user("lock@example.com")
@@ -38,8 +38,6 @@ describe Forms::Groups::CommonGroupsController do
       put :update, params:{id: @common.id, common_group: update_params}
       expect(AuditTrail.count).to eq(audit_count+1)
       @common = Form::Group::Common.find(Uri.new(uri: "http://www.s-cubed.dk/CRF_TEST_1/V1#F_NG1_CG1"))
-      expect(response.content_type).to eq("application/json")
-      expect(response.code).to eq("200")
       actual = check_good_json_response(response)
       check_file_actual_expected(actual, sub_dir, "update_common_expected_1.yaml", equate_method: :hash_equal)
     end
@@ -84,10 +82,6 @@ describe Forms::Groups::CommonGroupsController do
   describe "Destroy" do
     
     login_curator
-
-    def sub_dir
-      return "controllers/forms/groups"
-    end
 
     after :all do
       ua_remove_user("lock@example.com")

@@ -140,3 +140,15 @@
     }
   }
 }
+
+.tab-option.with-icon span[class^='icon-']{
+  opacity: .9;
+  margin-right: 8px;
+}
+
+.tab-option.with-icon:not(.no-badge) span[class^='icon-']{
+  color: white;
+  font-size: $font-normal;
+  border-radius: 50%;
+  padding: 6px 7px 7px 7px;
+}

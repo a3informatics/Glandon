@@ -1,672 +1,736 @@
 ---
-:type: http://www.assero.co.uk/BusinessForm#Form
-:id: ''
-:namespace: ''
+:id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vRE0vVjEjRg==
+:uri: http://www.acme-pharma.com/DM/V1#F
+:rdf_type: http://www.assero.co.uk/BusinessForm#Form
 :label: Demographics
-:extension_properties: []
-:origin: ''
-:change_description: ''
-:creation_date: '2019-11-22T13:06:34+01:00'
-:last_changed_date: '2019-11-22T13:06:34+01:00'
-:explanatory_comment: ''
-:registration_state:
-  :namespace: http://www.assero.co.uk/MDRItems
-  :id: ''
-  :registration_authority:
-    :id: 
-    :uri: {}
-    :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
-    :organization_identifier: "<Not Set>"
-    :international_code_designator: DUNS
-    :owner: false
-    :ra_namespace: 
-  :registration_status: Not_Set
+:has_state:
+  :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vRE0vVjEjRl9SUw==
+  :uri: http://www.acme-pharma.com/DM/V1#F_RS
+  :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationState
+  :registration_status: Incomplete
   :administrative_note: ''
   :effective_date: '2016-01-01T00:00:00+00:00'
   :until_date: '2016-01-01T00:00:00+00:00'
-  :current: false
   :unresolved_issue: ''
   :administrative_status: ''
-  :previous_state: Not_Set
-:scoped_identifier:
-  :id: ''
+  :previous_state: Incomplete
+  :multiple_edit: false
+  :by_authority:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUkEjRFVOUzEyMzQ1Njc4OQ==
+    :uri: http://www.assero.co.uk/RA#DUNS123456789
+    :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
+    :organization_identifier: '123456789'
+    :international_code_designator: DUNS
+    :owner: true
+    :ra_namespace:
+      :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQUNNRQ==
+      :uri: http://www.assero.co.uk/NS#ACME
+      :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+      :short_name: ACME
+      :name: ACME Pharma
+      :authority: www.acme-pharma.com
+:has_identifier:
+  :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vRE0vVjEjRl9TSQ==
+  :uri: http://www.acme-pharma.com/DM/V1#F_SI
+  :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
   :identifier: DM
   :version_label: ''
-  :version: 0
-  :semantic_version: 0.0.0
-  :namespace:
-    :id: 
-    :uri: {}
+  :version: 1
+  :semantic_version: 0.1.0
+  :has_scope:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQUNNRQ==
+    :uri: http://www.assero.co.uk/NS#ACME
     :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
-    :short_name: ''
-    :name: ''
-    :authority: ''
-:completion: ''
+    :short_name: ACME
+    :name: ACME Pharma
+    :authority: www.acme-pharma.com
+:has_previous_version: 
+:origin: ''
+:change_description: ''
+:creation_date: '2019-11-22T13:06:34+01:00'
+:last_change_date: '2021-02-28T14:01:53+01:00'
+:explanatory_comment: ''
 :note: ''
-:children:
-- :type: http://www.assero.co.uk/BusinessForm#NormalGroup
-  :id: ''
-  :namespace: ''
+:completion: ''
+:has_group:
+- :id: 
+  :uri: {}
+  :rdf_type: http://www.assero.co.uk/BusinessForm#NormalGroup
   :label: DMG1
-  :extension_properties: []
   :ordinal: 1
-  :optional: false
-  :completion: ''
   :note: ''
-  :children:
-  - :type: http://www.assero.co.uk/BusinessForm#Question
-    :id: ''
-    :namespace: ''
+  :completion: ''
+  :optional: false
+  :has_item:
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/BusinessForm#Question
     :label: BRTHDAT
-    :extension_properties: []
     :ordinal: 1
-    :note: ''
+    :note: |2-
+
+
+      Export Label:
+
+      Date/Time of Birth
     :completion: ''
     :optional: false
     :datatype: date
     :format: ''
+    :mapping: "[NO MAPPING]"
     :question_text: Date of birthPlease select 'Day not known' from drop down box
       before selecting only 'month' and 'year'
-    :mapping: "[NO MAPPING]"
-    :children: []
-  - :type: http://www.assero.co.uk/BusinessForm#Question
-    :id: ''
-    :namespace: ''
+    :has_coded_value: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/BusinessForm#Question
     :label: ICDAT
-    :extension_properties: []
     :ordinal: 2
-    :note: ''
+    :note: |2-
+
+
+      Export Label:
+
+      Date/Time of Informed Consent
     :completion: ''
     :optional: false
     :datatype: date
     :format: ''
-    :question_text: Date of Informed Consent
     :mapping: "[NO MAPPING]"
-    :children: []
-  - :type: http://www.assero.co.uk/BusinessForm#Question
-    :id: ''
-    :namespace: ''
+    :question_text: Date of Informed Consent
+    :has_coded_value: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/BusinessForm#Question
     :label: AGE
-    :extension_properties: []
     :ordinal: 3
-    :note: ''
+    :note: |2-
+
+
+      Export Label:
+
+      Age in years
     :completion: ''
     :optional: false
     :datatype: string
     :format: '100'
-    :question_text: Age at the time of Informed Consent
     :mapping: "[NO MAPPING]"
-    :children: []
-  - :type: http://www.assero.co.uk/BusinessForm#Question
-    :id: ''
-    :namespace: ''
+    :question_text: Age at the time of Informed Consent
+    :has_coded_value: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/BusinessForm#Question
     :label: AGE units
-    :extension_properties: []
     :ordinal: 4
-    :note: "* No entries found for parameters ['notation=years'].\n"
+    :note: "* No entries found for parameters ['notation=years']."
     :completion: ''
     :optional: false
     :datatype: string
     :format: '20'
-    :question_text: Age at the time of Informed Consent units
     :mapping: "[NO MAPPING]"
-    :children: []
-  - :type: http://www.assero.co.uk/BusinessForm#Question
-    :id: ''
-    :namespace: ''
+    :question_text: Age at the time of Informed Consent units
+    :has_coded_value: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/BusinessForm#Question
     :label: DM2
-    :extension_properties: []
     :ordinal: 5
     :note: ''
     :completion: ''
     :optional: false
     :datatype: string
     :format: '100'
-    :question_text: ''
     :mapping: "[NO MAPPING]"
-    :children: []
-  - :type: http://www.assero.co.uk/BusinessForm#Question
-    :id: ''
-    :namespace: ''
+    :question_text: ''
+    :has_coded_value: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/BusinessForm#Question
     :label: AASSNTYN
-    :extension_properties: []
     :ordinal: 6
-    :note: |
+    :note: |2-
+
+
+      Terminology Search:
       * No entries found for code list, parameters ['notation=YESNO'].
       * No entries found for code list, parameters ['notation=CLFMTYESNO'].
+      * No entries found for code list, parameters ['identifier='].
+      * No entries found for code list, parameters ['label=CL_FMT_YESNO'].
     :completion: ''
     :optional: false
     :datatype: string
     :format: '100'
-    :question_text: Is assent applicable for the subject?
     :mapping: "[NO MAPPING]"
-    :children: []
-  - :type: http://www.assero.co.uk/BusinessForm#Question
-    :id: ''
-    :namespace: ''
+    :question_text: Is assent applicable for the subject?
+    :has_coded_value: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/BusinessForm#Question
     :label: AASSNTDAT
-    :extension_properties: []
     :ordinal: 7
-    :note: ''
+    :note: |2-
+
+
+      Export Label:
+
+      Date of Assent for the Study
     :completion: ''
     :optional: false
     :datatype: date
     :format: ''
-    :question_text: Date of assent
     :mapping: "[NO MAPPING]"
-    :children: []
+    :question_text: Date of assent
+    :has_coded_value: []
   :repeating: false
-  :bc_ref: {}
-- :type: http://www.assero.co.uk/BusinessForm#NormalGroup
-  :id: ''
-  :namespace: ''
+  :has_sub_group: []
+  :has_common: []
+- :id: 
+  :uri: {}
+  :rdf_type: http://www.assero.co.uk/BusinessForm#NormalGroup
   :label: DMG7
-  :extension_properties: []
   :ordinal: 2
-  :optional: false
-  :completion: ''
   :note: ''
-  :children:
-  - :type: http://www.assero.co.uk/BusinessForm#Question
-    :id: ''
-    :namespace: ''
+  :completion: ''
+  :optional: false
+  :has_item:
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/BusinessForm#Question
     :label: SEX
-    :extension_properties: []
     :ordinal: 1
-    :note: ''
+    :note: |2-
+
+
+      Export Label:
+
+      Sex
     :completion: ''
     :optional: false
     :datatype: string
     :format: '100'
-    :question_text: Gender
     :mapping: "[NO MAPPING]"
-    :children:
-    - :type: http://www.assero.co.uk/BusinessOperational#Reference
-      :id: ''
-      :namespace: ''
+    :question_text: Gender
+    :has_coded_value:
+    - :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
       :label: ''
-      :extension_properties: []
       :enabled: true
       :optional: false
       :ordinal: 1
-      :local_label: ''
-      :subject_ref:
-        :namespace: http://www.cdisc.org/C66731/V16
-        :id: C66731_C20197
-    - :type: http://www.assero.co.uk/BusinessOperational#Reference
-      :id: ''
-      :namespace: ''
+      :reference: http://www.cdisc.org/C66731/V16#C66731_C20197
+      :context: http://www.cdisc.org/C66731/V39#C66731
+      :local_label: Male
+    - :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
       :label: ''
-      :extension_properties: []
       :enabled: true
       :optional: false
       :ordinal: 2
-      :local_label: ''
-      :subject_ref:
-        :namespace: http://www.cdisc.org/C66731/V4
-        :id: C66731_C16576
-  - :type: http://www.assero.co.uk/BusinessForm#Question
-    :id: ''
-    :namespace: ''
+      :reference: http://www.cdisc.org/C66731/V4#C66731_C16576
+      :context: http://www.cdisc.org/C66731/V39#C66731
+      :local_label: Female
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/BusinessForm#Question
     :label: CHILDPOT
-    :extension_properties: []
     :ordinal: 2
-    :note: |
+    :note: |2-
+
+
+      Export Label:
+
+      Childbearing Potential
+
+      Terminology Search:
       * No entries found for code list, parameters ['notation=YESNO'].
       * No entries found for code list, parameters ['notation=CLFMTYESNO'].
+      * No entries found for code list, parameters ['identifier='].
+      * No entries found for code list, parameters ['label=CL_FMT_YESNO'].
     :completion: ''
     :optional: false
     :datatype: string
     :format: '100'
-    :question_text: Is the subject of childbearing potential?
     :mapping: "[NO MAPPING]"
-    :children: []
-  - :type: http://www.assero.co.uk/BusinessForm#Question
-    :id: ''
-    :namespace: ''
+    :question_text: Is the subject of childbearing potential?
+    :has_coded_value: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/BusinessForm#Question
     :label: DM3
-    :extension_properties: []
     :ordinal: 3
     :note: ''
     :completion: ''
     :optional: false
     :datatype: string
     :format: '100'
-    :question_text: ''
     :mapping: "[NO MAPPING]"
-    :children: []
-  - :type: http://www.assero.co.uk/BusinessForm#Question
-    :id: ''
-    :namespace: ''
+    :question_text: ''
+    :has_coded_value: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/BusinessForm#Question
     :label: MENOSTAT
-    :extension_properties: []
     :ordinal: 4
-    :note: |
+    :note: |2-
+
+
+      Export Label:
+
+      Menopause Status
+
+      Terminology Search:
       * No entries found for code list, parameters ['notation=CHBREAS'].
       * No entries found for code list, parameters ['notation=CLMENOSTAT'].
+      * No entries found for code list, parameters ['identifier='].
+      * No entries found for code list, parameters ['label=CL_MENOSTAT'].
     :completion: ''
     :optional: false
     :datatype: string
     :format: '100'
+    :mapping: "[NO MAPPING]"
     :question_text: Reason
-    :mapping: "[NO MAPPING]"
-    :children: []
+    :has_coded_value: []
   :repeating: false
-  :bc_ref: {}
-- :type: http://www.assero.co.uk/BusinessForm#NormalGroup
-  :id: ''
-  :namespace: ''
+  :has_sub_group: []
+  :has_common: []
+- :id: 
+  :uri: {}
+  :rdf_type: http://www.assero.co.uk/BusinessForm#NormalGroup
   :label: DMG2
-  :extension_properties: []
   :ordinal: 3
-  :optional: false
-  :completion: ''
   :note: ''
-  :children:
-  - :type: http://www.assero.co.uk/BusinessForm#Question
-    :id: ''
-    :namespace: ''
+  :completion: ''
+  :optional: false
+  :has_item:
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/BusinessForm#Question
     :label: ETHNIC
-    :extension_properties: []
     :ordinal: 1
-    :note: "* No entries found in code list 'C66790' for item with submission value:
-      '3' or preferred term: 'Not reported'.\n"
+    :note: |2-
+
+
+      Export Label:
+
+      Ethnicity
     :completion: ''
     :optional: false
     :datatype: string
     :format: '100'
+    :mapping: "[NO MAPPING]"
     :question_text: Ethnicity
-    :mapping: "[NO MAPPING]"
-    :children:
-    - :type: http://www.assero.co.uk/BusinessOperational#Reference
-      :id: ''
-      :namespace: ''
+    :has_coded_value:
+    - :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
       :label: ''
-      :extension_properties: []
       :enabled: true
       :optional: false
       :ordinal: 1
-      :local_label: ''
-      :subject_ref:
-        :namespace: http://www.cdisc.org/C66790/V16
-        :id: C66790_C17459
-    - :type: http://www.assero.co.uk/BusinessOperational#Reference
-      :id: ''
-      :namespace: ''
+      :reference: http://www.cdisc.org/C66790/V16#C66790_C17459
+      :context: http://www.cdisc.org/C66790/V34#C66790
+      :local_label: Hispanic or Latino
+    - :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
       :label: ''
-      :extension_properties: []
       :enabled: true
       :optional: false
       :ordinal: 2
-      :local_label: ''
-      :subject_ref:
-        :namespace: http://www.cdisc.org/C66790/V4
-        :id: C66790_C41222
-    - :type: http://www.assero.co.uk/BusinessOperational#Reference
-      :id: ''
-      :namespace: ''
+      :reference: http://www.cdisc.org/C66790/V4#C66790_C41222
+      :context: http://www.cdisc.org/C66790/V34#C66790
+      :local_label: Not Hispanic or Latino
+    - :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
       :label: ''
-      :extension_properties: []
       :enabled: true
       :optional: false
       :ordinal: 3
-      :local_label: ''
-      :subject_ref:
-        :namespace: http://www.cdisc.org/C66790/V4
-        :id: C66790_C17998
-  - :type: http://www.assero.co.uk/BusinessForm#Question
-    :id: ''
-    :namespace: ''
+      :reference: http://www.cdisc.org/C66790/V4#C66790_C17998
+      :context: http://www.cdisc.org/C66790/V34#C66790
+      :local_label: Unknown
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/BusinessForm#Question
     :label: RACE
-    :extension_properties: []
     :ordinal: 2
-    :note: "* No entries found in code list 'C74457' for item with submission value:
-      '99' or preferred term: 'Other'.\n"
+    :note: ''
     :completion: ''
     :optional: false
     :datatype: string
     :format: '100'
-    :question_text: Race-removed-(Please check all that apply)
     :mapping: "[NO MAPPING]"
-    :children:
-    - :type: http://www.assero.co.uk/BusinessOperational#Reference
-      :id: ''
-      :namespace: ''
+    :question_text: Race-removed-(Please check all that apply)
+    :has_coded_value:
+    - :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
       :label: ''
-      :extension_properties: []
       :enabled: true
       :optional: false
       :ordinal: 1
-      :local_label: ''
-      :subject_ref:
-        :namespace: http://www.cdisc.org/C74457/V49
-        :id: C74457_C16352
-    - :type: http://www.assero.co.uk/BusinessOperational#Reference
-      :id: ''
-      :namespace: ''
+      :reference: http://www.cdisc.org/C74457/V49#C74457_C16352
+      :context: http://www.cdisc.org/C74457/V49#C74457
+      :local_label: Black or African American
+    - :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
       :label: ''
-      :extension_properties: []
       :enabled: true
       :optional: false
       :ordinal: 2
-      :local_label: ''
-      :subject_ref:
-        :namespace: http://www.cdisc.org/C74457/V10
-        :id: C74457_C41259
-    - :type: http://www.assero.co.uk/BusinessOperational#Reference
-      :id: ''
-      :namespace: ''
+      :reference: http://www.cdisc.org/C74457/V10#C74457_C41259
+      :context: http://www.cdisc.org/C74457/V49#C74457
+      :local_label: American Indian or Alaska Native
+    - :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
       :label: ''
-      :extension_properties: []
       :enabled: true
       :optional: false
       :ordinal: 3
-      :local_label: ''
-      :subject_ref:
-        :namespace: http://www.cdisc.org/C74457/V10
-        :id: C74457_C41260
-    - :type: http://www.assero.co.uk/BusinessOperational#Reference
-      :id: ''
-      :namespace: ''
+      :reference: http://www.cdisc.org/C74457/V10#C74457_C41260
+      :context: http://www.cdisc.org/C74457/V49#C74457
+      :local_label: Asian
+    - :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
       :label: ''
-      :extension_properties: []
       :enabled: true
       :optional: false
       :ordinal: 4
-      :local_label: ''
-      :subject_ref:
-        :namespace: http://www.cdisc.org/C74457/V10
-        :id: C74457_C41219
-    - :type: http://www.assero.co.uk/BusinessOperational#Reference
-      :id: ''
-      :namespace: ''
+      :reference: http://www.cdisc.org/C74457/V10#C74457_C41219
+      :context: http://www.cdisc.org/C74457/V49#C74457
+      :local_label: Native Hawaiian or Other Pacific Islander
+    - :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
       :label: ''
-      :extension_properties: []
       :enabled: true
       :optional: false
       :ordinal: 5
-      :local_label: ''
-      :subject_ref:
-        :namespace: http://www.cdisc.org/C74457/V10
-        :id: C74457_C41261
-  - :type: http://www.assero.co.uk/BusinessForm#Question
-    :id: ''
-    :namespace: ''
+      :reference: http://www.cdisc.org/C74457/V10#C74457_C41261
+      :context: http://www.cdisc.org/C74457/V49#C74457
+      :local_label: White
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/BusinessForm#Question
     :label: DM1
-    :extension_properties: []
     :ordinal: 3
     :note: ''
     :completion: ''
     :optional: false
     :datatype: string
     :format: '100'
+    :mapping: "[NO MAPPING]"
     :question_text: ''
-    :mapping: "[NO MAPPING]"
-    :children: []
-  - :type: http://www.assero.co.uk/BusinessForm#Question
-    :id: ''
-    :namespace: ''
+    :has_coded_value: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/BusinessForm#Question
     :label: RACEOTH
-    :extension_properties: []
     :ordinal: 4
-    :note: ''
+    :note: |2-
+
+
+      Export Label:
+
+      Specify Race
     :completion: ''
     :optional: false
     :datatype: string
     :format: '100'
+    :mapping: "[NO MAPPING]"
     :question_text: Specify
-    :mapping: "[NO MAPPING]"
-    :children: []
+    :has_coded_value: []
   :repeating: false
-  :bc_ref: {}
-- :type: http://www.assero.co.uk/BusinessForm#NormalGroup
-  :id: ''
-  :namespace: ''
+  :has_sub_group: []
+  :has_common: []
+- :id: 
+  :uri: {}
+  :rdf_type: http://www.assero.co.uk/BusinessForm#NormalGroup
   :label: DMG3
-  :extension_properties: []
   :ordinal: 4
-  :optional: false
-  :completion: ''
   :note: ''
-  :children:
-  - :type: http://www.assero.co.uk/BusinessForm#Question
-    :id: ''
-    :namespace: ''
+  :completion: ''
+  :optional: false
+  :has_item:
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/BusinessForm#Question
     :label: SMOKENCF
-    :extension_properties: []
     :ordinal: 1
-    :note: "* No entries found in code list 'C78738' for item with submission value:
-      '3' or preferred term: 'Former'.\n"
+    :note: |2-
+
+
+      Export Label:
+
+      Smoking SU Occurrence
     :completion: ''
     :optional: false
     :datatype: string
     :format: '100'
-    :question_text: Smoking history
     :mapping: "[NO MAPPING]"
-    :children:
-    - :type: http://www.assero.co.uk/BusinessOperational#Reference
-      :id: ''
-      :namespace: ''
+    :question_text: Smoking history
+    :has_coded_value:
+    - :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
       :label: ''
-      :extension_properties: []
       :enabled: true
       :optional: false
       :ordinal: 1
-      :local_label: ''
-      :subject_ref:
-        :namespace: http://www.cdisc.org/C78738/V14
-        :id: C78738_C70543
-    - :type: http://www.assero.co.uk/BusinessOperational#Reference
-      :id: ''
-      :namespace: ''
+      :reference: http://www.cdisc.org/C78738/V14#C78738_C70543
+      :context: http://www.cdisc.org/C78738/V14#C78738
+      :local_label: Never
+    - :id: 
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
       :label: ''
-      :extension_properties: []
       :enabled: true
       :optional: false
       :ordinal: 2
-      :local_label: ''
-      :subject_ref:
-        :namespace: http://www.cdisc.org/C78738/V14
-        :id: C78738_C25471
+      :reference: http://www.cdisc.org/C78738/V14#C78738_C25471
+      :context: http://www.cdisc.org/C78738/V14#C78738
+      :local_label: Current
   :repeating: false
-  :bc_ref: {}
-- :type: http://www.assero.co.uk/BusinessForm#NormalGroup
-  :id: ''
-  :namespace: ''
+  :has_sub_group: []
+  :has_common: []
+- :id: 
+  :uri: {}
+  :rdf_type: http://www.assero.co.uk/BusinessForm#NormalGroup
   :label: DMG6
-  :extension_properties: []
   :ordinal: 5
-  :optional: false
-  :completion: ''
   :note: ''
-  :children:
-  - :type: http://www.assero.co.uk/BusinessForm#Question
-    :id: ''
-    :namespace: ''
+  :completion: ''
+  :optional: false
+  :has_item:
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/BusinessForm#Question
     :label: PREVSCRYN
-    :extension_properties: []
     :ordinal: 1
-    :note: |
+    :note: |2-
+
+
+      Export Label:
+
+      Subject Screened Previously
+
+      Terminology Search:
       * No entries found for code list, parameters ['notation=YESNO'].
       * No entries found for code list, parameters ['notation=CLFMTYESNO'].
+      * No entries found for code list, parameters ['identifier='].
+      * No entries found for code list, parameters ['label=CL_FMT_YESNO'].
     :completion: ''
     :optional: false
     :datatype: string
     :format: '100'
+    :mapping: "[NO MAPPING]"
     :question_text: Was this subject screened for this trial previously?
-    :mapping: "[NO MAPPING]"
-    :children: []
-  - :type: http://www.assero.co.uk/BusinessForm#Question
-    :id: ''
-    :namespace: ''
+    :has_coded_value: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/BusinessForm#Question
     :label: PREVSUBJID
-    :extension_properties: []
     :ordinal: 2
     :note: ''
     :completion: ''
     :optional: false
     :datatype: string
     :format: '100'
+    :mapping: "[NO MAPPING]"
     :question_text: What was the previous subject ID?
-    :mapping: "[NO MAPPING]"
-    :children: []
+    :has_coded_value: []
   :repeating: false
-  :bc_ref: {}
-- :type: http://www.assero.co.uk/BusinessForm#NormalGroup
-  :id: ''
-  :namespace: ''
+  :has_sub_group: []
+  :has_common: []
+- :id: 
+  :uri: {}
+  :rdf_type: http://www.assero.co.uk/BusinessForm#NormalGroup
   :label: DMG5
-  :extension_properties: []
   :ordinal: 6
-  :optional: false
-  :completion: ''
   :note: ''
-  :children:
-  - :type: http://www.assero.co.uk/BusinessForm#Question
-    :id: ''
-    :namespace: ''
+  :completion: ''
+  :optional: false
+  :has_item:
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/BusinessForm#Question
     :label: PHGASSNTDAT
-    :extension_properties: []
     :ordinal: 1
-    :note: ''
+    :note: |2-
+
+
+      Export Label:
+
+      Date of Assent-Pharmacogenetic Testing
     :completion: ''
     :optional: false
     :datatype: date
     :format: ''
-    :question_text: Date of assent
     :mapping: "[NO MAPPING]"
-    :children: []
-  - :type: http://www.assero.co.uk/BusinessForm#Question
-    :id: ''
-    :namespace: ''
+    :question_text: Date of assent
+    :has_coded_value: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/BusinessForm#Question
     :label: DM5
-    :extension_properties: []
     :ordinal: 2
     :note: ''
     :completion: ''
     :optional: false
     :datatype: string
     :format: '100'
+    :mapping: "[NO MAPPING]"
     :question_text: ''
-    :mapping: "[NO MAPPING]"
-    :children: []
-  - :type: http://www.assero.co.uk/BusinessForm#Question
-    :id: ''
-    :namespace: ''
+    :has_coded_value: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/BusinessForm#Question
     :label: IMMUNOICDAT
-    :extension_properties: []
     :ordinal: 3
-    :note: ''
+    :note: |2-
+
+
+      Export Label:
+
+      Date of Consent - Immuno Research
     :completion: ''
     :optional: false
     :datatype: date
     :format: ''
+    :mapping: "[NO MAPPING]"
     :question_text: Date of consent
-    :mapping: "[NO MAPPING]"
-    :children: []
-  - :type: http://www.assero.co.uk/BusinessForm#Question
-    :id: ''
-    :namespace: ''
+    :has_coded_value: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/BusinessForm#Question
     :label: IMMUNOASSNTDAT
-    :extension_properties: []
     :ordinal: 4
-    :note: ''
+    :note: |2-
+
+
+      Export Label:
+
+      Date of Assent - Immuno Research
     :completion: ''
     :optional: false
     :datatype: date
     :format: ''
-    :question_text: Date of assent
     :mapping: "[NO MAPPING]"
-    :children: []
-  - :type: http://www.assero.co.uk/BusinessForm#Question
-    :id: ''
-    :namespace: ''
+    :question_text: Date of assent
+    :has_coded_value: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/BusinessForm#Question
     :label: VS311
-    :extension_properties: []
     :ordinal: 5
     :note: ''
     :completion: ''
     :optional: false
     :datatype: string
     :format: '100'
-    :question_text: ''
     :mapping: "[NO MAPPING]"
-    :children: []
-  - :type: http://www.assero.co.uk/BusinessForm#Question
-    :id: ''
-    :namespace: ''
+    :question_text: ''
+    :has_coded_value: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/BusinessForm#Question
     :label: VS411
-    :extension_properties: []
     :ordinal: 6
     :note: ''
     :completion: ''
     :optional: false
     :datatype: string
     :format: '100'
-    :question_text: Consent for pharmacogenetic testing
     :mapping: "[NO MAPPING]"
-    :children: []
-  - :type: http://www.assero.co.uk/BusinessForm#Question
-    :id: ''
-    :namespace: ''
+    :question_text: Consent for pharmacogenetic testing
+    :has_coded_value: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/BusinessForm#Question
     :label: CBSPHGYN
-    :extension_properties: []
     :ordinal: 7
-    :note: |
+    :note: |2-
+
+
+      Export Label:
+
+      Consent for Pharmacogenetic Testing
+
+      Terminology Search:
       * No entries found for code list, parameters ['notation=YESNONA'].
       * No entries found for code list, parameters ['notation=CLAUTOMREVYN1'].
+      * No entries found for code list, parameters ['identifier='].
+      * No entries found for code list, parameters ['label=CL_AUTOMREVYN1'].
     :completion: ''
     :optional: false
     :datatype: string
     :format: '100'
+    :mapping: "[NO MAPPING]"
     :question_text: Did the subject consent to having a blood sample collected and
       stored in the ALK Research Biobank for future pharmacogenetic testing?
-    :mapping: "[NO MAPPING]"
-    :children: []
-  - :type: http://www.assero.co.uk/BusinessForm#Question
-    :id: ''
-    :namespace: ''
+    :has_coded_value: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/BusinessForm#Question
     :label: DM4
-    :extension_properties: []
     :ordinal: 8
     :note: ''
     :completion: ''
     :optional: false
     :datatype: string
     :format: '100'
-    :question_text: ''
     :mapping: "[NO MAPPING]"
-    :children: []
-  - :type: http://www.assero.co.uk/BusinessForm#Question
-    :id: ''
-    :namespace: ''
+    :question_text: ''
+    :has_coded_value: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/BusinessForm#Question
     :label: PHGICDAT
-    :extension_properties: []
     :ordinal: 9
-    :note: ''
+    :note: |2-
+
+
+      Export Label:
+
+      Date of Consent-Pharmacogenetic Testing
     :completion: ''
     :optional: false
     :datatype: date
     :format: ''
-    :question_text: Date of consent
     :mapping: "[NO MAPPING]"
-    :children: []
-  - :type: http://www.assero.co.uk/BusinessForm#Question
-    :id: ''
-    :namespace: ''
+    :question_text: Date of consent
+    :has_coded_value: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/BusinessForm#Question
     :label: CBSIMMUYN
-    :extension_properties: []
     :ordinal: 10
-    :note: |
+    :note: |2-
+
+
+      Export Label:
+
+      Consent for Blood and Urine Sampling
+
+      Terminology Search:
       * No entries found for code list, parameters ['notation=YESNONA'].
       * No entries found for code list, parameters ['notation=CLAUTOMREVYN1'].
+      * No entries found for code list, parameters ['identifier='].
+      * No entries found for code list, parameters ['label=CL_AUTOMREVYN1'].
     :completion: ''
     :optional: false
     :datatype: string
     :format: '100'
+    :mapping: "[NO MAPPING]"
     :question_text: Did the subject consent to having blood and urine samples collected
       and stored in the ALK Research Biobank for future immunological research?
-    :mapping: "[NO MAPPING]"
-    :children: []
+    :has_coded_value: []
   :repeating: false
-  :bc_ref: {}
+  :has_sub_group: []
+  :has_common: []

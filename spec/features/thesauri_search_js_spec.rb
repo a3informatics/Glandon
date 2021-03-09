@@ -6,6 +6,7 @@ describe "Thesauri Search", :type => :feature do
   include UserAccountHelpers
   include WaitForAjaxHelper
   include UiHelpers
+  include ItemsPickerHelpers
 
   before :each do
     ua_curator_login
@@ -15,18 +16,7 @@ describe "Thesauri Search", :type => :feature do
     ua_logoff
   end
 
-  def search_latest
-    click_navbar_terminology
-    click_link 'Search Terminologies'
-    sleep 0.6
-    wait_for_ajax(10)
-    page.find("#select-all-latest").click
-    click_button "Submit and proceed"
-    wait_for_ajax(10)
-    expect(page).to have_content("Search Latest")
-  end
-
-  describe "Search Terminologies (REQ-MDR-TR-040)", :type => :feature do
+  describe "Search Terminologies (REQ-MDR-TR-040)", type: :feature, js: true do
 
     before :all do
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_new_airports_std.ttl"]
@@ -40,73 +30,23 @@ describe "Thesauri Search", :type => :feature do
       ua_destroy
     end
 
-    it "Terminology Selector", js: true do
-      click_navbar_terminology
-      click_link 'Search Terminologies'
-      sleep 0.6
-      wait_for_ajax(10)
-      expect(page.find("#submit-im-select-button")[:class]).to include("disabled")
-      expect(page).to have_css("table#index")
-      expect(page).to have_css("table#history")
-      expect(page.find("#number-selected")).to have_content("0")
-      find(:xpath, "//div[@id='im-select-modal']//table[@id='index']//tr[contains(.,'SPONSOR TEST')]").click
-      wait_for_ajax(10)
-      ui_check_table_cell("history", 1, 1, "0.1.0")
-      find(:xpath, "//div[@id='im-select-modal']//table[@id='history']/tbody/tr[1]").click
-      expect(page.find("#number-selected")).to have_content("1")
-      expect(find(:xpath, "//div[@id='im-select-modal']//table[@id='history']/tbody/tr[1]")[:class]).to include("selected")
-      find(:xpath, "//div[@id='im-select-modal']//table[@id='index']/tbody/tr[contains(.,'Controlled Terminology')]").click
-      wait_for_ajax(30)
-      ui_check_table_cell("history", 1, 2, "2010-04-08 Release")
-      find(:xpath, "//div[@id='im-select-modal']//table[@id='history']/tbody/tr[1]").click
-      find(:xpath, "//div[@id='im-select-modal']//table[@id='history']/tbody/tr[5]").click
-      expect(page.find("#number-selected")).to have_content("3")
-      expect(page.find("#submit-im-select-button")[:class]).to_not include("disabled")
-      page.find("#select-all-latest").click
-      expect(page.find("#number-selected")).to have_content("0")
-      expect(page.find("#im-select-modal #index")[:class]).to include("table-disabled")
-      expect(page.find("#im-select-modal #history")[:class]).to include("table-disabled")
-      page.find("#select-all-current").click
-      expect(page.find("#select-all-latest").checked?).to eq(false)
-      expect(page.find("#im-select-modal #index")[:class]).to include("table-disabled")
-      expect(page.find("#im-select-modal #history")[:class]).to include("table-disabled")
-      expect(page.find("#submit-im-select-button")[:class]).to_not include("disabled")
-      click_button "Close"
-      sleep 0.6
-    end
-
-    it "Terminology Selector, single item selection redirects to terminology search page", js: true do
-      click_navbar_terminology
-      click_link 'Search Terminologies'
-      sleep 0.6
-      wait_for_ajax(10)
-      find(:xpath, "//div[@id='im-select-modal']//table[@id='index']/tbody/tr[contains(.,'Controlled Terminology')]").click
-      wait_for_ajax(30)
-      find(:xpath, "//div[@id='im-select-modal']//table[@id='history']/tbody/tr[1]").click
-      click_button "Submit and proceed"
-      wait_for_ajax(10)
+    it "Single item selection leads to Terminology Search" do
+      search_terminologies([
+        { identifier: 'CT', version: '2010-04-08' }
+      ])
+ 
       expect(page).to have_content("Controlled Terminology")
       expect(page).to have_content("20.0.0")
-      expect(page).to have_content("Search Terminology")
+      expect(page).to have_content("Make a new column or global search to see data")
     end
 
-    it "Search multiple Terminologies (REQ-MDR-TR-040)", js:true do
-      click_navbar_terminology
-      click_link 'Search Terminologies'
-      sleep 0.6
-      wait_for_ajax(10)
-      find(:xpath, "//div[@id='im-select-modal']//table[@id='index']/tbody/tr[contains(.,'Controlled Terminology')]").click
-      wait_for_ajax(30)
-      find(:xpath, "//div[@id='im-select-modal']//table[@id='history']/tbody/tr[6]").click
-      find(:xpath, "//div[@id='im-select-modal']//table[@id='index']/tbody/tr[contains(.,'Airports')]").click
-      wait_for_ajax(30)
-      find(:xpath, "//div[@id='im-select-modal']//table[@id='history']/tbody/tr[1]").click
-      find(:xpath, "//div[@id='im-select-modal']//table[@id='index']/tbody/tr[contains(.,'SPONSOR TEST')]").click
-      wait_for_ajax(30)
-      find(:xpath, "//div[@id='im-select-modal']//table[@id='history']/tbody/tr[1]").click
-      expect(page.find("#number-selected")).to have_content("3")
-      click_button "Submit and proceed"
-      wait_for_ajax(10)
+    it "Multiple item selection leads to Multiple Terminologies Search (REQ-MDR-TR-040)" do
+      search_terminologies([
+        { identifier: 'CT', version: '2009-02-18' },
+        { identifier: 'AIRPORTS', version: '1' },
+        { identifier: 'SPONSOR TEST', version: '1' }
+      ])
+     
       expect(page).to have_content("Search Multiple")
       ui_term_column_search(:notation, 'MICROORG')
       ui_check_table_info("searchTable", 0, 0, 0)
@@ -122,8 +62,10 @@ describe "Thesauri Search", :type => :feature do
       ui_check_table_info("searchTable", 1, 4, 4)
     end
 
-    it "Search latest Terminologies", js:true do
-      search_latest
+    it "Search latest Terminologies" do
+      search_all('latest')
+      expect(page).to have_content("Search Latest")
+
       ui_term_column_search(:notation, 'MICROORG')
       ui_check_table_info("searchTable", 1, 1, 1)
       ui_check_table_cell("searchTable", 1, 9, "CT")
@@ -135,27 +77,13 @@ describe "Thesauri Search", :type => :feature do
       ui_check_table_info("searchTable", 1, 8, 8)
     end
 
-    it "Search current Terminologies (REQ-MDR-ST-030)", js:true do
-      click_navbar_terminology
-      wait_for_ajax(10)
-      find(:xpath, "//tr[contains(.,'Airports')]/td/a").click
-      wait_for_ajax(10)
-      context_menu_element("history", 1, "0.1.0", :make_current)
-      wait_for_ajax(10)
-      ui_check_table_row_indicators("history", 1, 8, ["Current version"], new_style: true)
-      click_navbar_cdisc_terminology
-      wait_for_ajax(30)
-      context_menu_element("history", 1, "2009-10-06", :make_current)
-      wait_for_ajax(10)
-      ui_check_table_row_indicators("history", 3, 8, ["Current version"], new_style: true)
-      click_navbar_terminology
-      click_link 'Search Terminologies'
-      sleep 0.6
-      wait_for_ajax(10)
-      page.find("#select-all-current").click
-      click_button "Submit and proceed"
-      wait_for_ajax(10)
+    it "Search current Terminologies (REQ-MDR-ST-030)" do
+      make_current('Airports', '1')
+      make_current('CT', '2009-10-06')
+
+      search_all('current')
       expect(page).to have_content("Search Current")
+
       ui_term_column_search(:code_list, 'C85492')
       ui_check_table_info("searchTable", 0, 0, 0)
       click_button 'clear_button'
@@ -166,10 +94,11 @@ describe "Thesauri Search", :type => :feature do
       ui_check_table_info("searchTable", 1, 1, 1)
     end
 
-    it "Search table with 'All' set as default", js:true do
+    it "Search table with 'All' set as default" do
       click_link 'settings_button'
       click_link 'All'
-      search_latest
+
+      search_all('latest')
       ui_check_page_options("searchTable", { "5" => 5, "10" => 10, "15" => 15, "25" => 25, "50" => 50, "100" => 100})
       ui_term_column_search(:code_list, 'C')
       ui_check_table_info("searchTable", 1, 100, "4,365")
@@ -177,7 +106,7 @@ describe "Thesauri Search", :type => :feature do
 
   end
 
-  describe "Search Terminologies, Advanced features (REQ-MDR-TR-040)", :type => :feature do
+  describe "Search Terminologies, Advanced features (REQ-MDR-TR-040)", type: :feature, js: true do
 
     before :all do
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
@@ -191,21 +120,23 @@ describe "Thesauri Search", :type => :feature do
       ua_destroy
     end
 
-    it "Search, Search Help", js:true do
-      search_latest
+    it "Search, Search Help" do
+      search_all('latest')
+
       find("#search-help").click
-      sleep 0.7
-      dialog = find "#information-dialog-search"
-      expect(dialog).to have_content "How to use Search"
-      dialog.find(".expandable-content-btn").click
-      expect(dialog).to have_content "Valid examples:"
-      click_on "Dismiss"
-      sleep 0.7
+      ui_in_modal do 
+        expect(page).to have_content "How to use Search"
+        find(".expandable-content-btn").click
+        expect(page).to have_content "Valid examples:"
+        click_on "Dismiss"
+      end
+
       expect(page).to_not have_content "How to use Search"
     end
 
-    it "Search, Filters (single, combine, clear)", js:true do
-      search_latest
+    it "Search, Filters (single, combine, clear)" do
+      search_all('latest')
+
       ui_term_column_search(:code_list, 'C8')
       ui_check_table_info("searchTable", 1, 10, "2,004")
       ui_term_overall_filter("liter")
@@ -222,19 +153,12 @@ describe "Thesauri Search", :type => :feature do
       expect(find("#searchTable_filter input").text).to eq("")
     end
 
-    it "Search, Multiple Terminologies, Source and Version", js:true do
-      click_navbar_terminology
-      click_link 'Search Terminologies'
-      sleep 0.6
-      wait_for_ajax(10)
-      find(:xpath, "//div[@id='im-select-modal']//table[@id='index']/tbody/tr[contains(.,'Controlled Terminology')]").click
-      wait_for_ajax(30)
-      find(:xpath, "//div[@id='im-select-modal']//table[@id='history']/tbody/tr[1]").click
-      find(:xpath, "//div[@id='im-select-modal']//table[@id='history']/tbody/tr[2]").click
-      find(:xpath, "//div[@id='im-select-modal']//table[@id='history']/tbody/tr[3]").click
-      expect(page.find("#number-selected")).to have_content("3")
-      click_button "Submit and proceed"
-      wait_for_ajax(10)
+    it "Search, Multiple Terminologies, Source and Version" do
+      search_terminologies([
+        { identifier: 'CT', version: '2012-03-23' },
+        { identifier: 'CT', version: '2012-01-02' },
+        { identifier: 'CT', version: '2011-12-09' }
+      ])
       expect(page).to have_content("Search Multiple")
 
       ui_term_column_search(:item, 'C62656')
@@ -247,8 +171,9 @@ describe "Thesauri Search", :type => :feature do
       ui_check_table_info("searchTable", 1, 2, 2)
     end
 
-    it "Search, can abort search", js:true do
-      search_latest
+    it "Search, can abort search" do
+      search_all('latest')
+
       ui_term_column_search(:code_list, 'C', false)
       expect(page).to have_content("Search running in background")
       click_button "Abort"
@@ -256,8 +181,8 @@ describe "Thesauri Search", :type => :feature do
       ui_check_table_info("searchTable", 0, 0, 0)
     end
 
-    it "Search, advanced syntax - NOTE - CHECK FOR TAGS", js:true do
-      search_latest
+    it "Search, advanced syntax - NOTE - CHECK FOR TAGS" do
+      search_all('latest')
 
       ui_term_overall_search("blood OR muscle")
       ui_check_table_info("searchTable", 1, 10, 279)
@@ -299,8 +224,8 @@ describe "Thesauri Search", :type => :feature do
       ui_check_table_info("searchTable", 0, 0, 0)
     end
 
-    it "Search, special characters in search and filters", js:true do
-      search_latest
+    it "Search, special characters in search and filters" do
+      search_all('latest')
 
       ui_term_column_search(:code_list_name, 'Unit')
       ui_check_table_info("searchTable", 1, 10, 734)
@@ -328,17 +253,11 @@ describe "Thesauri Search", :type => :feature do
 
     end
 
-    it "Search, multiple, differences", js:true do
-      click_navbar_terminology
-      click_link 'Search Terminologies'
-      sleep 0.6
-      wait_for_ajax(10)
-      find(:xpath, "//div[@id='im-select-modal']//table[@id='index']/tbody/tr[contains(.,'Controlled Terminology')]").click
-      wait_for_ajax(30)
-      find(:xpath, "//div[@id='im-select-modal']//table[@id='history']/tbody/tr[1]").click
-      find(:xpath, "//div[@id='im-select-modal']//table[@id='history']/tbody/tr[5]").click
-      click_button "Submit and proceed"
-      wait_for_ajax(10)
+    it "Search, multiple, differences" do
+      search_terminologies([
+        { identifier: 'CT', version: '2012-03-23' },
+        { identifier: 'CT', version: '2011-06-10' }
+      ])
 
       ui_term_column_search(:code_list, 'C66781')
       ui_check_table_info("searchTable", 1, 10, 12)
@@ -363,6 +282,42 @@ describe "Thesauri Search", :type => :feature do
       ui_check_table_info("searchTable", 1, 4, 4)
     end
 
+  end
+
+  def search_all(type)
+    click_navbar_terminology
+    wait_for_ajax 10 
+    click_on 'Search Terminologies'
+
+    ui_in_modal do
+      click_on 'Search in Latest' if type.eql? 'latest'
+      click_on 'Search in Current' if type.eql? 'current'
+    end 
+    wait_for_ajax 10
+  end
+
+  def search_terminologies(terminologies) 
+    click_navbar_terminology
+    wait_for_ajax 10 
+
+    click_on 'Search Terminologies'
+    ui_in_modal do
+      ip_pick_managed_items( :thesauri, terminologies, 'th-search' )
+    end
+    wait_for_ajax 10
+  end
+
+  def make_current(identifier, version)
+    click_navbar_terminology
+    wait_for_ajax 10
+
+    find(:xpath, "//tr[contains(.,'#{ identifier }')]/td/a").click
+    wait_for_ajax 10
+    context_menu_element_v2("history", version, :make_current)
+    wait_for_ajax 10
+
+    ui_table_search('history', version)
+    ui_check_table_row_indicators("history", 1, 8, ["Current version"], new_style: true)
   end
 
 end

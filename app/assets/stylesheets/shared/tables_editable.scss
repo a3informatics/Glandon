@@ -4,7 +4,7 @@ $editable-color: $primary-color-bright;
 
 // Editable cell styling
 
-.table-cardstyle table tbody {
+.table-editable table tbody {
 
   tr td {
     height: 60px !important;
@@ -40,7 +40,7 @@ $editable-color: $primary-color-bright;
 
 }
 
-.table-cardstyle table tbody {
+.table-editable table tbody {
 
   // Editable inline
   td.editable.inline:hover::before {
@@ -85,7 +85,7 @@ $editable-color: $primary-color-bright;
 
 }
 
-.table-cardstyle table tbody {
+.table-editable table tbody {
 
   // Input fields styling
   td {
@@ -116,7 +116,7 @@ $editable-color: $primary-color-bright;
 }
 
 // Processing styling
-.table-cardstyle tbody tr {
+.table-editable tbody tr {
 
   td.processing {
     padding-left: 30px;

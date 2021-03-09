@@ -58,19 +58,16 @@ export default class ExtensionsManager {
    */
   openPicker() {
 
-    this.thPicker.onSubmit = s => this._createNew( s.asIDsArray()[0] );
-    this.thPicker.setButtons( [{
-      id: 'skip-selection-btn',
-      css: 'light',
-      text: 'Do not select',
-      onClick: () => {
-
-        this.thPicker.hide();
-        this._createNew();
-
-      }
-    }] );
-    this.thPicker.show();
+    this.thPicker?.setOnSubmit( s => this._createNew( s.asIDs()[0] ) )
+                  .setButtons([{
+                    id: 'skip-selection-btn',
+                    text: 'Do not select',
+                    onClick: () => {
+                      this.thPicker.hide();
+                      this._createNew();
+                    }
+                  }])
+                  .show() 
 
   }
 

@@ -130,6 +130,7 @@ function highlightRow(table, rowSelector, blink = true, blinkTimeoutMs = 1000) {
  function selectAllBtn(action, filter = { search: 'applied' }) {
   return {
     text: 'Select All',
+    name: 'select-all',
     className: 'btn-xs white',
     action: action ? action : (e, dt, node, conf) => dt.rows({ selected: false, ...filter }).select()
   }
@@ -144,6 +145,7 @@ function highlightRow(table, rowSelector, blink = true, blinkTimeoutMs = 1000) {
  function deselectAllBtn(action, filter = { search: 'applied' }) {
   return {
     text: 'Deselect All',
+    name: 'deselect-all',
     className: 'btn-xs white',
     action: action ? action : (e, dt, node, conf) => dt.rows({ selected: true, ...filter }).deselect()
   }
@@ -154,13 +156,15 @@ function highlightRow(table, rowSelector, blink = true, blinkTimeoutMs = 1000) {
  * @param {string} text Custom button text
  * @param {function} action Custom action to execute on button click
  * @param {string} cssClasses Custom button css class list, optional
+ * @param {string} name Button identifying name, optional
  * @return {Object} Custom Select All button options
  */
- function customBtn({ text, action, cssClasses = 'btn-xs white' }) {
+ function customBtn({ text, action, cssClasses = 'btn-xs white', name }) {
   return {
     text,
     className: cssClasses,
-    action
+    action,
+    name
   }
 }
 
