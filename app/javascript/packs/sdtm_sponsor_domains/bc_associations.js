@@ -13,7 +13,7 @@ $(document).ready( () => {
     urls: bcAssociationsUrls,
     param: 'sdtm_sponsor_domain',
     idsParam: 'bc_id_set',
-    allowedTypes: [ rdfTypesMap.BC ],
+    types: [ rdfTypesMap.BC ],
     order: [[3, 'asc']],
     onEdited: () => tt.extend()
   })
