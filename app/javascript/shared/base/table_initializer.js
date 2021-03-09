@@ -23,12 +23,14 @@ export default class TableInitializer {
 
     const table = $( selector ).DataTable({
       columnDefs: [],
+      order,
       pageLength: pageLength,     // Global variable
       lengthMenu: pageSettings,   // Global variable
       autoWidth: false,
       language: {
         emptyTable: 'No data available'
-      }
+      },
+      ...tableOpts
     })
 
     // Generic table error handler
