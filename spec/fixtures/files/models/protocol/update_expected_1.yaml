@@ -3,7 +3,6 @@
 :uri: http://www.acme-pharma.com/XXX/V1#PR
 :rdf_type: http://www.assero.co.uk/Protocol#Protocol
 :label: ''
-:tagged: []
 :has_state:
   :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vWFhYL1YxI1BSX1JT
   :uri: http://www.acme-pharma.com/XXX/V1#PR_RS
@@ -45,6 +44,7 @@
     :short_name: ACME
     :name: ACME Pharma
     :authority: www.acme-pharma.com
+:has_previous_version: 
 :origin: ''
 :change_description: ''
 :creation_date: '2020-03-24T08:24:12+01:00'
@@ -61,3 +61,4 @@
 :in_ta: 
 :specifies_arm: []
 :specifies_epoch: []
+:specifies_objective: []
