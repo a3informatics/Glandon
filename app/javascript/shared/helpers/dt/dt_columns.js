@@ -47,6 +47,8 @@ function dtDateTimeColumn(name) {
  */
 function dtVersionColumn() {
   return {
+    title: 'Version',
+    className: 'fit',
     render: (data, type, r, m) => type === "display" ? r.has_identifier.semantic_version : r.has_identifier.version
   }
 }
@@ -68,13 +70,15 @@ function dtTagsColumn(opts = {}) {
 /**
  * Returns column definition for the indicators column
  * @param {object} filter Filters to be applied to indicator data, optional
+ * @param {object} opts Additional column options
  * @return {object} DataTables indicators column definition
  */
-function dtIndicatorsColumn(filter) {
+function dtIndicatorsColumn({ filter, opts = {} } = {}) {
   return {
     data: "indicators",
-    // width: "90px",
-    render: (data, type, r, m) => renderIndicators(data, type, filter)
+    orderable: false,
+    render: (data, type, r, m) => renderIndicators(data, type, filter),
+    ...opts
   }
 }
 

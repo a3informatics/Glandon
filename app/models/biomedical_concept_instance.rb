@@ -97,9 +97,10 @@ class BiomedicalConceptInstance < BiomedicalConcept
     [
       '<http://www.assero.co.uk/BiomedicalConcept#hasItem>/'\
       '<http://www.assero.co.uk/BiomedicalConcept#hasComplexDatatype>/'\
-      '<http://www.assero.co.uk/BiomedicalConcept#hasPropert>/'\
+      '<http://www.assero.co.uk/BiomedicalConcept#hasProperty>/'\
       '<http://www.assero.co.uk/BiomedicalConcept#hasCodedValue>/'\
-      '<http://www.assero.co.uk/BusinessOperational#reference>'
+      '<http://www.assero.co.uk/BusinessOperational#reference>/'\
+      '^<http://www.assero.co.uk/Thesaurus#narrower>'
     ]
   end
 

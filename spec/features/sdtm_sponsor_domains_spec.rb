@@ -204,7 +204,7 @@ describe "SDTM Sponsor Domains", :type => :feature do
       load_data_file_into_triple_store("mdr_iso_concept_systems_migration_3.ttl")
       load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V1.ttl")
       load_data_file_into_triple_store("cdisc/sdtm_ig/SDTM_IG_V1.ttl")
-      load_data_file_into_triple_store("biomedical_concept_instances.ttl")
+      load_test_bc_template_and_instances
     end
 
     it "allows to access BC Associations from SDTM SD's History Panel" do
@@ -217,6 +217,14 @@ describe "SDTM Sponsor Domains", :type => :feature do
 
     it "allows to add and remove BC Association to and from an SDTM SD" do 
       bc_associations 'SDTM Sponsor Domain', '0.1.0'
+
+      # Check Picker types 
+      click_on 'Add items'
+      ui_in_modal do 
+        ip_check_tabs([:bci], 'add-items')
+        ip_check_tabs_gone([:managed_concept, :form, :sdtm_sd], 'add-items')
+        click_on 'Close'
+      end
 
       # Add
       add_bc_associations( [

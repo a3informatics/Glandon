@@ -110,15 +110,29 @@ export default class InformationDialog {
    * @return {string} Rendered dialog HTML
    */
   _renderDialog() {
-    return `<div id="${this.id.replace('#','')}" class="cd-wrap ${ (this.wide ? 'wide' : '') }">` +
-              `<div class="cd-body shadow-medium ${ (this.dangerous ? 'danger' : '') }">` +
-                `<div class="cd-title text-xnormal text-link">${this.title}</div>` +
-                `<div class="cd-subtitle scroll-styled text-small font-light">${this.subtitle}</div>` +
-                `<div class="cd-footer">` +
-                  `<button id="id-dismiss-button" class="btn grey medium">Dismiss</button>` +
-                `</div>` +
-              `</div>` +
-           `</div>`
+
+    const dialog = $( '<div>' ).attr( 'id', this.id.replace('#','') )
+                               .addClass( `cd-wrap ${ this.wide && 'wide' }` ),
+
+          dialogBody = $( '<div>' ).addClass( `cd-body shadow-medium ${ this.dangerous && 'danger' }` ),
+
+          title = $( '<div>' ).addClass( 'cd-title text-xnormal text-link' )
+                              .append( this.title ),
+
+          subtitle = $( '<div>' ).addClass( 'cd-subtitle scroll-styled text-small font-light' )
+                                 .append( this.subtitle ),
+
+          dismissBtn = $( '<button>' ).attr( 'id', 'id-dismiss-button' )
+                                      .addClass( 'btn grey medium' )
+                                      .text( 'Dismiss' ),
+
+          footer = $( '<div>' ).addClass( 'cd-footer' )
+                               .append( dismissBtn )
+
+    dialogBody.append([ title, subtitle, footer ])
+                        
+    return dialog.append( dialogBody )
+
   }
 
   /**

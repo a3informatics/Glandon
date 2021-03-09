@@ -25,7 +25,7 @@ describe "Forms", :type => :feature do
     load_test_file_into_triple_store("forms/FN000150.ttl")
     load_test_file_into_triple_store("forms/FN000120.ttl")
     load_test_file_into_triple_store("forms/CRF TEST 1.ttl")
-    load_data_file_into_triple_store("biomedical_concept_instances.ttl")
+    load_test_bc_template_and_instances
     Token.delete_all
     ua_create
   end
@@ -452,7 +452,6 @@ describe "Forms", :type => :feature do
 
       click_action :add_child
       find(:xpath, '//div[@id="d3"]//a[@id="bc_group"]').click
-
       ip_pick_managed_items( :bci, [
         { identifier: 'WEIGHT', version: '1' }
       ], 'node-add-child' )
@@ -1027,7 +1026,7 @@ describe "Forms", :type => :feature do
     load_test_file_into_triple_store("forms/FN000150.ttl")
     load_test_file_into_triple_store("forms/FN000120.ttl")
     load_test_file_into_triple_store("forms/CRF TEST 1.ttl")
-    load_data_file_into_triple_store("biomedical_concept_instances.ttl")
+    load_test_bc_template_and_instances
     Token.delete_all
     ua_create
   end

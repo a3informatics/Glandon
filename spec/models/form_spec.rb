@@ -317,6 +317,85 @@ puts "Extra:    #{uri_result.sort - diff.sort}"
 
   end
 
+  describe "aCRF Tests, SDTM common variables" do
+    
+    before :all do
+      load_files(schema_files, [])
+      load_cdisc_term_versions(1..55)
+      load_data_file_into_triple_store("mdr_identification.ttl")
+      load_data_file_into_triple_store("cdisc/sdtm_ig/SDTM_IG_V1.ttl")
+      load_data_file_into_triple_store("cdisc/sdtm_ig/SDTM_IG_V2.ttl")
+      load_data_file_into_triple_store("cdisc/sdtm_ig/SDTM_IG_V3.ttl")
+      load_data_file_into_triple_store("cdisc/sdtm_ig/SDTM_IG_V4.ttl")
+      load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V1.ttl")
+      load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V2.ttl")
+      load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V3.ttl")
+      load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V4.ttl")
+      load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V5.ttl")
+      load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V6.ttl")
+      load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V7.ttl")
+      load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
+      load_data_file_into_triple_store("mdr_iso_concept_systems_migration_1.ttl")      
+      load_data_file_into_triple_store("mdr_iso_concept_systems_migration_2.ttl")      
+      load_data_file_into_triple_store("mdr_iso_concept_systems_migration_3.ttl")
+      load_data_file_into_triple_store("association_IG_domain.ttl") 
+      load_data_file_into_triple_store("complex_datatypes.ttl")
+      load_test_bc_template_and_instances
+    end
+
+    it "to acrf I, Question and Question with Domain variable" do
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
+      form = Form.create(label: "Form1", identifier: "XXX")
+      form.add_child({type:"normal_group"})
+      normal_group = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#NG_1760cbb1-a370-41f6-a3b3-493c1d9c2238"))
+      normal_group.add_child({type:"question"})
+      question = Form::Item::Question.find(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#Q_4646b47a-4ae4-4f21-b5e2-565815c8cded"))
+      question.mapping = "DOMAIN"
+      question.question_text = "Question text 1"
+      question.save
+      normal_group = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#NG_1760cbb1-a370-41f6-a3b3-493c1d9c2238"))
+      normal_group.add_child({type:"question"})
+      question = Form::Item::Question.find(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#Q_92bf8b74-ec78-4348-9a1b-154a6ccb9b9f"))
+      question.mapping = "VSPOS"
+      question.question_text = "Question text 2"
+      question.save
+      form = Form.find_full(form.uri)
+      check_file_actual_expected(form.acrf, sub_dir, "to_acrf_10.yaml", equate_method: :hash_equal)
+    end
+
+    it "to acrf II, BC and Question with Domain variable" do
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
+      form = Form.create(label: "Form2", identifier: "ZZZ")
+      form.add_child({type:"normal_group"})
+      bci_1 = BiomedicalConceptInstance.find(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
+      normal_group = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/ZZZ/V1#NG_1760cbb1-a370-41f6-a3b3-493c1d9c2238"))
+      normal_group.add_child({type:"question"})
+      question = Form::Item::Question.find(Uri.new(uri: "http://www.s-cubed.dk/ZZZ/V1#Q_4646b47a-4ae4-4f21-b5e2-565815c8cded"))
+      question.mapping = "DOMAIN"
+      question.question_text = "Question text 1"
+      question.save
+      normal_group = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/ZZZ/V1#NG_1760cbb1-a370-41f6-a3b3-493c1d9c2238"))
+      normal_group.add_child({type:"bc_group", id_set:[bci_1.id]})
+      form = Form.find_full(form.uri)
+      check_file_actual_expected(form.acrf, sub_dir, "to_acrf_11.yaml", equate_method: :hash_equal)
+    end
+
+    it "to acrf III, Question with Domain variable" do
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
+      form = Form.create(label: "Form3", identifier: "YYY")
+      form.add_child({type:"normal_group"})
+      normal_group = Form::Group::Normal.find(Uri.new(uri: "http://www.s-cubed.dk/YYY/V1#NG_1760cbb1-a370-41f6-a3b3-493c1d9c2238"))
+      normal_group.add_child({type:"question"})
+      question = Form::Item::Question.find(Uri.new(uri: "http://www.s-cubed.dk/YYY/V1#Q_4646b47a-4ae4-4f21-b5e2-565815c8cded"))
+      question.mapping = "DOMAIN"
+      question.question_text = "Question text 1"
+      question.save
+      form = Form.find_full(form.uri)
+      check_file_actual_expected(form.acrf, sub_dir, "to_acrf_12.yaml", equate_method: :hash_equal)
+    end
+
+  end
+
   describe "Get referenced items Tests" do
     
     before :all do
@@ -586,10 +665,9 @@ puts "Extra:    #{uri_result.sort - diff.sort}"
 
     before :each do
       load_files(schema_files, [])
-      load_cdisc_term_versions(1..59)
+      load_cdisc_term_versions(1..55)
       load_data_file_into_triple_store("mdr_identification.ttl")
-      load_data_file_into_triple_store("biomedical_concept_templates.ttl")
-      load_data_file_into_triple_store("biomedical_concept_instances.ttl")
+      load_test_bc_template_and_instances
     end
 
     
@@ -1173,7 +1251,7 @@ puts "Extra:    #{uri_result.sort - diff.sort}"
 
   describe "Dependency Tests" do
     
-    before :each do
+    before :all do
       data_files = [
         "forms/FN000150.ttl", 
         "forms/F001_bc_only_group_form.ttl", 
@@ -1182,6 +1260,7 @@ puts "Extra:    #{uri_result.sort - diff.sort}"
       ]
       load_files(schema_files, data_files)
       load_data_file_into_triple_store("mdr_identification.ttl")
+      load_cdisc_term_versions(1..59)
     end
 
     it "dependency paths" do
@@ -1199,6 +1278,12 @@ puts "Extra:    #{uri_result.sort - diff.sort}"
       item = BiomedicalConceptInstance.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
       results = item.dependency_required_by
       check_file_actual_expected(results.map{|x| x.to_h}, sub_dir, "dependencies_expected_1.yaml", equate_method: :hash_equal)
+    end
+
+    it "dependencies II" do
+      item = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.cdisc.org/C66770/V59#C66770"))
+      results = item.dependency_required_by
+      check_file_actual_expected(results.map{|x| x.uri.to_s}, sub_dir, "dependency_paths_expected_2.yaml", equate_method: :hash_equal)
     end
 
   end

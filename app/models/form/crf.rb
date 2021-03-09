@@ -49,7 +49,7 @@ class Form
       if datatype.nil?
         html += field_table(["?", "?", "?"])
       elsif datatype.datetime?
-        html += field_table(["D", "D", "/", "M", "M", "M", "/", "Y", "Y", "Y", "Y", "", "H", "H", ":", "M", "M"])
+        html += field_table(["D", "D", "/", "M", "M", "M", "/", "Y", "Y", "Y", "Y", " ", "H", "H", ":", "M", "M"])
       elsif datatype.date?
        html += field_table(["D", "D", "/", "M", "M", "M", "/", "Y", "Y", "Y", "Y"])
       elsif datatype.time?
@@ -67,7 +67,7 @@ class Form
         html += field_table(["#"]*count)
       elsif datatype.string?
         length = item.format.scan /\w/
-        html += field_table([" "]*5 + ["S"] + length + [""]*5)
+        html += field_table([" "]*5 + ["S"] + length + [" "]*5)
       elsif datatype.boolean?
         html += '<input type="checkbox">'
       else

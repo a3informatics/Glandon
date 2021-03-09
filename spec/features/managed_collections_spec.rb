@@ -170,7 +170,7 @@ describe "Managed Collections", :type => :feature do
       load_files(schema_files, [])
       load_cdisc_term_versions(1..2)
       load_data_file_into_triple_store("mdr_identification.ttl")
-      load_data_file_into_triple_store("biomedical_concept_instances.ttl")
+      load_test_bc_template_and_instances
       load_test_file_into_triple_store("forms/FN000150.ttl")
       prep_data
     end
@@ -182,6 +182,13 @@ describe "Managed Collections", :type => :feature do
     it "allows to add and remove Managed Items to and from Managed Collection" do 
       edit_mc 'MC1', '0.1.0'
       ui_check_table_info('managed-items', 1, 2, 2)
+
+      # Check Picker types 
+      click_on 'Add items'
+      ui_in_modal do 
+        ip_check_tabs([:bci, :managed_concept,  :form, :sdtm_sd], 'add-items')
+        click_on 'Close'
+      end
 
       # Add
       add_managed_items([

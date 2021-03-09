@@ -32,7 +32,7 @@ end
     shared/d3/d3_impact_graph
     shared/import/crf_files_panel shared/import/items_panel
     shared/iso_managed/children_panel shared/iso_managed/comments_panel shared/iso_managed/managed_children_overview
-    shared/iso_managed/managed_children_select shared/iso_managed/managed_item_ico_list shared/iso_managed/managed_item_version_picker shared/iso_managed/managed_item_select_modal
+    shared/iso_managed/managed_children_select shared/iso_managed/managed_item_ico_list shared/iso_managed/managed_item_version_picker 
     shared/items_selector/items_selector_modal shared/items_selector/managed_item_selector shared/items_selector/unmanaged_item_selector
     shared/thesauri/changes_panel shared/thesauri/differences_panel shared/thesauri/edit_properties shared/thesauri/links_panel shared/thesauri/new_panel
     shared/thesauri/search_panel shared/thesauri/upgrade_panel

@@ -67,7 +67,7 @@ module ItemsPickerHelpers
   end
 
   def ip_check_selected_info(text, id)
-    expect(find(:xpath, "//div[@id='items-picker-#{id}']//span[@id='selected-info']").text).to eq(text)
+    expect(find(:xpath, "//div[@id='items-picker-#{id}']//span[@id='selection-preview']").text).to eq(text)
   end
 
   def ip_submit(id)
@@ -84,7 +84,7 @@ module ItemsPickerHelpers
 
     ui_in_modal do
       items.each do |i|
-        find(:xpath, "//div[@id='items-picker-#{id}']//span[contains(concat(' ',normalize-space(@class), ' '),' bg-label') and contains(.,'#{i}')]", visible: true).click
+        find(:xpath, "//div[@id='items-picker-#{id}']//div[contains(concat(' ',normalize-space(@class), ' '),' bg-label') and contains(.,'#{i}')]", visible: true).click
       end
       click_on 'Dismiss'
     end

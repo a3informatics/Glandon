@@ -1,3 +1,5 @@
+/**** DEPRECATED, DO NOT USE. USE V2 INSTEAD ****/
+
 import ModalView from 'shared/base/modal_view'
 
 import SelectionView from 'shared/ui/items_picker/selection_view'

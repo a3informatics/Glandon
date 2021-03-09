@@ -1,11 +1,12 @@
 ---
-- :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcx
-  :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1
+:data:
+- :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0YwMDMvVjEjTkdfNjNkZmQwMTMtNWNmNS00NTI2LWJjODMtMDI1YWIzM2NhY2Uw
+  :uri: http://www.s-cubed.dk/F003/V1#NG_63dfd013-5cf5-4526-bc83-025ab33cace0
   :rdf_type: http://www.assero.co.uk/BusinessForm#NormalGroup
-  :label: Not Set
+  :label: Not set
   :ordinal: 1
-  :note: Not Set
-  :completion: Not Set
+  :note: ''
+  :completion: ''
   :optional: false
   :repeating: false
   :has_common: []
@@ -18,61 +19,49 @@
   :has_coded_value: []
   :has_property: {}
   :order_index: 1
-- :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX1Ex
-  :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_Q1
+- :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0YwMDMvVjEjUV9kNTQxZTlhZS04MDJjLTQzZDQtYWU5Zi0zMjJiYjkwNzJkN2U=
+  :uri: http://www.s-cubed.dk/F003/V1#Q_d541e9ae-802c-43d4-ae9f-322bb9072d7e
   :rdf_type: http://www.assero.co.uk/BusinessForm#Question
-  :label: Completion status
+  :label: Not set
   :ordinal: 1
   :note: ''
-  :completion: Not Set
-  :optional: true
-  :datatype: string
-  :format: '1'
-  :mapping: VSSTAT
-  :question_text: " Compltion Status"
-  :has_coded_value:
-  - :show_path: "/thesauri/unmanaged_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2Nzg5L1Y0I0M2Njc4OV9DNDk0ODQ=?unmanaged_concept%5Bcontext_id%5D=&unmanaged_concept%5Bparent_id%5D=aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2Nzg5L1YxMyNDNjY3ODk%3D"
-    :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX1ExX1RVQzE=
-    :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_Q1_TUC1
-    :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
-    :label: ''
-    :enabled: true
-    :optional: false
-    :ordinal: 1
-    :reference:
-      :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2Nzg5L1Y0I0M2Njc4OV9DNDk0ODQ=
-      :uri: http://www.cdisc.org/C66789/V4#C66789_C49484
-      :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
-      :label: Not Done
-      :identifier: C49484
-      :notation: NOT DONE
-      :definition: Indicates a task, process or examination that has either not been
-        initiated or completed. (NCI)
-      :extensible: false
-      :narrower: []
-      :preferred_term: http://www.assero.co.uk/PT#80693856b066974cd21dac794f7adf4b3437ce78
-      :synonym: []
-    :context:
-      :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2Nzg5L1YxMyNDNjY3ODk=
-      :uri: http://www.cdisc.org/C66789/V13#C66789
-      :identifier: C66789
-      :notation: ND
-      :semantic_version: 3.0.0
-    :local_label: ''
+  :completion: ''
+  :optional: false
+  :datatype: datetype
+  :format: ''
+  :mapping: VSORRESU
+  :question_text: Question text 1
+  :has_coded_value: []
   :free_text: ''
   :label_text: ''
   :has_property: {}
   :order_index: 2
-- :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX1BMMg==
-  :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_PL2
-  :rdf_type: http://www.assero.co.uk/BusinessForm#Placeholder
-  :label: Placeholder 2
+- :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0YwMDMvVjEjUV8yY2Q1NGQzOS05NzVjLTRiMmEtODZjNi01ODkxNDE1YzRmOGE=
+  :uri: http://www.s-cubed.dk/F003/V1#Q_2cd54d39-975c-4b2a-86c6-5891415c4f8a
+  :rdf_type: http://www.assero.co.uk/BusinessForm#Question
+  :label: Not set
   :ordinal: 2
   :note: ''
-  :completion: Not Set
+  :completion: ''
   :optional: false
-  :free_text: Measure with shoes off. Round up or down to the nearest tenth inch or
-    tenth centimeter.
+  :datatype: datetype
+  :format: ''
+  :mapping: VSORRES
+  :question_text: Question text 2
+  :has_coded_value: []
+  :free_text: ''
+  :label_text: ''
+  :has_property: {}
+  :order_index: 3
+- :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0YwMDMvVjEjUExfZmI4NWUyMjktNDEwZi00ZTllLTkxYjgtYzY1Zjc2MzJiZjAx
+  :uri: http://www.s-cubed.dk/F003/V1#PL_fb85e229-410f-4e9e-91b8-c65f7632bf01
+  :rdf_type: http://www.assero.co.uk/BusinessForm#Placeholder
+  :label: Not set
+  :ordinal: 3
+  :note: ''
+  :completion: ''
+  :optional: false
+  :free_text: ''
   :datatype: ''
   :format: ''
   :question_text: ''
@@ -80,95 +69,21 @@
   :label_text: ''
   :has_coded_value: []
   :has_property: {}
-  :order_index: 3
-- :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX1Ez
-  :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_Q3
-  :rdf_type: http://www.assero.co.uk/BusinessForm#Question
-  :label: Height
-  :ordinal: 3
-  :note: ''
-  :completion: Not Set
-  :optional: false
-  :datatype: float
-  :format: '5.1'
-  :mapping: VSORRES
-  :question_text: Height
-  :has_coded_value: []
-  :free_text: ''
-  :label_text: ''
-  :has_property: {}
   :order_index: 4
-- :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX1E0
-  :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_Q4
-  :rdf_type: http://www.assero.co.uk/BusinessForm#Question
-  :label: Unit
+- :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0YwMDMvVjEjVExfNjZlOTk5ZGMtNjJlNi00OTY1LWIxODctNTI4ZTA1YzZlNjE3
+  :uri: http://www.s-cubed.dk/F003/V1#TL_66e999dc-62e6-4965-b187-528e05c6e617
+  :rdf_type: http://www.assero.co.uk/BusinessForm#TextLabel
+  :label: Not set
   :ordinal: 4
   :note: ''
-  :completion: Not Set
+  :completion: ''
   :optional: false
-  :datatype: string
-  :format: '20'
-  :mapping: VSORRESU
-  :question_text: Unit
-  :has_coded_value:
-  - :show_path: "/thesauri/unmanaged_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzcwL1YyI0M2Njc3MF9DNDg1MDA=?unmanaged_concept%5Bcontext_id%5D=&unmanaged_concept%5Bparent_id%5D=aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzcwL1Y1OSNDNjY3NzA%3D"
-    :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX1E0X1RVQzE=
-    :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_Q4_TUC1
-    :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
-    :label: ''
-    :enabled: true
-    :optional: false
-    :ordinal: 1
-    :reference:
-      :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzcwL1YyI0M2Njc3MF9DNDg1MDA=
-      :uri: http://www.cdisc.org/C66770/V2#C66770_C48500
-      :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
-      :label: Inch
-      :identifier: C48500
-      :notation: IN
-      :definition: A traditional unit of length equal to 2.54 centimeters. (NCI)
-      :extensible: false
-      :narrower: []
-      :preferred_term: http://www.assero.co.uk/PT#2fb30e16a2a8b342a0edb99debc4b295b2d35961
-      :synonym:
-      - http://www.assero.co.uk/SYN#2fb30e16a2a8b342a0edb99debc4b295b2d35961
-    :context:
-      :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzcwL1Y1OSNDNjY3NzA=
-      :uri: http://www.cdisc.org/C66770/V59#C66770
-      :identifier: C66770
-      :notation: VSRESU
-      :semantic_version: 18.0.0
-    :local_label: ''
-  - :show_path: "/thesauri/unmanaged_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzcwL1Y0I0M2Njc3MF9DNDk2Njg=?unmanaged_concept%5Bcontext_id%5D=&unmanaged_concept%5Bparent_id%5D=aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzcwL1Y1OSNDNjY3NzA%3D"
-    :id: aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX1E0X1RVQzI=
-    :uri: http://www.s-cubed.dk/FN000150/V1#F_NG1_Q4_TUC2
-    :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
-    :label: ''
-    :enabled: true
-    :optional: false
-    :ordinal: 2
-    :reference:
-      :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzcwL1Y0I0M2Njc3MF9DNDk2Njg=
-      :uri: http://www.cdisc.org/C66770/V4#C66770_C49668
-      :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
-      :label: Centimeter
-      :identifier: C49668
-      :notation: cm
-      :definition: A basic unit of length in the former CGS version of metric system,
-        equal to one hundredth of a meter or approximately 0.393 700 787 inch. (NCI)
-      :extensible: false
-      :narrower: []
-      :preferred_term: http://www.assero.co.uk/PT#9cab1c70b10c72b3dc8fc42049f8e0e2303757a9
-      :synonym:
-      - http://www.assero.co.uk/SYN#9cab1c70b10c72b3dc8fc42049f8e0e2303757a9
-    :context:
-      :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzcwL1Y1OSNDNjY3NzA=
-      :uri: http://www.cdisc.org/C66770/V59#C66770
-      :identifier: C66770
-      :notation: VSRESU
-      :semantic_version: 18.0.0
-    :local_label: ''
-  :free_text: ''
   :label_text: ''
+  :datatype: ''
+  :format: ''
+  :question_text: ''
+  :mapping: ''
+  :free_text: ''
+  :has_coded_value: []
   :has_property: {}
   :order_index: 5

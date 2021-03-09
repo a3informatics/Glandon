@@ -3,10 +3,10 @@ import Cacheable from 'shared/base/cacheable'
 import TokenTimer from 'shared/custom/tokens/token_timer'
 import CreateBCView from 'shared/custom/biomedical_concept_instances/bc_create'
 import BCEditor from 'shared/custom/biomedical_concept_instances/edit/bc_editor'
-import ItemsPicker from 'shared/ui/items_picker/items_picker'
+import ItemsPicker from 'shared/ui/items_picker/v2/items_picker'
 import InformationDialog from 'shared/ui/dialogs/information_dialog'
 
-import { $get, $post } from 'shared/helpers/ajax'
+import { $get } from 'shared/helpers/ajax'
 import { renderSpinnerIn$, removeSpinnerFrom$ } from 'shared/ui/spinners'
 import { tableInteraction } from 'shared/helpers/utils'
 import { alerts } from 'shared/ui/alerts'
@@ -111,9 +111,10 @@ export default class BCManager extends Cacheable {
     // Initialize an Items Picker instance for BCs to add to the Editor with
     this.editBCPicker = new ItemsPicker({
       id: 'add-bc-edit',
-      types: ['biomedical_concept_instance'],
+      types: [ ItemsPicker.allTypes.BC ],
+      description: 'Select a Biomedical Concept to edit',
       submitText: 'Add to Editor',
-      onSubmit: (s) => this.editBC( s.asIDsArray()[0] ),
+      onSubmit: s => this.editBC( s.asIDs()[0] ),
       onShow: () => this.bcEditor.keysDisable(),
       onHide: () => this.bcEditor.keysEnable()
     });

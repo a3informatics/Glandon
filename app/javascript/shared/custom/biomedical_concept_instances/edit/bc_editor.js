@@ -1,7 +1,6 @@
 import EditablePanel from 'shared/base/editable_panel'
 
-import ItemsPicker from 'shared/ui/items_picker/items_picker'
-import { $post } from 'shared/helpers/ajax'
+import ItemsPicker from 'shared/ui/items_picker/v2/items_picker'
 import { alerts } from 'shared/ui/alerts'
 
 import { dtFieldsInit } from 'shared/helpers/dt/dt_fields'
@@ -154,16 +153,18 @@ export default class BCEditor extends EditablePanel {
     // Initializes Terminology Reference Picker
     this.editor.pickers[ 'refPicker' ] = new ItemsPicker({
       id: 'bc-term-ref',
-      types: ['unmanaged_concept'],
-      submitText: 'Submit selection',
+      types: [ ItemsPicker.allTypes.TH_CLI ],
       multiple: true,
-      emptyEnabled: true,
+      submitEmpty: true,
+      description: `Find Items to add to the selection or modify the existing selection by clicking on View. <br>
+                    <i> You can also submit an empty selection </i>`,
+      submitText: 'Submit selection',
       onShow: () => this.keysDisable(),
       onHide: () => {
         this.editor.close();
         this.keysEnable();
       }
-    });
+    }).initialize() 
 
   }
 

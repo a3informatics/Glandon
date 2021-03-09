@@ -7,14 +7,14 @@ describe Forms::Items::CommonsController do
   include UserAccountHelpers
   include IsoHelpers
   include ControllerHelpers
+
+  def sub_dir
+    return "controllers/forms/items"
+  end
   
   describe "Restore" do
   	
     login_curator
-
-    def sub_dir
-      return "controllers/forms/items"
-    end
 
     after :all do
       ua_remove_user("lock@example.com")
@@ -48,10 +48,6 @@ describe Forms::Items::CommonsController do
   describe "Move up" do
     
     login_curator
-
-    def sub_dir
-      return "controllers/forms/items"
-    end
 
     after :all do
       ua_remove_user("lock@example.com")
@@ -110,10 +106,6 @@ describe Forms::Items::CommonsController do
   describe "Move down" do
     
     login_curator
-
-    def sub_dir
-      return "controllers/forms/items"
-    end
 
     after :all do
       ua_remove_user("lock@example.com")

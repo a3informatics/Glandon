@@ -15,9 +15,20 @@ import { dtButtonColumn, dtInlineEditColumn, dtIndicatorsColumn, dtTagsColumn, d
 function dtIndexColumns() {
   
   return [
-    { data : "owner" },
-    { data : "identifier" },
-    { data : "label" },
+    { 
+      title: 'Owner',
+      data : 'owner',
+      className: 'fit'
+    },
+    { 
+      title: 'Identifier',
+      data : 'identifier',
+      className: 'fit'
+    },
+    { 
+      title: 'Label',
+      data : 'label' 
+    },
     dtIndicatorsColumn()
   ]
 
@@ -30,7 +41,12 @@ function dtIndexColumns() {
 function dtCLIndexColumns() {
   
   const indexColumns = [...dtIndexColumns()]
-  indexColumns.splice( 3, 0, { data: "notation" } )
+
+  indexColumns.splice( 3, 0, { 
+    data: 'notation', 
+    title: 'Submission value',
+    className: 'no-break'
+  } )
 
   return indexColumns
 
@@ -48,9 +64,15 @@ function dtSimpleHistoryColumns() {
   
   return [
     dtVersionColumn(),
-    { data: "has_identifier.version_label" },
-    { data: "has_state.registration_status" },
-    dtIndicatorsColumn()
+    { 
+      title: 'Version Label',
+      data: 'has_identifier.version_label' 
+    },
+    {
+      title: 'State', 
+      data: 'has_state.registration_status' 
+    },
+    dtIndicatorsColumn({ opts: { className: 'fit' } })
   ]
   
 }
@@ -58,6 +80,30 @@ function dtSimpleHistoryColumns() {
 
 /*** Children ***/
 
+
+/**
+ * Column definitions for a simple Children panel (used in Items Picker)
+ * @return {Array} DataTables simple Children panel column definitions collection
+ */
+function dtSimpleChildrenColumns() {
+  
+  return [
+    { 
+      data: 'identifier',
+      title: 'Identifier',
+      className: 'fit'
+    },
+    { 
+      data: 'notation',
+      title: 'Submission value'
+    },
+    { 
+      data: 'preferred_term',
+      title: 'Preferred term'
+    }
+  ]
+
+}
 
 /**
  * Column definitions for a Children panel
@@ -384,6 +430,7 @@ export {
   dtIndexColumns,
   dtSimpleHistoryColumns,
   dtCLIndexColumns,
+  dtSimpleChildrenColumns,
   dtChildrenColumns,
   dtManagedItemsColumns,
   

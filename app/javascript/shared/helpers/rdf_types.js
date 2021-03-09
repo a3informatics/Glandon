@@ -11,7 +11,8 @@ const rdfTypesMap = {
     rdfType: 'http://www.assero.co.uk/Thesaurus#ManagedConcept',
     name: 'Code List',
     param: 'managed_concept',
-    url: '/thesauri/managed_concepts'
+    url: '/thesauri/managed_concepts',
+    indexUrl: '/thesauri/managed_concepts/set_with_indicators?managed_concept%5Btype%5D=all'
   },
   TH_SUBSET: {
     rdfType: 'http://www.assero.co.uk/Thesaurus#ManagedConcept#Subset',
@@ -234,17 +235,18 @@ function getRdfNameByType(rdfType) {
 }
 
 /**
- * Gets the RDF definition object from the map by rdfType
- * @param {string} rdfType Full RdfType string to search by
- * @return {object} Item RDF object definition from the map, UNKNOWN rdf type definition if not found
+ * Gets the RDF definition object from the map by matching property value
+ * @param {string} value Value to search by
+ * @param {string} propertyName RDF Map property name that is being compared to value 
+ * @return {object} Item RDF object definition from the map, UNKNOWN rdf type definition if not found 
  */
-function getRdfObject(rdfType) {
+function getRdfObject(value, propertyName = 'rdfType') {
 
   const filtered = Object.values( rdfTypesMap )
-                         .filter( (d) => d.rdfType === rdfType )
+                         .filter( (d) => d[ propertyName ] === value )
 
   if ( filtered.length )
-    return filtered[0];
+    return filtered[0]
 
   else return rdfTypesMap.UNKNOWN
 

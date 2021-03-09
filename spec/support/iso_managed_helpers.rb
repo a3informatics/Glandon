@@ -24,6 +24,15 @@ module IsoManagedHelpers
     end
   end
 
+  def fix_dates_array_hash(actual_array_hash, sub_dir, filename, *args)
+    expected = read_yaml_file(sub_dir, filename)
+    actual_array_hash.each_with_index do |item, index|
+      args.each do |a|
+        item[a] = expected[index][a]
+      end
+    end
+  end
+
   def make_current(item)
     item.has_state.update(effective_date: Time.now, until_date: IsoRegistrationStateV2::C_UNTIL_DATETIME.to_time_with_default)
     IsoManagedV2.find_minimum(item.uri)

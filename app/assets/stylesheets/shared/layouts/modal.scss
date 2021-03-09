@@ -90,6 +90,7 @@ img.modal-img.wide{
 
   .modal-body {
     padding-top: 6px;
+    font-family: $font-light;
   }
 
   .modal-footer {
@@ -111,6 +112,6 @@ img.modal-img.wide{
 }
 
 // Overflow fix
-.modal.fade.bd-example-modal-lg {
+.modal.fade {
   overflow-y: auto;
 }

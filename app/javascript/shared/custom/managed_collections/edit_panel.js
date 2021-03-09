@@ -1,11 +1,12 @@
 import SelectablePanel from 'shared/base/selectable_panel'
 
-import ItemsPicker from 'shared/ui/items_picker/items_picker'
+import ItemsPicker from 'shared/ui/items_picker/v2/items_picker'
 
 import { dtManagedItemsColumns } from 'shared/helpers/dt/dt_column_collections'
 import { hasColumn, selectAllBtn, deselectAllBtn } from 'shared/helpers/dt/utils'
 import { $confirm } from 'shared/helpers/confirmable'
 import { $ajax } from 'shared/helpers/ajax'
+import { rdfTypesMap as types } from 'shared/helpers/rdf_types' 
 
 /**
  * Edit Managed Collection Panel
@@ -21,7 +22,7 @@ export default class EditMCPanel {
    * @param {Object} params.urls Urls object containing the data, add, remove and removeAll action urls
    * @param {string} params.param Strict parameter name required for the controller params
    * @param {string} params.idsParam Parameter name for adding a set of IDs into a collection [default='ids']
-   * @param {Array} params.allowedTypes Array of strings - param names of allowed item types that can be added to the Collection @see ItemsPicker module
+   * @param {Array} params.types Custom collection of Item types allowed to be added into the Managed Collection, optional
    * @param {Array} params.order Custom table ordering setting, optional  
    * @param {function} params.onEdited Function to execute after any data update 
    */
@@ -30,14 +31,14 @@ export default class EditMCPanel {
     urls,
     param = 'managed_collection',
     idsParam = 'id_set',
-    allowedTypes = [],
+    types = this._defaultTypes,
     order = [[1, 'asc']], 
     onEdited = () => {}
   }) {
     
     Object.assign( this, {
       urls: urls || managedCollectionsUrls,
-      selector, param, allowedTypes, 
+      selector, param, types,
       idsParam, order, onEdited 
     })
 
@@ -290,9 +291,10 @@ export default class EditMCPanel {
 
     return new ItemsPicker({
       id: 'add-items',
-      types: this.allowedTypes,
       multiple: true, 
-      onSubmit: selection => this._add( selection.asIDsArray() )
+      types: this.types,
+      description: 'Select one or more items to add to the collection',
+      onSubmit: selection => this._add( selection.asIDs() )
     })
 
   }
@@ -308,6 +310,19 @@ export default class EditMCPanel {
 
     return dtManagedItemsColumns( {}, withType, withOwner )
 
+  }
+  
+  /**
+   * Get list of Item types that can be added to the Managed Collection panel
+   * @return {Array} Array of Item RDF Type definitions
+   */
+  get _defaultTypes() {
+    return [
+      types.TH_CL,
+      types.BC, 
+      types.FORM, 
+      types.SDTM_SD 
+    ]
   }
 
 }

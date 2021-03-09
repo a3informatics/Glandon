@@ -1,4 +1,3 @@
-import { color } from 'd3'
 import { getRdfType } from 'shared/helpers/rdf_types'
 import colors from 'shared/ui/colors'
 
