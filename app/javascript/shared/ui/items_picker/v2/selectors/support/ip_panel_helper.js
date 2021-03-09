@@ -79,7 +79,7 @@ export default class PickerPanelHelper {
     switch ( options.id ) {
 
       case 'index':
-        if ( options.type === types.TH_CL )
+        if ( options.type === types.TH_CL || options.type === types.TH_CLI )
           return dtCLIndexColumns()
 
         return dtIndexColumns() 
