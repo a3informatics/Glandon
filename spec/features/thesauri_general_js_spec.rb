@@ -249,10 +249,17 @@ describe "Thesaurus", :type => :feature do
       go_to_cl_edit "NP000010P"
 
       click_on "Add items"
-      ip_pick_unmanaged_items(:unmanaged_concept, [
-        { parent: "C120530", version: "2015-03-27", identifier: "C28224" },
-        { parent: "C120530", version: "2015-03-27", identifier: "C14175" }
-      ], 'add-children')
+      ui_in_modal do
+        # Check table columns correct, bug fix test
+        table_header = find(:xpath, "//*[@id='index_wrapper']//thead")
+        expect(table_header).to have_content('Owner Identifier Label Submission value')
+
+        ip_pick_unmanaged_items(:unmanaged_concept, [
+          { parent: "C120530", version: "2015-03-27", identifier: "C28224" },
+          { parent: "C120530", version: "2015-03-27", identifier: "C14175" }
+        ], 'add-children')
+      end 
+
       wait_for_ajax 10
       ui_check_table_info "editor", 1, 4, 4
 
