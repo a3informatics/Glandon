@@ -60,6 +60,7 @@ function $post(params = {}) {
  * @param {function} params.pageDone Callback after each page is fetched (data is passed to the callback)
  * @param {function} params.done Callback when all data is loaded
  * @param {function} params.always Callback which should be invoked after all is done / if anything fails. Usually for disabling loading animation.
+ * @param {function} params.onError Callback which should be invoked on request fail, run in addition to the error handler
  * @param {$element} params.errorDiv Div to display error alerts in. Optional.
  * @param {boolean} params.cache False if cache should be disabled. Default true
  */
@@ -84,8 +85,12 @@ function $getPaginated(offset = 0, params = {}) {
   })
   .fail( (x, s, e) => {
 
-    if ( e !== 'abort' )
+    if ( e !== 'abort' ) {
+
       $handleError( x, s, e, params.errorDiv )
+      params.onError && params.onError()
+
+    }
 
   } )
   .always( () => params.always() );
@@ -101,6 +106,8 @@ function $getPaginated(offset = 0, params = {}) {
  * @param {Object} params.data Optional request data object
  * @param {function} params.done Callback when all data is loaded
  * @param {function} params.always Callback which should be invoked after all is done / if anything fails. Usually for disabling loading animation.
+ * @param {function} params.error Custom request error handler
+ * @param {function} params.onError Callback which should be invoked on request fail, run in addition to the error handler
  * @param {boolean} params.cache Optional cache option
  * @param {JQuery Element} params.errorDiv Div to display errors in, optional
  * @param {boolean} params.rawResult Set to true to return the raw result to the done callback. Otherwise result.data will be returned. Optional [default=false]
@@ -114,6 +121,7 @@ function $ajax({
   done = () => {},
   always = () => {},
   error = $handleError,
+  onError = () => {},
   cache = true,
   errorDiv = null,
   rawResult = false,
@@ -140,8 +148,12 @@ function $ajax({
   })
   .fail( (x, s, e) => {
 
-    if ( e !== 'abort' )
+    if ( e !== 'abort' ) {
+
       error( x, s, e, errorDiv )
+      onError && onError()
+
+    }
 
   } )
   .always( () => always() );

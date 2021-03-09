@@ -3,10 +3,6 @@ require 'rails_helper'
 describe SdtmModelsController do
 
   include DataHelpers
-  include PauseHelpers
-  include PublicFileHelpers
-  include UserAccountHelpers
-  include IsoHelpers
   include ControllerHelpers
   
   describe "Reader User" do
@@ -18,8 +14,7 @@ describe SdtmModelsController do
     end
 
     before :all do
-      data_files = []
-      load_files(schema_files, data_files)
+      load_files(schema_files, [])
       load_data_file_into_triple_store("mdr_identification.ttl")
       load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
       load_data_file_into_triple_store("mdr_iso_concept_systems_migration_1.ttl")
@@ -44,10 +39,8 @@ describe SdtmModelsController do
       sdtm_model = SdtmModel.find_minimum(Uri.new(uri: "http://www.cdisc.org/SDTM_MODEL/V1#M"))
       request.env['HTTP_ACCEPT'] = "application/json"
       get :show_data, params:{id: sdtm_model.id, sdtm_model:{count: 10, offset: 0}}
-      expect(response.content_type).to eq("application/json")
-      expect(response.code).to eq("200")
-      actual = JSON.parse(response.body).deep_symbolize_keys[:data]
-      check_file_actual_expected(actual, sub_dir, "show_results_expected_1.yaml", equate_method: :hash_equal)
+      actual = check_good_json_response(response)
+      check_file_actual_expected(actual[:data], sub_dir, "show_results_expected_1.yaml", equate_method: :hash_equal)
     end
 
     it "shows the history, page" do
@@ -55,10 +48,8 @@ describe SdtmModelsController do
       request.env['HTTP_ACCEPT'] = "application/json"
       expect(SdtmModel).to receive(:history_pagination).with({identifier: sdtm_model.has_identifier.identifier, scope: an_instance_of(IsoNamespace), offset: "20", count: "20"}).and_return([sdtm_model])
       get :history, params:{sdtm_model: {identifier: sdtm_model.has_identifier.identifier, scope_id: "aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=", count: 20, offset: 20}}
-      expect(response.content_type).to eq("application/json")
-      expect(response.code).to eq("200")
-      actual = JSON.parse(response.body).deep_symbolize_keys[:data]
-      check_file_actual_expected(actual, sub_dir, "history_expected_1.yaml", equate_method: :hash_equal)
+      actual = check_good_json_response(response)
+      check_file_actual_expected(actual[:data], sub_dir, "history_expected_1.yaml", equate_method: :hash_equal)
     end
 
     it "shows the history, initial view" do
@@ -90,9 +81,9 @@ describe SdtmModelsController do
 
   end
 
-  describe "Curator User" do
+  #describe "Curator User" do
     
-    login_curator
+    #login_curator
 
     # it "prevents access to the import view"  do
     #   get :import
@@ -104,11 +95,11 @@ describe SdtmModelsController do
     #   expect(response).to redirect_to("/")
     # end
     
-  end
+  #end
 
-  describe "Content Admin User" do
+  #describe "Content Admin User" do
     
-    login_content_admin
+    #login_content_admin
 
     # it "presents the import view"  do
     #   get :import
@@ -129,6 +120,6 @@ describe SdtmModelsController do
     #   expect(response).to redirect_to("/sdtm_models/history")
     # end
 
-  end
+  #end
 
 end

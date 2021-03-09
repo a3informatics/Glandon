@@ -22,11 +22,7 @@ describe Thesauri::ManagedConceptsController do
     before :each do
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_upgrade.ttl"]
       load_files(schema_files, data_files)
-      load_data_file_into_triple_store("cdisc/ct/CT_V1.ttl")
-      load_data_file_into_triple_store("cdisc/ct/CT_V2.ttl")
-    end
-
-    after :each do
+      load_cdisc_term_versions(1..2)
     end
 
     it "changes" do
@@ -42,15 +38,13 @@ describe Thesauri::ManagedConceptsController do
     end
 
     it "changes data" do
-      expected = {items: {:"1"=>{:changes_path=>"/thesauri/unmanaged_concepts/1/changes", :id=>"1"}, :"2"=>{:changes_path=>"/thesauri/unmanaged_concepts/2/changes", :id=>"2"}}}
+      expected = {:data=>{:items=>{:"1"=>{:changes_path=>"/thesauri/unmanaged_concepts/1/changes", :id=>"1"}, :"2"=>{:changes_path=>"/thesauri/unmanaged_concepts/2/changes", :id=>"2"}}}}
       @user.write_setting("max_term_display", 2)
       request.env['HTTP_ACCEPT'] = "application/json"
       expect(Thesaurus::ManagedConcept).to receive(:find_with_properties).and_return(Thesaurus::ManagedConcept.new)
       expect_any_instance_of(Thesaurus::ManagedConcept).to receive(:changes).and_return({items: {:"1" => {id: "1"}, :"2" => {id: "2"}}})
       get :changes_data, params:{id: Uri.new(uri: "http://www.acme-pharma.com/aaa/V1#aaa").to_id}
-      expect(response.content_type).to eq("application/json")
-      expect(response.code).to eq("200")
-      expect(JSON.parse(response.body).deep_symbolize_keys[:data]).to eq(expected)
+      expect(check_good_json_response(response)).to eq(expected)
     end
 
     it "changes summary" do
@@ -67,27 +61,23 @@ describe Thesauri::ManagedConceptsController do
     end
 
     it "changes summary data" do
-      expected = {items: {:"1"=>{:changes_path=>"/thesauri/unmanaged_concepts/1/changes", :id=>"1"}, :"2"=>{:changes_path=>"/thesauri/unmanaged_concepts/2/changes", :id=>"2"}}}
+      expected = {:data=>{items: {:"1"=>{:changes_path=>"/thesauri/unmanaged_concepts/1/changes", :id=>"1"}, :"2"=>{:changes_path=>"/thesauri/unmanaged_concepts/2/changes", :id=>"2"}}}}
       request.env['HTTP_ACCEPT'] = "application/json"
       expect(Thesaurus::ManagedConcept).to receive(:find_with_properties).and_return(Thesaurus::ManagedConcept.new)
       expect(Thesaurus::ManagedConcept).to receive(:find_with_properties).and_return(Thesaurus::ManagedConcept.new)
       expect_any_instance_of(Thesaurus::ManagedConcept).to receive(:changes_summary).and_return({items: {:"1" => {id: "1"}, :"2" => {id: "2"}}})
       get :changes_summary_data, params:{id: Uri.new(uri: "http://www.acme-pharma.com/aaa/V1#aaa").to_id, last_id: "bbb", ver_span: "x"}
-      expect(response.content_type).to eq("application/json")
-      expect(response.code).to eq("200")
-      expect(JSON.parse(response.body).deep_symbolize_keys[:data]).to eq(expected)
+      expect(check_good_json_response(response)).to eq(expected)
     end
 
     it "changes summary data impact" do
-      expected = {items: {:"1"=>{:changes_path=>"/thesauri/unmanaged_concepts/1/changes", :id=>"1", :status=>"a"}, :"2"=>{:changes_path=>"/thesauri/unmanaged_concepts/2/changes", :id=>"2", :status=>"a"}}}
+      expected = {:data=>{items: {:"1"=>{:changes_path=>"/thesauri/unmanaged_concepts/1/changes", :id=>"1", :status=>"a"}, :"2"=>{:changes_path=>"/thesauri/unmanaged_concepts/2/changes", :id=>"2", :status=>"a"}}}}
       request.env['HTTP_ACCEPT'] = "application/json"
       expect(Thesaurus::ManagedConcept).to receive(:find_with_properties).and_return(Thesaurus::ManagedConcept.new)
       expect(Thesaurus::ManagedConcept).to receive(:find_with_properties).and_return(Thesaurus::ManagedConcept.new)
       expect_any_instance_of(Thesaurus::ManagedConcept).to receive(:changes_summary_impact).and_return({items: {:"1" => {id: "1", status: "a"}, :"2" => {id: "2", status: "a"}}})
       get :changes_summary_data_impact, params:{id: Uri.new(uri: "http://www.acme-pharma.com/aaa/V1#aaa").to_id, last_id: "bbb", ver_span: "x"}
-      expect(response.content_type).to eq("application/json")
-      expect(response.code).to eq("200")
-      expect(JSON.parse(response.body).deep_symbolize_keys[:data]).to eq(expected)
+      expect(check_good_json_response(response)).to eq(expected)
     end
 
     it "impact" do
@@ -111,9 +101,7 @@ describe Thesauri::ManagedConceptsController do
       ct.set_referenced_thesaurus(ref_ct)
       target = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C65047/V2#C65047"))
       put :upgrade, params:{id: tc.id, upgrade: {sponsor_th_id: ct.id}}
-      expect(response.content_type).to eq("application/json")
-      expect(response.code).to eq("200")
-      expect(JSON.parse(response.body).deep_symbolize_keys[:data]).to eq({})
+      expect(check_good_json_response(response)).to eq({:data=>{}})
     end
 
     it "upgrade, errors" do
@@ -125,9 +113,7 @@ describe Thesauri::ManagedConceptsController do
       expect_any_instance_of(Thesaurus::ManagedConcept).to receive(:upgrade).and_return(nil)
       expect_any_instance_of(Thesaurus::ManagedConcept).to receive(:errors).twice.and_return(errors)
       put :upgrade, params:{id: tc.id, upgrade: {sponsor_th_id: ct.id}}
-      expect(response.content_type).to eq("application/json")
-      expect(response.code).to eq("422")
-      expect(JSON.parse(response.body).deep_symbolize_keys[:errors]).to eq(["Error"])
+      expect(check_error_json_response(response)).to eq({:errors=>["Error"]})
     end
 
     it "upgrade data" do
@@ -146,14 +132,12 @@ describe Thesauri::ManagedConceptsController do
       s_th_new.set_referenced_thesaurus(r_th_new)
       s_th_new = Thesaurus.find_minimum(s_th_new.uri)
       get :upgrade_data, params:{id: tc_old.id, impact: {sponsor_th_id: s_th_new.id}}
-      expect(response.content_type).to eq("application/json")
-      expect(response.code).to eq("200")
       actual = check_good_json_response(response)
       check_file_actual_expected(actual, sub_dir, "upgrade_data_expected_1.yaml")
     end
 
     it "differences summary" do
-      expected = {items: {:"1" => {id: "1"}, :"2" => {id: "2"}}}
+      expected = {:items=>{:"1"=>{:id=>"1"}, :"2"=>{:id=>"2"}}}
       request.env['HTTP_ACCEPT'] = "application/json"
       expect(Thesaurus::ManagedConcept).to receive(:find_minimum).and_return(Thesaurus::ManagedConcept.new)
       expect(Thesaurus::ManagedConcept).to receive(:find_with_properties).and_return(Thesaurus::ManagedConcept.new)
@@ -168,20 +152,14 @@ describe Thesauri::ManagedConceptsController do
       expect(Thesaurus::ManagedConcept).to receive(:find_minimum).and_return(Thesaurus::ManagedConcept.new)
       expect_any_instance_of(Thesaurus::ManagedConcept).to receive(:extended?).and_return(true)
       get :is_extended, params:{id: Uri.new(uri: "http://www.acme-pharma.com/aaa/V1#aaa").to_id}
-      expect(response.content_type).to eq("application/json")
-      expect(response.code).to eq("200")
-      actual = JSON.parse(response.body).deep_symbolize_keys
-      expect(actual).to eq({data: true})
+      expect(check_good_json_response(response)).to eq({data: true})
     end
 
     it "is_extension" do
       expect(Thesaurus::ManagedConcept).to receive(:find_minimum).and_return(Thesaurus::ManagedConcept.new)
       expect_any_instance_of(Thesaurus::ManagedConcept).to receive(:extension?).and_return(false)
       get :is_extension, params:{id: Uri.new(uri: "http://www.acme-pharma.com/aaa/V1#aaa").to_id}
-      expect(response.content_type).to eq("application/json")
-      expect(response.code).to eq("200")
-      actual = JSON.parse(response.body).deep_symbolize_keys
-      expect(actual).to eq({data: false})
+      expect(check_good_json_response(response)).to eq({data: false})
     end
 
     it "show, no extension" do
@@ -300,9 +278,7 @@ describe Thesauri::ManagedConceptsController do
       request.env['HTTP_ACCEPT'] = "application/json"
       tc_uri =  Uri.new(uri: "http://www.cdisc.org/C28421/V1#C28421")
       get :children, params:{id: tc_uri.to_id}
-      expect(response.content_type).to eq("application/json")
-      expect(response.code).to eq("200")
-      results = JSON.parse(response.body).deep_symbolize_keys[:data]
+      results = check_good_json_response(response)
       check_file_actual_expected(results, sub_dir, "children_expected_1.yaml", equate_method: :hash_equal)
     end
 
@@ -331,9 +307,7 @@ describe Thesauri::ManagedConceptsController do
       expect(Thesaurus::ManagedConcept).to receive(:set_with_indicators_paginated).with({"count"=>"10", "offset"=>"10", "type"=>"subsets"}).and_return([{x: 1}, {x: 2}])
       request.env['HTTP_ACCEPT'] = "application/pdf"
       get :set_with_indicators, params:{managed_concept: {offset: "10", count: "10", type: "subsets"}}
-      expect(response.content_type).to eq("application/json")
-      expect(response.code).to eq("200")
-      results = JSON.parse(response.body).deep_symbolize_keys[:data]
+      results = check_good_json_response(response)
       expect(JSON.parse(response.body).deep_symbolize_keys[:count]).to eq(2)
       expect(JSON.parse(response.body).deep_symbolize_keys[:offset]).to eq(10)
       check_file_actual_expected(results, sub_dir, "set_with_indicators_expected_1.yaml", equate_method: :hash_equal)
@@ -351,10 +325,6 @@ describe Thesauri::ManagedConceptsController do
       load_cdisc_term_versions(1..61)
     end
 
-    after :all do
-      #
-    end
-
     it "shows the history, initial view" do
       params = {}
       get :history, params:{managed_concept: {identifier: "C66786", scope_id: IsoRegistrationAuthority.cdisc_scope.id}}
@@ -367,16 +337,12 @@ describe Thesauri::ManagedConceptsController do
     it "shows the history, page, bug GLAN-1107" do
       request.env['HTTP_ACCEPT'] = "application/json"
       get :history, params:{managed_concept: {identifier: "C66786", scope_id: IsoRegistrationAuthority.cdisc_scope.id, count: 20, offset: 0}}
-      expect(response.content_type).to eq("application/json")
-      expect(response.code).to eq("200")
-      actual = JSON.parse(response.body).deep_symbolize_keys[:data]
+      actual = check_good_json_response(response)
       check_file_actual_expected(actual, sub_dir, "history_expected_1a.yaml", equate_method: :hash_equal)
       expect(JSON.parse(response.body).deep_symbolize_keys[:offset]).to eq(0)
       expect(count = JSON.parse(response.body).deep_symbolize_keys[:count]).to eq(20)
       get :history, params:{managed_concept: {identifier: "C66786", scope_id: IsoRegistrationAuthority.cdisc_scope.id, count: 20, offset: 20}}
-      expect(response.content_type).to eq("application/json")
-      expect(response.code).to eq("200")
-      actual = JSON.parse(response.body).deep_symbolize_keys[:data]
+      actual = check_good_json_response(response)
       check_file_actual_expected(actual, sub_dir, "history_expected_1b.yaml", equate_method: :hash_equal)
       expect(JSON.parse(response.body).deep_symbolize_keys[:offset]).to eq(20)
       expect(count = JSON.parse(response.body).deep_symbolize_keys[:count]).to eq(0)
@@ -389,7 +355,6 @@ describe Thesauri::ManagedConceptsController do
     login_curator
 
     before :all do
-
       NameValue.destroy_all
       NameValue.create(name: "thesaurus_parent_identifier", value: "123")
       NameValue.create(name: "thesaurus_child_identifier", value: "456")
@@ -412,10 +377,8 @@ describe Thesauri::ManagedConceptsController do
       expect(Thesaurus::ManagedConcept).to receive(:new_identifier).and_return("XXX1")
       post :create
       mc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/XXX1/V1#XXX1"))
-      expect(response.content_type).to eq("application/json")
-      expect(response.code).to eq("200")
       expect(JSON.parse(response.body).deep_symbolize_keys[:errors]).to eq(nil)
-      actual = JSON.parse(response.body).deep_symbolize_keys[:data]
+      actual = check_good_json_response(response)
       # @todo really should check actual but issue with dates
       check_dates(mc, sub_dir, "create_expected_1.yaml", :creation_date, :last_change_date)
       check_file_actual_expected(mc.to_h, sub_dir, "create_expected_1.yaml", equate_method: :hash_equal)
@@ -424,10 +387,8 @@ describe Thesauri::ManagedConceptsController do
     it "create, error" do
       expect(Thesaurus::ManagedConcept).to receive(:generated_identifier?).and_return(false)
       post :create
-      expect(response.content_type).to eq("application/json")
-      expect(response.code).to eq("422")
       expect(JSON.parse(response.body).deep_symbolize_keys[:data]).to eq(nil)
-      actual = JSON.parse(response.body).deep_symbolize_keys[:errors]
+      actual = check_error_json_response(response)
       check_file_actual_expected(actual, sub_dir, "create_expected_2.yaml", equate_method: :hash_equal)
     end
 
@@ -437,9 +398,7 @@ describe Thesauri::ManagedConceptsController do
       token = Token.obtain(ct, @user)
       put :update, params:{id: mc.id, edit: {notation: "AAAAA", parent_id: ct.id }}
       mc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001"))
-      expect(response.content_type).to eq("application/json")
-      expect(response.code).to eq("200")
-      actual = JSON.parse(response.body).deep_symbolize_keys[:data]
+      actual = check_good_json_response(response)
       check_file_actual_expected(actual, sub_dir, "update_expected_1.yaml", equate_method: :hash_equal)
     end
 
@@ -491,9 +450,7 @@ describe Thesauri::ManagedConceptsController do
       expect_any_instance_of(Thesaurus::ManagedConcept).to receive(:add_child).with({"identifier"=>"A12345"}).and_return(new_um)
       expect(AuditTrail).to receive(:update_item_event).with(@user, instance_of(Thesaurus::ManagedConcept), "Code list owner: ACME, identifier: A00001, was updated.")
       post :add_child, params:{id: mc.id, managed_concept: {identifier: "A12345"}}
-      expect(response.content_type).to eq("application/json")
-      expect(response.code).to eq("200")
-      actual = JSON.parse(response.body).deep_symbolize_keys[:data]
+      actual = check_good_json_response(response)
       check_file_actual_expected(actual, sub_dir, "add_child_expected_1.yaml", equate_method: :hash_equal)
     end
 
@@ -512,9 +469,7 @@ describe Thesauri::ManagedConceptsController do
       expect(Token).to receive(:find_token).with(instance_of(Thesaurus::ManagedConcept), @user).and_return(token)
       expect_any_instance_of(Thesaurus::ManagedConcept).to receive(:add_child).with({"identifier"=>"A12345"}).and_return(new_um)
       post :add_child, params:{id: mc.id, managed_concept: {identifier: "A12345"}}
-      expect(response.content_type).to eq("application/json")
-      expect(response.code).to eq("200")
-      actual = JSON.parse(response.body).deep_symbolize_keys[:data]
+      actual = check_good_json_response(response)
       check_file_actual_expected(actual, sub_dir, "add_child_expected_2.yaml", equate_method: :hash_equal)
     end
 
@@ -532,9 +487,7 @@ describe Thesauri::ManagedConceptsController do
       expect(Token).to receive(:find_token).with(instance_of(Thesaurus::ManagedConcept), @user).and_return(token)
       expect_any_instance_of(Thesaurus::ManagedConcept).to receive(:add_child).with({"identifier"=>"A12345"}).and_return(new_um)
       post :add_child, params:{id: mc.id, managed_concept: {identifier: "A12345"}}
-      expect(response.content_type).to eq("application/json")
-      expect(response.code).to eq("422")
-      actual = JSON.parse(response.body).deep_symbolize_keys[:errors]
+      actual = check_error_json_response(response)
       check_file_actual_expected(actual, sub_dir, "add_child_expected_3.yaml", equate_method: :hash_equal)
     end
 
@@ -544,9 +497,7 @@ describe Thesauri::ManagedConceptsController do
       request.env['HTTP_ACCEPT'] = "application/json"
       expect(Token).to receive(:find_token).with(instance_of(Thesaurus::ManagedConcept), @user).and_return(nil)
       post :add_child, params:{id: mc.id, managed_concept: {identifier: "A12345"}}
-      expect(response.content_type).to eq("application/json")
-      expect(response.code).to eq("422")
-      actual = JSON.parse(response.body).deep_symbolize_keys[:errors]
+      actual = check_error_json_response(response)
       check_file_actual_expected(actual, sub_dir, "add_child_expected_4.yaml", equate_method: :hash_equal)
     end
 
@@ -557,9 +508,7 @@ describe Thesauri::ManagedConceptsController do
       uc = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000012"))
       token = Token.obtain(mc, @user)
       post :add_children_synonyms, params:{id: mc.id, managed_concept: {reference_id: uc.id}}
-      expect(response.content_type).to eq("application/json")
-      expect(response.code).to eq("200")
-      actual = JSON.parse(response.body).deep_symbolize_keys[:data]
+      actual = check_good_json_response(response)
       check_file_actual_expected(actual, sub_dir, "add_children_synonyms_expected_1.yaml", equate_method: :hash_equal)
     end
 
@@ -569,9 +518,7 @@ describe Thesauri::ManagedConceptsController do
       uc = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011"))
       token = Token.obtain(mc, @user)
       post :add_children_synonyms, params:{id: mc.id, managed_concept: {reference_id: uc.id}}
-      expect(response.content_type).to eq("application/json")
-      expect(response.code).to eq("422")
-      actual = JSON.parse(response.body).deep_symbolize_keys[:errors]
+      actual = check_error_json_response(response)
       check_file_actual_expected(actual, sub_dir, "add_children_synonyms_expected_2.yaml", equate_method: :hash_equal)
     end
 
@@ -871,7 +818,7 @@ describe Thesauri::ManagedConceptsController do
     before :all do
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
       load_files(schema_files, data_files)
-      load_cdisc_term_versions(1..34)
+      load_cdisc_term_versions(1..32)
       @lock_user = ua_add_user(email: "lock@example.com")
       Token.delete_all
     end

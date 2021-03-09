@@ -8,13 +8,13 @@ describe Forms::Groups::BcGroupsController do
   include IsoHelpers
   include ControllerHelpers
 
+  def sub_dir
+    return "controllers/forms/groups"
+  end
+
   describe "Update" do
 
     login_curator
-
-    def sub_dir
-      return "controllers/forms/groups"
-    end
 
     after :all do
       ua_remove_user("lock@example.com")
@@ -85,16 +85,12 @@ describe Forms::Groups::BcGroupsController do
 
     login_curator
 
-    def sub_dir
-      return "controllers/forms/groups"
-    end
-
     after :all do
       ua_remove_user("lock@example.com")
     end
 
     before :all do
-      data_files = ["forms/FN000150.ttl","forms/FN000120.ttl", "forms/CRF TEST 1.ttl","biomedical_concept_instances.ttl", "biomedical_concept_templates.ttl" ]
+      data_files = ["forms/CRF TEST 1.ttl"]
       load_files(schema_files, data_files)
       load_data_file_into_triple_store("mdr_identification.ttl")
       @lock_user = ua_add_user(email: "lock@example.com")
@@ -145,10 +141,6 @@ describe Forms::Groups::BcGroupsController do
   describe "Destroy" do
 
     login_curator
-
-    def sub_dir
-      return "controllers/forms/groups"
-    end
 
     after :all do
       ua_remove_user("lock@example.com")

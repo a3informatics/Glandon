@@ -1,0 +1,642 @@
+@prefix : <http://www.s-cubed.dk/VS_HORIZONTAL/V1#> .
+@prefix bf: <http://www.assero.co.uk/BusinessForm#> .
+@prefix isoC: <http://www.assero.co.uk/ISO11179Concepts#> .
+@prefix isoT: <http://www.assero.co.uk/ISO11179Types#> .
+@prefix isoR: <http://www.assero.co.uk/ISO11179Registration#> .
+@prefix isoI: <http://www.assero.co.uk/ISO11179Identification#> .
+@prefix bo: <http://www.assero.co.uk/BusinessOperational#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+<http://www.s-cubed.dk/VS_HORIZONTAL/V1>
+	rdf:type owl:Ontology ;
+.
+:F
+	rdf:type bf:Form ;
+	isoC:label "Form VS - Vital Signs HorizontalGeneric"^^xsd:string ;
+	isoT:hasState :F_RS ;
+	isoT:hasIdentifier :F_SI ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2021-02-28T14:44:22+01:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2021-02-28T14:44:22+01:00"^^xsd:dateTime ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:hasGroup <http://www.s-cubed.dk/VSHORIZONTAL/V1#NG_7616270b-faa5-4b95-9c28-239208083133> ;
+	bf:hasGroup <http://www.s-cubed.dk/VSHORIZONTAL/V1#NG_7f3bf67c-436e-4afa-98e9-d491e183f657> ;
+.
+:F_RS
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
+.
+:F_SI
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "VS HORIZONTAL"^^xsd:string ;
+	isoI:versionLabel "0.1.0"^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
+	isoI:semanticVersion "0.1.0"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/NS#SCUBED> ;
+.
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#NG_7616270b-faa5-4b95-9c28-239208083133>
+	rdf:type bf:NormalGroup ;
+	isoC:label "VS - Horizontal Header"^^xsd:string ;
+	bf:ordinal "1"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:hasItem <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_0c321163-cf8b-4f3f-9cd3-5de05a324ab8> ;
+	bf:hasItem <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_b9f6697c-80d2-44a1-8777-1a7dc566cca9> ;
+	bf:repeating "false"^^xsd:boolean ;
+.
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_0c321163-cf8b-4f3f-9cd3-5de05a324ab8>
+	rdf:type bf:Question ;
+	isoC:label "VSPERF"^^xsd:string ;
+	bf:ordinal "1"^^xsd:integer ;
+	bf:note "This general prompt question is used as a data management tool to verify that missing results are confirmed missing. This may be implemented for all tests collected on the same horizontal record or for each specific test. When mapped to SDTM, the value of VSPERF would apply to all tests on the same record. Use the CDASH variable [VSTESTCD]_VSPERF when implemented on a specific test basis.* No entries found for code list, parameters ['notation=CLC66742NYNY'].\n"^^xsd:string ;
+	bf:completion "Indicate if the vital signs were collected. If yes, include the appropriate details where indicated on the CRF."^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype "string"^^xsd:string ;
+	bf:format "1"^^xsd:string ;
+	bf:mapping "[NO MAPPING]"^^xsd:string ;
+	bf:questionText "Were vital signs performed?"^^xsd:string ;
+	bf:hasCodedValue <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_0c321163-cf8b-4f3f-9cd3-5de05a324ab8_R1> ;
+	bf:hasCodedValue <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_0c321163-cf8b-4f3f-9cd3-5de05a324ab8_R2> ;
+.
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_0c321163-cf8b-4f3f-9cd3-5de05a324ab8_R1>
+	rdf:type bo:Reference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49487> ;
+.
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_0c321163-cf8b-4f3f-9cd3-5de05a324ab8_R2>
+	rdf:type bo:Reference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742_C49488> ;
+.
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_b9f6697c-80d2-44a1-8777-1a7dc566cca9>
+	rdf:type bf:Question ;
+	isoC:label "VSDAT"^^xsd:string ;
+	bf:ordinal "2"^^xsd:integer ;
+	bf:note "A single date may be collected for all the vital sign measurements when they are performed on the same date. The date of each measurement can also be collected for each measurement using a CDASH variable [VSTESTCD]_VSDAT. The date of the measurements may be determined from a collected date of visit and in such cases a separate measurement date field is not required."^^xsd:string ;
+	bf:completion "Record date of measurements using this format (DD-MON-YYYY)."^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype "date"^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:mapping "[NO MAPPING]"^^xsd:string ;
+	bf:questionText "What was the date of the measurement(s)?"^^xsd:string ;
+.
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#NG_7f3bf67c-436e-4afa-98e9-d491e183f657>
+	rdf:type bf:NormalGroup ;
+	isoC:label "VS - Implementation Options: HorizontalGeneric"^^xsd:string ;
+	bf:ordinal "2"^^xsd:integer ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:hasItem <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_73119dea-f627-4d41-bd37-c4c80e13f790> ;
+	bf:hasItem <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_5f3534a9-5f07-422c-b3b9-be646ddb1167> ;
+	bf:hasItem <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_6b1db54c-969e-48fc-a1bd-fd47f527e227> ;
+	bf:hasItem <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_bc60e5c0-a131-4480-b8ca-f715a1cce2d9> ;
+	bf:hasItem <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_e22f2a64-286a-4ff6-843b-d4dce9b33f31> ;
+	bf:hasItem <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_d99151fd-dd0d-4969-a6b1-b3b7f49122c7> ;
+	bf:hasItem <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_835faea8-534d-4ffc-af59-6e5f5e6dff08> ;
+	bf:hasItem <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_5fc3389c-dbbc-4ccc-9b35-94dde4f74824> ;
+	bf:hasItem <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_a6a3df78-0584-44c2-b976-7f3d444a809e> ;
+	bf:hasItem <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_36c246a5-c8d3-4a6f-99de-aa946fc19c4b> ;
+	bf:hasItem <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_e1b001de-db50-4aa2-8d87-7be3aca18680> ;
+	bf:hasItem <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_d096ea62-4d41-4ff7-b05c-36c553dc722b> ;
+	bf:hasItem <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_b06029e0-5e77-40c8-8c72-5b95850b6ece> ;
+	bf:hasItem <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_820ca024-c568-4157-9b09-fa8d7cd7a3d9> ;
+	bf:hasItem <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_b901571b-21a6-4c10-b5f5-535e79707e50> ;
+	bf:hasItem <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_c4188f66-c54c-4acf-a4be-8413361db905> ;
+	bf:hasItem <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_8553ab26-c9aa-42e7-8838-913fd91d7f9e> ;
+	bf:hasItem <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_b6a8331e-70df-497c-b7af-b13b16b84503> ;
+	bf:hasItem <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_43360c4b-668b-4946-b15f-1e24fe132793> ;
+	bf:hasItem <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_90f93df4-ac20-42d7-8715-f3ee63519bfc> ;
+	bf:hasItem <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_72de3760-acdd-4367-be02-985b0fc05bc3> ;
+	bf:hasItem <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_cda86cc6-9fc2-4333-96d0-ed0bda808f95> ;
+	bf:repeating "false"^^xsd:boolean ;
+.
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_73119dea-f627-4d41-bd37-c4c80e13f790>
+	rdf:type bf:Question ;
+	isoC:label "SYSBP_VSORRES"^^xsd:string ;
+	bf:ordinal "1"^^xsd:integer ;
+	bf:note "Each test may be collected using the CDASH variable [TESTCD] e.g., SYSBP or [TESTCD]_VSORRES where TESTCD is the appropriate CT for the VS test code e.g., SYSBP_VSORRES. This CDASH variable name is an example of what \"variable name\" can be used in a denormalized data structure."^^xsd:string ;
+	bf:completion "Record the vital sign results."^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype "float"^^xsd:string ;
+	bf:format "3.0"^^xsd:string ;
+	bf:mapping "[NO MAPPING]"^^xsd:string ;
+	bf:questionText "What was the result of the Systolic Blood Pressure measurement?"^^xsd:string ;
+.
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_5f3534a9-5f07-422c-b3b9-be646ddb1167>
+	rdf:type bf:Question ;
+	isoC:label "SYSBP_VSORRESU"^^xsd:string ;
+	bf:ordinal "2"^^xsd:integer ;
+	bf:note "A single Unit field can be collected once for all measurements collected on the same horizontal record using VSUNIT. The value of VSUNIT applies to all measurements on that record when mapped to SDTM. If needed for each measurement, unit may be collected using the CDASH variable [VSTESTCD]_VSSTAT. Should be preprinted on the CRF with the associated test when possible, rather than collected in a field that requires the site to enter text."^^xsd:string ;
+	bf:completion "Record or select the original unit in which these data were collected, if not preprinted on CRF."^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype "float"^^xsd:string ;
+	bf:format "4.0"^^xsd:string ;
+	bf:mapping "[NO MAPPING]"^^xsd:string ;
+	bf:questionText "What was the unit of the Systolic Blood Pressure measurement?"^^xsd:string ;
+.
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_6b1db54c-969e-48fc-a1bd-fd47f527e227>
+	rdf:type bf:Question ;
+	isoC:label "SYSBP_VSORRESU units"^^xsd:string ;
+	bf:ordinal "3"^^xsd:integer ;
+	bf:note "* Multiple entries [C49670,C49670] found for parameters ['notation=mmHg'], using first found.\n"^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype "string"^^xsd:string ;
+	bf:format "20"^^xsd:string ;
+	bf:mapping "[NO MAPPING]"^^xsd:string ;
+	bf:questionText "What was the unit of the Systolic Blood Pressure measurement? units"^^xsd:string ;
+	bf:hasCodedValue <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_6b1db54c-969e-48fc-a1bd-fd47f527e227_R1> ;
+.
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_6b1db54c-969e-48fc-a1bd-fd47f527e227_R1>
+	rdf:type bo:Reference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66770/V38#C66770_C49670> ;
+.
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_bc60e5c0-a131-4480-b8ca-f715a1cce2d9>
+	rdf:type bf:Question ;
+	isoC:label "DIABP_VSORRES"^^xsd:string ;
+	bf:ordinal "4"^^xsd:integer ;
+	bf:note "Each test may be collected using the CDASH variable [TESTCD] e.g., SYSBP or [TESTCD]_VSORRES where TESTCD is the appropriate CT for the VS test code e.g., SYSBP_VSORRES. This CDASH variable name is an example of what \"variable name\" can be used in a denormalized data structure."^^xsd:string ;
+	bf:completion "Record the vital sign results."^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype "float"^^xsd:string ;
+	bf:format "3.0"^^xsd:string ;
+	bf:mapping "[NO MAPPING]"^^xsd:string ;
+	bf:questionText "What was the result of the Diastolic Blood Pressure measurement?"^^xsd:string ;
+.
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_e22f2a64-286a-4ff6-843b-d4dce9b33f31>
+	rdf:type bf:Question ;
+	isoC:label "DIABP_VSORRESU"^^xsd:string ;
+	bf:ordinal "5"^^xsd:integer ;
+	bf:note "A single Unit field can be collected once for all measurements collected on the same horizontal record using VSUNIT. The value of VSUNIT applies to all measurements on that record when mapped to SDTM. If needed for each measurement, unit may be collected using the CDASH variable [VSTESTCD]_VSSTAT. Should be preprinted on the CRF with the associated test when possible, rather than collected in a field that requires the site to enter text."^^xsd:string ;
+	bf:completion "Record or select the original unit in which these data were collected, if not preprinted on CRF."^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype "float"^^xsd:string ;
+	bf:format "4.0"^^xsd:string ;
+	bf:mapping "[NO MAPPING]"^^xsd:string ;
+	bf:questionText "What was the unit of the Diastolic Blood Pressure measurement?"^^xsd:string ;
+.
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_d99151fd-dd0d-4969-a6b1-b3b7f49122c7>
+	rdf:type bf:Question ;
+	isoC:label "DIABP_VSORRESU units"^^xsd:string ;
+	bf:ordinal "6"^^xsd:integer ;
+	bf:note "* Multiple entries [C49670,C49670] found for parameters ['notation=mmHg'], using first found.\n"^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype "string"^^xsd:string ;
+	bf:format "20"^^xsd:string ;
+	bf:mapping "[NO MAPPING]"^^xsd:string ;
+	bf:questionText "What was the unit of the Diastolic Blood Pressure measurement? units"^^xsd:string ;
+	bf:hasCodedValue <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_d99151fd-dd0d-4969-a6b1-b3b7f49122c7_R1> ;
+.
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_d99151fd-dd0d-4969-a6b1-b3b7f49122c7_R1>
+	rdf:type bo:Reference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66770/V38#C66770_C49670> ;
+.
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_835faea8-534d-4ffc-af59-6e5f5e6dff08>
+	rdf:type bf:Question ;
+	isoC:label "BP_VSPOS"^^xsd:string ;
+	bf:ordinal "7"^^xsd:integer ;
+	bf:note "Results may be affected by whether conditions for vital signs as specified in the protocol were properly met. One common condition is the subject's position. If the protocol requires this type of information, then a CDASH variable [VSTESTCD]_VSPOS may be created for each VSTESTCD and added to the CRF, if needed.* No entries found for code list, parameters ['notation=CLC71148POSITIONBP'].\n"^^xsd:string ;
+	bf:completion "Record the position of subject at time of test (e.g. SITTING)."^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype "string"^^xsd:string ;
+	bf:format "20"^^xsd:string ;
+	bf:mapping "[NO MAPPING]"^^xsd:string ;
+	bf:questionText "What was the position of the subject during the blood pressure measurement?"^^xsd:string ;
+	bf:hasCodedValue <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_835faea8-534d-4ffc-af59-6e5f5e6dff08_R1> ;
+	bf:hasCodedValue <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_835faea8-534d-4ffc-af59-6e5f5e6dff08_R2> ;
+	bf:hasCodedValue <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_835faea8-534d-4ffc-af59-6e5f5e6dff08_R3> ;
+	bf:hasCodedValue <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_835faea8-534d-4ffc-af59-6e5f5e6dff08_R4> ;
+	bf:hasCodedValue <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_835faea8-534d-4ffc-af59-6e5f5e6dff08_R5> ;
+.
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_835faea8-534d-4ffc-af59-6e5f5e6dff08_R1>
+	rdf:type bo:Reference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C71148/V6#C71148_C62165> ;
+.
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_835faea8-534d-4ffc-af59-6e5f5e6dff08_R2>
+	rdf:type bo:Reference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C71148/V53#C71148_C111310> ;
+.
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_835faea8-534d-4ffc-af59-6e5f5e6dff08_R3>
+	rdf:type bo:Reference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C71148/V6#C71148_C62122> ;
+.
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_835faea8-534d-4ffc-af59-6e5f5e6dff08_R4>
+	rdf:type bo:Reference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "4"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C71148/V62#C71148_C62166> ;
+.
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_835faea8-534d-4ffc-af59-6e5f5e6dff08_R5>
+	rdf:type bo:Reference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "5"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C71148/V6#C71148_C62167> ;
+.
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_5fc3389c-dbbc-4ccc-9b35-94dde4f74824>
+	rdf:type bf:Question ;
+	isoC:label "BP_VSLOC"^^xsd:string ;
+	bf:ordinal "8"^^xsd:integer ;
+	bf:note "Collected or preprinted when the sponsor needs to identify the specific anatomical location (e.g., ARM for blood pressure). Sponsors may collect the data using a subset list of controlled terminology on the CRF. In horizontal data collection, a CDASH variable [VSTESTCD]_VSLOC may be created for each VSTESTCD and added to the CRF, if needed. LAT, DIR, and PORTOT are used to further describe the anatomical location.* No entries found for code list, parameters ['notation=CLC74456LOCBP'].\n* No entries found in code list 'C74456' for item with submission value: 'PERIPHERAL ARTERY' or preferred term: 'Peripheral Artery'.\n"^^xsd:string ;
+	bf:completion "Record or select location on body where measurement was performed, if not preprinted on CRF."^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype "string"^^xsd:string ;
+	bf:format "20"^^xsd:string ;
+	bf:mapping "[NO MAPPING]"^^xsd:string ;
+	bf:questionText "What was the anatomical location where the blood pressure measurement was taken?"^^xsd:string ;
+	bf:hasCodedValue <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_5fc3389c-dbbc-4ccc-9b35-94dde4f74824_R1> ;
+	bf:hasCodedValue <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_5fc3389c-dbbc-4ccc-9b35-94dde4f74824_R2> ;
+	bf:hasCodedValue <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_5fc3389c-dbbc-4ccc-9b35-94dde4f74824_R3> ;
+.
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_5fc3389c-dbbc-4ccc-9b35-94dde4f74824_R1>
+	rdf:type bo:Reference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C74456/V51#C74456_C12681> ;
+.
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_5fc3389c-dbbc-4ccc-9b35-94dde4f74824_R2>
+	rdf:type bo:Reference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C74456/V8#C74456_C32608> ;
+.
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_5fc3389c-dbbc-4ccc-9b35-94dde4f74824_R3>
+	rdf:type bo:Reference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C74456/V8#C74456_C12838> ;
+.
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_a6a3df78-0584-44c2-b976-7f3d444a809e>
+	rdf:type bf:Question ;
+	isoC:label "HEIGHT_VSORRES"^^xsd:string ;
+	bf:ordinal "9"^^xsd:integer ;
+	bf:note "Each test may be collected using the CDASH variable [TESTCD] e.g., SYSBP or [TESTCD]_VSORRES where TESTCD is the appropriate CT for the VS test code e.g., SYSBP_VSORRES. This CDASH variable name is an example of what \"variable name\" can be used in a denormalized data structure."^^xsd:string ;
+	bf:completion "Record the vital sign results."^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype "string"^^xsd:string ;
+	bf:format "3"^^xsd:string ;
+	bf:mapping "[NO MAPPING]"^^xsd:string ;
+	bf:questionText "What was the result of the height measurement?"^^xsd:string ;
+.
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_36c246a5-c8d3-4a6f-99de-aa946fc19c4b>
+	rdf:type bf:Question ;
+	isoC:label "HEIGHT_VSORRESU"^^xsd:string ;
+	bf:ordinal "10"^^xsd:integer ;
+	bf:note "A single Unit field can be collected once for all measurements collected on the same horizontal record using VSUNIT. The value of VSUNIT applies to all measurements on that record when mapped to SDTM. If needed for each measurement, unit may be collected using the CDASH variable [VSTESTCD]_VSSTAT. Should be preprinted on the CRF with the associated test when possible, rather than collected in a field that requires the site to enter text.* No entries found for code list, parameters ['notation=CLC66770VSRESUHGT'].\n"^^xsd:string ;
+	bf:completion "Record or select the original unit in which these data were collected, if not preprinted on CRF."^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype "string"^^xsd:string ;
+	bf:format "4"^^xsd:string ;
+	bf:mapping "[NO MAPPING]"^^xsd:string ;
+	bf:questionText "What was the unit of the height measurement?"^^xsd:string ;
+	bf:hasCodedValue <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_36c246a5-c8d3-4a6f-99de-aa946fc19c4b_R1> ;
+	bf:hasCodedValue <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_36c246a5-c8d3-4a6f-99de-aa946fc19c4b_R2> ;
+.
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_36c246a5-c8d3-4a6f-99de-aa946fc19c4b_R1>
+	rdf:type bo:Reference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66770/V34#C66770_C49668> ;
+.
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_36c246a5-c8d3-4a6f-99de-aa946fc19c4b_R2>
+	rdf:type bo:Reference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66770/V42#C66770_C48500> ;
+.
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_e1b001de-db50-4aa2-8d87-7be3aca18680>
+	rdf:type bf:Question ;
+	isoC:label "WEIGHT_VSORRES"^^xsd:string ;
+	bf:ordinal "11"^^xsd:integer ;
+	bf:note "Each test may be collected using the CDASH variable [TESTCD] e.g., SYSBP or [TESTCD]_VSORRES where TESTCD is the appropriate CT for the VS test code e.g., SYSBP_VSORRES. This CDASH variable name is an example of what \"variable name\" can be used in a denormalized data structure."^^xsd:string ;
+	bf:completion "Record the vital sign results."^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype "string"^^xsd:string ;
+	bf:format "3"^^xsd:string ;
+	bf:mapping "WEIGHT"^^xsd:string ;
+	bf:questionText "What was the result of the weight measurement?"^^xsd:string ;
+.
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_d096ea62-4d41-4ff7-b05c-36c553dc722b>
+	rdf:type bf:Question ;
+	isoC:label "WEIGHT_VSORRESU"^^xsd:string ;
+	bf:ordinal "12"^^xsd:integer ;
+	bf:note "A single Unit field can be collected once for all measurements collected on the same horizontal record using VSUNIT. The value of VSUNIT applies to all measurements on that record when mapped to SDTM. If needed for each measurement, unit may be collected using the CDASH variable [VSTESTCD]_VSSTAT. Should be preprinted on the CRF with the associated test when possible, rather than collected in a field that requires the site to enter text.* No entries found for code list, parameters ['notation=CLC66770VSRESUWGT'].\n"^^xsd:string ;
+	bf:completion "Record or select the original unit in which these data were collected, if not preprinted on CRF."^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype "string"^^xsd:string ;
+	bf:format "4"^^xsd:string ;
+	bf:mapping "[NO MAPPING]"^^xsd:string ;
+	bf:questionText "What was the unit of the weight measurement?"^^xsd:string ;
+	bf:hasCodedValue <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_d096ea62-4d41-4ff7-b05c-36c553dc722b_R1> ;
+	bf:hasCodedValue <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_d096ea62-4d41-4ff7-b05c-36c553dc722b_R2> ;
+.
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_d096ea62-4d41-4ff7-b05c-36c553dc722b_R1>
+	rdf:type bo:Reference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66770/V49#C66770_C28252> ;
+.
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_d096ea62-4d41-4ff7-b05c-36c553dc722b_R2>
+	rdf:type bo:Reference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66770/V4#C66770_C48531> ;
+.
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_b06029e0-5e77-40c8-8c72-5b95850b6ece>
+	rdf:type bf:Question ;
+	isoC:label "PULSE_VSORRES"^^xsd:string ;
+	bf:ordinal "13"^^xsd:integer ;
+	bf:note "Each test may be collected using the CDASH variable [TESTCD] e.g., SYSBP or [TESTCD]_VSORRES where TESTCD is the appropriate CT for the VS test code e.g., SYSBP_VSORRES. This CDASH variable name is an example of what \"variable name\" can be used in a denormalized data structure."^^xsd:string ;
+	bf:completion "Record the vital sign results."^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype "float"^^xsd:string ;
+	bf:format "3.0"^^xsd:string ;
+	bf:mapping "[NO MAPPING]"^^xsd:string ;
+	bf:questionText "What was the result of the pulse measurement?"^^xsd:string ;
+.
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_820ca024-c568-4157-9b09-fa8d7cd7a3d9>
+	rdf:type bf:Question ;
+	isoC:label "PULSE_VSORRESU"^^xsd:string ;
+	bf:ordinal "14"^^xsd:integer ;
+	bf:note "A single Unit field can be collected once for all measurements collected on the same horizontal record using VSUNIT. The value of VSUNIT applies to all measurements on that record when mapped to SDTM. If needed for each measurement, unit may be collected using the CDASH variable [VSTESTCD]_VSSTAT. Should be preprinted on the CRF with the associated test when possible, rather than collected in a field that requires the site to enter text."^^xsd:string ;
+	bf:completion "Record or select the original unit in which these data were collected, if not preprinted on CRF."^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype "float"^^xsd:string ;
+	bf:format "4.0"^^xsd:string ;
+	bf:mapping "[NO MAPPING]"^^xsd:string ;
+	bf:questionText "What was the unit of the pulse measurement?"^^xsd:string ;
+.
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_b901571b-21a6-4c10-b5f5-535e79707e50>
+	rdf:type bf:Question ;
+	isoC:label "PULSE_VSORRESU units"^^xsd:string ;
+	bf:ordinal "15"^^xsd:integer ;
+	bf:note "* Multiple entries [C49673,C49673,C49673] found for parameters ['notation=beats/min'], using first found.\n"^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype "string"^^xsd:string ;
+	bf:format "20"^^xsd:string ;
+	bf:mapping "[NO MAPPING]"^^xsd:string ;
+	bf:questionText "What was the unit of the pulse measurement? units"^^xsd:string ;
+	bf:hasCodedValue <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_b901571b-21a6-4c10-b5f5-535e79707e50_R1> ;
+.
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_b901571b-21a6-4c10-b5f5-535e79707e50_R1>
+	rdf:type bo:Reference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66770/V44#C66770_C49673> ;
+.
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_c4188f66-c54c-4acf-a4be-8413361db905>
+	rdf:type bf:Question ;
+	isoC:label "PULSE_VSLOC"^^xsd:string ;
+	bf:ordinal "16"^^xsd:integer ;
+	bf:note "Collected or preprinted when the sponsor needs to identify the specific anatomical location (e.g., ARM for blood pressure). Sponsors may collect the data using a subset list of controlled terminology on the CRF. In horizontal data collection, a CDASH variable [VSTESTCD]_VSLOC may be created for each VSTESTCD and added to the CRF, if needed. LAT, DIR, and PORTOT are used to further describe the anatomical location.* No entries found for code list, parameters ['notation=CLC74456LOCPULSE'].\n* No entries found in code list 'C74456' for item with submission value: 'PERIPHERAL ARTERY' or preferred term: 'Peripheral Artery'.\n"^^xsd:string ;
+	bf:completion "Record or select location on body where measurement was performed, if not preprinted on CRF."^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype "string"^^xsd:string ;
+	bf:format "20"^^xsd:string ;
+	bf:mapping "[NO MAPPING]"^^xsd:string ;
+	bf:questionText "What was the anatomical location where the pulse measurement was taken?"^^xsd:string ;
+	bf:hasCodedValue <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_c4188f66-c54c-4acf-a4be-8413361db905_R1> ;
+	bf:hasCodedValue <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_c4188f66-c54c-4acf-a4be-8413361db905_R2> ;
+	bf:hasCodedValue <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_c4188f66-c54c-4acf-a4be-8413361db905_R3> ;
+	bf:hasCodedValue <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_c4188f66-c54c-4acf-a4be-8413361db905_R4> ;
+	bf:hasCodedValue <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_c4188f66-c54c-4acf-a4be-8413361db905_R5> ;
+.
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_c4188f66-c54c-4acf-a4be-8413361db905_R1>
+	rdf:type bo:Reference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C74456/V51#C74456_C12681> ;
+.
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_c4188f66-c54c-4acf-a4be-8413361db905_R2>
+	rdf:type bo:Reference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C74456/V51#C74456_C12687> ;
+.
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_c4188f66-c54c-4acf-a4be-8413361db905_R3>
+	rdf:type bo:Reference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C74456/V53#C74456_C12691> ;
+.
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_c4188f66-c54c-4acf-a4be-8413361db905_R4>
+	rdf:type bo:Reference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "4"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C74456/V66#C74456_C32478> ;
+.
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_c4188f66-c54c-4acf-a4be-8413361db905_R5>
+	rdf:type bo:Reference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "5"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C74456/V51#C74456_C12715> ;
+.
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_8553ab26-c9aa-42e7-8838-913fd91d7f9e>
+	rdf:type bf:Question ;
+	isoC:label "RESP_VSORRES"^^xsd:string ;
+	bf:ordinal "17"^^xsd:integer ;
+	bf:note "Each test may be collected using the CDASH variable [TESTCD] e.g., SYSBP or [TESTCD]_VSORRES where TESTCD is the appropriate CT for the VS test code e.g., SYSBP_VSORRES. This CDASH variable name is an example of what \"variable name\" can be used in a denormalized data structure."^^xsd:string ;
+	bf:completion "Record the vital sign results."^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype "float"^^xsd:string ;
+	bf:format "3.0"^^xsd:string ;
+	bf:mapping "[NO MAPPING]"^^xsd:string ;
+	bf:questionText "What was the result of the respiratory rate measurement?"^^xsd:string ;
+.
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_b6a8331e-70df-497c-b7af-b13b16b84503>
+	rdf:type bf:Question ;
+	isoC:label "RESP_VSORRESU"^^xsd:string ;
+	bf:ordinal "18"^^xsd:integer ;
+	bf:note "A single Unit field can be collected once for all measurements collected on the same horizontal record using VSUNIT. The value of VSUNIT applies to all measurements on that record when mapped to SDTM. If needed for each measurement, unit may be collected using the CDASH variable [VSTESTCD]_VSSTAT. Should be preprinted on the CRF with the associated test when possible, rather than collected in a field that requires the site to enter text."^^xsd:string ;
+	bf:completion "Record or select the original unit in which these data were collected, if not preprinted on CRF."^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype "float"^^xsd:string ;
+	bf:format "4.0"^^xsd:string ;
+	bf:mapping "[NO MAPPING]"^^xsd:string ;
+	bf:questionText "What was the unit of the Respiratory Rate Unit measurement?"^^xsd:string ;
+.
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_43360c4b-668b-4946-b15f-1e24fe132793>
+	rdf:type bf:Question ;
+	isoC:label "RESP_VSORRESU units"^^xsd:string ;
+	bf:ordinal "19"^^xsd:integer ;
+	bf:note "* Multiple entries [C49674,C49674] found for parameters ['notation=breaths/min'], using first found.\n"^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype "string"^^xsd:string ;
+	bf:format "20"^^xsd:string ;
+	bf:mapping "[NO MAPPING]"^^xsd:string ;
+	bf:questionText "What was the unit of the Respiratory Rate Unit measurement? units"^^xsd:string ;
+	bf:hasCodedValue <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_43360c4b-668b-4946-b15f-1e24fe132793_R1> ;
+.
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_43360c4b-668b-4946-b15f-1e24fe132793_R1>
+	rdf:type bo:Reference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66770/V44#C66770_C49674> ;
+.
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_90f93df4-ac20-42d7-8715-f3ee63519bfc>
+	rdf:type bf:Question ;
+	isoC:label "TEMP_VSORRES"^^xsd:string ;
+	bf:ordinal "20"^^xsd:integer ;
+	bf:note "Each test may be collected using the CDASH variable [TESTCD] e.g., SYSBP or [TESTCD]_VSORRES where TESTCD is the appropriate CT for the VS test code e.g., SYSBP_VSORRES. This CDASH variable name is an example of what \"variable name\" can be used in a denormalized data structure."^^xsd:string ;
+	bf:completion "Record the vital sign results."^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype "string"^^xsd:string ;
+	bf:format "5"^^xsd:string ;
+	bf:mapping "[NO MAPPING]"^^xsd:string ;
+	bf:questionText "What was the result of the temperature measurement?"^^xsd:string ;
+.
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_72de3760-acdd-4367-be02-985b0fc05bc3>
+	rdf:type bf:Question ;
+	isoC:label "TEMP_VSORRESU"^^xsd:string ;
+	bf:ordinal "21"^^xsd:integer ;
+	bf:note "A single Unit field can be collected once for all measurements collected on the same horizontal record using VSUNIT. The value of VSUNIT applies to all measurements on that record when mapped to SDTM. If needed for each measurement, unit may be collected using the CDASH variable [VSTESTCD]_VSSTAT. Should be preprinted on the CRF with the associated test when possible, rather than collected in a field that requires the site to enter text.* No entries found for code list, parameters ['notation=CLC66770VSRESUTEMP'].\n"^^xsd:string ;
+	bf:completion "Record or select the original unit in which these data were collected, if not preprinted on CRF."^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype "string"^^xsd:string ;
+	bf:format "4"^^xsd:string ;
+	bf:mapping "[NO MAPPING]"^^xsd:string ;
+	bf:questionText "What was the unit of the Temperature Unit measurement?"^^xsd:string ;
+	bf:hasCodedValue <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_72de3760-acdd-4367-be02-985b0fc05bc3_R1> ;
+	bf:hasCodedValue <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_72de3760-acdd-4367-be02-985b0fc05bc3_R2> ;
+.
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_72de3760-acdd-4367-be02-985b0fc05bc3_R1>
+	rdf:type bo:Reference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66770/V4#C66770_C42559> ;
+.
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_72de3760-acdd-4367-be02-985b0fc05bc3_R2>
+	rdf:type bo:Reference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C66770/V17#C66770_C44277> ;
+.
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_cda86cc6-9fc2-4333-96d0-ed0bda808f95>
+	rdf:type bf:Question ;
+	isoC:label "TEMP_VSLOC"^^xsd:string ;
+	bf:ordinal "22"^^xsd:integer ;
+	bf:note "Collected or preprinted when the sponsor needs to identify the specific anatomical location (e.g., ARM for blood pressure). Sponsors may collect the data using a subset list of controlled terminology on the CRF. In horizontal data collection, a CDASH variable [VSTESTCD]_VSLOC may be created for each VSTESTCD and added to the CRF, if needed. LAT, DIR, and PORTOT are used to further describe the anatomical location.* No entries found for code list, parameters ['notation=CLC74456LOCTEMP'].\n"^^xsd:string ;
+	bf:completion "Record or select location on body where measurement was performed, if not preprinted on CRF."^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype "string"^^xsd:string ;
+	bf:format "11"^^xsd:string ;
+	bf:mapping "[NO MAPPING]"^^xsd:string ;
+	bf:questionText "What was the anatomical location where the temperature was taken?"^^xsd:string ;
+	bf:hasCodedValue <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_cda86cc6-9fc2-4333-96d0-ed0bda808f95_R1> ;
+	bf:hasCodedValue <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_cda86cc6-9fc2-4333-96d0-ed0bda808f95_R2> ;
+	bf:hasCodedValue <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_cda86cc6-9fc2-4333-96d0-ed0bda808f95_R3> ;
+	bf:hasCodedValue <http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_cda86cc6-9fc2-4333-96d0-ed0bda808f95_R4> ;
+.
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_cda86cc6-9fc2-4333-96d0-ed0bda808f95_R1>
+	rdf:type bo:Reference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C74456/V61#C74456_C12674> ;
+.
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_cda86cc6-9fc2-4333-96d0-ed0bda808f95_R2>
+	rdf:type bo:Reference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C74456/V51#C74456_C12394> ;
+.
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_cda86cc6-9fc2-4333-96d0-ed0bda808f95_R3>
+	rdf:type bo:Reference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C74456/V28#C74456_C89803> ;
+.
+<http://www.s-cubed.dk/VSHORIZONTAL/V1#Q_cda86cc6-9fc2-4333-96d0-ed0bda808f95_R4>
+	rdf:type bo:Reference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "4"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C74456/V59#C74456_C12421> ;
+.

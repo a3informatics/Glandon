@@ -1,6 +1,6 @@
 import CustomPropsEditablePanel from 'shared/base/custom_properties/cp_editable_panel'
 
-import ItemsPicker from 'shared/ui/items_picker/items_picker'
+import ItemsPicker from 'shared/ui/items_picker/v2/items_picker'
 import { $ajax } from 'shared/helpers/ajax'
 import { $confirm } from 'shared/helpers/confirmable'
 import { isCDISC } from 'shared/helpers/utils'
@@ -77,12 +77,9 @@ export default class CLEditor extends CustomPropsEditablePanel {
   addChildren(children, param = 'set_ids') {
 
     // Map children to array of objects with id and context_id props
-    const data = children.map( d => {
-      return { 
-        context_id: d.context.id, 
-        id: d.id 
-      } 
-    });
+    const data = children.map( ({ id, _context }) => 
+      Object.assign( {}, { id, context_id: _context.id } )
+    )
 
     this._executeRequest({
       url: this.urls.addChildren,
@@ -161,7 +158,7 @@ export default class CLEditor extends CustomPropsEditablePanel {
 
     // Add Existing Child button click
     $( '#add-existing-button' ).on( 'click', () => 
-      this.itemSelector.show() 
+      this.picker.show() 
     );
 
     // Refresh button click
@@ -256,11 +253,12 @@ export default class CLEditor extends CustomPropsEditablePanel {
    */
   _initSelector() {
 
-    this.itemSelector = new ItemsPicker({
+    this.picker = new ItemsPicker({
       id: "add-children",
       multiple: true,
-      types: ['unmanaged_concept'],
-      onSubmit: s => this.addChildren( s.asObjectsArray() )
+      types: [ ItemsPicker.allTypes.TH_CLI ],
+      description: 'Select one or more Code List Items to add to the Code List.',
+      onSubmit: s => this.addChildren( s.asObjects() )
     });
 
   }

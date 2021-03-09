@@ -1,6 +1,8 @@
-<%= javascript_tag "let isItemPaired = #{item.paired?},
-                        pairSelectPath = '#{pair_thesauri_managed_concept_path(item)}',
-                        unpairPath = '#{unpair_thesauri_managed_concept_path(item)}';"%>
+<%= javascript_tag "const pairOptions = {
+                            isPaired: #{ item.paired? },
+                            pairUrl: '#{ pair_thesauri_managed_concept_path(item) }',
+                            unpairUrl: '#{ unpair_thesauri_managed_concept_path(item) }'
+                          }" %>
 
 <% if item.paired_as_parent? %>
   <%= render partial: "shared/context_menu/menu_item", :locals => { url: "#", id: "unpair-button",

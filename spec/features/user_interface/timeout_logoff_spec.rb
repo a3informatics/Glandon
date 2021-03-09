@@ -22,11 +22,11 @@ describe "Login Session Timeout - automatic logoff", :type => :feature do
     it "search", js:true do
       ua_content_admin_login
       click_navbar_terminology
-      click_link 'Search Terminologies'
-      sleep 0.6
-      wait_for_ajax(10)
-      page.find("#select-all-latest").click
-      click_button "Submit and proceed"
+      click_on 'Search Terminologies'
+      ui_in_modal do
+        click_on 'Search in Latest' 
+      end 
+      wait_for_ajax 10 
       expect(Devise).to receive(:timeout_in).twice.and_return(2.seconds)
       wait_for_ajax(10)
       sleep 3
@@ -41,7 +41,7 @@ describe "Login Session Timeout - automatic logoff", :type => :feature do
       wait_for_ajax 10
       expect(Devise).to receive(:timeout_in).twice.and_return(2.seconds)
       sleep 3
-      click_link 'Search Terminologies'
+      click_on 'Search Terminologies'
       wait_for_ajax(10)
       expect(page).to have_content "You need to sign in or sign up before continuing"
     end

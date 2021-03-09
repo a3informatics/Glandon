@@ -24,6 +24,7 @@ export default class TablePanel {
    * @param {Array} params.buttons DT buttons definitions objects, empty by default
    * @param {Object} params.tableOptions Custom DT options object, will be merged with this instance's _tableOpts, optional
    * @param {function} params.loadCallback Callback to data fully loaded, receives table instance as argument, optional
+   * @param {function} params.errorCallback Callback on data load error, optional
    * @param {boolean} params.autoHeight Specifies whether the height of the table should match the window size, and add a horizontal scroll, optional
    * @param {element} params.errorDiv Custom element to display flash errors in, optional
    * @param {Object} args Optional additional arguments for extending classes
@@ -41,14 +42,15 @@ export default class TablePanel {
     buttons = [],
     tableOptions = {},
     loadCallback = () => {},
+    errorCallback = () => {},
     autoHeight = false,
     errorDiv
   }, args = {}) {
 
     Object.assign(this, {
       selector, url, param, count, extraColumns, deferLoading, cache,
-      paginated, order, buttons, tableOptions, loadCallback, autoHeight,
-      errorDiv, ...args
+      paginated, order, buttons, tableOptions, loadCallback, errorCallback,
+      autoHeight, errorDiv, ...args
     });
 
     this.initialize( deferLoading );
@@ -93,6 +95,18 @@ export default class TablePanel {
 
     if ( draw )
       this.table.draw();
+
+  }
+
+  /**
+   * Resets the table to initial state (keeps data)
+   */
+  reset() {
+
+    this.table.search('')
+              .page( 'first' )
+              .order( this.order )
+              .draw()
 
   }
 
@@ -173,6 +187,7 @@ export default class TablePanel {
       url: this.url,
       cache: this.cache,
       errorDiv: this.errorDiv,
+      onError: () => this.errorCallback(),
       done: data => {
 
         this._render( data );
@@ -195,6 +210,7 @@ export default class TablePanel {
       strictParam: this.param,
       cache: this.cache,
       errorDiv: this.errorDiv,
+      onError: () => this.errorCallback(),
       pageDone: data => {
 
         this._render( data )
@@ -393,9 +409,7 @@ export default class TablePanel {
       processing: true,
       autoWidth: false,
       language: {
-        infoFiltered: '',
-        emptyTable: 'No data.',
-        processing: renderSpinner( 'small' )
+        emptyTable: 'No data.'
       },
       buttons: [...this.buttons]
     }
@@ -405,6 +419,12 @@ export default class TablePanel {
 
     if ( this.tableOptions ) // Merge with custom options
       Object.assign( opts, this.tableOptions );
+
+    // Language options that cannot be overridden 
+    Object.assign( opts.language, {
+      infoFiltered: '',
+      processing: renderSpinner( 'small' )
+    })
 
     return opts;
 

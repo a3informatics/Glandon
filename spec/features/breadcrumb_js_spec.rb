@@ -11,10 +11,9 @@ describe "Breadcrumb", :type => :feature do
   before :all do
     data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "form_crf_test_1.ttl", "sdtm_model_and_ig.ttl"]
     load_files(schema_files, data_files)
-    load_cdisc_term_versions(1..62)
+    load_cdisc_term_versions(1..55)
     load_data_file_into_triple_store("mdr_identification.ttl")
-    load_data_file_into_triple_store("biomedical_concept_templates.ttl")
-    load_data_file_into_triple_store("biomedical_concept_instances.ttl")
+    load_test_bc_template_and_instances
     AdHocReport.destroy_all
     ua_create
   end
@@ -120,9 +119,10 @@ describe "Breadcrumb", :type => :feature do
       # Search Terms
       click_on 'Search Terminologies'
       ui_in_modal do
-        find('#select-all-latest').click
-        click_on 'Submit and proceed'
+        click_on 'Search in Latest'
       end
+      wait_for_ajax 10 
+      
       expect(page).to have_content "Search Latest"
       ui_check_breadcrumb("Terminology", "Search", "", "")
       next_link_crumb(1, 'Index: Terminology', "Terminology", "", "")
@@ -189,6 +189,7 @@ describe "Breadcrumb", :type => :feature do
       click_navbar_bc
       wait_for_ajax 20
       ui_check_breadcrumb("Biomedical Concepts", "", "", "")
+      ui_table_search('index', 'HR')
       find(:xpath, "//tr[contains(.,'HR')]/td/a").click
       wait_for_ajax 20
       ui_check_breadcrumb("Biomedical Concepts", "S-cubed, HR", "", "")
