@@ -70,7 +70,7 @@ describe "B - Transcelerate BCs" do
 
   def create_complex_datatype(params, cdt_template, t_item)
     cdt = BiomedicalConcept::ComplexDatatype.new(label: cdt_template.short_name)
-    cdt.based_on = cdt_template
+    cdt.is_complex_datatype = cdt_template
     if !t_item.nil?
       t_item.has_complex_datatype_objects
       t_cdt = t_item.has_complex_datatype.find{|x| x.label == cdt_template.short_name} 
