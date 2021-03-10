@@ -1,0 +1,25 @@
+<% content_for :page_title do %> Index: Protocols <% end %>
+
+<%= javascript_pack_tag 'protocols/index' %>
+
+<% first_level_breadcrumb (:protocols) %>
+
+<div class="row">
+  <%= render layout: "shared/headers/header_minimal", :locals => {badge: "icon-protocol",
+    main_text: "Protocols", sub_text: "Browse all Protocols in the system." } do %>
+      <div class="btns-wrap"></div>
+  <% end %>
+</div>
+
+
+<div class="row">
+
+  <% content_for :description do %>
+    Below is the list of all <span class="text-link font-regular">sponsor</span> Protocols.
+    Use the Search bar to find the Protocol you are looking for.
+    To see the History page of a Protocol, click on 'History'.
+  <% end %>
+
+  <%= render partial: "shared/iso_managed/index/index_card", locals: { title: "Protocols", url: protocols_path } %>
+
+</div>
