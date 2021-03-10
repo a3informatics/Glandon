@@ -18,6 +18,7 @@ describe Element do
   end
 
   it "create" do
+    allow(SecureRandom).to receive(:uuid).and_return("1234-5678-9012-3301")
     actual = Element.create(label: "XXX")
     expect(actual.label).to eq("XXX")
     expect(actual.in_arm).to eq(nil)
@@ -30,6 +31,7 @@ describe Element do
   end
 
   it "simple update" do
+    allow(SecureRandom).to receive(:uuid).and_return("1234-5678-9012-3301")
     actual = Element.create(label: "XXX")
     actual = Element.find(actual.uri)
     actual.label = "New label"
