@@ -111,9 +111,10 @@ puts colourize("Domain: #{domain.prefix}, Class: #{get_temporary(domain,"referen
       found = find_base_class(domain)
       domain.children.each do |variable|
         next if variable.ct_and_format.empty?
-        notations = extract_notations(variable.ct_and_format) 
+        notations = extract_notations(variable.ct_and_format)
         notations.each do |notation|
           cl = @ct.find_notation(notation)
+          cl = cl.select {|c| c[:rdf_type] == Thesaurus::ManagedConcept.rdf_type}
 puts colourize("***** Error finding CT Ref: #{notation} *****", "red") if cl.empty?
           next if cl.empty?
           ref = OperationalReferenceV3::TmcReference.new(context: @ct.uri, reference: cl.first[:uri], label: notation)
