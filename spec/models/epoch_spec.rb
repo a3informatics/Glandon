@@ -23,6 +23,7 @@ describe "Epoch" do
     end
 
     it "create an instance" do
+      allow(SecureRandom).to receive(:uuid).and_return("1234-5678-9012-3301")
       item = Epoch.create(label: "XXX", ordinal: 1)
       actual = Epoch.find(item.uri)
       expect(actual.label).to eq("XXX")
