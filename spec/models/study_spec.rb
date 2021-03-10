@@ -66,7 +66,7 @@ describe "Study" do
     end
 
     it "Study example" do
-      p1 = Protocol.create(identifier: "XXX")
+      p1 = Protocol.create(identifier: "XXX", title: "Protocol title")
       s1 = Study.create(identifier: "MY STUDY", label: "My Study", description: "Some def", implements: p1.uri)
       s1.implements = p1.uri
       s1.save
@@ -76,8 +76,8 @@ describe "Study" do
       expect(actual.scoped_identifier).to eq("MY STUDY")
       check_dates(actual, sub_dir, "study_expected_1.yaml", :creation_date, :last_change_date)
       check_file_actual_expected(actual.to_h, sub_dir, "study_expected_1.yaml", equate_method: :hash_equal)
-      actual = actual.protocols
-      expect(actual).to match_array([p1.uri])
+      actual = actual.protocol
+      expect(actual.uri).to eq(p1.uri)
     end
 
   end
