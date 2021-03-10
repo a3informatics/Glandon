@@ -169,15 +169,23 @@ const rdfTypesMap = {
   },
 
   // Study Types 
+  STUDY: {
+    rdfType: 'http://www.assero.co.uk/Protocol#Study',
+    name: 'Study',
+    param: 'study',
+    url: '/studies'
+  },
   PROTOCOL: {
     rdfType: 'http://www.assero.co.uk/Protocol#Protocol',
     name: 'Protocol',
-    param: 'protocol'
+    param: 'protocols',
+    url: '/protocols'
   },
   PROTOCOL_TEMPLATE: {
     rdfType: 'http://www.assero.co.uk/Protocol#ProtocolTemplate',
     name: 'Protocol Template',
-    param: 'protocol_template'
+    param: 'protocol_template',
+    url: '/protocol_templates'
   },
   
   UNKNOWN: {

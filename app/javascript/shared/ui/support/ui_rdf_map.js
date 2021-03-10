@@ -135,6 +135,22 @@ const rdfMap = {
     char: '\ue958',
     color: colors.primaryBright
   },
+  
+  [ getRdfType('STUDY') ]: {
+    icon: 'icon-study',
+    char: '\ue95b',
+    color: colors.secondaryLight
+  },
+  [ getRdfType('PROTOCOL') ]: {
+    icon: 'icon-protocol',
+    char: '\ue961',
+    color: colors.primaryLight
+  },
+  [ getRdfType('TUC_REF') ]: {
+    icon: 'icon-codelist-item',
+    char: '\ue960',
+    color: colors.primaryLight
+  },
 
   unknown: {
     icon: 'icon-help',
