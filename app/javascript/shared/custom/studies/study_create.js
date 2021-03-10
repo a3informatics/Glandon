@@ -1,6 +1,6 @@
 import CreateItemView from 'shared/base/create_item_view'
 
-import ItemsPicker from 'shared/ui/items_picker/items_picker'
+import ItemsPicker from 'shared/ui/items_picker/v2/items_picker'
 import { managedItemRef } from 'shared/ui/strings'
 
 /**
@@ -121,8 +121,9 @@ export default class CreateStudyView extends CreateItemView {
 
     return new ItemsPicker({
       id: 'new-study',
-      types: ['protocol'],
-      onSubmit: selection => this._onSelectTemplate( selection.asObjectsArray()[0] )
+      types: [ ItemsPicker.allTypes.PROTOCOL ],
+      description: "Select a Protocol to base the new Study on",
+      onSubmit: s => this._onSelectTemplate( s.asObjects()[0] )
     });
 
   }
