@@ -173,6 +173,16 @@ class Protocol < IsoManagedV2
     self.save
   end       
 
+  def self.dependency_paths
+    [
+      '<http://www.assero.co.uk/Protocol#specifiesArm>/'\
+      '^<http://www.assero.co.uk/Protocol#inArm>/'\
+      '<http://www.assero.co.uk/Protocol#containsTimepoint>/'\
+      '<http://www.assero.co.uk/Protocol#hasPlanned>/'\
+      '<http://www.assero.co.uk/Protocol#isDerivedFrom>'
+    ]
+  end
+
 private
 
   def clone_if(item, collection)

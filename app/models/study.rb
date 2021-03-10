@@ -75,4 +75,10 @@ class Study < IsoManagedV2
     results.map{|k,v| v}
   end
 
+  def self.dependency_paths
+    [
+      '<http://www.assero.co.uk/Protocol#implements>'
+    ]
+  end
+
 end

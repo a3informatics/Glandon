@@ -7,11 +7,13 @@ defaults: &defaults
   "BiomedicalConceptInstance":
     - "Form"
     - "SdtmSponsorDomain"
+    - "Protocol"
   "SdtmClass":
     - "Form"
     - "SdtmSponsorDomain"
   "Form": []
-
+  "Protocol":
+    - "Study"
 development:
   <<: *defaults
 
