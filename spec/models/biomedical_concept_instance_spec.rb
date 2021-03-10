@@ -273,25 +273,6 @@ describe BiomedicalConceptInstance do
 
   end 
 
-  describe "Other Tests" do
-
-    before :all do
-      load_files(schema_files, [])
-      load_cdisc_term_versions(1..55)
-      load_data_file_into_triple_store("mdr_identification.ttl")
-      load_test_bc_template_and_instances
-    end
-
-    it "allows an object to be exported as SPARQL" do
-      item = BiomedicalConceptInstance.find_full(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
-      sparql = Sparql::Update.new
-      item.to_sparql(sparql, true)
-    #Xwrite_text_file_2(sparql.to_create_sparql, sub_dir, "to_sparql_expected_1.txt")
-      check_sparql_no_file(sparql.to_create_sparql, "to_sparql_expected_1.txt")
-    end
-
-  end
-
   describe "Path Tests" do
 
     it "returns read path" do
@@ -308,12 +289,21 @@ describe BiomedicalConceptInstance do
 
   end
 
-  describe "Dependency Tests" do
+  describe "Other Tests" do
 
     before :all do
       load_files(schema_files, [])
+      load_cdisc_term_versions(1..59)
       load_data_file_into_triple_store("mdr_identification.ttl")
       load_test_bc_template_and_instances
+    end
+
+    it "allows an object to be exported as SPARQL" do
+      item = BiomedicalConceptInstance.find_full(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
+      sparql = Sparql::Update.new
+      item.to_sparql(sparql, true)
+    #Xwrite_text_file_2(sparql.to_create_sparql, sub_dir, "to_sparql_expected_1.txt")
+      check_sparql_no_file(sparql.to_create_sparql, "to_sparql_expected_1.txt")
     end
 
     it "dependency paths" do
@@ -321,11 +311,18 @@ describe BiomedicalConceptInstance do
       check_file_actual_expected(paths, sub_dir, "dependency_paths_expected_1.yaml", equate_method: :hash_equal)
     end
 
-    it "dependencies" do
+    it "dependencies I" do
       expect(Form).to receive(:dependency_paths).and_return([])
       item = BiomedicalConceptInstance.find_full(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
       results = item.dependency_required_by
       expect(results).to eq([])
+    end
+
+    it "dependencies II" do
+      expect(Form).to receive(:dependency_paths).and_return([])
+      item = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.cdisc.org/C66770/V59#C66770"))
+      results = item.dependency_required_by
+      check_file_actual_expected(results.map{|x| x.uri.to_s}, sub_dir, "dependency_paths_expected_2.yaml", equate_method: :hash_equal)
     end
 
   end

@@ -156,7 +156,7 @@ class Form < IsoManagedV2
       '<http://www.assero.co.uk/BusinessForm#hasItem>/'\
       '<http://www.assero.co.uk/BusinessForm#hasCodedValue>/'\
       '<http://www.assero.co.uk/BusinessOperational#reference>/'\
-      '^<http://www.assero.co.uk/BusinessOperational#narrower>',
+      '^<http://www.assero.co.uk/Thesaurus#narrower>',
 
       '<http://www.assero.co.uk/BusinessForm#hasGroup>/'\
       '<http://www.assero.co.uk/BusinessForm#hasSubGroup>*/'\

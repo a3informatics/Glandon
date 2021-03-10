@@ -218,6 +218,14 @@ describe "SDTM Sponsor Domains", :type => :feature do
     it "allows to add and remove BC Association to and from an SDTM SD" do 
       bc_associations 'SDTM Sponsor Domain', '0.1.0'
 
+      # Check Picker types 
+      click_on 'Add items'
+      ui_in_modal do 
+        ip_check_tabs([:bci], 'add-items')
+        ip_check_tabs_gone([:managed_concept, :form, :sdtm_sd], 'add-items')
+        click_on 'Close'
+      end
+
       # Add
       add_bc_associations( [
         { identifier: 'HEIGHT', version: '1' },
