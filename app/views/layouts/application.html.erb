@@ -363,6 +363,8 @@
                     <ul class="nav">
                       <%= render partial: "shared/sidebar/link_on_user_role", :locals => {:klass => Thesaurus, link_id: "main_nav_studies",
                         link_path: studies_path, link_text: "Studies", current_link: controller_name.to_s} %>
+                      <%= render partial: "shared/sidebar/link_on_user_role", :locals => {:klass => Thesaurus, link_id: "main_nav_protocols",
+                        link_path: protocols_path, link_text: "Protocols", current_link: controller_name.to_s} %>
                     </ul>
                   </div>
                 <% end %>

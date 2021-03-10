@@ -30,6 +30,7 @@ module ApplicationHelper
     managed_collections: {link: "/managed_collections", text: "Managed Collections", icon: "icon-collection"},
     user_settings: {link: "/user_settings", text: "User Settings"},
     users: {link: "/users", text: "Users"},
+    protocols: {link: "/protocols", text: "Protocols", icon: "icon-protocol"},
     studies: {link: "/studies", text: "Studies", icon: "icon-study"},
     triples: {link: "#", text: "Triples", icon: "icon-triple"},
     items_generic: {link: "#", text: "Items", icon: "icon-multi"}
@@ -264,6 +265,7 @@ module ApplicationHelper
 
     @controller_map_swb = {
       studies: @category_studies,
+      protocols: @category_studies,
     }
 
     @controller_map_swb[controller_name.to_sym]
