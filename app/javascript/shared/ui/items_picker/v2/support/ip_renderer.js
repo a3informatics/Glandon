@@ -117,14 +117,17 @@ export default class IPRenderer {
    */
   _tabsLayout(types) {
 
-    const tabOptionsWrap = $( '<div>' ).addClass( 'tabs-sel' ),
+    const tabScrollWrap = $( '<div>' ).addClass( 'tabs-scroll-wrap no-break scroll-styled scroll-horizontal' ),
+          tabOptionsWrap = $( '<div>' ).addClass( 'tabs-sel' ),
 
           tabs = this._typesAsTabs( types ),
           
           tabWraps = this._typesAsTabContents( types )
   
-    return tabOptionsWrap.append( tabs )
-                         .add( tabWraps )
+    tabOptionsWrap.append( tabs )
+
+    return tabScrollWrap.append( tabOptionsWrap )
+                        .add( tabWraps )
 
   }
 

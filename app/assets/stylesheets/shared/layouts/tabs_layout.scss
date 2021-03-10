@@ -23,7 +23,7 @@
     display: block; 
   }
 
-  .tab-option {
+  a.tab-option {
     margin-right: -4px;
   }
 }
@@ -80,7 +80,7 @@
   // Tab Option with Icon
   &.with-icon{
     height: 44px;
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
     padding: 4px 14px;
