@@ -4,6 +4,7 @@ describe "Timepoint" do
 
   include DataHelpers
   include PublicFileHelpers
+  include BiomedicalConceptInstanceFactory
 
   def sub_dir
     return "models/timepoint"
@@ -50,7 +51,6 @@ describe "Timepoint" do
 
     before :all do
       load_files(schema_files, [])
-      load_cdisc_term_versions(1..62)
       load_data_file_into_triple_store("mdr_transcelerate_identification.ttl")
       load_data_file_into_triple_store("hackathon_thesaurus.ttl")
       load_data_file_into_triple_store("hackathon_tas.ttl")
@@ -58,17 +58,15 @@ describe "Timepoint" do
       load_data_file_into_triple_store("hackathon_endpoints.ttl")
       load_data_file_into_triple_store("hackathon_parameters.ttl")
       load_data_file_into_triple_store("hackathon_protocols.ttl")
-      load_data_file_into_triple_store("hackathon_bc_instances.ttl")
-      load_data_file_into_triple_store("hackathon_bc_templates.ttl")
       load_data_file_into_triple_store("hackathon_protocol_templates.ttl")
     end
 
     it "add and remove managed" do
-      offset = Timepoint::Offset.create(label: "TP", window_minus: 1, window_plus: 3, window_offset: 2, unit: "Week")
+      offset = Timepoint::Offset.create(label: "TPO", window_minus: 1, window_plus: 3, window_offset: 2, unit: "Week")
       tp = Timepoint.create(label: "TP", lower_bound: 1, upper_bound: 3, at_offset: offset.uri)
-      bc1 = BiomedicalConceptInstance.find(Uri.new(uri: "http://www.s-cubed.dk/WEIGHT/V1#BCI"))
-      bc2 = BiomedicalConceptInstance.find(Uri.new(uri: "http://www.s-cubed.dk/BMI/V1#BCI"))
-      bc3 = BiomedicalConceptInstance.find(Uri.new(uri: "http://www.s-cubed.dk/AGE/V1#BCI"))     
+      bc1 = create_biomedical_concept_instance("WEIGHT1", "WEIGHT")
+      bc2 = create_biomedical_concept_instance("BMI1", "BMI")
+      bc3 = create_biomedical_concept_instance("AGE1", "RACE")     
       result = tp.add_managed([bc1.uri, bc2.uri, bc3.uri])
       tp = Timepoint.find(tp.uri)
       expect(tp.has_planned_objects.count).to eq(3)
