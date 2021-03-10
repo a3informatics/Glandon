@@ -148,7 +148,7 @@ describe Forms::Groups::NormalGroupsController do
       expect(JSON.parse(response.body).deep_symbolize_keys[:errors]).to eq(nil)
       actual = check_good_json_response(response)
       actual = actual[:data].sort_by{ |x| x[:label]}
-      fix_dates_array_hash(actual, sub_dir, "add_child_normal_group_expected_2.yaml", :creation_date, :last_change_date)
+      fix_dates_array_hash(actual, [:has_biomedical_concept, :reference], sub_dir, "add_child_normal_group_expected_2.yaml", :creation_date, :last_change_date)
       check_file_actual_expected(actual, sub_dir, "add_child_normal_group_expected_2.yaml", equate_method: :hash_equal)
     end
 

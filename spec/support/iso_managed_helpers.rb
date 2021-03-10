@@ -24,11 +24,14 @@ module IsoManagedHelpers
     end
   end
 
-  def fix_dates_array_hash(actual_array_hash, sub_dir, filename, *args)
+  def fix_dates_array_hash(actual_array_hash, path, sub_dir, filename, *args)
+    *path = path
     expected = read_yaml_file(sub_dir, filename)
     actual_array_hash.each_with_index do |item, index|
       args.each do |a|
-        item[a] = expected[index][a]
+        ac = path.empty? ? item : item.dig(*path)
+        ex = path.empty? ? expected[index] : expected[index].dig(*path)
+        ac[a] = ex[a]
       end
     end
   end

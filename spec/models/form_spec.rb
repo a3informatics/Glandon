@@ -1251,7 +1251,7 @@ puts "Extra:    #{uri_result.sort - diff.sort}"
 
   describe "Dependency Tests" do
     
-    before :each do
+    before :all do
       data_files = [
         "forms/FN000150.ttl", 
         "forms/F001_bc_only_group_form.ttl", 
@@ -1260,6 +1260,7 @@ puts "Extra:    #{uri_result.sort - diff.sort}"
       ]
       load_files(schema_files, data_files)
       load_data_file_into_triple_store("mdr_identification.ttl")
+      load_cdisc_term_versions(1..59)
     end
 
     it "dependency paths" do
@@ -1277,6 +1278,12 @@ puts "Extra:    #{uri_result.sort - diff.sort}"
       item = BiomedicalConceptInstance.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/HEIGHT/V1#BCI"))
       results = item.dependency_required_by
       check_file_actual_expected(results.map{|x| x.to_h}, sub_dir, "dependencies_expected_1.yaml", equate_method: :hash_equal)
+    end
+
+    it "dependencies II" do
+      item = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.cdisc.org/C66770/V59#C66770"))
+      results = item.dependency_required_by
+      check_file_actual_expected(results.map{|x| x.uri.to_s}, sub_dir, "dependency_paths_expected_2.yaml", equate_method: :hash_equal)
     end
 
   end

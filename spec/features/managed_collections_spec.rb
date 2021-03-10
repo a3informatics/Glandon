@@ -183,6 +183,13 @@ describe "Managed Collections", :type => :feature do
       edit_mc 'MC1', '0.1.0'
       ui_check_table_info('managed-items', 1, 2, 2)
 
+      # Check Picker types 
+      click_on 'Add items'
+      ui_in_modal do 
+        ip_check_tabs([:bci, :managed_concept,  :form, :sdtm_sd], 'add-items')
+        click_on 'Close'
+      end
+
       # Add
       add_managed_items([
         { identifier: 'AGE', version: '1' },
