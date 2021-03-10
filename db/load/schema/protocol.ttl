@@ -127,6 +127,12 @@
   rdfs:label "Study Biomedical Concept"^^xsd:string ;
   skos:definition "An Biomedical Concept used within a study"^^xsd:string ;
 .
+:Element
+  rdf:type owl:Class ;
+  rdfs:subClassOf bo:Component ;
+  rdfs:label "Element"^^xsd:string ;
+  skos:definition "A protocol element. Provides the link between arms and epochs."^^xsd:string ;
+.
 :implements
   rdf:type owl:ObjectProperty ;
   rdfs:subPropertyOf isoC:link ;
