@@ -22,7 +22,7 @@ describe "Therapeutic Area Data" do
   end
 
   before :each do
-    setup
+    #setup
   end
 
   after :each do
@@ -33,7 +33,7 @@ describe "Therapeutic Area Data" do
 
     it "TAs" do
       item_1 = TherapeuticArea.new(label:"Influenza")
-      item_1.uri = item_1.create_url()
+      item_1.uri = item_1.create_uri(item_1.class.base_uri)
     end
 
   end
