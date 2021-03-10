@@ -265,7 +265,7 @@ describe "E - Transcelerate Protocol" do
       load_local_file_into_triple_store(sub_dir, "hackathon_indications.ttl")
       load_local_file_into_triple_store(sub_dir, "hackathon_tas.ttl")
       load_local_file_into_triple_store(sub_dir, "hackathon_endpoints.ttl")
-      load_data_file_into_triple_store("biomedical_concept_instances.ttl")
+      load_local_file_into_triple_store(sub_dir, "hackathon_bc_instances.ttl")
       # load_local_file_into_triple_store(sub_dir, "hackathon_form_cibic.ttl")
       # load_local_file_into_triple_store(sub_dir, "hackathon_form_dad.ttl")
       # load_local_file_into_triple_store(sub_dir, "hackathon_form_lab_samples.ttl")
