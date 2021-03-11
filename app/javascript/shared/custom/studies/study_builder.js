@@ -24,7 +24,7 @@ export default class StudyBuilder {
      this._setListeners();
 
      // Start with a default tab opened
-     this.tabs.content.instance.show();
+     this.tabs.endpoints.instance.show();
 
   }
 

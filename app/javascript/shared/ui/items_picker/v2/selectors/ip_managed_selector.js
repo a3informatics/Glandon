@@ -19,13 +19,14 @@ export default class ManagedSelector {
    * @param {EventHandler} params.eventHandler Items Picker shared EventHandler instance 
    */
   constructor({
+    parentSelector,
     type,
     options,
     selectionHandler,
     eventHandler
   }) {
 
-    const selector = '#' + IPHelper.typeToSelectorId( type )
+    const selector = `${ parentSelector } #${ IPHelper.typeToSelectorId( type ) }`
 
     Object.assign( this, {
       selector,
@@ -200,7 +201,9 @@ export default class ManagedSelector {
    * @param {array} selected Selected item data 
    */
   _onHistorySelect(selected) {
-    this._SelectionHandler.add( selected )
+    this._SelectionHandler.add( selected, {
+      updatePanels: !this.options.multiple // Update selection of other panels only when single item selection enabled 
+    } )
   }
 
   /**

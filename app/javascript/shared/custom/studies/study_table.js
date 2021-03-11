@@ -1,6 +1,8 @@
 import TablePanel from 'shared/base/table_panel'
+import EndpointEditor from 'shared/custom/studies/endpoint_editor'
+
 import { dtBooleanColumn } from 'shared/helpers/dt/dt_columns'
-import { renderSpinner } from 'shared/ui/spinners'
+import { iconBtn } from 'shared/ui/buttons'
 import colors from 'shared/ui/colors'
 
 /**
@@ -19,16 +21,36 @@ export default class StudyTable extends TablePanel  {
      type
    } = {}) {
 
-     super({
-       selector, url,
-       paginated: false,
-       deferLoading: true
-     }, { type });
+    super({
+      selector, url,
+      paginated: false,
+      deferLoading: true
+    }, { 
+      type
+    });
+
+    if ( type === 'endpoints' )
+      this.endpointEditor = new EndpointEditor({ 
+        formatText: text => this._formatText(text) 
+      })
 
   }
 
   show() {
     this.loadData();
+  }
+
+
+  /*** Private ***/
+
+
+  _setTableListeners() {
+
+    if ( this.type === 'endpoints' )
+      this.table.on( 'click', 'a.btn', 
+        e => this.endpointEditor.edit( this._getRowDataFrom$( $(e.currentTarget) ) )
+      )
+
   }
 
   /**
@@ -86,14 +108,19 @@ export default class StudyTable extends TablePanel  {
   }
 
   get _endpointColumns() {
-
+ 
     return [
       { data: 'type' },
       {
         data: 'text',
         render: (data, type) => type === 'display' ? this._formatText( data ) : data
       },
-      dtBooleanColumn( 'selected', { orderable: false } )
+      dtBooleanColumn( 'selected', { orderable: false } ),
+      {
+        orderable: false,
+        render: (data, type) => type === 'display' ? 
+          iconBtn({ icon: 'edit', color: 'light' }) : '' 
+      }
     ];
 
   }
