@@ -175,7 +175,9 @@ export default class UnmanagedSelector extends ManagedSelector {
   _onChildrenSelect(selected) {
 
     selected = this._addContextToItems( selected ) 
-    this._SelectionHandler.add( selected )
+    this._SelectionHandler.add( selected, {
+      updatePanels: !this.options.multiple // Update selection of other panels only when single item selection enabled 
+    } )
 
   }
 

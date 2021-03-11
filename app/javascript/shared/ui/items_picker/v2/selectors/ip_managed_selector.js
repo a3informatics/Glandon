@@ -200,7 +200,9 @@ export default class ManagedSelector {
    * @param {array} selected Selected item data 
    */
   _onHistorySelect(selected) {
-    this._SelectionHandler.add( selected )
+    this._SelectionHandler.add( selected, { 
+      updatePanels: !this.options.multiple // Update selection of other panels only when single item selection enabled 
+    } )
   }
 
   /**
