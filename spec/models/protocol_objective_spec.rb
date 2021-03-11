@@ -23,6 +23,7 @@ describe "ProtocolObjective" do
     end
 
     it "create an instance" do
+      allow(SecureRandom).to receive(:uuid).and_return("1234-5678-9012-3301")
       actual = ProtocolObjective.create(identifier: "XXX")
       expect(actual.scoped_identifier).to eq("XXX")
       expect(actual.version).to eq(1)

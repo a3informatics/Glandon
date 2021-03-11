@@ -18,6 +18,7 @@ describe ProtocolEndpoint do
   end
 
   it "create" do
+    allow(SecureRandom).to receive(:uuid).and_return("1234-5678-9012-3301")
     actual = ProtocolEndpoint.create(identifier: "XXX")
     expect(actual.scoped_identifier).to eq("XXX")
     expect(actual.version).to eq(1)
@@ -33,6 +34,7 @@ describe ProtocolEndpoint do
   end
 
   it "simple update" do
+    allow(SecureRandom).to receive(:uuid).and_return("1234-5678-9012-3301")
     actual = ProtocolEndpoint.create(identifier: "XXX")
     actual = ProtocolEndpoint.find_minimum(actual.uri)
     actual.label = "New label"

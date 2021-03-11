@@ -1,4 +1,4 @@
-class ProtocolObjective < IsoConceptV2
+class ProtocolObjective < IsoManagedV2
 
   configure rdf_type: "http://www.assero.co.uk/Protocol#ProtocolObjective",
             base_uri: "http://#{ENV["url_authority"]}/PROBJ",

@@ -1,12 +1,11 @@
 ---
-:id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vWFhYL1YxI1BSRU5E
-:uri: http://www.acme-pharma.com/XXX/V1#PREND
+:id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUFJFTkQjMTIzNC01Njc4LTkwMTItMzMwMQ==
+:uri: http://www.assero.co.uk/PREND#1234-5678-9012-3301
 :rdf_type: http://www.assero.co.uk/Protocol#ProtocolEndpoint
 :label: New label
-:tagged: []
 :has_state:
-  :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vWFhYL1YxI1BSRU5EX1JT
-  :uri: http://www.acme-pharma.com/XXX/V1#PREND_RS
+  :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUFJFTkQjMTIzNC01Njc4LTkwMTItMzMwMV9SUw==
+  :uri: http://www.assero.co.uk/PREND#1234-5678-9012-3301_RS
   :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationState
   :registration_status: Incomplete
   :administrative_note: ''
@@ -31,8 +30,8 @@
       :name: ACME Pharma
       :authority: www.acme-pharma.com
 :has_identifier:
-  :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vWFhYL1YxI1BSRU5EX1NJ
-  :uri: http://www.acme-pharma.com/XXX/V1#PREND_SI
+  :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUFJFTkQjMTIzNC01Njc4LTkwMTItMzMwMV9TSQ==
+  :uri: http://www.assero.co.uk/PREND#1234-5678-9012-3301_SI
   :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
   :identifier: XXX
   :version_label: ''
@@ -45,12 +44,13 @@
     :short_name: ACME
     :name: ACME Pharma
     :authority: www.acme-pharma.com
+:has_previous_version: 
 :origin: ''
 :change_description: ''
 :creation_date: '2020-03-28T13:40:04+01:00'
 :last_change_date: '2020-03-28T13:40:04+01:00'
 :explanatory_comment: ''
 :full_text: ''
-:has_multiple: []
-:has_parameter: []
 :derived_from_endpoint: 
+:primary_timepoint: 
+:secondary_timepoint: []

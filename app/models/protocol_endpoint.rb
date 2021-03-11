@@ -1,4 +1,4 @@
-class ProtocolEndpoint < IsoConceptV2
+class ProtocolEndpoint < IsoManagedV2
 
   configure rdf_type: "http://www.assero.co.uk/Protocol#ProtocolEndpoint",
             base_uri: "http://#{ENV["url_authority"]}/PREND",
