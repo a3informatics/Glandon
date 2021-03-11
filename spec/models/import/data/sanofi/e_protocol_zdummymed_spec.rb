@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe "E - Transcelerate Protocol" do
+describe "E - ZDUMMYMED Protocol" do
 
   include DataHelpers
   include PublicFileHelpers

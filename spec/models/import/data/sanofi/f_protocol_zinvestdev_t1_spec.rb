@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe "E - Transcelerate Protocol" do
+describe "F - ZINVESTDEV T1 Protocol" do
 
   include DataHelpers
   include PublicFileHelpers
@@ -40,6 +40,7 @@ describe "E - Transcelerate Protocol" do
       load_local_file_into_triple_store(sub_dir, "b_parameters.ttl")
       load_local_file_into_triple_store(sub_dir, "c_endpoints.ttl")
       load_local_file_into_triple_store(sub_dir, "c_objectives.ttl")
+      load_local_file_into_triple_store(sub_dir, "d_indications.ttl")
       load_local_file_into_triple_store(sub_dir, "d_therapeutic_areas.ttl")
 
       th = Thesaurus.find_full(Uri.new(uri: "http://www.cdisc.org/CT/V68#TH"))
@@ -259,25 +260,25 @@ describe "E - Transcelerate Protocol" do
       # Epochs & Arms
       e_1 = Epoch.new(label: "Screening", ordinal: 1)
       e_1.uri = e_1.create_uri(e_1.class.base_uri)
-      e_2 = Epoch.new(label: "Treatment", ordinal: 2)
+      e_2 = Epoch.new(label: "Supportive Care | Exercise-led Phase", ordinal: 2)
       e_2.uri = e_2.create_uri(e_2.class.base_uri)
-      a_1 = Arm.new(label: "High Dose", description: "High Dose", arm_type: "", ordinal: 1)
+      e_3 = Epoch.new(label: "Follow-Up | Home-based Phase", ordinal: 3)
+      e_3.uri = e_3.create_uri(e_2.class.base_uri)
+      a_1 = Arm.new(label: "rtCGM", description: "Real-time Continuous Glucose Monitoring", arm_type: "", ordinal: 1)
       a_1.uri = a_1.create_uri(a_1.class.base_uri)
-      a_2 = Arm.new(label: "Low Dose", description: "Low Dose", arm_type: "", ordinal: 2)
+      a_2 = Arm.new(label: "isCGM", description: "Intermittent scan (flash) Continuous Glucose Monitoring", arm_type: "", ordinal: 2)
       a_2.uri = a_2.create_uri(a_2.class.base_uri)
-      a_3 = Arm.new(label: "Placebo", description: "Placebo", arm_type: "", ordinal: 3)
-      a_3.uri = a_3.create_uri(a_3.class.base_uri)
-      el_1 = Element.new(label: "Screen", in_epoch: e_1.uri, in_arm: a_1.uri, contains_timepoint: [tp_items[0].uri])
+      el_1 = Element.new(label: "Screening", in_epoch: e_1.uri, in_arm: a_1.uri, contains_timepoint: [tp_items[0].uri])
       el_1.uri = el_1.create_uri(el_1.class.base_uri)
-      el_2 = Element.new(label: "Screen", in_epoch: e_1.uri, in_arm: a_2.uri, contains_timepoint: [tp_items[0].uri])
+      el_2 = Element.new(label: "Screening", in_epoch: e_2.uri, in_arm: a_2.uri, contains_timepoint: [tp_items[0].uri])
       el_2.uri = el_2.create_uri(el_2.class.base_uri)
-      el_3 = Element.new(label: "Screen", in_epoch: e_1.uri, in_arm: a_3.uri, contains_timepoint: [tp_items[0].uri])
+      el_3 = Element.new(label: "Exercise Led Phase", in_epoch: e_2.uri, in_arm: a_1.uri, contains_timepoint: [tp_items[1].uri, tp_items[2].uri, tp_items[3].uri])
       el_3.uri = el_3.create_uri(el_3.class.base_uri)
-      el_4 = Element.new(label: "High Dose", in_epoch: e_2.uri, in_arm: a_1.uri, contains_timepoint: [tp_items[1].uri, tp_items[2].uri, tp_items[3].uri, tp_items[4].uri])
+      el_4 = Element.new(label: "Exercise Led Phase", in_epoch: e_2.uri, in_arm: a_2.uri, contains_timepoint: [tp_items[1].uri, tp_items[2].uri, tp_items[3].uri])
       el_4.uri = el_4.create_uri(el_4.class.base_uri)
-      el_5 = Element.new(label: "Low Dose", in_epoch: e_2.uri, in_arm: a_2.uri, contains_timepoint: [tp_items[1].uri, tp_items[2].uri, tp_items[3].uri, tp_items[4].uri])
+      el_5 = Element.new(label: "Home-based Phase", in_epoch: e_3.uri, in_arm: a_1.uri, contains_timepoint: [tp_items[4].uri, tp_items[5].uri, tp_items[6].uri])
       el_5.uri = el_5.create_uri(el_5.class.base_uri)
-      el_6 = Element.new(label: "Placebo", in_epoch: e_2.uri, in_arm: a_3.uri, contains_timepoint: [tp_items[1].uri, tp_items[2].uri, tp_items[3].uri, tp_items[4].uri])
+      el_6 = Element.new(label: "Home-based Phase", in_epoch: e_3.uri, in_arm: a_2.uri, contains_timepoint: [tp_items[4].uri, tp_items[5].uri, tp_items[6].uri])
       el_6.uri = el_6.create_uri(el_6.class.base_uri)
 
       # Protocol
@@ -286,15 +287,30 @@ describe "E - Transcelerate Protocol" do
       tc = th.find_by_identifiers(["C66735", "C15228"])["C15228"]
       m_ref = OperationalReferenceV3::TucReference.new(context: th.uri, reference: tc, optional: false, ordinal: 2)
 
+      # Protocols
+      tc = th.find_by_identifiers(["C66737", "C15601"])["C15601"]
+      phase_ref = OperationalReferenceV3::TucReference.new(context: th.uri, reference: tc, optional: false, ordinal: 3)
+      tc = th.find_by_identifiers(["C99077", "C98388"])["C98388"]
+      type_ref = OperationalReferenceV3::TucReference.new(context: th.uri, reference: tc, optional: false, ordinal: 4)
+      ta = TherapeuticArea.where(label: "Nervous system disorders")
+      ind = Indication.where(label: "Alzheimer's Disease")
+      p_1 = Protocol.new(label: "LY246708",
+        title: "Safety and Efficacy of the Xanomeline Transdermal Therapeutic System (TTS) in Patients with Mild to Moderate Alzheimer’s Disease.",
+        short_title: "LY246708", acronym: "H2Q-MC-LZZT",
+        in_ta: ta.first.uri, for_indication: [ind.first.uri], study_type: type_ref,
+        study_phase: phase_ref, masking: m_ref, intervention_model: im_ref,
+        specifies_epoch: [e_1.uri, e_2.uri, e_3.uri], specifies_arm: [a_1.uri, a_2.uri],
+        specifies_objective: [obj_items[0].uri, obj_items[1].uri, obj_items[2].uri, obj_items[3].uri])
+      p_1.set_initial("ZINVESTDEV T1DM")
 
       # Generate
       sparql = Sparql::Update.new
       sparql.default_namespace(p_1.uri.namespace)
       e_1.to_sparql(sparql, true)
       e_2.to_sparql(sparql, true)
+      e_3.to_sparql(sparql, true)
       a_1.to_sparql(sparql, true)
       a_2.to_sparql(sparql, true)
-      a_3.to_sparql(sparql, true)
       el_1.to_sparql(sparql, true)
       el_2.to_sparql(sparql, true)
       el_3.to_sparql(sparql, true)
@@ -302,16 +318,13 @@ describe "E - Transcelerate Protocol" do
       el_5.to_sparql(sparql, true)
       el_6.to_sparql(sparql, true)
       p_1.to_sparql(sparql, true)
-      p_2.to_sparql(sparql, true)
-      p_3.to_sparql(sparql, true)
-      p_4.to_sparql(sparql, true)
-      ass1.to_sparql(sparql, true)
+#      ass1.to_sparql(sparql, true)
       v_items.each {|x| x.to_sparql(sparql, true)}
       tp_items.each {|x| x.to_sparql(sparql, true)}
       o_items.each {|x| x.to_sparql(sparql, true)}
       obj_items.each {|x| x.to_sparql(sparql, true)}
       ep_items.each {|x| x.to_sparql(sparql, true)}
-      sass_items.each {|x| x.to_sparql(sparql, true)}
+#      sass_items.each {|x| x.to_sparql(sparql, true)}
 
       full_path = sparql.to_file
     copy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "zinvestdev1_protocols.ttl")
