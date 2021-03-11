@@ -24,11 +24,7 @@ export default class StudyBuilder {
      this._setListeners();
 
      // Start with a default tab opened
-    //  this.tabs.endpoints.instance.show();
-    setTimeout( () => 
-      $( this.selector ).find( '.tab-option:contains("Endpoints")' ).get(0).click(),
-      10
-    )
+     this.tabs.endpoints.instance.show();
 
   }
 
