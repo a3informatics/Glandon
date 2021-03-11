@@ -7,6 +7,7 @@ describe "Protocol" do
   include SparqlHelpers
   include ThesauriHelpers
   include IsoManagedHelpers
+  include SecureRandomHelpers
 
   def sub_dir
     return "models/protocol"
@@ -62,7 +63,7 @@ describe "Protocol" do
 
     before :all do
       load_files(schema_files, [])
-      load_cdisc_term_versions(1..62)
+      #load_cdisc_term_versions(1..62)
       load_data_file_into_triple_store("mdr_transcelerate_identification.ttl")
       load_data_file_into_triple_store("hackathon_thesaurus.ttl")
       load_data_file_into_triple_store("hackathon_tas.ttl")
@@ -70,8 +71,8 @@ describe "Protocol" do
       load_data_file_into_triple_store("hackathon_endpoints.ttl")
       load_data_file_into_triple_store("hackathon_parameters.ttl")
       load_data_file_into_triple_store("hackathon_protocols.ttl")
-      load_data_file_into_triple_store("hackathon_bc_instances.ttl")
-      load_data_file_into_triple_store("hackathon_bc_templates.ttl")
+      #load_data_file_into_triple_store("hackathon_bc_instances.ttl")
+      #load_data_file_into_triple_store("hackathon_bc_templates.ttl")
       load_data_file_into_triple_store("hackathon_protocol_templates.ttl")
       load_data_file_into_triple_store("hackathon_objectives.ttl")
     end
@@ -83,6 +84,7 @@ describe "Protocol" do
     end
 
     it "from template" do
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
       pr = Protocol.find_with_properties(Uri.new(uri: "http://www.transceleratebiopharmainc.com/FLU001/V1#PR"))
       template = ProtocolTemplate.find_minimum(Uri.new(uri: "http://www.transceleratebiopharmainc.com/PARALLEL_SIMPLE/V1#PRT"))
       pr.from_template(template)
@@ -97,7 +99,7 @@ describe "Protocol" do
       results = pr.objectives
       check_file_actual_expected(results, sub_dir, "objectives_expected_1.yaml", equate_method: :hash_equal)
       results = pr.endpoints
-      check_file_actual_expected(results, sub_dir, "endpoints_expected_1.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(results, sub_dir, "endpoints_expected_1.yaml", equate_method: :hash_equal)
     end
 
   end
