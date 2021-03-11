@@ -64,6 +64,15 @@ describe SdtmSponsorDomain do
       full_path = sponsor_domain.to_ttl
   #Xcopy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "SDTM_Sponsor_Domain.ttl")
     end
+
+    it "create Sponsor Domain II" do
+      domain = SdtmIgDomain.find_full(Uri.new(uri: "http://www.cdisc.org/SDTM_IG_AE/V1#IGD"))
+      sponsor_domain = SdtmSponsorDomain.create_from_ig({label:"Sponsor AE", prefix:"AE", identifier: "SDTM AE XXX"}, domain)
+      sponsor_domain = SdtmSponsorDomain.find_full(sponsor_domain.uri)
+      full_path = sdtm_to_ttl(sponsor_domain)
+      full_path = sponsor_domain.to_ttl
+  #Xcopy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "SDTM_Sponsor_Domain_2.ttl")
+    end
   
   end
 
