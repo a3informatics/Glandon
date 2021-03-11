@@ -160,7 +160,7 @@ describe SdtmSponsorDomain do
   describe "Delete Tests" do
 
     before :each do
-      data_files = ["SDTM_Sponsor_Domain.ttl"]
+      data_files = ["SDTM_Sponsor_Domain_2.ttl"]
       load_files(schema_files, data_files)
       load_data_file_into_triple_store("mdr_identification.ttl")
       load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
@@ -173,9 +173,9 @@ describe SdtmSponsorDomain do
       allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
     end
 
-    it "delete a domain" do
+    it "delete a domain, based on class" do
       before_count = triple_store.triple_count
-      params = {label:"Sponsor Adverse Events", prefix:"AE", identifier: "SDTM AE XXX"}
+      params = {label:"Sponsor Adverse Events", prefix:"AA", identifier: "SDTM AE YYY"}
       sdtm_class = SdtmClass.find_full(Uri.new(uri: "http://www.cdisc.org/SDTM_MODEL_EVENTS/V1#CL"))
       sponsor_domain = SdtmSponsorDomain.create_from_class(params, sdtm_class)
       result = sponsor_domain.delete
@@ -183,12 +183,32 @@ describe SdtmSponsorDomain do
       expect(triple_store.triple_count).to eq(before_count)
     end
 
-    it "delete a domain II" do
-      reference = OperationalReferenceV3::TmcReference.find(Uri.new(uri:"http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEPRESP_TMC1")).to_h
-      sponsor_domain = SdtmSponsorDomain.find_full(Uri.new(uri: "http://www.s-cubed.dk/AAA/V1#SPD"))
+    it "delete a domain, based on IG" do
+      uri_check_set_1 =
+      [
+        { uri: Uri.new(uri: "http://www.s-cubed.dk/SDTM_AE_XXX/V1#SPD"), present: true},
+        { uri: Uri.new(uri: "http://www.s-cubed.dk/SDTM_AE_XXX/V1#SPD_RS"), present: true},
+        { uri: Uri.new(uri: "http://www.s-cubed.dk/SDTM_AE_XXX/V1#SPD_SI"), present: true},
+        { uri: Uri.new(uri: "http://www.assero.co.uk/SDV#10ec98dc-a1be-4db1-970a-c9a1d0261ac9"), present: true},
+        { uri: Uri.new(uri: "http://www.assero.co.uk/SDV#b810e561-9137-4b7b-96ea-d7c8a886b2c0"), present: true},
+        { uri: Uri.new(uri: "http://www.assero.co.uk/SDV#b810e561-9137-4b7b-96ea-d7c8a886b2c0_TMC1"), present: true},
+        { uri: Uri.new(uri: "http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEPRESP_TMC1"), present: true}
+      ]
+      uri_check_set_2 =
+      [
+        { uri: Uri.new(uri: "http://www.s-cubed.dk/SDTM_AE_XXX/V1#SPD"), present: false},
+        { uri: Uri.new(uri: "http://www.s-cubed.dk/SDTM_AE_XXX/V1#SPD_RS"), present: false},
+        { uri: Uri.new(uri: "http://www.s-cubed.dk/SDTM_AE_XXX/V1#SPD_SI"), present: false},
+        { uri: Uri.new(uri: "http://www.assero.co.uk/SDV#10ec98dc-a1be-4db1-970a-c9a1d0261ac9"), present: false},
+        { uri: Uri.new(uri: "http://www.assero.co.uk/SDV#b810e561-9137-4b7b-96ea-d7c8a886b2c0"), present: false},
+        { uri: Uri.new(uri: "http://www.assero.co.uk/SDV#b810e561-9137-4b7b-96ea-d7c8a886b2c0_TMC1"), present: false},
+        { uri: Uri.new(uri: "http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEPRESP_TMC1"), present: true}
+      ]
+      sponsor_domain = SdtmSponsorDomain.find_full(Uri.new(uri:"http://www.s-cubed.dk/SDTM_AE_XXX/V1#SPD"))
+      expect(triple_store.check_uris(uri_check_set_1)).to be(true)
       result = sponsor_domain.delete
       expect(result).to eq(1)
-      expect(OperationalReferenceV3::TmcReference.find(Uri.new(uri:"http://www.cdisc.org/SDTM_IG_AE/V1#IGD_AEPRESP_TMC1")).to_h).to eq(reference)
+      expect(triple_store.check_uris(uri_check_set_2)).to be(true)
     end
 
   end

@@ -40,7 +40,13 @@ class SdtmSponsorDomain < SdtmIgDomain
       sponsor_variable.typed_as = domain_variable.based_on_class_variable.typed_as.uri
       sponsor_variable.compliance = domain_variable.compliance.uri
       sponsor_variable.classified_as = domain_variable.based_on_class_variable.classified_as.uri
-      sponsor_variable.ct_reference = domain_variable.ct_reference
+      if !domain_variable.ct_reference.empty?
+        new_ref = domain_variable.ct_reference.first.clone
+        new_ref.uri = new_ref.create_uri(sponsor_variable.uri)
+        sponsor_variable.ct_reference = [new_ref]
+      else
+        sponsor_variable.ct_reference = []
+      end 
       sponsor_variable.is_a = domain_variable.is_a
       sponsor_variable.based_on_ig_variable = domain_variable.uri
       object.includes_column << sponsor_variable
