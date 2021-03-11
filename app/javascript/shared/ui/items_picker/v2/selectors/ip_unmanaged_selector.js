@@ -19,12 +19,13 @@ export default class UnmanagedSelector extends ManagedSelector {
    * @param {EventHandler} params.eventHandler ItemsPicker shared EventHandler instance 
    */
   constructor({
+    parentSelector,
     type,
     options,
     selectionHandler,
     eventHandler
   }) {
-    super({ type, options, selectionHandler, eventHandler })
+    super({ parentSelector, type, options, selectionHandler, eventHandler })
   }
 
   /**
