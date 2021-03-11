@@ -71,7 +71,6 @@ describe "D - Indications and Therapeutic Areas" do
 
       # TAs
       i_1 = Indication.where(label: "Alzheimer's Disease")
-byebug
       ta_1 = TherapeuticArea.new(label: "Nervous system disorders", includes_indication: [i_1.first.uri])
       ta_1.set_initial("TA NSD")
       i_2 = Indication.where(label: "Diabetes Mellitus")
