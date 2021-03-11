@@ -13,18 +13,20 @@ export default class UnmanagedSelector extends ManagedSelector {
   /**
    * Create a new Unmanaged Selector instance
    * @param {Object} params Instance parameters
+   * @param {string} params.parentSelector Unique DOM selector of the parent element 
    * @param {Object} params.type Selector type, must an entry be from the RdfTypesMap
    * @param {Object} params.options ItemsPicker options object 
    * @param {SelectionHandler} params.selectionHandler Items Picker SelectionHandler instance 
    * @param {EventHandler} params.eventHandler ItemsPicker shared EventHandler instance 
    */
   constructor({
+    parentSelector,
     type,
     options,
     selectionHandler,
     eventHandler
   }) {
-    super({ type, options, selectionHandler, eventHandler })
+    super({ parentSelector, type, options, selectionHandler, eventHandler })
   }
 
   /**
