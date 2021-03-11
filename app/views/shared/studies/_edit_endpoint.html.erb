@@ -1,0 +1,45 @@
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="tableModalLabel" aria-hidden="true" id="edit-endpoint-modal">
+  <div class="modal-dialog modal-lg medium-screen" role="document">
+
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <span class="modal-title text-normal text-medium" id="tableModalLabel">
+          <span class="icon-edit text-link"></span>
+          Edit Endpoint
+        </span>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body centered font-light">
+
+        <div id="endpoint-label" class="label-styled label-w-margin text-xnormal"></div>
+        <br>
+        <div id="endpoint-text" class="font-light"></div>
+        <br>
+        <div class="label-w-margin text-normal">Set Timepoint</div>
+        <div class="form-wrap">
+          <input type="number" maxlength="3" id="timepoint-value" value="0" class="narrow text-center">
+          <select id="timepoint-unit">
+            <option value="days">Days</option>
+            <option value="weeks">Weeks</option>
+            <option value="months">Months</option>
+          </select>
+        </div>
+        <br>
+        <div class="label-w-margin text-normal">Set Item Reference</div>
+        <div id="endpoint-reference" class="bg-label editable label-w-margin">None</div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn medium light" id="endpoint-close-button" data-dismiss="modal" aria-label="Close">Close</button>
+        <button type="button" class="btn medium green" id="endpoint-submit-button">Submit</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<%= render partial: "shared/items_picker/v2/items_picker", locals: { id: "endpoint-ref-item" } %>
