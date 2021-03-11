@@ -159,7 +159,7 @@ describe SdtmSponsorDomain do
 
   describe "Delete Tests" do
 
-    before :each do
+    before :all do
       data_files = ["SDTM_Sponsor_Domain_2.ttl"]
       load_files(schema_files, data_files)
       load_data_file_into_triple_store("mdr_identification.ttl")
@@ -170,7 +170,6 @@ describe SdtmSponsorDomain do
       load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V1.ttl")
       load_data_file_into_triple_store("cdisc/sdtm_ig/SDTM_IG_V1.ttl")
       load_cdisc_term_versions(1..8)
-      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
     end
 
     it "delete a domain, based on class" do
