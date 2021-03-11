@@ -1,6 +1,6 @@
 import TablePanel from 'shared/base/table_panel'
 import { dtBooleanColumn } from 'shared/helpers/dt/dt_columns'
-import { renderSpinner } from 'shared/ui/spinners'
+import { iconBtn } from 'shared/ui/buttons'
 import colors from 'shared/ui/colors'
 
 /**
@@ -29,6 +29,12 @@ export default class StudyTable extends TablePanel  {
 
   show() {
     this.loadData();
+  }
+
+  get _editBtn() {
+
+    const button = iconBtn({ icon: 'edit' })
+    return $( button ).click( e => console.log('click'))
   }
 
   /**
@@ -86,14 +92,18 @@ export default class StudyTable extends TablePanel  {
   }
 
   get _endpointColumns() {
-
+ 
     return [
       { data: 'type' },
       {
         data: 'text',
         render: (data, type) => type === 'display' ? this._formatText( data ) : data
       },
-      dtBooleanColumn( 'selected', { orderable: false } )
+      dtBooleanColumn( 'selected', { orderable: false } ),
+      {
+        orderable: false,
+        render: (data, type) => type === 'display' ? this._editBtn : '' 
+      }
     ];
 
   }
