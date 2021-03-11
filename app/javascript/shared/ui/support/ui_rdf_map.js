@@ -65,6 +65,11 @@ const rdfMap = {
     char: '\ue90b',
     color: colors.accentPurple
   },
+  [ getRdfType('ASSESSMENT') ]: {
+    icon: 'icon-assessment',
+    char: '\ue95e',
+    color: colors.accentPurpleDark
+  },
   [ getRdfType('BCT') ]: {
     icon: 'icon-biocon-template',
     char: '\ue969',

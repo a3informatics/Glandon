@@ -40,6 +40,12 @@ const rdfTypesMap = {
     param: 'managed_collection',
     url: '/managed_collections'
   },
+  ASSESSMENT: {
+    rdfType: 'http://www.assero.co.uk/BiomedicalConcept#Assessment',
+    name: 'Assessment',
+    param: 'assessment',
+    url: '/assessments'
+  },
   BC: {
     rdfType: 'http://www.assero.co.uk/BiomedicalConcept#BiomedicalConceptInstance',
     name: 'Biomedical Concept',
