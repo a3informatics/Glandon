@@ -146,8 +146,8 @@ const rdfMap = {
     char: '\ue961',
     color: colors.primaryLight
   },
-  [ getRdfType('TUC_REF') ]: {
-    icon: 'icon-codelist-item',
+  [ getRdfType('PROTOCOL_TEMPLATE') ]: {
+    icon: 'icon-protocol-template',
     char: '\ue960',
     color: colors.primaryLight
   },
