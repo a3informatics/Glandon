@@ -294,6 +294,10 @@ describe "A - Transcelerate Thesaurus" do
       nv_create(parent: "1", child: "1")
     end
 
+    after :all do
+      restore_installation(:thesauri)
+    end
+
     it "convert old" do
       results = []
       load_old_files
