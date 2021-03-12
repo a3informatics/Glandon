@@ -57,11 +57,11 @@ describe "Study" do
       actual.label = "New label"
       actual.save
       actual = Study.find_minimum(actual.uri)
-      check_dates(actual, sub_dir, "update_expected_3.yaml", :creation_date, :last_change_date)
+      fix_dates(actual, sub_dir, "update_expected_3.yaml", :creation_date, :last_change_date)
       check_file_actual_expected(actual.to_h, sub_dir, "update_expected_3.yaml", equate_method: :hash_equal)
       actual.label = "Really new label"
       actual.save
-      check_dates(actual, sub_dir, "update_expected_4.yaml", :creation_date, :last_change_date)
+      fix_dates(actual, sub_dir, "update_expected_4.yaml", :creation_date, :last_change_date)
       check_file_actual_expected(actual.to_h, sub_dir, "update_expected_4.yaml", equate_method: :hash_equal)
     end
 
