@@ -264,13 +264,13 @@ describe "E - ZDUMMYMED Protocol" do
       e_2.uri = e_2.create_uri(e_2.class.base_uri)
       e_3 = Epoch.new(label: "Follow Up", ordinal: 3)
       e_3.uri = e_3.create_uri(e_2.class.base_uri)
-      a_1 = Arm.new(label: "ZD CP", description: "High Dose", arm_type: "", ordinal: 1)
+      a_1 = Arm.new(label: "ZD CP", description: "Regimen ZD, CP", arm_type: "", ordinal: 1)
       a_1.uri = a_1.create_uri(a_1.class.base_uri)
-      a_2 = Arm.new(label: "CP ZD", description: "Low Dose", arm_type: "", ordinal: 2)
+      a_2 = Arm.new(label: "CP ZD", description: "Regimen CP, ZD", arm_type: "", ordinal: 2)
       a_2.uri = a_2.create_uri(a_2.class.base_uri)
       el_1 = Element.new(label: "Screening", in_epoch: e_1.uri, in_arm: a_1.uri, contains_timepoint: [tp_items[0].uri])
       el_1.uri = el_1.create_uri(el_1.class.base_uri)
-      el_2 = Element.new(label: "Screening", in_epoch: e_2.uri, in_arm: a_2.uri, contains_timepoint: [tp_items[0].uri])
+      el_2 = Element.new(label: "Screening", in_epoch: e_1.uri, in_arm: a_2.uri, contains_timepoint: [tp_items[0].uri])
       el_2.uri = el_2.create_uri(el_2.class.base_uri)
       el_3 = Element.new(label: "DB Treatment", in_epoch: e_2.uri, in_arm: a_1.uri, contains_timepoint: [tp_items[1].uri, tp_items[2].uri, tp_items[3].uri, tp_items[4].uri, tp_items[5].uri])
       el_3.uri = el_3.create_uri(el_3.class.base_uri)
@@ -288,15 +288,15 @@ describe "E - ZDUMMYMED Protocol" do
       m_ref = OperationalReferenceV3::TucReference.new(context: th.uri, reference: tc, optional: false, ordinal: 2)
 
       # Protocols
-      tc = th.find_by_identifiers(["C66737", "C15601"])["C15601"]
+      tc = th.find_by_identifiers(["C66737", "C15602"])["C15602"]
       phase_ref = OperationalReferenceV3::TucReference.new(context: th.uri, reference: tc, optional: false, ordinal: 3)
       tc = th.find_by_identifiers(["C99077", "C98388"])["C98388"]
       type_ref = OperationalReferenceV3::TucReference.new(context: th.uri, reference: tc, optional: false, ordinal: 4)
-      ta = TherapeuticArea.where(label: "Nervous system disorders")
-      ind = Indication.where(label: "Alzheimer's Disease")
-      p_1 = Protocol.new(label: "LY246708",
-        title: "Safety and Efficacy of the Xanomeline Transdermal Therapeutic System (TTS) in Patients with Mild to Moderate Alzheimer’s Disease.",
-        short_title: "LY246708", acronym: "H2Q-MC-LZZT",
+      ta = TherapeuticArea.where(label: "Metabolic")
+      ind = Indication.where(label: "Type 2 Diabetes Mellitus")
+      p_1 = Protocol.new(label: "ZDUMMYMED",
+        title: "A 26 weeks, randomized, double-blind, comparator-controlled, cross-over group, Efficacy and Safety trial of once daily ZD 5mg oral, as add-on to Basal Insulin in Elderly (>60 years old) Type 2 Diabetes Mellitus patients with insufficient glycemic control.",
+        short_title: "ZDUMMYMED", acronym: "ZDUMMYMED",
         in_ta: ta.first.uri, for_indication: [ind.first.uri], study_type: type_ref,
         study_phase: phase_ref, masking: m_ref, intervention_model: im_ref,
         specifies_epoch: [e_1.uri, e_2.uri, e_3.uri], specifies_arm: [a_1.uri, a_2.uri],

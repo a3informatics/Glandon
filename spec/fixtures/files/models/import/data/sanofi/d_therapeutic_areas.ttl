@@ -21,7 +21,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2021-03-11T16:58:24+01:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2021-03-12T16:45:01+01:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	pr:includesIndication <http://www.s-cubed.dk/IND_ALZHEIMER_S_DISEASE/V1#IND> ;
 .
@@ -53,9 +53,11 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2021-03-11T16:58:24+01:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2021-03-12T16:45:01+01:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	pr:includesIndication <http://www.s-cubed.dk/IND_DIABETES_MELLITUS/V1#IND> ;
+	pr:includesIndication <http://www.s-cubed.dk/IND_TYPE_1_DIABETES_MELLITUS/V1#IND> ;
+	pr:includesIndication <http://www.s-cubed.dk/IND_TYPE_2_DIABETES_MELLITUS/V1#IND> ;
 .
 <http://www.s-cubed.dk/TA_M/V1#TA_RS>
 	rdf:type isoR:RegistrationState ;
@@ -85,7 +87,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2021-03-11T16:58:24+01:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2021-03-12T16:45:01+01:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	pr:includesIndication <http://www.s-cubed.dk/IND_RHEUMATOID_ARTHRITIS/V1#IND> ;
 .
@@ -117,7 +119,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2021-03-11T16:58:24+01:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2021-03-12T16:45:01+01:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	pr:includesIndication <http://www.s-cubed.dk/IND_INFLUENZA/V1#IND> ;
 .
