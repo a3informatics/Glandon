@@ -69,7 +69,7 @@ class ProtocolsController < ManagedItemsController
 private
 
   def the_params
-    params.require(:protocol).permit(:identifier, :scope_id, :count, :offset, :template_id)
+    params.require(:protocols).permit(:identifier, :scope_id, :count, :offset, :template_id)
   end
 
   # Path for given action

@@ -31,7 +31,7 @@ describe ProtocolsController do
       protocol = Protocol.find_minimum(Uri.new(uri: "http://www.transceleratebiopharmainc.com/LY246708/V1#PR"))
       request.env['HTTP_ACCEPT'] = "application/json"
       expect(Protocol).to receive(:history_pagination).with({identifier: protocol.has_identifier.identifier, scope: an_instance_of(IsoNamespace), offset: "0", count: "20"}).and_return([protocol])
-      get :history, params:{protocol: {identifier: protocol.has_identifier.identifier, scope_id: "aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjVFJBTlNDRUxFUkFURQ==", count: 20, offset: 0}}
+      get :history, params:{protocols: {identifier: protocol.has_identifier.identifier, scope_id: "aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjVFJBTlNDRUxFUkFURQ==", count: 20, offset: 0}}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
       actual = JSON.parse(response.body).deep_symbolize_keys[:data]
