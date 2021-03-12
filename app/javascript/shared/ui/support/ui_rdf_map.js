@@ -156,6 +156,26 @@ const rdfMap = {
     char: '\ue960',
     color: colors.primaryLight
   },
+  [ getRdfType('TA') ]: {
+    icon: '',
+    char: 'T',
+    color: colors.secondaryMedium
+  },
+  [ getRdfType('INDICATION') ]: {
+    icon: '',
+    char: 'I',
+    color: colors.secondaryMedium
+  },
+  [ getRdfType('OBJECTIVE') ]: {
+    icon: '',
+    char: 'O',
+    color: colors.secondaryMedium
+  },
+  [ getRdfType('ENDPOINT') ]: {
+    icon: '',
+    char: 'E',
+    color: colors.secondaryMedium
+  },
 
   unknown: {
     icon: 'icon-help',

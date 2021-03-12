@@ -193,6 +193,30 @@ const rdfTypesMap = {
     param: 'protocol_template',
     url: '/protocol_templates'
   },
+  TA: {
+    rdfType: 'http://www.assero.co.uk/Protocol#TherapeuticArea',
+    name: 'Therapeutic Area',
+    param: 'therapeutic_area',
+    url: '/therapeutic_areas'
+  },
+  INDICATION: {
+    rdfType: 'http://www.assero.co.uk/Protocol#Indication',
+    name: 'Indication',
+    param: 'indication',
+    url: '/indications'
+  },
+  ENDPOINT: {
+    rdfType: 'http://www.assero.co.uk/Protocol#Endpoint',
+    name: 'Endpoint',
+    param: 'endpoint',
+    url: '/endpoints'
+  },
+  OBJECTIVE: {
+    rdfType: 'http://www.assero.co.uk/Protocol#Objective',
+    name: 'Objective',
+    param: 'objective',
+    url: '/objectives'
+  },
 
   UNKNOWN: {
     rdfType: 'unknown',
