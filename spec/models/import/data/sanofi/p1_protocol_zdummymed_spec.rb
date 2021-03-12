@@ -42,8 +42,40 @@ describe "E - ZDUMMYMED Protocol" do
       load_local_file_into_triple_store(sub_dir, "c_objectives.ttl")
       load_local_file_into_triple_store(sub_dir, "d_indications.ttl")
       load_local_file_into_triple_store(sub_dir, "d_therapeutic_areas.ttl")
+      load_local_file_into_triple_store(sub_dir, "e_forms.ttl")
 
       th = Thesaurus.find_full(Uri.new(uri: "http://www.cdisc.org/CT/V68#TH"))
+
+      f_ic = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/INFORMED_CONSENT_DEMO/V1#F"))
+      f_dm = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/DM_DEMO/V1#F"))
+      f_lb = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/LB_DEMO/V1#F"))
+      f_rand = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/RANDOM_DEMO/V1#F"))
+      f_xo = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/X_OVER_DEMO/V1#F"))
+      f_ae = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/AE_DEMO/V1#F"))
+      f_term = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/TERMINATION_DEMO/V1#F"))
+      f_dev = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/DEVICE_ALLOC_DEMO/V1#F"))
+      f_cgm = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/CGM_RUNNING_DEMO/V1#F"))
+
+      hb1ac = BiomedicalConceptInstance.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/HBA1C/V1#BCI"))
+      f_he = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/HYPO_FORM/V1#F"))
+
+      sass_items = []
+      mdr_items =
+      [
+        f_ic, f_dm, f_vs, hba1c, f_lb, 
+                    f_vs, hba1c,       f_rand,       f_ae, f_he,
+                          hba1c,                     f_ae, f_he,
+                    f_vs, hba1c, f_lb,         t_xo, f_ae, f_he,
+                          hba1c,                     f_ae, f_he,
+                    f_vs, hba1c, f_lb,               f_ae, f_he,
+                    f_vs, hba1c,                     f_ae, f_he, f_term
+      ]
+      mdr_items.each do |mdr_item|
+        klass = mdr_item.rdf_type == Form.rdf_type ? StudyForm : StudyAssessment
+        sass = klass.new(label: mdr_item.label, is_derived_from: mdr_item.uri)
+        sass.uri = sass.create_uri(sass.class.base_uri)
+        sass_items << sass
+      end
 
       # Visits
       visits =
