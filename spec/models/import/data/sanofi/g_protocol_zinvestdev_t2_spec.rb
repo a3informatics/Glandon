@@ -270,19 +270,17 @@ describe "G - ZINVESTDEV T2 Protocol" do
       # Protocol
       tc = th.find_by_identifiers(["C99076", "C82639"])["C82639"]
       im_ref = OperationalReferenceV3::TucReference.new(context: th.uri, reference: tc, optional: false, ordinal: 1)
-      tc = th.find_by_identifiers(["C66735", "C15228"])["C15228"]
+      tc = th.find_by_identifiers(["C66735", "C15228"])["C49659"]
       m_ref = OperationalReferenceV3::TucReference.new(context: th.uri, reference: tc, optional: false, ordinal: 2)
-
-      # Protocols
-      tc = th.find_by_identifiers(["C66737", "C15601"])["C15601"]
+      tc = th.find_by_identifiers(["C66737", "C48660"])["C48660"]
       phase_ref = OperationalReferenceV3::TucReference.new(context: th.uri, reference: tc, optional: false, ordinal: 3)
       tc = th.find_by_identifiers(["C99077", "C98388"])["C98388"]
       type_ref = OperationalReferenceV3::TucReference.new(context: th.uri, reference: tc, optional: false, ordinal: 4)
-      ta = TherapeuticArea.where(label: "Nervous system disorders")
-      ind = Indication.where(label: "Alzheimer's Disease")
-      p_1 = Protocol.new(label: "LY246708",
-        title: "Safety and Efficacy of the Xanomeline Transdermal Therapeutic System (TTS) in Patients with Mild to Moderate Alzheimer’s Disease.",
-        short_title: "LY246708", acronym: "H2Q-MC-LZZT",
+      ta = TherapeuticArea.where(label: "Metabolic")
+      ind = Indication.where(label: "Type 2 Diabetes Mellitus")
+      p_1 = Protocol.new(label: "ZINVESTDEV Type 2 Diabetes",
+        title: "The aim of this investigator's study is to compare real-time continuous glucose monitoring (rtCGM) and flash glucose monitoring (isCGM) in adult patients with Type 1 or Type 2 Diabetes during a 14-day training program focused on physical activity and over 4 or 6 weeks of follow-up at home",
+        short_title: "ZINVESTDEV", acronym: "ZINVESTDEV T2",
         in_ta: ta.first.uri, for_indication: [ind.first.uri], study_type: type_ref,
         study_phase: phase_ref, masking: m_ref, intervention_model: im_ref,
         specifies_epoch: [e_1.uri, e_2.uri, e_3.uri], specifies_arm: [a_1.uri, a_2.uri],

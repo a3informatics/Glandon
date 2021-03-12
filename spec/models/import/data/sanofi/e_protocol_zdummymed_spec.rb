@@ -282,12 +282,10 @@ describe "E - ZDUMMYMED Protocol" do
       el_6.uri = el_6.create_uri(el_6.class.base_uri)
 
       # Protocol
-      tc = th.find_by_identifiers(["C99076", "C82639"])["C82639"]
+      tc = th.find_by_identifiers(["C99076", "C82637"])["C82637"]
       im_ref = OperationalReferenceV3::TucReference.new(context: th.uri, reference: tc, optional: false, ordinal: 1)
       tc = th.find_by_identifiers(["C66735", "C15228"])["C15228"]
       m_ref = OperationalReferenceV3::TucReference.new(context: th.uri, reference: tc, optional: false, ordinal: 2)
-
-      # Protocols
       tc = th.find_by_identifiers(["C66737", "C15602"])["C15602"]
       phase_ref = OperationalReferenceV3::TucReference.new(context: th.uri, reference: tc, optional: false, ordinal: 3)
       tc = th.find_by_identifiers(["C99077", "C98388"])["C98388"]
