@@ -1,4 +1,5 @@
 #! bin/bash
+clear
 FileEndPoint="http://localhost:3030/mdr/data"
 UpdateEndPoint="http://localhost:3030/mdr/update"
 set -x

@@ -102,10 +102,11 @@ describe "F - ZINVESTDEV T1 Protocol" do
       end
 
       # Timepoints
+      secs_per_day = 24*60*60
       secs_per_week = 7*24*60*60
       o_items = []
       [-1, 1, 7, 14, 28, 42, 56].each_with_index do |v, index|
-        item = Timepoint::Offset.new(window_offset: v*secs_per_week, window_minus: 0, window_plus: 0, unit: "Day")
+        item = Timepoint::Offset.new(window_offset: v*secs_per_day, window_minus: 0, window_plus: 0, unit: "Day")
         item.uri = item.create_uri(item.class.base_uri)
         o_items << item
       end
@@ -323,6 +324,10 @@ describe "F - ZINVESTDEV T1 Protocol" do
         specifies_objective: [obj_items[0].uri, obj_items[1].uri, obj_items[2].uri, obj_items[3].uri])
       p_1.set_initial("ZINVESTDEV T1DM")
 
+      # Study
+      s_1 = Study.new(label: "Study for the ZINVESTDEV protocol", description: "Not set yet.", implements: p_1.uri)
+      s_1.set_initial("ZINVESTDEV T1DM STUDY")
+
       # Generate
       sparql = Sparql::Update.new
       sparql.default_namespace(p_1.uri.namespace)
@@ -338,6 +343,7 @@ describe "F - ZINVESTDEV T1 Protocol" do
       el_5.to_sparql(sparql, true)
       el_6.to_sparql(sparql, true)
       p_1.to_sparql(sparql, true)
+      s_1.to_sparql(sparql, true)
       v_items.each {|x| x.to_sparql(sparql, true)}
       tp_items.each {|x| x.to_sparql(sparql, true)}
       o_items.each {|x| x.to_sparql(sparql, true)}

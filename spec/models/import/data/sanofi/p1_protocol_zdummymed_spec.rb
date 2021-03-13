@@ -323,6 +323,10 @@ describe "E - ZDUMMYMED Protocol" do
         specifies_objective: [obj_items[0].uri, obj_items[1].uri, obj_items[2].uri, obj_items[3].uri])
       p_1.set_initial("ZDUMMYMED")
 
+      # Study
+      s_1 = Study.new(label: "Study for the ZDUMMYMED protocol", description: "Not set yet.", implements: p_1.uri)
+      s_1.set_initial("ZDUMMYMED STUDY")
+
       # Generate
       sparql = Sparql::Update.new
       sparql.default_namespace(p_1.uri.namespace)
@@ -338,6 +342,7 @@ describe "E - ZDUMMYMED Protocol" do
       el_5.to_sparql(sparql, true)
       el_6.to_sparql(sparql, true)
       p_1.to_sparql(sparql, true)
+      s_1.to_sparql(sparql, true)
       v_items.each {|x| x.to_sparql(sparql, true)}
       tp_items.each {|x| x.to_sparql(sparql, true)}
       o_items.each {|x| x.to_sparql(sparql, true)}
