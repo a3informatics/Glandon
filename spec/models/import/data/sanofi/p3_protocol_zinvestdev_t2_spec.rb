@@ -294,7 +294,7 @@ describe "G - ZINVESTDEV T2 Protocol" do
       # Protocol
       tc = th.find_by_identifiers(["C99076", "C82639"])["C82639"]
       im_ref = OperationalReferenceV3::TucReference.new(context: th.uri, reference: tc, optional: false, ordinal: 1)
-      tc = th.find_by_identifiers(["C66735", "C15228"])["C49659"]
+      tc = th.find_by_identifiers(["C66735", "C49659"])["C49659"]
       m_ref = OperationalReferenceV3::TucReference.new(context: th.uri, reference: tc, optional: false, ordinal: 2)
       tc = th.find_by_identifiers(["C66737", "C48660"])["C48660"]
       phase_ref = OperationalReferenceV3::TucReference.new(context: th.uri, reference: tc, optional: false, ordinal: 3)
