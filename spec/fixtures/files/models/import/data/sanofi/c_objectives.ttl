@@ -21,7 +21,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2021-03-11T14:28:38+01:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2021-03-13T15:06:35+01:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	pr:fullText "To assess the effect of [[[Intervention]]] on the ADAS-Cog and CIBIC+ scores at [[[Timepoint]]]] in participants with Mild to Moderate Alzheimer’s Disease"^^xsd:string ;
 	pr:isAssessedBy <http://www.s-cubed.dk/EP_1/V1#END> ;
@@ -56,7 +56,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2021-03-11T14:28:38+01:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2021-03-13T15:06:35+01:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	pr:fullText "To evaluate the efficacy of [[[Intervention]]] administered to individuals with Type 2 Diabetes Mellitus (T2DM)"^^xsd:string ;
 	pr:objectiveType <http://www.assero.co.uk/ENUM#d71eab6323b7c31e94cdd0d65a77dff04da7974b> ;
@@ -89,7 +89,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2021-03-11T14:28:38+01:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2021-03-13T15:06:35+01:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	pr:fullText "To assess the dose-dependent improvement in behavior. Improved scores on the [[[BC]]] will indicate improvement in these areas"^^xsd:string ;
 	pr:isAssessedBy <http://www.s-cubed.dk/EP_9/V1#END> ;
@@ -123,7 +123,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2021-03-11T14:28:38+01:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2021-03-13T15:06:35+01:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	pr:fullText "To document the safety profile of [[[Intervention]]]."^^xsd:string ;
 	pr:isAssessedBy <http://www.s-cubed.dk/EP_5/V1#END> ;
@@ -160,9 +160,9 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2021-03-11T14:28:38+01:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2021-03-13T15:06:35+01:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
-	pr:fullText "To assess the effect of [[[Intervention]]] [vs. comparator X, if applicable] on the measure of behavioral/neuropsychiatric symptoms in participants with [severity] Alzheimer’s Disease"^^xsd:string ;
+	pr:fullText "To assess the effect of [[[Intervention]]] [[[vs. comparator X, if applicable]]] on the measure of behavioral/neuropsychiatric symptoms in participants with [[[severity]]] Alzheimer’s Disease"^^xsd:string ;
 	pr:isAssessedBy <http://www.s-cubed.dk/EP_9/V1#END> ;
 	pr:objectiveType <http://www.assero.co.uk/ENUM#d71eab6323b7c31e94cdd0d65a77dff04da7974b> ;
 .
@@ -194,9 +194,9 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2021-03-11T14:28:38+01:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2021-03-13T15:06:35+01:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
-	pr:fullText "To assess the dose-dependent improvements in activities of daily living. Improved scores on the [assessment] will indicate improvement in these areas"^^xsd:string ;
+	pr:fullText "To assess the dose-dependent improvements in activities of daily living. Improved scores on the [[[assessment]]] will indicate improvement in these areas"^^xsd:string ;
 	pr:isAssessedBy <http://www.s-cubed.dk/EP_9/V1#END> ;
 	pr:objectiveType <http://www.assero.co.uk/ENUM#d71eab6323b7c31e94cdd0d65a77dff04da7974b> ;
 .
@@ -220,9 +220,117 @@
 	isoI:semanticVersion "0.1.0"^^xsd:string ;
 	isoI:hasScope <http://www.assero.co.uk/NS#SCUBED> ;
 .
+<http://www.s-cubed.dk/OBJ_7/V1#OB>
+	rdf:type pr:Objective ;
+	isoC:label "Objective 7"^^xsd:string ;
+	isoT:hasState <http://www.s-cubed.dk/OBJ_7/V1#OB_RS> ;
+	isoT:hasIdentifier <http://www.s-cubed.dk/OBJ_7/V1#OB_SI> ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2021-03-13T15:06:35+01:00"^^xsd:dateTime ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	pr:fullText "To demonstrate the [[[superiority/noninferiority/equivalence]]] of [[[compound number]]] [[[dose, strength, frequency]]] in comparison to [[[INN, dose, strength, frequency]]] on {HbA1c change} from Baseline to [[[Week X/other]]] in participants with [[[indication]]]"^^xsd:string ;
+	pr:isAssessedBy <http://www.s-cubed.dk/EP_4/V1#END> ;
+	pr:objectiveType <http://www.assero.co.uk/ENUM#d71eab6323b7c31e94cdd0d65a77dff04da7974b> ;
+.
+<http://www.s-cubed.dk/OBJ_7/V1#OB_RS>
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Incomplete"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Incomplete"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
+.
+<http://www.s-cubed.dk/OBJ_7/V1#OB_SI>
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "OBJ 7"^^xsd:string ;
+	isoI:versionLabel ""^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
+	isoI:semanticVersion "0.1.0"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/NS#SCUBED> ;
+.
+<http://www.s-cubed.dk/OBJ_8/V1#OB>
+	rdf:type pr:Objective ;
+	isoC:label "Objective 8"^^xsd:string ;
+	isoT:hasState <http://www.s-cubed.dk/OBJ_8/V1#OB_RS> ;
+	isoT:hasIdentifier <http://www.s-cubed.dk/OBJ_8/V1#OB_SI> ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2021-03-13T15:06:35+01:00"^^xsd:dateTime ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	pr:fullText "To demonstrate the [[[superiority/noninferiority/equivalence]]] of [[[compound number]]] [[[dose, strength, frequency]]] in comparison to [[[INN, dose, strength, frequency]]] on {Glycemic Control}"^^xsd:string ;
+	pr:isAssessedBy <http://www.s-cubed.dk/EP_10/V1#END> ;
+	pr:isAssessedBy <http://www.s-cubed.dk/EP_11/V1#END> ;
+	pr:objectiveType <http://www.assero.co.uk/ENUM#d71eab6323b7c31e94cdd0d65a77dff04da7974b> ;
+.
+<http://www.s-cubed.dk/OBJ_8/V1#OB_RS>
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Incomplete"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Incomplete"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
+.
+<http://www.s-cubed.dk/OBJ_8/V1#OB_SI>
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "OBJ 8"^^xsd:string ;
+	isoI:versionLabel ""^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
+	isoI:semanticVersion "0.1.0"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/NS#SCUBED> ;
+.
+<http://www.s-cubed.dk/OBJ_9/V1#OB>
+	rdf:type pr:Objective ;
+	isoC:label "Objective 9"^^xsd:string ;
+	isoT:hasState <http://www.s-cubed.dk/OBJ_9/V1#OB_RS> ;
+	isoT:hasIdentifier <http://www.s-cubed.dk/OBJ_9/V1#OB_SI> ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2021-03-13T15:06:35+01:00"^^xsd:dateTime ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	pr:fullText "To evaluate the safety of [[[insert INN if available, otherwise compound number]]], [[[insert dose, strength as needed, frequency]]] and [[[insert INN, dose, strength as needed, frequency]]]"^^xsd:string ;
+	pr:isAssessedBy <http://www.s-cubed.dk/EP_12/V1#END> ;
+	pr:isAssessedBy <http://www.s-cubed.dk/EP_13/V1#END> ;
+	pr:objectiveType <http://www.assero.co.uk/ENUM#d71eab6323b7c31e94cdd0d65a77dff04da7974b> ;
+.
+<http://www.s-cubed.dk/OBJ_9/V1#OB_RS>
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Incomplete"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Incomplete"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
+.
+<http://www.s-cubed.dk/OBJ_9/V1#OB_SI>
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "OBJ 9"^^xsd:string ;
+	isoI:versionLabel ""^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
+	isoI:semanticVersion "0.1.0"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/NS#SCUBED> ;
+.
 <http://www.assero.co.uk/ENUM#a9a96ec019494d5b8b041c1d2468061ae66e35d5>
 	rdf:type <http://www.assero.co.uk/Enumrated#Emumerated> ;
 	isoC:label "Primary"^^xsd:string ;
+.
+<http://www.assero.co.uk/ENUM#025de599ea0a6262eeb4ea073413e273d0ea875b>
+	rdf:type <http://www.assero.co.uk/Enumrated#Emumerated> ;
+	isoC:label "Secondary"^^xsd:string ;
 .
 <http://www.assero.co.uk/ENUM#b710a1f98200b22b534bf1269c5fa2c84e1b6d82>
 	rdf:type <http://www.assero.co.uk/Enumrated#Emumerated> ;

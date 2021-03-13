@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe "E - ZDUMMYMED Protocol" do
+describe "F - ZDUMMYMED Protocol" do
 
   include DataHelpers
   include PublicFileHelpers
@@ -148,80 +148,48 @@ describe "E - ZDUMMYMED Protocol" do
       end
 
       # Endpoints
-      endpoints =
+      endpoints = 
       [
         {
-          label: "LY246708 EP1",
-          full_text: "The change from baseline to Week 8, 16 and 24 in the Alzheimer’s Disease Assessment Scale – Cognitive Assessment (ADAS-Cog) 14 total score",
+          label: "Primary 1",
+          full_text: "The change from baseline to Week 25 in HbA1c",
           primary_timepoint: tp_items[0].uri,
-          secondary_timepoint: [tp_items[1].uri, tp_items[3].uri, tp_items[4].uri],
-          derived_from_endpoint: Endpoint.where(label: "Endpoint 1").first,
-          is_derived_from: []
+          secondary_timepoint: [tp_items[6].uri],
+          derived_from_endpoint: Endpoint.where(label: "Endpoint 11").first,
+          is_derived_from: [sass_items[3].uri, sass_items[24].uri]
         },
         {
-          label: "LY246708 EP2",
-          full_text: "The change from baseline to Week 8, 16 and 24 in the Clinician’s Interview-Based Impression of Change plus caregiver input (CIBIC+)",
+          label: "Secondary 1",
+          full_text: "Number of participants with HbA1c <7% at Week 25",
           primary_timepoint: tp_items[0].uri,
-          secondary_timepoint: [tp_items[1].uri, tp_items[3].uri, tp_items[4].uri],
-          derived_from_endpoint: Endpoint.where(label: "Endpoint 2").first,
-          is_derived_from: []
+          secondary_timepoint: [tp_items[6].uri],
+          derived_from_endpoint: Endpoint.where(label: "Endpoint 10").first,
+          is_derived_from: [sass_items[24].uri]
         },
         {
-          label: "LY246708 EP3",
-          full_text: "The change from baseline to Week 8 in the Neuropsychiatric Inventory (NPI) total score",
+          label: "Secondary 2",
+          full_text: "Change from baseline to Week 25 in fasting plasma glucose (FPG)",
           primary_timepoint: tp_items[0].uri,
-          secondary_timepoint: [tp_items[1].uri],
-          derived_from_endpoint: Endpoint.where(label: "Endpoint 9").first,
-          is_derived_from: []
+          secondary_timepoint: [tp_items[6].uri],
+          derived_from_endpoint: Endpoint.where(label: "Endpoint 11").first,
+          is_derived_from: [sass_items[26].uri]
         },
         {
-          label: "LY246708 EP4",
-          full_text: "The proportion of participants with adverse events, serious adverse events (SAEs), and adverse events leading to study intervention discontinuation over the 24-week study intervention period",
-          primary_timepoint: tp_items[4].uri,
+          label: "Tertiary 1",
+          full_text: "Number of participants with adverse events",
+          primary_timepoint: tp_items[6].uri,
           secondary_timepoint: [],
-          derived_from_endpoint: Endpoint.where(label: "Endpoint 5").first,
+          derived_from_endpoint: Endpoint.where(label: "Endpoint 12").first,
           is_derived_from: []
         },
         {
-          label: "LY246708 EP5",
-          full_text: "The change from baseline to Week 12 in continuous laboratory tests: Hepatic Function Panel",
-          primary_timepoint: tp_items[0].uri,
-          secondary_timepoint: [tp_items[2].uri],
-          derived_from_endpoint: Endpoint.where(label: "Endpoint 6").first,
+          label: "Tertiary 2",
+          full_text: "Number of participants with at least one hypoglycemic event during the study.",
+          primary_timepoint: tp_items[6].uri,
+          secondary_timepoint: [],
+          derived_from_endpoint: Endpoint.where(label: "Endpoint 13").first,
           is_derived_from: []
-        },
-        {
-          label: "LY246708 EP6",
-          full_text: "The proportion of participants with abnormal (high or low) laboratory measures (urinalysis) during the postrandomization phase",
-          primary_timepoint: tp_items[1].uri,
-          secondary_timepoint: [tp_items[2].uri, tp_items[3].uri, tp_items[4].uri],
-          derived_from_endpoint: Endpoint.where(label: "Endpoint 7").first,
-          is_derived_from: []
-        },
-        {
-          label: "LY246708 EP7",
-          full_text: "The change from baseline to Week 8 in ECG parameter: QTcF",
-          primary_timepoint: tp_items[0].uri,
-          secondary_timepoint: [tp_items[1].uri],
-          derived_from_endpoint: Endpoint.where(label: "Endpoint 8").first,
-          is_derived_from: []
-        },
-        {
-          label: "LY246708 EP8",
-          full_text: "The change from baseline to Week 8 in the Neuropsychiatric Inventory (NPI) total score",
-          primary_timepoint: tp_items[0].uri,
-          secondary_timepoint: [tp_items[1].uri],
-          derived_from_endpoint: Endpoint.where(label: "Endpoint 9").first,
-          is_derived_from: []
-        },
-        {
-          label: "LY246708 EP9",
-          full_text: "The change from baseline to Week 8 in the DAD total score",
-          primary_timepoint: tp_items[0].uri,
-          secondary_timepoint: [tp_items[1].uri],
-          derived_from_endpoint: Endpoint.where(label: "Endpoint 9").first,
-          is_derived_from: [] #[sass_items[0].uri, sass_items[1].uri]
-        },
+        }
       ]
       ep_items = []
       endpoints.each_with_index do |v, index|
@@ -233,43 +201,29 @@ describe "E - ZDUMMYMED Protocol" do
       # Objectives
       enum_p = Enumerated.where(label: "Primary").first
       enum_s = Enumerated.where(label: "Secondary").first
-      enum_s = Enumerated.where(label: "Tertiary").first
+      enum_t = Enumerated.where(label: "Tertiary").first
       objectives =
       [
         {
-          label: "LY246708 OBJ1",
-          full_text: "To assess the effect of Xanomeline Transdermal Therapeutic System (TTS) on the ADAS-Cog and CIBIC+ scores at Week 24 in participants with Mild to Moderate Alzheimer’s Disease",
+          label: "Primary",
+          full_text: "To demonstrate the superiority of XXX ZD 5mg daily in comparison to [[[INN, dose, strength, frequency]]] on HbA1c change from Baseline to Week 12 ands 24 in participants with Tyep 2 Diabetes",
           objective_type: enum_p.uri,
-          is_assessed_by: [ep_items[0].uri, ep_items[1].uri],
-          derived_from_objective: Objective.where(label: "Objective 1").first
+          is_assessed_by: [ep_items[0].uri],
+          derived_from_objective: Objective.where(label: "Objective 7").first
         },
         {
-          label: "LY246708 OBJ2",
-          full_text: "To assess the dose-dependent improvement in behavior. Improved scores on the Revised Neuropsychiatric Inventory (NPI-X) will indicate improvement in these areas",
-          objective_type: enum_p.uri,
-          is_assessed_by: [ep_items[2].uri],
-          derived_from_objective: Objective.where(label: "Objective 3").first
-        },
-        {
-          label: "LY246708 OBJ3",
-          full_text: "To document the safety profile of the xanomeline TTS.",
+          label: "Secondary",
+          full_text: "To demonstrate the [[[superiority/noninferiority/equivalence]]] of [[[compound number]]] [[[dose, strength, frequency]]] in comparison to [[[INN, dose, strength, frequency]]] on {Glycemic Control}",
           objective_type: enum_s.uri,
-          is_assessed_by: [ep_items[3].uri, ep_items[4].uri, ep_items[5].uri, ep_items[6].uri],
-          derived_from_objective: Objective.where(label: "Objective 4").first
+          is_assessed_by: [ep_items[1].uri, ep_items[2].uri],
+          derived_from_objective: Objective.where(label: "Objective 8").first
         },
         {
-          label: "LY246708 OBJ4",
-          full_text: "To assess the effect of xanomeline TTS on the measure of behavioral/neuropsychiatric symptoms in participants with  Alzheimer’s Disease",
-          objective_type: enum_s.uri,
-          is_assessed_by: [ep_items[7].uri],
-          derived_from_objective: Objective.where(label: "Objective 5").first
-        },
-        {
-          label: "LY246708 OBJ5",
-          full_text: "To assess the dose-dependent improvements in activities of daily living. Improved scores on the Disability Assessment for Dementia (DAD) will indicate improvement in these areas",
-          objective_type: enum_s.uri,
-          is_assessed_by: [ep_items[8].uri],
-          derived_from_objective: Objective.where(label: "Objective 6").first
+          label: "Tertiary",
+          full_text: "To demonstrate the superiority of XXX ZD 5mg daily in comparison to [[[INN, dose, strength, frequency]]] on HbA1c change from Baseline to Week 12 ands 24 in participants with Tyep 2 Diabetes",
+          objective_type: enum_t.uri,
+          is_assessed_by: [ep_items[3].uri, ep_items[4].uri],
+          derived_from_objective: Objective.where(label: "Objective 9").first
         }
       ]
       obj_items = []
@@ -320,7 +274,7 @@ describe "E - ZDUMMYMED Protocol" do
         in_ta: ta.first.uri, for_indication: [ind.first.uri], study_type: type_ref,
         study_phase: phase_ref, masking: m_ref, intervention_model: im_ref,
         specifies_epoch: [e_1.uri, e_2.uri, e_3.uri], specifies_arm: [a_1.uri, a_2.uri],
-        specifies_objective: [obj_items[0].uri, obj_items[1].uri, obj_items[2].uri, obj_items[3].uri])
+        specifies_objective: [obj_items[0].uri, obj_items[1].uri, obj_items[2].uri])
       p_1.set_initial("ZDUMMYMED")
 
       # Study

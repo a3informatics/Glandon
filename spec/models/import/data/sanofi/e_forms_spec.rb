@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe "E - ZDUMMYMED Protocol" do
+describe "E - Forms" do
 
   include DataHelpers
   include PublicFileHelpers

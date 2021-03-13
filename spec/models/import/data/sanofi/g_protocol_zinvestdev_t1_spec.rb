@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe "G - ZINVESTDEV T2 Protocol" do
+describe "G - ZINVESTDEV T1 Protocol" do
 
   include DataHelpers
   include PublicFileHelpers
@@ -44,7 +44,7 @@ describe "G - ZINVESTDEV T2 Protocol" do
       load_local_file_into_triple_store(sub_dir, "d_therapeutic_areas.ttl")
       load_local_file_into_triple_store(sub_dir, "e_forms.ttl")
 
-     th = Thesaurus.find_full(Uri.new(uri: "http://www.cdisc.org/CT/V68#TH"))
+      th = Thesaurus.find_full(Uri.new(uri: "http://www.cdisc.org/CT/V68#TH"))
 
       # Dummy forms  
       f_ic = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/INFORMED_CONSENT_DEMO/V1#F"))
@@ -72,7 +72,9 @@ describe "G - ZINVESTDEV T2 Protocol" do
               f_dev, f_cgm, f_ae, f_he,          # 1
                      f_cgm, f_ae, f_he,          # 5
                      f_cgm, f_ae, f_he,          # 8
-                     f_cgm, f_ae, f_he, f_term   # 11
+                     f_cgm, f_ae, f_he,          # 11
+                     f_cgm, f_ae, f_he,          # 14
+                     f_cgm, f_ae, f_he, f_term   # 17
       ]
       mdr_items.each do |mdr_item|
         klass = mdr_item.rdf_type == Form.rdf_type ? StudyForm : StudyBiomedicalConcept
@@ -88,7 +90,9 @@ describe "G - ZINVESTDEV T2 Protocol" do
         {short_name: "Vis#02", label: "Baseline"},
         {short_name: "Vis#03", label: "Week 1"},
         {short_name: "Vis#04", label: "Week 2"},
-        {short_name: "Vis#05", label: "Week 6"}
+        {short_name: "Vis#05", label: "Week 4"},
+        {short_name: "Vis#06", label: "Week 6"},
+        {short_name: "Vis#07", label: "Week 8"}
       ]
       v_items = []
       visits.each_with_index do |v, index|
@@ -101,7 +105,7 @@ describe "G - ZINVESTDEV T2 Protocol" do
       secs_per_day = 24*60*60
       secs_per_week = 7*24*60*60
       o_items = []
-      [-1, 1, 7, 14, 42].each_with_index do |v, index|
+      [-1, 1, 7, 14, 28, 42, 56].each_with_index do |v, index|
         item = Timepoint::Offset.new(window_offset: v*secs_per_day, window_minus: 0, window_plus: 0, unit: "Day")
         item.uri = item.create_uri(item.class.base_uri)
         o_items << item
@@ -126,7 +130,15 @@ describe "G - ZINVESTDEV T2 Protocol" do
         },
         {
           label: "TP5", in_visit: v_items[4].uri, at_offset: o_items[4].uri,
-          has_planned: sass_items[11..14].map{|x| x.uri}
+          has_planned: sass_items[11..13].map{|x| x.uri}
+        },
+        {
+          label: "TP6", in_visit: v_items[5].uri, at_offset: o_items[5].uri,
+          has_planned: sass_items[14..16].map{|x| x.uri}
+        },
+        {
+          label: "TP7", in_visit: v_items[6].uri, at_offset: o_items[6].uri,
+          has_planned: sass_items[17..20].map{|x| x.uri}
         }
       ]
       tp_items = []
@@ -137,81 +149,7 @@ describe "G - ZINVESTDEV T2 Protocol" do
       end
 
       # Endpoints
-      endpoints =
-      [
-        {
-          label: "LY246708 EP1",
-          full_text: "The change from baseline to Week 8, 16 and 24 in the Alzheimer’s Disease Assessment Scale – Cognitive Assessment (ADAS-Cog) 14 total score",
-          primary_timepoint: tp_items[0].uri,
-          secondary_timepoint: [tp_items[1].uri, tp_items[3].uri, tp_items[4].uri],
-          derived_from_endpoint: Endpoint.where(label: "Endpoint 1").first,
-          is_derived_from: []
-        },
-        {
-          label: "LY246708 EP2",
-          full_text: "The change from baseline to Week 8, 16 and 24 in the Clinician’s Interview-Based Impression of Change plus caregiver input (CIBIC+)",
-          primary_timepoint: tp_items[0].uri,
-          secondary_timepoint: [tp_items[1].uri, tp_items[3].uri, tp_items[4].uri],
-          derived_from_endpoint: Endpoint.where(label: "Endpoint 2").first,
-          is_derived_from: []
-        },
-        {
-          label: "LY246708 EP3",
-          full_text: "The change from baseline to Week 8 in the Neuropsychiatric Inventory (NPI) total score",
-          primary_timepoint: tp_items[0].uri,
-          secondary_timepoint: [tp_items[1].uri],
-          derived_from_endpoint: Endpoint.where(label: "Endpoint 9").first,
-          is_derived_from: []
-        },
-        {
-          label: "LY246708 EP4",
-          full_text: "The proportion of participants with adverse events, serious adverse events (SAEs), and adverse events leading to study intervention discontinuation over the 24-week study intervention period",
-          primary_timepoint: tp_items[4].uri,
-          secondary_timepoint: [],
-          derived_from_endpoint: Endpoint.where(label: "Endpoint 5").first,
-          is_derived_from: []
-        },
-        {
-          label: "LY246708 EP5",
-          full_text: "The change from baseline to Week 12 in continuous laboratory tests: Hepatic Function Panel",
-          primary_timepoint: tp_items[0].uri,
-          secondary_timepoint: [tp_items[2].uri],
-          derived_from_endpoint: Endpoint.where(label: "Endpoint 6").first,
-          is_derived_from: []
-        },
-        {
-          label: "LY246708 EP6",
-          full_text: "The proportion of participants with abnormal (high or low) laboratory measures (urinalysis) during the postrandomization phase",
-          primary_timepoint: tp_items[1].uri,
-          secondary_timepoint: [tp_items[2].uri, tp_items[3].uri, tp_items[4].uri],
-          derived_from_endpoint: Endpoint.where(label: "Endpoint 7").first,
-          is_derived_from: []
-        },
-        {
-          label: "LY246708 EP7",
-          full_text: "The change from baseline to Week 8 in ECG parameter: QTcF",
-          primary_timepoint: tp_items[0].uri,
-          secondary_timepoint: [tp_items[1].uri],
-          derived_from_endpoint: Endpoint.where(label: "Endpoint 8").first,
-          is_derived_from: []
-        },
-        {
-          label: "LY246708 EP8",
-          full_text: "The change from baseline to Week 8 in the Neuropsychiatric Inventory (NPI) total score",
-          primary_timepoint: tp_items[0].uri,
-          secondary_timepoint: [tp_items[1].uri],
-          derived_from_endpoint: Endpoint.where(label: "Endpoint 9").first,
-          is_derived_from: []
-        },
-        {
-          label: "LY246708 EP9",
-          full_text: "The change from baseline to Week 8 in the DAD total score",
-          primary_timepoint: tp_items[0].uri,
-          secondary_timepoint: [tp_items[1].uri],
-          derived_from_endpoint: Endpoint.where(label: "Endpoint 9").first,
-          is_derived_from: [] #[sass_items[0].uri, sass_items[1].uri]
-        },
-      ]
+      endpoints = []
       ep_items = []
       endpoints.each_with_index do |v, index|
         item = ProtocolEndpoint.new(v)
@@ -223,44 +161,7 @@ describe "G - ZINVESTDEV T2 Protocol" do
       enum_p = Enumerated.where(label: "Primary").first
       enum_s = Enumerated.where(label: "Secondary").first
       enum_s = Enumerated.where(label: "Tertiary").first
-      objectives =
-      [
-        {
-          label: "LY246708 OBJ1",
-          full_text: "To assess the effect of Xanomeline Transdermal Therapeutic System (TTS) on the ADAS-Cog and CIBIC+ scores at Week 24 in participants with Mild to Moderate Alzheimer’s Disease",
-          objective_type: enum_p.uri,
-          is_assessed_by: [ep_items[0].uri, ep_items[1].uri],
-          derived_from_objective: Objective.where(label: "Objective 1").first
-        },
-        {
-          label: "LY246708 OBJ2",
-          full_text: "To assess the dose-dependent improvement in behavior. Improved scores on the Revised Neuropsychiatric Inventory (NPI-X) will indicate improvement in these areas",
-          objective_type: enum_p.uri,
-          is_assessed_by: [ep_items[2].uri],
-          derived_from_objective: Objective.where(label: "Objective 3").first
-        },
-        {
-          label: "LY246708 OBJ3",
-          full_text: "To document the safety profile of the xanomeline TTS.",
-          objective_type: enum_s.uri,
-          is_assessed_by: [ep_items[3].uri, ep_items[4].uri, ep_items[5].uri, ep_items[6].uri],
-          derived_from_objective: Objective.where(label: "Objective 4").first
-        },
-        {
-          label: "LY246708 OBJ4",
-          full_text: "To assess the effect of xanomeline TTS on the measure of behavioral/neuropsychiatric symptoms in participants with  Alzheimer’s Disease",
-          objective_type: enum_s.uri,
-          is_assessed_by: [ep_items[7].uri],
-          derived_from_objective: Objective.where(label: "Objective 5").first
-        },
-        {
-          label: "LY246708 OBJ5",
-          full_text: "To assess the dose-dependent improvements in activities of daily living. Improved scores on the Disability Assessment for Dementia (DAD) will indicate improvement in these areas",
-          objective_type: enum_s.uri,
-          is_assessed_by: [ep_items[8].uri],
-          derived_from_objective: Objective.where(label: "Objective 6").first
-        }
-      ]
+      objectives = []
       obj_items = []
       objectives.each_with_index do |v, index|
         item = ProtocolObjective.new(v)
@@ -287,9 +188,9 @@ describe "G - ZINVESTDEV T2 Protocol" do
       el_3.uri = el_3.create_uri(el_3.class.base_uri)
       el_4 = Element.new(label: "Exercise Led Phase", in_epoch: e_2.uri, in_arm: a_2.uri, contains_timepoint: [tp_items[1].uri, tp_items[2].uri, tp_items[3].uri])
       el_4.uri = el_4.create_uri(el_4.class.base_uri)
-      el_5 = Element.new(label: "Home-based Phase", in_epoch: e_3.uri, in_arm: a_1.uri, contains_timepoint: [tp_items[4].uri])
+      el_5 = Element.new(label: "Home-based Phase", in_epoch: e_3.uri, in_arm: a_1.uri, contains_timepoint: [tp_items[4].uri, tp_items[5].uri, tp_items[6].uri])
       el_5.uri = el_5.create_uri(el_5.class.base_uri)
-      el_6 = Element.new(label: "Home-based Phase", in_epoch: e_3.uri, in_arm: a_2.uri, contains_timepoint: [tp_items[4].uri])
+      el_6 = Element.new(label: "Home-based Phase", in_epoch: e_3.uri, in_arm: a_2.uri, contains_timepoint: [tp_items[4].uri, tp_items[5].uri, tp_items[6].uri])
       el_6.uri = el_6.create_uri(el_6.class.base_uri)
 
       # Protocol
@@ -302,19 +203,19 @@ describe "G - ZINVESTDEV T2 Protocol" do
       tc = th.find_by_identifiers(["C99077", "C98388"])["C98388"]
       type_ref = OperationalReferenceV3::TucReference.new(context: th.uri, reference: tc, optional: false, ordinal: 4)
       ta = TherapeuticArea.where(label: "Metabolic")
-      ind = Indication.where(label: "Type 2 Diabetes Mellitus")
-      p_1 = Protocol.new(label: "ZINVESTDEV Type 2 Diabetes",
+      ind = Indication.where(label: "Type 1 Diabetes Mellitus")
+      p_1 = Protocol.new(label: "ZINVESTDEV Type 1 Diabetes",
         title: "The aim of this investigator's study is to compare real-time continuous glucose monitoring (rtCGM) and flash glucose monitoring (isCGM) in adult patients with Type 1 or Type 2 Diabetes during a 14-day training program focused on physical activity and over 4 or 6 weeks of follow-up at home",
-        short_title: "ZINVESTDEV", acronym: "ZINVESTDEV T2",
+        short_title: "ZINVESTDEV", acronym: "ZINVESTDEV T1",
         in_ta: ta.first.uri, for_indication: [ind.first.uri], study_type: type_ref,
         study_phase: phase_ref, masking: m_ref, intervention_model: im_ref,
         specifies_epoch: [e_1.uri, e_2.uri, e_3.uri], specifies_arm: [a_1.uri, a_2.uri],
-        specifies_objective: [obj_items[0].uri, obj_items[1].uri, obj_items[2].uri, obj_items[3].uri])
-      p_1.set_initial("ZINVESTDEV T2DM")
+        specifies_objective: [])
+      p_1.set_initial("ZINVESTDEV T1DM")
 
       # Study
       s_1 = Study.new(label: "Study for the ZINVESTDEV protocol", description: "Not set yet.", implements: p_1.uri)
-      s_1.set_initial("ZINVESTDEV T2DM STUDY")
+      s_1.set_initial("ZINVESTDEV T1DM STUDY")
 
       # Generate
       sparql = Sparql::Update.new
@@ -340,7 +241,7 @@ describe "G - ZINVESTDEV T2 Protocol" do
       sass_items.each {|x| x.to_sparql(sparql, true)}
 
       full_path = sparql.to_file
-    copy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "zinvestdev2_protocols.ttl")
+    copy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "zinvestdev1_protocols.ttl")
     end
 
   end

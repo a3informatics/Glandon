@@ -45,15 +45,26 @@ describe "D - Indications and Therapeutic Areas" do
       obj4 = Objective.where(label: "Objective 4").first
       obj5 = Objective.where(label: "Objective 5").first
       obj6 = Objective.where(label: "Objective 6").first
+      obj7 = Objective.where(label: "Objective 7").first
+      obj8 = Objective.where(label: "Objective 8").first
+      obj9 = Objective.where(label: "Objective 9").first
 
       # Indications
       indications = []
       cl = Thesaurus::ManagedConcept.where(identifier: "NP000023P")
       cl = Thesaurus::ManagedConcept.find_full(cl.first.uri)
-      ["ALZHEIMER'S DISEASE", "DIABETES MELLITUS", "TYPE 2 DIABETES MELLITUS", "TYPE 1 DIABETES MELLITUS", "RHEUMATOID ARTHRITIS", "INFLUENZA"]. each_with_index do |ind_str, index|
-        tc = cl.narrower.find{|x| x.notation == ind_str}
+      ind_data = [ 
+        { name: "ALZHEIMER'S DISEASE", objectives: [obj1.uri, obj3.uri, obj4.uri, obj5.uri, obj6.uri] }, 
+        { name: "DIABETES MELLITUS", objectives: [obj7.uri, obj8.uri, obj9.uri] },  
+        { name: "TYPE 2 DIABETES MELLITUS", objectives: [obj7.uri, obj8.uri, obj9.uri] },  
+        { name: "TYPE 1 DIABETES MELLITUS",  objectives: [obj7.uri, obj8.uri, obj9.uri] }, 
+        { name: "RHEUMATOID ARTHRITIS",  objectives: [obj2.uri, obj7.uri] }, 
+        { name: "INFLUENZA", objectives: [obj2.uri, obj7.uri] }
+      ]
+      ind_data.each_with_index do |ind_hash, index|
+        tc = cl.narrower.find{|x| x.notation == ind_hash[:name]}
         op_ref = OperationalReferenceV3::TucReference.new(context: cl.uri, reference: tc.uri, optional: false, ordinal: index+1)
-        ind = Indication.new(label: tc.preferred_term.label, indication: op_ref, has_objective: [obj1.uri, obj3.uri, obj4.uri, obj5.uri, obj6.uri])
+        ind = Indication.new(label: tc.preferred_term.label, indication: op_ref, has_objective: ind_hash[:objectives])
         ind.set_initial("IND #{tc.notation}")
         indications << ind
       end
