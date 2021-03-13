@@ -106,13 +106,13 @@ describe "F - ZINVESTDEV T1 Protocol" do
           ]
         },
         {
-          label: "TP6", in_visit: v_items[4].uri, at_offset: o_items[4].uri,
+          label: "TP6", in_visit: v_items[5].uri, at_offset: o_items[5].uri,
           has_planned: [
             # sass_items[5].uri, sass_items[9].uri
           ]
         },
         {
-          label: "TP7", in_visit: v_items[4].uri, at_offset: o_items[4].uri,
+          label: "TP7", in_visit: v_items[6].uri, at_offset: o_items[6].uri,
           has_planned: [
             # sass_items[5].uri, sass_items[9].uri
           ]

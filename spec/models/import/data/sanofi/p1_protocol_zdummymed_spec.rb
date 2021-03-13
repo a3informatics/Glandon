@@ -46,6 +46,7 @@ describe "E - ZDUMMYMED Protocol" do
 
       th = Thesaurus.find_full(Uri.new(uri: "http://www.cdisc.org/CT/V68#TH"))
 
+      # Dummy forms  
       f_ic = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/INFORMED_CONSENT_DEMO/V1#F"))
       f_dm = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/DM_DEMO/V1#F"))
       f_lb = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/LB_DEMO/V1#F"))
@@ -56,22 +57,27 @@ describe "E - ZDUMMYMED Protocol" do
       f_dev = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/DEVICE_ALLOC_DEMO/V1#F"))
       f_cgm = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/CGM_RUNNING_DEMO/V1#F"))
 
-      hb1ac = BiomedicalConceptInstance.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/HBA1C/V1#BCI"))
+      # Full forms
       f_he = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/HYPO_FORM/V1#F"))
+      f_vs = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/VITAL_SIGNS/V1#F"))
 
+      # BCs
+      hba1c = BiomedicalConceptInstance.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/HBA1C/V1#BCI"))
+
+      ""
       sass_items = []
       mdr_items =
       [
-        f_ic, f_dm, f_vs, hba1c, f_lb, 
-                    f_vs, hba1c,       f_rand,       f_ae, f_he,
-                          hba1c,                     f_ae, f_he,
-                    f_vs, hba1c, f_lb,         t_xo, f_ae, f_he,
-                          hba1c,                     f_ae, f_he,
-                    f_vs, hba1c, f_lb,               f_ae, f_he,
-                    f_vs, hba1c,                     f_ae, f_he, f_term
+        f_ic, f_dm, f_vs, hba1c, f_lb,                                    # 0
+                    f_vs, hba1c,       f_rand,       f_ae, f_he,          # 5
+                          hba1c,                     f_ae, f_he,          # 10
+                    f_vs, hba1c, f_lb,         f_xo, f_ae, f_he,          # 13
+                          hba1c,                     f_ae, f_he,          # 19
+                    f_vs, hba1c, f_lb,               f_ae, f_he,          # 22
+                    f_vs, hba1c,                     f_ae, f_he, f_term   # 27
       ]
       mdr_items.each do |mdr_item|
-        klass = mdr_item.rdf_type == Form.rdf_type ? StudyForm : StudyAssessment
+        klass = mdr_item.rdf_type == Form.rdf_type ? StudyForm : StudyBiomedicalConcept
         sass = klass.new(label: mdr_item.label, is_derived_from: mdr_item.uri)
         sass.uri = sass.create_uri(sass.class.base_uri)
         sass_items << sass
@@ -107,47 +113,31 @@ describe "E - ZDUMMYMED Protocol" do
       [
         {
           label: "TP1", in_visit: v_items[0].uri, at_offset: o_items[0].uri,
-          has_planned: [
-            #sass_items[0].uri
-            # sass_items[2].uri, sass_items[6].uri, sass_items[10].uri, sass_items[12].uri
-          ]
+          has_planned: sass_items[0..4].map{|x| x.uri}
         },
         {
           label: "TP2", in_visit: v_items[1].uri, at_offset: o_items[1].uri,
-          has_planned: [
-            #sass_items[1].uri
-            # sass_items[3].uri, sass_items[7].uri, sass_items[13].uri
-          ]
+          has_planned: sass_items[5..9].map{|x| x.uri}
         },
         {
           label: "TP3", in_visit: v_items[2].uri, at_offset: o_items[2].uri,
-          has_planned: [
-            # sass_items[11].uri
-          ]
+          has_planned: sass_items[10..12].map{|x| x.uri}
         },
         {
           label: "TP4", in_visit: v_items[3].uri, at_offset: o_items[3].uri,
-          has_planned: [
-            # sass_items[4].uri, sass_items[8].uri
-          ]
+          has_planned: sass_items[13..18].map{|x| x.uri}
         },
         {
           label: "TP5", in_visit: v_items[4].uri, at_offset: o_items[4].uri,
-          has_planned: [
-            # sass_items[5].uri, sass_items[9].uri
-          ]
+          has_planned: sass_items[19..21].map{|x| x.uri}
         },
         {
-          label: "TP6", in_visit: v_items[4].uri, at_offset: o_items[4].uri,
-          has_planned: [
-            # sass_items[5].uri, sass_items[9].uri
-          ]
+          label: "TP6", in_visit: v_items[5].uri, at_offset: o_items[5].uri,
+          has_planned: sass_items[22..26].map{|x| x.uri}
         },
         {
-          label: "TP7", in_visit: v_items[4].uri, at_offset: o_items[4].uri,
-          has_planned: [
-            # sass_items[5].uri, sass_items[9].uri
-          ]
+          label: "TP7", in_visit: v_items[6].uri, at_offset: o_items[6].uri,
+          has_planned: sass_items[27..31].map{|x| x.uri}
         }
       ]
       tp_items = []
@@ -348,13 +338,12 @@ describe "E - ZDUMMYMED Protocol" do
       el_5.to_sparql(sparql, true)
       el_6.to_sparql(sparql, true)
       p_1.to_sparql(sparql, true)
-#      ass1.to_sparql(sparql, true)
       v_items.each {|x| x.to_sparql(sparql, true)}
       tp_items.each {|x| x.to_sparql(sparql, true)}
       o_items.each {|x| x.to_sparql(sparql, true)}
       obj_items.each {|x| x.to_sparql(sparql, true)}
       ep_items.each {|x| x.to_sparql(sparql, true)}
-#      sass_items.each {|x| x.to_sparql(sparql, true)}
+      sass_items.each {|x| x.to_sparql(sparql, true)}
 
       full_path = sparql.to_file
     copy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "zdummymed_protocols.ttl")

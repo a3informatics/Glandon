@@ -14,6 +14,7 @@ curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@../../spec/f
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@../../spec/fixtures/files/models/import/data/sanofi/c_objectives.ttl" $FileEndPoint
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@../../spec/fixtures/files/models/import/data/sanofi/d_indications.ttl" $FileEndPoint
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@../../spec/fixtures/files/models/import/data/sanofi/d_therapeutic_areas.ttl" $FileEndPoint
+curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@../../spec/fixtures/files/models/import/data/sanofi/e_forms.ttl" $FileEndPoint
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@../../spec/fixtures/files/models/import/data/sanofi/zdummymed_protocols.ttl" $FileEndPoint
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@../../spec/fixtures/files/models/import/data/sanofi/zinvestdev1_protocols.ttl" $FileEndPoint
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@../../spec/fixtures/files/models/import/data/sanofi/zinvestdev2_protocols.ttl" $FileEndPoint
