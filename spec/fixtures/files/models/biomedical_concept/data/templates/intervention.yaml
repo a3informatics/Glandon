@@ -13,6 +13,20 @@
         :alias: "--TRT"
         :is_a: "Treatment"
   :has_items:
+  - :label: "Dose"
+    :madatory: true
+    :enabled: true  
+    :has_complex_datatype: 
+    - :short_name: PQR_INT
+      :has_property: 
+      - 
+        :label: "code"
+        :alias: "--DOSU"
+        :is_a: "Result Units"
+      - 
+        :label: "value"
+        :alias: "--DOSE"
+        :is_a: "Result Value"
   - :label: "Category Code"
     :mandatory: false
     :enabled: true  
@@ -33,6 +47,26 @@
        :label: "code"
        :alias: "--SCAT"
        :is_a: "Sub Category"
+  - :label: "Pre-specified"
+    :mandatory: false
+    :enabled: true  
+    :has_complex_datatype: 
+    - :short_name: CD
+      :has_property: 
+      - 
+       :label: "code"
+       :alias: "--PRESP"
+       :is_a: "Prespecified"
+  - :label: "Occurrence"
+    :mandatory: false
+    :enabled: true  
+    :has_complex_datatype: 
+    - :short_name: CD
+      :has_property: 
+      - 
+       :label: "code"
+       :alias: "--OCCUR"
+       :is_a: "Occurrence"
   - :label: "Start DateTime"
     :mandatory: true
     :enabled: true  
