@@ -64,7 +64,7 @@ describe "E - ZDUMMYMED Protocol" do
       # BCs
       hba1c = BiomedicalConceptInstance.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/HBA1C/V1#BCI"))
 
-      ""
+      "Forms Etc"
       sass_items = []
       mdr_items =
       [
