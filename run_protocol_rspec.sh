@@ -7,3 +7,4 @@ rspec spec/models/import/data/sanofi/e_forms_spec.rb
 rspec spec/models/import/data/sanofi/f_protocol_zdummymed_spec.rb     
 rspec spec/models/import/data/sanofi/g_protocol_zinvestdev_t1_spec.rb 
 rspec spec/models/import/data/sanofi/h_protocol_zinvestdev_t2_spec.rb 
+rspec spec/models/import/data/sanofi/i_protocol_blank_spec.rb 

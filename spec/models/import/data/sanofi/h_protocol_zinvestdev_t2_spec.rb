@@ -44,7 +44,7 @@ describe "H - ZINVESTDEV T2 Protocol" do
       load_local_file_into_triple_store(sub_dir, "d_therapeutic_areas.ttl")
       load_local_file_into_triple_store(sub_dir, "e_forms.ttl")
 
-     th = Thesaurus.find_full(Uri.new(uri: "http://www.cdisc.org/CT/V68#TH"))
+      th = Thesaurus.find_full(Uri.new(uri: "http://www.cdisc.org/CT/V68#TH"))
 
       # Dummy forms  
       f_ic = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/INFORMED_CONSENT_DEMO/V1#F"))
