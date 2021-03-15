@@ -4,7 +4,7 @@ namespace :form do
 
   def mapping(uri)
     query_string = %Q{
-      SELECT ?item ?domain_prefix ?sdtm_var_name ?domain_long_name ?sdtm_topic_name ?sdtm_topic_sub WHERE                       
+      SELECT ?item ?q_text ?domain_prefix ?sdtm_var_name ?domain_long_name ?sdtm_topic_name ?sdtm_topic_sub WHERE                       
       {  
         {              
           ?sdtm_domain bd:basedOnClass/bd:includesColumn ?topic_var .                                     
@@ -19,7 +19,7 @@ namespace :form do
           ?sdtm_domain bd:prefix ?domain_prefix .                                                    
           ?sdtm_domain isoC:label ?domain_long_name .                      
           {                                               
-            SELECT ?item ?bc_root ?sdtm_domain_var ?sdtm_var_name ?sdtm_domain WHERE                               
+            SELECT ?item ?bc_root ?sdtm_domain_var ?sdtm_var_name ?sdtm_domain ?q_text WHERE                               
             {                                          
               #{uri.to_ref} bf:hasGroup/bf:hasSubGroup* ?group .                                                     
               ?group bf:ordinal ?gord .                                                     
@@ -28,7 +28,8 @@ namespace :form do
               ?item bf:hasProperty ?op_ref1 .               
               ?group bf:hasItem/bf:hasProperty ?op_ref1 .                                                                    
               ?op_ref1 bo:reference ?bc_property .                              
-              ?bc_property bc:isA ?ref .                                                                    
+              ?bc_property bc:isA ?ref . 
+              ?bc_property bc:questionText ?q_text .
               ?sdtm_domain_var bd:isA ?ref .                                                                    
               ?sdtm_domain_var bd:name ?sdtm_var_name .                          
               ?sdtm_domain bd:includesColumn ?sdtm_domain_var .                                                  
@@ -45,6 +46,7 @@ namespace :form do
           ?dataset isoC:label ?domain_long_name .
           BIND ( "" as ?sdtm_topic_name )
           BIND ( "" as ?sdtm_topic_sub )
+          ?item bf:questionText ?q_text .
           {              
             SELECT ?group ?item ?sdtm_var_name ?gord ?pord WHERE             
             {                
@@ -59,8 +61,8 @@ namespace :form do
       }
     }
     query_results = Sparql::Query.new.query(query_string, "", [:isoC, :isoI, :isoT, :isoR, :th, :bf, :bo, :bd, :bc])
-    items = query_results.by_object_set([:item, :domain_prefix, :sdtm_var_name, :domain_long_name, :sdtm_topic_name, :sdtm_topic_sub])
-    display_results("Form Mapping", items, ["Item", "Prefix", "Variable", "Domain", "Topic", "Submission"], [60, 0, 0, 0, 0, 0])
+    items = query_results.by_object_set([:item, :q_text, :domain_prefix, :sdtm_var_name, :domain_long_name, :sdtm_topic_name, :sdtm_topic_sub])
+    display_results("Form Mapping", items, ["Item", "Question Text", "Prefix", "Variable", "Domain", "Topic", "Submission"], [60, 0, 0, 0, 0, 0, 0])
     items
   end
 
