@@ -24,7 +24,10 @@ export default class StudyBuilder {
      this._setListeners();
 
      // Start with a default tab opened
-     this.tabs.endpoints.instance.show();
+     setTimeout(() => 
+      this.tabs.content.instance.show(),
+      10 
+     )
 
   }
 
