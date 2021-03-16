@@ -1,0 +1,19 @@
+@prefix : <http://www.s-cubed.dk/CAR#> .
+@prefix fr: <http://www.s-cubed.dk/Framework#> .
+@prefix isoC: <http://www.assero.co.uk/ISO11179Concepts#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+<http://www.s-cubed.dk/CAR>
+	rdf:type owl:Ontology ;
+.
+:23c859f4f777dc72aa029df6686fccf5faec11cf
+	rdf:type fr:CanonicalReference ;
+	isoC:label "Treatment"^^xsd:string ;
+	fr:definition "Not currently defined."^^xsd:string ;
+	fr:bridg "product.code"^^xsd:string ;
+	fr:sdtm "--TRT"^^xsd:string ;
+.
