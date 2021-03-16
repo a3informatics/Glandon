@@ -223,6 +223,27 @@ describe "Managed Collections", :type => :feature do
       ui_check_table_info('managed-items', 0, 0, 0)
     end
 
+    it "does not add Items that are alredy in the Collection" do
+      edit_mc 'MC2', '0.1.0'
+
+      # Add
+      add_managed_items([
+        { identifier: 'AGE', version: '1' },
+        { identifier: 'WEIGHT', version: '1' }
+      ], :bci)
+
+      ui_check_table_info('managed-items', 1, 2, 2)
+
+      # Add again
+      add_managed_items([
+        { identifier: 'AGE', version: '1' },
+        { identifier: 'WEIGHT', version: '1' }
+      ], :bci)
+
+      # No duplicates
+      ui_check_table_info('managed-items', 1, 2, 2)
+    end
+
     it "token timers, warnings, extension and expiration" do
 
       token_ui_check(@user_c) do
