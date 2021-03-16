@@ -753,6 +753,7 @@
 	bd:description "The topic for the intervention observation, usually the verbatim name of the treatment, drug, medicine, or therapy given during the dosing interval for the observation."^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#692cafbf-658a-43f0-97a2-f040ecb1a20d> ;
+	bd:isA <http://www.s-cubed.dk/CAR#23c859f4f777dc72aa029df6686fccf5faec11cf> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V7#CL_--MODIFY>
 	rdf:type bd:SdtmClassVariable ;
