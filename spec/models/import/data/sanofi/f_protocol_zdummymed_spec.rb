@@ -236,10 +236,12 @@ describe "F - ZDUMMYMED Protocol" do
       # Epochs & Arms
       e_1 = Epoch.new(label: "Screening", ordinal: 1)
       e_1.uri = e_1.create_uri(e_1.class.base_uri)
-      e_2 = Epoch.new(label: "Double Blind Treatment", ordinal: 2)
+      e_2 = Epoch.new(label: "Double Blind Treatment 1", ordinal: 2)
       e_2.uri = e_2.create_uri(e_2.class.base_uri)
-      e_3 = Epoch.new(label: "Follow Up", ordinal: 3)
-      e_3.uri = e_3.create_uri(e_2.class.base_uri)
+      e_3 = Epoch.new(label: "Double Blind Treatment 2", ordinal: 3)
+      e_3.uri = e_3.create_uri(e_3.class.base_uri)
+      e_4 = Epoch.new(label: "Follow Up", ordinal: 4)
+      e_4.uri = e_4.create_uri(e_4.class.base_uri)
       a_1 = Arm.new(label: "ZD CP", description: "Regimen ZD, CP", arm_type: "", ordinal: 1)
       a_1.uri = a_1.create_uri(a_1.class.base_uri)
       a_2 = Arm.new(label: "CP ZD", description: "Regimen CP, ZD", arm_type: "", ordinal: 2)
@@ -248,14 +250,20 @@ describe "F - ZDUMMYMED Protocol" do
       el_1.uri = el_1.create_uri(el_1.class.base_uri)
       el_2 = Element.new(label: "Screening", in_epoch: e_1.uri, in_arm: a_2.uri, contains_timepoint: [tp_items[0].uri])
       el_2.uri = el_2.create_uri(el_2.class.base_uri)
-      el_3 = Element.new(label: "DB Treatment", in_epoch: e_2.uri, in_arm: a_1.uri, contains_timepoint: [tp_items[1].uri, tp_items[2].uri, tp_items[3].uri, tp_items[4].uri, tp_items[5].uri])
+      el_3 = Element.new(label: "ZD", in_epoch: e_2.uri, in_arm: a_1.uri, contains_timepoint: [tp_items[1].uri, tp_items[2].uri, tp_items[3].uri])
       el_3.uri = el_3.create_uri(el_3.class.base_uri)
-      el_4 = Element.new(label: "DB Treatment", in_epoch: e_2.uri, in_arm: a_2.uri, contains_timepoint: [tp_items[1].uri, tp_items[2].uri, tp_items[3].uri, tp_items[4].uri, tp_items[5].uri])
+      el_4 = Element.new(label: "CP", in_epoch: e_2.uri, in_arm: a_2.uri, contains_timepoint: [tp_items[1].uri, tp_items[2].uri, tp_items[3].uri])
       el_4.uri = el_4.create_uri(el_4.class.base_uri)
-      el_5 = Element.new(label: "Follow Up", in_epoch: e_3.uri, in_arm: a_1.uri, contains_timepoint: [tp_items[6].uri])
+      
+      el_5 = Element.new(label: "CP", in_epoch: e_3.uri, in_arm: a_1.uri, contains_timepoint: [tp_items[4].uri, tp_items[5].uri])
       el_5.uri = el_5.create_uri(el_5.class.base_uri)
-      el_6 = Element.new(label: "Follow Up", in_epoch: e_3.uri, in_arm: a_2.uri, contains_timepoint: [tp_items[6].uri])
+      el_6 = Element.new(label: "ZD", in_epoch: e_3.uri, in_arm: a_2.uri, contains_timepoint: [tp_items[4].uri, tp_items[5].uri])
       el_6.uri = el_6.create_uri(el_6.class.base_uri)
+      
+      el_7 = Element.new(label: "Follow Up", in_epoch: e_4.uri, in_arm: a_1.uri, contains_timepoint: [tp_items[6].uri])
+      el_7.uri = el_7.create_uri(el_7.class.base_uri)
+      el_8 = Element.new(label: "Follow Up", in_epoch: e_4.uri, in_arm: a_2.uri, contains_timepoint: [tp_items[6].uri])
+      el_8.uri = el_8.create_uri(el_8.class.base_uri)
 
       # Protocol
       tc = th.find_by_identifiers(["C99076", "C82637"])["C82637"]
@@ -273,7 +281,7 @@ describe "F - ZDUMMYMED Protocol" do
         short_title: "ZDUMMYMED", acronym: "ZDUMMYMED",
         in_ta: ta.first.uri, for_indication: [ind.first.uri], study_type: type_ref,
         study_phase: phase_ref, masking: m_ref, intervention_model: im_ref,
-        specifies_epoch: [e_1.uri, e_2.uri, e_3.uri], specifies_arm: [a_1.uri, a_2.uri],
+        specifies_epoch: [e_1.uri, e_2.uri, e_3.uri, e_4.uri], specifies_arm: [a_1.uri, a_2.uri],
         specifies_objective: [obj_items[0].uri, obj_items[1].uri, obj_items[2].uri])
       p_1.set_initial("ZDUMMYMED")
 
@@ -287,6 +295,7 @@ describe "F - ZDUMMYMED Protocol" do
       e_1.to_sparql(sparql, true)
       e_2.to_sparql(sparql, true)
       e_3.to_sparql(sparql, true)
+      e_4.to_sparql(sparql, true)
       a_1.to_sparql(sparql, true)
       a_2.to_sparql(sparql, true)
       el_1.to_sparql(sparql, true)
@@ -295,6 +304,8 @@ describe "F - ZDUMMYMED Protocol" do
       el_4.to_sparql(sparql, true)
       el_5.to_sparql(sparql, true)
       el_6.to_sparql(sparql, true)
+      el_7.to_sparql(sparql, true)
+      el_8.to_sparql(sparql, true)
       p_1.to_sparql(sparql, true)
       s_1.to_sparql(sparql, true)
       v_items.each {|x| x.to_sparql(sparql, true)}

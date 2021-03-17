@@ -170,7 +170,7 @@ describe "H - ZINVESTDEV T2 Protocol" do
       a_2.uri = a_2.create_uri(a_2.class.base_uri)
       el_1 = Element.new(label: "Screening", in_epoch: e_1.uri, in_arm: a_1.uri, contains_timepoint: [tp_items[0].uri])
       el_1.uri = el_1.create_uri(el_1.class.base_uri)
-      el_2 = Element.new(label: "Screening", in_epoch: e_2.uri, in_arm: a_2.uri, contains_timepoint: [tp_items[0].uri])
+      el_2 = Element.new(label: "Screening", in_epoch: e_1.uri, in_arm: a_2.uri, contains_timepoint: [tp_items[0].uri])
       el_2.uri = el_2.create_uri(el_2.class.base_uri)
       el_3 = Element.new(label: "Exercise Led Phase", in_epoch: e_2.uri, in_arm: a_1.uri, contains_timepoint: [tp_items[1].uri, tp_items[2].uri, tp_items[3].uri])
       el_3.uri = el_3.create_uri(el_3.class.base_uri)

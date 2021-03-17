@@ -14,80 +14,80 @@
 <http://www.s-cubed.dk/ZINVESTDEV_T2DM/V1>
 	rdf:type owl:Ontology ;
 .
-<http://www.assero.co.uk/EP#19683879-ae02-46d5-9513-ff02ef46aead>
+<http://www.assero.co.uk/EP#746f8a5d-2f42-4d3f-a968-eccdd4628f71>
 	rdf:type pr:Epoch ;
 	isoC:label "Screening"^^xsd:string ;
 	pr:ordinal "1"^^xsd:integer ;
 .
-<http://www.assero.co.uk/EP#a8c20e42-228f-4ec8-9eac-ee9605af72f4>
+<http://www.assero.co.uk/EP#cdec5996-0403-46a1-9c0a-f8d3042b5b6e>
 	rdf:type pr:Epoch ;
 	isoC:label "Supportive Care | Exercise-led Phase"^^xsd:string ;
 	pr:ordinal "2"^^xsd:integer ;
 .
-<http://www.assero.co.uk/EP#15c675c8-5585-4302-bf23-72ef4c03fe96>
+<http://www.assero.co.uk/EP#6f27b553-45bf-47ac-a5dd-34cdd746e8ff>
 	rdf:type pr:Epoch ;
 	isoC:label "Follow-Up | Home-based Phase"^^xsd:string ;
 	pr:ordinal "3"^^xsd:integer ;
 .
-<http://www.assero.co.uk/ARM#f47b85ba-3af7-4ea2-a8ab-e17b14b7ae49>
+<http://www.assero.co.uk/ARM#7e40d730-5ceb-4825-8c6e-a4327c4aa045>
 	rdf:type pr:Arm ;
 	isoC:label "rtCGM"^^xsd:string ;
 	pr:description "Real-time Continuous Glucose Monitoring"^^xsd:string ;
 	pr:armType ""^^xsd:string ;
 	pr:ordinal "1"^^xsd:integer ;
 .
-<http://www.assero.co.uk/ARM#9e830576-d0c3-46bb-89da-e7012be4d956>
+<http://www.assero.co.uk/ARM#acb03315-4bf9-4cee-8b6e-2f0bec1f653f>
 	rdf:type pr:Arm ;
 	isoC:label "isCGM"^^xsd:string ;
 	pr:description "Intermittent scan (flash) Continuous Glucose Monitoring"^^xsd:string ;
 	pr:armType ""^^xsd:string ;
 	pr:ordinal "2"^^xsd:integer ;
 .
-<http://www.assero.co.uk/ELE#f38a877a-97e0-4365-b2bf-d11f0421013c>
+<http://www.assero.co.uk/ELE#d81b6d3a-d126-46ae-89c7-88dcdf8c27f0>
 	rdf:type pr:Element ;
 	isoC:label "Screening"^^xsd:string ;
-	pr:inArm <http://www.assero.co.uk/ARM#f47b85ba-3af7-4ea2-a8ab-e17b14b7ae49> ;
-	pr:inEpoch <http://www.assero.co.uk/EP#19683879-ae02-46d5-9513-ff02ef46aead> ;
-	pr:containsTimepoint <http://www.assero.co.uk/TP#71ac29c0-f501-4abe-a213-9273b90ea0f8> ;
+	pr:inArm <http://www.assero.co.uk/ARM#7e40d730-5ceb-4825-8c6e-a4327c4aa045> ;
+	pr:inEpoch <http://www.assero.co.uk/EP#746f8a5d-2f42-4d3f-a968-eccdd4628f71> ;
+	pr:containsTimepoint <http://www.assero.co.uk/TP#d8383f3b-6410-4591-8c63-4d4e53f4b16d> ;
 .
-<http://www.assero.co.uk/ELE#a1c3c80f-83c3-4577-a90a-30f56f61b901>
+<http://www.assero.co.uk/ELE#5293b92c-7b53-4d5e-9812-41dad9de7d95>
 	rdf:type pr:Element ;
 	isoC:label "Screening"^^xsd:string ;
-	pr:inArm <http://www.assero.co.uk/ARM#9e830576-d0c3-46bb-89da-e7012be4d956> ;
-	pr:inEpoch <http://www.assero.co.uk/EP#a8c20e42-228f-4ec8-9eac-ee9605af72f4> ;
-	pr:containsTimepoint <http://www.assero.co.uk/TP#71ac29c0-f501-4abe-a213-9273b90ea0f8> ;
+	pr:inArm <http://www.assero.co.uk/ARM#acb03315-4bf9-4cee-8b6e-2f0bec1f653f> ;
+	pr:inEpoch <http://www.assero.co.uk/EP#746f8a5d-2f42-4d3f-a968-eccdd4628f71> ;
+	pr:containsTimepoint <http://www.assero.co.uk/TP#d8383f3b-6410-4591-8c63-4d4e53f4b16d> ;
 .
-<http://www.assero.co.uk/ELE#9f74f761-b3ee-43f7-9395-a6680d6af7a9>
+<http://www.assero.co.uk/ELE#9d8363e1-6fa6-4a47-9dbd-0a171ebfb7a7>
 	rdf:type pr:Element ;
 	isoC:label "Exercise Led Phase"^^xsd:string ;
-	pr:inArm <http://www.assero.co.uk/ARM#f47b85ba-3af7-4ea2-a8ab-e17b14b7ae49> ;
-	pr:inEpoch <http://www.assero.co.uk/EP#a8c20e42-228f-4ec8-9eac-ee9605af72f4> ;
-	pr:containsTimepoint <http://www.assero.co.uk/TP#0219e8a3-ff09-42f7-b41c-02d3a9703bc4> ;
-	pr:containsTimepoint <http://www.assero.co.uk/TP#57dcfea3-0290-48ad-acef-34295af9a567> ;
-	pr:containsTimepoint <http://www.assero.co.uk/TP#062a24b8-f0a5-431c-bedf-6b71108b60fe> ;
+	pr:inArm <http://www.assero.co.uk/ARM#7e40d730-5ceb-4825-8c6e-a4327c4aa045> ;
+	pr:inEpoch <http://www.assero.co.uk/EP#cdec5996-0403-46a1-9c0a-f8d3042b5b6e> ;
+	pr:containsTimepoint <http://www.assero.co.uk/TP#7962d00e-f12b-412f-98b9-2a722437ea08> ;
+	pr:containsTimepoint <http://www.assero.co.uk/TP#325472d8-df04-422c-b91b-d59d2ed625db> ;
+	pr:containsTimepoint <http://www.assero.co.uk/TP#6162a4d4-2046-481c-8cb2-ebba9b5f0c26> ;
 .
-<http://www.assero.co.uk/ELE#5ea3e595-9428-4d28-b65a-7bde4352cbf4>
+<http://www.assero.co.uk/ELE#7904f1a5-1ddd-4b22-b710-66c57b47f25d>
 	rdf:type pr:Element ;
 	isoC:label "Exercise Led Phase"^^xsd:string ;
-	pr:inArm <http://www.assero.co.uk/ARM#9e830576-d0c3-46bb-89da-e7012be4d956> ;
-	pr:inEpoch <http://www.assero.co.uk/EP#a8c20e42-228f-4ec8-9eac-ee9605af72f4> ;
-	pr:containsTimepoint <http://www.assero.co.uk/TP#0219e8a3-ff09-42f7-b41c-02d3a9703bc4> ;
-	pr:containsTimepoint <http://www.assero.co.uk/TP#57dcfea3-0290-48ad-acef-34295af9a567> ;
-	pr:containsTimepoint <http://www.assero.co.uk/TP#062a24b8-f0a5-431c-bedf-6b71108b60fe> ;
+	pr:inArm <http://www.assero.co.uk/ARM#acb03315-4bf9-4cee-8b6e-2f0bec1f653f> ;
+	pr:inEpoch <http://www.assero.co.uk/EP#cdec5996-0403-46a1-9c0a-f8d3042b5b6e> ;
+	pr:containsTimepoint <http://www.assero.co.uk/TP#7962d00e-f12b-412f-98b9-2a722437ea08> ;
+	pr:containsTimepoint <http://www.assero.co.uk/TP#325472d8-df04-422c-b91b-d59d2ed625db> ;
+	pr:containsTimepoint <http://www.assero.co.uk/TP#6162a4d4-2046-481c-8cb2-ebba9b5f0c26> ;
 .
-<http://www.assero.co.uk/ELE#9b41a6af-da44-49a0-a2ea-9a2223d9f3d9>
+<http://www.assero.co.uk/ELE#705ff2b3-804e-49e4-9874-3c2a6f462368>
 	rdf:type pr:Element ;
 	isoC:label "Home-based Phase"^^xsd:string ;
-	pr:inArm <http://www.assero.co.uk/ARM#f47b85ba-3af7-4ea2-a8ab-e17b14b7ae49> ;
-	pr:inEpoch <http://www.assero.co.uk/EP#15c675c8-5585-4302-bf23-72ef4c03fe96> ;
-	pr:containsTimepoint <http://www.assero.co.uk/TP#74d3809a-3d5c-4e47-94cf-d4748db77572> ;
+	pr:inArm <http://www.assero.co.uk/ARM#7e40d730-5ceb-4825-8c6e-a4327c4aa045> ;
+	pr:inEpoch <http://www.assero.co.uk/EP#6f27b553-45bf-47ac-a5dd-34cdd746e8ff> ;
+	pr:containsTimepoint <http://www.assero.co.uk/TP#409408ee-a73a-43e7-b06c-5c9abe31f263> ;
 .
-<http://www.assero.co.uk/ELE#eb2c0ee0-1a50-4628-b9bb-705dfc7e789a>
+<http://www.assero.co.uk/ELE#a54a40b1-0aa9-4a04-810d-ddc99619eac2>
 	rdf:type pr:Element ;
 	isoC:label "Home-based Phase"^^xsd:string ;
-	pr:inArm <http://www.assero.co.uk/ARM#9e830576-d0c3-46bb-89da-e7012be4d956> ;
-	pr:inEpoch <http://www.assero.co.uk/EP#15c675c8-5585-4302-bf23-72ef4c03fe96> ;
-	pr:containsTimepoint <http://www.assero.co.uk/TP#74d3809a-3d5c-4e47-94cf-d4748db77572> ;
+	pr:inArm <http://www.assero.co.uk/ARM#acb03315-4bf9-4cee-8b6e-2f0bec1f653f> ;
+	pr:inEpoch <http://www.assero.co.uk/EP#6f27b553-45bf-47ac-a5dd-34cdd746e8ff> ;
+	pr:containsTimepoint <http://www.assero.co.uk/TP#409408ee-a73a-43e7-b06c-5c9abe31f263> ;
 .
 :PR
 	rdf:type pr:Protocol ;
@@ -97,7 +97,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2021-03-14T14:29:38+01:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2021-03-17T07:25:05+01:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	pr:acronym "ZINVESTDEV T2"^^xsd:string ;
 	pr:title "The aim of this investigator's study is to compare real-time continuous glucose monitoring (rtCGM) and flash glucose monitoring (isCGM) in adult patients with Type 1 or Type 2 Diabetes during a 14-day training program focused on physical activity and over 4 or 6 weeks of follow-up at home"^^xsd:string ;
@@ -108,11 +108,11 @@
 	pr:masking :PR_TUC2 ;
 	pr:forIndication <http://www.s-cubed.dk/IND_TYPE_2_DIABETES_MELLITUS/V1#IND> ;
 	pr:inTa <http://www.s-cubed.dk/TA_M/V1#TA> ;
-	pr:specifiesArm <http://www.assero.co.uk/ARM#f47b85ba-3af7-4ea2-a8ab-e17b14b7ae49> ;
-	pr:specifiesArm <http://www.assero.co.uk/ARM#9e830576-d0c3-46bb-89da-e7012be4d956> ;
-	pr:specifiesEpoch <http://www.assero.co.uk/EP#19683879-ae02-46d5-9513-ff02ef46aead> ;
-	pr:specifiesEpoch <http://www.assero.co.uk/EP#a8c20e42-228f-4ec8-9eac-ee9605af72f4> ;
-	pr:specifiesEpoch <http://www.assero.co.uk/EP#15c675c8-5585-4302-bf23-72ef4c03fe96> ;
+	pr:specifiesArm <http://www.assero.co.uk/ARM#7e40d730-5ceb-4825-8c6e-a4327c4aa045> ;
+	pr:specifiesArm <http://www.assero.co.uk/ARM#acb03315-4bf9-4cee-8b6e-2f0bec1f653f> ;
+	pr:specifiesEpoch <http://www.assero.co.uk/EP#746f8a5d-2f42-4d3f-a968-eccdd4628f71> ;
+	pr:specifiesEpoch <http://www.assero.co.uk/EP#cdec5996-0403-46a1-9c0a-f8d3042b5b6e> ;
+	pr:specifiesEpoch <http://www.assero.co.uk/EP#6f27b553-45bf-47ac-a5dd-34cdd746e8ff> ;
 .
 :PR_RS
 	rdf:type isoR:RegistrationState ;
@@ -182,7 +182,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2021-03-14T14:29:38+01:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2021-03-17T07:25:05+01:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	pr:description "Not set yet."^^xsd:string ;
 	pr:implements :PR ;
@@ -232,52 +232,52 @@
 	isoC:label "Week 6"^^xsd:string ;
 	pr:shortName "Vis#05"^^xsd:string ;
 .
-<http://www.assero.co.uk/TP#71ac29c0-f501-4abe-a213-9273b90ea0f8>
+<http://www.assero.co.uk/TP#d8383f3b-6410-4591-8c63-4d4e53f4b16d>
 	rdf:type pr:Timepoint ;
 	isoC:label "TP1"^^xsd:string ;
-	pr:atOffset <http://www.assero.co.uk/IC#TPO_2377c0c5-1e80-40ad-91c6-cc58359e0af6> ;
+	pr:atOffset <http://www.assero.co.uk/IC#TPO_277fc782-185c-4963-8714-290265b372e8> ;
 	pr:inVisit <http://www.assero.co.uk/VI#43a4674c8dbb9a7a54fca337c8685f379ae67724> ;
-	pr:hasPlanned <http://www.assero.co.uk/STFRM#354030cd-f527-41b3-a651-1cfe7e01e9eb> ;
+	pr:hasPlanned <http://www.assero.co.uk/STFRM#73feccdf-f292-4613-a050-d9e799c90daa> ;
 .
-<http://www.assero.co.uk/TP#0219e8a3-ff09-42f7-b41c-02d3a9703bc4>
+<http://www.assero.co.uk/TP#7962d00e-f12b-412f-98b9-2a722437ea08>
 	rdf:type pr:Timepoint ;
 	isoC:label "TP2"^^xsd:string ;
-	pr:atOffset <http://www.assero.co.uk/IC#TPO_fddce995-10c5-4a21-a936-0830146f501d> ;
+	pr:atOffset <http://www.assero.co.uk/IC#TPO_4908ea47-dd52-4410-8fca-96de41f7de14> ;
 	pr:inVisit <http://www.assero.co.uk/VI#26b1c771fb3760f35a954cc6f948de851dfae630> ;
-	pr:hasPlanned <http://www.assero.co.uk/STFRM#5b8c3c17-c921-454c-9e1f-765bded4b378> ;
-	pr:hasPlanned <http://www.assero.co.uk/STFRM#3c97fafe-0ec8-4fc6-a46a-1f10fc2f2997> ;
-	pr:hasPlanned <http://www.assero.co.uk/STFRM#812a50fa-7c4c-471f-a2a9-a6bfea45891b> ;
-	pr:hasPlanned <http://www.assero.co.uk/STFRM#5290f26e-aeb6-47d3-ad91-8afbab572bb8> ;
+	pr:hasPlanned <http://www.assero.co.uk/STFRM#aa7d8755-5a6c-4847-9240-7e9ca6ef3d1c> ;
+	pr:hasPlanned <http://www.assero.co.uk/STFRM#305bd8c8-dd99-4671-9f97-75a0485e7051> ;
+	pr:hasPlanned <http://www.assero.co.uk/STFRM#e77a379c-5d2a-43f6-b8d9-5e922dde9886> ;
+	pr:hasPlanned <http://www.assero.co.uk/STFRM#e0f544bc-b50e-4b66-9aeb-2e0711da68a6> ;
 .
-<http://www.assero.co.uk/TP#57dcfea3-0290-48ad-acef-34295af9a567>
+<http://www.assero.co.uk/TP#325472d8-df04-422c-b91b-d59d2ed625db>
 	rdf:type pr:Timepoint ;
 	isoC:label "TP3"^^xsd:string ;
-	pr:atOffset <http://www.assero.co.uk/IC#TPO_e6061b03-10fa-4187-a91c-da4a8a048c6b> ;
+	pr:atOffset <http://www.assero.co.uk/IC#TPO_9a30411a-c8bd-4c42-99ac-8bec63258e3f> ;
 	pr:inVisit <http://www.assero.co.uk/VI#24dc77d16170cb26034f547e8b7ac56f1a0f2a13> ;
-	pr:hasPlanned <http://www.assero.co.uk/STFRM#e18180a7-a44d-485b-8067-124d63e7ec5c> ;
-	pr:hasPlanned <http://www.assero.co.uk/STFRM#383b89b6-8e25-4561-8a8d-8abf28566756> ;
-	pr:hasPlanned <http://www.assero.co.uk/STFRM#d3980164-d95c-41bc-8e24-10fcbb44a923> ;
+	pr:hasPlanned <http://www.assero.co.uk/STFRM#7b8b30b7-15f5-4108-a900-63bd6313df0f> ;
+	pr:hasPlanned <http://www.assero.co.uk/STFRM#34e8041e-02e5-4ee7-9906-9ec484b1e3ee> ;
+	pr:hasPlanned <http://www.assero.co.uk/STFRM#e26c53ec-0048-41f0-8f21-b5ba097372aa> ;
 .
-<http://www.assero.co.uk/TP#062a24b8-f0a5-431c-bedf-6b71108b60fe>
+<http://www.assero.co.uk/TP#6162a4d4-2046-481c-8cb2-ebba9b5f0c26>
 	rdf:type pr:Timepoint ;
 	isoC:label "TP4"^^xsd:string ;
-	pr:atOffset <http://www.assero.co.uk/IC#TPO_eb646b31-f16d-48bc-bbd9-e8da9bdd7a58> ;
+	pr:atOffset <http://www.assero.co.uk/IC#TPO_5044fbc6-8a31-42f6-9463-7f017ed47173> ;
 	pr:inVisit <http://www.assero.co.uk/VI#3ea4f410ece4b621097a543af2a7097e53ef1f95> ;
-	pr:hasPlanned <http://www.assero.co.uk/STFRM#a6d62b7c-5b65-4ae7-88c3-ff77096ce011> ;
-	pr:hasPlanned <http://www.assero.co.uk/STFRM#c84e8e43-2bfe-481a-9e58-033d25e14973> ;
-	pr:hasPlanned <http://www.assero.co.uk/STFRM#e3db1a3e-947a-430f-94a5-a5dd85a8b0fc> ;
+	pr:hasPlanned <http://www.assero.co.uk/STFRM#ad677470-0f34-4b6e-b82b-8a272d7722d7> ;
+	pr:hasPlanned <http://www.assero.co.uk/STFRM#eea12769-aeb3-4a47-b05c-e96a771179c5> ;
+	pr:hasPlanned <http://www.assero.co.uk/STFRM#cc02c80d-c011-482e-9f3e-0ac264fe98ff> ;
 .
-<http://www.assero.co.uk/TP#74d3809a-3d5c-4e47-94cf-d4748db77572>
+<http://www.assero.co.uk/TP#409408ee-a73a-43e7-b06c-5c9abe31f263>
 	rdf:type pr:Timepoint ;
 	isoC:label "TP5"^^xsd:string ;
-	pr:atOffset <http://www.assero.co.uk/IC#TPO_0db7ddee-48d9-4b06-a005-64f600a7f493> ;
+	pr:atOffset <http://www.assero.co.uk/IC#TPO_8412dce6-43a4-46ea-93e2-0a0be51da8fd> ;
 	pr:inVisit <http://www.assero.co.uk/VI#d75c7fe12a17dd078cf0c882a4005b67d538b0bb> ;
-	pr:hasPlanned <http://www.assero.co.uk/STFRM#b37491a9-b878-4815-959f-1b17a0fdc612> ;
-	pr:hasPlanned <http://www.assero.co.uk/STFRM#5452acee-a9b8-4e1b-9aa1-450977fc79e5> ;
-	pr:hasPlanned <http://www.assero.co.uk/STFRM#334feb41-cfb4-424c-96a6-be901e4f1e12> ;
-	pr:hasPlanned <http://www.assero.co.uk/STFRM#dde3d7d0-de4f-412f-8d01-f30fa97874a7> ;
+	pr:hasPlanned <http://www.assero.co.uk/STFRM#5b42c078-ff8c-4969-8c0d-0660cf934e31> ;
+	pr:hasPlanned <http://www.assero.co.uk/STFRM#0657cfcf-668f-4994-a297-88a2c18a389b> ;
+	pr:hasPlanned <http://www.assero.co.uk/STFRM#566c20ee-374b-4919-92c3-10bc64871658> ;
+	pr:hasPlanned <http://www.assero.co.uk/STFRM#1a286f8f-e76d-4f6e-b5f9-15c3e0c63b60> ;
 .
-<http://www.assero.co.uk/IC#TPO_2377c0c5-1e80-40ad-91c6-cc58359e0af6>
+<http://www.assero.co.uk/IC#TPO_277fc782-185c-4963-8714-290265b372e8>
 	rdf:type pr:TimepointOffset ;
 	isoC:label ""^^xsd:string ;
 	pr:windowOffset "-86400"^^xsd:integer ;
@@ -285,7 +285,7 @@
 	pr:windowPlus "0"^^xsd:integer ;
 	pr:unit "Day"^^xsd:string ;
 .
-<http://www.assero.co.uk/IC#TPO_fddce995-10c5-4a21-a936-0830146f501d>
+<http://www.assero.co.uk/IC#TPO_4908ea47-dd52-4410-8fca-96de41f7de14>
 	rdf:type pr:TimepointOffset ;
 	isoC:label ""^^xsd:string ;
 	pr:windowOffset "86400"^^xsd:integer ;
@@ -293,7 +293,7 @@
 	pr:windowPlus "0"^^xsd:integer ;
 	pr:unit "Day"^^xsd:string ;
 .
-<http://www.assero.co.uk/IC#TPO_e6061b03-10fa-4187-a91c-da4a8a048c6b>
+<http://www.assero.co.uk/IC#TPO_9a30411a-c8bd-4c42-99ac-8bec63258e3f>
 	rdf:type pr:TimepointOffset ;
 	isoC:label ""^^xsd:string ;
 	pr:windowOffset "604800"^^xsd:integer ;
@@ -301,7 +301,7 @@
 	pr:windowPlus "0"^^xsd:integer ;
 	pr:unit "Day"^^xsd:string ;
 .
-<http://www.assero.co.uk/IC#TPO_eb646b31-f16d-48bc-bbd9-e8da9bdd7a58>
+<http://www.assero.co.uk/IC#TPO_5044fbc6-8a31-42f6-9463-7f017ed47173>
 	rdf:type pr:TimepointOffset ;
 	isoC:label ""^^xsd:string ;
 	pr:windowOffset "1209600"^^xsd:integer ;
@@ -309,7 +309,7 @@
 	pr:windowPlus "0"^^xsd:integer ;
 	pr:unit "Day"^^xsd:string ;
 .
-<http://www.assero.co.uk/IC#TPO_0db7ddee-48d9-4b06-a005-64f600a7f493>
+<http://www.assero.co.uk/IC#TPO_8412dce6-43a4-46ea-93e2-0a0be51da8fd>
 	rdf:type pr:TimepointOffset ;
 	isoC:label ""^^xsd:string ;
 	pr:windowOffset "3628800"^^xsd:integer ;
@@ -317,77 +317,77 @@
 	pr:windowPlus "0"^^xsd:integer ;
 	pr:unit "Day"^^xsd:string ;
 .
-<http://www.assero.co.uk/STFRM#354030cd-f527-41b3-a651-1cfe7e01e9eb>
+<http://www.assero.co.uk/STFRM#73feccdf-f292-4613-a050-d9e799c90daa>
 	rdf:type pr:StudyForm ;
 	isoC:label "Informed Consent"^^xsd:string ;
 	pr:isDerivedFrom <http://www.s-cubed.dk/INFORMED_CONSENT_DEMO/V1#F> ;
 .
-<http://www.assero.co.uk/STFRM#5b8c3c17-c921-454c-9e1f-765bded4b378>
+<http://www.assero.co.uk/STFRM#aa7d8755-5a6c-4847-9240-7e9ca6ef3d1c>
 	rdf:type pr:StudyForm ;
 	isoC:label "Device Allocation"^^xsd:string ;
 	pr:isDerivedFrom <http://www.s-cubed.dk/DEVICE_ALLOC_DEMO/V1#F> ;
 .
-<http://www.assero.co.uk/STFRM#3c97fafe-0ec8-4fc6-a46a-1f10fc2f2997>
+<http://www.assero.co.uk/STFRM#305bd8c8-dd99-4671-9f97-75a0485e7051>
 	rdf:type pr:StudyForm ;
 	isoC:label "CGM Running"^^xsd:string ;
 	pr:isDerivedFrom <http://www.s-cubed.dk/CGM_RUNNING_DEMO/V1#F> ;
 .
-<http://www.assero.co.uk/STFRM#812a50fa-7c4c-471f-a2a9-a6bfea45891b>
+<http://www.assero.co.uk/STFRM#e77a379c-5d2a-43f6-b8d9-5e922dde9886>
 	rdf:type pr:StudyForm ;
 	isoC:label "Adverse Events"^^xsd:string ;
 	pr:isDerivedFrom <http://www.s-cubed.dk/AE_DEMO/V1#F> ;
 .
-<http://www.assero.co.uk/STFRM#5290f26e-aeb6-47d3-ad91-8afbab572bb8>
+<http://www.assero.co.uk/STFRM#e0f544bc-b50e-4b66-9aeb-2e0711da68a6>
 	rdf:type pr:StudyForm ;
 	isoC:label "Hypoglycaemic Event"^^xsd:string ;
 	pr:isDerivedFrom <http://www.s-cubed.dk/HYPO_FORM/V1#F> ;
 .
-<http://www.assero.co.uk/STFRM#e18180a7-a44d-485b-8067-124d63e7ec5c>
+<http://www.assero.co.uk/STFRM#7b8b30b7-15f5-4108-a900-63bd6313df0f>
 	rdf:type pr:StudyForm ;
 	isoC:label "CGM Running"^^xsd:string ;
 	pr:isDerivedFrom <http://www.s-cubed.dk/CGM_RUNNING_DEMO/V1#F> ;
 .
-<http://www.assero.co.uk/STFRM#383b89b6-8e25-4561-8a8d-8abf28566756>
+<http://www.assero.co.uk/STFRM#34e8041e-02e5-4ee7-9906-9ec484b1e3ee>
 	rdf:type pr:StudyForm ;
 	isoC:label "Adverse Events"^^xsd:string ;
 	pr:isDerivedFrom <http://www.s-cubed.dk/AE_DEMO/V1#F> ;
 .
-<http://www.assero.co.uk/STFRM#d3980164-d95c-41bc-8e24-10fcbb44a923>
+<http://www.assero.co.uk/STFRM#e26c53ec-0048-41f0-8f21-b5ba097372aa>
 	rdf:type pr:StudyForm ;
 	isoC:label "Hypoglycaemic Event"^^xsd:string ;
 	pr:isDerivedFrom <http://www.s-cubed.dk/HYPO_FORM/V1#F> ;
 .
-<http://www.assero.co.uk/STFRM#a6d62b7c-5b65-4ae7-88c3-ff77096ce011>
+<http://www.assero.co.uk/STFRM#ad677470-0f34-4b6e-b82b-8a272d7722d7>
 	rdf:type pr:StudyForm ;
 	isoC:label "CGM Running"^^xsd:string ;
 	pr:isDerivedFrom <http://www.s-cubed.dk/CGM_RUNNING_DEMO/V1#F> ;
 .
-<http://www.assero.co.uk/STFRM#c84e8e43-2bfe-481a-9e58-033d25e14973>
+<http://www.assero.co.uk/STFRM#eea12769-aeb3-4a47-b05c-e96a771179c5>
 	rdf:type pr:StudyForm ;
 	isoC:label "Adverse Events"^^xsd:string ;
 	pr:isDerivedFrom <http://www.s-cubed.dk/AE_DEMO/V1#F> ;
 .
-<http://www.assero.co.uk/STFRM#e3db1a3e-947a-430f-94a5-a5dd85a8b0fc>
+<http://www.assero.co.uk/STFRM#cc02c80d-c011-482e-9f3e-0ac264fe98ff>
 	rdf:type pr:StudyForm ;
 	isoC:label "Hypoglycaemic Event"^^xsd:string ;
 	pr:isDerivedFrom <http://www.s-cubed.dk/HYPO_FORM/V1#F> ;
 .
-<http://www.assero.co.uk/STFRM#b37491a9-b878-4815-959f-1b17a0fdc612>
+<http://www.assero.co.uk/STFRM#5b42c078-ff8c-4969-8c0d-0660cf934e31>
 	rdf:type pr:StudyForm ;
 	isoC:label "CGM Running"^^xsd:string ;
 	pr:isDerivedFrom <http://www.s-cubed.dk/CGM_RUNNING_DEMO/V1#F> ;
 .
-<http://www.assero.co.uk/STFRM#5452acee-a9b8-4e1b-9aa1-450977fc79e5>
+<http://www.assero.co.uk/STFRM#0657cfcf-668f-4994-a297-88a2c18a389b>
 	rdf:type pr:StudyForm ;
 	isoC:label "Adverse Events"^^xsd:string ;
 	pr:isDerivedFrom <http://www.s-cubed.dk/AE_DEMO/V1#F> ;
 .
-<http://www.assero.co.uk/STFRM#334feb41-cfb4-424c-96a6-be901e4f1e12>
+<http://www.assero.co.uk/STFRM#566c20ee-374b-4919-92c3-10bc64871658>
 	rdf:type pr:StudyForm ;
 	isoC:label "Hypoglycaemic Event"^^xsd:string ;
 	pr:isDerivedFrom <http://www.s-cubed.dk/HYPO_FORM/V1#F> ;
 .
-<http://www.assero.co.uk/STFRM#dde3d7d0-de4f-412f-8d01-f30fa97874a7>
+<http://www.assero.co.uk/STFRM#1a286f8f-e76d-4f6e-b5f9-15c3e0c63b60>
 	rdf:type pr:StudyForm ;
 	isoC:label "Termination Record"^^xsd:string ;
 	pr:isDerivedFrom <http://www.s-cubed.dk/TERMINATION_DEMO/V1#F> ;
