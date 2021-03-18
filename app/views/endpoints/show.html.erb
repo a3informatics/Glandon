@@ -1,0 +1,24 @@
+<% content_for :page_title do %> <%= "Show Endpoint: #{@endpoint.has_identifier.identifier} (#{@endpoint.semantic_version})" %> <% end %>
+
+<%= javascript_pack_tag 'endpoints/show' %>
+
+<% third_level_breadcrumb(:endpoints, @endpoint, @close_path) %>
+
+<div class="row">
+  <%= render layout: "shared/headers/header_managed_item", :locals => { item: @endpoint, badge: "icon-protocol" } do %>
+    <div class="actions-wrap">
+      <%= render partial: "shared/buttons/return", :locals => { url: @close_path } %>
+    </div>
+  <% end %>
+</div>
+
+<div class="row">
+  <div id="show-panel" class="col-md-12 card wide">
+    <div class="card-header">
+      Show: Endpoint
+    </div>
+    <div class="card-content">
+      <%= render partial: "shared/endpoints/show_panel", locals: { show_url: @show_path } %>
+    </div>
+  </div>
+</div>
