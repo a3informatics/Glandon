@@ -592,4 +592,30 @@ Rails.application.routes.draw do
     end
   end
 
+  # Endpoints
+  resources :endpoints, :only => [:show, :index] do
+    member do
+      #get :show_data
+      #post :add
+      #put :remove
+      #put :remove_all
+    end
+    collection do
+      get :history
+    end
+  end
+
+  # Objectives
+  resources :objectives, :only => [:show, :index] do
+    member do
+      #get :show_data
+      #post :add
+      #put :remove
+      #put :remove_all
+    end
+    collection do
+      get :history
+    end
+  end
+
 end
