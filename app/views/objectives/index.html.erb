@@ -1,0 +1,24 @@
+<% content_for :page_title do %> Index: Objectives <% end %>
+
+<%= javascript_pack_tag 'objectives/index' %>
+
+<% first_level_breadcrumb (:objectives) %>
+
+<div class="row">
+  <%= render layout: "shared/headers/header_minimal", :locals => {badge: "icon-protocol",
+    main_text: "Objectives", sub_text: "Browse all Objectives in the system." } do %>
+      <div class="btns-wrap"></div>
+  <% end %>
+</div>
+
+<div class="row">
+
+  <% content_for :description do %>
+    Below is the list of all <span class="text-accent-1-dark font-regular">standardized</span> and <span class="text-link font-regular">sponsor</span> Objectives.
+    Use the Search bar to find the Objective you are looking for.
+    To see Objective's respective History page, click on it.
+  <% end %>
+
+  <%= render partial: "shared/iso_managed/index/index_card", locals: { title: "Objectives", url: objectives_path } %>
+
+</div>
