@@ -1,0 +1,2 @@
+class ObjectivePolicy < ApplicationPolicy
+end
