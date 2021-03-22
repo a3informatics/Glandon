@@ -100,6 +100,56 @@ describe ManagedCollection do
 
   end
 
+  describe "Add item Tests, duplicated items" do
+
+    before :all do
+      IsoHelpers.clear_cache
+      load_files(schema_files, [])
+      load_data_file_into_triple_store("mdr_identification.ttl")
+    end
+
+    after :all do
+      delete_all_public_test_files
+    end
+
+    it "add items" do
+      item_1 = ManagedCollection.create(label: "Item 1", identifier: "ITEM1")
+      item_2 = ManagedCollection.create(label: "Item 2", identifier: "ITEM2")
+      item_3 = ManagedCollection.create(label: "Item 3", identifier: "ITEM3")
+      item_4 = ManagedCollection.create(label: "Item 4", identifier: "ITEM4")
+      parent = ManagedCollection.find_full(Uri.new(uri: "http://www.s-cubed.dk/ITEM1/V1#MC"))
+      parent.add_item([item_2.id, item_3.id])
+      parent = ManagedCollection.find_full(Uri.new(uri: "http://www.s-cubed.dk/ITEM1/V1#MC"))
+      fix_dates(parent, sub_dir, "add_item_duplicated_expected_1a.yaml", :creation_date, :last_change_date)
+      check_file_actual_expected(parent.to_h, sub_dir, "add_item_duplicated_expected_1a.yaml", equate_method: :hash_equal)
+      parent.add_item([item_2.id, item_3.id, item_4.id])
+      parent = ManagedCollection.find_full(Uri.new(uri: "http://www.s-cubed.dk/ITEM1/V1#MC"))
+      fix_dates(parent, sub_dir, "add_item_duplicated_expected_1b.yaml", :creation_date, :last_change_date)
+      check_file_actual_expected(parent.to_h, sub_dir, "add_item_duplicated_expected_1b.yaml", equate_method: :hash_equal)
+    end
+
+    it "add items II" do
+      item_1 = ManagedCollection.create(label: "Item 1", identifier: "COLLECTION1")
+      item_2 = ManagedCollection.create(label: "Item 2", identifier: "COLLECTION2")
+      item_3 = ManagedCollection.create(label: "Item 3", identifier: "COLLECTION3")
+      item_4 = ManagedCollection.create(label: "Item 4", identifier: "COLLECTION4")
+      parent = ManagedCollection.find_full(Uri.new(uri: "http://www.s-cubed.dk/COLLECTION1/V1#MC"))
+      parent.add_item([item_2.id])
+      parent = ManagedCollection.find_full(Uri.new(uri: "http://www.s-cubed.dk/COLLECTION1/V1#MC"))
+      fix_dates(parent, sub_dir, "add_item_duplicated_expected_2a.yaml", :creation_date, :last_change_date)
+      check_file_actual_expected(parent.to_h, sub_dir, "add_item_duplicated_expected_2a.yaml", equate_method: :hash_equal)
+      parent.add_item([item_2.id, item_3.id])
+      parent = ManagedCollection.find_full(Uri.new(uri: "http://www.s-cubed.dk/COLLECTION1/V1#MC"))
+      fix_dates(parent, sub_dir, "add_item_duplicated_expected_2b.yaml", :creation_date, :last_change_date)
+      check_file_actual_expected(parent.to_h, sub_dir, "add_item_duplicated_expected_2b.yaml", equate_method: :hash_equal)
+      parent.add_item([item_2.id, item_3.id, item_4.id])
+      parent = ManagedCollection.find_full(Uri.new(uri: "http://www.s-cubed.dk/COLLECTION1/V1#MC"))
+      fix_dates(parent, sub_dir, "add_item_duplicated_expected_2c.yaml", :creation_date, :last_change_date)
+      check_file_actual_expected(parent.to_h, sub_dir, "add_item_duplicated_expected_2c.yaml", equate_method: :hash_equal)
+    end
+
+  end
+
   describe "Remove item Tests" do
 
     before :all do

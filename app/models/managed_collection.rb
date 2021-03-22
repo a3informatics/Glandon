@@ -33,9 +33,10 @@ class ManagedCollection <  IsoManagedV2
   # @param [Array] ids the ids to add as items
   # @return [ManagedCollection] managed collection with added items
   def add_item(ids)
+    uris = remove_duplicates(ids.map{|x| Uri.new(id: x)})
     ordinal = next_ordinal(:has_managed)
     transaction = transaction_begin
-    ids.map{|x| Uri.new(id: x)}.each do |uri|
+    uris.each do |uri|
       ref = OperationalReferenceV3.create({ordinal: ordinal, reference: uri, transaction: transaction}, self)
       self.add_link(:has_managed, ref.uri)
       ordinal += 1
@@ -135,6 +136,16 @@ puts "Q: #{query_string}"
   end
 
   private
+
+    # Remove Uri if already exists in the Managed Collection. Return array of URIs.
+    def remove_duplicates(uris)
+      new_uri_set = []
+      uris.each do |uri|
+        items = self.has_managed.map{|x| x.reference}
+        new_uri_set << uri unless items.include? uri
+      end
+      new_uri_set
+    end
 
     # Return URIs of the children objects ordered by ordinal
     def uris_by_ordinal
