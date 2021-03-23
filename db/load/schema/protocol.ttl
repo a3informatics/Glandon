@@ -335,6 +335,54 @@
   rdfs:range isoC:Concept ;
   skos:definition "Relationship from a timepoint to a planned assessment, BC, Form or other item."^^xsd:string ;
 .
+:inVisit
+  rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf isoC:link ;
+  rdfs:label "In Visit Relationship"^^xsd:string ;
+  rdfs:domain :Timepoint ;
+  rdfs:range :Visit ;
+  skos:definition "Relationship from a Timepoint to a Visit."^^xsd:string ;
+.
+:nextTimepoint
+  rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf isoC:link ;
+  rdfs:label "Next Timepoint Relationship"^^xsd:string ;
+  rdfs:domain :Timepoint ;
+  rdfs:range :Timepoint ;
+  skos:definition "Relationship from timepoint to timepoint."^^xsd:string ;
+.
+:hasMultiple
+  rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf isoC:link ;
+  rdfs:label "Has Multiple Relationship"^^xsd:string ;
+  rdfs:domain :Endpoint ;
+  rdfs:range :Endpoint ;
+  skos:definition "Relationship from an Endpoint to an Endpoint."^^xsd:string ;
+.
+:requiresBC
+  rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf isoC:link ;
+  rdfs:label "Has Multiple Relationship"^^xsd:string ;
+  rdfs:domain :Endpoint ;
+  rdfs:range :Endpoint ;
+  skos:definition "Relationship from an Endpoint to an Endpoint."^^xsd:string ;
+.
+:primaryTimepoint
+  rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf isoC:link ;
+  rdfs:label "Has Multiple Relationship"^^xsd:string ;
+  rdfs:domain :ProtocolEndpoint ;
+  rdfs:range :Endpoint ;
+  skos:definition "Relationship from a Protocol Endpoint to an Endpoint."^^xsd:string ;
+.
+:secondaryTimepoint
+  rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf isoC:link ;
+  rdfs:label "Has Multiple Relationship"^^xsd:string ;
+  rdfs:domain :ProtocolEndpoint ;
+  rdfs:range :Endpoint ;
+  skos:definition "Relationship from a Protocol Endpoint to an Endpoint."^^xsd:string ;
+.
 :fullText
   rdf:type owl:DatatypeProperty ;
   rdfs:label "Full Text"^^xsd:string ;
