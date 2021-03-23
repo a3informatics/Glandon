@@ -168,7 +168,7 @@ describe BiomedicalConcept do
     end
 
     it "create templates" do
-      write_file = true
+      write_file = false
       results = []
       filenames = local_file_list("#{sub_dir}/templates", "*.yaml")
       filenames.each do |f|
