@@ -1,5 +1,7 @@
 import TokenTimer from 'shared/custom/tokens/token_timer'
 
+import StudyTimeline from 'shared/custom/studies/study_timeline'
+
 $(document).ready( () => {
 
   const tt = new TokenTimer({
@@ -14,5 +16,7 @@ $(document).ready( () => {
     setTimeout( () => tt.handleUnload = true, 1000 )
 
   })
+
+  const st = new StudyTimeline()
 
 });
