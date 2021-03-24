@@ -1,6 +1,6 @@
 class Enumerated < IsoConceptV2
   
-  configure rdf_type: "http://www.assero.co.uk/Enumrated#Emumerated",
+  configure rdf_type: "http://www.assero.co.uk/Enumerated#Enumerated",
             base_uri: "http://#{ENV["url_authority"]}/ENUM",
             uri_unique: :label,
             cache: true

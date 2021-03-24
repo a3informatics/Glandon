@@ -28,13 +28,16 @@ describe Enumerated do
       item_1.uri = item_1.create_uri(Enumerated.base_uri)
       item_2 = Enumerated.new(label: "Secondary")
       item_2.uri = item_2.create_uri(Enumerated.base_uri)
-      item_3 = Enumerated.new(label: "Not Defined")
+      item_3 = Enumerated.new(label: "Tertiary")
       item_3.uri = item_3.create_uri(Enumerated.base_uri)
+      item_4 = Enumerated.new(label: "Not Defined")
+      item_4.uri = item_4.create_uri(Enumerated.base_uri)
       sparql = Sparql::Update.new
       sparql.default_namespace(item_1.uri.namespace)
       item_1.to_sparql(sparql)
       item_2.to_sparql(sparql)
       item_3.to_sparql(sparql)
+      item_4.to_sparql(sparql)
       full_path = sparql.to_file
     copy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "enumerated.ttl")
     end
