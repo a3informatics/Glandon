@@ -12,8 +12,6 @@
   rdf:type owl:Ontology ;
   owl:versionInfo "v4.0.0"^^xsd:string ;
   rdfs:label "Form Schema"^^xsd:string ;
-  owl:imports <http://www.assero.co.uk/BusinessOperational> ;
-  owl:imports <http://www.assero.co.uk/BiomedicalConcept#> ;
 .
 :Form
   rdf:type owl:Class ;

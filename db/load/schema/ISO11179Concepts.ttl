@@ -10,10 +10,6 @@
   rdf:type owl:Ontology ;
   owl:versionInfo "v4.0.0"^^xsd:string ;
   rdfs:label "ISO11179 Concepts Schema"^^xsd:string ;
-  owl:imports <http://purl.org/dc/elements/1.1/> ;
-  owl:imports <http://purl.org/dc/terms/> ;
-  owl:imports <http://www.assero.co.uk/ISO11179Identification> ;
-  owl:imports <http://www.w3.org/2004/02/skos/core> ;
 .
 :ContextualRelationship
   rdf:type owl:Class ;
