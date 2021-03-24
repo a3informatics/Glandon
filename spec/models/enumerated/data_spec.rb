@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe "Enumerated Data" do
+describe Enumerated do
 
   include DataHelpers
   include PublicFileHelpers
@@ -14,15 +14,7 @@ describe "Enumerated Data" do
   before :all do
     IsoHelpers.clear_cache
     load_files(schema_files, [])
-    load_data_file_into_triple_store("mdr_transcelerate_identification.ttl")
-  end
-
-  after :all do
-    #
-  end
-
-  before :each do
-    #
+    load_data_file_into_triple_store("mdr_identification.ttl")
   end
 
   after :each do
