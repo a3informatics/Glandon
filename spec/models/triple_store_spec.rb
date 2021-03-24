@@ -29,7 +29,7 @@ describe "TripleStore" do
 
     it "find" do
       actual = TripleStore.find(Uri.new(uri: "http://www.transceleratebiopharmainc.com/LY246708/V1#PR").to_id)
-      check_file_actual_expected(actual, sub_dir, "find_expected_1.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(actual, sub_dir, "find_expected_1.yaml", equate_method: :hash_equal)
       actual = TripleStore.find(Uri.new(uri: "http://www.transceleratebiopharmainc.com/LY246708/V1#PR"))
       check_file_actual_expected(actual, sub_dir, "find_expected_1.yaml", equate_method: :hash_equal)
     end
