@@ -5,8 +5,6 @@ describe Parameter do
   include DataHelpers
   include PublicFileHelpers
   include SparqlHelpers
-  include IsoHelpers
-  include ValidationHelpers
 
   def sub_dir
     return "models/parameter/data"
@@ -51,7 +49,7 @@ describe Parameter do
       p_3.to_sparql(sparql, true)
       p_4.to_sparql(sparql, true)
       full_path = sparql.to_file
-    copy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "parameter.ttl")
+    #Xcopy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "parameter.ttl")
     end
   
   end
