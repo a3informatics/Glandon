@@ -1,0 +1,37 @@
+# Thesaurus Schema Extension 2020-07-05
+#
+# Adds in paritedWith and refersTo relationships
+
+@prefix : <http://www.assero.co.uk/Thesaurus#> .
+@prefix isoC: <http://www.assero.co.uk/ISO11179Concepts#> .
+@prefix bo: <http://www.assero.co.uk/BusinessOperational#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix skosxl: <http://www.w3.org/2008/05/skos-xl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://www.assero.co.uk/Thesaurus>
+  rdf:type owl:Ontology ;
+.
+:pairedWith
+  rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf isoC:link ;
+  rdfs:subPropertyOf skos:related ;
+  rdfs:label "Paired with relationship"^^xsd:string ;
+  rdfs:domain :ManagedConcept ;
+  rdfs:range :ManagedConcept ;
+  skos:definition "A relationship linking a managed concept with a paired managed concept."^^xsd:string ;
+.
+:refersTo
+  rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf isoC:link ;
+  rdfs:subPropertyOf skos:related ;
+  rdfs:label "Refers to relationship"^^xsd:string ;
+  rdfs:domain  [ a owl:Class ;
+    owl:unionOf  ( :UnmanagedConcept :ManagedConcept )
+    ] ;
+  rdfs:range :UnmanagedConcept ;
+  skos:definition "Relationship indicating that the concept is refered to rather than created/owned."^^xsd:string ;
+.
