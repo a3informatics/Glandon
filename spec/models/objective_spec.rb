@@ -4,7 +4,6 @@ describe "Objective" do
 
   include DataHelpers
   include PublicFileHelpers
-  include SparqlHelpers
   include IsoManagedHelpers
 
   def sub_dir
