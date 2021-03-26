@@ -3,12 +3,7 @@ require 'rails_helper'
 describe Assessment do
 
   include DataHelpers
-  include SparqlHelpers
-  include TimeHelpers
   include PublicFileHelpers
-  include CdiscCtHelpers
-  include IsoManagedHelpers
-  include ThesauriHelpers
   include IsoManagedHelpers
 
   def sub_dir
@@ -63,7 +58,7 @@ describe Assessment do
       parent = Assessment.find_full(Uri.new(uri: "http://www.acme-pharma.com/ITEM1/V1#ASS"))
       parent.has_managed << item_2
       parent.has_managed << item_3
-      check_file_actual_expected(parent.to_h, sub_dir, "create_expected_1.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(parent.to_h, sub_dir, "create_expected_1.yaml", equate_method: :hash_equal)
     end
 
   end
