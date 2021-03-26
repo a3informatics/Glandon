@@ -4,8 +4,8 @@ describe Endpoint do
   
   include DataHelpers
   include PublicFileHelpers
-  include SparqlHelpers
   include IsoManagedHelpers
+  include EndpointFactory
 
   def sub_dir
     return "models/endpoint"
@@ -19,7 +19,7 @@ describe Endpoint do
     end
 
     it "create" do
-      actual = Endpoint.create(identifier: "XXX")
+      actual = create_endpoint("XXX", "END1")
       expect(actual.scoped_identifier).to eq("XXX")
       expect(actual.version).to eq(1)
       expect(actual.semantic_version).to eq("0.1.0")
@@ -36,7 +36,7 @@ describe Endpoint do
     end
 
     it "simple update" do
-      actual = Endpoint.create(identifier: "XXX")
+      actual = create_endpoint("XXX", "END1")
       actual = Endpoint.find_minimum(actual.uri)
       actual.label = "New label"
       actual.save
