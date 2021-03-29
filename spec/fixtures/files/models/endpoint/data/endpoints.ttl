@@ -1,0 +1,148 @@
+@prefix : <http://www.s-cubed.dk/EP_1/V1#> .
+@prefix pr: <http://www.assero.co.uk/Protocol#> .
+@prefix isoC: <http://www.assero.co.uk/ISO11179Concepts#> .
+@prefix isoT: <http://www.assero.co.uk/ISO11179Types#> .
+@prefix isoR: <http://www.assero.co.uk/ISO11179Registration#> .
+@prefix isoI: <http://www.assero.co.uk/ISO11179Identification#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+<http://www.s-cubed.dk/EP_1/V1>
+	rdf:type owl:Ontology ;
+.
+:END
+	rdf:type pr:Endpoint ;
+	isoC:label "Endpoint 1"^^xsd:string ;
+	isoT:hasState :END_RS ;
+	isoT:hasIdentifier :END_SI ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2021-03-29T10:08:29+02:00"^^xsd:dateTime ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	pr:fullText "[[[Timepoint]]][[[AnalysisConcept]]]"^^xsd:string ;
+	pr:hasParameter <http://www.assero.co.uk/PARAM#6c1c328851412e95110c486bd84a712905888d7a> ;
+.
+:END_RS
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Incomplete"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Incomplete"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
+.
+:END_SI
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "EP 1"^^xsd:string ;
+	isoI:versionLabel ""^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
+	isoI:semanticVersion "0.1.0"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/NS#SCUBED> ;
+.
+<http://www.s-cubed.dk/EP_2/V1#END>
+	rdf:type pr:Endpoint ;
+	isoC:label "Endpoint 2"^^xsd:string ;
+	isoT:hasState <http://www.s-cubed.dk/EP_2/V1#END_RS> ;
+	isoT:hasIdentifier <http://www.s-cubed.dk/EP_2/V1#END_SI> ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2021-03-29T10:08:29+02:00"^^xsd:dateTime ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	pr:fullText "[[[Timepoint]]][[[AnalysisConcept]]]"^^xsd:string ;
+	pr:hasParameter <http://www.assero.co.uk/PARAM#6c1c328851412e95110c486bd84a712905888d7a> ;
+.
+<http://www.s-cubed.dk/EP_2/V1#END_RS>
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Incomplete"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Incomplete"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
+.
+<http://www.s-cubed.dk/EP_2/V1#END_SI>
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "EP 2"^^xsd:string ;
+	isoI:versionLabel ""^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
+	isoI:semanticVersion "0.1.0"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/NS#SCUBED> ;
+.
+<http://www.s-cubed.dk/EP_3/V1#END>
+	rdf:type pr:Endpoint ;
+	isoC:label "Endpoint 3"^^xsd:string ;
+	isoT:hasState <http://www.s-cubed.dk/EP_3/V1#END_RS> ;
+	isoT:hasIdentifier <http://www.s-cubed.dk/EP_3/V1#END_SI> ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2021-03-29T10:08:29+02:00"^^xsd:dateTime ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	pr:fullText "[[[Timepoint]]][[[AnalysisConcept]]]"^^xsd:string ;
+	pr:hasParameter <http://www.assero.co.uk/PARAM#6c1c328851412e95110c486bd84a712905888d7a> ;
+.
+<http://www.s-cubed.dk/EP_3/V1#END_RS>
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Incomplete"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Incomplete"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
+.
+<http://www.s-cubed.dk/EP_3/V1#END_SI>
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "EP 3"^^xsd:string ;
+	isoI:versionLabel ""^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
+	isoI:semanticVersion "0.1.0"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/NS#SCUBED> ;
+.
+<http://www.s-cubed.dk/EP_4/V1#END>
+	rdf:type pr:Endpoint ;
+	isoC:label "Endpoint 4"^^xsd:string ;
+	isoT:hasState <http://www.s-cubed.dk/EP_4/V1#END_RS> ;
+	isoT:hasIdentifier <http://www.s-cubed.dk/EP_4/V1#END_SI> ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2021-03-29T10:08:29+02:00"^^xsd:dateTime ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	pr:fullText "[[[BC]]] at baseline then every [[[Timepoint-freq]]] during the first [[[Timepoint-span]]] then at [[[Timepoint]]] and every [[[Timepoint-freq]]] until [[[Timepoint]]]"^^xsd:string ;
+	pr:hasParameter <http://www.assero.co.uk/PARAM#a7a051355c3e05fb5fb80de30930bee9d2eb7847> ;
+	pr:hasParameter <http://www.assero.co.uk/PARAM#6c1c328851412e95110c486bd84a712905888d7a> ;
+.
+<http://www.s-cubed.dk/EP_4/V1#END_RS>
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Incomplete"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Incomplete"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
+.
+<http://www.s-cubed.dk/EP_4/V1#END_SI>
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "EP 4"^^xsd:string ;
+	isoI:versionLabel ""^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
+	isoI:semanticVersion "0.1.0"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/NS#SCUBED> ;
+.
