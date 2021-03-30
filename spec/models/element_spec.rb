@@ -4,8 +4,6 @@ describe Element do
   
   include DataHelpers
   include PublicFileHelpers
-  include SparqlHelpers
-  include ThesauriHelpers
   include IsoManagedHelpers
 
   def sub_dir

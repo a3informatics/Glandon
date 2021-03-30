@@ -3,12 +3,7 @@ require 'rails_helper'
 describe Assessment do
 
   include DataHelpers
-  include SparqlHelpers
-  include TimeHelpers
   include PublicFileHelpers
-  include CdiscCtHelpers
-  include IsoManagedHelpers
-  include ThesauriHelpers
   include IsoManagedHelpers
 
   def sub_dir

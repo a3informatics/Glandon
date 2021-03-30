@@ -4,8 +4,6 @@ describe "Parameter" do
 
   include DataHelpers
   include PublicFileHelpers
-  include SparqlHelpers
-  include ThesauriHelpers
   include IsoManagedHelpers
 
   describe "basic tests" do
@@ -13,9 +11,6 @@ describe "Parameter" do
     before :each do
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
       load_files(schema_files, data_files)
-    end
-
-    after :each do
     end
 
     it "create an instance" do

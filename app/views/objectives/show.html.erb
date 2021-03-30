@@ -1,0 +1,24 @@
+<% content_for :page_title do %> <%= "Show Objective: #{@objective.has_identifier.identifier} (#{@objective.semantic_version})" %> <% end %>
+
+<%= javascript_pack_tag 'objectives/show' %>
+
+<% third_level_breadcrumb(:objectives, @objective, @close_path) %>
+
+<div class="row">
+  <%= render layout: "shared/headers/header_managed_item", :locals => { item: @objective, badge: "icon-protocol" } do %>
+    <div class="actions-wrap">
+      <%= render partial: "shared/buttons/return", :locals => { url: @close_path } %>
+    </div>
+  <% end %>
+</div>
+
+<div class="row">
+  <div id="show-panel" class="col-md-12 card wide">
+    <div class="card-header">
+      Show: Objective
+    </div>
+    <div class="card-content">
+      <%= render partial: "shared/objectives/show_panel", locals: { show_url: @show_path } %>
+    </div>
+  </div>
+</div>

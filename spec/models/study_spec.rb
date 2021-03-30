@@ -4,8 +4,6 @@ describe "Study" do
 
   include DataHelpers
   include PublicFileHelpers
-  include SparqlHelpers
-  include ThesauriHelpers
   include IsoManagedHelpers
 
   def sub_dir
@@ -17,9 +15,6 @@ describe "Study" do
     before :each do
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
       load_files(schema_files, data_files)
-    end
-
-    after :each do
     end
 
     it "create an instance" do
@@ -86,7 +81,6 @@ describe "Study" do
 
     before :all do
       load_files(schema_files, [])
-      #load_cdisc_term_versions(1..62)
       load_data_file_into_triple_store("mdr_transcelerate_identification.ttl")
       load_data_file_into_triple_store("hackathon_thesaurus.ttl")
       load_data_file_into_triple_store("hackathon_tas.ttl")
