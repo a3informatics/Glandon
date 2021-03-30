@@ -1,0 +1,154 @@
+@prefix : <http://www.s-cubed.dk/OBJ_1/V1#> .
+@prefix pr: <http://www.assero.co.uk/Protocol#> .
+@prefix isoC: <http://www.assero.co.uk/ISO11179Concepts#> .
+@prefix isoT: <http://www.assero.co.uk/ISO11179Types#> .
+@prefix isoR: <http://www.assero.co.uk/ISO11179Registration#> .
+@prefix isoI: <http://www.assero.co.uk/ISO11179Identification#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+<http://www.s-cubed.dk/OBJ_1/V1>
+	rdf:type owl:Ontology ;
+.
+:OB
+	rdf:type pr:Objective ;
+	isoC:label "Objective 1"^^xsd:string ;
+	isoT:hasState :OB_RS ;
+	isoT:hasIdentifier :OB_SI ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2021-03-30T11:47:05+02:00"^^xsd:dateTime ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	pr:fullText "To show the contribution of [[[Intervention]]] to the clinical and parasiticidal effect of [[[Intervention]]] combination by analyzing exposure-response of [[[Intervention]]] measured by [[[Timepoint]]] for the effect and the area under the concentration time curve up to infinity (AUC) of [[[Intervention]]] as PK predictor"^^xsd:string ;
+	pr:isAssessedBy <http://www.s-cubed.dk/EP_1/V1#END> ;
+	pr:isAssessedBy <http://www.s-cubed.dk/EP_2/V1#END> ;
+	pr:objectiveType <http://www.assero.co.uk/CSN#5c891362-f4f9-47fb-98cb-7cf411618ce9> ;
+.
+:OB_RS
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Incomplete"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Incomplete"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
+.
+:OB_SI
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "OBJ 1"^^xsd:string ;
+	isoI:versionLabel ""^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
+	isoI:semanticVersion "0.1.0"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/NS#SCUBED> ;
+.
+<http://www.s-cubed.dk/OBJ_2/V1#OB>
+	rdf:type pr:Objective ;
+	isoC:label "Objective 2"^^xsd:string ;
+	isoT:hasState <http://www.s-cubed.dk/OBJ_2/V1#OB_RS> ;
+	isoT:hasIdentifier <http://www.s-cubed.dk/OBJ_2/V1#OB_SI> ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2021-03-30T11:47:05+02:00"^^xsd:dateTime ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	pr:fullText "To evaluate the dose response of [[[Intervention]]] combined with [[[Intervention]]] on <Param1> and <Param2> at [[[Timepoint]]]"^^xsd:string ;
+	pr:isAssessedBy <http://www.s-cubed.dk/EP_1/V1#END> ;
+	pr:objectiveType <http://www.assero.co.uk/CSN#7b80edd3-e7de-4428-b6ca-1170be808c8d> ;
+.
+<http://www.s-cubed.dk/OBJ_2/V1#OB_RS>
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Incomplete"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Incomplete"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
+.
+<http://www.s-cubed.dk/OBJ_2/V1#OB_SI>
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "OBJ 2"^^xsd:string ;
+	isoI:versionLabel ""^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
+	isoI:semanticVersion "0.1.0"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/NS#SCUBED> ;
+.
+<http://www.s-cubed.dk/OBJ_3/V1#OB>
+	rdf:type pr:Objective ;
+	isoC:label "Objective 3"^^xsd:string ;
+	isoT:hasState <http://www.s-cubed.dk/OBJ_3/V1#OB_RS> ;
+	isoT:hasIdentifier <http://www.s-cubed.dk/OBJ_3/V1#OB_SI> ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2021-03-30T11:47:05+02:00"^^xsd:dateTime ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	pr:fullText "To evaluate the dose-response of [[[Intervention]]] combined with [[[Intervention]]] on selected secondary endpoints"^^xsd:string ;
+	pr:isAssessedBy <http://www.s-cubed.dk/EP_1/V1#END> ;
+	pr:objectiveType <http://www.assero.co.uk/CSN#7b80edd3-e7de-4428-b6ca-1170be808c8d> ;
+.
+<http://www.s-cubed.dk/OBJ_3/V1#OB_RS>
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Incomplete"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Incomplete"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
+.
+<http://www.s-cubed.dk/OBJ_3/V1#OB_SI>
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "OBJ 3"^^xsd:string ;
+	isoI:versionLabel ""^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
+	isoI:semanticVersion "0.1.0"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/NS#SCUBED> ;
+.
+<http://www.s-cubed.dk/OBJ_4/V1#OB>
+	rdf:type pr:Objective ;
+	isoC:label "Objective 4"^^xsd:string ;
+	isoT:hasState <http://www.s-cubed.dk/OBJ_4/V1#OB_RS> ;
+	isoT:hasIdentifier <http://www.s-cubed.dk/OBJ_4/V1#OB_SI> ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2021-03-30T11:47:05+02:00"^^xsd:dateTime ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	pr:fullText "To evaluate the safety and tolerability of different dosages of [[[Intervention]]] in combination with [[[Intervention]]] and [[[Intervention]]] alone"^^xsd:string ;
+	pr:isAssessedBy <http://www.s-cubed.dk/EP_1/V1#END> ;
+	pr:isAssessedBy <http://www.s-cubed.dk/EP_2/V1#END> ;
+	pr:isAssessedBy <http://www.s-cubed.dk/EP_4/V1#END> ;
+	pr:objectiveType <http://www.assero.co.uk/CSN#7b80edd3-e7de-4428-b6ca-1170be808c8d> ;
+.
+<http://www.s-cubed.dk/OBJ_4/V1#OB_RS>
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Incomplete"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Incomplete"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
+.
+<http://www.s-cubed.dk/OBJ_4/V1#OB_SI>
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "OBJ 4"^^xsd:string ;
+	isoI:versionLabel ""^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
+	isoI:semanticVersion "0.1.0"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/NS#SCUBED> ;
+.

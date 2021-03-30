@@ -15,39 +15,67 @@ describe Objective do
   describe "Create Objective" do
     
     before :all do
-      data_files = ["enumerated.ttl"]
+      data_files = ["endpoints.ttl", "parameter.ttl"]
       load_files(schema_files, data_files)
-      load_data_file_into_triple_store("mdr_identification.ttl")     
+      load_data_file_into_triple_store("mdr_identification.ttl")
+      load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
+      load_data_file_into_triple_store("mdr_iso_concept_systems_migration_4.ttl")          
     end
 
     after :all do
       delete_all_public_test_files
     end
 
-    def item_to_ttl(item)
-      uri = item.has_identifier.has_scope.uri
-      item.has_identifier.has_scope = uri
-      uri = item.has_state.by_authority.uri
-      item.has_state.by_authority = uri
-      item.to_ttl
-    end
+    it "Objectives" do
 
-    it "create Objective" do
-      objective = Objective.create(identifier: "OBJ1", label: "Objective 1")
-      objective = Objective.find_minimum(objective.uri)
-      iso_concept = Intervention.new()
-      parameter1 = Parameter.create(label: "Intervention", parameter_rdf_type: iso_concept.rdf_type )
-      objective.has_parameter = [parameter1]
-      enumerated = Enumerated.create(label: "Primary")
-      objective.objective_type = enumerated
-      endpoint1 = Endpoint.create(label: "Endpoint1", full_text: "")
-      objective.is_assessed_by = [endpoint1]
-      objective.full_text = "To show the contribution of [[[Intervention]]] to the clinical and parasiticidal effect of <interventionA/interventionB> 
-      combination by analyzing exposure-response of <interventionA> measured by <Timepoint> <Param>for the effect and the area under the concentration time curve up to infinity (AUC) of <interventionA> as PK predictor"
-      objective.save
-      full_path = item_to_ttl(objective)
-      full_path = objective.to_ttl
-  copy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "Objective.ttl")
+      enum_p = IsoConceptSystem::Node.where(pref_label: "Primary").first
+      enum_s = IsoConceptSystem::Node.where(pref_label: "Secondary").first
+      enum_t = IsoConceptSystem::Node.where(pref_label: "Tertiary").first
+      enum_ns = IsoConceptSystem::Node.where(pref_label: "Not set").first
+
+      ep1 = Endpoint.where(label: "Endpoint 1").first
+      ep2 = Endpoint.where(label: "Endpoint 2").first
+      ep3 = Endpoint.where(label: "Endpoint 3").first
+      ep4 = Endpoint.where(label: "Endpoint 4").first
+
+      objectives =
+      [
+        {
+          label: "Objective 1",
+          full_text: "To show the contribution of [[[Intervention]]] to the clinical and parasiticidal effect of [[[Intervention]]] combination by analyzing exposure-response of [[[Intervention]]] measured by [[[Timepoint]]] for the effect and the area under the concentration time curve up to infinity (AUC) of [[[Intervention]]] as PK predictor",
+          objective_type: enum_p.uri,
+          is_assessed_by: [ep1.uri, ep2.uri]
+        },
+        {
+          label: "Objective 2",
+          full_text: "To evaluate the dose response of [[[Intervention]]] combined with [[[Intervention]]] on <Param1> and <Param2> at [[[Timepoint]]]",
+          objective_type: enum_s.uri,
+          is_assessed_by: [ep1.uri]
+        },
+        {
+          label: "Objective 3",
+          full_text: "To evaluate the dose-response of [[[Intervention]]] combined with [[[Intervention]]] on selected secondary endpoints",
+          objective_type: enum_s.uri,
+          is_assessed_by: [ep1.uri]
+        },
+        {
+          label: "Objective 4",
+          full_text: "To evaluate the safety and tolerability of different dosages of [[[Intervention]]] in combination with [[[Intervention]]] and [[[Intervention]]] alone",
+          objective_type: enum_s.uri,
+          is_assessed_by: [ep1.uri, ep2.uri, ep4.uri]
+        }
+      ]
+      items = []
+      objectives.each_with_index do |ep, index|
+        item = Objective.new(ep)
+        item.set_initial("OBJ #{index+1}")
+        items << item
+      end
+      sparql = Sparql::Update.new
+      sparql.default_namespace(items.first.uri.namespace)
+      items.each {|x| x.to_sparql(sparql, true)}
+      full_path = sparql.to_file
+    #Xcopy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "objectives.ttl")
     end
   
   end

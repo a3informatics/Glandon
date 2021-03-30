@@ -23,14 +23,6 @@ describe Endpoint do
       delete_all_public_test_files
     end
 
-    def item_to_ttl(item)
-      uri = item.has_identifier.has_scope.uri
-      item.has_identifier.has_scope = uri
-      uri = item.has_state.by_authority.uri
-      item.has_state.by_authority = uri
-      item.to_ttl
-    end
-
   #   it "create Endpoint" do
   #     endpoint = Endpoint.create(identifier: "END1", label: "Endpoint 1", full_text: "[[[Timepoint]]][[[Param]]]")
   #     endpoint = Endpoint.find_minimum(endpoint.uri)
