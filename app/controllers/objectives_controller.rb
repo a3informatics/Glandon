@@ -43,7 +43,7 @@ private
   end
 
   def history_path_for(identifier, scope_id)
-    return {history_path: history_endpoints_path({objective:{identifier: identifier, scope_id: scope_id}})} 
+    return {history_path: history_objectives_path({objective:{identifier: identifier, scope_id: scope_id}})} 
   end
 
   def close_path_for
