@@ -14,7 +14,7 @@ describe "Therapeutic Area Data" do
   before :all do
     data_files = ["indications.ttl", "hackathon_thesaurus.ttl"]
     load_files(schema_files, data_files)
-    load_data_file_into_triple_store("mdr_transcelerate_identification.ttl")
+    load_data_file_into_triple_store("mdr_identification.ttl")
   end
 
   after :each do
