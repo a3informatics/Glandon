@@ -26,14 +26,14 @@ describe IndicationsController do
       request.env['HTTP_ACCEPT'] = "application/json"
       get :index
       actual = check_good_json_response(response)
-      check_file_actual_expected(actual[:data], sub_dir, "index_expected_1.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(actual[:data], sub_dir, "index_expected_1.yaml", equate_method: :hash_equal)
     end
 
-    it "show" do
-      indication = Indication.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/IND2/V1#IND"))
-      get :show, params: { :id => indication.id}
-      expect(response).to render_template("show")
-    end
+    # it "show" do
+    #   indication = Indication.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/IND2/V1#IND"))
+    #   get :show, params: { :id => indication.id}
+    #   expect(response).to render_template("show")
+    # end
 
     it "shows the history, page" do
       item = Indication.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/IND2/V1#IND"))
@@ -41,7 +41,7 @@ describe IndicationsController do
       expect(Indication).to receive(:history_pagination).with({identifier: item.has_identifier.identifier, scope: an_instance_of(IsoNamespace), offset: "20", count: "20"}).and_return([item])
       get :history, params:{indication: {identifier: item.has_identifier.identifier, scope_id: "aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0NVQkVE", count: 20, offset: 20}}
       actual = check_good_json_response(response)
-      check_file_actual_expected(actual[:data], sub_dir, "history_expected_1.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(actual[:data], sub_dir, "history_expected_1.yaml", equate_method: :hash_equal)
     end
 
     it "shows the history, initial view" do
