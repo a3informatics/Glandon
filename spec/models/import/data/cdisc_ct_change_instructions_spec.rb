@@ -13,7 +13,7 @@ describe Import::ChangeInstruction do
   end
 
   def set_write_file
-    false
+    true
   end
 
   def simple_setup
@@ -117,6 +117,11 @@ describe Import::ChangeInstruction do
 
   it "2020-12-18" do
     release_date = "2020-12-18"
+    execute_import(release_date, {sdtm: true, send: true}, set_write_file)
+  end  
+
+  it "2021-03-26" do
+    release_date = "2021-03-26"
     execute_import(release_date, {sdtm: true, send: true}, set_write_file)
   end  
 
