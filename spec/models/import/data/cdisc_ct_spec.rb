@@ -134,7 +134,7 @@ SELECT DISTINCT ?s ?p ?o WHERE {
   end
 
 	def check_cl_result(results, cl, status)
-    return if status == :no_change
+    return if status == :no_change && !results[:items].key?(cl)
   	puts "***** Error checking CL Result: #{cl} for expected result '#{status}', actual result '#{results[:items][cl.to_sym][:status][0][:status]}' *****" if results[:items][cl.to_sym][:status][0][:status] != status
     expect(results[:items][cl.to_sym][:status][0][:status]).to eq(status)
   rescue => e
@@ -1905,28 +1905,28 @@ SELECT DISTINCT ?s ?p ?o WHERE {
       release_date = "2020-12-18"
       results = execute_import(release_date, {sdtm: release_date, cdash: release_date, adam: "2020-11-06", send: release_date, protocol: release_date, define: release_date}, set_write_file, use_api)
       expected = [
-        {cl: :C65047,  status: :no_change},     # LBTESTCD
+        {cl: :C65047,  status: :updated},       # LBTESTCD
         {cl: :C66741,  status: :no_change},     # VSTESTCD
         {cl: :C67153,  status: :no_change},     # VSTEST
         {cl: :C66737,  status: :no_change},     # TPHASE
-        {cl: :C66738,  status: :no_change},     # TSPARMCD
+        {cl: :C66738,  status: :updated},       # TSPARMCD
         {cl: :C66785,  status: :no_change},     # TCNTRL
         {cl: :C66790,  status: :no_change},     # ETHNIC
-        {cl: :C67152,  status: :no_change},     # TSPARM
+        {cl: :C67152,  status: :updated},       # TSPARM
         {cl: :C67153,  status: :no_change},     # VSTEST
-        {cl: :C67154,  status: :no_change},     # LBTEST
-        {cl: :C71153,  status: :no_change},     # EGTESTCD
-        {cl: :C71620,  status: :no_change},     # UNIT
-        {cl: :C74456,  status: :no_change},     # LOC
-        {cl: :C74559,  status: :no_change},     # SCTESTCD
+        {cl: :C67154,  status: :updated},       # LBTEST
+        {cl: :C71153,  status: :updated},       # EGTESTCD
+        {cl: :C71620,  status: :updated},       # UNIT
+        {cl: :C74456,  status: :updated},       # LOC
+        {cl: :C74559,  status: :updated},       # SCTESTCD
         {cl: :C76351,  status: :no_change},     # SKINCLAS
         {cl: :C78431,  status: :no_change},     # VSPOS
         {cl: :C78735,  status: :no_change},     # EVAL
-        {cl: :C85494,  status: :no_change},     # PKUNIT
+        {cl: :C85494,  status: :updated},       # PKUNIT
         {cl: :C99079,  status: :no_change},     # EPOCH
-        {cl: :C118971, status: :no_change},     # CCCAT
+        {cl: :C118971, status: :updated},       # CCCAT
         {cl: :C128689, status: :no_change},     # RACEC
-        {cl: :C103330, status: :no_change},     # SCTEST
+        {cl: :C103330, status: :updated},       # SCTEST
         {cl: :C147069, status: :no_change},     # Randomization Type Response
         {cl: :C160930, status: :no_change},     # CHAGNAMR
         {cl: :C163026, status: :no_change},     # Study Monitoring Attribute Terminology
@@ -1941,26 +1941,26 @@ SELECT DISTINCT ?s ?p ?o WHERE {
       release_date = "2021-03-26"
       results = execute_import(release_date, {sdtm: release_date, cdash: release_date, adam: "2020-11-06", send: release_date, protocol: release_date, define: release_date}, set_write_file, use_api)
       expected = [
-        {cl: :C65047,  status: :no_change},     # LBTESTCD
-        {cl: :C66741,  status: :no_change},     # VSTESTCD
-        {cl: :C67153,  status: :no_change},     # VSTEST
+        {cl: :C65047,  status: :updated},       # LBTESTCD
+        {cl: :C66741,  status: :updated},       # VSTESTCD
+        {cl: :C67153,  status: :updated},       # VSTEST
         {cl: :C66737,  status: :no_change},     # TPHASE
-        {cl: :C66738,  status: :no_change},     # TSPARMCD
+        {cl: :C66738,  status: :updated},       # TSPARMCD
         {cl: :C66785,  status: :no_change},     # TCNTRL
         {cl: :C66790,  status: :no_change},     # ETHNIC
-        {cl: :C67152,  status: :no_change},     # TSPARM
-        {cl: :C67153,  status: :no_change},     # VSTEST
-        {cl: :C67154,  status: :no_change},     # LBTEST
+        {cl: :C67152,  status: :updated},       # TSPARM
+        {cl: :C67153,  status: :updated},       # VSTEST
+        {cl: :C67154,  status: :updated},       # LBTEST
         {cl: :C71153,  status: :no_change},     # EGTESTCD
-        {cl: :C71620,  status: :no_change},     # UNIT
-        {cl: :C74456,  status: :no_change},     # LOC
-        {cl: :C74559,  status: :no_change},     # SCTESTCD
+        {cl: :C71620,  status: :updated},       # UNIT
+        {cl: :C74456,  status: :updated},       # LOC
+        {cl: :C74559,  status: :updated},       # SCTESTCD
         {cl: :C76351,  status: :no_change},     # SKINCLAS
         {cl: :C78431,  status: :no_change},     # VSPOS
-        {cl: :C78735,  status: :no_change},     # EVAL
-        {cl: :C85494,  status: :no_change},     # PKUNIT
+        {cl: :C78735,  status: :updated},       # EVAL
+        {cl: :C85494,  status: :updated},       # PKUNIT
         {cl: :C99079,  status: :no_change},     # EPOCH
-        {cl: :C118971, status: :no_change},     # CCCAT
+        {cl: :C118971, status: :updated},       # CCCAT
         {cl: :C128689, status: :no_change},     # RACEC
         {cl: :C103330, status: :no_change},     # SCTEST
         {cl: :C147069, status: :no_change},     # Randomization Type Response
