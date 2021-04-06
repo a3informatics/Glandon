@@ -244,7 +244,8 @@ SELECT DISTINCT ?s ?p ?o WHERE {
       { api: true, size: -1 }, { api: true, size: -1 }, { api: true, size: -1 }, { api: true, size: -1 },                                             # 2018
       { api: true, size: 31267 }, { api: true, size: 31934 }, { api: true, size: -1 }, { api: true, size: 33397 },                                    # 2019
       { api: true, size: 33765 }, { api: true, size: 33886 }, { api: true, size: 34182 }, { api: true, size: 34417 }, { api: true, size: 34417 }, 
-        { api: true, size: 35181 }                                                                                                                    # 2020                      
+        { api: true, size: 35181 },                                                                                                                   # 2020                      
+      { api: true, size: 35644 }                                                                                                                      # 2021
     ]
   
     @version_to_tags_map =
@@ -310,6 +311,7 @@ SELECT DISTINCT ?s ?p ?o WHERE {
       { th: [:SDTM, :CDASH, :ADaM, :SEND, :Protocol], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},  # 59 - 2019
       { th: [:SDTM, :CDASH, :ADaM, :SEND, :Protocol], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},  # 60
       { th: [:SDTM, :CDASH, :ADaM, :SEND, :Protocol], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},
+      { th: [:SDTM, :CDASH, :ADaM, :SEND, :Protocol, :"Define-XML"], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},
       { th: [:SDTM, :CDASH, :ADaM, :SEND, :Protocol, :"Define-XML"], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},
       { th: [:SDTM, :CDASH, :ADaM, :SEND, :Protocol, :"Define-XML"], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},
       { th: [:SDTM, :CDASH, :ADaM, :SEND, :Protocol, :"Define-XML"], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},
