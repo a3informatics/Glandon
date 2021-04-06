@@ -1962,7 +1962,7 @@ SELECT DISTINCT ?s ?p ?o WHERE {
         {cl: :C99079,  status: :no_change},     # EPOCH
         {cl: :C118971, status: :updated},       # CCCAT
         {cl: :C128689, status: :no_change},     # RACEC
-        {cl: :C103330, status: :no_change},     # SCTEST
+        {cl: :C103330, status: :updated},       # SCTEST
         {cl: :C147069, status: :no_change},     # Randomization Type Response
         {cl: :C160930, status: :no_change},     # CHAGNAMR
         {cl: :C163026, status: :no_change},     # Study Monitoring Attribute Terminology
