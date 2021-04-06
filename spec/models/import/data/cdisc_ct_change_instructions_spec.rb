@@ -13,7 +13,7 @@ describe Import::ChangeInstruction do
   end
 
   def set_write_file
-    true
+    false
   end
 
   def simple_setup
