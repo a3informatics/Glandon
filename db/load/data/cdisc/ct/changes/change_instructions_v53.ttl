@@ -11,17 +11,17 @@
 <http://www.assero.co.uk/BusinessOperational>
 	rdf:type owl:Ontology ;
 .
-<http://www.assero.co.uk/CHIN#bedd98fb-bb4c-4298-b71e-9a04120e6642>
+<http://www.assero.co.uk/CHIN#94ce5e4f-63f4-4464-a125-8eb70111220b>
 	rdf:type ba:ChangeInstruction ;
 	isoC:label ""^^xsd:string ;
-	ba:reference ""^^xsd:string ;
+	ba:reference "CDISC-2862"^^xsd:string ;
 	ba:description "Please use CVTEST = Mean Blood Pressure, Estimated; LOC = Heart, Right Atrium (or other chambers of the heart)."^^xsd:string ;
-	ba:current <http://www.assero.co.uk/CHIN#bedd98fb-bb4c-4298-b71e-9a04120e6642_TUC2> ;
+	ba:current <http://www.assero.co.uk/CHIN#94ce5e4f-63f4-4464-a125-8eb70111220b_TUC2> ;
 	ba:ordinal "1"^^xsd:integer ;
 	ba:semantic "related terminology"^^xsd:string ;
-	ba:previous <http://www.assero.co.uk/CHIN#bedd98fb-bb4c-4298-b71e-9a04120e6642_TUC1> ;
+	ba:previous <http://www.assero.co.uk/CHIN#94ce5e4f-63f4-4464-a125-8eb70111220b_TUC1> ;
 .
-<http://www.assero.co.uk/CHIN#bedd98fb-bb4c-4298-b71e-9a04120e6642_TUC2>
+<http://www.assero.co.uk/CHIN#94ce5e4f-63f4-4464-a125-8eb70111220b_TUC2>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -31,7 +31,7 @@
 	:context <http://www.cdisc.org/CT/V53#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.assero.co.uk/CHIN#bedd98fb-bb4c-4298-b71e-9a04120e6642_TUC1>
+<http://www.assero.co.uk/CHIN#94ce5e4f-63f4-4464-a125-8eb70111220b_TUC1>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -41,17 +41,17 @@
 	:context <http://www.cdisc.org/CT/V52#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.assero.co.uk/CHIN#1c059ce8-b45b-4adc-bfd0-ab7c86382d1c>
+<http://www.assero.co.uk/CHIN#3805f360-ab49-4ea0-ac08-f6b21eebb3a7>
 	rdf:type ba:ChangeInstruction ;
 	isoC:label ""^^xsd:string ;
-	ba:reference ""^^xsd:string ;
+	ba:reference "CDISC-2862"^^xsd:string ;
 	ba:description "Please use CVTEST = Mean Blood Pressure, Estimated; LOC = Heart, Right Atrium (or other chambers of the heart)."^^xsd:string ;
-	ba:current <http://www.assero.co.uk/CHIN#1c059ce8-b45b-4adc-bfd0-ab7c86382d1c_TUC2> ;
+	ba:current <http://www.assero.co.uk/CHIN#3805f360-ab49-4ea0-ac08-f6b21eebb3a7_TUC2> ;
 	ba:ordinal "2"^^xsd:integer ;
 	ba:semantic "related terminology"^^xsd:string ;
-	ba:previous <http://www.assero.co.uk/CHIN#1c059ce8-b45b-4adc-bfd0-ab7c86382d1c_TUC1> ;
+	ba:previous <http://www.assero.co.uk/CHIN#3805f360-ab49-4ea0-ac08-f6b21eebb3a7_TUC1> ;
 .
-<http://www.assero.co.uk/CHIN#1c059ce8-b45b-4adc-bfd0-ab7c86382d1c_TUC2>
+<http://www.assero.co.uk/CHIN#3805f360-ab49-4ea0-ac08-f6b21eebb3a7_TUC2>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -61,7 +61,7 @@
 	:context <http://www.cdisc.org/CT/V53#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.assero.co.uk/CHIN#1c059ce8-b45b-4adc-bfd0-ab7c86382d1c_TUC1>
+<http://www.assero.co.uk/CHIN#3805f360-ab49-4ea0-ac08-f6b21eebb3a7_TUC1>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -71,17 +71,17 @@
 	:context <http://www.cdisc.org/CT/V52#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.assero.co.uk/CHIN#4e257bca-6698-4683-94eb-c0d568414f4f>
+<http://www.assero.co.uk/CHIN#d2ca8aba-cefd-46bb-9e53-c11e9c98bd38>
 	rdf:type ba:ChangeInstruction ;
 	isoC:label ""^^xsd:string ;
-	ba:reference ""^^xsd:string ;
+	ba:reference "CDISC-2678"^^xsd:string ;
 	ba:description "Replaces C117855 in codelist. Reticulocyte MCH does not actually exist as a lab test. The advia machine doesn't calculate it and we are unaware of anyone else that is using it."^^xsd:string ;
-	ba:current <http://www.assero.co.uk/CHIN#4e257bca-6698-4683-94eb-c0d568414f4f_TUC2> ;
+	ba:current <http://www.assero.co.uk/CHIN#d2ca8aba-cefd-46bb-9e53-c11e9c98bd38_TUC2> ;
 	ba:ordinal "3"^^xsd:integer ;
 	ba:semantic "related terminology"^^xsd:string ;
-	ba:previous <http://www.assero.co.uk/CHIN#4e257bca-6698-4683-94eb-c0d568414f4f_TUC1> ;
+	ba:previous <http://www.assero.co.uk/CHIN#d2ca8aba-cefd-46bb-9e53-c11e9c98bd38_TUC1> ;
 .
-<http://www.assero.co.uk/CHIN#4e257bca-6698-4683-94eb-c0d568414f4f_TUC2>
+<http://www.assero.co.uk/CHIN#d2ca8aba-cefd-46bb-9e53-c11e9c98bd38_TUC2>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -91,7 +91,7 @@
 	:context <http://www.cdisc.org/CT/V53#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.assero.co.uk/CHIN#4e257bca-6698-4683-94eb-c0d568414f4f_TUC1>
+<http://www.assero.co.uk/CHIN#d2ca8aba-cefd-46bb-9e53-c11e9c98bd38_TUC1>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -101,17 +101,17 @@
 	:context <http://www.cdisc.org/CT/V52#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.assero.co.uk/CHIN#9df47237-0484-495e-9445-646df46e1b1c>
+<http://www.assero.co.uk/CHIN#e7552368-feba-4703-a661-5aa9d2642a0a>
 	rdf:type ba:ChangeInstruction ;
 	isoC:label ""^^xsd:string ;
-	ba:reference ""^^xsd:string ;
+	ba:reference "CDISC-2977"^^xsd:string ;
 	ba:description "Replacing C114218 in this codelist."^^xsd:string ;
-	ba:current <http://www.assero.co.uk/CHIN#9df47237-0484-495e-9445-646df46e1b1c_TUC2> ;
+	ba:current <http://www.assero.co.uk/CHIN#e7552368-feba-4703-a661-5aa9d2642a0a_TUC2> ;
 	ba:ordinal "4"^^xsd:integer ;
 	ba:semantic "related terminology"^^xsd:string ;
-	ba:previous <http://www.assero.co.uk/CHIN#9df47237-0484-495e-9445-646df46e1b1c_TUC1> ;
+	ba:previous <http://www.assero.co.uk/CHIN#e7552368-feba-4703-a661-5aa9d2642a0a_TUC1> ;
 .
-<http://www.assero.co.uk/CHIN#9df47237-0484-495e-9445-646df46e1b1c_TUC2>
+<http://www.assero.co.uk/CHIN#e7552368-feba-4703-a661-5aa9d2642a0a_TUC2>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -121,7 +121,7 @@
 	:context <http://www.cdisc.org/CT/V53#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.assero.co.uk/CHIN#9df47237-0484-495e-9445-646df46e1b1c_TUC1>
+<http://www.assero.co.uk/CHIN#e7552368-feba-4703-a661-5aa9d2642a0a_TUC1>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -131,17 +131,17 @@
 	:context <http://www.cdisc.org/CT/V52#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.assero.co.uk/CHIN#35af8edf-b75a-4d37-b8ef-106a623b3a48>
+<http://www.assero.co.uk/CHIN#53848172-dc43-4d3f-b68d-9f3d88760533>
 	rdf:type ba:ChangeInstruction ;
 	isoC:label ""^^xsd:string ;
-	ba:reference ""^^xsd:string ;
+	ba:reference "CDISC-2678"^^xsd:string ;
 	ba:description "Replaces C117855 in codelist. Reticulocyte MCH does not actually exist as a lab test. The advia machine doesn't calculate it and we are unaware of anyone else that is using it."^^xsd:string ;
-	ba:current <http://www.assero.co.uk/CHIN#35af8edf-b75a-4d37-b8ef-106a623b3a48_TUC2> ;
+	ba:current <http://www.assero.co.uk/CHIN#53848172-dc43-4d3f-b68d-9f3d88760533_TUC2> ;
 	ba:ordinal "5"^^xsd:integer ;
 	ba:semantic "related terminology"^^xsd:string ;
-	ba:previous <http://www.assero.co.uk/CHIN#35af8edf-b75a-4d37-b8ef-106a623b3a48_TUC1> ;
+	ba:previous <http://www.assero.co.uk/CHIN#53848172-dc43-4d3f-b68d-9f3d88760533_TUC1> ;
 .
-<http://www.assero.co.uk/CHIN#35af8edf-b75a-4d37-b8ef-106a623b3a48_TUC2>
+<http://www.assero.co.uk/CHIN#53848172-dc43-4d3f-b68d-9f3d88760533_TUC2>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -151,7 +151,7 @@
 	:context <http://www.cdisc.org/CT/V53#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.assero.co.uk/CHIN#35af8edf-b75a-4d37-b8ef-106a623b3a48_TUC1>
+<http://www.assero.co.uk/CHIN#53848172-dc43-4d3f-b68d-9f3d88760533_TUC1>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -161,17 +161,17 @@
 	:context <http://www.cdisc.org/CT/V52#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.assero.co.uk/CHIN#2233ad64-db02-421c-8ea4-14dab530faa6>
+<http://www.assero.co.uk/CHIN#ba722590-c7f9-483b-8ed6-b2813fcfc09c>
 	rdf:type ba:ChangeInstruction ;
 	isoC:label ""^^xsd:string ;
-	ba:reference ""^^xsd:string ;
+	ba:reference "CDISC-2977"^^xsd:string ;
 	ba:description "Replacing C114218 in this codelist."^^xsd:string ;
-	ba:current <http://www.assero.co.uk/CHIN#2233ad64-db02-421c-8ea4-14dab530faa6_TUC2> ;
+	ba:current <http://www.assero.co.uk/CHIN#ba722590-c7f9-483b-8ed6-b2813fcfc09c_TUC2> ;
 	ba:ordinal "6"^^xsd:integer ;
 	ba:semantic "related terminology"^^xsd:string ;
-	ba:previous <http://www.assero.co.uk/CHIN#2233ad64-db02-421c-8ea4-14dab530faa6_TUC1> ;
+	ba:previous <http://www.assero.co.uk/CHIN#ba722590-c7f9-483b-8ed6-b2813fcfc09c_TUC1> ;
 .
-<http://www.assero.co.uk/CHIN#2233ad64-db02-421c-8ea4-14dab530faa6_TUC2>
+<http://www.assero.co.uk/CHIN#ba722590-c7f9-483b-8ed6-b2813fcfc09c_TUC2>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -181,7 +181,7 @@
 	:context <http://www.cdisc.org/CT/V53#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.assero.co.uk/CHIN#2233ad64-db02-421c-8ea4-14dab530faa6_TUC1>
+<http://www.assero.co.uk/CHIN#ba722590-c7f9-483b-8ed6-b2813fcfc09c_TUC1>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -191,17 +191,17 @@
 	:context <http://www.cdisc.org/CT/V52#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.assero.co.uk/CHIN#738add1d-6294-46e3-9ee2-f4464514ce4c>
+<http://www.assero.co.uk/CHIN#fd9abee0-7522-483c-b643-63740894c4b4>
 	rdf:type ba:ChangeInstruction ;
 	isoC:label ""^^xsd:string ;
-	ba:reference ""^^xsd:string ;
+	ba:reference "CDISC-2833"^^xsd:string ;
 	ba:description "Replaces C33794 in this codelist."^^xsd:string ;
-	ba:current <http://www.assero.co.uk/CHIN#738add1d-6294-46e3-9ee2-f4464514ce4c_TUC2> ;
+	ba:current <http://www.assero.co.uk/CHIN#fd9abee0-7522-483c-b643-63740894c4b4_TUC2> ;
 	ba:ordinal "7"^^xsd:integer ;
 	ba:semantic "related terminology"^^xsd:string ;
-	ba:previous <http://www.assero.co.uk/CHIN#738add1d-6294-46e3-9ee2-f4464514ce4c_TUC1> ;
+	ba:previous <http://www.assero.co.uk/CHIN#fd9abee0-7522-483c-b643-63740894c4b4_TUC1> ;
 .
-<http://www.assero.co.uk/CHIN#738add1d-6294-46e3-9ee2-f4464514ce4c_TUC2>
+<http://www.assero.co.uk/CHIN#fd9abee0-7522-483c-b643-63740894c4b4_TUC2>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -211,7 +211,7 @@
 	:context <http://www.cdisc.org/CT/V53#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.assero.co.uk/CHIN#738add1d-6294-46e3-9ee2-f4464514ce4c_TUC1>
+<http://www.assero.co.uk/CHIN#fd9abee0-7522-483c-b643-63740894c4b4_TUC1>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -221,18 +221,18 @@
 	:context <http://www.cdisc.org/CT/V52#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.assero.co.uk/CHIN#0b495a39-f389-4d79-a390-ae8f168bd17b>
+<http://www.assero.co.uk/CHIN#b27dba36-7a18-48c3-92ad-0362c93e0d69>
 	rdf:type ba:ChangeInstruction ;
 	isoC:label ""^^xsd:string ;
-	ba:reference ""^^xsd:string ;
+	ba:reference "CDISC-2791"^^xsd:string ;
 	ba:description "This term replaces term from the Microbiology Susceptibility TEST codelist. Per FDA guidance, for tests concerning 50% inhibition on microbial growth/replication, please use the newly released EC50 terms; for tests concerning 50% inhibition on microbial enzymatic activity, please use the newly released IC50 and IC95 terms."^^xsd:string ;
-	ba:current <http://www.assero.co.uk/CHIN#0b495a39-f389-4d79-a390-ae8f168bd17b_TUC3> ;
+	ba:current <http://www.assero.co.uk/CHIN#b27dba36-7a18-48c3-92ad-0362c93e0d69_TUC3> ;
 	ba:ordinal "8"^^xsd:integer ;
 	ba:semantic "related terminology"^^xsd:string ;
-	ba:previous <http://www.assero.co.uk/CHIN#0b495a39-f389-4d79-a390-ae8f168bd17b_TUC1> ;
-	ba:previous <http://www.assero.co.uk/CHIN#0b495a39-f389-4d79-a390-ae8f168bd17b_TUC2> ;
+	ba:previous <http://www.assero.co.uk/CHIN#b27dba36-7a18-48c3-92ad-0362c93e0d69_TUC1> ;
+	ba:previous <http://www.assero.co.uk/CHIN#b27dba36-7a18-48c3-92ad-0362c93e0d69_TUC2> ;
 .
-<http://www.assero.co.uk/CHIN#0b495a39-f389-4d79-a390-ae8f168bd17b_TUC3>
+<http://www.assero.co.uk/CHIN#b27dba36-7a18-48c3-92ad-0362c93e0d69_TUC3>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -242,7 +242,7 @@
 	:context <http://www.cdisc.org/CT/V53#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.assero.co.uk/CHIN#0b495a39-f389-4d79-a390-ae8f168bd17b_TUC1>
+<http://www.assero.co.uk/CHIN#b27dba36-7a18-48c3-92ad-0362c93e0d69_TUC1>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -252,7 +252,7 @@
 	:context <http://www.cdisc.org/CT/V52#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.assero.co.uk/CHIN#0b495a39-f389-4d79-a390-ae8f168bd17b_TUC2>
+<http://www.assero.co.uk/CHIN#b27dba36-7a18-48c3-92ad-0362c93e0d69_TUC2>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -262,18 +262,18 @@
 	:context <http://www.cdisc.org/CT/V52#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.assero.co.uk/CHIN#27b0b63f-446a-408f-a564-ea6be65374b6>
+<http://www.assero.co.uk/CHIN#ca29b77e-f727-4b6f-b432-134f5b772904>
 	rdf:type ba:ChangeInstruction ;
 	isoC:label ""^^xsd:string ;
-	ba:reference ""^^xsd:string ;
+	ba:reference "CDISC-2791"^^xsd:string ;
 	ba:description "This term replaces term from the Microbiology Susceptibility TEST codelist. Per FDA guidance, for tests concerning 50% inhibition on microbial growth/replication, please use the newly released EC50 terms; for tests concerning 50% inhibition on microbial enzymatic activity, please use the newly released IC50 and IC95 terms."^^xsd:string ;
-	ba:current <http://www.assero.co.uk/CHIN#27b0b63f-446a-408f-a564-ea6be65374b6_TUC3> ;
+	ba:current <http://www.assero.co.uk/CHIN#ca29b77e-f727-4b6f-b432-134f5b772904_TUC3> ;
 	ba:ordinal "9"^^xsd:integer ;
 	ba:semantic "related terminology"^^xsd:string ;
-	ba:previous <http://www.assero.co.uk/CHIN#27b0b63f-446a-408f-a564-ea6be65374b6_TUC1> ;
-	ba:previous <http://www.assero.co.uk/CHIN#27b0b63f-446a-408f-a564-ea6be65374b6_TUC2> ;
+	ba:previous <http://www.assero.co.uk/CHIN#ca29b77e-f727-4b6f-b432-134f5b772904_TUC1> ;
+	ba:previous <http://www.assero.co.uk/CHIN#ca29b77e-f727-4b6f-b432-134f5b772904_TUC2> ;
 .
-<http://www.assero.co.uk/CHIN#27b0b63f-446a-408f-a564-ea6be65374b6_TUC3>
+<http://www.assero.co.uk/CHIN#ca29b77e-f727-4b6f-b432-134f5b772904_TUC3>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -283,7 +283,7 @@
 	:context <http://www.cdisc.org/CT/V53#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.assero.co.uk/CHIN#27b0b63f-446a-408f-a564-ea6be65374b6_TUC1>
+<http://www.assero.co.uk/CHIN#ca29b77e-f727-4b6f-b432-134f5b772904_TUC1>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -293,7 +293,7 @@
 	:context <http://www.cdisc.org/CT/V52#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.assero.co.uk/CHIN#27b0b63f-446a-408f-a564-ea6be65374b6_TUC2>
+<http://www.assero.co.uk/CHIN#ca29b77e-f727-4b6f-b432-134f5b772904_TUC2>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -303,18 +303,18 @@
 	:context <http://www.cdisc.org/CT/V52#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.assero.co.uk/CHIN#4002e6cd-d366-45b0-87fa-76c5b3b4aef9>
+<http://www.assero.co.uk/CHIN#436b73d0-d0b9-496e-9079-b75a990c4638>
 	rdf:type ba:ChangeInstruction ;
 	isoC:label ""^^xsd:string ;
-	ba:reference ""^^xsd:string ;
+	ba:reference "CDISC-2791"^^xsd:string ;
 	ba:description "This term replaces term from the Microbiology Susceptibility TEST codelist. Per FDA guidance, for tests concerning 50% inhibition on microbial growth/replication, please use the newly released EC50 terms; for tests concerning 50% inhibition on microbial enzymatic activity, please use the newly released IC50 and IC95 terms."^^xsd:string ;
-	ba:current <http://www.assero.co.uk/CHIN#4002e6cd-d366-45b0-87fa-76c5b3b4aef9_TUC3> ;
+	ba:current <http://www.assero.co.uk/CHIN#436b73d0-d0b9-496e-9079-b75a990c4638_TUC3> ;
 	ba:ordinal "10"^^xsd:integer ;
 	ba:semantic "related terminology"^^xsd:string ;
-	ba:previous <http://www.assero.co.uk/CHIN#4002e6cd-d366-45b0-87fa-76c5b3b4aef9_TUC1> ;
-	ba:previous <http://www.assero.co.uk/CHIN#4002e6cd-d366-45b0-87fa-76c5b3b4aef9_TUC2> ;
+	ba:previous <http://www.assero.co.uk/CHIN#436b73d0-d0b9-496e-9079-b75a990c4638_TUC1> ;
+	ba:previous <http://www.assero.co.uk/CHIN#436b73d0-d0b9-496e-9079-b75a990c4638_TUC2> ;
 .
-<http://www.assero.co.uk/CHIN#4002e6cd-d366-45b0-87fa-76c5b3b4aef9_TUC3>
+<http://www.assero.co.uk/CHIN#436b73d0-d0b9-496e-9079-b75a990c4638_TUC3>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -324,7 +324,7 @@
 	:context <http://www.cdisc.org/CT/V53#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.assero.co.uk/CHIN#4002e6cd-d366-45b0-87fa-76c5b3b4aef9_TUC1>
+<http://www.assero.co.uk/CHIN#436b73d0-d0b9-496e-9079-b75a990c4638_TUC1>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -334,7 +334,7 @@
 	:context <http://www.cdisc.org/CT/V52#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.assero.co.uk/CHIN#4002e6cd-d366-45b0-87fa-76c5b3b4aef9_TUC2>
+<http://www.assero.co.uk/CHIN#436b73d0-d0b9-496e-9079-b75a990c4638_TUC2>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -344,18 +344,18 @@
 	:context <http://www.cdisc.org/CT/V52#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.assero.co.uk/CHIN#25070cf5-1cfe-4850-bc70-3b90ce543cbb>
+<http://www.assero.co.uk/CHIN#f29a62e3-0f82-400f-a904-d21b52ad7b02>
 	rdf:type ba:ChangeInstruction ;
 	isoC:label ""^^xsd:string ;
-	ba:reference ""^^xsd:string ;
+	ba:reference "CDISC-2791"^^xsd:string ;
 	ba:description "This term replaces term from the Microbiology Susceptibility TEST codelist. Per FDA guidance, for tests concerning 50% inhibition on microbial growth/replication, please use the newly released EC50 terms; for tests concerning 50% inhibition on microbial enzymatic activity, please use the newly released IC50 and IC95 terms."^^xsd:string ;
-	ba:current <http://www.assero.co.uk/CHIN#25070cf5-1cfe-4850-bc70-3b90ce543cbb_TUC3> ;
+	ba:current <http://www.assero.co.uk/CHIN#f29a62e3-0f82-400f-a904-d21b52ad7b02_TUC3> ;
 	ba:ordinal "11"^^xsd:integer ;
 	ba:semantic "related terminology"^^xsd:string ;
-	ba:previous <http://www.assero.co.uk/CHIN#25070cf5-1cfe-4850-bc70-3b90ce543cbb_TUC1> ;
-	ba:previous <http://www.assero.co.uk/CHIN#25070cf5-1cfe-4850-bc70-3b90ce543cbb_TUC2> ;
+	ba:previous <http://www.assero.co.uk/CHIN#f29a62e3-0f82-400f-a904-d21b52ad7b02_TUC1> ;
+	ba:previous <http://www.assero.co.uk/CHIN#f29a62e3-0f82-400f-a904-d21b52ad7b02_TUC2> ;
 .
-<http://www.assero.co.uk/CHIN#25070cf5-1cfe-4850-bc70-3b90ce543cbb_TUC3>
+<http://www.assero.co.uk/CHIN#f29a62e3-0f82-400f-a904-d21b52ad7b02_TUC3>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -365,7 +365,7 @@
 	:context <http://www.cdisc.org/CT/V53#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.assero.co.uk/CHIN#25070cf5-1cfe-4850-bc70-3b90ce543cbb_TUC1>
+<http://www.assero.co.uk/CHIN#f29a62e3-0f82-400f-a904-d21b52ad7b02_TUC1>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -375,7 +375,7 @@
 	:context <http://www.cdisc.org/CT/V52#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.assero.co.uk/CHIN#25070cf5-1cfe-4850-bc70-3b90ce543cbb_TUC2>
+<http://www.assero.co.uk/CHIN#f29a62e3-0f82-400f-a904-d21b52ad7b02_TUC2>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -385,18 +385,18 @@
 	:context <http://www.cdisc.org/CT/V52#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.assero.co.uk/CHIN#fc684580-33e0-4475-84e4-350742816226>
+<http://www.assero.co.uk/CHIN#4985be3c-492a-48ce-bef0-d0170ab075a4>
 	rdf:type ba:ChangeInstruction ;
 	isoC:label ""^^xsd:string ;
-	ba:reference ""^^xsd:string ;
+	ba:reference "CDISC-2941"^^xsd:string ;
 	ba:description "This term replaces term from the Microbiology Susceptibility TEST codelist. Per FDA guidance, for tests concerning 50% inhibition on microbial growth/replication, please use the newly released EC50 terms; for tests concerning 50% inhibition on microbial enzymatic activity, please use the newly released IC50 and IC95 terms."^^xsd:string ;
-	ba:current <http://www.assero.co.uk/CHIN#fc684580-33e0-4475-84e4-350742816226_TUC3> ;
+	ba:current <http://www.assero.co.uk/CHIN#4985be3c-492a-48ce-bef0-d0170ab075a4_TUC3> ;
 	ba:ordinal "12"^^xsd:integer ;
 	ba:semantic "related terminology"^^xsd:string ;
-	ba:previous <http://www.assero.co.uk/CHIN#fc684580-33e0-4475-84e4-350742816226_TUC1> ;
-	ba:previous <http://www.assero.co.uk/CHIN#fc684580-33e0-4475-84e4-350742816226_TUC2> ;
+	ba:previous <http://www.assero.co.uk/CHIN#4985be3c-492a-48ce-bef0-d0170ab075a4_TUC1> ;
+	ba:previous <http://www.assero.co.uk/CHIN#4985be3c-492a-48ce-bef0-d0170ab075a4_TUC2> ;
 .
-<http://www.assero.co.uk/CHIN#fc684580-33e0-4475-84e4-350742816226_TUC3>
+<http://www.assero.co.uk/CHIN#4985be3c-492a-48ce-bef0-d0170ab075a4_TUC3>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -406,7 +406,7 @@
 	:context <http://www.cdisc.org/CT/V53#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.assero.co.uk/CHIN#fc684580-33e0-4475-84e4-350742816226_TUC1>
+<http://www.assero.co.uk/CHIN#4985be3c-492a-48ce-bef0-d0170ab075a4_TUC1>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -416,7 +416,7 @@
 	:context <http://www.cdisc.org/CT/V52#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.assero.co.uk/CHIN#fc684580-33e0-4475-84e4-350742816226_TUC2>
+<http://www.assero.co.uk/CHIN#4985be3c-492a-48ce-bef0-d0170ab075a4_TUC2>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -426,18 +426,18 @@
 	:context <http://www.cdisc.org/CT/V52#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.assero.co.uk/CHIN#0ff1a194-c976-4cbc-b72e-8369dfddd879>
+<http://www.assero.co.uk/CHIN#fd89246e-6d17-4225-bd03-5b2a48901b50>
 	rdf:type ba:ChangeInstruction ;
 	isoC:label ""^^xsd:string ;
-	ba:reference ""^^xsd:string ;
+	ba:reference "CDISC-2941"^^xsd:string ;
 	ba:description "This term replaces term from the Microbiology Susceptibility TEST codelist. Per FDA guidance, for tests concerning 50% inhibition on microbial growth/replication, please use the newly released EC50 terms; for tests concerning 50% inhibition on microbial enzymatic activity, please use the newly released IC50 and IC95 terms."^^xsd:string ;
-	ba:current <http://www.assero.co.uk/CHIN#0ff1a194-c976-4cbc-b72e-8369dfddd879_TUC3> ;
+	ba:current <http://www.assero.co.uk/CHIN#fd89246e-6d17-4225-bd03-5b2a48901b50_TUC3> ;
 	ba:ordinal "13"^^xsd:integer ;
 	ba:semantic "related terminology"^^xsd:string ;
-	ba:previous <http://www.assero.co.uk/CHIN#0ff1a194-c976-4cbc-b72e-8369dfddd879_TUC1> ;
-	ba:previous <http://www.assero.co.uk/CHIN#0ff1a194-c976-4cbc-b72e-8369dfddd879_TUC2> ;
+	ba:previous <http://www.assero.co.uk/CHIN#fd89246e-6d17-4225-bd03-5b2a48901b50_TUC1> ;
+	ba:previous <http://www.assero.co.uk/CHIN#fd89246e-6d17-4225-bd03-5b2a48901b50_TUC2> ;
 .
-<http://www.assero.co.uk/CHIN#0ff1a194-c976-4cbc-b72e-8369dfddd879_TUC3>
+<http://www.assero.co.uk/CHIN#fd89246e-6d17-4225-bd03-5b2a48901b50_TUC3>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -447,7 +447,7 @@
 	:context <http://www.cdisc.org/CT/V53#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.assero.co.uk/CHIN#0ff1a194-c976-4cbc-b72e-8369dfddd879_TUC1>
+<http://www.assero.co.uk/CHIN#fd89246e-6d17-4225-bd03-5b2a48901b50_TUC1>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -457,7 +457,7 @@
 	:context <http://www.cdisc.org/CT/V52#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.assero.co.uk/CHIN#0ff1a194-c976-4cbc-b72e-8369dfddd879_TUC2>
+<http://www.assero.co.uk/CHIN#fd89246e-6d17-4225-bd03-5b2a48901b50_TUC2>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -467,18 +467,18 @@
 	:context <http://www.cdisc.org/CT/V52#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.assero.co.uk/CHIN#8a41b802-4515-44a6-b20e-7f3b2f98a5bf>
+<http://www.assero.co.uk/CHIN#81e071a6-f5e0-4a5b-908d-a3e16b56d9c5>
 	rdf:type ba:ChangeInstruction ;
 	isoC:label ""^^xsd:string ;
-	ba:reference ""^^xsd:string ;
+	ba:reference "CDISC-2941"^^xsd:string ;
 	ba:description "This term replaces term from the Microbiology Susceptibility TEST codelist. Per FDA guidance, for tests concerning 50% inhibition on microbial growth/replication, please use the newly released EC50 terms; for tests concerning 50% inhibition on microbial enzymatic activity, please use the newly released IC50 and IC95 terms."^^xsd:string ;
-	ba:current <http://www.assero.co.uk/CHIN#8a41b802-4515-44a6-b20e-7f3b2f98a5bf_TUC3> ;
+	ba:current <http://www.assero.co.uk/CHIN#81e071a6-f5e0-4a5b-908d-a3e16b56d9c5_TUC3> ;
 	ba:ordinal "14"^^xsd:integer ;
 	ba:semantic "related terminology"^^xsd:string ;
-	ba:previous <http://www.assero.co.uk/CHIN#8a41b802-4515-44a6-b20e-7f3b2f98a5bf_TUC1> ;
-	ba:previous <http://www.assero.co.uk/CHIN#8a41b802-4515-44a6-b20e-7f3b2f98a5bf_TUC2> ;
+	ba:previous <http://www.assero.co.uk/CHIN#81e071a6-f5e0-4a5b-908d-a3e16b56d9c5_TUC1> ;
+	ba:previous <http://www.assero.co.uk/CHIN#81e071a6-f5e0-4a5b-908d-a3e16b56d9c5_TUC2> ;
 .
-<http://www.assero.co.uk/CHIN#8a41b802-4515-44a6-b20e-7f3b2f98a5bf_TUC3>
+<http://www.assero.co.uk/CHIN#81e071a6-f5e0-4a5b-908d-a3e16b56d9c5_TUC3>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -488,7 +488,7 @@
 	:context <http://www.cdisc.org/CT/V53#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.assero.co.uk/CHIN#8a41b802-4515-44a6-b20e-7f3b2f98a5bf_TUC1>
+<http://www.assero.co.uk/CHIN#81e071a6-f5e0-4a5b-908d-a3e16b56d9c5_TUC1>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -498,7 +498,7 @@
 	:context <http://www.cdisc.org/CT/V52#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.assero.co.uk/CHIN#8a41b802-4515-44a6-b20e-7f3b2f98a5bf_TUC2>
+<http://www.assero.co.uk/CHIN#81e071a6-f5e0-4a5b-908d-a3e16b56d9c5_TUC2>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -508,18 +508,18 @@
 	:context <http://www.cdisc.org/CT/V52#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.assero.co.uk/CHIN#31613ecb-0dda-4d94-9514-2d7fd1f03ac6>
+<http://www.assero.co.uk/CHIN#15d070da-62d9-4e78-9e60-fdbaba66ea33>
 	rdf:type ba:ChangeInstruction ;
 	isoC:label ""^^xsd:string ;
-	ba:reference ""^^xsd:string ;
+	ba:reference "CDISC-2941"^^xsd:string ;
 	ba:description "This term replaces term from the Microbiology Susceptibility TEST codelist. Per FDA guidance, for tests concerning 50% inhibition on microbial growth/replication, please use the newly released EC50 terms; for tests concerning 50% inhibition on microbial enzymatic activity, please use the newly released IC50 and IC95 terms."^^xsd:string ;
-	ba:current <http://www.assero.co.uk/CHIN#31613ecb-0dda-4d94-9514-2d7fd1f03ac6_TUC3> ;
+	ba:current <http://www.assero.co.uk/CHIN#15d070da-62d9-4e78-9e60-fdbaba66ea33_TUC3> ;
 	ba:ordinal "15"^^xsd:integer ;
 	ba:semantic "related terminology"^^xsd:string ;
-	ba:previous <http://www.assero.co.uk/CHIN#31613ecb-0dda-4d94-9514-2d7fd1f03ac6_TUC1> ;
-	ba:previous <http://www.assero.co.uk/CHIN#31613ecb-0dda-4d94-9514-2d7fd1f03ac6_TUC2> ;
+	ba:previous <http://www.assero.co.uk/CHIN#15d070da-62d9-4e78-9e60-fdbaba66ea33_TUC1> ;
+	ba:previous <http://www.assero.co.uk/CHIN#15d070da-62d9-4e78-9e60-fdbaba66ea33_TUC2> ;
 .
-<http://www.assero.co.uk/CHIN#31613ecb-0dda-4d94-9514-2d7fd1f03ac6_TUC3>
+<http://www.assero.co.uk/CHIN#15d070da-62d9-4e78-9e60-fdbaba66ea33_TUC3>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -529,7 +529,7 @@
 	:context <http://www.cdisc.org/CT/V53#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.assero.co.uk/CHIN#31613ecb-0dda-4d94-9514-2d7fd1f03ac6_TUC1>
+<http://www.assero.co.uk/CHIN#15d070da-62d9-4e78-9e60-fdbaba66ea33_TUC1>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -539,7 +539,7 @@
 	:context <http://www.cdisc.org/CT/V52#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.assero.co.uk/CHIN#31613ecb-0dda-4d94-9514-2d7fd1f03ac6_TUC2>
+<http://www.assero.co.uk/CHIN#15d070da-62d9-4e78-9e60-fdbaba66ea33_TUC2>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -549,18 +549,18 @@
 	:context <http://www.cdisc.org/CT/V52#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.assero.co.uk/CHIN#cdcf255c-9a3b-43dc-9b61-72e0b500be6d>
+<http://www.assero.co.uk/CHIN#2c604823-9a9a-4aba-b6fc-10e93e00147a>
 	rdf:type ba:ChangeInstruction ;
 	isoC:label ""^^xsd:string ;
-	ba:reference ""^^xsd:string ;
+	ba:reference "CDISC-2941"^^xsd:string ;
 	ba:description "This term replaces term from the Microbiology Susceptibility TEST codelist. Per FDA guidance, for tests concerning 50% inhibition on microbial growth/replication, please use the newly released EC50 terms; for tests concerning 50% inhibition on microbial enzymatic activity, please use the newly released IC50 and IC95 terms."^^xsd:string ;
-	ba:current <http://www.assero.co.uk/CHIN#cdcf255c-9a3b-43dc-9b61-72e0b500be6d_TUC3> ;
+	ba:current <http://www.assero.co.uk/CHIN#2c604823-9a9a-4aba-b6fc-10e93e00147a_TUC3> ;
 	ba:ordinal "16"^^xsd:integer ;
 	ba:semantic "related terminology"^^xsd:string ;
-	ba:previous <http://www.assero.co.uk/CHIN#cdcf255c-9a3b-43dc-9b61-72e0b500be6d_TUC1> ;
-	ba:previous <http://www.assero.co.uk/CHIN#cdcf255c-9a3b-43dc-9b61-72e0b500be6d_TUC2> ;
+	ba:previous <http://www.assero.co.uk/CHIN#2c604823-9a9a-4aba-b6fc-10e93e00147a_TUC1> ;
+	ba:previous <http://www.assero.co.uk/CHIN#2c604823-9a9a-4aba-b6fc-10e93e00147a_TUC2> ;
 .
-<http://www.assero.co.uk/CHIN#cdcf255c-9a3b-43dc-9b61-72e0b500be6d_TUC3>
+<http://www.assero.co.uk/CHIN#2c604823-9a9a-4aba-b6fc-10e93e00147a_TUC3>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -570,7 +570,7 @@
 	:context <http://www.cdisc.org/CT/V53#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.assero.co.uk/CHIN#cdcf255c-9a3b-43dc-9b61-72e0b500be6d_TUC1>
+<http://www.assero.co.uk/CHIN#2c604823-9a9a-4aba-b6fc-10e93e00147a_TUC1>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -580,7 +580,7 @@
 	:context <http://www.cdisc.org/CT/V52#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.assero.co.uk/CHIN#cdcf255c-9a3b-43dc-9b61-72e0b500be6d_TUC2>
+<http://www.assero.co.uk/CHIN#2c604823-9a9a-4aba-b6fc-10e93e00147a_TUC2>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -590,18 +590,18 @@
 	:context <http://www.cdisc.org/CT/V52#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.assero.co.uk/CHIN#3b10db0c-1b76-474e-bdc1-0373aafec8eb>
+<http://www.assero.co.uk/CHIN#09d8d2f6-a6d6-4254-8fc8-4a1ac1968732>
 	rdf:type ba:ChangeInstruction ;
 	isoC:label ""^^xsd:string ;
-	ba:reference ""^^xsd:string ;
+	ba:reference "CDISC-2941"^^xsd:string ;
 	ba:description "This term replaces term from the Microbiology Susceptibility TEST codelist. Per FDA guidance, for tests concerning 50% inhibition on microbial growth/replication, please use the newly released EC50 terms; for tests concerning 50% inhibition on microbial enzymatic activity, please use the newly released IC50 and IC95 terms."^^xsd:string ;
-	ba:current <http://www.assero.co.uk/CHIN#3b10db0c-1b76-474e-bdc1-0373aafec8eb_TUC3> ;
+	ba:current <http://www.assero.co.uk/CHIN#09d8d2f6-a6d6-4254-8fc8-4a1ac1968732_TUC3> ;
 	ba:ordinal "17"^^xsd:integer ;
 	ba:semantic "related terminology"^^xsd:string ;
-	ba:previous <http://www.assero.co.uk/CHIN#3b10db0c-1b76-474e-bdc1-0373aafec8eb_TUC1> ;
-	ba:previous <http://www.assero.co.uk/CHIN#3b10db0c-1b76-474e-bdc1-0373aafec8eb_TUC2> ;
+	ba:previous <http://www.assero.co.uk/CHIN#09d8d2f6-a6d6-4254-8fc8-4a1ac1968732_TUC1> ;
+	ba:previous <http://www.assero.co.uk/CHIN#09d8d2f6-a6d6-4254-8fc8-4a1ac1968732_TUC2> ;
 .
-<http://www.assero.co.uk/CHIN#3b10db0c-1b76-474e-bdc1-0373aafec8eb_TUC3>
+<http://www.assero.co.uk/CHIN#09d8d2f6-a6d6-4254-8fc8-4a1ac1968732_TUC3>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -611,7 +611,7 @@
 	:context <http://www.cdisc.org/CT/V53#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.assero.co.uk/CHIN#3b10db0c-1b76-474e-bdc1-0373aafec8eb_TUC1>
+<http://www.assero.co.uk/CHIN#09d8d2f6-a6d6-4254-8fc8-4a1ac1968732_TUC1>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -621,7 +621,7 @@
 	:context <http://www.cdisc.org/CT/V52#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.assero.co.uk/CHIN#3b10db0c-1b76-474e-bdc1-0373aafec8eb_TUC2>
+<http://www.assero.co.uk/CHIN#09d8d2f6-a6d6-4254-8fc8-4a1ac1968732_TUC2>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -631,18 +631,18 @@
 	:context <http://www.cdisc.org/CT/V52#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.assero.co.uk/CHIN#4db63ac9-aa31-486c-978a-9a0d9c18d04b>
+<http://www.assero.co.uk/CHIN#c318e449-629a-4631-a2f7-d11686609aa6>
 	rdf:type ba:ChangeInstruction ;
 	isoC:label ""^^xsd:string ;
-	ba:reference ""^^xsd:string ;
+	ba:reference "CDISC-2941"^^xsd:string ;
 	ba:description "This term replaces term from the Microbiology Susceptibility TEST codelist. Per FDA guidance, for tests concerning 50% inhibition on microbial growth/replication, please use the newly released EC50 terms; for tests concerning 50% inhibition on microbial enzymatic activity, please use the newly released IC50 and IC95 terms."^^xsd:string ;
-	ba:current <http://www.assero.co.uk/CHIN#4db63ac9-aa31-486c-978a-9a0d9c18d04b_TUC3> ;
+	ba:current <http://www.assero.co.uk/CHIN#c318e449-629a-4631-a2f7-d11686609aa6_TUC3> ;
 	ba:ordinal "18"^^xsd:integer ;
 	ba:semantic "related terminology"^^xsd:string ;
-	ba:previous <http://www.assero.co.uk/CHIN#4db63ac9-aa31-486c-978a-9a0d9c18d04b_TUC1> ;
-	ba:previous <http://www.assero.co.uk/CHIN#4db63ac9-aa31-486c-978a-9a0d9c18d04b_TUC2> ;
+	ba:previous <http://www.assero.co.uk/CHIN#c318e449-629a-4631-a2f7-d11686609aa6_TUC1> ;
+	ba:previous <http://www.assero.co.uk/CHIN#c318e449-629a-4631-a2f7-d11686609aa6_TUC2> ;
 .
-<http://www.assero.co.uk/CHIN#4db63ac9-aa31-486c-978a-9a0d9c18d04b_TUC3>
+<http://www.assero.co.uk/CHIN#c318e449-629a-4631-a2f7-d11686609aa6_TUC3>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -652,7 +652,7 @@
 	:context <http://www.cdisc.org/CT/V53#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.assero.co.uk/CHIN#4db63ac9-aa31-486c-978a-9a0d9c18d04b_TUC1>
+<http://www.assero.co.uk/CHIN#c318e449-629a-4631-a2f7-d11686609aa6_TUC1>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -662,7 +662,7 @@
 	:context <http://www.cdisc.org/CT/V52#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.assero.co.uk/CHIN#4db63ac9-aa31-486c-978a-9a0d9c18d04b_TUC2>
+<http://www.assero.co.uk/CHIN#c318e449-629a-4631-a2f7-d11686609aa6_TUC2>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -672,18 +672,18 @@
 	:context <http://www.cdisc.org/CT/V52#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.assero.co.uk/CHIN#7172793d-3f58-48ac-a485-7ff07c531c79>
+<http://www.assero.co.uk/CHIN#a230e0d6-bb1a-4393-9b54-eec4cf5c4de4>
 	rdf:type ba:ChangeInstruction ;
 	isoC:label ""^^xsd:string ;
-	ba:reference ""^^xsd:string ;
+	ba:reference "CDISC-2941"^^xsd:string ;
 	ba:description "This term replaces term from the Microbiology Susceptibility TEST codelist. Per FDA guidance, for tests concerning 50% inhibition on microbial growth/replication, please use the newly released EC50 terms; for tests concerning 50% inhibition on microbial enzymatic activity, please use the newly released IC50 and IC95 terms."^^xsd:string ;
-	ba:current <http://www.assero.co.uk/CHIN#7172793d-3f58-48ac-a485-7ff07c531c79_TUC3> ;
+	ba:current <http://www.assero.co.uk/CHIN#a230e0d6-bb1a-4393-9b54-eec4cf5c4de4_TUC3> ;
 	ba:ordinal "19"^^xsd:integer ;
 	ba:semantic "related terminology"^^xsd:string ;
-	ba:previous <http://www.assero.co.uk/CHIN#7172793d-3f58-48ac-a485-7ff07c531c79_TUC1> ;
-	ba:previous <http://www.assero.co.uk/CHIN#7172793d-3f58-48ac-a485-7ff07c531c79_TUC2> ;
+	ba:previous <http://www.assero.co.uk/CHIN#a230e0d6-bb1a-4393-9b54-eec4cf5c4de4_TUC1> ;
+	ba:previous <http://www.assero.co.uk/CHIN#a230e0d6-bb1a-4393-9b54-eec4cf5c4de4_TUC2> ;
 .
-<http://www.assero.co.uk/CHIN#7172793d-3f58-48ac-a485-7ff07c531c79_TUC3>
+<http://www.assero.co.uk/CHIN#a230e0d6-bb1a-4393-9b54-eec4cf5c4de4_TUC3>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -693,7 +693,7 @@
 	:context <http://www.cdisc.org/CT/V53#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.assero.co.uk/CHIN#7172793d-3f58-48ac-a485-7ff07c531c79_TUC1>
+<http://www.assero.co.uk/CHIN#a230e0d6-bb1a-4393-9b54-eec4cf5c4de4_TUC1>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -703,7 +703,7 @@
 	:context <http://www.cdisc.org/CT/V52#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.assero.co.uk/CHIN#7172793d-3f58-48ac-a485-7ff07c531c79_TUC2>
+<http://www.assero.co.uk/CHIN#a230e0d6-bb1a-4393-9b54-eec4cf5c4de4_TUC2>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -713,18 +713,18 @@
 	:context <http://www.cdisc.org/CT/V52#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.assero.co.uk/CHIN#3e99dbf0-e652-4b09-a7ee-4dd2e37b10c3>
+<http://www.assero.co.uk/CHIN#81c3743f-8125-414b-9b03-d7274714e753>
 	rdf:type ba:ChangeInstruction ;
 	isoC:label ""^^xsd:string ;
-	ba:reference ""^^xsd:string ;
+	ba:reference "CDISC-2791"^^xsd:string ;
 	ba:description "This term replaces term from the Microbiology Susceptibility TEST-CD codelist. Per FDA guidance, for tests concerning 50% inhibition on microbial growth/replication, please use the newly released EC50 terms; for tests concerning 50% inhibition on microbial enzymatic activity, please use the newly released IC50 and IC95 terms."^^xsd:string ;
-	ba:current <http://www.assero.co.uk/CHIN#3e99dbf0-e652-4b09-a7ee-4dd2e37b10c3_TUC3> ;
+	ba:current <http://www.assero.co.uk/CHIN#81c3743f-8125-414b-9b03-d7274714e753_TUC3> ;
 	ba:ordinal "20"^^xsd:integer ;
 	ba:semantic "related terminology"^^xsd:string ;
-	ba:previous <http://www.assero.co.uk/CHIN#3e99dbf0-e652-4b09-a7ee-4dd2e37b10c3_TUC1> ;
-	ba:previous <http://www.assero.co.uk/CHIN#3e99dbf0-e652-4b09-a7ee-4dd2e37b10c3_TUC2> ;
+	ba:previous <http://www.assero.co.uk/CHIN#81c3743f-8125-414b-9b03-d7274714e753_TUC1> ;
+	ba:previous <http://www.assero.co.uk/CHIN#81c3743f-8125-414b-9b03-d7274714e753_TUC2> ;
 .
-<http://www.assero.co.uk/CHIN#3e99dbf0-e652-4b09-a7ee-4dd2e37b10c3_TUC3>
+<http://www.assero.co.uk/CHIN#81c3743f-8125-414b-9b03-d7274714e753_TUC3>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -734,7 +734,7 @@
 	:context <http://www.cdisc.org/CT/V53#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.assero.co.uk/CHIN#3e99dbf0-e652-4b09-a7ee-4dd2e37b10c3_TUC1>
+<http://www.assero.co.uk/CHIN#81c3743f-8125-414b-9b03-d7274714e753_TUC1>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -744,7 +744,7 @@
 	:context <http://www.cdisc.org/CT/V52#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.assero.co.uk/CHIN#3e99dbf0-e652-4b09-a7ee-4dd2e37b10c3_TUC2>
+<http://www.assero.co.uk/CHIN#81c3743f-8125-414b-9b03-d7274714e753_TUC2>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -754,18 +754,18 @@
 	:context <http://www.cdisc.org/CT/V52#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.assero.co.uk/CHIN#c73d6fd1-f5c0-48fe-bbc5-10b51a06011d>
+<http://www.assero.co.uk/CHIN#796d5638-e798-4f46-98ff-e07854014dc1>
 	rdf:type ba:ChangeInstruction ;
 	isoC:label ""^^xsd:string ;
-	ba:reference ""^^xsd:string ;
+	ba:reference "CDISC-2791"^^xsd:string ;
 	ba:description "This term replaces term from the Microbiology Susceptibility TEST-CD codelist. Per FDA guidance, for tests concerning 50% inhibition on microbial growth/replication, please use the newly released EC50 terms; for tests concerning 50% inhibition on microbial enzymatic activity, please use the newly released IC50 and IC95 terms."^^xsd:string ;
-	ba:current <http://www.assero.co.uk/CHIN#c73d6fd1-f5c0-48fe-bbc5-10b51a06011d_TUC3> ;
+	ba:current <http://www.assero.co.uk/CHIN#796d5638-e798-4f46-98ff-e07854014dc1_TUC3> ;
 	ba:ordinal "21"^^xsd:integer ;
 	ba:semantic "related terminology"^^xsd:string ;
-	ba:previous <http://www.assero.co.uk/CHIN#c73d6fd1-f5c0-48fe-bbc5-10b51a06011d_TUC1> ;
-	ba:previous <http://www.assero.co.uk/CHIN#c73d6fd1-f5c0-48fe-bbc5-10b51a06011d_TUC2> ;
+	ba:previous <http://www.assero.co.uk/CHIN#796d5638-e798-4f46-98ff-e07854014dc1_TUC1> ;
+	ba:previous <http://www.assero.co.uk/CHIN#796d5638-e798-4f46-98ff-e07854014dc1_TUC2> ;
 .
-<http://www.assero.co.uk/CHIN#c73d6fd1-f5c0-48fe-bbc5-10b51a06011d_TUC3>
+<http://www.assero.co.uk/CHIN#796d5638-e798-4f46-98ff-e07854014dc1_TUC3>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -775,7 +775,7 @@
 	:context <http://www.cdisc.org/CT/V53#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.assero.co.uk/CHIN#c73d6fd1-f5c0-48fe-bbc5-10b51a06011d_TUC1>
+<http://www.assero.co.uk/CHIN#796d5638-e798-4f46-98ff-e07854014dc1_TUC1>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -785,7 +785,7 @@
 	:context <http://www.cdisc.org/CT/V52#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.assero.co.uk/CHIN#c73d6fd1-f5c0-48fe-bbc5-10b51a06011d_TUC2>
+<http://www.assero.co.uk/CHIN#796d5638-e798-4f46-98ff-e07854014dc1_TUC2>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -795,18 +795,18 @@
 	:context <http://www.cdisc.org/CT/V52#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.assero.co.uk/CHIN#60caae38-d984-4e80-b145-55e19757ffae>
+<http://www.assero.co.uk/CHIN#79beed47-2b94-4762-95ec-bbccbbc0ce28>
 	rdf:type ba:ChangeInstruction ;
 	isoC:label ""^^xsd:string ;
-	ba:reference ""^^xsd:string ;
+	ba:reference "CDISC-2791"^^xsd:string ;
 	ba:description "This term replaces term from the Microbiology Susceptibility TEST-CD codelist. Per FDA guidance, for tests concerning 50% inhibition on microbial growth/replication, please use the newly released EC50 terms; for tests concerning 50% inhibition on microbial enzymatic activity, please use the newly released IC50 and IC95 terms."^^xsd:string ;
-	ba:current <http://www.assero.co.uk/CHIN#60caae38-d984-4e80-b145-55e19757ffae_TUC3> ;
+	ba:current <http://www.assero.co.uk/CHIN#79beed47-2b94-4762-95ec-bbccbbc0ce28_TUC3> ;
 	ba:ordinal "22"^^xsd:integer ;
 	ba:semantic "related terminology"^^xsd:string ;
-	ba:previous <http://www.assero.co.uk/CHIN#60caae38-d984-4e80-b145-55e19757ffae_TUC1> ;
-	ba:previous <http://www.assero.co.uk/CHIN#60caae38-d984-4e80-b145-55e19757ffae_TUC2> ;
+	ba:previous <http://www.assero.co.uk/CHIN#79beed47-2b94-4762-95ec-bbccbbc0ce28_TUC1> ;
+	ba:previous <http://www.assero.co.uk/CHIN#79beed47-2b94-4762-95ec-bbccbbc0ce28_TUC2> ;
 .
-<http://www.assero.co.uk/CHIN#60caae38-d984-4e80-b145-55e19757ffae_TUC3>
+<http://www.assero.co.uk/CHIN#79beed47-2b94-4762-95ec-bbccbbc0ce28_TUC3>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -816,7 +816,7 @@
 	:context <http://www.cdisc.org/CT/V53#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.assero.co.uk/CHIN#60caae38-d984-4e80-b145-55e19757ffae_TUC1>
+<http://www.assero.co.uk/CHIN#79beed47-2b94-4762-95ec-bbccbbc0ce28_TUC1>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -826,7 +826,7 @@
 	:context <http://www.cdisc.org/CT/V52#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.assero.co.uk/CHIN#60caae38-d984-4e80-b145-55e19757ffae_TUC2>
+<http://www.assero.co.uk/CHIN#79beed47-2b94-4762-95ec-bbccbbc0ce28_TUC2>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -836,18 +836,18 @@
 	:context <http://www.cdisc.org/CT/V52#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.assero.co.uk/CHIN#75949e44-ced5-4bab-b9ed-86e64106f513>
+<http://www.assero.co.uk/CHIN#de98fb4a-0d9c-4964-9580-2a33f01f4000>
 	rdf:type ba:ChangeInstruction ;
 	isoC:label ""^^xsd:string ;
-	ba:reference ""^^xsd:string ;
+	ba:reference "CDISC-2791"^^xsd:string ;
 	ba:description "This term replaces term from the Microbiology Susceptibility TEST-CD codelist. Per FDA guidance, for tests concerning 50% inhibition on microbial growth/replication, please use the newly released EC50 terms; for tests concerning 50% inhibition on microbial enzymatic activity, please use the newly released IC50 and IC95 terms."^^xsd:string ;
-	ba:current <http://www.assero.co.uk/CHIN#75949e44-ced5-4bab-b9ed-86e64106f513_TUC3> ;
+	ba:current <http://www.assero.co.uk/CHIN#de98fb4a-0d9c-4964-9580-2a33f01f4000_TUC3> ;
 	ba:ordinal "23"^^xsd:integer ;
 	ba:semantic "related terminology"^^xsd:string ;
-	ba:previous <http://www.assero.co.uk/CHIN#75949e44-ced5-4bab-b9ed-86e64106f513_TUC1> ;
-	ba:previous <http://www.assero.co.uk/CHIN#75949e44-ced5-4bab-b9ed-86e64106f513_TUC2> ;
+	ba:previous <http://www.assero.co.uk/CHIN#de98fb4a-0d9c-4964-9580-2a33f01f4000_TUC1> ;
+	ba:previous <http://www.assero.co.uk/CHIN#de98fb4a-0d9c-4964-9580-2a33f01f4000_TUC2> ;
 .
-<http://www.assero.co.uk/CHIN#75949e44-ced5-4bab-b9ed-86e64106f513_TUC3>
+<http://www.assero.co.uk/CHIN#de98fb4a-0d9c-4964-9580-2a33f01f4000_TUC3>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -857,7 +857,7 @@
 	:context <http://www.cdisc.org/CT/V53#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.assero.co.uk/CHIN#75949e44-ced5-4bab-b9ed-86e64106f513_TUC1>
+<http://www.assero.co.uk/CHIN#de98fb4a-0d9c-4964-9580-2a33f01f4000_TUC1>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -867,7 +867,7 @@
 	:context <http://www.cdisc.org/CT/V52#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.assero.co.uk/CHIN#75949e44-ced5-4bab-b9ed-86e64106f513_TUC2>
+<http://www.assero.co.uk/CHIN#de98fb4a-0d9c-4964-9580-2a33f01f4000_TUC2>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -877,18 +877,18 @@
 	:context <http://www.cdisc.org/CT/V52#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.assero.co.uk/CHIN#ecc75363-4b68-45ef-9a92-0607307f2f6d>
+<http://www.assero.co.uk/CHIN#a67dd107-c5a3-4ae8-8c85-61935ca44e31>
 	rdf:type ba:ChangeInstruction ;
 	isoC:label ""^^xsd:string ;
-	ba:reference ""^^xsd:string ;
+	ba:reference "CDISC-2941"^^xsd:string ;
 	ba:description "This term replaces term from the Microbiology Susceptibility TEST-CD codelist. Per FDA guidance, for tests concerning 50% inhibition on microbial growth/replication, please use the newly released EC50 terms; for tests concerning 50% inhibition on microbial enzymatic activity, please use the newly released IC50 and IC95 terms."^^xsd:string ;
-	ba:current <http://www.assero.co.uk/CHIN#ecc75363-4b68-45ef-9a92-0607307f2f6d_TUC3> ;
+	ba:current <http://www.assero.co.uk/CHIN#a67dd107-c5a3-4ae8-8c85-61935ca44e31_TUC3> ;
 	ba:ordinal "24"^^xsd:integer ;
 	ba:semantic "related terminology"^^xsd:string ;
-	ba:previous <http://www.assero.co.uk/CHIN#ecc75363-4b68-45ef-9a92-0607307f2f6d_TUC1> ;
-	ba:previous <http://www.assero.co.uk/CHIN#ecc75363-4b68-45ef-9a92-0607307f2f6d_TUC2> ;
+	ba:previous <http://www.assero.co.uk/CHIN#a67dd107-c5a3-4ae8-8c85-61935ca44e31_TUC1> ;
+	ba:previous <http://www.assero.co.uk/CHIN#a67dd107-c5a3-4ae8-8c85-61935ca44e31_TUC2> ;
 .
-<http://www.assero.co.uk/CHIN#ecc75363-4b68-45ef-9a92-0607307f2f6d_TUC3>
+<http://www.assero.co.uk/CHIN#a67dd107-c5a3-4ae8-8c85-61935ca44e31_TUC3>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -898,7 +898,7 @@
 	:context <http://www.cdisc.org/CT/V53#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.assero.co.uk/CHIN#ecc75363-4b68-45ef-9a92-0607307f2f6d_TUC1>
+<http://www.assero.co.uk/CHIN#a67dd107-c5a3-4ae8-8c85-61935ca44e31_TUC1>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -908,7 +908,7 @@
 	:context <http://www.cdisc.org/CT/V52#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.assero.co.uk/CHIN#ecc75363-4b68-45ef-9a92-0607307f2f6d_TUC2>
+<http://www.assero.co.uk/CHIN#a67dd107-c5a3-4ae8-8c85-61935ca44e31_TUC2>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -918,18 +918,18 @@
 	:context <http://www.cdisc.org/CT/V52#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.assero.co.uk/CHIN#1d9529c4-f5be-4e0e-b440-aad05768101e>
+<http://www.assero.co.uk/CHIN#dbce9c90-9e5b-47a2-bfde-63429361fafc>
 	rdf:type ba:ChangeInstruction ;
 	isoC:label ""^^xsd:string ;
-	ba:reference ""^^xsd:string ;
+	ba:reference "CDISC-2941"^^xsd:string ;
 	ba:description "This term replaces term from the Microbiology Susceptibility TEST-CD codelist. Per FDA guidance, for tests concerning 50% inhibition on microbial growth/replication, please use the newly released EC50 terms; for tests concerning 50% inhibition on microbial enzymatic activity, please use the newly released IC50 and IC95 terms."^^xsd:string ;
-	ba:current <http://www.assero.co.uk/CHIN#1d9529c4-f5be-4e0e-b440-aad05768101e_TUC3> ;
+	ba:current <http://www.assero.co.uk/CHIN#dbce9c90-9e5b-47a2-bfde-63429361fafc_TUC3> ;
 	ba:ordinal "25"^^xsd:integer ;
 	ba:semantic "related terminology"^^xsd:string ;
-	ba:previous <http://www.assero.co.uk/CHIN#1d9529c4-f5be-4e0e-b440-aad05768101e_TUC1> ;
-	ba:previous <http://www.assero.co.uk/CHIN#1d9529c4-f5be-4e0e-b440-aad05768101e_TUC2> ;
+	ba:previous <http://www.assero.co.uk/CHIN#dbce9c90-9e5b-47a2-bfde-63429361fafc_TUC1> ;
+	ba:previous <http://www.assero.co.uk/CHIN#dbce9c90-9e5b-47a2-bfde-63429361fafc_TUC2> ;
 .
-<http://www.assero.co.uk/CHIN#1d9529c4-f5be-4e0e-b440-aad05768101e_TUC3>
+<http://www.assero.co.uk/CHIN#dbce9c90-9e5b-47a2-bfde-63429361fafc_TUC3>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -939,7 +939,7 @@
 	:context <http://www.cdisc.org/CT/V53#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.assero.co.uk/CHIN#1d9529c4-f5be-4e0e-b440-aad05768101e_TUC1>
+<http://www.assero.co.uk/CHIN#dbce9c90-9e5b-47a2-bfde-63429361fafc_TUC1>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -949,7 +949,7 @@
 	:context <http://www.cdisc.org/CT/V52#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.assero.co.uk/CHIN#1d9529c4-f5be-4e0e-b440-aad05768101e_TUC2>
+<http://www.assero.co.uk/CHIN#dbce9c90-9e5b-47a2-bfde-63429361fafc_TUC2>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -959,18 +959,18 @@
 	:context <http://www.cdisc.org/CT/V52#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.assero.co.uk/CHIN#96bfc19f-a3c3-4ea7-9915-fc7b93d2b5f0>
+<http://www.assero.co.uk/CHIN#2d323dc5-3f6f-41d9-9433-ec4809ad0384>
 	rdf:type ba:ChangeInstruction ;
 	isoC:label ""^^xsd:string ;
-	ba:reference ""^^xsd:string ;
+	ba:reference "CDISC-2941"^^xsd:string ;
 	ba:description "This term replaces term from the Microbiology Susceptibility TEST-CD codelist. Per FDA guidance, for tests concerning 50% inhibition on microbial growth/replication, please use the newly released EC50 terms; for tests concerning 50% inhibition on microbial enzymatic activity, please use the newly released IC50 and IC95 terms."^^xsd:string ;
-	ba:current <http://www.assero.co.uk/CHIN#96bfc19f-a3c3-4ea7-9915-fc7b93d2b5f0_TUC3> ;
+	ba:current <http://www.assero.co.uk/CHIN#2d323dc5-3f6f-41d9-9433-ec4809ad0384_TUC3> ;
 	ba:ordinal "26"^^xsd:integer ;
 	ba:semantic "related terminology"^^xsd:string ;
-	ba:previous <http://www.assero.co.uk/CHIN#96bfc19f-a3c3-4ea7-9915-fc7b93d2b5f0_TUC1> ;
-	ba:previous <http://www.assero.co.uk/CHIN#96bfc19f-a3c3-4ea7-9915-fc7b93d2b5f0_TUC2> ;
+	ba:previous <http://www.assero.co.uk/CHIN#2d323dc5-3f6f-41d9-9433-ec4809ad0384_TUC1> ;
+	ba:previous <http://www.assero.co.uk/CHIN#2d323dc5-3f6f-41d9-9433-ec4809ad0384_TUC2> ;
 .
-<http://www.assero.co.uk/CHIN#96bfc19f-a3c3-4ea7-9915-fc7b93d2b5f0_TUC3>
+<http://www.assero.co.uk/CHIN#2d323dc5-3f6f-41d9-9433-ec4809ad0384_TUC3>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -980,7 +980,7 @@
 	:context <http://www.cdisc.org/CT/V53#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.assero.co.uk/CHIN#96bfc19f-a3c3-4ea7-9915-fc7b93d2b5f0_TUC1>
+<http://www.assero.co.uk/CHIN#2d323dc5-3f6f-41d9-9433-ec4809ad0384_TUC1>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -990,7 +990,7 @@
 	:context <http://www.cdisc.org/CT/V52#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.assero.co.uk/CHIN#96bfc19f-a3c3-4ea7-9915-fc7b93d2b5f0_TUC2>
+<http://www.assero.co.uk/CHIN#2d323dc5-3f6f-41d9-9433-ec4809ad0384_TUC2>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -1000,18 +1000,18 @@
 	:context <http://www.cdisc.org/CT/V52#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.assero.co.uk/CHIN#22926314-e4cd-4dbf-8962-da7e128093a5>
+<http://www.assero.co.uk/CHIN#25572c17-084f-4ee3-a9bd-5b65b9ad7f27>
 	rdf:type ba:ChangeInstruction ;
 	isoC:label ""^^xsd:string ;
-	ba:reference ""^^xsd:string ;
+	ba:reference "CDISC-2941"^^xsd:string ;
 	ba:description "This term replaces term from the Microbiology Susceptibility TEST-CD codelist. Per FDA guidance, for tests concerning 50% inhibition on microbial growth/replication, please use the newly released EC50 terms; for tests concerning 50% inhibition on microbial enzymatic activity, please use the newly released IC50 and IC95 terms."^^xsd:string ;
-	ba:current <http://www.assero.co.uk/CHIN#22926314-e4cd-4dbf-8962-da7e128093a5_TUC3> ;
+	ba:current <http://www.assero.co.uk/CHIN#25572c17-084f-4ee3-a9bd-5b65b9ad7f27_TUC3> ;
 	ba:ordinal "27"^^xsd:integer ;
 	ba:semantic "related terminology"^^xsd:string ;
-	ba:previous <http://www.assero.co.uk/CHIN#22926314-e4cd-4dbf-8962-da7e128093a5_TUC1> ;
-	ba:previous <http://www.assero.co.uk/CHIN#22926314-e4cd-4dbf-8962-da7e128093a5_TUC2> ;
+	ba:previous <http://www.assero.co.uk/CHIN#25572c17-084f-4ee3-a9bd-5b65b9ad7f27_TUC1> ;
+	ba:previous <http://www.assero.co.uk/CHIN#25572c17-084f-4ee3-a9bd-5b65b9ad7f27_TUC2> ;
 .
-<http://www.assero.co.uk/CHIN#22926314-e4cd-4dbf-8962-da7e128093a5_TUC3>
+<http://www.assero.co.uk/CHIN#25572c17-084f-4ee3-a9bd-5b65b9ad7f27_TUC3>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -1021,7 +1021,7 @@
 	:context <http://www.cdisc.org/CT/V53#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.assero.co.uk/CHIN#22926314-e4cd-4dbf-8962-da7e128093a5_TUC1>
+<http://www.assero.co.uk/CHIN#25572c17-084f-4ee3-a9bd-5b65b9ad7f27_TUC1>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -1031,7 +1031,7 @@
 	:context <http://www.cdisc.org/CT/V52#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.assero.co.uk/CHIN#22926314-e4cd-4dbf-8962-da7e128093a5_TUC2>
+<http://www.assero.co.uk/CHIN#25572c17-084f-4ee3-a9bd-5b65b9ad7f27_TUC2>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -1041,18 +1041,18 @@
 	:context <http://www.cdisc.org/CT/V52#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.assero.co.uk/CHIN#474c910c-dd6b-4bdb-b442-965b72951e97>
+<http://www.assero.co.uk/CHIN#1fb7fddf-54b6-4671-b400-f69d11a20094>
 	rdf:type ba:ChangeInstruction ;
 	isoC:label ""^^xsd:string ;
-	ba:reference ""^^xsd:string ;
+	ba:reference "CDISC-2941"^^xsd:string ;
 	ba:description "This term replaces term from the Microbiology Susceptibility TEST-CD codelist. Per FDA guidance, for tests concerning 50% inhibition on microbial growth/replication, please use the newly released EC50 terms; for tests concerning 50% inhibition on microbial enzymatic activity, please use the newly released IC50 and IC95 terms."^^xsd:string ;
-	ba:current <http://www.assero.co.uk/CHIN#474c910c-dd6b-4bdb-b442-965b72951e97_TUC3> ;
+	ba:current <http://www.assero.co.uk/CHIN#1fb7fddf-54b6-4671-b400-f69d11a20094_TUC3> ;
 	ba:ordinal "28"^^xsd:integer ;
 	ba:semantic "related terminology"^^xsd:string ;
-	ba:previous <http://www.assero.co.uk/CHIN#474c910c-dd6b-4bdb-b442-965b72951e97_TUC1> ;
-	ba:previous <http://www.assero.co.uk/CHIN#474c910c-dd6b-4bdb-b442-965b72951e97_TUC2> ;
+	ba:previous <http://www.assero.co.uk/CHIN#1fb7fddf-54b6-4671-b400-f69d11a20094_TUC1> ;
+	ba:previous <http://www.assero.co.uk/CHIN#1fb7fddf-54b6-4671-b400-f69d11a20094_TUC2> ;
 .
-<http://www.assero.co.uk/CHIN#474c910c-dd6b-4bdb-b442-965b72951e97_TUC3>
+<http://www.assero.co.uk/CHIN#1fb7fddf-54b6-4671-b400-f69d11a20094_TUC3>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -1062,7 +1062,7 @@
 	:context <http://www.cdisc.org/CT/V53#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.assero.co.uk/CHIN#474c910c-dd6b-4bdb-b442-965b72951e97_TUC1>
+<http://www.assero.co.uk/CHIN#1fb7fddf-54b6-4671-b400-f69d11a20094_TUC1>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -1072,7 +1072,7 @@
 	:context <http://www.cdisc.org/CT/V52#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.assero.co.uk/CHIN#474c910c-dd6b-4bdb-b442-965b72951e97_TUC2>
+<http://www.assero.co.uk/CHIN#1fb7fddf-54b6-4671-b400-f69d11a20094_TUC2>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -1082,18 +1082,18 @@
 	:context <http://www.cdisc.org/CT/V52#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.assero.co.uk/CHIN#7ac3508f-4656-4ca6-93e6-6857d6001287>
+<http://www.assero.co.uk/CHIN#ecd468ee-c4e1-4d2d-a63e-0349c5747645>
 	rdf:type ba:ChangeInstruction ;
 	isoC:label ""^^xsd:string ;
-	ba:reference ""^^xsd:string ;
+	ba:reference "CDISC-2941"^^xsd:string ;
 	ba:description "This term replaces term from the Microbiology Susceptibility TEST-CD codelist. Per FDA guidance, for tests concerning 50% inhibition on microbial growth/replication, please use the newly released EC50 terms; for tests concerning 50% inhibition on microbial enzymatic activity, please use the newly released IC50 and IC95 terms."^^xsd:string ;
-	ba:current <http://www.assero.co.uk/CHIN#7ac3508f-4656-4ca6-93e6-6857d6001287_TUC3> ;
+	ba:current <http://www.assero.co.uk/CHIN#ecd468ee-c4e1-4d2d-a63e-0349c5747645_TUC3> ;
 	ba:ordinal "29"^^xsd:integer ;
 	ba:semantic "related terminology"^^xsd:string ;
-	ba:previous <http://www.assero.co.uk/CHIN#7ac3508f-4656-4ca6-93e6-6857d6001287_TUC1> ;
-	ba:previous <http://www.assero.co.uk/CHIN#7ac3508f-4656-4ca6-93e6-6857d6001287_TUC2> ;
+	ba:previous <http://www.assero.co.uk/CHIN#ecd468ee-c4e1-4d2d-a63e-0349c5747645_TUC1> ;
+	ba:previous <http://www.assero.co.uk/CHIN#ecd468ee-c4e1-4d2d-a63e-0349c5747645_TUC2> ;
 .
-<http://www.assero.co.uk/CHIN#7ac3508f-4656-4ca6-93e6-6857d6001287_TUC3>
+<http://www.assero.co.uk/CHIN#ecd468ee-c4e1-4d2d-a63e-0349c5747645_TUC3>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -1103,7 +1103,7 @@
 	:context <http://www.cdisc.org/CT/V53#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.assero.co.uk/CHIN#7ac3508f-4656-4ca6-93e6-6857d6001287_TUC1>
+<http://www.assero.co.uk/CHIN#ecd468ee-c4e1-4d2d-a63e-0349c5747645_TUC1>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -1113,7 +1113,7 @@
 	:context <http://www.cdisc.org/CT/V52#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.assero.co.uk/CHIN#7ac3508f-4656-4ca6-93e6-6857d6001287_TUC2>
+<http://www.assero.co.uk/CHIN#ecd468ee-c4e1-4d2d-a63e-0349c5747645_TUC2>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -1123,18 +1123,18 @@
 	:context <http://www.cdisc.org/CT/V52#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.assero.co.uk/CHIN#54122256-6512-4a35-9c2e-9244221fd54e>
+<http://www.assero.co.uk/CHIN#7880a799-20fe-46af-9b7a-221c49275d5b>
 	rdf:type ba:ChangeInstruction ;
 	isoC:label ""^^xsd:string ;
-	ba:reference ""^^xsd:string ;
+	ba:reference "CDISC-2941"^^xsd:string ;
 	ba:description "This term replaces term from the Microbiology Susceptibility TEST-CD codelist. Per FDA guidance, for tests concerning 50% inhibition on microbial growth/replication, please use the newly released EC50 terms; for tests concerning 50% inhibition on microbial enzymatic activity, please use the newly released IC50 and IC95 terms."^^xsd:string ;
-	ba:current <http://www.assero.co.uk/CHIN#54122256-6512-4a35-9c2e-9244221fd54e_TUC3> ;
+	ba:current <http://www.assero.co.uk/CHIN#7880a799-20fe-46af-9b7a-221c49275d5b_TUC3> ;
 	ba:ordinal "30"^^xsd:integer ;
 	ba:semantic "related terminology"^^xsd:string ;
-	ba:previous <http://www.assero.co.uk/CHIN#54122256-6512-4a35-9c2e-9244221fd54e_TUC1> ;
-	ba:previous <http://www.assero.co.uk/CHIN#54122256-6512-4a35-9c2e-9244221fd54e_TUC2> ;
+	ba:previous <http://www.assero.co.uk/CHIN#7880a799-20fe-46af-9b7a-221c49275d5b_TUC1> ;
+	ba:previous <http://www.assero.co.uk/CHIN#7880a799-20fe-46af-9b7a-221c49275d5b_TUC2> ;
 .
-<http://www.assero.co.uk/CHIN#54122256-6512-4a35-9c2e-9244221fd54e_TUC3>
+<http://www.assero.co.uk/CHIN#7880a799-20fe-46af-9b7a-221c49275d5b_TUC3>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -1144,7 +1144,7 @@
 	:context <http://www.cdisc.org/CT/V53#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.assero.co.uk/CHIN#54122256-6512-4a35-9c2e-9244221fd54e_TUC1>
+<http://www.assero.co.uk/CHIN#7880a799-20fe-46af-9b7a-221c49275d5b_TUC1>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -1154,7 +1154,7 @@
 	:context <http://www.cdisc.org/CT/V52#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.assero.co.uk/CHIN#54122256-6512-4a35-9c2e-9244221fd54e_TUC2>
+<http://www.assero.co.uk/CHIN#7880a799-20fe-46af-9b7a-221c49275d5b_TUC2>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -1164,18 +1164,18 @@
 	:context <http://www.cdisc.org/CT/V52#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.assero.co.uk/CHIN#02f72f6d-70fc-415b-9e00-9ff097fb570c>
+<http://www.assero.co.uk/CHIN#8f445e85-15e4-4548-a4bc-8cb72049ed73>
 	rdf:type ba:ChangeInstruction ;
 	isoC:label ""^^xsd:string ;
-	ba:reference ""^^xsd:string ;
+	ba:reference "CDISC-2941"^^xsd:string ;
 	ba:description "This term replaces term from the Microbiology Susceptibility TEST-CD codelist. Per FDA guidance, for tests concerning 50% inhibition on microbial growth/replication, please use the newly released EC50 terms; for tests concerning 50% inhibition on microbial enzymatic activity, please use the newly released IC50 and IC95 terms."^^xsd:string ;
-	ba:current <http://www.assero.co.uk/CHIN#02f72f6d-70fc-415b-9e00-9ff097fb570c_TUC3> ;
+	ba:current <http://www.assero.co.uk/CHIN#8f445e85-15e4-4548-a4bc-8cb72049ed73_TUC3> ;
 	ba:ordinal "31"^^xsd:integer ;
 	ba:semantic "related terminology"^^xsd:string ;
-	ba:previous <http://www.assero.co.uk/CHIN#02f72f6d-70fc-415b-9e00-9ff097fb570c_TUC1> ;
-	ba:previous <http://www.assero.co.uk/CHIN#02f72f6d-70fc-415b-9e00-9ff097fb570c_TUC2> ;
+	ba:previous <http://www.assero.co.uk/CHIN#8f445e85-15e4-4548-a4bc-8cb72049ed73_TUC1> ;
+	ba:previous <http://www.assero.co.uk/CHIN#8f445e85-15e4-4548-a4bc-8cb72049ed73_TUC2> ;
 .
-<http://www.assero.co.uk/CHIN#02f72f6d-70fc-415b-9e00-9ff097fb570c_TUC3>
+<http://www.assero.co.uk/CHIN#8f445e85-15e4-4548-a4bc-8cb72049ed73_TUC3>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -1185,7 +1185,7 @@
 	:context <http://www.cdisc.org/CT/V53#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.assero.co.uk/CHIN#02f72f6d-70fc-415b-9e00-9ff097fb570c_TUC1>
+<http://www.assero.co.uk/CHIN#8f445e85-15e4-4548-a4bc-8cb72049ed73_TUC1>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -1195,7 +1195,7 @@
 	:context <http://www.cdisc.org/CT/V52#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.assero.co.uk/CHIN#02f72f6d-70fc-415b-9e00-9ff097fb570c_TUC2>
+<http://www.assero.co.uk/CHIN#8f445e85-15e4-4548-a4bc-8cb72049ed73_TUC2>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -1205,17 +1205,17 @@
 	:context <http://www.cdisc.org/CT/V52#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.assero.co.uk/CHIN#b4d1dce8-67aa-4b23-9694-9bd18889acda>
+<http://www.assero.co.uk/CHIN#3c9511d1-9d0e-4475-a468-2a5a7c662176>
 	rdf:type ba:ChangeInstruction ;
 	isoC:label ""^^xsd:string ;
-	ba:reference ""^^xsd:string ;
+	ba:reference "CDISC-3058"^^xsd:string ;
 	ba:description "C123628 has been retired. Please use the existing term Tumor Marker Response (C132458)"^^xsd:string ;
-	ba:current <http://www.assero.co.uk/CHIN#b4d1dce8-67aa-4b23-9694-9bd18889acda_TUC2> ;
+	ba:current <http://www.assero.co.uk/CHIN#3c9511d1-9d0e-4475-a468-2a5a7c662176_TUC2> ;
 	ba:ordinal "32"^^xsd:integer ;
 	ba:semantic "related terminology"^^xsd:string ;
-	ba:previous <http://www.assero.co.uk/CHIN#b4d1dce8-67aa-4b23-9694-9bd18889acda_TUC1> ;
+	ba:previous <http://www.assero.co.uk/CHIN#3c9511d1-9d0e-4475-a468-2a5a7c662176_TUC1> ;
 .
-<http://www.assero.co.uk/CHIN#b4d1dce8-67aa-4b23-9694-9bd18889acda_TUC2>
+<http://www.assero.co.uk/CHIN#3c9511d1-9d0e-4475-a468-2a5a7c662176_TUC2>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -1225,7 +1225,7 @@
 	:context <http://www.cdisc.org/CT/V53#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.assero.co.uk/CHIN#b4d1dce8-67aa-4b23-9694-9bd18889acda_TUC1>
+<http://www.assero.co.uk/CHIN#3c9511d1-9d0e-4475-a468-2a5a7c662176_TUC1>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -1235,17 +1235,17 @@
 	:context <http://www.cdisc.org/CT/V52#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.assero.co.uk/CHIN#b66a05c0-a94e-48e7-9fa6-50045825ed1a>
+<http://www.assero.co.uk/CHIN#184b79ce-c2d7-4fcc-9ede-0f24dc75114e>
 	rdf:type ba:ChangeInstruction ;
 	isoC:label ""^^xsd:string ;
-	ba:reference ""^^xsd:string ;
+	ba:reference "CDISC-3058"^^xsd:string ;
 	ba:description "C123628 has been retired. Please use the existing term TMRESP (C132458)"^^xsd:string ;
-	ba:current <http://www.assero.co.uk/CHIN#b66a05c0-a94e-48e7-9fa6-50045825ed1a_TUC2> ;
+	ba:current <http://www.assero.co.uk/CHIN#184b79ce-c2d7-4fcc-9ede-0f24dc75114e_TUC2> ;
 	ba:ordinal "33"^^xsd:integer ;
 	ba:semantic "related terminology"^^xsd:string ;
-	ba:previous <http://www.assero.co.uk/CHIN#b66a05c0-a94e-48e7-9fa6-50045825ed1a_TUC1> ;
+	ba:previous <http://www.assero.co.uk/CHIN#184b79ce-c2d7-4fcc-9ede-0f24dc75114e_TUC1> ;
 .
-<http://www.assero.co.uk/CHIN#b66a05c0-a94e-48e7-9fa6-50045825ed1a_TUC2>
+<http://www.assero.co.uk/CHIN#184b79ce-c2d7-4fcc-9ede-0f24dc75114e_TUC2>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
@@ -1255,7 +1255,7 @@
 	:context <http://www.cdisc.org/CT/V53#TH> ;
 	:localLabel ""^^xsd:string ;
 .
-<http://www.assero.co.uk/CHIN#b66a05c0-a94e-48e7-9fa6-50045825ed1a_TUC1>
+<http://www.assero.co.uk/CHIN#184b79ce-c2d7-4fcc-9ede-0f24dc75114e_TUC1>
 	rdf:type :TucReference ;
 	isoC:label ""^^xsd:string ;
 	:enabled "true"^^xsd:boolean ;
