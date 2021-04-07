@@ -101,7 +101,7 @@ describe "Thesauri Search", :type => :feature do
       search_all('latest')
       ui_check_page_options("searchTable", { "5" => 5, "10" => 10, "15" => 15, "25" => 25, "50" => 50, "100" => 100})
       ui_term_column_search(:code_list, 'C')
-      ui_check_table_info("searchTable", 1, 100, "4,365")
+      ui_check_table_info("searchTable", 1, 100, 4365)
     end
 
   end
@@ -138,7 +138,7 @@ describe "Thesauri Search", :type => :feature do
       search_all('latest')
 
       ui_term_column_search(:code_list, 'C8')
-      ui_check_table_info("searchTable", 1, 10, "2,004")
+      ui_check_table_info("searchTable", 1, 10, 2004)
       ui_term_overall_filter("liter")
       ui_check_table_info("searchTable", 1, 10, 156)
       ui_term_column_filter(:preferred_term, "gram")
