@@ -6,10 +6,10 @@ class Protocol < IsoManagedV2
   data_property :acronym
   data_property :title
   data_property :short_title
-  object_property :study_phase, cardinality: :one, model_class: "OperationalReferenceV3::TucReference"
-  object_property :study_type, cardinality: :one, model_class: "OperationalReferenceV3::TucReference"
-  object_property :intervention_model, cardinality: :one, model_class: "OperationalReferenceV3::TucReference"
-  object_property :masking, cardinality: :one, model_class: "OperationalReferenceV3::TucReference"
+  object_property :study_phase, cardinality: :one, model_class: "Thesaurus::UnmanagedConcept", delete_exclude: true, read_exclude: true
+  object_property :study_type, cardinality: :one, model_class: "Thesaurus::UnmanagedConcept", delete_exclude: true, read_exclude: true
+  object_property :intervention_model, cardinality: :one, model_class: "Thesaurus::UnmanagedConcept", delete_exclude: true, read_exclude: true
+  object_property :masking, cardinality: :one, model_class: "Thesaurus::UnmanagedConcept", delete_exclude: true, read_exclude: true
   object_property :for_indication, cardinality: :many, model_class: "Indication"
   object_property :in_ta, cardinality: :one, model_class: "TherapeuticArea"
   object_property :specifies_arm, cardinality: :many, model_class: "Arm"
