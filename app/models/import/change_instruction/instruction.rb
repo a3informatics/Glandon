@@ -13,6 +13,7 @@ class Import::ChangeInstruction::Instruction
   attr_accessor :current_parent
   attr_accessor :current_children
   attr_accessor :description
+  attr_accessor :reference
   attr_reader :errors
 
   # Initialize
