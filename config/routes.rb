@@ -618,4 +618,30 @@ Rails.application.routes.draw do
     end
   end
 
+  # Therapeutic Areas
+  resources :therapeutic_areas, :only => [:show, :index] do
+    member do
+      #get :show_data
+      #post :add
+      #put :remove
+      #put :remove_all
+    end
+    collection do
+      get :history
+    end
+  end
+
+  # Indications
+  resources :indications, :only => [:show, :index] do
+    member do
+      #get :show_data
+      #post :add
+      #put :remove
+      #put :remove_all
+    end
+    collection do
+      get :history
+    end
+  end
+
 end

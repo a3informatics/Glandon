@@ -146,14 +146,18 @@
       <% end %>
     <% end %>
 
-    <% if link_group_on_role([Endpoint, Objective]) %>
+    <% if link_group_on_role([Endpoint, Objective, TherapeuticArea, Indication]) %>
       <%= render layout: "shared/layouts/navigation/category", :locals => { category: :protocols, id: 'protocols', icon: "icon-protocol" } do %>
 
-        <%= render partial: "shared/layouts/navigation/item", :locals => { klass: Endpoint, id: "pend",
-            link_url: endpoints_path, title: "Endpoints" } %>
         <%= render partial: "shared/layouts/navigation/item", :locals => { klass: Objective, id: "pobj",
             link_url: objectives_path, title: "Objectives" } %>
-
+        <%= render partial: "shared/layouts/navigation/item", :locals => { klass: Endpoint, id: "pend",
+            link_url: endpoints_path, title: "Endpoints" } %>
+        <%= render partial: "shared/layouts/navigation/item", :locals => { klass: TherapeuticArea, id: "pta",
+            link_url: therapeutic_areas_path, title: "Therapeutic Area" } %>
+        <%= render partial: "shared/layouts/navigation/item", :locals => { klass: Indication, id: "pind",
+            link_url: indications_path, title: "Indication" } %>
+  
       <% end %>
     <% end %>
 
