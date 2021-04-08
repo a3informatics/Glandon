@@ -1670,7 +1670,7 @@ SELECT DISTINCT ?s ?p ?o WHERE {
         {cl: :C66785, status: :no_change},
         {cl: :C66790, status: :no_change},
         {cl: :C67152, status: :updated},
-        {cl: :C67153, status: :no_change},
+        {cl: :C67153, status: :updated},
         {cl: :C67154, status: :updated},
         {cl: :C71153, status: :no_change},
         {cl: :C71620, status: :updated},
@@ -1702,7 +1702,7 @@ SELECT DISTINCT ?s ?p ?o WHERE {
         {cl: :C71153,  status: :no_change},     # EGTESTCD
         {cl: :C71148,  status: :updated},       # POSITION
         {cl: :C71620,  status: :updated},       # UNIT
-        {cl: :C74456,  status: :no_change},     # LOC
+        {cl: :C74456,  status: :updated},       # LOC
         {cl: :C76351,  status: :no_change},     # SKINCLAS
         {cl: :C78431,  status: :no_change},     # VSPOS
         {cl: :C78735,  status: :no_change},     # EVAL
@@ -1733,14 +1733,14 @@ SELECT DISTINCT ?s ?p ?o WHERE {
       results = execute_import(release_date, {sdtm: release_date, cdash: "2019-12-20", adam: release_date, send: release_date, protocol: release_date, define: release_date}, set_write_file, use_api)
       expected = [
         {cl: :C66737,  status: :no_change},     # TPHASE
-        {cl: :C66738,  status: :no_change},     # TSPARMCD
+        {cl: :C66738,  status: :updated},       # TSPARMCD
         {cl: :C66785,  status: :no_change},     # TCNTRL
         {cl: :C66790,  status: :no_change},     # ETHNIC
         {cl: :C67152,  status: :no_change},     # TSPARM
         {cl: :C67153,  status: :no_change},     # VSTEST
         {cl: :C67154,  status: :updated},       # LBTEST
         {cl: :C71153,  status: :no_change},     # EGTESTCD
-        #{cl: :C71148,  status: :updated},       # POSITION
+        {cl: :C71148,  status: :updated},       # POSITION
         {cl: :C71620,  status: :updated},       # UNIT
         {cl: :C74456,  status: :no_change},     # LOC
         {cl: :C76351,  status: :no_change},     # SKINCLAS
@@ -1751,7 +1751,7 @@ SELECT DISTINCT ?s ?p ?o WHERE {
         {cl: :C128689, status: :no_change},     # RACEC
         {cl: :C147069, status: :no_change},     # Randomization Type Response
         {cl: :C160930, status: :no_change},     # CHAGNAMR
-        #{cl: :C161625, status: :updated},       # BPR02TC 
+        {cl: :C161625, status: :updated},       # BPR02TC 
         {cl: :C163026, status: :no_change},     # Study Monitoring Attribute Terminology
         {cl: :C163028, status: :no_change}
       ]
@@ -1770,7 +1770,7 @@ SELECT DISTINCT ?s ?p ?o WHERE {
         {cl: :C66738,  status: :updated},       # TSPARMCD
         {cl: :C66785,  status: :no_change},     # TCNTRL
         {cl: :C66790,  status: :no_change},     # ETHNIC
-        {cl: :C67152,  status: :no_change},     # TSPARM
+        {cl: :C67152,  status: :updated},       # TSPARM
         {cl: :C67153,  status: :updated},       # VSTEST
         {cl: :C67154,  status: :updated},       # LBTEST
         {cl: :C71153,  status: :no_change},     # EGTESTCD
@@ -1805,7 +1805,7 @@ SELECT DISTINCT ?s ?p ?o WHERE {
         {cl: :C66738,  status: :updated},       # TSPARMCD
         {cl: :C66785,  status: :no_change},     # TCNTRL
         {cl: :C66790,  status: :no_change},     # ETHNIC
-        {cl: :C67152,  status: :no_change},     # TSPARM
+        {cl: :C67152,  status: :updated},       # TSPARM
         {cl: :C67153,  status: :updated},       # VSTEST
         {cl: :C67154,  status: :updated},       # LBTEST
         {cl: :C71153,  status: :no_change},     # EGTESTCD
@@ -1838,7 +1838,7 @@ SELECT DISTINCT ?s ?p ?o WHERE {
         {cl: :C66741,  status: :updated},       # VSTESTCD
         {cl: :C66737,  status: :no_change},     # TPHASE
         {cl: :C66738,  status: :updated},       # TSPARMCD
-        {cl: :C66785,  status: :no_change},     # TCNTRL
+        {cl: :C66785,  status: :updated},       # TCNTRL
         {cl: :C66790,  status: :no_change},     # ETHNIC
         {cl: :C67152,  status: :no_change},     # TSPARM
         {cl: :C67153,  status: :updated},       # VSTEST
