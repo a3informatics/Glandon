@@ -1703,7 +1703,7 @@ SELECT DISTINCT ?s ?p ?o WHERE {
         {cl: :C71148,  status: :updated},       # POSITION
         {cl: :C71620,  status: :updated},       # UNIT
         {cl: :C74456,  status: :updated},       # LOC
-        {cl: :C76351,  status: :no_change},     # SKINCLAS
+        {cl: :C76351,  status: :updated},     # SKINCLAS
         {cl: :C78431,  status: :no_change},     # VSPOS
         {cl: :C78735,  status: :no_change},     # EVAL
         {cl: :C99079,  status: :no_change},     # EPOCH
