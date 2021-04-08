@@ -136,7 +136,7 @@ SELECT DISTINCT ?s ?p ?o WHERE {
 	def check_cl_result(results, cl, status)
     return if status == :no_change && !results[:items].key?(cl)
   	puts "***** Error checking CL Result: #{cl} for expected result '#{status}', actual result '#{results[:items][cl.to_sym][:status][0][:status]}' *****" if results[:items][cl.to_sym][:status][0][:status] != status
-    #expect(results[:items][cl.to_sym][:status][0][:status]).to eq(status)
+    expect(results[:items][cl.to_sym][:status][0][:status]).to eq(status)
   rescue => e
     puts "***** Exception Raised *****"
     puts "Error checking CL Result: #{cl} for expected result #{status}. *****" 
@@ -1877,7 +1877,7 @@ SELECT DISTINCT ?s ?p ?o WHERE {
         {cl: :C66785,  status: :no_change},     # TCNTRL
         {cl: :C66790,  status: :no_change},     # ETHNIC
         {cl: :C67152,  status: :no_change},     # TSPARM
-        {cl: :C67153,  status: :no_change},     # VSTEST
+        {cl: :C67153,  status: :updated},       # VSTEST
         {cl: :C67154,  status: :no_change},     # LBTEST
         {cl: :C71153,  status: :no_change},     # EGTESTCD
         {cl: :C71620,  status: :no_change},     # UNIT
