@@ -1782,7 +1782,7 @@ SELECT DISTINCT ?s ?p ?o WHERE {
         {cl: :C78735,  status: :no_change},     # EVAL
         {cl: :C85494,  status: :updated},       # PKUNIT
         {cl: :C99079,  status: :no_change},     # EPOCH
-        {cl: :C118971, status: :update},        # CCCAT
+        {cl: :C118971, status: :updated},       # CCCAT
         {cl: :C128689, status: :updated},       # RACEC
         {cl: :C103330, status: :updated},       # SCTEST
         {cl: :C147069, status: :no_change},     # Randomization Type Value Set
