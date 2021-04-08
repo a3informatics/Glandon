@@ -1,0 +1,2 @@
+class EndpointPolicy < ApplicationPolicy
+end

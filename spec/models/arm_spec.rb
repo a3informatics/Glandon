@@ -16,9 +16,6 @@ describe "Arm" do
       load_files(schema_files, data_files)
     end
 
-    after :each do
-    end
-
     it "create an instance" do
       allow(SecureRandom).to receive(:uuid).and_return("1234-5678-9012-3301")
       item = Arm.create(label: "XXX", description:"D", arm_type:"type", ordinal: 1)
@@ -35,7 +32,6 @@ describe "Arm" do
 
     before :all do
       load_files(schema_files, [])
-      #load_cdisc_term_versions(1..62)
       load_data_file_into_triple_store("mdr_transcelerate_identification.ttl")
       load_data_file_into_triple_store("hackathon_thesaurus.ttl")
       load_data_file_into_triple_store("hackathon_tas.ttl")
@@ -43,8 +39,6 @@ describe "Arm" do
       load_data_file_into_triple_store("hackathon_endpoints.ttl")
       load_data_file_into_triple_store("hackathon_parameters.ttl")
       load_data_file_into_triple_store("hackathon_protocols.ttl")
-      #load_data_file_into_triple_store("hackathon_bc_instances.ttl")
-      #load_data_file_into_triple_store("hackathon_bc_templates.ttl")
       load_data_file_into_triple_store("hackathon_protocol_templates.ttl")
     end
 

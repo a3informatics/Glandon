@@ -186,4 +186,35 @@ describe IsoConceptSystem do
 
   end
 
+  describe "Migration Four" do
+
+    before :all do
+      load_files(schema_files, [])
+      load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
+    end
+
+    after :all do
+      delete_all_public_test_files
+    end
+
+    it "migration 4, add Endpoint Classification tags" do
+      cs = IsoConceptSystem.root
+      study_protocol = add_top_node({label: "Study Protocol", description: "Study protocol related tags"}, cs)
+      endpoint_classification = add_node({label: "Endpoint Classification", description: "Endpoint classifcation related information."}, study_protocol)
+      enumerated_primary = add_node({label: "Primary", description: "Primary value."}, endpoint_classification)
+      enumerated_secondary = add_node({label: "Secondary", description: "Secondary value."}, endpoint_classification)
+      enumerated_tertiary = add_node({label: "Tertiary", description: "Tertiary value."}, endpoint_classification)
+      enumerated_not_defined = add_node({label: "Not set", description: "Value not defined."}, endpoint_classification)
+      
+      sparql = Sparql::Update.new
+      sparql.default_namespace(cs.uri.namespace)
+      study_protocol.to_sparql(sparql, true)
+      endpoint_classification.to_sparql(sparql, true)
+      sparql.add({uri: cs.uri}, {namespace: Uri.namespaces.namespace_from_prefix(:isoC), :fragment => "isTopConcept"}, {uri: study_protocol.uri})
+      file = sparql.to_file
+    #Xcopy_file_from_public_files_rename("test", file.basename, sub_dir, "mdr_iso_concept_systems_migration_4.ttl")
+    end
+
+  end
+
 end

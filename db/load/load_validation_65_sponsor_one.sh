@@ -21,6 +21,7 @@ curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/mdr_iso
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/mdr_iso_concept_systems_migration_1.ttl" $FileEndPoint
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/mdr_iso_concept_systems_migration_2.ttl" $FileEndPoint
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/mdr_iso_concept_systems_migration_3.ttl" $FileEndPoint
+curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/mdr_iso_concept_systems_migration_4.ttl" $FileEndPoint
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/mdr_iso_concept_systems_process.ttl" $FileEndPoint
 # Load CDISC Terminology
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/cdisc/ct/CT_V1.ttl" $FileEndPoint

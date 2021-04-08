@@ -1,0 +1,24 @@
+<% content_for :page_title do %> Index: Endpoints <% end %>
+
+<%= javascript_pack_tag 'endpoints/index' %>
+
+<% first_level_breadcrumb (:endpoints) %>
+
+<div class="row">
+  <%= render layout: "shared/headers/header_minimal", :locals => {badge: "icon-protocol",
+    main_text: "Endpoints", sub_text: "Browse all Endpoints in the system." } do %>
+      <div class="btns-wrap"></div>
+  <% end %>
+</div>
+
+<div class="row">
+
+  <% content_for :description do %>
+    Below is the list of all <span class="text-accent-1-dark font-regular">standardized</span> and <span class="text-link font-regular">sponsor</span> Endpoints.
+    Use the Search bar to find the Endpoint you are looking for.
+    To see Endpoint's respective History page, click on it.
+  <% end %>
+
+  <%= render partial: "shared/iso_managed/index/index_card", locals: { title: "Endpoints", url: endpoints_path } %>
+
+</div>

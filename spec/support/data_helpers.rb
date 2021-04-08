@@ -64,11 +64,11 @@ module DataHelpers
   end
 
   def clear_triple_store
-		#sparql_query = "PREFIX tst: <http://www.assero.co.uk/test/>\n" +
+    #sparql_query = "PREFIX tst: <http://www.assero.co.uk/test/>\n" +
     #  "PREFIX dc: <http://purl.org/dc/elements/1.1/>\n" +
     #  "DELETE { ?a ?b ?c } WHERE { ?a ?b ?c }"
     #sparql_query = "CLEAR DEFAULT"
-  	#CRUD.update(sparql_query)
+    #CRUD.update(sparql_query)
     @@ts.clear
   end
 
@@ -78,13 +78,13 @@ module DataHelpers
   end
 
   def load_test_file_into_triple_store(filename)
-		full_path = Rails.root.join "db/load/test/#{filename}"
-  	load_file_into_triple_store(full_path)
+    full_path = Rails.root.join "db/load/test/#{filename}"
+    load_file_into_triple_store(full_path)
   end
 
   def load_test_temp_file_into_triple_store(filename)
-		full_path = Rails.root.join "db/load/tmp/#{filename}"
-  	load_file_into_triple_store(full_path)
+    full_path = Rails.root.join "db/load/tmp/#{filename}"
+    load_file_into_triple_store(full_path)
   end
 
   def load_schema_file_into_triple_store(filename)
@@ -231,14 +231,14 @@ module DataHelpers
 
   def delete_data_file(sub_dir, filename)
     full_path = set_path(sub_dir, filename)
-		File.delete(full_path)
+    File.delete(full_path)
   rescue => e
   end
 
   def date_check_now(item, within=2)
     expect(item).to be_within(within.second).of Time.now
     return item
-	end
+  end
 
   def clear_iso_concept_object
     IsoConcept.class_variable_set(:@@property_attributes, nil)
