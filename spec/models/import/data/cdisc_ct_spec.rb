@@ -1736,7 +1736,7 @@ SELECT DISTINCT ?s ?p ?o WHERE {
         {cl: :C66738,  status: :updated},       # TSPARMCD
         {cl: :C66785,  status: :no_change},     # TCNTRL
         {cl: :C66790,  status: :no_change},     # ETHNIC
-        {cl: :C67152,  status: :no_change},     # TSPARM
+        {cl: :C67152,  status: :updated},       # TSPARM
         {cl: :C67153,  status: :no_change},     # VSTEST
         {cl: :C67154,  status: :updated},       # LBTEST
         {cl: :C71153,  status: :no_change},     # EGTESTCD
