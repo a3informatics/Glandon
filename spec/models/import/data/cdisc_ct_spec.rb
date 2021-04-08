@@ -1740,7 +1740,7 @@ SELECT DISTINCT ?s ?p ?o WHERE {
         {cl: :C67153,  status: :updated},       # VSTEST
         {cl: :C67154,  status: :updated},       # LBTEST
         {cl: :C71153,  status: :no_change},     # EGTESTCD
-        {cl: :C71148,  status: :updated},       # POSITION
+        {cl: :C71148,  status: :no_change},     # POSITION
         {cl: :C71620,  status: :updated},       # UNIT
         {cl: :C74456,  status: :updated},       # LOC
         {cl: :C76351,  status: :no_change},     # SKINCLAS
@@ -1751,7 +1751,7 @@ SELECT DISTINCT ?s ?p ?o WHERE {
         {cl: :C128689, status: :no_change},     # RACEC
         {cl: :C147069, status: :updated},       # Randomization Type Value Set
         {cl: :C160930, status: :no_change},     # CHAGNAMR
-        {cl: :C161625, status: :updated},       # BPR02TC 
+        {cl: :C161625, status: :no_change},     # BPR02TC 
         {cl: :C163026, status: :no_change},     # Study Monitoring Attribute Terminology
         {cl: :C163028, status: :no_change}      # D1FATS
       ]
