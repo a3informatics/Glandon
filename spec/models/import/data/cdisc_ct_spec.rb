@@ -1706,7 +1706,7 @@ SELECT DISTINCT ?s ?p ?o WHERE {
         {cl: :C76351,  status: :updated},       # SKINCLAS
         {cl: :C78431,  status: :updated},       # VSPOS
         {cl: :C78735,  status: :no_change},     # EVAL
-        {cl: :C99079,  status: :no_change},     # EPOCH
+        {cl: :C99079,  status: :updated},       # EPOCH
         {cl: :C118971, status: :updated},       # CCCAT
         {cl: :C128689, status: :no_change},     # RACEC
         {cl: :C147069, status: :no_change},     # Randomization Type Response
