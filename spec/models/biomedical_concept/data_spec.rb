@@ -180,6 +180,7 @@ describe BiomedicalConcept do
       write_file = false
       load_local_file_into_triple_store("#{sub_dir}/templates", "templates.ttl")
       load_local_file_into_triple_store("#{sub_dir}/templates", "intervention.ttl")
+      load_local_file_into_triple_store("#{sub_dir}/templates", "basic_obs_int.ttl")
       ["ae", "dm", "eg", "lb", "vs"].each do |dir|
         filenames = local_file_list("#{sub_dir}/instances/#{dir}", "*.yaml")
         filenames.each do |f|
@@ -196,7 +197,7 @@ describe BiomedicalConcept do
           load_local_file_into_triple_store("#{sub_dir}/instances/#{dir}", f)
         end
       end
-      expect(BiomedicalConceptTemplate.unique.count).to eq(7)
+      expect(BiomedicalConceptTemplate.unique.count).to eq(8)
       expect(BiomedicalConceptInstance.unique.count).to eq(54)
     end
 
