@@ -1,6 +1,6 @@
 import TokenTimer from 'shared/custom/tokens/token_timer'
 
-import StudyTimeline from 'shared/custom/studies/study_timeline'
+import Timeline from 'shared/base/d3/timeline/timeline'
 
 $(document).ready( () => {
 
@@ -17,6 +17,6 @@ $(document).ready( () => {
 
   })
 
-  const st = new StudyTimeline()
+  const st = new Timeline()
 
 });
