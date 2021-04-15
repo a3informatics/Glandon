@@ -1,0 +1,390 @@
+import dayjs from 'dayjs'
+import { renderSpinnerIn$, removeSpinnerFrom$ } from 'shared/ui/spinners'
+
+/**
+ * D3 Timeline Class
+ * @description Extensible D3-based Timeline Graph module
+ * @author Samuel Banas <sab@s-cubed.dk>
+ */
+export default class Timeline {
+  
+  /**
+   * Create a Timeline instance
+   * @param {Object} params Instance parameters
+   * @param {string} params.selector Unique selector of the timeline wrapper
+   * @param {string} params.dataUrl Url to fetch the timeline data from
+   * @param {boolean} params.zoomable Determines whether the timeline can be zoomed, optional [default=true]
+   * @param {boolean} params.centerVertically Specifies if timeline should be vertically centered in parent, optional [default=false]
+   * @param {function} params.onDataLoaded Data load completed callback, receives raw data as first argument, optional
+   */
+  constructor({
+    selector = '#timeline-container',
+    dataUrl,
+    zoomable = true,
+    centerVertically = false,
+    onDataLoaded = () => {}
+  } = {}) {
+
+    Object.assign( this, {
+      selector, dataUrl, zoomable, centerVertically, onDataLoaded
+    })
+
+    this._loadD3()
+
+  }
+
+  /**
+   * Fetch timeline data from the server
+   * @param {string} url Source data url (overrides dataUrl), optional
+   */
+  loadData(url) {
+
+    // Overwrite instance's dataUrl
+    // if ( url )
+    //   this.dataUrl = url
+
+    // this._loading( true )
+
+    // // TODO: Get request, handles response
+    // $get({
+    //   url: this.dataUrl,
+    //   done: rawData => this._onDataLoaded( rawData ),
+    //   always: () => this._loading( false )
+    // })
+
+    this._onDataLoaded([])
+
+  }
+
+  /**
+   * Render the Timeline 
+   * @override for custom behavior
+   * @return {Timeline} This instance for method chaining
+   */
+  render() {
+
+    this._initTimeline()
+    return this
+
+  }
+
+
+  /*** Private ***/
+
+
+  /**
+   * Create instance graph object, set listeners, load data
+   */
+  _init() {
+
+    this.graph = {}
+    this._setListeners()
+    this.loadData()
+    
+  }
+
+  /**
+   * Set event listeners & handlers
+   */
+  _setListeners() {
+
+    $(window).on( 'resize', () => this._onResize() )
+
+  }
+
+  /**
+   * Initialize & render Timeline
+   * @override for custom behavior
+   */
+  _initTimeline() {
+
+    const { 
+      height, 
+      margin: { top, bottom } 
+    } = this._props.svg 
+
+    // Initialize Zoom and SVG 
+    this.graph.zoom = this._newZoom()
+    this.graph.svg = this._newSVG()
+
+    // Initialize X-Axis Scales
+    this.graph.xIntervalScale = this._newIntervalScale(),
+    this.graph.xTimeScale = this._newTimeScale()
+        
+    // Render X-Axis
+    this.graph.svg.append( 'g' )
+                  .attr( 'class', 'x-axis' )
+                  .call( 
+                    (sel, sc) => this._customTicks( sel, sc ), 
+                    this.graph.xTimeScale 
+                  ) 
+    
+    // Vertical centering
+    if ( this.centerVertically )
+      this.graph.svg.select( '.x-axis' )
+                    .attr( 'transform', `translate(0, ${ ( height - top - bottom ) / 2 })`)
+
+
+  }
+
+
+  /*** Events ***/
+
+
+  /**
+   * Process and render raw timeline data from the server
+   * @override for custom behavior
+   * @param {Object | undefined} rawData Compatible timeline data fetched from the server
+   */
+  _onDataLoaded(rawData) {
+
+    // Save reference to the raw data structure
+    if ( rawData )
+      this.rawData = rawData
+
+    if ( this.onDataLoaded ) 
+      this.onDataLoaded( rawData )
+
+    this.render() 
+
+  }
+
+  /**
+   * Window resized event, adjust container and graph
+   * Extend method for custom behavior
+   */
+  _onResize() {
+
+    // let { width, margin: { left, right } } = this._props.svg 
+
+    // this.graph.xTimeScale.range([ 0, width - left - right ])
+
+    // this.graph.svg.select( '.x-axis' )
+    //               .call( 
+    //                 (sel, sc) => this._customTicks( sel, sc ), 
+    //                 this.graph.xTimeScale
+    //               )
+
+  }
+
+  /**
+   * Graph zoomed event, rescale axis 
+   * Extend method for custom behavior
+   */
+  _onZoom() {
+
+    const rescaledAxis = this.d3.event.transform.rescaleX( this.graph.xTimeScale ) 
+
+    this.graph.svg.select( '.x-axis' )
+                  .call( 
+                    (sel, sc) => this._customTicks( sel, sc ), 
+                    rescaledAxis
+                  )
+    
+  }
+
+
+  /*** Custom Ticks ***/
+
+
+  /**
+   * Custom TimeAxis Ticks formatting & render
+   * @param {D3 Selection} selection Current selection 
+   * @param {D3 Scale} scale Current scale 
+   */
+  _customTicks(selection, scale) {
+
+    const [ t1, t2 ] = scale.ticks(),
+          // Interval between ticks
+          tickInterval = this._timeDiff( t1, t2, 'day' ), 
+          // Convert to time unit 
+          tickUnit = this.graph.xIntervalScale( tickInterval )
+
+    // Map Tick labels to custom format 
+    const customTicks = scale.ticks()
+                             .map( t => this._customTickFormat( t, tickUnit ) )
+    
+    // Update axis - d3 will apply tick values based on dates
+    selection.call( this.d3.axisBottom( scale ) )
+
+    // Override the d3 default tick values with the new labels based on interval type
+    this.d3.selectAll( '.tick > text' ).each( (t, i, elements) => {
+
+      this.d3.select( elements[i] )
+             .text( customTicks[i] )
+             .style( 'text-anchor', 'end' )
+             .attr( 'dx', '-.8em' )
+             .attr( 'dy', '.15em' )
+             .attr( 'transform', 'rotate(-65)' )
+
+    })  
+
+  }
+
+  /**
+   * Parse tick to custom string format (relative distance)  
+   * @param {Date} tick Tick to parse
+   * @param {string} unit Tick unit (year/month/day...)
+   * @return {string} Tick parsed to custom value relative to the instance's baseline and given unit
+   */
+  _customTickFormat(tick, unit) {
+
+    const tickValue = this._timeDiff( this._props.baseline, tick, unit, false )
+
+    return `${ tickValue } ${ unit }${ Math.abs( tickValue ) === 1 ? '' : 's' }`
+
+  }
+
+
+  /** Graph utils **/
+
+
+  /**
+   * Get a new D3 SVG with custom size and zoom
+   * Override for custom implementation
+   * @param {boolean} responsive Specifies if the graph is responsive horizontally, optional [default=true]
+   * @return {D3} New D3 SVG view
+   */
+   _newSVG(responsive = true) {
+
+    const { width, height, margin: { left, top } } = this._props.svg 
+
+    return this.d3.select( `${ this.selector } #d3` )
+                  .append( 'svg' )
+                  // Dimensions
+                  .attr( 'width', (responsive ? '100%' : width) )
+                  .attr( 'height', height )
+                  // Zoom 
+                  .call( this.zoomable ? this.graph.zoom : null )
+                  // Margin offset
+                  .append( 'g' )
+                    .attr( 'transform', `translate(${ left }, ${ top })` )  
+
+  }
+
+  /**
+   * Get a new D3 zoom behavior instance
+   * Override for custom implementation
+   * @requires zoomable enabled
+   * @return {(D3 | null)} New D3 zoom behavior or null if zoomable disabled
+   */
+  _newZoom() {
+
+    if ( !this.zoomable )
+      return null
+
+    return this.d3.zoom()
+             .on('zoom', () => this._onZoom() )
+             .scaleExtent([ this._props.zoom.min, this._props.zoom.max ])
+
+  }
+
+  /**
+   * Get a new D3 TimeScale relative to instance's baseline
+   * @return {D3} New D3 TimeScale 
+   */
+  _newTimeScale() {
+
+    const { width, margin: { left, right } } = this._props.svg 
+
+    // Domain start & end +- 10 days relative to baseline
+    const baseline = dayjs( this._props.baseline ),
+          dStart = baseline.subtract( 10, 'day' ),
+          dEnd = baseline.add( 10, 'day' )
+
+    return this.d3.scaleTime()
+                  .domain([ dStart.toDate(), dEnd.toDate() ])
+                  .range([ 0, width - left - right ])
+
+  }
+
+  /**
+   * Get a new D3 ScaleThreshhold instance - custom interval scale
+   * @return {D3} New D3 ScaleThreshold
+   */
+  _newIntervalScale() {
+
+    return this.d3.scaleThreshold()
+                  .domain([ 0.00069, 0.03, 1, 7, 28, 365, Infinity ])
+                  .range([ 'second', 'minute', 'hour', 'day', 'week', 'month', 'year' ]) 
+
+  } 
+
+
+  /*** Utils & Helpers ***/
+
+
+  /**
+   * Calculate time difference between two Dates in given unit
+   * @param {Date} t1 First date to compare
+   * @param {Date} t2 Second date to compare
+   * @param {string} unit Comparison result unit (year/month/day...)
+   * @param {boolean} asFloat Get difference as a float, optional [default = true]
+   * @return {int | float} Difference between the two dates in a specified unit and format 
+   */
+  _timeDiff(t1, t2, unit, asFloat = true) {
+    return dayjs( t2 ).diff( dayjs( t1 ), unit, asFloat )
+  }
+
+  /**
+   * Toggle loading state of the D3 Graph
+   * @param {boolean} enable Desired loading state
+   */
+  _loading(enable) {
+
+    this.loading = enable
+    const graph = $( this.selector ).find( '#d3' )
+
+    graph.toggleClass( 'loading', enable )
+
+    enable ? 
+      renderSpinnerIn$( graph, 'small' ) : 
+      removeSpinnerFrom$( graph )
+  
+  }
+
+  /**
+   * Graph properties definitions
+   * Extend and override method to customize
+   * @return {Object} Graph properties for svg, zoom, baseline date
+   */
+    get _props() {
+
+    let props = {
+      baseline: new Date(2021, 2, 1),
+      container: $(this.selector),
+      svg: {
+        margin: {
+          top: 20,
+          bottom: 0,
+          left: 20,
+          right: 20
+        },
+        get width() { return props.container.width() },
+        get height() { return props.container.height()  }
+      },
+      zoom: {
+        min: 0.002,
+        max: 10000
+      }
+    }
+
+    return props
+
+  }
+
+  /**
+   * Load D3 modules asynchronously and init graph afterwards
+   * @override for custom behavior
+   */
+  async _loadD3() {
+
+    // Load D3 modules here  
+    let d3 = await import( /* webpackPrefetch: true */ './d3_timeline' )
+    this.d3 = d3.default
+
+    this._init() // Call init after load 
+
+  }
+
+}
