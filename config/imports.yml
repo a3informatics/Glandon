@@ -97,9 +97,6 @@ defaults: &defaults
             label: "Release Date"
             actions: []
           -
-            label: "Request Code"
-            actions: []
-          -
             label: "Change Type"
             actions: []
           -
@@ -149,6 +146,17 @@ defaults: &defaults
                 can_be_empty: false
                 additional:
                   token: ","
+          -
+            label: "Request Code"
+            actions:
+              -
+                method: set_property
+                object: parent
+                property: reference
+                can_be_empty: false
+              -
+                method: check_valid
+                object: parent
           -
             label: "Prev Term"
             actions:

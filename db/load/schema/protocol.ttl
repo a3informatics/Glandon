@@ -12,6 +12,8 @@
 
 <http://www.assero.co.uk/Protocol>
   rdf:type owl:Ontology ;
+  owl:versionInfo "v4.0.0"^^xsd:string ;
+  rdfs:label "Study & Protocol Schema"^^xsd:string ;
 .
 :Study
   rdf:type owl:Class ;

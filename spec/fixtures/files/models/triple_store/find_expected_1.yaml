@@ -19,7 +19,7 @@
   :object: http://www.transceleratebiopharmainc.com/LY246708/V1#PR_RS
 - :subject: http://www.transceleratebiopharmainc.com/LY246708/V1#PR
   :predicate: http://www.assero.co.uk/ISO11179Types#lastChangeDate
-  :object: '2020-04-15T19:19:39+02:00'
+  :object: '2020-11-16T15:05:45+01:00'
 - :subject: http://www.transceleratebiopharmainc.com/LY246708/V1#PR
   :predicate: http://www.assero.co.uk/ISO11179Types#origin
   :object: ''
@@ -30,29 +30,44 @@
   :predicate: http://www.assero.co.uk/Protocol#forIndication
   :object: http://www.transceleratebiopharmainc.com/IND_ALZ/V1#IND
 - :subject: http://www.transceleratebiopharmainc.com/LY246708/V1#PR
+  :predicate: http://www.assero.co.uk/Protocol#inTa
+  :object: http://www.transceleratebiopharmainc.com/TA_NSD/V1#TA
+- :subject: http://www.transceleratebiopharmainc.com/LY246708/V1#PR
   :predicate: http://www.assero.co.uk/Protocol#interventionModel
-  :object: http://www.transceleratebiopharmainc.com/CPT_TALib-ALZ-BWE_V003/V1#PR_TUC1
+  :object: http://www.transceleratebiopharmainc.com/FLU001/V1#PR_TUC1
 - :subject: http://www.transceleratebiopharmainc.com/LY246708/V1#PR
   :predicate: http://www.assero.co.uk/Protocol#masking
-  :object: http://www.transceleratebiopharmainc.com/CPT_TALib-ALZ-BWE_V003/V1#PR_TUC2
+  :object: http://www.transceleratebiopharmainc.com/FLU001/V1#PR_TUC2
 - :subject: http://www.transceleratebiopharmainc.com/LY246708/V1#PR
   :predicate: http://www.assero.co.uk/Protocol#shortTitle
-  :object: ''
+  :object: LY246708
 - :subject: http://www.transceleratebiopharmainc.com/LY246708/V1#PR
   :predicate: http://www.assero.co.uk/Protocol#specifiesArm
-  :object: http://www.assero.co.uk/ARM#0ac1d245034a693e8162cd5411f641e2c5d8c13f
+  :object: http://www.assero.co.uk/ARM#3fc48141-7933-4eb2-bcc2-7a9048f5da4b
 - :subject: http://www.transceleratebiopharmainc.com/LY246708/V1#PR
   :predicate: http://www.assero.co.uk/Protocol#specifiesArm
-  :object: http://www.assero.co.uk/ARM#19bf56b95c95a7ff1f6bff8f07c06c906e75022e
+  :object: http://www.assero.co.uk/ARM#700c7fd7-03a4-4506-bd2f-0b8323bef630
 - :subject: http://www.transceleratebiopharmainc.com/LY246708/V1#PR
   :predicate: http://www.assero.co.uk/Protocol#specifiesArm
-  :object: http://www.assero.co.uk/ARM#277ca11c0868821a747951dad75cadc2ec72a550
+  :object: http://www.assero.co.uk/ARM#9742e98d-2a56-4e68-b43c-f49a975d30ee
 - :subject: http://www.transceleratebiopharmainc.com/LY246708/V1#PR
   :predicate: http://www.assero.co.uk/Protocol#specifiesEpoch
-  :object: http://www.assero.co.uk/EP#23c859f4f777dc72aa029df6686fccf5faec11cf
+  :object: http://www.assero.co.uk/EP#090d893f-33fe-41de-abe2-2d2d793a3af2
 - :subject: http://www.transceleratebiopharmainc.com/LY246708/V1#PR
   :predicate: http://www.assero.co.uk/Protocol#specifiesEpoch
-  :object: http://www.assero.co.uk/EP#50783a7176132d9652b0dc8ce197ed67a97a896b
+  :object: http://www.assero.co.uk/EP#740a029c-e7f7-4fed-a53c-9e0c4763ebeb
+- :subject: http://www.transceleratebiopharmainc.com/LY246708/V1#PR
+  :predicate: http://www.assero.co.uk/Protocol#specifiesObjective
+  :object: http://www.assero.co.uk/PROBJ#81281c98-cea9-4208-bd60-407a8521f895
+- :subject: http://www.transceleratebiopharmainc.com/LY246708/V1#PR
+  :predicate: http://www.assero.co.uk/Protocol#specifiesObjective
+  :object: http://www.assero.co.uk/PROBJ#ac5049f7-5496-47d4-9bd8-1f7d11c7c536
+- :subject: http://www.transceleratebiopharmainc.com/LY246708/V1#PR
+  :predicate: http://www.assero.co.uk/Protocol#specifiesObjective
+  :object: http://www.assero.co.uk/PROBJ#b7af8dce-8c77-41a7-9542-294f00001d1e
+- :subject: http://www.transceleratebiopharmainc.com/LY246708/V1#PR
+  :predicate: http://www.assero.co.uk/Protocol#specifiesObjective
+  :object: http://www.assero.co.uk/PROBJ#c2136109-64a6-4cec-8f87-e9a8294f7904
 - :subject: http://www.transceleratebiopharmainc.com/LY246708/V1#PR
   :predicate: http://www.assero.co.uk/Protocol#studyPhase
   :object: http://www.transceleratebiopharmainc.com/LY246708/V1#PR_TUC3

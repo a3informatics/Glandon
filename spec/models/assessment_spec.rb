@@ -63,7 +63,12 @@ describe Assessment do
       parent = Assessment.find_full(Uri.new(uri: "http://www.acme-pharma.com/ITEM1/V1#ASS"))
       parent.has_managed << item_2
       parent.has_managed << item_3
-      check_file_actual_expected(parent.to_h, sub_dir, "create_expected_1.yaml", equate_method: :hash_equal, write_file: true)
+      # Fix the dates
+      [parent, item_2, item_3].each do |x|
+        x.last_change_date = "".to_time_with_default
+        x.creation_date = "".to_time_with_default
+      end
+      check_file_actual_expected(parent.to_h, sub_dir, "create_expected_1.yaml", equate_method: :hash_equal)
     end
 
   end

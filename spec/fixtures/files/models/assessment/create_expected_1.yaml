@@ -3,7 +3,6 @@
 :uri: http://www.acme-pharma.com/ITEM1/V1#ASS
 :rdf_type: http://www.assero.co.uk/BiomedicalConcept#Assessment
 :label: Item 1
-:tagged: []
 :has_state:
   :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vSVRFTTEvVjEjQVNTX1JT
   :uri: http://www.acme-pharma.com/ITEM1/V1#ASS_RS
@@ -45,17 +44,17 @@
     :short_name: ACME
     :name: ACME Pharma
     :authority: www.acme-pharma.com
+:has_previous_version: 
 :origin: ''
 :change_description: ''
-:creation_date: '2020-04-14T14:40:27+02:00'
-:last_change_date: '2020-04-14T14:40:27+02:00'
+:creation_date: '2016-01-01T00:00:00+00:00'
+:last_change_date: '2016-01-01T00:00:00+00:00'
 :explanatory_comment: ''
 :has_managed:
 - :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vSVRFTTIvVjEjQVNT
   :uri: http://www.acme-pharma.com/ITEM2/V1#ASS
   :rdf_type: http://www.assero.co.uk/BiomedicalConcept#Assessment
   :label: Item 2
-  :tagged: []
   :has_state:
     :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vSVRFTTIvVjEjQVNTX1JT
     :uri: http://www.acme-pharma.com/ITEM2/V1#ASS_RS
@@ -97,17 +96,17 @@
       :short_name: ACME
       :name: ACME Pharma
       :authority: www.acme-pharma.com
+  :has_previous_version: 
   :origin: ''
   :change_description: ''
-  :creation_date: '2020-04-14T14:40:27+02:00'
-  :last_change_date: '2020-04-14T14:40:27+02:00'
+  :creation_date: '2016-01-01T00:00:00+00:00'
+  :last_change_date: '2016-01-01T00:00:00+00:00'
   :explanatory_comment: ''
   :has_managed: []
 - :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vSVRFTTMvVjEjQVNT
   :uri: http://www.acme-pharma.com/ITEM3/V1#ASS
   :rdf_type: http://www.assero.co.uk/BiomedicalConcept#Assessment
   :label: Item 3
-  :tagged: []
   :has_state:
     :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vSVRFTTMvVjEjQVNTX1JT
     :uri: http://www.acme-pharma.com/ITEM3/V1#ASS_RS
@@ -149,9 +148,10 @@
       :short_name: ACME
       :name: ACME Pharma
       :authority: www.acme-pharma.com
+  :has_previous_version: 
   :origin: ''
   :change_description: ''
-  :creation_date: '2020-04-14T14:40:27+02:00'
-  :last_change_date: '2020-04-14T14:40:27+02:00'
+  :creation_date: '2016-01-01T00:00:00+00:00'
+  :last_change_date: '2016-01-01T00:00:00+00:00'
   :explanatory_comment: ''
   :has_managed: []

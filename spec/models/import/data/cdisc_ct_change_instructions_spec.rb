@@ -120,4 +120,9 @@ describe Import::ChangeInstruction do
     execute_import(release_date, {sdtm: true, send: true}, set_write_file)
   end  
 
+  it "2021-03-26" do
+    release_date = "2021-03-26"
+    execute_import(release_date, {sdtm: true, send: true}, set_write_file)
+  end  
+
 end

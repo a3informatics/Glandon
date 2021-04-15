@@ -221,7 +221,7 @@ module UiHelpers
   end
 
   def ui_check_table_info(table_id, first, last, total)
-    expect(page).to have_css("##{table_id}_info", text: "Showing #{first} to #{last} of #{total} entries")
+    expect(page).to have_css("##{table_id}_info", text: "Showing #{first} to #{last} of #{total.to_s(:delimited)} entries")
   end
 
 	def ui_check_table_button_class(table_id, row, col, classname)
