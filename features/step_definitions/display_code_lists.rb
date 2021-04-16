@@ -17,7 +17,9 @@ Then('I see {int} code lists created, {int} code lists updated, {int} code list 
   expect(page).to have_content 'Deleted Code List'
   expect(page).to have_content int3
   wait_for_ajax(20)
+  zoom_out
   save_screen(TYPE)
+  zoom_in
 end
 
 Then('I see the list of code lists for the {string}') do |string|
@@ -56,7 +58,9 @@ end
 Then('the release has {int} entries\/code lists') do |int|
   ui_check_table_info("children", 1, 10, int)
   wait_for_ajax(20)
+  zoom_out
   save_screen(TYPE)
+  zoom_in
 end
 
 Then('I see the items in the {string} code list is displayed') do |string|
@@ -109,7 +113,9 @@ Then('I see {int} code lists with following synonyms') do |int, table|
     ui_check_table_cell("children", hash['No'], 4,"#{hash['Synonym']}")
   end
   wait_for_ajax(20)
+  zoom_out
   save_screen(TYPE)
+  zoom_in
 end
 
 Then('I see {int} code lists with following preferred terms') do |int, table|
@@ -123,7 +129,9 @@ Then('I see {int} code lists with following preferred terms') do |int, table|
     ui_check_table_cell("children", hash['No'], 3,"#{hash['PreferredTerm']}")
   end
   wait_for_ajax(20)
+  zoom_out
   save_screen(TYPE)
+  zoom_in
 end
 
 Then('I see {int} code list items with following synonyms') do |int, table|
@@ -137,7 +145,9 @@ Then('I see {int} code list items with following synonyms') do |int, table|
     ui_check_table_cell("children", hash['No'], 4,"#{hash['Synonym']}")
   end
   wait_for_ajax(20)
+  zoom_out
   save_screen(TYPE)
+  zoom_in
 end
 
 Then('I see {int} code list items with following preferred terms') do |int, table|
@@ -151,7 +161,9 @@ Then('I see {int} code list items with following preferred terms') do |int, tabl
     ui_check_table_cell("children", hash['No'], 3,"#{hash['PreferredTerm']}")
   end
   wait_for_ajax(20)
+  zoom_out
   save_screen(TYPE)
+  zoom_in
 end
 
 Then('I see {int} code list items') do |int|
@@ -161,7 +173,9 @@ if int < 10
    ui_check_table_info("children", 1, 10, int)
   end
    wait_for_ajax(20)
+   zoom_out
    save_screen(TYPE)
+   zoom_in
 end
 
 Then('I see {int} code list items in the editor') do |int|
@@ -171,16 +185,11 @@ Then('I see {int} code list items in the editor') do |int|
       ui_check_table_info "editor", 1, 10, int
     end
    wait_for_ajax(20)
+   zoom_out
    save_screen(TYPE)
+   zoom_in
 end
 
-Then('there are {string} entries displayed in the table') do |string,table|
-  expect(page).to have_content string+" entries"
-	table.hashes.each do |it|
-	  expect(page).to have_content it['item']
-	end
-  save_screen(TYPE)
-end
 
 Then('I see synonym {string} being shared with {string} codelist for the {string} item') do |string, string2, string3|
   expect(page).to have_content 'Shared Synonyms'
@@ -298,7 +307,7 @@ Then('the following types of attributes for the code list is displayed:') do |ta
     theaders = all(:xpath, "//div[@id='#{ table }_wrapper']//thead/tr/td", visible: false)
 
     theaders.each do |th|
-      puts th.text
+      log(th.text)
       expect(headers).to include(th.text)
     end
   end

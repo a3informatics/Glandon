@@ -1,3 +1,7 @@
+def ui_set_table_length(table_id, length)
+   select length, from: "#{table_id}_length"
+end
+
 
 Given('Terminology version {string} is set to current') do |string|
       click_navbar_cdisc_terminology
@@ -17,7 +21,6 @@ end
 When ('I enable "Select all current"') do 
  page.find("#select-all-current").click 
 end
-
 
 When ('I enter {string} in the Code List') do |string|
    ui_term_column_search(:code_list, string)
@@ -49,6 +52,17 @@ Then('I see the Search current page') do
   save_screen(TYPE)
 end
 
+ 
+
+Then('there are {string} entries displayed in the table') do |string,table|
+  expect(page).to have_content string+" entries"
+  table.hashes.each do |it|
+    expect(page).to have_content it['FieldValue']
+  end
+  zoom_out
+  save_screen(TYPE)
+  zoom_in
+end
 
 Then('I see {int} search results') do |int|
   find('#main_area').scroll_to find('#searchTable')
@@ -64,5 +78,7 @@ Then('I see {int} search results') do |int|
     end
   end
   wait_for_ajax(20)
+  zoom_out
   save_screen(TYPE)
+  zoom_in
 end

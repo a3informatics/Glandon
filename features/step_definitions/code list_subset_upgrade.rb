@@ -8,13 +8,6 @@ When('I click Upgrade in the context menu') do
   context_menu_element_header(:upgrade)
 end
 
-When('click Yes in the modal') do
-  ui_in_modal do
-        click_on "Yes"
-      end
-end
-
-
 ##################### Then statements #####################
 Then('I see the subset {string} being linked to the master code list') do |string|
   ui_in_modal do

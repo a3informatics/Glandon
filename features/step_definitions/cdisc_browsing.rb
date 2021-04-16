@@ -42,6 +42,7 @@ When('I select CDISC version {string} and CDISC version {string} by dragging the
 pause
 end
 
+
 ##################### Then statements #####################
 
 Then /latest (?:release\s)*version is/ do 
@@ -94,8 +95,9 @@ end
 Then('I see the differences in the {string} code list is displayed') do |string|
   expect(page).to have_content 'Differences'
   expect(page).to have_content string
-  wait_for_ajax(20)
-  save_screen(TYPE) 
+  zoom_out
+  save_screen(TYPE)
+  zoom_in
 end
 
 Then('the Differences panel has {int} entries and no updates to Submission Value, Preferred Term, Synonym or Definition') do |int|
@@ -105,7 +107,9 @@ Then('the Differences panel has {int} entries and no updates to Submission Value
 		ui_check_table_info("differences_table", 1, 10, int)
 	end
   wait_for_ajax(20)
+  zoom_out
   save_screen(TYPE)
+  zoom_in
 	#Pending checking          
 end
 
@@ -117,7 +121,9 @@ Then('the Changes panel displays {int} entries') do |int|
     ui_check_table_info("changes", 1, 10, int)
   end
   wait_for_ajax(20)
+  zoom_out
   save_screen(TYPE)
+  zoom_in
 end
 
 Then('the Differences panel displays {int} entries') do |int|
@@ -127,7 +133,9 @@ Then('the Differences panel displays {int} entries') do |int|
     ui_check_table_info("differences_table", 1, 10, int)
   end
   wait_for_ajax(20)
+  zoom_out
   save_screen(TYPE)
+  zoom_in
 end
 
 Then('the {string}, c-code: {string} was created \(+) in version {string} and deleted \(-) in version {string}') do |string, string2, string3, string4|
@@ -139,7 +147,9 @@ Then('the {string}, c-code: {string} was created \(+) in version {string} and de
 	pos_dl = page.all(:xpath, "//table[@id='changes']/thead/tr/th[.='#{string4}']/preceding-sibling::*").length+1
   ui_check_table_cell_delete('changes',1,pos_dl)
   wait_for_ajax(20)
+  zoom_out
   save_screen(TYPE)
+  zoom_in
 end
 
 Then('the code list item {string}, c-code: {string} and {string}, c-code: {string} is displayed as the first two rows') do |string, string2, string3, string4|
@@ -149,13 +159,17 @@ Then('the code list item {string}, c-code: {string} and {string}, c-code: {strin
   ui_check_table_cell('changes', 2, 1, string4)
   ui_check_table_cell('changes', 2, 2, string3)
   wait_for_ajax(20)
+  zoom_out
   save_screen(TYPE)
+  zoom_in
 end
 
 Then('the Differences panel is displayed') do
   expect(page).to have_content 'Differences'
   wait_for_ajax(20)
+  zoom_out
   save_screen(TYPE)
+  zoom_in
 end
 
 
@@ -170,8 +184,9 @@ Then('I see the Differences and Changes for the {string} code list for CDISC ver
     #expect(page).to have_content string2
     expect(page).to have_content string3
     wait_for_ajax(20)
+    zoom_out
     save_screen(TYPE)
-         
+    zoom_in     
 end
 
 Then('I see that {int} new codes were created {string} in version {string}') do |int, string, string2|
@@ -183,9 +198,10 @@ Then('I see that {int} new codes were created {string} in version {string}') do 
    else
     ui_check_table_cell_create('changes',int+1,pos_cr, false)
    end
-
    wait_for_ajax(20)
+   zoom_out
    save_screen(TYPE)
+   zoom_in
 end
 
 Then('I see that code list and code list items are maked deleted {string} in version {string}') do |string, string2|

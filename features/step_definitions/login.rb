@@ -11,6 +11,20 @@
  C_PASSWORD = "Changeme1?" # on localhost
 #C_PASSWORD = "Changeme10?" #on VAL for community reader
 
+if ENVIRONMENT == 'VAL' 
+C_COMM_READER_PW = 'Changeme22?'
+C_COMM_READER_PW_NEW = 'Changeme23?'
+C_CURATOR_PW ='Changeme9?'
+C_SYS_CONTENT_ADMIN_PW ='Changeme12?'
+end
+
+if ENVIRONMENT == 'REMOTE_TEST' 
+C_COMM_READER_PW = 'Changeme4?'
+C_COMM_READER_PW_NEW = 'Changeme5?'
+C_CURATOR_PW = 'Changeme6?'
+C_SYS_CONTENT_ADMIN_PW = 'Changeme5?'
+end
+
 if ENVIRONMENT == 'TEST'
   Given('I am signed in successfully as {string}') do |string|
     visit "/users/sign_in"
@@ -22,8 +36,11 @@ if ENVIRONMENT == 'TEST'
     fill_in "Email", :with => C_CURATOR
     fill_in "Password", :with => C_PASSWORD
     end
+    if string == "Admin"
+    fill_in "Email", :with => C_SYS_CONTENT_ADMIN
+    fill_in "Password", :with => C_PASSWORD
+    end
     click_button "Log in"
-    expect(page).to have_text string
     expect(page).to have_text 'Signed in successfully'
   end
 end
@@ -33,11 +50,15 @@ if ENVIRONMENT == 'VAL'
     visit "/users/sign_in"
     if string == "Community Reader"
     fill_in "Email", :with => C_COMM_READER
-    fill_in "Password", :with => 'Changeme12?'
+    fill_in "Password", :with => C_COMM_READER_PW
     end 
     if string == "Curator"
     fill_in "Email", :with => C_CURATOR
-    fill_in "Password", :with => 'Changeme7?'
+    fill_in "Password", :with => C_CURATOR_PW
+    end
+    if string == "Admin"
+    fill_in "Email", :with => C_SYS_CONTENT_ADMIN
+    fill_in "Password", :with => C_SYS_CONTENT_ADMIN_PW
     end
     click_button "Log in"
     expect(page).to have_text string
@@ -64,15 +85,133 @@ if ENVIRONMENT == 'REMOTE_TEST'
     visit "/users/sign_in"
     if string == "Community Reader"
     fill_in "Email", :with => C_COMM_READER
-    fill_in "Password", :with => 'Changeme2?'
+    fill_in "Password", :with => C_COMM_READER_PW
     end 
     if string == "Curator"
     fill_in "Email", :with => C_CURATOR
-    fill_in "Password", :with => 'Changeme2?'
+    fill_in "Password", :with => C_CURATOR_PW
+    end
+    if string == "Admin"
+    fill_in "Email", :with => C_SYS_CONTENT_ADMIN
+    fill_in "Password", :with => C_SYS_CONTENT_ADMIN_PW
     end
     click_button "Log in"
     expect(page).to have_text string
     expect(page).to have_text 'Signed in successfully'
   end
 end
+
+When('I log off as {string}') do |string|
+ ua_logoff
+end
+
+if ENVIRONMENT == 'TEST'
+  When('I log on as {string}') do |string|
+    visit "/users/sign_in"
+    if string == "Community Reader"
+    fill_in "Email", :with => C_COMM_READER
+    fill_in "Password", :with => C_PASSWORD
+    end 
+    if string == "Curator"
+    fill_in "Email", :with => C_CURATOR
+    fill_in "Password", :with => C_PASSWORD
+    end
+    if string == "Admin"
+    fill_in "Email", :with => C_SYS_CONTENT_ADMIN
+    fill_in "Password", :with => C_PASSWORD
+    end
+    click_button "Log in"
+    expect(page).to have_text string
+    expect(page).to have_content "Signed in successfully"
+ end
+end
+
+if ENVIRONMENT == 'VAL'
+When('I log on as {string}') do |string|
+    visit "/users/sign_in"
+    if string == "Community Reader"
+    fill_in "Email", :with => C_COMM_READER
+    fill_in "Password", :with => C_COMM_READER_PW
+    end 
+    if string == "Curator"
+    fill_in "Email", :with => C_CURATOR
+    fill_in "Password", :with => C_CURATOR_PW
+    end
+    if string == "Admin"
+    fill_in "Email", :with => C_SYS_CONTENT_ADMIN
+    fill_in "Password", :with => C_SYS_CONTENT_ADMIN_PW
+    end
+    click_button "Log in"
+    expect(page).to have_text string
+    expect(page).to have_content "Signed in successfully"
+ end
+end
+
+if ENVIRONMENT == 'REMOTE_TEST'
+When('I log on as {string}') do |string|
+    visit "/users/sign_in"
+    if string == "Community Reader"
+    fill_in "Email", :with => C_COMM_READER
+    fill_in "Password", :with => C_COMM_READER_PW
+    end 
+    if string == "Curator"
+    fill_in "Email", :with => C_CURATOR
+    fill_in "Password", :with => C_CURATOR_PW
+    end
+    if string == "Admin"
+    fill_in "Email", :with => C_SYS_CONTENT_ADMIN
+    fill_in "Password", :with => C_SYS_CONTENT_ADMIN_PW
+    end
+    click_button "Log in"
+    expect(page).to have_text string
+    expect(page).to have_content "Signed in successfully"
+ end
+end
+
+if ENVIRONMENT == 'TEST'
+  When('I try to log on as {string}') do |string|
+    visit "/users/sign_in"
+    if string == "Community Reader"
+    fill_in "Email", :with => C_COMM_READER
+    fill_in "Password", :with => C_PASSWORD
+    end 
+    if string == "Curator"
+    fill_in "Email", :with => C_CURATOR
+    fill_in "Password", :with => C_PASSWORD
+    end
+  pause
+    click_button "Log in"
+ end 
+end
+
+if ENVIRONMENT == 'VAL'
+When('I try to log on as {string}') do |string|
+    visit "/users/sign_in"
+    if string == "Community Reader"
+    fill_in "Email", :with => C_COMM_READER
+    fill_in "Password", :with => C_COMM_READER_PW
+    end 
+    if string == "Curator"
+    fill_in "Email", :with => C_CURATOR
+    fill_in "Password", :with => C_CURATOR_PW
+    end
+    click_button "Log in"
+ end 
+end
+
+if ENVIRONMENT == 'REMOTE_TEST'
+When('I try to log on as {string}') do |string|
+    visit "/users/sign_in"
+    if string == "Community Reader"
+    fill_in "Email", :with => C_COMM_READER
+    fill_in "Password", :with => C_COMM_READER_PW
+    end 
+    if string == "Curator"
+    fill_in "Email", :with => C_CURATOR
+    fill_in "Password", :with => C_CURATOR_PW
+    end
+    click_button "Log in"
+ end 
+end
+
 

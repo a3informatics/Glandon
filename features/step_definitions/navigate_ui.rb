@@ -27,6 +27,11 @@ When('I access the {string} in the navigation bar') do |string|
     click_navbar_forms
     wait_for_ajax(20)
   end
+ if string == 'Ad Hoc Reports'
+   click_navbar_ahr
+   wait_for_ajax(20)
+ end
+ 
 end
 
 When('I click {string} in/at the top/bottom of the page') do |string|
@@ -112,7 +117,6 @@ When('I click Show in context menu for the latest version of the {string} code l
     wait_for_ajax(20)
 end
 
-
 When('I click {string} in the confirmation box') do |string|
   ui_confirmation_dialog('string')
   wait_for_ajax(20)
@@ -177,11 +181,25 @@ end
 When('I click {string} button') do |string|
   if string == 'New item'
     find('#new-item-button').click
+  end
+  if string == 'Settings'
+    click_link 'settings_button'
   else
 	click_on string
   wait_for_ajax(30)
 end
 end
+
+When('(I) click Yes in the modal') do
+  ui_in_modal do
+        click_on "Yes"
+      end
+end
+
+ When('I click +Add new in the modal') do
+  click_button "+ Add new"
+ end
+
 
 When('I click "Submit and proceed/Proceed"') do
   click_button "Submit and proceed"
@@ -272,7 +290,9 @@ Then('I see {int} code lists') do |int|
     ui_check_table_info("children", 1, 10, int)
   end
   wait_for_ajax(20)
+  zoom_out
   save_screen(TYPE)
+  zoom_in
 end
 
 Then('code list item {string} differences is displayed') do |string|
@@ -308,7 +328,9 @@ Then('the form list has {int} entries') do |int|
     ui_check_table_info('show', 1, 10, int)
   end
   wait_for_ajax(20)
+  zoom_out
   save_screen(TYPE)
+  zoom_in
 end
 
 Then('I see that {string}') do |string|
