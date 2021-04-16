@@ -1,16 +1,1 @@
 @import "shared/vars.scss";
-
-
-// Loading
-
-.d3.loading .btn, .d3.loading .clickable, .d3.loading svg {
-	pointer-events: none;
-}
-
-.d3.loading .spinner-container {
-	z-index: 30;
-	position: absolute;
-	top: 50%;
-	transform: translateY(-50%);
-	background: rgba(255, 255, 255, .6);
-}
