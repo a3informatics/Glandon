@@ -1,5 +1,6 @@
 import dayjs from 'dayjs'
 import { renderSpinnerIn$, removeSpinnerFrom$ } from 'shared/ui/spinners'
+import { $get } from 'shared/helpers/ajax'
 
 /**
  * D3 Timeline Class
@@ -39,7 +40,7 @@ export default class Timeline {
    */
   loadData(url) {
 
-    // Overwrite instance's dataUrl
+    // // Overwrite instance's dataUrl
     // if ( url )
     //   this.dataUrl = url
 
@@ -48,6 +49,7 @@ export default class Timeline {
     // // TODO: Get request, handles response
     // $get({
     //   url: this.dataUrl,
+    //   errorDiv: this._alertDiv,
     //   done: rawData => this._onDataLoaded( rawData ),
     //   always: () => this._loading( false )
     // })
@@ -64,6 +66,20 @@ export default class Timeline {
   render() {
 
     this._initTimeline()
+    return this
+
+  }
+
+  /**
+   * Reset the timeline zoom to initial state  
+   * @requires zoomable parameter enabled
+   * @return {Timeline} This instance for method chaining
+   */
+   resetZoom() {
+
+    if ( this.zoomable )
+      this._resetZoom()
+
     return this
 
   }
@@ -90,6 +106,10 @@ export default class Timeline {
 
     $(window).on( 'resize', () => this._onResize() )
 
+    // Reset graph zoom on btn click
+    $( this.selector ).find( '#reset-graph' )
+                      .on( 'click', () => this.resetZoom() )
+
   }
 
   /**
@@ -100,7 +120,7 @@ export default class Timeline {
 
     const { 
       height, 
-      margin: { top, bottom } 
+      margin: { top, bottom, left } 
     } = this._props.svg 
 
     // Initialize Zoom and SVG 
@@ -111,20 +131,31 @@ export default class Timeline {
     this.graph.xIntervalScale = this._newIntervalScale(),
     this.graph.xTimeScale = this._newTimeScale()
         
-    // Render X-Axis
+    // Build and render X-Axis
     this.graph.svg.append( 'g' )
+                  .attr( 'transform', `translate(${ left }, ${ top })` )  // Margin offsets
                   .attr( 'class', 'x-axis' )
                   .call( 
-                    (sel, sc) => this._customTicks( sel, sc ), 
+                    this._customTicks.bind( this ),
                     this.graph.xTimeScale 
                   ) 
     
     // Vertical centering
     if ( this.centerVertically )
-      this.graph.svg.select( '.x-axis' )
-                    .attr( 'transform', `translate(0, ${ ( height - top - bottom ) / 2 })`)
+      this._xAxis.attr( 'transform', `translate(0, ${ ( height - (top + bottom) ) / 2 })`)
 
 
+  }
+
+
+  /*** Actions ***/
+
+
+  /**
+   * Resets zoom to initial state
+   */
+  _resetZoom() {
+    this.graph.svg?.call( this.graph.zoom.transform, this.d3.zoomIdentity )
   }
 
 
@@ -150,20 +181,32 @@ export default class Timeline {
   }
 
   /**
-   * Window resized event, adjust container and graph
-   * Extend method for custom behavior
+   * Window resized event, adjust scale range and reapply scaled zoom
    */
   _onResize() {
 
-    // let { width, margin: { left, right } } = this._props.svg 
+    const { width, margin: { left, right } } = this._props.svg 
 
-    // this.graph.xTimeScale.range([ 0, width - left - right ])
+    const prevRange = this.graph.xTimeScale.range(),
+          newRange = [ 0, width - (left + right) ],
+          ratio = newRange[1] / prevRange[1]
 
-    // this.graph.svg.select( '.x-axis' )
-    //               .call( 
-    //                 (sel, sc) => this._customTicks( sel, sc ), 
-    //                 this.graph.xTimeScale
-    //               )
+    // Update range
+    this.graph.xTimeScale.range( newRange )
+
+    // Build transform scaled to range difference ratio to a new zoomIdentity 
+    let transform = this.d3.zoomIdentity 
+    const prevTransform = this.graph.cachedTransform
+    
+    if ( prevTransform ) 
+      transform = transform.scale( prevTransform.k )
+                           .translate( 
+                              prevTransform.x / prevTransform.k * ratio, 
+                              prevTransform.y / prevTransform.k 
+                           )
+
+    // Apply zoom transform to svg 
+    this.graph.svg?.call( this.graph.zoom.transform, transform )
 
   }
 
@@ -173,13 +216,17 @@ export default class Timeline {
    */
   _onZoom() {
 
-    const rescaledAxis = this.d3.event.transform.rescaleX( this.graph.xTimeScale ) 
+    const transform = this.d3.event.transform,
+          rescaledX = transform.rescaleX( this.graph.xTimeScale )
+    
+    // Cache transform state for resizing
+    this.graph.cachedTransform = transform
 
-    this.graph.svg.select( '.x-axis' )
-                  .call( 
-                    (sel, sc) => this._customTicks( sel, sc ), 
-                    rescaledAxis
-                  )
+    // Apply rescaled X 
+    this._xAxis?.call(
+      this._customTicks.bind( this ),
+      rescaledX
+    )
     
   }
 
@@ -247,7 +294,7 @@ export default class Timeline {
    */
    _newSVG(responsive = true) {
 
-    const { width, height, margin: { left, top } } = this._props.svg 
+    const { width, height } = this._props.svg 
 
     return this.d3.select( `${ this.selector } #d3` )
                   .append( 'svg' )
@@ -256,9 +303,7 @@ export default class Timeline {
                   .attr( 'height', height )
                   // Zoom 
                   .call( this.zoomable ? this.graph.zoom : null )
-                  // Margin offset
-                  .append( 'g' )
-                    .attr( 'transform', `translate(${ left }, ${ top })` )  
+    
 
   }
 
@@ -294,7 +339,7 @@ export default class Timeline {
 
     return this.d3.scaleTime()
                   .domain([ dStart.toDate(), dEnd.toDate() ])
-                  .range([ 0, width - left - right ])
+                  .range([ 0, width - (left + right) ])
 
   }
 
@@ -309,6 +354,18 @@ export default class Timeline {
                   .range([ 'second', 'minute', 'hour', 'day', 'week', 'month', 'year' ]) 
 
   } 
+
+
+  /*** Getters ***/
+
+
+  /**
+   * Get the X-Axis selection from the graph svg  
+   * @return {D3 Selection | undefined} X-Axis selection or undefined if svg doesn't exist  
+   */
+  get _xAxis() {
+    return this.graph.svg?.select( '.x-axis' )
+  }
 
 
   /*** Utils & Helpers ***/
@@ -355,7 +412,7 @@ export default class Timeline {
       container: $(this.selector),
       svg: {
         margin: {
-          top: 20,
+          top: 70,
           bottom: 0,
           left: 20,
           right: 20
@@ -371,6 +428,14 @@ export default class Timeline {
 
     return props
 
+  }
+
+  /**
+   * Get the wrapper element for Graph alerts 
+   * @return {JQuery Element} Graph alert element 
+   */
+  get _alertDiv() {
+    return $( this.selector ).find( '#graph-alerts' )
   }
 
   /**

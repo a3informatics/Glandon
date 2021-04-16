@@ -6,6 +6,7 @@ import {
 
 import {
   zoom,
+  zoomIdentity
 } from 'd3-zoom'
 
 import { 
@@ -23,6 +24,7 @@ export default
   selectAll,
   get event() { return event; },
   zoom,
+  zoomIdentity,
   axisBottom,
   scaleThreshold,
   scaleTime
