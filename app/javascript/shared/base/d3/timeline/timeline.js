@@ -334,11 +334,11 @@ export default class Timeline {
 
     // Domain start & end +- 10 days relative to baseline
     const baseline = dayjs( this._props.baseline ),
-          dStart = baseline.subtract( 10, 'day' ),
-          dEnd = baseline.add( 10, 'day' )
+          domainStart = baseline.subtract( 10, 'day' ).toDate(),
+          domainEnd = baseline.add( 10, 'day' ).toDate()
 
     return this.d3.scaleTime()
-                  .domain([ dStart.toDate(), dEnd.toDate() ])
+                  .domain([ domainStart, domainEnd ])
                   .range([ 0, width - (left + right) ])
 
   }
