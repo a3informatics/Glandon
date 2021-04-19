@@ -16,6 +16,7 @@ export default class Timeline {
    * @param {string} params.dataUrl Url to fetch the timeline data from
    * @param {boolean} params.zoomable Determines whether the timeline can be zoomed, optional [default=true]
    * @param {boolean} params.centerVertically Specifies if timeline should be vertically centered in parent, optional [default=false]
+   * @param {boolean} params.deferLoading Specifies if data load request should be deferred, optional [default=false]
    * @param {function} params.onDataLoaded Data load completed callback, receives raw data as first argument, optional
    */
   constructor({
@@ -23,11 +24,12 @@ export default class Timeline {
     dataUrl,
     zoomable = true,
     centerVertically = false,
+    deferLoading = false,
     onDataLoaded = () => {}
   } = {}) {
 
     Object.assign( this, {
-      selector, dataUrl, zoomable, centerVertically, onDataLoaded
+      selector, dataUrl, zoomable, centerVertically, deferLoading, onDataLoaded
     })
 
     this._loadD3()
@@ -40,21 +42,19 @@ export default class Timeline {
    */
   loadData(url) {
 
-    // // Overwrite instance's dataUrl
-    // if ( url )
-    //   this.dataUrl = url
+    // Overwrite instance's dataUrl
+    if ( url )
+      this.dataUrl = url
 
-    // this._loading( true )
+    this._loading( true )
 
-    // // TODO: Get request, handles response
-    // $get({
-    //   url: this.dataUrl,
-    //   errorDiv: this._alertDiv,
-    //   done: rawData => this._onDataLoaded( rawData ),
-    //   always: () => this._loading( false )
-    // })
-
-    this._onDataLoaded([])
+    // TODO: Get request, handles response
+    $get({
+      url: this.dataUrl,
+      errorDiv: this._alertDiv,
+      done: rawData => this._onDataLoaded( rawData ),
+      always: () => this._loading( false )
+    })
 
   }
 
@@ -67,6 +67,21 @@ export default class Timeline {
 
     this._initTimeline()
     return this
+
+  }
+
+  
+  /*** Actions ***/
+
+
+  /**
+   * Clears the graph object and removes the graph svg from the DOM 
+   */
+  clear() {
+
+    this.graph = {}
+    this.d3.select( `${ this.selector } #d3 svg` )
+           .remove()
 
   }
 
@@ -95,16 +110,20 @@ export default class Timeline {
 
     this.graph = {}
     this._setListeners()
-    this.loadData()
+
+    if ( !this.deferLoading )
+      this.loadData()
     
   }
 
   /**
    * Set event listeners & handlers
+   * Should only be called once on init to prevent duplicate event binding
    */
   _setListeners() {
 
-    $(window).on( 'resize', () => this._onResize() )
+    // On window resize event 
+    $( window ).on( 'resize', () => this._onResize() )
 
     // Reset graph zoom on btn click
     $( this.selector ).find( '#reset-graph' )
@@ -318,9 +337,11 @@ export default class Timeline {
     if ( !this.zoomable )
       return null
 
+    const { min, max } = this._props.zoom
+
     return this.d3.zoom()
-             .on('zoom', () => this._onZoom() )
-             .scaleExtent([ this._props.zoom.min, this._props.zoom.max ])
+                  .on('zoom', () => this._onZoom() )
+                  .scaleExtent([ min, max ])
 
   }
 

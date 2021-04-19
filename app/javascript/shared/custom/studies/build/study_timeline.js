@@ -15,10 +15,26 @@ export default class StudyTimeline extends Timeline {
   } = {}) {
 
     super({
-      selector, dataUrl, onDataLoaded
+      selector, dataUrl, onDataLoaded,
+      deferLoading: true
     })
 
   }
+
+
+  /*** Private ***/
+
+
+  /**
+   * Create instance graph object, set listeners, load data
+   */
+  _init() {
+
+    super._init()
+    this.render() // Only to display timeline for dev purposes, normally will be rendered after data fetched / attached 
+    
+  }
+  
 
 }
   
