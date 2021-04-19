@@ -19,25 +19,26 @@ $(document).ready( () => {
   const tab = new URLSearchParams( window.location.search ).get( 'tab' )
   initialize( tab )
 
-});
+  // Helpers
+  async function initialize(tab) {
 
-async function initialize(tab) {
-
-  switch( tab ) {
-
-    case 'timeline': 
-      const StudyTimeline = await fetchModule( 'study_timeline' )
-      new StudyTimeline()
-      break
-
-    // Add other tab modules 
+    switch( tab ) {
+  
+      case 'timeline': 
+        const StudyTimeline = await fetchModule( 'study_timeline' )
+        new StudyTimeline()
+        break
+  
+      // Add other tab modules 
+    }
+  
+  }
+  
+  async function fetchModule(filename) {
+  
+    let module = await import( /* webpackPrefetch: true */ `shared/custom/studies/build/${ filename }` )
+    return module.default
+  
   }
 
-}
-
-async function fetchModule(filename) {
-
-  let module = await import( /* webpackPrefetch: true */ `shared/custom/studies/build/${ filename }` )
-  return module.default
-
-}
+});
