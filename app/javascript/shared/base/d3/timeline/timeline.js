@@ -18,6 +18,7 @@ export default class Timeline {
    * @param {boolean} params.centerVertically Specifies if timeline should be vertically centered in parent, optional [default=false]
    * @param {boolean} params.deferLoading Specifies if data load request should be deferred, optional [default=false]
    * @param {function} params.onDataLoaded Data load completed callback, receives raw data as first argument, optional
+   * @param {Object} args Further arguments assigned to instance, optional
    */
   constructor({
     selector = '#timeline-container',
@@ -26,10 +27,11 @@ export default class Timeline {
     centerVertically = false,
     deferLoading = false,
     onDataLoaded = () => {}
-  } = {}) {
+  } = {}, args = {}) {
 
     Object.assign( this, {
-      selector, dataUrl, zoomable, centerVertically, deferLoading, onDataLoaded
+      selector, dataUrl, zoomable, centerVertically, deferLoading, onDataLoaded,
+      ...args 
     })
 
     this._loadD3()
@@ -65,7 +67,7 @@ export default class Timeline {
    */
   render() {
 
-    this._initTimeline()
+    this._renderTimeline()
     return this
 
   }
@@ -135,7 +137,7 @@ export default class Timeline {
    * Initialize & render Timeline
    * @override for custom behavior
    */
-  _initTimeline() {
+  _renderTimeline() {
 
     const { 
       height, 
@@ -155,7 +157,7 @@ export default class Timeline {
                   .attr( 'transform', `translate(${ left }, ${ top })` )  // Margin offsets
                   .attr( 'class', 'x-axis' )
                   .call( 
-                    this._customTicks.bind( this ),
+                    this._generateTicks.bind( this ),
                     this.graph.xTimeScale 
                   ) 
     
@@ -243,7 +245,7 @@ export default class Timeline {
 
     // Apply rescaled X 
     this._xAxis?.call(
-      this._customTicks.bind( this ),
+      this._generateTicks.bind( this ),
       rescaledX
     )
     
@@ -254,11 +256,11 @@ export default class Timeline {
 
 
   /**
-   * Custom TimeAxis Ticks formatting & render
+   * Generator of custom Timeline Ticks
    * @param {D3 Selection} selection Current selection 
    * @param {D3 Scale} scale Current scale 
    */
-  _customTicks(selection, scale) {
+  _generateTicks(selection, scale) {
 
     const [ t1, t2 ] = scale.ticks(),
           // Interval between ticks
@@ -268,22 +270,39 @@ export default class Timeline {
 
     // Map Tick labels to custom format 
     const customTicks = scale.ticks()
-                             .map( t => this._customTickFormat( t, tickUnit ) )
+                             .map( t => this._customTickText( t, tickUnit ) )
     
     // Update axis - d3 will apply tick values based on dates
     selection.call( this.d3.axisBottom( scale ) )
 
     // Override the d3 default tick values with the new labels based on interval type
-    this.d3.selectAll( '.tick > text' ).each( (t, i, elements) => {
+    this.d3.selectAll( '.tick' ).each( (t, i, elements) => this._customTick( elements[i], customTicks[i]) )  
 
-      this.d3.select( elements[i] )
-             .text( customTicks[i] )
-             .style( 'text-anchor', 'end' )
-             .attr( 'dx', '-.8em' )
-             .attr( 'dy', '.15em' )
-             .attr( 'transform', 'rotate(-65)' )
+  }
 
-    })  
+  /**
+   * Customizes a single Tick instance on Timeline Axis
+   * @param {Element} tickElement Tick element to customise 
+   * @param {string} tickText Custom Tick text (e.g. 5 days) 
+   */
+  _customTick(tickElement, tickText) {
+
+    const tick = this.d3.select( tickElement )
+    const [ tickValue, tickUnit ] = tickText.split(' ')
+
+    tick.selectAll( 'text' )
+        .remove() 
+
+    tick.append('text')
+        .attr( 'dy', 30 )
+        .text( tickValue )
+    
+    tick.append( 'text' )
+        .attr( 'dy', 40 )
+        .text( tickUnit )
+
+    tick.select( 'line' )
+        .attr( 'y2', 14 )
 
   }
 
@@ -293,7 +312,7 @@ export default class Timeline {
    * @param {string} unit Tick unit (year/month/day...)
    * @return {string} Tick parsed to custom value relative to the instance's baseline and given unit
    */
-  _customTickFormat(tick, unit) {
+  _customTickText(tick, unit) {
 
     const tickValue = this._timeDiff( this._props.baseline, tick, unit, false )
 
