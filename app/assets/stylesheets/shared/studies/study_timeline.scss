@@ -1,1 +1,41 @@
 @import "shared/vars.scss";
+
+$axisColor: #76ccbe;
+$textColor: #7e7e7e;
+
+#timeline-container {
+  padding: 0px 100px;
+
+  .d3-timeline {
+    min-height: 140px;
+  }
+}
+
+.d3-timeline svg {
+
+  cursor: ew-resize;
+
+  .domain, .tick line {
+    stroke-width: 2;
+    stroke: $axisColor;
+  }
+
+  .tick text {
+    fill: $textColor;
+  }
+
+  .arm-label {
+    fill: $axisColor;
+    font-size: $font-small;
+    transform: rotate(-90deg);
+  }
+
+}
+
+@media(max-width: 1400px) {
+  
+  #timeline-container {
+    padding: 0;
+  }
+  
+}
