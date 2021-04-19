@@ -2,7 +2,7 @@ import Timeline from 'shared/base/d3/timeline/timeline'
 
 /**
  * Study Timeline Class
- * @description D3-based Study Timeline module
+ * @description D3-based Study Timeline module representing the data of a single Arm
  * @extends Timeline base module
  * @author Samuel Banas <sab@s-cubed.dk>
  */
