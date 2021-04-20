@@ -47,8 +47,8 @@ private
     result[:build_path] = path_for(:build, object)
     result[:crf_path] = path_for(:crf, object)
     result[:crf_report_path] = path_for(:crf_report, object)
-    result[:acrf_report_path] = path_for(:acrf_report, object)
     result[:acrf_path] = path_for(:acrf, object)
+    result[:acrf_report_path] = path_for(:acrf_report, object)
     result[:export_path] = path_for(:export_ttl, object)
 
     if edit && object.edit? && latest_item

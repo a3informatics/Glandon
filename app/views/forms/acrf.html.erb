@@ -11,6 +11,9 @@
 <div class="row">
   <%= render layout: "shared/headers/header_managed_item", :locals => { item: @form, badge: "icon-form-view" } do %>
     <div class="actions-wrap">
+      <div onclick="showFullPageSpinnerWithRedirect(pdfLoadingDur, loadingMessage, errTimeoutMessage, redirectPath);">
+        <%= render partial: "shared/buttons/ico_btn_secondary", :locals => { url: "#", id: "report", icon: "icon-file", text: "PDF Report" } %>
+      </div>
       <%= render partial: "shared/buttons/return", :locals => { url: @close_path } %>
     </div>
   <% end %>

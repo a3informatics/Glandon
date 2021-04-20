@@ -61,6 +61,14 @@ class FormsController < ManagedItemsController
   end
 
   def acrf_report
+    form = Form.find_full(protect_from_bad_id(params))
+    form_html = form.acrf
+    respond_to do |format|
+      format.pdf do
+        @html = form.create(form, form_html, current_user)
+        render pdf: "aCRF_#{form.has_identifier.identifier}", page_size: current_user.paper_size, orientation: 'Landscape', lowquality: true
+      end
+    end
   end
 
   def referenced_items
@@ -276,6 +284,8 @@ private
         return acrf_form_path(object)
       when :crf_report
         return crf_report_form_path(object)
+      when :acrf_report
+        return acrf_report_form_path(object)
       when :destroy
         return form_path(object)
       when :edit_tags
