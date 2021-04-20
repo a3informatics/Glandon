@@ -1,0 +1,23 @@
+@prefix : <http://www.assero.co.uk/ENUM#> .
+@prefix isoC: <http://www.assero.co.uk/ISO11179Concepts#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+<http://www.assero.co.uk/ENUM>
+	rdf:type owl:Ontology ;
+.
+:a9a96ec019494d5b8b041c1d2468061ae66e35d5
+	rdf:type <http://www.assero.co.uk/Enumrated#Emumerated> ;
+	isoC:label "Primary"^^xsd:string ;
+.
+:025de599ea0a6262eeb4ea073413e273d0ea875b
+	rdf:type <http://www.assero.co.uk/Enumrated#Emumerated> ;
+	isoC:label "Secondary"^^xsd:string ;
+.
+:e22a33b89f82c258b80648ef27d4234883338511
+	rdf:type <http://www.assero.co.uk/Enumrated#Emumerated> ;
+	isoC:label "Not Defined"^^xsd:string ;
+.

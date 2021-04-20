@@ -15,29 +15,30 @@
 :data:
 - - C88025
   - NEOPLASM
-  - C27477
-  - GIANT CELL TUMOR, BENIGN
+  - C72074
+  - CARCINOID TUMOR, MALIGNANT
   - '14'
   - C88025
   - NEOPLASM
-  - C121932
-  - GIANT CELL TUMOR, BENIGN
+  - C126087
+  - NEUROENDOCRINE CELL TUMOR, MALIGNANT
   - '21'
-  - ''
-  - The nomenclature has been updated and now the original mapping is obsolete. This
-    concept will replace C27477.
+  - CDISC-1796
+  - This concept will replace C72074 and C3773, which have been removed with the 2016-03-25
+    publication.
 - - C88025
   - NEOPLASM
-  - C64118
-  - MESENCHYMAL TUMOR, MALIGNANT
+  - C3773
+  - CARCINOMA, NEUROENDOCRINE CELL, MALIGNANT
   - '14'
   - C88025
   - NEOPLASM
-  - C126088
-  - RENAL MESENCHYMAL TUMOR, MALIGNANT
+  - C126087
+  - NEUROENDOCRINE CELL TUMOR, MALIGNANT
   - '21'
-  - ''
-  - This concept will replace C64118, which has been removed with the 2016-03-25 publication.
+  - CDISC-1796
+  - This concept will replace C72074 and C3773, which have been removed with the 2016-03-25
+    publication.
 - - C65047
   - LBTESTCD
   - C61019
@@ -48,7 +49,7 @@
   - C125949
   - UREAN
   - '40'
-  - ''
+  - CDISC-2173
   - Urea Nitrogen can be measured in substances other than Blood, Serum, or Plasma.
     This concept will replace C61019.
 - - C65047
@@ -61,48 +62,34 @@
   - C125950
   - UREANCRT
   - '40'
-  - ''
+  - CDISC-2173
   - Urea Nitrogen can be measured in substances other than Blood, Serum, or Plasma.
     This concept will replace C74753.
 - - C88025
   - NEOPLASM
-  - C3773
-  - CARCINOMA, NEUROENDOCRINE CELL, MALIGNANT
+  - C27477
+  - GIANT CELL TUMOR, BENIGN
   - '14'
   - C88025
   - NEOPLASM
-  - C126087
-  - NEUROENDOCRINE CELL TUMOR, MALIGNANT
+  - C121932
+  - GIANT CELL TUMOR, BENIGN
   - '21'
-  - ''
-  - This concept will replace C72074 and C3773, which have been removed with the 2016-03-25
-    publication.
+  - CDISC-2184
+  - The nomenclature has been updated and now the original mapping is obsolete. This
+    concept will replace C27477.
 - - C88025
   - NEOPLASM
-  - C72074
-  - CARCINOID TUMOR, MALIGNANT
+  - C64118
+  - MESENCHYMAL TUMOR, MALIGNANT
   - '14'
   - C88025
   - NEOPLASM
-  - C126087
-  - NEUROENDOCRINE CELL TUMOR, MALIGNANT
+  - C126088
+  - RENAL MESENCHYMAL TUMOR, MALIGNANT
   - '21'
-  - ''
-  - This concept will replace C72074 and C3773, which have been removed with the 2016-03-25
-    publication.
-- - C67154
-  - LBTEST
-  - C74753
-  - BUN/Creatinine
-  - '30'
-  - C67154
-  - LBTEST
-  - C125950
-  - Urea Nitrogen/Creatinine
-  - '38'
-  - ''
-  - Urea Nitrogen can be measured in substances other than Blood, Serum, or Plasma.
-    This concept will replace C74753.
+  - CDISC-1796
+  - This concept will replace C64118, which has been removed with the 2016-03-25 publication.
 - - C67154
   - LBTEST
   - C61019
@@ -113,24 +100,22 @@
   - C125949
   - Urea Nitrogen
   - '38'
-  - ''
+  - CDISC-2173
   - Urea Nitrogen can be measured in substances other than Blood, Serum, or Plasma.
     This concept will replace C61019.
-- - C101847
-  - CVTESTCD
-  - C99970
-  - LADMN
-  - '10'
-  - C101847
-  - CVTESTCD
-  - C135377
-  - MJDIA
-  - '13'
-  - ''
-  - Remove term from codelist._x000D_A 1:1 mapping for the existing term is to use
-    the new CVTEST = Major Axis Cross-sec Diameter, EVS with a LOC = HEART, LEFT ATRIUM.
-    This measurement is also typically performed with an echocardiography view of
-    "apical 4-chamber view".
+- - C67154
+  - LBTEST
+  - C74753
+  - BUN/Creatinine
+  - '30'
+  - C67154
+  - LBTEST
+  - C125950
+  - Urea Nitrogen/Creatinine
+  - '38'
+  - CDISC-2173
+  - Urea Nitrogen can be measured in substances other than Blood, Serum, or Plasma.
+    This concept will replace C74753.
 - - C101846
   - CVTEST
   - C99970
@@ -141,51 +126,149 @@
   - C135377
   - Major Axis Cross-sec. Diameter
   - '13'
-  - ''
+  - CDISC-2575
   - Remove term from codelist._x000D_A 1:1 mapping for the existing term is to use
     the new CVTEST = Major Axis Cross-sec Diameter, EVS with a LOC = HEART, LEFT ATRIUM.
     This measurement is also typically performed with an echocardiography view of
     "apical 4-chamber view".
-- - C96785
-  - ONCRSR
-  - C132454
-  - PCWG SCHER PROSTATE CANCER 2016
-  - '12'
-  - C124298
-  - ONCRSCAT
-  - C132454
-  - PCWG SCHER PROSTATE CANCER 2016
-  - '7'
-  - ''
-  - Term being added into correct codelist, ONCRSCAT. This term was incorrectly published
-    in the wrong codelist (ONCRSR).
+- - " "
+  - " "
+  - C100150
+  - CGI01TC
+  - '4'
+  - " "
+  - " "
+  - C135684
+  - CGGUY1TC
+  - '1'
+  - CDISC-2856
+  - This codelist is retired, please use new CGI GUY terminology (codelists C135683
+    and C135684) which is the original CGI developed by Guy W. For disease-specific
+    CGI, please use the Generic Version of CGI (codelists C135685 and C135686).
+- - " "
+  - " "
+  - C100150
+  - CGI01TC
+  - '4'
+  - " "
+  - " "
+  - C135683
+  - CGGUY1TN
+  - '1'
+  - CDISC-2856
+  - This codelist is retired, please use new CGI GUY terminology (codelists C135683
+    and C135684) which is the original CGI developed by Guy W. For disease-specific
+    CGI, please use the Generic Version of CGI (codelists C135685 and C135686).
+- - " "
+  - " "
+  - C100150
+  - CGI01TC
+  - '4'
+  - " "
+  - " "
+  - C135685
+  - CGI02TN
+  - '1'
+  - CDISC-2856
+  - This codelist is retired, please use new CGI GUY terminology (codelists C135683
+    and C135684) which is the original CGI developed by Guy W. For disease-specific
+    CGI, please use the Generic Version of CGI (codelists C135685 and C135686).
+- - " "
+  - " "
+  - C100150
+  - CGI01TC
+  - '4'
+  - " "
+  - " "
+  - C135686
+  - CGI02TC
+  - '1'
+  - CDISC-2856
+  - This codelist is retired, please use new CGI GUY terminology (codelists C135683
+    and C135684) which is the original CGI developed by Guy W. For disease-specific
+    CGI, please use the Generic Version of CGI (codelists C135685 and C135686).
+- - " "
+  - " "
+  - C100149
+  - CGI01TN
+  - '4'
+  - " "
+  - " "
+  - C135684
+  - CGGUY1TC
+  - '1'
+  - CDISC-2856
+  - This codelist is retired, please use new CGI GUY terminology (codelists C135683
+    and C135684) which is the original CGI developed by Guy W. For disease-specific
+    CGI, please use the Generic Version of CGI (codelists C135685 and C135686).
+- - " "
+  - " "
+  - C100149
+  - CGI01TN
+  - '4'
+  - " "
+  - " "
+  - C135683
+  - CGGUY1TN
+  - '1'
+  - CDISC-2856
+  - This codelist is retired, please use new CGI GUY terminology (codelists C135683
+    and C135684) which is the original CGI developed by Guy W. For disease-specific
+    CGI, please use the Generic Version of CGI (codelists C135685 and C135686).
+- - " "
+  - " "
+  - C100149
+  - CGI01TN
+  - '4'
+  - " "
+  - " "
+  - C135686
+  - CGI02TC
+  - '1'
+  - CDISC-2856
+  - This codelist is retired, please use new CGI GUY terminology (codelists C135683
+    and C135684) which is the original CGI developed by Guy W. For disease-specific
+    CGI, please use the Generic Version of CGI (codelists C135685 and C135686).
+- - " "
+  - " "
+  - C100149
+  - CGI01TN
+  - '4'
+  - " "
+  - " "
+  - C135685
+  - CGI02TN
+  - '1'
+  - CDISC-2856
+  - This codelist is retired, please use new CGI GUY terminology (codelists C135683
+    and C135684) which is the original CGI developed by Guy W. For disease-specific
+    CGI, please use the Generic Version of CGI (codelists C135685 and C135686).
 - - C101847
   - CVTESTCD
-  - C99524
-  - LVEF
+  - C99970
+  - LADMN
   - '10'
   - C101847
   - CVTESTCD
+  - C135377
+  - MJDIA
+  - '13'
+  - CDISC-2575
+  - Remove term from codelist._x000D_A 1:1 mapping for the existing term is to use
+    the new CVTEST = Major Axis Cross-sec Diameter, EVS with a LOC = HEART, LEFT ATRIUM.
+    This measurement is also typically performed with an echocardiography view of
+    "apical 4-chamber view".
+- - C101846
+  - CVTEST
+  - C99524
+  - Left Ventricular Ejection Fraction
+  - '10'
+  - C101846
+  - CVTEST
   - C135375
-  - LVEF_E
+  - Left Ventricular Ejection Fraction, Est
   - '13'
-  - ''
-  - 'This term should be used when one does not know whether the LVEF value is obtained
-    by visual estimation or calculation. Otherwise, please use the more granular and
-    specific LVEF terms that are also added in this package. The new terms are: Left
-    Ventricular Ejection Fraction, Estimated, and Left Ventricular Ejection Fraction,
-    Calculated.'
-- - C101847
-  - CVTESTCD
-  - C99524
-  - LVEF
-  - '10'
-  - C101847
-  - CVTESTCD
-  - C135374
-  - LVEF_C
-  - '13'
-  - ''
+  - CDISC-2580
   - 'This term should be used when one does not know whether the LVEF value is obtained
     by visual estimation or calculation. Otherwise, please use the more granular and
     specific LVEF terms that are also added in this package. The new terms are: Left
@@ -201,226 +284,83 @@
   - C135374
   - Left Ventricular Ejection Fraction, Cal
   - '13'
-  - ''
+  - CDISC-2580
   - 'This term should be used when one does not know whether the LVEF value is obtained
     by visual estimation or calculation. Otherwise, please use the more granular and
     specific LVEF terms that are also added in this package. The new terms are: Left
     Ventricular Ejection Fraction, Estimated, and Left Ventricular Ejection Fraction,
     Calculated.'
-- - C101846
-  - CVTEST
+- - C96785
+  - ONCRSR
+  - C132454
+  - PCWG SCHER PROSTATE CANCER 2016
+  - '12'
+  - C124298
+  - ONCRSCAT
+  - C132454
+  - PCWG SCHER PROSTATE CANCER 2016
+  - '7'
+  - CDISC-2925
+  - Term being added into correct codelist, ONCRSCAT. This term was incorrectly published
+    in the wrong codelist (ONCRSR).
+- - C101847
+  - CVTESTCD
   - C99524
-  - Left Ventricular Ejection Fraction
+  - LVEF
   - '10'
-  - C101846
-  - CVTEST
-  - C135375
-  - Left Ventricular Ejection Fraction, Est
+  - C101847
+  - CVTESTCD
+  - C135374
+  - LVEF_C
   - '13'
-  - ''
+  - CDISC-2580
   - 'This term should be used when one does not know whether the LVEF value is obtained
     by visual estimation or calculation. Otherwise, please use the more granular and
     specific LVEF terms that are also added in this package. The new terms are: Left
     Ventricular Ejection Fraction, Estimated, and Left Ventricular Ejection Fraction,
     Calculated.'
-- - " "
-  - " "
-  - C100149
-  - CGI01TN
-  - '4'
-  - " "
-  - " "
-  - C135683
-  - CGGUY1TN
-  - '1'
-  - ''
-  - This codelist is retired, please use new CGI GUY terminology (codelists C135683
-    and C135684) which is the original CGI developed by Guy W. For disease-specific
-    CGI, please use the Generic Version of CGI (codelists C135685 and C135686).
-- - " "
-  - " "
-  - C100149
-  - CGI01TN
-  - '4'
-  - " "
-  - " "
-  - C135686
-  - CGI02TC
-  - '1'
-  - ''
-  - This codelist is retired, please use new CGI GUY terminology (codelists C135683
-    and C135684) which is the original CGI developed by Guy W. For disease-specific
-    CGI, please use the Generic Version of CGI (codelists C135685 and C135686).
-- - " "
-  - " "
-  - C100149
-  - CGI01TN
-  - '4'
-  - " "
-  - " "
-  - C135684
-  - CGGUY1TC
-  - '1'
-  - ''
-  - This codelist is retired, please use new CGI GUY terminology (codelists C135683
-    and C135684) which is the original CGI developed by Guy W. For disease-specific
-    CGI, please use the Generic Version of CGI (codelists C135685 and C135686).
-- - " "
-  - " "
-  - C100149
-  - CGI01TN
-  - '4'
-  - " "
-  - " "
-  - C135685
-  - CGI02TN
-  - '1'
-  - ''
-  - This codelist is retired, please use new CGI GUY terminology (codelists C135683
-    and C135684) which is the original CGI developed by Guy W. For disease-specific
-    CGI, please use the Generic Version of CGI (codelists C135685 and C135686).
-- - " "
-  - " "
-  - C100150
-  - CGI01TC
-  - '4'
-  - " "
-  - " "
-  - C135685
-  - CGI02TN
-  - '1'
-  - ''
-  - This codelist is retired, please use new CGI GUY terminology (codelists C135683
-    and C135684) which is the original CGI developed by Guy W. For disease-specific
-    CGI, please use the Generic Version of CGI (codelists C135685 and C135686).
-- - " "
-  - " "
-  - C100150
-  - CGI01TC
-  - '4'
-  - " "
-  - " "
-  - C135684
-  - CGGUY1TC
-  - '1'
-  - ''
-  - This codelist is retired, please use new CGI GUY terminology (codelists C135683
-    and C135684) which is the original CGI developed by Guy W. For disease-specific
-    CGI, please use the Generic Version of CGI (codelists C135685 and C135686).
-- - " "
-  - " "
-  - C100150
-  - CGI01TC
-  - '4'
-  - " "
-  - " "
-  - C135683
-  - CGGUY1TN
-  - '1'
-  - ''
-  - This codelist is retired, please use new CGI GUY terminology (codelists C135683
-    and C135684) which is the original CGI developed by Guy W. For disease-specific
-    CGI, please use the Generic Version of CGI (codelists C135685 and C135686).
-- - " "
-  - " "
-  - C100150
-  - CGI01TC
-  - '4'
-  - " "
-  - " "
-  - C135686
-  - CGI02TC
-  - '1'
-  - ''
-  - This codelist is retired, please use new CGI GUY terminology (codelists C135683
-    and C135684) which is the original CGI developed by Guy W. For disease-specific
-    CGI, please use the Generic Version of CGI (codelists C135685 and C135686).
-- - C128688
-  - MSTESTCD
-  - C116254
-  - IC95FCB
-  - '2'
-  - C128688
-  - MSTESTCD
-  - C139122
-  - MIC95FCB
-  - '3'
-  - ''
-  - This term replaces term from the Microbiology Susceptibility TEST-CD codelist.
-    Per FDA guidance, for tests concerning 50% inhibition on microbial growth/replication,
-    please use the newly released EC50 terms; for tests concerning 50% inhibition
-    on microbial enzymatic activity, please use the newly released IC50 and IC95 terms.
-- - C128688
-  - MSTESTCD
-  - C116250
-  - IC50FCB
-  - '2'
-  - C128688
-  - MSTESTCD
-  - C139122
-  - MIC95FCB
-  - '3'
-  - ''
-  - This term replaces term from the Microbiology Susceptibility TEST-CD codelist.
-    Per FDA guidance, for tests concerning 50% inhibition on microbial growth/replication,
-    please use the newly released EC50 terms; for tests concerning 50% inhibition
-    on microbial enzymatic activity, please use the newly released IC50 and IC95 terms.
+- - C101847
+  - CVTESTCD
+  - C99524
+  - LVEF
+  - '10'
+  - C101847
+  - CVTESTCD
+  - C135375
+  - LVEF_E
+  - '13'
+  - CDISC-2580
+  - 'This term should be used when one does not know whether the LVEF value is obtained
+    by visual estimation or calculation. Otherwise, please use the more granular and
+    specific LVEF terms that are also added in this package. The new terms are: Left
+    Ventricular Ejection Fraction, Estimated, and Left Ventricular Ejection Fraction,
+    Calculated.'
 - - C128687
   - MSTEST
-  - C116251
-  - IC95 Subject Result
+  - C116253
+  - IC95 Fold Change from Reference
   - '3'
   - C128687
   - MSTEST
-  - C139117
-  - Microbial EC50 Subject Result
+  - C139123
+  - Microbial IC95 Fold Change from Ref
   - '4'
-  - ''
+  - CDISC-2941
   - This term replaces term from the Microbiology Susceptibility TEST codelist. Per
     FDA guidance, for tests concerning 50% inhibition on microbial growth/replication,
     please use the newly released EC50 terms; for tests concerning 50% inhibition
     on microbial enzymatic activity, please use the newly released IC50 and IC95 terms.
 - - C128687
   - MSTEST
-  - C116247
-  - IC50 Subject Result
+  - C116249
+  - IC50 Fold Change from Reference
   - '3'
   - C128687
   - MSTEST
-  - C139117
-  - Microbial EC50 Subject Result
+  - C139123
+  - Microbial IC95 Fold Change from Ref
   - '4'
-  - ''
-  - This term replaces term from the Microbiology Susceptibility TEST codelist. Per
-    FDA guidance, for tests concerning 50% inhibition on microbial growth/replication,
-    please use the newly released EC50 terms; for tests concerning 50% inhibition
-    on microbial enzymatic activity, please use the newly released IC50 and IC95 terms.
-- - C128687
-  - MSTEST
-  - C116251
-  - IC95 Subject Result
-  - '3'
-  - C128687
-  - MSTEST
-  - C139125
-  - Microbial IC95 Subject Result
-  - '4'
-  - ''
-  - This term replaces term from the Microbiology Susceptibility TEST codelist. Per
-    FDA guidance, for tests concerning 50% inhibition on microbial growth/replication,
-    please use the newly released EC50 terms; for tests concerning 50% inhibition
-    on microbial enzymatic activity, please use the newly released IC50 and IC95 terms.
-- - C128687
-  - MSTEST
-  - C116247
-  - IC50 Subject Result
-  - '3'
-  - C128687
-  - MSTEST
-  - C139125
-  - Microbial IC95 Subject Result
-  - '4'
-  - ''
+  - CDISC-2941
   - This term replaces term from the Microbiology Susceptibility TEST codelist. Per
     FDA guidance, for tests concerning 50% inhibition on microbial growth/replication,
     please use the newly released EC50 terms; for tests concerning 50% inhibition
@@ -435,120 +375,19 @@
   - C132458
   - Tumor Marker Response
   - '9'
-  - ''
+  - CDISC-3058
   - C123628 has been retired. Please use the existing term Tumor Marker Response (C132458)
-- - C65047
-  - LBTESTCD
-  - C114218
-  - RETICDW
-  - '38'
-  - C65047
-  - LBTESTCD
-  - C139074
-  - RDWR
-  - '40'
-  - ''
-  - Replacing C114218 in this codelist.
-- - C65047
-  - LBTESTCD
-  - C117855
-  - RETIMCH
-  - '38'
-  - C65047
-  - LBTESTCD
-  - C138970
-  - CHCMR
-  - '39'
-  - ''
-  - Replaces C117855 in codelist. Reticulocyte MCH does not actually exist as a lab
-    test. The advia machine doesn't calculate it and we are unaware of anyone else
-    that is using it.
-- - C128687
-  - MSTEST
-  - C116249
-  - IC50 Fold Change from Reference
-  - '3'
-  - C128687
-  - MSTEST
-  - C139115
-  - Microbial EC50 Fold Change from Ref
-  - '4'
-  - ''
-  - This term replaces term from the Microbiology Susceptibility TEST codelist. Per
-    FDA guidance, for tests concerning 50% inhibition on microbial growth/replication,
-    please use the newly released EC50 terms; for tests concerning 50% inhibition
-    on microbial enzymatic activity, please use the newly released IC50 and IC95 terms.
-- - C128687
-  - MSTEST
-  - C116253
-  - IC95 Fold Change from Reference
-  - '3'
-  - C128687
-  - MSTEST
-  - C139115
-  - Microbial EC50 Fold Change from Ref
-  - '4'
-  - ''
-  - This term replaces term from the Microbiology Susceptibility TEST codelist. Per
-    FDA guidance, for tests concerning 50% inhibition on microbial growth/replication,
-    please use the newly released EC50 terms; for tests concerning 50% inhibition
-    on microbial enzymatic activity, please use the newly released IC50 and IC95 terms.
-- - C128687
-  - MSTEST
-  - C116252
-  - IC95 Reference Control Result
-  - '3'
-  - C128687
-  - MSTEST
-  - C139124
-  - Microbial IC95 Reference Control Result
-  - '4'
-  - ''
-  - This term replaces term from the Microbiology Susceptibility TEST codelist. Per
-    FDA guidance, for tests concerning 50% inhibition on microbial growth/replication,
-    please use the newly released EC50 terms; for tests concerning 50% inhibition
-    on microbial enzymatic activity, please use the newly released IC50 and IC95 terms.
-- - C128687
-  - MSTEST
-  - C116248
-  - IC50 Reference Control Result
-  - '3'
-  - C128687
-  - MSTEST
-  - C139124
-  - Microbial IC95 Reference Control Result
-  - '4'
-  - ''
-  - This term replaces term from the Microbiology Susceptibility TEST codelist. Per
-    FDA guidance, for tests concerning 50% inhibition on microbial growth/replication,
-    please use the newly released EC50 terms; for tests concerning 50% inhibition
-    on microbial enzymatic activity, please use the newly released IC50 and IC95 terms.
 - - C128688
   - MSTESTCD
-  - C116247
-  - IC50S
+  - C116254
+  - IC95FCB
   - '2'
   - C128688
   - MSTESTCD
-  - C139121
-  - MIC50S
+  - C139114
+  - MEC50FCB
   - '3'
-  - ''
-  - This term replaces term from the Microbiology Susceptibility TEST-CD codelist.
-    Per FDA guidance, for tests concerning 50% inhibition on microbial growth/replication,
-    please use the newly released EC50 terms; for tests concerning 50% inhibition
-    on microbial enzymatic activity, please use the newly released IC50 and IC95 terms.
-- - C128688
-  - MSTESTCD
-  - C116251
-  - IC95S
-  - '2'
-  - C128688
-  - MSTESTCD
-  - C139121
-  - MIC50S
-  - '3'
-  - ''
+  - CDISC-2791
   - This term replaces term from the Microbiology Susceptibility TEST-CD codelist.
     Per FDA guidance, for tests concerning 50% inhibition on microbial growth/replication,
     please use the newly released EC50 terms; for tests concerning 50% inhibition
@@ -563,26 +402,37 @@
   - C139114
   - MEC50FCB
   - '3'
-  - ''
+  - CDISC-2791
   - This term replaces term from the Microbiology Susceptibility TEST-CD codelist.
     Per FDA guidance, for tests concerning 50% inhibition on microbial growth/replication,
     please use the newly released EC50 terms; for tests concerning 50% inhibition
     on microbial enzymatic activity, please use the newly released IC50 and IC95 terms.
-- - C128688
-  - MSTESTCD
-  - C116254
-  - IC95FCB
-  - '2'
-  - C128688
-  - MSTESTCD
-  - C139114
-  - MEC50FCB
-  - '3'
-  - ''
-  - This term replaces term from the Microbiology Susceptibility TEST-CD codelist.
-    Per FDA guidance, for tests concerning 50% inhibition on microbial growth/replication,
-    please use the newly released EC50 terms; for tests concerning 50% inhibition
-    on microbial enzymatic activity, please use the newly released IC50 and IC95 terms.
+- - C65047
+  - LBTESTCD
+  - C117855
+  - RETIMCH
+  - '38'
+  - C65047
+  - LBTESTCD
+  - C138970
+  - CHCMR
+  - '39'
+  - CDISC-2678
+  - Replaces C117855 in codelist. Reticulocyte MCH does not actually exist as a lab
+    test. The advia machine doesn't calculate it and we are unaware of anyone else
+    that is using it.
+- - C65047
+  - LBTESTCD
+  - C114218
+  - RETICDW
+  - '38'
+  - C65047
+  - LBTESTCD
+  - C139074
+  - RDWR
+  - '40'
+  - CDISC-2977
+  - Replacing C114218 in this codelist.
 - - C128688
   - MSTESTCD
   - C116253
@@ -590,10 +440,10 @@
   - '2'
   - C128688
   - MSTESTCD
-  - C139115
-  - MEC50FCR
+  - C139119
+  - MIC50FCR
   - '3'
-  - ''
+  - CDISC-2941
   - This term replaces term from the Microbiology Susceptibility TEST-CD codelist.
     Per FDA guidance, for tests concerning 50% inhibition on microbial growth/replication,
     please use the newly released EC50 terms; for tests concerning 50% inhibition
@@ -605,40 +455,216 @@
   - '2'
   - C128688
   - MSTESTCD
-  - C139115
-  - MEC50FCR
+  - C139119
+  - MIC50FCR
   - '3'
-  - ''
+  - CDISC-2941
   - This term replaces term from the Microbiology Susceptibility TEST-CD codelist.
     Per FDA guidance, for tests concerning 50% inhibition on microbial growth/replication,
     please use the newly released EC50 terms; for tests concerning 50% inhibition
     on microbial enzymatic activity, please use the newly released IC50 and IC95 terms.
+- - C67154
+  - LBTEST
+  - C117855
+  - Ret. Mean Corpuscular Hemoglobin
+  - '36'
+  - C67154
+  - LBTEST
+  - C138970
+  - Ret. Corpuscular HGB Concentration Mean
+  - '37'
+  - CDISC-2678
+  - Replaces C117855 in codelist. Reticulocyte MCH does not actually exist as a lab
+    test. The advia machine doesn't calculate it and we are unaware of anyone else
+    that is using it.
+- - C128688
+  - MSTESTCD
+  - C116253
+  - IC95FCR
+  - '2'
+  - C128688
+  - MSTESTCD
+  - C139123
+  - MIC95FCR
+  - '3'
+  - CDISC-2941
+  - This term replaces term from the Microbiology Susceptibility TEST-CD codelist.
+    Per FDA guidance, for tests concerning 50% inhibition on microbial growth/replication,
+    please use the newly released EC50 terms; for tests concerning 50% inhibition
+    on microbial enzymatic activity, please use the newly released IC50 and IC95 terms.
+- - C128688
+  - MSTESTCD
+  - C116249
+  - IC50FCR
+  - '2'
+  - C128688
+  - MSTESTCD
+  - C139123
+  - MIC95FCR
+  - '3'
+  - CDISC-2941
+  - This term replaces term from the Microbiology Susceptibility TEST-CD codelist.
+    Per FDA guidance, for tests concerning 50% inhibition on microbial growth/replication,
+    please use the newly released EC50 terms; for tests concerning 50% inhibition
+    on microbial enzymatic activity, please use the newly released IC50 and IC95 terms.
+- - C96782
+  - ONCRTSCD
+  - C123628
+  - TUAGRESP
+  - '7'
+  - C96782
+  - ONCRTSCD
+  - C132458
+  - TMRESP
+  - '9'
+  - CDISC-3058
+  - C123628 has been retired. Please use the existing term TMRESP (C132458)
 - - C128687
   - MSTEST
-  - C116253
-  - IC95 Fold Change from Reference
+  - C116251
+  - IC95 Subject Result
   - '3'
   - C128687
   - MSTEST
-  - C139119
-  - Microbial IC50 Fold Change from Ref
+  - C139121
+  - Microbial IC50 Subject Result
   - '4'
-  - ''
+  - CDISC-2941
   - This term replaces term from the Microbiology Susceptibility TEST codelist. Per
     FDA guidance, for tests concerning 50% inhibition on microbial growth/replication,
     please use the newly released EC50 terms; for tests concerning 50% inhibition
     on microbial enzymatic activity, please use the newly released IC50 and IC95 terms.
 - - C128687
   - MSTEST
-  - C116249
-  - IC50 Fold Change from Reference
+  - C116247
+  - IC50 Subject Result
   - '3'
   - C128687
   - MSTEST
-  - C139119
-  - Microbial IC50 Fold Change from Ref
+  - C139121
+  - Microbial IC50 Subject Result
   - '4'
-  - ''
+  - CDISC-2941
+  - This term replaces term from the Microbiology Susceptibility TEST codelist. Per
+    FDA guidance, for tests concerning 50% inhibition on microbial growth/replication,
+    please use the newly released EC50 terms; for tests concerning 50% inhibition
+    on microbial enzymatic activity, please use the newly released IC50 and IC95 terms.
+- - C128687
+  - MSTEST
+  - C116252
+  - IC95 Reference Control Result
+  - '3'
+  - C128687
+  - MSTEST
+  - C139116
+  - Microbial EC50 Reference Control Result
+  - '4'
+  - CDISC-2791
+  - This term replaces term from the Microbiology Susceptibility TEST codelist. Per
+    FDA guidance, for tests concerning 50% inhibition on microbial growth/replication,
+    please use the newly released EC50 terms; for tests concerning 50% inhibition
+    on microbial enzymatic activity, please use the newly released IC50 and IC95 terms.
+- - C128687
+  - MSTEST
+  - C116248
+  - IC50 Reference Control Result
+  - '3'
+  - C128687
+  - MSTEST
+  - C139116
+  - Microbial EC50 Reference Control Result
+  - '4'
+  - CDISC-2791
+  - This term replaces term from the Microbiology Susceptibility TEST codelist. Per
+    FDA guidance, for tests concerning 50% inhibition on microbial growth/replication,
+    please use the newly released EC50 terms; for tests concerning 50% inhibition
+    on microbial enzymatic activity, please use the newly released IC50 and IC95 terms.
+- - C128687
+  - MSTEST
+  - C116248
+  - IC50 Reference Control Result
+  - '3'
+  - C128687
+  - MSTEST
+  - C139124
+  - Microbial IC95 Reference Control Result
+  - '4'
+  - CDISC-2941
+  - This term replaces term from the Microbiology Susceptibility TEST codelist. Per
+    FDA guidance, for tests concerning 50% inhibition on microbial growth/replication,
+    please use the newly released EC50 terms; for tests concerning 50% inhibition
+    on microbial enzymatic activity, please use the newly released IC50 and IC95 terms.
+- - C128687
+  - MSTEST
+  - C116252
+  - IC95 Reference Control Result
+  - '3'
+  - C128687
+  - MSTEST
+  - C139124
+  - Microbial IC95 Reference Control Result
+  - '4'
+  - CDISC-2941
+  - This term replaces term from the Microbiology Susceptibility TEST codelist. Per
+    FDA guidance, for tests concerning 50% inhibition on microbial growth/replication,
+    please use the newly released EC50 terms; for tests concerning 50% inhibition
+    on microbial enzymatic activity, please use the newly released IC50 and IC95 terms.
+- - C128687
+  - MSTEST
+  - C116252
+  - IC95 Reference Control Result
+  - '3'
+  - C128687
+  - MSTEST
+  - C139120
+  - Microbial IC50 Reference Control Result
+  - '4'
+  - CDISC-2941
+  - This term replaces term from the Microbiology Susceptibility TEST codelist. Per
+    FDA guidance, for tests concerning 50% inhibition on microbial growth/replication,
+    please use the newly released EC50 terms; for tests concerning 50% inhibition
+    on microbial enzymatic activity, please use the newly released IC50 and IC95 terms.
+- - C128687
+  - MSTEST
+  - C116248
+  - IC50 Reference Control Result
+  - '3'
+  - C128687
+  - MSTEST
+  - C139120
+  - Microbial IC50 Reference Control Result
+  - '4'
+  - CDISC-2941
+  - This term replaces term from the Microbiology Susceptibility TEST codelist. Per
+    FDA guidance, for tests concerning 50% inhibition on microbial growth/replication,
+    please use the newly released EC50 terms; for tests concerning 50% inhibition
+    on microbial enzymatic activity, please use the newly released IC50 and IC95 terms.
+- - C128687
+  - MSTEST
+  - C116250
+  - IC50 Fold Change from Baseline
+  - '3'
+  - C128687
+  - MSTEST
+  - C139118
+  - Microbial IC50 Fold Change from Baseline
+  - '4'
+  - CDISC-2941
+  - This term replaces term from the Microbiology Susceptibility TEST codelist. Per
+    FDA guidance, for tests concerning 50% inhibition on microbial growth/replication,
+    please use the newly released EC50 terms; for tests concerning 50% inhibition
+    on microbial enzymatic activity, please use the newly released IC50 and IC95 terms.
+- - C128687
+  - MSTEST
+  - C116254
+  - IC95 Fold Change from Baseline
+  - '3'
+  - C128687
+  - MSTEST
+  - C139118
+  - Microbial IC50 Fold Change from Baseline
+  - '4'
+  - CDISC-2941
   - This term replaces term from the Microbiology Susceptibility TEST codelist. Per
     FDA guidance, for tests concerning 50% inhibition on microbial growth/replication,
     please use the newly released EC50 terms; for tests concerning 50% inhibition
@@ -653,67 +679,97 @@
   - C135376
   - Mean Blood Pressure, Estimated
   - '13'
-  - ''
+  - CDISC-2862
   - Please use CVTEST = Mean Blood Pressure, Estimated; LOC = Heart, Right Atrium
     (or other chambers of the heart).
 - - C128687
   - MSTEST
-  - C116254
-  - IC95 Fold Change from Baseline
+  - C116251
+  - IC95 Subject Result
   - '3'
   - C128687
   - MSTEST
-  - C139118
-  - Microbial IC50 Fold Change from Baseline
+  - C139125
+  - Microbial IC95 Subject Result
   - '4'
-  - ''
+  - CDISC-2941
   - This term replaces term from the Microbiology Susceptibility TEST codelist. Per
     FDA guidance, for tests concerning 50% inhibition on microbial growth/replication,
     please use the newly released EC50 terms; for tests concerning 50% inhibition
     on microbial enzymatic activity, please use the newly released IC50 and IC95 terms.
 - - C128687
   - MSTEST
-  - C116250
-  - IC50 Fold Change from Baseline
+  - C116247
+  - IC50 Subject Result
   - '3'
   - C128687
   - MSTEST
-  - C139118
-  - Microbial IC50 Fold Change from Baseline
+  - C139125
+  - Microbial IC95 Subject Result
   - '4'
-  - ''
+  - CDISC-2941
   - This term replaces term from the Microbiology Susceptibility TEST codelist. Per
     FDA guidance, for tests concerning 50% inhibition on microbial growth/replication,
     please use the newly released EC50 terms; for tests concerning 50% inhibition
     on microbial enzymatic activity, please use the newly released IC50 and IC95 terms.
 - - C128688
   - MSTESTCD
-  - C116252
-  - IC95R
+  - C116251
+  - IC95S
   - '2'
   - C128688
   - MSTESTCD
-  - C139120
-  - MIC50R
+  - C139117
+  - MEC50S
   - '3'
-  - ''
+  - CDISC-2791
   - This term replaces term from the Microbiology Susceptibility TEST-CD codelist.
     Per FDA guidance, for tests concerning 50% inhibition on microbial growth/replication,
     please use the newly released EC50 terms; for tests concerning 50% inhibition
     on microbial enzymatic activity, please use the newly released IC50 and IC95 terms.
 - - C128688
   - MSTESTCD
-  - C116248
-  - IC50R
+  - C116247
+  - IC50S
   - '2'
   - C128688
   - MSTESTCD
-  - C139120
-  - MIC50R
+  - C139117
+  - MEC50S
   - '3'
-  - ''
+  - CDISC-2791
   - This term replaces term from the Microbiology Susceptibility TEST-CD codelist.
     Per FDA guidance, for tests concerning 50% inhibition on microbial growth/replication,
+    please use the newly released EC50 terms; for tests concerning 50% inhibition
+    on microbial enzymatic activity, please use the newly released IC50 and IC95 terms.
+- - C128687
+  - MSTEST
+  - C116251
+  - IC95 Subject Result
+  - '3'
+  - C128687
+  - MSTEST
+  - C139117
+  - Microbial EC50 Subject Result
+  - '4'
+  - CDISC-2791
+  - This term replaces term from the Microbiology Susceptibility TEST codelist. Per
+    FDA guidance, for tests concerning 50% inhibition on microbial growth/replication,
+    please use the newly released EC50 terms; for tests concerning 50% inhibition
+    on microbial enzymatic activity, please use the newly released IC50 and IC95 terms.
+- - C128687
+  - MSTEST
+  - C116247
+  - IC50 Subject Result
+  - '3'
+  - C128687
+  - MSTEST
+  - C139117
+  - Microbial EC50 Subject Result
+  - '4'
+  - CDISC-2791
+  - This term replaces term from the Microbiology Susceptibility TEST codelist. Per
+    FDA guidance, for tests concerning 50% inhibition on microbial growth/replication,
     please use the newly released EC50 terms; for tests concerning 50% inhibition
     on microbial enzymatic activity, please use the newly released IC50 and IC95 terms.
 - - C67154
@@ -726,36 +782,156 @@
   - C139074
   - Ret Volume Distribution Width
   - '38'
-  - ''
+  - CDISC-2977
   - Replacing C114218 in this codelist.
+- - C128688
+  - MSTESTCD
+  - C116254
+  - IC95FCB
+  - '2'
+  - C128688
+  - MSTESTCD
+  - C139122
+  - MIC95FCB
+  - '3'
+  - CDISC-2941
+  - This term replaces term from the Microbiology Susceptibility TEST-CD codelist.
+    Per FDA guidance, for tests concerning 50% inhibition on microbial growth/replication,
+    please use the newly released EC50 terms; for tests concerning 50% inhibition
+    on microbial enzymatic activity, please use the newly released IC50 and IC95 terms.
+- - C128688
+  - MSTESTCD
+  - C116250
+  - IC50FCB
+  - '2'
+  - C128688
+  - MSTESTCD
+  - C139122
+  - MIC95FCB
+  - '3'
+  - CDISC-2941
+  - This term replaces term from the Microbiology Susceptibility TEST-CD codelist.
+    Per FDA guidance, for tests concerning 50% inhibition on microbial growth/replication,
+    please use the newly released EC50 terms; for tests concerning 50% inhibition
+    on microbial enzymatic activity, please use the newly released IC50 and IC95 terms.
 - - C128687
   - MSTEST
-  - C116252
-  - IC95 Reference Control Result
+  - C116253
+  - IC95 Fold Change from Reference
   - '3'
   - C128687
   - MSTEST
-  - C139116
-  - Microbial EC50 Reference Control Result
+  - C139119
+  - Microbial IC50 Fold Change from Ref
   - '4'
-  - ''
+  - CDISC-2941
   - This term replaces term from the Microbiology Susceptibility TEST codelist. Per
     FDA guidance, for tests concerning 50% inhibition on microbial growth/replication,
     please use the newly released EC50 terms; for tests concerning 50% inhibition
     on microbial enzymatic activity, please use the newly released IC50 and IC95 terms.
 - - C128687
   - MSTEST
-  - C116248
-  - IC50 Reference Control Result
+  - C116249
+  - IC50 Fold Change from Reference
   - '3'
   - C128687
   - MSTEST
-  - C139116
-  - Microbial EC50 Reference Control Result
+  - C139119
+  - Microbial IC50 Fold Change from Ref
   - '4'
-  - ''
+  - CDISC-2941
   - This term replaces term from the Microbiology Susceptibility TEST codelist. Per
     FDA guidance, for tests concerning 50% inhibition on microbial growth/replication,
+    please use the newly released EC50 terms; for tests concerning 50% inhibition
+    on microbial enzymatic activity, please use the newly released IC50 and IC95 terms.
+- - C128688
+  - MSTESTCD
+  - C116251
+  - IC95S
+  - '2'
+  - C128688
+  - MSTESTCD
+  - C139121
+  - MIC50S
+  - '3'
+  - CDISC-2941
+  - This term replaces term from the Microbiology Susceptibility TEST-CD codelist.
+    Per FDA guidance, for tests concerning 50% inhibition on microbial growth/replication,
+    please use the newly released EC50 terms; for tests concerning 50% inhibition
+    on microbial enzymatic activity, please use the newly released IC50 and IC95 terms.
+- - C128688
+  - MSTESTCD
+  - C116247
+  - IC50S
+  - '2'
+  - C128688
+  - MSTESTCD
+  - C139121
+  - MIC50S
+  - '3'
+  - CDISC-2941
+  - This term replaces term from the Microbiology Susceptibility TEST-CD codelist.
+    Per FDA guidance, for tests concerning 50% inhibition on microbial growth/replication,
+    please use the newly released EC50 terms; for tests concerning 50% inhibition
+    on microbial enzymatic activity, please use the newly released IC50 and IC95 terms.
+- - C128688
+  - MSTESTCD
+  - C116252
+  - IC95R
+  - '2'
+  - C128688
+  - MSTESTCD
+  - C139116
+  - MEC50R
+  - '3'
+  - CDISC-2791
+  - This term replaces term from the Microbiology Susceptibility TEST-CD codelist.
+    Per FDA guidance, for tests concerning 50% inhibition on microbial growth/replication,
+    please use the newly released EC50 terms; for tests concerning 50% inhibition
+    on microbial enzymatic activity, please use the newly released IC50 and IC95 terms.
+- - C128688
+  - MSTESTCD
+  - C116248
+  - IC50R
+  - '2'
+  - C128688
+  - MSTESTCD
+  - C139116
+  - MEC50R
+  - '3'
+  - CDISC-2791
+  - This term replaces term from the Microbiology Susceptibility TEST-CD codelist.
+    Per FDA guidance, for tests concerning 50% inhibition on microbial growth/replication,
+    please use the newly released EC50 terms; for tests concerning 50% inhibition
+    on microbial enzymatic activity, please use the newly released IC50 and IC95 terms.
+- - C128688
+  - MSTESTCD
+  - C116249
+  - IC50FCR
+  - '2'
+  - C128688
+  - MSTESTCD
+  - C139115
+  - MEC50FCR
+  - '3'
+  - CDISC-2791
+  - This term replaces term from the Microbiology Susceptibility TEST-CD codelist.
+    Per FDA guidance, for tests concerning 50% inhibition on microbial growth/replication,
+    please use the newly released EC50 terms; for tests concerning 50% inhibition
+    on microbial enzymatic activity, please use the newly released IC50 and IC95 terms.
+- - C128688
+  - MSTESTCD
+  - C116253
+  - IC95FCR
+  - '2'
+  - C128688
+  - MSTESTCD
+  - C139115
+  - MEC50FCR
+  - '3'
+  - CDISC-2791
+  - This term replaces term from the Microbiology Susceptibility TEST-CD codelist.
+    Per FDA guidance, for tests concerning 50% inhibition on microbial growth/replication,
     please use the newly released EC50 terms; for tests concerning 50% inhibition
     on microbial enzymatic activity, please use the newly released IC50 and IC95 terms.
 - - C74456
@@ -768,65 +944,36 @@
   - C12506
   - TOOTH
   - '30'
-  - ''
+  - CDISC-2833
   - Replaces C33794 in this codelist.
-- - C67154
-  - LBTEST
-  - C117855
-  - Ret. Mean Corpuscular Hemoglobin
-  - '36'
-  - C67154
-  - LBTEST
-  - C138970
-  - Ret. Corpuscular HGB Concentration Mean
-  - '37'
-  - ''
-  - Replaces C117855 in codelist. Reticulocyte MCH does not actually exist as a lab
-    test. The advia machine doesn't calculate it and we are unaware of anyone else
-    that is using it.
 - - C128688
   - MSTESTCD
-  - C116249
-  - IC50FCR
+  - C116251
+  - IC95S
   - '2'
   - C128688
   - MSTESTCD
-  - C139119
-  - MIC50FCR
+  - C139125
+  - MIC95S
   - '3'
-  - ''
+  - CDISC-2941
   - This term replaces term from the Microbiology Susceptibility TEST-CD codelist.
     Per FDA guidance, for tests concerning 50% inhibition on microbial growth/replication,
     please use the newly released EC50 terms; for tests concerning 50% inhibition
     on microbial enzymatic activity, please use the newly released IC50 and IC95 terms.
 - - C128688
   - MSTESTCD
-  - C116253
-  - IC95FCR
+  - C116247
+  - IC50S
   - '2'
   - C128688
   - MSTESTCD
-  - C139119
-  - MIC50FCR
+  - C139125
+  - MIC95S
   - '3'
-  - ''
+  - CDISC-2941
   - This term replaces term from the Microbiology Susceptibility TEST-CD codelist.
     Per FDA guidance, for tests concerning 50% inhibition on microbial growth/replication,
-    please use the newly released EC50 terms; for tests concerning 50% inhibition
-    on microbial enzymatic activity, please use the newly released IC50 and IC95 terms.
-- - C128687
-  - MSTEST
-  - C116249
-  - IC50 Fold Change from Reference
-  - '3'
-  - C128687
-  - MSTEST
-  - C139123
-  - Microbial IC95 Fold Change from Ref
-  - '4'
-  - ''
-  - This term replaces term from the Microbiology Susceptibility TEST codelist. Per
-    FDA guidance, for tests concerning 50% inhibition on microbial growth/replication,
     please use the newly released EC50 terms; for tests concerning 50% inhibition
     on microbial enzymatic activity, please use the newly released IC50 and IC95 terms.
 - - C128687
@@ -836,102 +983,27 @@
   - '3'
   - C128687
   - MSTEST
-  - C139123
-  - Microbial IC95 Fold Change from Ref
+  - C139115
+  - Microbial EC50 Fold Change from Ref
   - '4'
-  - ''
-  - This term replaces term from the Microbiology Susceptibility TEST codelist. Per
-    FDA guidance, for tests concerning 50% inhibition on microbial growth/replication,
-    please use the newly released EC50 terms; for tests concerning 50% inhibition
-    on microbial enzymatic activity, please use the newly released IC50 and IC95 terms.
-- - C128688
-  - MSTESTCD
-  - C116251
-  - IC95S
-  - '2'
-  - C128688
-  - MSTESTCD
-  - C139117
-  - MEC50S
-  - '3'
-  - ''
-  - This term replaces term from the Microbiology Susceptibility TEST-CD codelist.
-    Per FDA guidance, for tests concerning 50% inhibition on microbial growth/replication,
-    please use the newly released EC50 terms; for tests concerning 50% inhibition
-    on microbial enzymatic activity, please use the newly released IC50 and IC95 terms.
-- - C128688
-  - MSTESTCD
-  - C116247
-  - IC50S
-  - '2'
-  - C128688
-  - MSTESTCD
-  - C139117
-  - MEC50S
-  - '3'
-  - ''
-  - This term replaces term from the Microbiology Susceptibility TEST-CD codelist.
-    Per FDA guidance, for tests concerning 50% inhibition on microbial growth/replication,
-    please use the newly released EC50 terms; for tests concerning 50% inhibition
-    on microbial enzymatic activity, please use the newly released IC50 and IC95 terms.
-- - C128687
-  - MSTEST
-  - C116254
-  - IC95 Fold Change from Baseline
-  - '3'
-  - C128687
-  - MSTEST
-  - C139114
-  - Microbial EC50 Fold Change from Baseline
-  - '4'
-  - ''
+  - CDISC-2791
   - This term replaces term from the Microbiology Susceptibility TEST codelist. Per
     FDA guidance, for tests concerning 50% inhibition on microbial growth/replication,
     please use the newly released EC50 terms; for tests concerning 50% inhibition
     on microbial enzymatic activity, please use the newly released IC50 and IC95 terms.
 - - C128687
   - MSTEST
-  - C116250
-  - IC50 Fold Change from Baseline
+  - C116249
+  - IC50 Fold Change from Reference
   - '3'
   - C128687
   - MSTEST
-  - C139114
-  - Microbial EC50 Fold Change from Baseline
+  - C139115
+  - Microbial EC50 Fold Change from Ref
   - '4'
-  - ''
+  - CDISC-2791
   - This term replaces term from the Microbiology Susceptibility TEST codelist. Per
     FDA guidance, for tests concerning 50% inhibition on microbial growth/replication,
-    please use the newly released EC50 terms; for tests concerning 50% inhibition
-    on microbial enzymatic activity, please use the newly released IC50 and IC95 terms.
-- - C128688
-  - MSTESTCD
-  - C116247
-  - IC50S
-  - '2'
-  - C128688
-  - MSTESTCD
-  - C139125
-  - MIC95S
-  - '3'
-  - ''
-  - This term replaces term from the Microbiology Susceptibility TEST-CD codelist.
-    Per FDA guidance, for tests concerning 50% inhibition on microbial growth/replication,
-    please use the newly released EC50 terms; for tests concerning 50% inhibition
-    on microbial enzymatic activity, please use the newly released IC50 and IC95 terms.
-- - C128688
-  - MSTESTCD
-  - C116251
-  - IC95S
-  - '2'
-  - C128688
-  - MSTESTCD
-  - C139125
-  - MIC95S
-  - '3'
-  - ''
-  - This term replaces term from the Microbiology Susceptibility TEST-CD codelist.
-    Per FDA guidance, for tests concerning 50% inhibition on microbial growth/replication,
     please use the newly released EC50 terms; for tests concerning 50% inhibition
     on microbial enzymatic activity, please use the newly released IC50 and IC95 terms.
 - - C128688
@@ -944,7 +1016,7 @@
   - C139118
   - MIC50FCB
   - '3'
-  - ''
+  - CDISC-2941
   - This term replaces term from the Microbiology Susceptibility TEST-CD codelist.
     Per FDA guidance, for tests concerning 50% inhibition on microbial growth/replication,
     please use the newly released EC50 terms; for tests concerning 50% inhibition
@@ -959,7 +1031,7 @@
   - C139118
   - MIC50FCB
   - '3'
-  - ''
+  - CDISC-2941
   - This term replaces term from the Microbiology Susceptibility TEST-CD codelist.
     Per FDA guidance, for tests concerning 50% inhibition on microbial growth/replication,
     please use the newly released EC50 terms; for tests concerning 50% inhibition
@@ -971,10 +1043,10 @@
   - '2'
   - C128688
   - MSTESTCD
-  - C139124
-  - MIC95R
+  - C139120
+  - MIC50R
   - '3'
-  - ''
+  - CDISC-2941
   - This term replaces term from the Microbiology Susceptibility TEST-CD codelist.
     Per FDA guidance, for tests concerning 50% inhibition on microbial growth/replication,
     please use the newly released EC50 terms; for tests concerning 50% inhibition
@@ -986,40 +1058,25 @@
   - '2'
   - C128688
   - MSTESTCD
-  - C139124
-  - MIC95R
+  - C139120
+  - MIC50R
   - '3'
-  - ''
+  - CDISC-2941
   - This term replaces term from the Microbiology Susceptibility TEST-CD codelist.
     Per FDA guidance, for tests concerning 50% inhibition on microbial growth/replication,
     please use the newly released EC50 terms; for tests concerning 50% inhibition
     on microbial enzymatic activity, please use the newly released IC50 and IC95 terms.
 - - C128687
   - MSTEST
-  - C116252
-  - IC95 Reference Control Result
+  - C116250
+  - IC50 Fold Change from Baseline
   - '3'
   - C128687
   - MSTEST
-  - C139120
-  - Microbial IC50 Reference Control Result
+  - C139122
+  - Microbial IC95 Fold Change from Baseline
   - '4'
-  - ''
-  - This term replaces term from the Microbiology Susceptibility TEST codelist. Per
-    FDA guidance, for tests concerning 50% inhibition on microbial growth/replication,
-    please use the newly released EC50 terms; for tests concerning 50% inhibition
-    on microbial enzymatic activity, please use the newly released IC50 and IC95 terms.
-- - C128687
-  - MSTEST
-  - C116248
-  - IC50 Reference Control Result
-  - '3'
-  - C128687
-  - MSTEST
-  - C139120
-  - Microbial IC50 Reference Control Result
-  - '4'
-  - ''
+  - CDISC-2941
   - This term replaces term from the Microbiology Susceptibility TEST codelist. Per
     FDA guidance, for tests concerning 50% inhibition on microbial growth/replication,
     please use the newly released EC50 terms; for tests concerning 50% inhibition
@@ -1034,64 +1091,37 @@
   - C139122
   - Microbial IC95 Fold Change from Baseline
   - '4'
-  - ''
+  - CDISC-2941
   - This term replaces term from the Microbiology Susceptibility TEST codelist. Per
     FDA guidance, for tests concerning 50% inhibition on microbial growth/replication,
     please use the newly released EC50 terms; for tests concerning 50% inhibition
     on microbial enzymatic activity, please use the newly released IC50 and IC95 terms.
-- - C128687
-  - MSTEST
-  - C116250
-  - IC50 Fold Change from Baseline
-  - '3'
-  - C128687
-  - MSTEST
-  - C139122
-  - Microbial IC95 Fold Change from Baseline
-  - '4'
-  - ''
-  - This term replaces term from the Microbiology Susceptibility TEST codelist. Per
-    FDA guidance, for tests concerning 50% inhibition on microbial growth/replication,
-    please use the newly released EC50 terms; for tests concerning 50% inhibition
-    on microbial enzymatic activity, please use the newly released IC50 and IC95 terms.
-- - C96782
-  - ONCRTSCD
-  - C123628
-  - TUAGRESP
-  - '7'
-  - C96782
-  - ONCRTSCD
-  - C132458
-  - TMRESP
-  - '9'
-  - ''
-  - C123628 has been retired. Please use the existing term TMRESP (C132458)
 - - C128688
   - MSTESTCD
-  - C116253
-  - IC95FCR
+  - C116252
+  - IC95R
   - '2'
   - C128688
   - MSTESTCD
-  - C139123
-  - MIC95FCR
+  - C139124
+  - MIC95R
   - '3'
-  - ''
+  - CDISC-2941
   - This term replaces term from the Microbiology Susceptibility TEST-CD codelist.
     Per FDA guidance, for tests concerning 50% inhibition on microbial growth/replication,
     please use the newly released EC50 terms; for tests concerning 50% inhibition
     on microbial enzymatic activity, please use the newly released IC50 and IC95 terms.
 - - C128688
   - MSTESTCD
-  - C116249
-  - IC50FCR
+  - C116248
+  - IC50R
   - '2'
   - C128688
   - MSTESTCD
-  - C139123
-  - MIC95FCR
+  - C139124
+  - MIC95R
   - '3'
-  - ''
+  - CDISC-2941
   - This term replaces term from the Microbiology Susceptibility TEST-CD codelist.
     Per FDA guidance, for tests concerning 50% inhibition on microbial growth/replication,
     please use the newly released EC50 terms; for tests concerning 50% inhibition
@@ -1106,65 +1136,35 @@
   - C135376
   - MEANBP_E
   - '13'
-  - ''
+  - CDISC-2862
   - Please use CVTEST = Mean Blood Pressure, Estimated; LOC = Heart, Right Atrium
     (or other chambers of the heart).
-- - C128688
-  - MSTESTCD
-  - C116248
-  - IC50R
-  - '2'
-  - C128688
-  - MSTESTCD
-  - C139116
-  - MEC50R
-  - '3'
-  - ''
-  - This term replaces term from the Microbiology Susceptibility TEST-CD codelist.
-    Per FDA guidance, for tests concerning 50% inhibition on microbial growth/replication,
-    please use the newly released EC50 terms; for tests concerning 50% inhibition
-    on microbial enzymatic activity, please use the newly released IC50 and IC95 terms.
-- - C128688
-  - MSTESTCD
-  - C116252
-  - IC95R
-  - '2'
-  - C128688
-  - MSTESTCD
-  - C139116
-  - MEC50R
-  - '3'
-  - ''
-  - This term replaces term from the Microbiology Susceptibility TEST-CD codelist.
-    Per FDA guidance, for tests concerning 50% inhibition on microbial growth/replication,
-    please use the newly released EC50 terms; for tests concerning 50% inhibition
-    on microbial enzymatic activity, please use the newly released IC50 and IC95 terms.
 - - C128687
   - MSTEST
-  - C116247
-  - IC50 Subject Result
+  - C116250
+  - IC50 Fold Change from Baseline
   - '3'
   - C128687
   - MSTEST
-  - C139121
-  - Microbial IC50 Subject Result
+  - C139114
+  - Microbial EC50 Fold Change from Baseline
   - '4'
-  - ''
+  - CDISC-2791
   - This term replaces term from the Microbiology Susceptibility TEST codelist. Per
     FDA guidance, for tests concerning 50% inhibition on microbial growth/replication,
     please use the newly released EC50 terms; for tests concerning 50% inhibition
     on microbial enzymatic activity, please use the newly released IC50 and IC95 terms.
 - - C128687
   - MSTEST
-  - C116251
-  - IC95 Subject Result
+  - C116254
+  - IC95 Fold Change from Baseline
   - '3'
   - C128687
   - MSTEST
-  - C139121
-  - Microbial IC50 Subject Result
+  - C139114
+  - Microbial EC50 Fold Change from Baseline
   - '4'
-  - ''
+  - CDISC-2791
   - This term replaces term from the Microbiology Susceptibility TEST codelist. Per
     FDA guidance, for tests concerning 50% inhibition on microbial growth/replication,
     please use the newly released EC50 terms; for tests concerning 50% inhibition

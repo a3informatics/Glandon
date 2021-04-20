@@ -43,7 +43,14 @@ export default class ConfirmableButtons {
             $ajax({
               url,
               type: method,
-              done: () => location.reload()
+              done: d => {
+
+                if ( d?.redirect_url )
+                  location.href = d.redirect_url 
+                else 
+                  location.reload()
+
+              }
             });
 
         }

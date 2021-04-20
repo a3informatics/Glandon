@@ -1,19 +1,19 @@
 require 'rails_helper'
 
 describe Sparql::Update do
-	
+
 	include DataHelpers
   include PublicFileHelpers
   include TimeHelpers
   include Sparql::PrefixClauses
-  
+
   def sub_dir
     return "models/concerns/sparql/update"
   end
 
   def get_value(name, uri, node)
     path = "binding[@name='" + name + "']/"
-    if uri 
+    if uri
       path = path + "uri"
     else
       path = path + "literal"
@@ -43,7 +43,7 @@ describe Sparql::Update do
     xmlDoc = Nokogiri::XML(CRUD.query("#{build_clauses("", [])}SELECT ?s ?p ?o WHERE { ?s ?p ?o }").body)
     xmlDoc.remove_namespaces!
     count = ontology ? 2 : 1
-    expect(xmlDoc.xpath("//result").count). to eq(count) 
+    expect(xmlDoc.xpath("//result").count). to eq(count)
     xmlDoc.xpath("//result").each_with_index do |node, index|
       sub = get_value('s', true, node)
       expect(sub.to_s).to eq(triples[index][0])
@@ -57,7 +57,7 @@ describe Sparql::Update do
   def check_deleted
     xmlDoc = Nokogiri::XML(CRUD.query("#{build_clauses("", [])}SELECT ?s ?p ?o WHERE { ?s ?p ?o }").body)
     xmlDoc.remove_namespaces!
-    expect(xmlDoc.xpath("//result").count). to eq(0) 
+    expect(xmlDoc.xpath("//result").count). to eq(0)
   end
 
   before :each do
@@ -67,7 +67,7 @@ describe Sparql::Update do
   after :all do
     delete_all_public_test_files
   end
-  
+
   it "allows for the class to be created" do
 		sparql = Sparql::Update.new()
     expect(sparql.to_json).to eq("{\"default_namespace\":\"\",\"prefix_used\":{},\"triples\":{},\"duplicates\":{},\"transaction\":null}")
@@ -360,10 +360,10 @@ describe Sparql::Update do
     xmlDoc.remove_namespaces!
     xmlDoc.xpath("//result").each do |node|
       pre = get_value('p', true, node)
-      if pre == "http://www.example.com/default#ooo4" 
+      if pre == "http://www.example.com/default#ooo4"
         obj = get_value('o', false, node)
         expect(obj).to eq("+/ \\ \"test\" 'aaa \\ \" ' / % & \n\r\t")
-      elsif pre == "http://www.example.com/default#ooo5" 
+      elsif pre == "http://www.example.com/default#ooo5"
         obj = get_value('o', false, node)
         expect(obj).to eq(string)
       end
@@ -396,7 +396,7 @@ describe Sparql::Update do
     (1..10).each {|c| sparql.add({:uri => s4_uri}, {:namespace => "", :fragment => "o#{c}"}, {:literal => "literal #{c}", :primitive_type => XSDDatatype.new("string")})}
     (1..10).each {|c| sparql.add({:uri => s5_uri}, {:namespace => "", :fragment => "o#{c}"}, {:literal => "literal #{c}", :primitive_type => XSDDatatype.new("string")})}
     (1..bulk).each {|c| sparql.add({:uri => s6_uri}, {:namespace => "", :fragment => "o#{c}"}, {:literal => "literal #{c}", :primitive_type => XSDDatatype.new("string")})}
-    timer_start    
+    timer_start
     full_path = sparql.to_file
     timer_stop("#{count} triple file took: ")
   #Xcopy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "to_file_expected_1.txt")

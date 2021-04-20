@@ -129,6 +129,30 @@ describe BiomedicalConcept do
     end
   end
 
+  def generate_templates(the_sub_dir, filename, write_file=false)
+    results = []
+    templates = read_yaml_file(the_sub_dir, filename)
+    templates.each do |template|
+      object = BiomedicalConceptTemplate.new(label: template[:label])
+      id_item = create_item(template[:identified_by], 1)
+      object.has_item_push(id_item)
+      object.identified_by = id_item
+      template[:has_items].each_with_index do |x, index| 
+        object.has_item_push(create_item(x, index+2))
+      end
+      object.set_initial(template[:identifier])
+      results << object
+    end
+    sparql = Sparql::Update.new
+    sparql.default_namespace(results.first.uri.namespace)
+    results.each{|x| x.to_sparql(sparql, true)}
+    full_path = sparql.to_file
+    if write_file
+      file_write_warning
+      copy_file_from_public_files_rename("test", File.basename(full_path), the_sub_dir, "#{File.basename(filename, '.yaml')}.ttl")
+    end
+  end
+
   describe "production" do
 
     before :all do
@@ -136,6 +160,7 @@ describe BiomedicalConcept do
       load_cdisc_term_versions(1..68)
       load_data_file_into_triple_store("mdr_identification.ttl")
       load_data_file_into_triple_store("canonical_references.ttl")
+      load_data_file_into_triple_store("canonical_references_migration_1.ttl")
       load_data_file_into_triple_store("complex_datatypes.ttl")
       @cdt_set = {}
       @ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V68#TH"))
@@ -145,31 +170,16 @@ describe BiomedicalConcept do
     it "create templates" do
       write_file = false
       results = []
-      templates = read_yaml_file(sub_dir, "templates/templates.yaml")
-      templates.each do |template|
-        object = BiomedicalConceptTemplate.new(label: template[:label])
-        id_item = create_item(template[:identified_by], 1)
-        object.has_item_push(id_item)
-        object.identified_by = id_item
-        template[:has_items].each_with_index do |x, index| 
-          object.has_item_push(create_item(x, index+2))
-        end
-        object.set_initial(template[:identifier])
-        results << object
-      end
-      sparql = Sparql::Update.new
-      sparql.default_namespace(results.first.uri.namespace)
-      results.each{|x| x.to_sparql(sparql, true)}
-      full_path = sparql.to_file
-      if write_file
-        file_write_warning
-        copy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "templates/biomedical_concept_templates.ttl")
+      filenames = local_file_list("#{sub_dir}/templates", "*.yaml")
+      filenames.each do |f|
+        generate_templates("#{sub_dir}/templates", f, write_file)
       end
     end
 
     it "create instances, by domain, production" do
       write_file = false
-      load_local_file_into_triple_store("#{sub_dir}/templates", "biomedical_concept_templates.ttl")
+      load_local_file_into_triple_store("#{sub_dir}/templates", "templates.ttl")
+      load_local_file_into_triple_store("#{sub_dir}/templates", "intervention.ttl")
       ["ae", "dm", "eg", "lb", "vs"].each do |dir|
         filenames = local_file_list("#{sub_dir}/instances/#{dir}", "*.yaml")
         filenames.each do |f|
@@ -179,14 +189,14 @@ describe BiomedicalConcept do
     end
 
     it "check data" do
-      load_local_file_into_triple_store("#{sub_dir}/templates", "biomedical_concept_templates.ttl")
+      load_local_file_into_triple_store("#{sub_dir}/templates", "templates.ttl")
       ["ae", "dm", "eg", "lb", "vs"].each do |dir|
         filenames = local_file_list("#{sub_dir}/instances/#{dir}", "*.ttl")
         filenames.each do |f|
           load_local_file_into_triple_store("#{sub_dir}/instances/#{dir}", f)
         end
       end
-      expect(BiomedicalConceptTemplate.unique.count).to eq(6)
+      expect(BiomedicalConceptTemplate.unique.count).to eq(7)
       expect(BiomedicalConceptInstance.unique.count).to eq(54)
     end
 
@@ -205,9 +215,9 @@ describe BiomedicalConcept do
       @ht = Thesaurus.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/CT/V1#TH"))
     end
 
-    it "create instances, local test" do
+    it "create instances, local test, for local test purposes" do
       write_file = false
-      load_local_file_into_triple_store("#{sub_dir}/templates", "biomedical_concept_templates.ttl")
+      load_local_file_into_triple_store("#{sub_dir}/templates", "templates.ttl")
       generate_instances("#{sub_dir}/instances/test", "instances.yaml", write_file)
     end
 

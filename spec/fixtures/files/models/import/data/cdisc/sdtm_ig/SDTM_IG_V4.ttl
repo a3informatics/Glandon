@@ -1882,6 +1882,7 @@
 	bd:ctAndFormat ""^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V5#CL_--TRT> ;
+	bd:isA <http://www.s-cubed.dk/CAR#23c859f4f777dc72aa029df6686fccf5faec11cf> ;
 .
 <http://www.cdisc.org/SDTM_IG_AG/V4#IGD_AGMODIFY>
 	rdf:type bd:SdtmDomainVariable ;
@@ -2145,7 +2146,7 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "1"^^xsd:positiveInteger ;
-	bo:reference <http://www.cdisc.org/C66738/V49#C66738_C38114> ;
+	bo:reference <http://www.cdisc.org/C66729/V56#C66729> ;
 	bo:context <http://www.cdisc.org/CT/V57#TH> ;
 .
 <http://www.cdisc.org/SDTM_IG_AG/V4#IGD_VISITNUM>
@@ -2529,6 +2530,7 @@
 	bd:ctAndFormat ""^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V5#CL_--TRT> ;
+	bd:isA <http://www.s-cubed.dk/CAR#23c859f4f777dc72aa029df6686fccf5faec11cf> ;
 .
 <http://www.cdisc.org/SDTM_IG_CM/V4#IGD_CMMODIFY>
 	rdf:type bd:SdtmDomainVariable ;
@@ -2828,7 +2830,7 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "1"^^xsd:positiveInteger ;
-	bo:reference <http://www.cdisc.org/C66738/V49#C66738_C38114> ;
+	bo:reference <http://www.cdisc.org/C66729/V56#C66729> ;
 	bo:context <http://www.cdisc.org/CT/V57#TH> ;
 .
 <http://www.cdisc.org/SDTM_IG_CM/V4#IGD_CMADJ>
@@ -3232,6 +3234,7 @@
 	bd:ctAndFormat ""^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V5#CL_--TRT> ;
+	bd:isA <http://www.s-cubed.dk/CAR#23c859f4f777dc72aa029df6686fccf5faec11cf> ;
 .
 <http://www.cdisc.org/SDTM_IG_EX/V4#IGD_EXCAT>
 	rdf:type bd:SdtmDomainVariable ;
@@ -3380,7 +3383,7 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "1"^^xsd:positiveInteger ;
-	bo:reference <http://www.cdisc.org/C66738/V49#C66738_C38114> ;
+	bo:reference <http://www.cdisc.org/C66729/V56#C66729> ;
 	bo:context <http://www.cdisc.org/CT/V57#TH> ;
 .
 <http://www.cdisc.org/SDTM_IG_EX/V4#IGD_EXLOT>
@@ -3830,6 +3833,7 @@
 	bd:ctAndFormat ""^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V5#CL_--TRT> ;
+	bd:isA <http://www.s-cubed.dk/CAR#23c859f4f777dc72aa029df6686fccf5faec11cf> ;
 .
 <http://www.cdisc.org/SDTM_IG_EC/V4#IGD_ECMOOD>
 	rdf:type bd:SdtmDomainVariable ;
@@ -4056,7 +4060,7 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "1"^^xsd:positiveInteger ;
-	bo:reference <http://www.cdisc.org/C66738/V49#C66738_C38114> ;
+	bo:reference <http://www.cdisc.org/C66729/V56#C66729> ;
 	bo:context <http://www.cdisc.org/CT/V57#TH> ;
 .
 <http://www.cdisc.org/SDTM_IG_EC/V4#IGD_ECLOT>
@@ -4532,6 +4536,7 @@
 	bd:ctAndFormat ""^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V5#CL_--TRT> ;
+	bd:isA <http://www.s-cubed.dk/CAR#23c859f4f777dc72aa029df6686fccf5faec11cf> ;
 .
 <http://www.cdisc.org/SDTM_IG_ML/V4#IGD_MLCAT>
 	rdf:type bd:SdtmDomainVariable ;
@@ -5124,6 +5129,7 @@
 	bd:ctAndFormat ""^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V5#CL_--TRT> ;
+	bd:isA <http://www.s-cubed.dk/CAR#23c859f4f777dc72aa029df6686fccf5faec11cf> ;
 .
 <http://www.cdisc.org/SDTM_IG_PR/V4#IGD_PRDECOD>
 	rdf:type bd:SdtmDomainVariable ;
@@ -5340,7 +5346,7 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "1"^^xsd:positiveInteger ;
-	bo:reference <http://www.cdisc.org/C66738/V49#C66738_C38114> ;
+	bo:reference <http://www.cdisc.org/C66729/V56#C66729> ;
 	bo:context <http://www.cdisc.org/CT/V57#TH> ;
 .
 <http://www.cdisc.org/SDTM_IG_PR/V4#IGD_PRLOC>
@@ -5827,6 +5833,7 @@
 	bd:ctAndFormat ""^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#52070084-cdd3-4ba8-8377-f670e4b0276c> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V5#CL_--TRT> ;
+	bd:isA <http://www.s-cubed.dk/CAR#23c859f4f777dc72aa029df6686fccf5faec11cf> ;
 .
 <http://www.cdisc.org/SDTM_IG_SU/V4#IGD_SUMODIFY>
 	rdf:type bd:SdtmDomainVariable ;
@@ -6092,7 +6099,7 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "1"^^xsd:positiveInteger ;
-	bo:reference <http://www.cdisc.org/C66738/V49#C66738_C38114> ;
+	bo:reference <http://www.cdisc.org/C66729/V56#C66729> ;
 	bo:context <http://www.cdisc.org/CT/V57#TH> ;
 .
 <http://www.cdisc.org/SDTM_IG_SU/V4#IGD_TAETORD>
@@ -29486,7 +29493,7 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "1"^^xsd:positiveInteger ;
-	bo:reference <http://www.cdisc.org/C66734/V55#C66734_C147183> ;
+	bo:reference <http://www.cdisc.org/C100130/V57#C100130> ;
 	bo:context <http://www.cdisc.org/CT/V57#TH> ;
 .
 <http://www.cdisc.org/SDTM_IG_OI/V4#IGD>

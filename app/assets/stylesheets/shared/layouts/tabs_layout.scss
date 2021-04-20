@@ -1,109 +1,144 @@
 @import "shared/vars";
 
-.card-with-tabs{
+.card-with-tabs {
   padding-top: 6px;
 }
 
-.tabs-sel{
-  width: 100%;
+// Tabs Selector (wrapper)
+.tabs-sel {
   display: flex;
-  direction: row;
   flex-wrap: nowrap;
   justify-content: center;
+  width: 100%;
   border-bottom: 1px solid $grey-bright;
 }
 
-.tab-option{
+// Horizontal scrolling for Tabs Selector
+.tabs-scroll-wrap {
+  overflow-x: auto;
+  text-align: center;
+
+  .tabs-sel {
+    width: auto;
+    display: block; 
+  }
+
+  a.tab-option {
+    margin-right: -4px;
+  }
+}
+
+// Single Tab Option 
+.tab-option {
+  min-width: 100px;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
+  padding: 6px 14px;
+  position: relative;
+
   background: $row-highlight-background;
   color: $grey-medium;
   font-family: $font-light;
-  min-width: 100px;
-  padding: 6px 14px;
-  text-align: center;
-  justify-content: center;
-  position: relative;
-  border-collapse: collapse;
-  cursor: pointer;
-  overflow: hidden;
+
   border-top: 2px solid $grey-bright;
+  border-bottom: 3px solid $row-highlight-background;
+  cursor: pointer;
+
+  // First and last - special borders
+  &:first-of-type {
+    border-left: 2px solid $grey-bright;
+    border-top-left-radius: 10px;
+  }
+
+  &:last-of-type {
+    border-right: 2px solid $grey-bright;
+    border-top-right-radius: 10px;
+  }
+
+  &:hover, &:focus {
+    background: $grey-white;
+    border-bottom-color: $grey-bright;
+    text-decoration: none;
+    color: $grey-medium;
+    outline: none;
+  }
+
+  // Selected Tab Option
+  &.active {
+    background: white;
+    border-bottom-color: $secondary-color-light;
+    color: $primary-color-medium;
+    padding-top: 6px;
+  }
+
+  &.disabled {
+    opacity: .5;
+    pointer-events: none;
+  }
+
+  // Tab Option with Icon
+  &.with-icon{
+    height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px 14px;
+
+    span[class^='icon-'] {
+      color: white;
+      font-size: $font-normal;
+      opacity: .9;
+      margin-right: 8px;
+      border-radius: 50%;
+      padding: 6px 7px 7px 7px;
+    }
+
+  }
+  
 }
 
-.tab-option:first-of-type {
-  border-left: 2px solid $grey-bright;
-  border-top-left-radius: 10px;
-}
-
-.tab-option:last-of-type {
-  border-right: 2px solid $grey-bright;
-  border-top-right-radius: 10px;
-}
-
-.tab-option:hover {
-  background: $grey-white;
-  color: $primary-color-light;
-}
-
-.tab-option.active{
-  background: white;
-  border-bottom: 3px solid $secondary-color-light;
-  color: $primary-color-light;
-  padding-top: 6px;
-}
-
-.tab-option.disabled{
-  opacity: .5;
-  pointer-events: none;
-}
-
-.tab-wrap{
+// Tab Content - wrap
+.tab-wrap {
   width: 100%;
   transition: opacity .2s, transform .2s;
-  visibility: visible;
   padding: 10px;
+
+  visibility: visible;
   transform: translateY(0px);
-}
 
-.tab-wrap.closed{
-  width: 0%;
-  height: 0%;
-  overflow-y: hidden;
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(-5px);
-  position: absolute;
-  left: 50px;
-}
+  &.closed {
+    width: 0%;
+    height: 0%;
+    left: 50px;
+    position: absolute;
+    overflow-y: hidden;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-5px);
+  }
 
-.tab-wrap.processing{
-  min-height: 100px;
-  position: relative;
-}
+  &.closed.processing {
+    min-height: 100px;
+    position: absolute;
+  }
 
-.tab-wrap.closed.processing{
-  min-height: 100px;
-  position: absolute;
-}
+  &.processing {
+    min-height: 100px;
+    position: relative;
 
-.tab-wrap.processing .spinner-container{
-  position: absolute;
-  background-color: rgba(255, 255, 255, 0.8);
-  z-index: 10;
-  bottom: 0px!important;
-  top: 0px!important;
-  left: 0px!important;
-  right: 0px!important;
-  width: 100%;
-  height: 100%;
-}
-
-.tab-option.with-icon{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 44px;
-  padding: 4px 14px;
+    .spinner-container {
+      position: absolute;
+      background-color: rgba(255, 255, 255, 0.8);
+      z-index: 10;
+      bottom: 0px!important;
+      top: 0px!important;
+      left: 0px!important;
+      right: 0px!important;
+      width: 100%;
+      height: 100%;
+    }
+  }
 }
 
 .tab-option.with-icon span[class^='icon-']{

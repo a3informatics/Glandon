@@ -14,6 +14,12 @@ describe "Users", :type => :feature do
     expect(page).to have_content "Current Roles: #{roles}"
   end
 
+  def set_user_role(role)
+    click_on "Set #{ role } Role"
+    ui_confirmation_dialog true
+    wait_for_ajax 10
+  end 
+
   describe "Login and Logout", :type => :feature do
 
     before :all do
@@ -224,21 +230,23 @@ describe "Users", :type => :feature do
       ua_sys_admin_login
       click_link 'users_button'
       check_user_role("comm_reader@example.com", audit_count+1, "Community Reader")
-      click_link 'Set Curator Role'
+      set_user_role 'Curator'
+      # Check success flash
+      expect(page).to have_content "User role for comm_reader@example.com successfully updated to: Curator."
       check_user_role("comm_reader@example.com", audit_count+2, "Curator")
-      click_link 'Set Content Admin Role'
+      set_user_role 'Content Admin'
       check_user_role("comm_reader@example.com", audit_count+3, "Content Admin")
-      click_link 'Set Curator Role'
+      set_user_role 'Curator'
       check_user_role("comm_reader@example.com", audit_count+4, "Curator")
-      click_link 'Set Content Admin & System Admin Role'
+      set_user_role 'Content Admin & System Admin'
       check_user_role("comm_reader@example.com", audit_count+5, "Content Admin, System Admin")
-      click_link 'Set Terminology Reader Role'
+      set_user_role 'Terminology Reader'
       check_user_role("comm_reader@example.com", audit_count+6, "Terminology Reader")
-      click_link 'Set Terminology Curator Role'
+      set_user_role 'Terminology Curator'
       check_user_role("comm_reader@example.com", audit_count+7, "Terminology Curator")
-      click_link 'Set Reader Role'
+      set_user_role 'Reader'
       check_user_role("comm_reader@example.com", audit_count+8, "Reader")
-      click_link 'Set Community Reader Role'
+      set_user_role 'Community Reader'
       check_user_role("comm_reader@example.com", audit_count+9, "Community Reader")
     end
 
@@ -304,7 +312,9 @@ describe "Users", :type => :feature do
       find(:xpath, "//tr[contains(.,'admin2@example.com')]/td/a", :class => 'edit-user').click
       expect(page).to have_content 'Set User Roles'
       expect(page).to have_content 'Email: admin2@example.com'
-      click_link 'Set Curator Role'
+      click_on 'Set Curator Role'
+      ui_confirmation_dialog true 
+      wait_for_ajax 10 
       expect(page).to have_content 'All User Accounts'
       expect(find(:xpath, '//tr[contains(.,"admin2@example.com")]/td[2]').text).to eq("Curator")
     end
@@ -353,7 +363,7 @@ describe "Users", :type => :feature do
       fill_in :placeholder => 'Current password', :with => 'Changeme1#'
       fill_in :placeholder => 'New password', :with => 'Changeme2#'
       fill_in :placeholder => 'Confirm new password', :with => 'Changeme2#'
-      click_button 'Change password'
+      click_button 'Change'
       expect(page).to have_content 'Your new password is saved'
 
       ua_logoff
@@ -387,7 +397,7 @@ describe "Users", :type => :feature do
       fill_in :placeholder => 'Current password', :with => 'Changeme1#'
       fill_in :placeholder => 'New password', :with => 'Changeme2#'
       fill_in :placeholder => 'Confirm new password', :with => 'Changeme2#'
-      click_button 'Change password'
+      click_button 'Change'
       expect(page).to have_content 'Your new password is saved'
 
       ua_logoff
@@ -404,13 +414,17 @@ describe "Users", :type => :feature do
       expect(page).to have_content 'All User Accounts'
       find(:xpath, "//tr[contains(.,'sys_content_admin@example.com')]/td/a", :class => 'edit-user').click
       expect(page).to have_content 'Email: sys_content_admin@example.com'
-      click_link 'Set Curator Role'
+      click_on 'Set Curator Role'
+      ui_confirmation_dialog true 
+      wait_for_ajax 10 
       click_link 'users_button'
       expect(page).to have_content 'All User Accounts'
       find(:xpath, "//tr[contains(.,'sys_admin@example.com')]/td/a", :class => 'edit-user').click
       expect(page).to have_content 'Set User Roles'
       expect(page).to have_content 'Email: sys_admin@example.com'
-      click_link 'Set Curator Role'
+      click_on 'Set Curator Role'
+      ui_confirmation_dialog true 
+      wait_for_ajax 10 
       expect(page).to have_content 'You cannot remove the last system administrator.'
     end
 

@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe Form::Item::Mapping do
-  
+
   include DataHelpers
 
   def sub_dir
@@ -18,6 +18,7 @@ describe Form::Item::Mapping do
     item.uri = Uri.new(uri:"http://www.acme-pharma.com/A00001/V3#A00001")
     item.mapping = "EGMONKEY when XXTESTCD=HELLO"
     item.ordinal = 1
+    item.uri = item.create_uri(Uri.new(uri: "http://www.example.com/a#v1"))
     result = item.valid?
     expect(item.errors.full_messages.to_sentence).to eq("")
     expect(item.errors.count).to eq(0)
@@ -29,6 +30,7 @@ describe Form::Item::Mapping do
     item.uri = Uri.new(uri:"http://www.acme-pharma.com/A00001/V3#A00001")
     item.mapping = "EGMONKEY when ±±TESTCD=HELLO"
     item.ordinal = 1
+    item.uri = item.create_uri(Uri.new(uri: "http://www.example.com/a#v1"))
     result = item.valid?
     expect(item.errors.full_messages.to_sentence).to eq("Mapping contains invalid characters")
     expect(item.errors.count).to eq(1)
@@ -66,4 +68,3 @@ describe Form::Item::Mapping do
   end
 
 end
-  

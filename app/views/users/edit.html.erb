@@ -1,23 +1,24 @@
 <% content_for :page_title do %> Edit User: <%= @user.email %> <% end %>
 
-<%= javascript_include_tag 'standard_datatable' %>
+<%= javascript_pack_tag 'users/edit' %>
+
 <% breadcrumb ([id_to_type(:users), {link: "#", text: "Edit"}]) %>
 
 <style>
 
-.user-role-wrap{
-  padding: 14px 6px;
-	border-bottom: 1px solid lightgrey;
-}
+  .user-role-wrap{
+    padding: 14px 6px;
+    border-bottom: 1px solid lightgrey;
+  }
 
-.list-wrap{
-	max-height: 600px;
-	max-width: none;
-}
+  .list-wrap{
+    max-height: 600px;
+    max-width: none;
+  }
 
-.card{
-	min-width: 400px;
-}
+  .card{
+    min-width: 400px;
+  }
 
 </style>
 
@@ -52,7 +53,7 @@
       Set User Roles
     </div>
 
-    <div class="card-content">
+    <div id="user-roles" class="card-content">
 
       <div class="col-md-6">
         <div class="list-wrap">
@@ -62,7 +63,9 @@
   						<div class="text-normal"><%= display_text %> Role</div>
   			  		<div class="text-small font-light">
   			    		<p><%= Role.description(role) %></p>
-  			    		<%= link_to "Set #{display_text} Role", user_path(@user, :user => { :role_ids => [info[:id]] }), method: :put, :class => "btn medium green"%>
+                <button class="btn medium green update-role" data-url="<%= user_path(@user, :user => { :role_ids => [info[:id]] }) %>" data-type="PUT">
+                  Set <%= display_text %> Role
+                </button>
   			  		</div>
   					</div>
   				<% end %>
@@ -77,7 +80,9 @@
   							<div class="text-normal text-accent-2"><%= display_text %> & System Admin Role</div>
   				  		<div class="text-small font-light">
   				    		<p><%= Role.description(role) %></p>
-  				    		<%= link_to "Set #{display_text} & System Admin Role", user_path(@user, :user => { :role_ids => [roles[:sys_admin][:id], info[:id]] }), method: :put, :class => "btn medium red" %>
+                  <button class="btn medium red update-role" data-url="<%= user_path(@user, :user => { :role_ids => [roles[:sys_admin][:id], info[:id]] }) %>" data-type="PUT">
+                    Set <%= display_text %> & System Admin Role
+                  </button>
   				  		</div>
   						</div>
   					<% end %>
@@ -86,7 +91,9 @@
   					<div class="text-normal text-accent-2">System Admin Role</div>
   					<div class="text-small font-light">
   		    		<p>This access sets only system administration rights.</p>
-  		    		<%= link_to "Set System Admin Role", user_path(@user, :user => { :role_ids => [roles[:sys_admin][:id]] }), method: :put, :class => "btn medium red" %>
+              <button class="btn medium red update-role" data-url="<%= user_path(@user, :user => { :role_ids => [roles[:sys_admin][:id]] }) %>" data-type="PUT">
+                Set System Admin Role
+              </button>
   		  		</div>
   				</div>
   			</div>

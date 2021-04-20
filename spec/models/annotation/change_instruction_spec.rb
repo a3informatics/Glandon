@@ -171,7 +171,7 @@ describe Annotation::ChangeInstruction do
     end
 
     it "get data CDISC" do
-      uri = Uri.new(uri: "http://www.assero.co.uk/CHIN#c32e4b9a-b114-4e9f-8373-b614b809a4da")
+      uri = Uri.new(uri: "http://www.assero.co.uk/CHIN#0dfcf171-1a99-43c2-a38c-96cf71fed89f")
       item = Annotation::ChangeInstruction.find(uri)
       check_file_actual_expected(item.get_data, sub_dir, "get_data_4.yaml", equate_method: :hash_equal)
     end

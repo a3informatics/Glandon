@@ -1,6 +1,6 @@
 module TripleStoreHelpers
 
-  class TripleStore
+  class TripleStoreAccess
   
     def clear
       sparql_query = "CLEAR DEFAULT"

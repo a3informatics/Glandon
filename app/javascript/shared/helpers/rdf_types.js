@@ -168,12 +168,31 @@ const rdfTypesMap = {
     url: '/operational_reference_v3/tuc_references'
   },
 
+  // Study Types 
+  STUDY: {
+    rdfType: 'http://www.assero.co.uk/Protocol#Study',
+    name: 'Study',
+    param: 'study',
+    url: '/studies'
+  },
+  PROTOCOL: {
+    rdfType: 'http://www.assero.co.uk/Protocol#Protocol',
+    name: 'Protocol',
+    param: 'protocols',
+    url: '/protocols'
+  },
+  PROTOCOL_TEMPLATE: {
+    rdfType: 'http://www.assero.co.uk/Protocol#ProtocolTemplate',
+    name: 'Protocol Template',
+    param: 'protocol_template',
+    url: '/protocol_templates'
+  },
+  
   UNKNOWN: {
     rdfType: 'unknown',
     name: 'Unknown',
     param: ''
   }
-
 }
 
 /**

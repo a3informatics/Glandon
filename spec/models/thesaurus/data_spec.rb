@@ -7,7 +7,8 @@ describe Thesaurus::ManagedConcept do
   include SparqlHelpers
   include PublicFileHelpers
   include ThesauriHelpers
-  
+  include NameValueHelpers
+
   def sub_dir
     return "models/thesaurus/data"
   end
@@ -78,7 +79,7 @@ describe Thesaurus::ManagedConcept do
       @tc_2.to_sparql(sparql, true)
       full_path = sparql.to_file
     #Xcopy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "thesaurus_airport.ttl")
-    end 
+    end
 
   end
 
@@ -206,7 +207,7 @@ describe Thesaurus::ManagedConcept do
       @tc_3.to_sparql(sparql, true)
       full_path = sparql.to_file
     #Xcopy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "thesaurus_airport_v2.ttl")
-    end 
+    end
 
   end
 
@@ -246,7 +247,7 @@ describe Thesaurus::ManagedConcept do
       @tc_1.to_sparql(sparql, true)
       full_path = sparql.to_file
     #Xcopy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "thesaurus_sponsor_5_state.ttl")
-    end 
+    end
 
   end
 
@@ -290,7 +291,7 @@ describe Thesaurus::ManagedConcept do
       @tc_1.to_sparql(sparql, true)
       full_path = sparql.to_file
     #Xcopy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "thesaurus_sponsor_6_referenced.ttl")
-    end 
+    end
 
   end
 
@@ -373,7 +374,7 @@ describe Thesaurus::ManagedConcept do
       @tc_1.narrower << @tc_1b
       @tc_1.narrower << @tc_1c
       @tc_1.narrower << Uri.new(uri: "http://www.cdisc.org/C99079/V47#C99079_C125938")
-      @tc_1.narrower << Uri.new(uri: "http://www.cdisc.org/C99079/V58#C99079_C99158")            
+      @tc_1.narrower << Uri.new(uri: "http://www.cdisc.org/C99079/V58#C99079_C99158")
       @tc_1.set_initial("S00001")
       @tc_2 = Thesaurus::ManagedConcept.new
       @tc_2.identifier = "S00002"
@@ -446,7 +447,7 @@ describe Thesaurus::ManagedConcept do
       @cs.to_sparql(sparql, true)
       full_path = sparql.to_file
     #Xcopy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "ad_hoc_reports_thesaurus.ttl")
-    end 
+    end
 
   end
 
@@ -490,7 +491,7 @@ describe Thesaurus::ManagedConcept do
       @tc_2.notation = "SUB1"
       @tc_2.subsets = cdisc.uri
       @tc_2.narrower << Uri.new(uri: "http://www.cdisc.org/C99079/V47#C99079_C125938")
-      @tc_2.narrower << Uri.new(uri: "http://www.cdisc.org/C99079/V58#C99079_C99158")  
+      @tc_2.narrower << Uri.new(uri: "http://www.cdisc.org/C99079/V58#C99079_C99158")
       @tc_2.set_initial("S00001")
     end
 
@@ -512,7 +513,7 @@ describe Thesaurus::ManagedConcept do
       @tc_2.to_sparql(sparql, true)
       full_path = sparql.to_file
     #Xcopy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "thesaurus_migration_3_1_0.ttl")
-    end 
+    end
 
   end
 end

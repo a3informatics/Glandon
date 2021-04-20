@@ -1,0 +1,93 @@
+---
+:id: aHR0cDovL3d3dy50cmFuc2NlbGVyYXRlYmlvcGhhcm1haW5jLmNvbS9GTFUwMDEvVjEjUFI=
+:uri: http://www.transceleratebiopharmainc.com/FLU001/V1#PR
+:rdf_type: http://www.assero.co.uk/Protocol#Protocol
+:label: FLU 001
+:has_state:
+  :id: aHR0cDovL3d3dy50cmFuc2NlbGVyYXRlYmlvcGhhcm1haW5jLmNvbS9GTFUwMDEvVjEjUFJfUlM=
+  :uri: http://www.transceleratebiopharmainc.com/FLU001/V1#PR_RS
+  :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationState
+  :registration_status: Incomplete
+  :administrative_note: ''
+  :effective_date: '2016-01-01T00:00:00+00:00'
+  :until_date: '2016-01-01T00:00:00+00:00'
+  :unresolved_issue: ''
+  :administrative_status: ''
+  :previous_state: Incomplete
+  :multiple_edit: false
+  :by_authority:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUkEjRFVOUzA3OTY1ODY4NA==
+    :uri: http://www.assero.co.uk/RA#DUNS079658684
+    :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
+    :organization_identifier: '079658684'
+    :international_code_designator: DUNS
+    :owner: true
+    :ra_namespace:
+      :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjVFJBTlNDRUxFUkFURQ==
+      :uri: http://www.assero.co.uk/NS#TRANSCELERATE
+      :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+      :short_name: Transcelerate
+      :name: TransCelerate BioPharma Inc.
+      :authority: www.transceleratebiopharmainc.com
+:has_identifier:
+  :id: aHR0cDovL3d3dy50cmFuc2NlbGVyYXRlYmlvcGhhcm1haW5jLmNvbS9GTFUwMDEvVjEjUFJfU0k=
+  :uri: http://www.transceleratebiopharmainc.com/FLU001/V1#PR_SI
+  :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
+  :identifier: FLU001
+  :version_label: ''
+  :version: 1
+  :semantic_version: 0.1.0
+  :has_scope:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjVFJBTlNDRUxFUkFURQ==
+    :uri: http://www.assero.co.uk/NS#TRANSCELERATE
+    :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+    :short_name: Transcelerate
+    :name: TransCelerate BioPharma Inc.
+    :authority: www.transceleratebiopharmainc.com
+:has_previous_version: 
+:origin: ''
+:change_description: ''
+:creation_date: '2016-01-01T00:00:00+00:00'
+:last_change_date: '2020-11-16T15:05:45+01:00'
+:explanatory_comment: ''
+:acronym: MADE UP ACRONYM
+:title: A made up protocol title
+:short_title: FLU 001
+:study_phase: 
+:study_type: 
+:intervention_model: 
+:masking: 
+:for_indication: []
+:in_ta: 
+:specifies_arm:
+- :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQVJNIzE3NjBjYmIxLWEzNzAtNDFmNi1hM2IzLTQ5M2MxZDljMjIzOA==
+  :uri: http://www.assero.co.uk/ARM#1760cbb1-a370-41f6-a3b3-493c1d9c2238
+  :rdf_type: http://www.assero.co.uk/Protocol#Arm
+  :label: B
+  :description: ''
+  :arm_type: ''
+  :ordinal: 2
+- :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQVJNI2I3NjU5N2Y3LTk3MmYtNDBmNC1iZWQ3LWUxMzQ3MjVjZjI5Ng==
+  :uri: http://www.assero.co.uk/ARM#b76597f7-972f-40f4-bed7-e134725cf296
+  :rdf_type: http://www.assero.co.uk/Protocol#Arm
+  :label: A
+  :description: ''
+  :arm_type: ''
+  :ordinal: 1
+:specifies_epoch:
+- :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvRVAjNDY0NmI0N2EtNGFlNC00ZjIxLWI1ZTItNTY1ODE1YzhjZGVk
+  :uri: http://www.assero.co.uk/EP#4646b47a-4ae4-4f21-b5e2-565815c8cded
+  :rdf_type: http://www.assero.co.uk/Protocol#Epoch
+  :label: Follow Up
+  :ordinal: 3
+- :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvRVAjMGNkYTZmMjQtZTU0ZC00NzI0LWFmNzktOTE2ZDQxZDliZDdm
+  :uri: http://www.assero.co.uk/EP#0cda6f24-e54d-4724-af79-916d41d9bd7f
+  :rdf_type: http://www.assero.co.uk/Protocol#Epoch
+  :label: Screening
+  :ordinal: 1
+- :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvRVAjZjlmZTcxMjgtNGI2My00ODJkLTlhMTEtNjIyNTBlMjRmZTBj
+  :uri: http://www.assero.co.uk/EP#f9fe7128-4b63-482d-9a11-62250e24fe0c
+  :rdf_type: http://www.assero.co.uk/Protocol#Epoch
+  :label: Treatment
+  :ordinal: 2
+:specifies_objective: []

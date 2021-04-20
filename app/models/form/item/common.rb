@@ -6,8 +6,8 @@
 class Form::Item::Common < Form::Item::BcProperty
 
   configure rdf_type: "http://www.assero.co.uk/BusinessForm#CommonItem",
-            uri_suffix: "CI",  
-            uri_unique: true 
+            uri_suffix: "CI",
+            uri_unique: true
 
   object_property :has_common_item, cardinality: :many, model_class: "Form::Item::BcProperty"
 
@@ -78,7 +78,7 @@ class Form::Item::Common < Form::Item::BcProperty
       parent.reset_ordinals
     else
       delete_node(parent)
-    end    
+    end
     common_group = Form::Group::Common.find(parent.uri)
     normal_group = Form::Group::Normal.find_full(common_group.get_normal_group)
     normal_group = normal_group.full_data
@@ -88,21 +88,21 @@ class Form::Item::Common < Form::Item::BcProperty
     update_query = %Q{
       DELETE DATA
       {
-        #{parent.uri.to_ref} bf:hasItem #{self.uri.to_ref} 
+        #{parent.uri.to_ref} bf:hasItem #{self.uri.to_ref}
       };
-      DELETE {?s ?p ?o} WHERE 
-      { 
-        { BIND (#{self.uri.to_ref} as ?s). 
+      DELETE {?s ?p ?o} WHERE
+      {
+        { BIND (#{self.uri.to_ref} as ?s).
           ?s ?p ?o
         }
         UNION
-        { #{self.uri.to_ref} bf:hasCodedValue ?o1 . 
-          BIND (?o1 as ?s) . 
+        { #{self.uri.to_ref} bf:hasCodedValue ?o1 .
+          BIND (?o1 as ?s) .
           ?s ?p ?o .
         }
         UNION
-        { #{self.uri.to_ref} bf:hasProperty ?o2 . 
-          BIND (?o2 as ?s) . 
+        { #{self.uri.to_ref} bf:hasProperty ?o2 .
+          BIND (?o2 as ?s) .
           ?s ?p ?o .
         }
       }

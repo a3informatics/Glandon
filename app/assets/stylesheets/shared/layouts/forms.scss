@@ -96,8 +96,12 @@
   color: white !important;
 }
 
-.form-wrap .form-group.has-error input {
-  border-color: $accent-color-2;
+.form-wrap .form-group.has-error {
+
+  input, textarea, select {
+    border-color: $accent-color-2;
+  }
+  
 }
 
 .form-wrap .form-group .help-block {

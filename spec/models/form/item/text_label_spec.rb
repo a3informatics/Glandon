@@ -1,9 +1,8 @@
 require 'rails_helper'
 
 describe Form::Item::TextLabel do
-  
+
   include DataHelpers
-  include OdmHelpers
 
   def sub_dir
     return "models/form/item/text_label"
@@ -19,6 +18,7 @@ describe Form::Item::TextLabel do
     result.uri = Uri.new(uri:"http://www.acme-pharma.com/A00001/V3#A00001")
     result.label_text = "Draft 123"
     result.ordinal = 1
+    result.uri = result.create_uri(Uri.new(uri: "http://www.example.com/a#v1"))
     expect(result.valid?).to eq(true)
   end
 
@@ -26,6 +26,7 @@ describe Form::Item::TextLabel do
     result = Form::Item::TextLabel.new
     result.uri = Uri.new(uri:"http://www.acme-pharma.com/A00001/V3#A00001")
     result.label_text = "Draft 123§"
+    result.uri = result.create_uri(Uri.new(uri: "http://www.example.com/a#v1"))
     expect(result.valid?).to eq(false)
   end
 
@@ -62,4 +63,3 @@ describe Form::Item::TextLabel do
   # end
 
 end
-  

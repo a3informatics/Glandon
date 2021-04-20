@@ -1,0 +1,15 @@
+PREFIX bf: <http://www.assero.co.uk/BusinessForm#>
+PREFIX isoC: <http://www.assero.co.uk/ISO11179Concepts#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+INSERT DATA 
+{ 
+<http://www.example.com/path#parent_I1> rdf:type bf:Item . 
+<http://www.example.com/path#parent_I1> isoC:label "test label"^^xsd:string . 
+<http://www.example.com/path#parent_I1> bf:ordinal "1"^^xsd:integer . 
+<http://www.example.com/path#parent_I1> bf:note "Note"^^xsd:string . 
+<http://www.example.com/path#parent_I1> bf:completion "Completion"^^xsd:string . 
+<http://www.example.com/path#parent_I1> bf:optional "false"^^xsd:boolean . 
+}

@@ -1,0 +1,48 @@
+<% content_for :page_title do %> Triples: <%= @uri %> <% end %>
+
+<%= javascript_pack_tag 'triple_store/show' %>
+
+<% first_level_breadcrumb (:triples) %>
+
+<div class="row">
+  <%= render layout: "shared/headers/header_minimal", :locals => {badge: "icon-triples",
+    main_text: "Triples", sub_text: "Viewing raw database content of: <span class='font-regular'>#{@uri}</span>".html_safe } do %>
+
+    <div class="btns-wrap">
+      <%= render partial: "shared/buttons/return", :locals => { url: @close_path } %>
+    </div>
+
+  <% end %>
+</div>
+
+<div class="row centered">
+  <div class="col-md-12 card wide">
+    <div class="card-header">
+      Show
+    </div>
+    <div class="card-content table-cardstyle all-columns">
+      <table id="main" class="table">
+        <thead>
+          <tr>
+            <th class="fit">Predicate</th>
+  					<th class="fit">Object</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @triples.each do |triple| %>
+            <tr>
+              <td><%= triple[:predicate] %></td>
+              <td>
+                <% if triple[:object].start_with?("http") %>
+                  <%= link_to "#{triple[:object]}", triple_store_path(Uri.new(uri: triple[:object]).to_id) %>
+                <% else %>
+                  <%= triple[:object] %>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

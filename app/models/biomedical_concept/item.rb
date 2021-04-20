@@ -1,4 +1,4 @@
-# Biomedical Concept, Item. 
+# Biomedical Concept, Item.
 #
 # @author Dave Iberson-Hurst
 # @since 3.1.0
@@ -7,7 +7,7 @@ class BiomedicalConcept::Item < IsoConceptV2
 configure rdf_type: "http://www.assero.co.uk/BiomedicalConcept#Item",
           uri_property: :ordinal,
           uri_suffix: 'BCI'
-  
+
   data_property :mandatory, default: true
   data_property :collect, default: true
   data_property :enabled, default: true

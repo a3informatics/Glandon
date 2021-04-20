@@ -1,9 +1,8 @@
 require 'rails_helper'
 
 describe Form::Item::Placeholder do
-  
+
   include DataHelpers
-  include OdmHelpers
 
   def sub_dir
     return "models/form/item/placeholder"
@@ -19,6 +18,7 @@ describe Form::Item::Placeholder do
     item.uri = Uri.new(uri:"http://www.acme-pharma.com/A00001/V3#A00001")
     item.free_text = "Draft 123"
     item.ordinal = 1
+    item.uri = item.create_uri(Uri.new(uri: "http://www.example.com/a#v1"))
     result = item.valid?
     expect(item.errors.full_messages.to_sentence).to eq("")
     expect(item.errors.count).to eq(0)
@@ -30,6 +30,7 @@ describe Form::Item::Placeholder do
     item.uri = Uri.new(uri:"http://www.acme-pharma.com/A00001/V3#A00001")
     item.free_text = "Draft 123±"
     item.ordinal = 1
+    item.uri = item.create_uri(Uri.new(uri: "http://www.example.com/a#v1"))
     result = item.valid?
     expect(item.errors.full_messages.to_sentence).to eq("Free text contains invalid markdown")
     expect(item.errors.count).to eq(1)
@@ -81,4 +82,3 @@ describe Form::Item::Placeholder do
 #   end
 
 end
-  

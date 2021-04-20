@@ -17,34 +17,54 @@
   </title>
 
   <%= favicon_link_tag %>
-  <%= stylesheet_link_tag 'application', media: 'all', id: "maincss" %>
-  <%= stylesheet_link_tag 'devise/devise', media: 'all'%>
+
+  <%= stylesheet_link_tag 'application', media: 'all' %>
+  <%= stylesheet_link_tag 'layouts/devise', media: 'all'%>
+
+  <%= javascript_include_tag 'application' %>
+
+  <%# Preload fonts %>
+  <% if Rails.env != "test" %>
+    <%= preload_link_tag(asset_path("Roboto-Light.ttf"), ) %>
+    <%= preload_link_tag(asset_path("Roboto-Medium.ttf")) %>
+    <%= preload_link_tag(asset_path("Roboto-Regular.ttf")) %>
+  <% end %>
+
   <%= csrf_meta_tags %>
 
 </head>
 	<body>
+
+    <%# Flash alerts %>
     <div id="alerts">
       <% flash.each do |type, message| %>
-        <% if type != "timedout"%>
-          <div class="alert <%= bootstrap_class_for(type) %> fade in">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-            <%= message %>
-          </div>
-        <% end %>
+
+        <%# Skip timedout alert %>
+        <% next if type == "timedout" %>
+
+        <div class="alert <%= bootstrap_class_for(type) %> fade in">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <%= message %>
+        </div>
+
       <% end %>
     </div>
+
 		<div class="container">
       <div class="card m-card">
+
         <div class="half">
   			     <%= yield %>
         </div>
+
         <div class="half">
           <img src="<%= image_path("shared/a3_outline_graph") %>" width="250" id="a3-devise-logo"/>
         </div>
-  			<%= javascript_include_tag 'application' %>
+
       </div>
 		</div>
+
 	</body>
 </html>

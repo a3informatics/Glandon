@@ -1,7 +1,7 @@
 class Form::Group < IsoConceptV2
 
   configure rdf_type: "http://www.assero.co.uk/BusinessForm#Group",
-            uri_suffix: "G",  
+            uri_suffix: "G",
             uri_unique: true
 
   data_property :ordinal, default: 1
@@ -41,7 +41,7 @@ class Form::Group < IsoConceptV2
   #
   # @result [Boolean] return true if this instance is a top level group or false if it is a SubGroup
   def top_level_group?
-    Sparql::Query.new.query("ASK {#{self.uri.to_ref} ^bf:hasGroup ?o}", "", [:bf]).ask? 
+    Sparql::Query.new.query("ASK {#{self.uri.to_ref} ^bf:hasGroup ?o}", "", [:bf]).ask?
   end
 
   # Delete. Delete the object. Clone if there are multiple parents.
@@ -113,39 +113,39 @@ private
     update_query = %Q{
       DELETE DATA
       {
-        #{parent.uri.to_ref} bf:hasCommon #{self.uri.to_ref} 
+        #{parent.uri.to_ref} bf:hasCommon #{self.uri.to_ref}
       };
       DELETE DATA
       {
-        #{parent.uri.to_ref} bf:hasSubGroup #{self.uri.to_ref} 
+        #{parent.uri.to_ref} bf:hasSubGroup #{self.uri.to_ref}
       };
       DELETE DATA
       {
-        #{parent.uri.to_ref} bf:hasGroup #{self.uri.to_ref} 
+        #{parent.uri.to_ref} bf:hasGroup #{self.uri.to_ref}
       };
-      DELETE {?s ?p ?o} WHERE 
-      { 
-        { BIND (#{self.uri.to_ref} as ?s). 
+      DELETE {?s ?p ?o} WHERE
+      {
+        { BIND (#{self.uri.to_ref} as ?s).
           ?s ?p ?o
         }
         UNION
-        { #{self.uri.to_ref} bf:hasItem ?o1 . 
-          BIND (?o1 as ?s) . 
+        { #{self.uri.to_ref} bf:hasItem ?o1 .
+          BIND (?o1 as ?s) .
           ?s ?p ?o .
         }
         UNION
-        { #{self.uri.to_ref} bf:hasSubGroup ?o2 . 
-          BIND (?o2 as ?s) . 
+        { #{self.uri.to_ref} bf:hasSubGroup ?o2 .
+          BIND (?o2 as ?s) .
           ?s ?p ?o .
         }
         UNION
-        { #{self.uri.to_ref} bf:hasCommon ?o3 . 
-          BIND (?o3 as ?s) . 
+        { #{self.uri.to_ref} bf:hasCommon ?o3 .
+          BIND (?o3 as ?s) .
           ?s ?p ?o .
         }
         UNION
-        { #{self.uri.to_ref} bf:hasBiomedicalConcept ?o4 . 
-          BIND (?o4 as ?s) . 
+        { #{self.uri.to_ref} bf:hasBiomedicalConcept ?o4 .
+          BIND (?o4 as ?s) .
           ?s ?p ?o .
         }
       }

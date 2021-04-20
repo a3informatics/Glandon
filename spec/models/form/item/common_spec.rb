@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe Form::Item::Common do
-  
+
   include DataHelpers
   include SecureRandomHelpers
 
@@ -35,7 +35,7 @@ describe Form::Item::Common do
   end
 
   describe "Basic tests" do
-    
+
     before :all do
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
       load_files(schema_files, data_files)
@@ -58,7 +58,7 @@ describe Form::Item::Common do
       result = item.to_crf(nil)
       check_file_actual_expected(result, sub_dir, "to_crf_expected_1.yaml", equate_method: :hash_equal)
     end
-  
+
     it "returns the CRF rendition, coded" do
       bc_property = BiomedicalConcept::PropertyX.create(uri: Uri.new(uri: "http://www.s-cubed.dk/Q2"), question_text: "Something", prompt_text: "Else", format: "13", alias: "Well", is_complex_datatype_property: Uri.new(uri: "http://www.s-cubed.dk/CDT#CD_code"))
       ref = OperationalReferenceV3.create({uri: Uri.new(uri: "http://www.s-cubed.dk/Ref1"), ordinal: 1, reference: bc_property}, bc_property)
@@ -75,7 +75,7 @@ describe Form::Item::Common do
       result = item.to_crf(nil)
       check_file_actual_expected(result, sub_dir, "to_crf_expected_2.yaml", equate_method: :hash_equal)
     end
-  
+
     it "returns the children in ordinal order" do
       item = Form::Item::Common.create(uri: Uri.new(uri: "http://www.s-cubed.dk/Q2"), ordinal: 1)
       expect(item.children_ordered).to eq([])
@@ -102,7 +102,7 @@ describe Form::Item::Common do
   end
 
   describe "Restore" do
-    
+
     before :each do
       data_files = ["forms/MAKE_COMMON_TEST.ttl", "forms/CRF TEST 1.ttl","biomedical_concept_instances.ttl", "biomedical_concept_templates.ttl" ]
       load_files(schema_files, data_files)
@@ -146,4 +146,3 @@ describe Form::Item::Common do
   end
 
 end
-  

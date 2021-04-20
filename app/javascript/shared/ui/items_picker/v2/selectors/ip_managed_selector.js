@@ -13,19 +13,21 @@ export default class ManagedSelector {
   /**
    * Create a new Managed Selector instance
    * @param {Object} params Instance parameters
+   * @param {string} params.parentSelector Unique DOM selector of the parent element 
    * @param {Object} params.type Selector type, must an entry be from the RdfTypesMap
    * @param {Object} params.options ItemsPicker options object 
    * @param {SelectionHandler} params.selectionHandler Items Picker SelectionHandler instance 
    * @param {EventHandler} params.eventHandler Items Picker shared EventHandler instance 
    */
   constructor({
+    parentSelector,
     type,
     options,
     selectionHandler,
     eventHandler
   }) {
 
-    const selector = '#' + IPHelper.typeToSelectorId( type )
+    const selector = `${ parentSelector } #${ IPHelper.typeToSelectorId( type ) }`
 
     Object.assign( this, {
       selector,
@@ -200,7 +202,9 @@ export default class ManagedSelector {
    * @param {array} selected Selected item data 
    */
   _onHistorySelect(selected) {
-    this._SelectionHandler.add( selected )
+    this._SelectionHandler.add( selected, { 
+      updatePanels: !this.options.multiple // Update selection of other panels only when single item selection enabled 
+    } )
   }
 
   /**

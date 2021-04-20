@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe Fuseki::Resource do
-  
+
   include DataHelpers
   include PublicFileHelpers
   include FusekiBaseHelpers
@@ -151,7 +151,7 @@ describe Fuseki::Resource do
       TestR4.object_property(:fred, {cardinality: :one, model_class: "TestRTarget"})
       expect(TestR4.instance_variable_get(:@resources)).to eq({:fred => fred_expected})
       TestR4.object_property(:sid, {cardinality: :many, model_class: "TestRTarget", read_exclude: true})
-      expect(TestR4.instance_variable_get(:@resources)).to eq({:fred => fred_expected, :sid => sid_expected}) 
+      expect(TestR4.instance_variable_get(:@resources)).to eq({:fred => fred_expected, :sid => sid_expected})
     end
 
     it "object property configured, exclude" do
@@ -161,14 +161,14 @@ describe Fuseki::Resource do
       TestR4.object_property(:fred, {cardinality: :one, model_class: "TestRTarget"})
       expect(TestR4.instance_variable_get(:@resources)).to eq({:fred => fred_expected})
       TestR4.object_property(:sid, {cardinality: :many, model_class: "TestRTarget", read_exclude: true, delete_exclude: true})
-      expect(TestR4.instance_variable_get(:@resources)).to eq({:fred => fred_expected, :sid => sid_expected}) 
+      expect(TestR4.instance_variable_get(:@resources)).to eq({:fred => fred_expected, :sid => sid_expected})
     end
 
     it "object property configured, exclude bad value" do
       TestR4.configure({rdf_type: "http://www.example.com/B#YYY"})
       sid_expected = {:base_type=>"", :cardinality=>:many, :default=>[], :model_classes=>[TestRTarget], :read_exclude=>true, :delete_exclude=>true, :name=>:sid, :type=>:object, predicate: Uri.new(uri: "http://www.example.com/B#sid")}
       TestR4.object_property(:sid, {cardinality: :many, model_class: "TestRTarget", read_exclude: true, delete_exclude: "x"})
-      expect(TestR4.instance_variable_get(:@resources)).to hash_equal({:sid => sid_expected}) 
+      expect(TestR4.instance_variable_get(:@resources)).to hash_equal({:sid => sid_expected})
     end
 
     it "object property class configured" do
@@ -189,14 +189,14 @@ describe Fuseki::Resource do
       expect(TestR5).to receive(:schema_metadata).and_return(metadata)
       expect(metadata).to receive(:datatype).and_return("string")
       TestR5.configure({rdf_type: "http://www.example.com/C#YYY"})
-      fred1_expected = 
+      fred1_expected =
       {
-        :base_type=>string_datatype_to_h, 
-        :cardinality=>:one, :default=>"", :model_classes=>[], :read_exclude=>false, :delete_exclude=>false, :name=>:fred1, :type=>:data, 
+        :base_type=>string_datatype_to_h,
+        :cardinality=>:one, :default=>"", :model_classes=>[], :read_exclude=>false, :delete_exclude=>false, :name=>:fred1, :type=>:data,
         predicate: Uri.new(uri: "http://www.example.com/C#fred1")
       }
       TestR5.data_property(:fred1)
-      expect(all_metadata(TestR5.instance_variable_get(:@resources))).to hash_equal({:fred1 => fred1_expected})    
+      expect(all_metadata(TestR5.instance_variable_get(:@resources))).to hash_equal({:fred1 => fred1_expected})
     end
 
     it "data property configured, default" do
@@ -204,14 +204,14 @@ describe Fuseki::Resource do
       expect(TestR6).to receive(:schema_metadata).and_return(metadata)
       expect(metadata).to receive(:datatype).and_return("string")
       TestR6.configure({rdf_type: "http://www.example.com/C#YYY"})
-      fred2_expected = 
+      fred2_expected =
       {
-        :base_type=>string_datatype_to_h, 
-        :cardinality=>:one, :default=>"default value", :model_classes=>[], :read_exclude=>false, :delete_exclude=>false, :name=>:fred2, :type=>:data, 
+        :base_type=>string_datatype_to_h,
+        :cardinality=>:one, :default=>"default value", :model_classes=>[], :read_exclude=>false, :delete_exclude=>false, :name=>:fred2, :type=>:data,
         predicate: Uri.new(uri: "http://www.example.com/C#fred2")
       }
       TestR6.data_property(:fred2, {default: "default value"})
-      expect(all_metadata(TestR6.instance_variable_get(:@resources))).to hash_equal({:fred2 => fred2_expected})    
+      expect(all_metadata(TestR6.instance_variable_get(:@resources))).to hash_equal({:fred2 => fred2_expected})
     end
 
     it "key property" do
@@ -275,7 +275,7 @@ describe Fuseki::Resource do
 
       object_property :ra_namespace, cardinality: :many, model_class: "TestRTarget"
 
-    end 
+    end
 
     class TestR12 < TestR11
 
@@ -283,7 +283,7 @@ describe Fuseki::Resource do
 
       object_property :ra_namespace, cardinality: :many, model_class: "TestRTarget"
 
-    end 
+    end
 
     class TestR14 < TestR11
 
@@ -291,7 +291,7 @@ describe Fuseki::Resource do
 
       object_property :ra_namespace, cardinality: :many, model_class: "TestR14"
 
-    end 
+    end
 
     class TestR15 < TestR11
 
@@ -299,7 +299,7 @@ describe Fuseki::Resource do
 
       object_property :ra_namespace, cardinality: :many, model_class: "TestR14"
 
-    end 
+    end
 
     it "get properties, class and instance" do
       result = FusekiBaseHelpers::TestRegistrationAuthorities.resources

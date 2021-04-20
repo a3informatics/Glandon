@@ -462,7 +462,9 @@ export default class ItemsPicker extends ModalView {
       form: rdfTypesMap.FORM,
       sdtm_ig_domain: rdfTypesMap.SDTM_DOMAIN,
       sdtm_class: rdfTypesMap.SDTM_CLASS,
-      sdtm_sponsor_domain: rdfTypesMap.SDTM_SD
+      sdtm_sponsor_domain: rdfTypesMap.SDTM_SD,
+      protocol: rdfTypesMap.PROTOCOL,
+      protocol_template: rdfTypesMap.PROTOCOL_TEMPLATE
     }
 
   }

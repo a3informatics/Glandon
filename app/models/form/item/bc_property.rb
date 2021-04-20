@@ -6,8 +6,8 @@
 class Form::Item::BcProperty < Form::Item
 
   configure rdf_type: "http://www.assero.co.uk/BusinessForm#BcProperty",
-            uri_suffix: "BCP",  
-            uri_unique: true 
+            uri_suffix: "BCP",
+            uri_unique: true
 
   object_property :has_property, cardinality: :one, model_class: "OperationalReferenceV3"
   object_property :has_coded_value, cardinality: :many, model_class: "OperationalReferenceV3::TucReference"
@@ -75,7 +75,7 @@ class Form::Item::BcProperty < Form::Item
   end
 
   # Make Common With Clone
-  # 
+  #
   # @param [Object] managed_ancestor the managed ancestor object
   # @return [Void] no return
   def make_common_with_clone(managed_ancestor)
@@ -91,7 +91,7 @@ class Form::Item::BcProperty < Form::Item
   end
 
   # Common Group Present?
-  # 
+  #
   # @return [Boolean] true if common group present, false otherwise
   def common_group_present?
     return true if common_group?
@@ -100,14 +100,14 @@ class Form::Item::BcProperty < Form::Item
   end
 
   # Children Ordered
-  # 
+  #
   # @return [Array] array of objects ordered by ordinal
   def children_ordered
     self.has_coded_value_objects.sort_by {|x| x.ordinal}
   end
 
   # To H
-  # 
+  #
   # @return [Hash] hash representation of the instance
   def to_h
     x = super
@@ -116,23 +116,23 @@ class Form::Item::BcProperty < Form::Item
   end
 
   # Update With Clone
-  # 
+  #
   # @param [Hash] params a hash of properties to be updated
   # @param [Object] managed_ancestor the managed ancestor object
-  # @return [Object] returns the object. Not saved if errors are returned.      
+  # @return [Object] returns the object. Not saved if errors are returned.
   def update_with_clone(params, managed_ancestor)
     object = super(params.except(:enabled, :optional), managed_ancestor)
-    return object if object.errors.any? 
+    return object if object.errors.any?
     return object unless params.key?(:enabled) || params.key?(:optional)
     ref_object = object.has_property_objects.update_with_clone(params.slice(:enabled, :optional), managed_ancestor)
     object.merge_errors(ref_object)
     object
   end
-  
+
   # Make Common
-  # 
+  #
   # @param [Object] common:group the common group into which the item is to be moved
-  # @return [Object] returns the normal group      
+  # @return [Object] returns the normal group
   def make_common(common_group)
     common_bcp = find_common_matches
     property = BiomedicalConcept::PropertyX.find(self.has_property_objects.reference)
@@ -147,7 +147,7 @@ class Form::Item::BcProperty < Form::Item
     end
     new_property = self.has_property_objects.clone
     new_property.generate_uri(common_item.uri)
-    new_property.save 
+    new_property.save
     common_item.has_property = new_property
     common_bcp.each do |common_uri|
       common_item.has_common_item_push(common_uri)
@@ -175,23 +175,23 @@ private
   end
 
   def find_common_matches
-    query_string = %Q{         
-      SELECT ?common_bcp WHERE 
+    query_string = %Q{
+      SELECT ?common_bcp WHERE
       {
         #{self.uri.to_ref} bf:hasProperty/bo:reference/bc:isA ?ref .
         #{self.uri.to_ref} ^bf:hasItem/^bf:hasSubGroup/bf:hasSubGroup/bf:hasItem ?common_bcp .
         ?common_bcp bf:hasProperty/bo:reference/bc:isA ?ref
       }
-    }     
+    }
     query_results = Sparql::Query.new.query(query_string, "", [:bf, :bo, :bc])
     check_terminologies(query_results.by_object(:common_bcp))
   end
 
   def check_terminologies(uris)
     query_string = %Q{
-    SELECT DISTINCT ?s WHERE 
+    SELECT DISTINCT ?s WHERE
       {
-        
+
         VALUES ?s {#{uris.map{|x| x.to_ref}.join(" ")}}
         {
         #{self.uri.to_ref} bf:hasCodedValue/bo:reference ?cli .
@@ -206,53 +206,53 @@ private
 
   # Get the common group
   def get_common_group
-    query_string = %Q{         
-      SELECT ?common_group WHERE 
+    query_string = %Q{
+      SELECT ?common_group WHERE
       {
-        #{self.uri.to_ref} ^bf:hasItem ?bc_group. 
-        ?bc_group ^bf:hasSubGroup ?normal_g. 
-        ?normal_g bf:hasCommon ?common_group 
+        #{self.uri.to_ref} ^bf:hasItem ?bc_group.
+        ?bc_group ^bf:hasSubGroup ?normal_g.
+        ?normal_g bf:hasCommon ?common_group
       }
-    }     
+    }
     query_results = Sparql::Query.new.query(query_string, "", [:bf])
     query_results.by_object(:common_group)
   end
 
   # Get the common group
   def locate_common_group(managed_ancestor)
-    query_string = %Q{         
-      SELECT ?cg WHERE 
+    query_string = %Q{
+      SELECT ?cg WHERE
       {
-        #{self.uri.to_ref} ^bf:hasItem/^bf:hasSubGroup ?ng. 
+        #{self.uri.to_ref} ^bf:hasItem/^bf:hasSubGroup ?ng.
         ?g bf:hasCommon ?cg .
-        ?ng ^bf:hasSubGroup*|^bf:hasSubGroup* #{managed_ancestor.uri.to_ref} 
+        ?ng ^bf:hasSubGroup*|^bf:hasSubGroup* #{managed_ancestor.uri.to_ref}
       }
-    }     
+    }
     query_results = Sparql::Query.new.query(query_string, "", [:bf])
     query_results.by_object(:cg)
   end
 
   # Do we have a common group?
   def common_group?
-    Sparql::Query.new.query("ASK {#{self.uri.to_ref} ^bf:hasItem/^bf:hasSubGroup/bf:hasCommon ?cg }", "", [:bf]).ask? 
+    Sparql::Query.new.query("ASK {#{self.uri.to_ref} ^bf:hasItem/^bf:hasSubGroup/bf:hasCommon ?cg }", "", [:bf]).ask?
   end
 
   def get_normal_group
-    query_string = %Q{         
-      SELECT ?normal_group WHERE 
+    query_string = %Q{
+      SELECT ?normal_group WHERE
       {
-        #{self.uri.to_ref} ^bf:hasItem ?bc_group. 
-        ?bc_group ^bf:hasSubGroup ?normal_group. 
+        #{self.uri.to_ref} ^bf:hasItem ?bc_group.
+        ?bc_group ^bf:hasSubGroup ?normal_group.
       }
-    }     
+    }
     query_results = Sparql::Query.new.query(query_string, "", [:bf])
     query_results.by_object(:normal_group)
   end
 
   def is_common?
-    query_string = %Q{         
+    query_string = %Q{
       SELECT ?result WHERE {BIND ( EXISTS {#{self.uri.to_ref} ^bf:hasCommonItem ?s} as ?result )}
-    }     
+    }
     query_results = Sparql::Query.new.query(query_string, "", [:bf])
     query_results.by_object(:result).first.to_bool
   end
