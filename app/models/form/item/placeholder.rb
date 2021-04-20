@@ -28,4 +28,7 @@ class Form::Item::Placeholder < Form::Item
     markdown_row(self.free_text)
   end
 
+  def info_node(ci_nodes, note_nodes, terminology)
+  end
+
  end

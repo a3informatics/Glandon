@@ -43,6 +43,14 @@ class Form::Group::Bc < Form::Group
     return html
   end
 
+  def info_node(ci_nodes, note_nodes, terminology)
+    add_nodes(self.to_h, ci_nodes, :completion)
+    add_nodes(self.to_h, note_nodes, :note)
+    self.children_ordered.each do |node|
+      node.info_node(ci_nodes, note_nodes, terminology)
+    end
+  end
+
   def delete(parent, managed_ancestor)
     if multiple_managed_ancestors?
       parent = delete_with_clone(parent, managed_ancestor)
@@ -79,26 +87,26 @@ class Form::Group::Bc < Form::Group
       common_group.has_item_objects.each do |common_item|
         self.has_item_objects.each do |bc_property|
           if common_items_with_terminologies?(bc_property, common_item) || common_items_without_terminologies?(bc_property, common_item)
-            delete_data += "#{common_item.uri.to_ref} bf:hasCommonItem #{bc_property.uri.to_ref} . "  
+            delete_data += "#{common_item.uri.to_ref} bf:hasCommonItem #{bc_property.uri.to_ref} . "
             common_item.delete(common_group, common_group) if common_item.has_common_item_objects.count == 1
           end
         end
       end
-    end 
+    end
     update_query = %Q{
       DELETE DATA
       {
         #{delete_data}
       };
-      DELETE {?s ?p ?o} WHERE 
+      DELETE {?s ?p ?o} WHERE
       {
-        { #{self.uri.to_ref} bf:hasItem/bf:hasProperty ?x2 . 
-          BIND (?x2 as ?s) . 
+        { #{self.uri.to_ref} bf:hasItem/bf:hasProperty ?x2 .
+          BIND (?x2 as ?s) .
           ?s ?p ?o .
         }
         UNION
-        { #{self.uri.to_ref} bf:hasItem/bf:hasCodedValue ?x3 . 
-          BIND (?x3 as ?s) . 
+        { #{self.uri.to_ref} bf:hasItem/bf:hasCodedValue ?x3 .
+          BIND (?x3 as ?s) .
           ?s ?p ?o .
         }
       }
@@ -118,11 +126,11 @@ class Form::Group::Bc < Form::Group
   end
 
   def common_property?(bc_property,common_item)
-    query_string = %Q{         
+    query_string = %Q{
       SELECT ?result WHERE
-      {BIND ( EXISTS {#{bc_property.uri.to_ref} bf:hasProperty/bo:reference/bc:isA ?ref. 
-                      #{common_item.uri.to_ref} bf:hasProperty/bo:reference/bc:isA ?ref } as ?result )} 
-    }     
+      {BIND ( EXISTS {#{bc_property.uri.to_ref} bf:hasProperty/bo:reference/bc:isA ?ref.
+                      #{common_item.uri.to_ref} bf:hasProperty/bo:reference/bc:isA ?ref } as ?result )}
+    }
     query_results = Sparql::Query.new.query(query_string, "", [:bf, :bo, :bc])
     query_results.by_object(:result).first.to_bool
   end
@@ -130,8 +138,8 @@ class Form::Group::Bc < Form::Group
   def common_terminologies?(bc_property, common_item)
     query_string = %Q{
       SELECT ?result WHERE
-      {BIND ( EXISTS {#{bc_property.uri.to_ref} bf:hasCodedValue/bo:reference ?cli. 
-                      #{common_item.uri.to_ref} bf:hasCodedValue/bo:reference ?cli } as ?result )} 
+      {BIND ( EXISTS {#{bc_property.uri.to_ref} bf:hasCodedValue/bo:reference ?cli.
+                      #{common_item.uri.to_ref} bf:hasCodedValue/bo:reference ?cli } as ?result )}
     }
     query_results = Sparql::Query.new.query(query_string, "", [:bf, :bo])
     query_results.by_object(:result).first.to_bool
@@ -146,7 +154,7 @@ class Form::Group::Bc < Form::Group
       bc_properties << bc_property.uri
     end
     bc_properties
-  end 
+  end
 
   def children_ordered
     self.has_item_objects.sort_by {|x| x.ordinal}

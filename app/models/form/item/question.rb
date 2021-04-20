@@ -57,6 +57,12 @@ class Form::Item::Question < Form::Item
     html
   end
 
+  def info_node(ci_nodes, note_nodes, terminology)
+      add_nodes(self.to_h, ci_nodes, :completion)
+      add_nodes(self.to_h, note_nodes, :note)
+      terminology << self.to_h if self.has_coded_value.count > 0
+  end
+
   def question_annotations(annotations)
     return "" if annotations.nil?
     html = ""

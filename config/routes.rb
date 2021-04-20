@@ -425,6 +425,8 @@ Rails.application.routes.draw do
       get :acrf
       get :referenced_items
       post :add_child
+      get :crf_report
+      get :acrf_report
     end
     collection do
       get :history

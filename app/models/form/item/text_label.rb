@@ -29,4 +29,7 @@ class Form::Item::TextLabel < Form::Item
     markdown_row(self.label_text)
   end
 
+  def info_node(ci_nodes, note_nodes, terminology)
+  end
+
 end

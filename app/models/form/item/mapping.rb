@@ -30,6 +30,9 @@ class Form::Item::Mapping < Form::Item
     html
   end
 
+  def info_node(ci_nodes, note_nodes, terminology)
+  end
+
 private
 
   def mapping_row(mapping)

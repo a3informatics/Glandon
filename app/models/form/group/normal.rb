@@ -78,7 +78,7 @@ class Form::Group::Normal < Form::Group
         html += cm.to_crf(annotations)
       end
       html += repeating_bc_group(annotations)
-    else 
+    else
       self.has_common_objects.sort_by {|x| x.ordinal}.each do |cm|
         html += cm.to_crf(annotations)
       end
@@ -87,6 +87,14 @@ class Form::Group::Normal < Form::Group
       end
     end
     return html
+  end
+
+  def info_node(ci_nodes, note_nodes, terminology)
+    add_nodes(self.to_h, ci_nodes, :completion)
+    add_nodes(self.to_h, note_nodes, :note)
+    self.children_ordered.each do |node|
+      node.info_node(ci_nodes, note_nodes, terminology)
+    end
   end
 
   def add_child_with_clone(params, managed_ancestor)
@@ -105,7 +113,7 @@ class Form::Group::Normal < Form::Group
   # @option params [Array] :id_set array of biomedical concept ids
   # @return [Array] the created objects. May contain errors if unsuccesful.
   def add_child(params)
-    if self.repeating 
+    if self.repeating
       if valid_repeating_child?(params)
         add_repeating_child(params)
       else
@@ -185,11 +193,11 @@ class Form::Group::Normal < Form::Group
         return true
       elsif items.count > 0 && sub_groups.count > 0 # Items and groups
         self.errors.add(:base, "Failed to set repeating, other items exist")
-        return false 
+        return false
       end
     else
       return true
-    end  
+    end
   end
 
   private
@@ -332,7 +340,7 @@ class Form::Group::Normal < Form::Group
         return true
       else
         return false
-      end 
+      end
     end
 
     # Is a BC only group
@@ -375,7 +383,7 @@ class Form::Group::Normal < Form::Group
         html += item.has_coded_value.count == 0 ? input_field(item) : terminology_cell(item)
       end
       html += '</tr>'
-      html += '</table></td>' 
+      html += '</table></td>'
       return html
     end
 
@@ -408,7 +416,7 @@ class Form::Group::Normal < Form::Group
       #  html += mapping_cell(pa, options)
       #end
       #html += end_row
-      
+
       # BCs and the input fields
       self.has_sub_group_objects.sort_by {|x| x.ordinal}.each do |sg|
         html += start_row(false)
@@ -445,11 +453,11 @@ class Form::Group::Normal < Form::Group
       if params[:type].to_sym == :question
         if sub_groups.count == 0
           return true
-        elsif sub_groups.count > 0 
+        elsif sub_groups.count > 0
           return false
         end
       elsif params[:type].to_sym == :bc_group
-        if items.count == 0 
+        if items.count == 0
           return true
         elsif items.count > 0
           return false

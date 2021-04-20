@@ -1,6 +1,10 @@
 <% content_for :page_title do %> <%= "aCRF: #{@form.has_identifier.identifier} (#{@form.semantic_version})" %> <% end %>
 
 <%= stylesheet_link_tag 'shared/forms/form_crf' %>
+<%= javascript_tag "var pdfLoadingDur = 30,
+                        loadingMessage = 'Generating report...',
+                        errTimeoutMessage = 'Error occurred while generating the report.',
+                        redirectPath = '"+acrf_report_form_path(@form, format: :pdf)+"';" %>
 
 <% third_level_breadcrumb(:forms, @form, @close_path) %>
 
