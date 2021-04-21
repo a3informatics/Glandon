@@ -37,11 +37,10 @@ class Form
     def build_history(form)
       history_results = []
       history = Form.history(identifier: form.has_identifier.identifier, scope: form.scope)
-      #history = IsoManaged::history(Form::C_RDF_TYPE, Form::C_SCHEMA_NS, {:identifier => form.identifier, :scope => form.owner.ra_namespace})
       history.each do |item|
-        if form.same_version?(item) || form.later_version?(item)
+        #if form.same_version?(item) || form.later_version?(item)
           history_results << item.to_h
-        end
+        #end
       end
       return history_results
     end

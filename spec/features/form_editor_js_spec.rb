@@ -9,7 +9,7 @@ describe "Forms", :type => :feature do
   include ItemsPickerHelpers
   include D3GraphHelpers
   include TokenHelpers
-  include IsoManagedHelpers 
+  include IsoManagedHelpers
 
   def sub_dir
     return "features/forms"
@@ -893,14 +893,14 @@ describe "Forms", :type => :feature do
 
       token_ui_check(@user_c) do
         edit_form('FN000150')
-      end 
+      end
 
     end
 
     it "token timer, expires edit lock, prevents changes" do
 
       go_to_edit = proc { edit_form('FN000120') }
-      do_an_edit = proc do 
+      do_an_edit = proc do
 
         # Prevents to Add a child
         find_node('Disability Assessment').click
@@ -936,7 +936,7 @@ describe "Forms", :type => :feature do
         wait_for_ajax 10
         check_alert 'The edit lock has timed out.'
 
-      end 
+      end
 
       token_expired_check(go_to_edit, do_an_edit)
 
@@ -944,10 +944,10 @@ describe "Forms", :type => :feature do
 
     it "releases edit lock on page leave" do
 
-      token_clear_check do 
+      token_clear_check do
         edit_form('FN000150')
       end
-      
+
     end
 
     it "allows to show help dialog" do
@@ -979,7 +979,7 @@ describe "Forms", :type => :feature do
       ui_create_form('BUGTSTFORM', 'Test Form')
 
       context_menu_element_v2('history', '0.1.0', :edit)
-      wait_for_ajax 10 
+      wait_for_ajax 10
       find('#main_area').scroll_to(:bottom)
 
       # Add Group
@@ -993,7 +993,7 @@ describe "Forms", :type => :feature do
       find(:xpath, '//div[@id="d3"]//a[@id="question"]').click
       wait_for_ajax 10
 
-      # Edit format 
+      # Edit format
       click_action :edit
       ui_in_modal do
         within( find('#generic-editor') ) do
@@ -1004,7 +1004,7 @@ describe "Forms", :type => :feature do
       end
       wait_for_ajax 10
 
-      # Check Edit saved 
+      # Check Edit saved
       click_action :edit
       ui_in_modal do
         within( find('#generic-editor') ) do
@@ -1056,7 +1056,7 @@ describe "Forms", :type => :feature do
       dc_forward_to('Recorded')
       click_on 'Return'
       wait_for_ajax 10
-      
+
       # Enable multiple edits
       find('.registration-state').click
       wait_for_ajax 10
