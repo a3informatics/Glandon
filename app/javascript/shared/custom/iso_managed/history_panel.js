@@ -278,20 +278,6 @@ export default class HistoryPanel extends TablePanel {
         types: ["form"]
       },
       {
-        url: data.crf_report_path,
-        icon: "icon-form-view",
-        text: "CRF Report",
-        endOffset: 1,
-        types: ["form"]
-      },
-      {
-        url: data.acrf_report_path,
-        icon: "icon-form-view",
-        text: "aCRF Report",
-        endOffset: 1,
-        types: ["form"]
-      },
-      {
         url: data.bca_path,
         icon: "icon-pair",
         text: "BC Associations",
