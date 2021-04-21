@@ -282,10 +282,6 @@ private
         return crf_form_path(object)
       when :acrf
         return acrf_form_path(object)
-      when :crf_report
-        return crf_report_form_path(object)
-      when :acrf_report
-        return acrf_report_form_path(object)
       when :destroy
         return form_path(object)
       when :edit_tags
