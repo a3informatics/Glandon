@@ -1,8 +1,11 @@
 @import "shared/vars.scss";
 
 $axisColor: #76ccbe;
+$timepointColor: #ffaf6e;
 $textColor: #7e7e7e;
 
+
+// Container
 #timeline-container {
   padding: 0px 50px;
 
@@ -11,6 +14,7 @@ $textColor: #7e7e7e;
   }
 }
 
+// Axis and ticks 
 .d3-timeline svg {
 
   cursor: ew-resize;
@@ -28,6 +32,17 @@ $textColor: #7e7e7e;
     fill: $axisColor;
     font-size: $font-small;
     transform: rotate(-90deg);
+    text-anchor: middle;
+  }
+
+}
+
+// Timepoints
+.d3-timeline svg {
+
+  .timepoint {
+    cursor: pointer;
+    fill: $timepointColor;
   }
 
 }
