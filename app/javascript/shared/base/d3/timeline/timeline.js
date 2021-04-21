@@ -21,7 +21,7 @@ export default class Timeline {
    * @param {Object} args Further arguments assigned to instance, optional
    */
   constructor({
-    selector = '#timeline-container',
+    selector,
     dataUrl,
     zoomable = true,
     centerVertically = false,

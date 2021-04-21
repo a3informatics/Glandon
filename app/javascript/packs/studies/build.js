@@ -25,8 +25,12 @@ $(document).ready( () => {
     switch( tab ) {
   
       case 'timeline': 
+        // This is included only for Timeline development purposes, needs a wrapper module for the Arm-Epoch Matrix and multiple StudyTimeline instances per Arm etc... 
         const StudyTimeline = await fetchModule( 'study_timeline' )
-        new StudyTimeline()
+
+        new StudyTimeline({
+          armLabel: 'High Dose' // Mock value
+        })
         break
   
       // Add other tab modules 

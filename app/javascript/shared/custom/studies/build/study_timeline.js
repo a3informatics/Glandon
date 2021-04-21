@@ -18,9 +18,9 @@ export default class StudyTimeline extends Timeline {
    * @param {function} params.onDataLoaded Data load completed callback, receives raw data as first argument, optional
    */
   constructor({
-    selector,
+    selector = '#timeline-container',
     dataUrl,
-    armLabel = 'High Dose',
+    armLabel,
     onDataLoaded = () => {}
   } = {}) {
 
