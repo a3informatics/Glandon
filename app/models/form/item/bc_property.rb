@@ -67,6 +67,12 @@ class Form::Item::BcProperty < Form::Item
     return html
   end
 
+  # Info node. Adds ci, notes and terminology information to generate a report
+  #
+  # @param [Array] form the form object
+  # @param [Array] options the options for the report
+  # @param [Array] user the user running the report
+  # @return [Array] Array ci_nodes, note_nodes and terminology
   def info_node(ci_nodes, note_nodes, terminology)
     if !is_common?
       add_nodes(self.to_h, ci_nodes, :completion)

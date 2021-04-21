@@ -433,10 +433,10 @@ describe FormsController do
       load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V6.ttl")
       load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V7.ttl")
       load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
-      load_data_file_into_triple_store("mdr_iso_concept_systems_migration_1.ttl")      
-      load_data_file_into_triple_store("mdr_iso_concept_systems_migration_2.ttl")      
+      load_data_file_into_triple_store("mdr_iso_concept_systems_migration_1.ttl")
+      load_data_file_into_triple_store("mdr_iso_concept_systems_migration_2.ttl")
       load_data_file_into_triple_store("mdr_iso_concept_systems_migration_3.ttl")
-      load_data_file_into_triple_store("association_IG_domain.ttl") 
+      load_data_file_into_triple_store("association_IG_domain.ttl")
       load_data_file_into_triple_store("complex_datatypes.ttl")
       @lock_user = ua_add_user(email: "lock@example.com")
       Token.delete_all
@@ -460,6 +460,22 @@ describe FormsController do
       expect(assigns(:close_path)).to eq("/forms/history?form%5Bidentifier%5D=XXX&form%5Bscope_id%5D=aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjU0NVQkVE")
       actual = assigns(:html)
       check_file_actual_expected(actual, sub_dir, "acrf_expected_1.yaml", equate_method: :hash_equal)
+    end
+
+    it "crf pdf report" do
+      expect_any_instance_of(Form).to receive(:create).and_return("abcd")
+      request.env['HTTP_ACCEPT'] = "application/pdf"
+      get :crf_report, params:{id: Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#F").to_id}
+      expect(response.content_type).to eq("application/pdf")
+      expect(response.header["Content-Disposition"]).to eq("inline; filename=\"CRF_XXX.pdf\"")
+    end
+
+    it "acrf pdf report" do
+      expect_any_instance_of(Form).to receive(:create).and_return("abcd")
+      request.env['HTTP_ACCEPT'] = "application/pdf"
+      get :acrf_report, params:{id: Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#F").to_id}
+      expect(response.content_type).to eq("application/pdf")
+      expect(response.header["Content-Disposition"]).to eq("inline; filename=\"aCRF_XXX.pdf\"")
     end
 
   end
