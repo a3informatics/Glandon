@@ -133,6 +133,10 @@ export default class Timeline {
 
   }
 
+
+  /*** Renderers ***/
+
+
   /**
    * Initialize & render Timeline
    * @override for custom behavior
@@ -152,19 +156,20 @@ export default class Timeline {
     this.graph.xIntervalScale = this._newIntervalScale(),
     this.graph.xTimeScale = this._newTimeScale()
         
-    // Build and render X-Axis
+    // Build and render X-Axis with custom ticks
     this.graph.svg.append( 'g' )
                   .attr( 'transform', `translate(${ left }, ${ top })` )  // Margin offsets
                   .attr( 'class', 'x-axis' )
-                  .call( 
-                    this._generateTicks.bind( this ),
-                    this.graph.xTimeScale 
-                  ) 
+                  .append( 'g' )
+                    .attr( 'class', 'ticks' )
+                    .call( 
+                      this._generateTicks.bind( this ),
+                      this.graph.xTimeScale 
+                    ) 
     
     // Vertical centering
     if ( this.centerVertically )
       this._xAxis.attr( 'transform', `translate(0, ${ ( height - (top + bottom) ) / 2 })`)
-
 
   }
 
@@ -234,6 +239,7 @@ export default class Timeline {
   /**
    * Graph zoomed event, rescale axis 
    * Extend method for custom behavior
+   * @return {D3 Scale} Rescaled timeScale to current zoom level and transform
    */
   _onZoom() {
 
@@ -244,10 +250,12 @@ export default class Timeline {
     this.graph.cachedTransform = transform
 
     // Apply rescaled X 
-    this._xAxis?.call(
+    this._ticksG?.call(
       this._generateTicks.bind( this ),
       rescaledX
     )
+
+    return rescaledX
     
   }
 
@@ -314,9 +322,9 @@ export default class Timeline {
    */
   _customTickText(tick, unit) {
 
-    const tickValue = this._timeDiff( this._props.baseline, tick, unit, false )
+    const tickValue = this._timeDiff( this._props.baseline, tick, unit )
 
-    return `${ tickValue } ${ unit }${ Math.abs( tickValue ) === 1 ? '' : 's' }`
+    return `${ Math.round( tickValue ) } ${ unit }${ Math.abs( tickValue ) === 1 ? '' : 's' }`
 
   }
 
@@ -374,8 +382,8 @@ export default class Timeline {
 
     // Domain start & end +- 10 days relative to baseline
     const baseline = dayjs( this._props.baseline ),
-          domainStart = baseline.subtract( 10, 'day' ).toDate(),
-          domainEnd = baseline.add( 10, 'day' ).toDate()
+          domainStart = baseline.subtract( 7, 'day' ).toDate(),
+          domainEnd = baseline.add( 7, 'day' ).toDate()
 
     return this.d3.scaleTime()
                   .domain([ domainStart, domainEnd ])
@@ -405,6 +413,14 @@ export default class Timeline {
    */
   get _xAxis() {
     return this.graph.svg?.select( '.x-axis' )
+  }
+
+  /**
+   * Get the X-Axis Ticks group selection from the graph svg  
+   * @return {D3 Selection | undefined} X-Axis Ticks selection or undefined if axis doesn't exist  
+   */
+  get _ticksG() {
+    return this._xAxis?.select( '.ticks' )
   }
 
 
@@ -448,7 +464,7 @@ export default class Timeline {
     get _props() {
 
     let props = {
-      baseline: new Date(2021, 2, 1),
+      baseline: new Date(2017, 0, 1), // Changing will cause ticks misalignment
       container: $(this.selector),
       svg: {
         margin: {
@@ -488,7 +504,7 @@ export default class Timeline {
     let d3 = await import( /* webpackPrefetch: true */ './d3_timeline' )
     this.d3 = d3.default
 
-    this._init() // Call init after load 
+    this._init() // Call init after d3 modules loaded 
 
   }
 
