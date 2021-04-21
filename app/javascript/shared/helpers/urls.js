@@ -28,8 +28,17 @@ function encodeDataToUrl(url, data) {
   return url + '?' + $.param( data )
 } 
 
+/**
+ * Get the current base url in format: https://host:port 
+ * @return {string} Current base url
+ */
+function baseUrl() {
+  return window.location.href.split('/').slice(0, 3).join('/')
+}
+
 export {
   makeHistoryUrl,
   makeMCChildrenUrl,
-  encodeDataToUrl
+  encodeDataToUrl,
+  baseUrl
 }
