@@ -5,5 +5,19 @@
 </div>
 
 <div id="timeline-container">
-  <%= render partial: "shared/d3/timeline" %>
+  <%= render layout: "shared/d3/timeline" do %>
+
+    <button class="btn white ttip" id='add-timepoint'>
+      <span class='icon-timepoint'></span> +
+      <span class='ttip-text text-small shadow-small text-medium'>Add Timepoint</span>
+    </button>
+
+    <button class="btn white ttip" id='save-timeline'>
+      <span class='icon-ok-circle'></span>
+      <span class='ttip-text text-small shadow-small text-medium'>Save Timeline Data</span>
+    </button>
+
+    <%# Add more buttons as needed %>
+
+  <% end %>
 </div>
