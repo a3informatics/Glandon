@@ -34,8 +34,8 @@ export default class HistoryPanel extends TablePanel {
     cache = true
   }) {
 
-    super({ 
-      selector, url, param, count, deferLoading, cache 
+    super({
+      selector, url, param, count, deferLoading, cache
     })
 
     this._initItemSelector()
@@ -48,8 +48,8 @@ export default class HistoryPanel extends TablePanel {
    */
   refresh(url) {
 
-    // Hide any visible context menu 
-    $('.context-menu:visible').hide() 
+    // Hide any visible context menu
+    $('.context-menu:visible').hide()
     super.refresh(url)
 
   }
@@ -57,7 +57,7 @@ export default class HistoryPanel extends TablePanel {
 
   /** Private **/
 
-  
+
   /**
    * Sets event listeners, handlers
    */
@@ -68,7 +68,7 @@ export default class HistoryPanel extends TablePanel {
     // Update RS
     this._clickListener({
       target: ".registration-state",
-      handler: e => 
+      handler: e =>
         rsHelper.updateRS( this._getRowDataFrom$( e.target ) )
     })
 
@@ -76,7 +76,7 @@ export default class HistoryPanel extends TablePanel {
     this._clickListener({
       target: ".context-menu a:contains('Delete')",
       handler: e => {
-        
+
         $confirm({
           dangerous: true,
           callback: () => $delete({
@@ -118,7 +118,7 @@ export default class HistoryPanel extends TablePanel {
       handler: (e) => {
 
         let url = this._getRowDataFrom$( e.target ).compare_path;
-        this.itemSelector.setCallback( s => 
+        this.itemSelector.setCallback( s =>
           location.href = `${ url }?${ $.param( { thesauri: { thesaurus_id: s.thesauri[0].id } } ) }`) // TODO: Fix
         this.itemSelector.show();
 
@@ -130,9 +130,9 @@ export default class HistoryPanel extends TablePanel {
       target: ".context-menu a:contains('Make current')",
       handler: (e) => {
 
-        $post({ 
+        $post({
           url: this._getRowDataFrom$( e.target ).current_path,
-          done: () => this.refresh() 
+          done: () => this.refresh()
         })
 
       }
@@ -156,15 +156,15 @@ export default class HistoryPanel extends TablePanel {
           menuItems = [];
 
     // Required menu items common for all iso_managed types
-    this._addMenuItems( 
-      menuItems, 
-      this._commonMenuItems(data) 
+    this._addMenuItems(
+      menuItems,
+      this._commonMenuItems(data)
     );
 
     // Additional items (add new here)
-    this._addMenuItems( 
-      menuItems, 
-      this._extraMenuItems(data) 
+    this._addMenuItems(
+      menuItems,
+      this._extraMenuItems(data)
     );
 
     return renderMenu({ menuId, menuItems, menuStyle });
@@ -179,41 +179,41 @@ export default class HistoryPanel extends TablePanel {
   _commonMenuItems(data) {
 
     return [
-      { 
-        url: data.show_path, 
-        icon: "icon-view", 
-        text: "Show", 
-        types: ["all"], 
-        required: true 
+      {
+        url: data.show_path,
+        icon: "icon-view",
+        text: "Show",
+        types: ["all"],
+        required: true
       },
-      { 
-        url: data.search_path, 
-        icon: "icon-search", 
-        text: "Search", 
-        types: ["all"], 
-        required: true  
+      {
+        url: data.search_path,
+        icon: "icon-search",
+        text: "Search",
+        types: ["all"],
+        required: true
       },
-      { 
-        url: data.edit_path, 
-        icon: "icon-edit", 
-        text: "Edit", 
-        types: ["all"], 
-        required: true  
+      {
+        url: data.edit_path,
+        icon: "icon-edit",
+        text: "Edit",
+        types: ["all"],
+        required: true
       },
-      { 
-        url: data.status_path, 
-        icon: "icon-document", 
-        text: "Document control", 
-        types: ["all"], 
-        required: true  
+      {
+        url: data.status_path,
+        icon: "icon-document",
+        text: "Document control",
+        types: ["all"],
+        required: true
       },
-      { 
-        url: "#", 
-        icon: "icon-trash", 
-        text: "Delete", 
-        disabled: (data.delete_path === ""), 
-        types: ["all"], 
-        required: true 
+      {
+        url: "#",
+        icon: "icon-trash",
+        text: "Delete",
+        disabled: (data.delete_path === ""),
+        types: ["all"],
+        required: true
       }
     ];
 
@@ -229,73 +229,87 @@ export default class HistoryPanel extends TablePanel {
 
     return [
       this._impactMenuItem( data ),
-      { 
-        url: data.list_cn_path, 
-        icon: "icon-note", 
-        text: "List Change notes", 
-        endOffset: 1, 
-        types: ["managed_concept"] 
-      },
-      { 
-        url: data.current_path, 
-        target: "#",
-        icon: "icon-current", 
-        text: "Make current", 
-        disabled: (data.indicators.current), 
-        endOffset: 2, 
-        types: ["all"] 
-      },
-      { 
-        url: data.clone_path, 
-        target: "#newTerminologyModal", 
-        icon: "icon-copy", 
-        text: "Clone", 
-        endOffset: 2, 
-        types: ["thesauri"], 
-        dataToggle: "modal" 
-      },
-      { 
-        url: data.compare_path, 
-        target: "#", 
-        icon: "icon-compare", 
-        text: "Compare", 
-        dataToggle: "modal", 
-        endOffset: 2, 
-        types: ["thesauri", "cdisc_term"] 
-      },
-      { 
-        url: data.crf_path, 
-        icon: "icon-form-view", 
-        text: "CRF", 
-        endOffset: 1, 
-        types: ["form"] 
-      },
-      { 
-        url: data.acrf_path, 
-        icon: "icon-form-view", 
-        text: "aCRF", 
-        endOffset: 1, 
-        types: ["form"] 
-      },
-      { 
-        url: data.bca_path, 
-        icon: "icon-pair", 
-        text: "BC Associations", 
-        endOffset: 1, 
-        types: ["sdtm_sponsor_domain"] 
+      {
+        url: data.list_cn_path,
+        icon: "icon-note",
+        text: "List Change notes",
+        endOffset: 1,
+        types: ["managed_concept"]
       },
       {
-        url: data.export_path, 
-        icon: "icon-download", 
-        text: "Export TTL", 
-        endOffset: 1, 
-        types: ["form", "biomedical_concept_instance", "sdtm_sponsor_domain"] 
+        url: data.current_path,
+        target: "#",
+        icon: "icon-current",
+        text: "Make current",
+        disabled: (data.indicators.current),
+        endOffset: 2,
+        types: ["all"]
+      },
+      {
+        url: data.clone_path,
+        target: "#newTerminologyModal",
+        icon: "icon-copy",
+        text: "Clone",
+        endOffset: 2,
+        types: ["thesauri"],
+        dataToggle: "modal"
+      },
+      {
+        url: data.compare_path,
+        target: "#",
+        icon: "icon-compare",
+        text: "Compare",
+        dataToggle: "modal",
+        endOffset: 2,
+        types: ["thesauri", "cdisc_term"]
+      },
+      {
+        url: data.crf_path,
+        icon: "icon-form-view",
+        text: "CRF",
+        endOffset: 1,
+        types: ["form"]
+      },
+      {
+        url: data.acrf_path,
+        icon: "icon-form-view",
+        text: "aCRF",
+        endOffset: 1,
+        types: ["form"]
+      },
+      {
+        url: data.crf_report_path,
+        icon: "icon-form-view",
+        text: "CRF Report",
+        endOffset: 1,
+        types: ["form"]
+      },
+      {
+        url: data.acrf_report_path,
+        icon: "icon-form-view",
+        text: "aCRF Report",
+        endOffset: 1,
+        types: ["form"]
+      },
+      {
+        url: data.bca_path,
+        icon: "icon-pair",
+        text: "BC Associations",
+        endOffset: 1,
+        types: ["sdtm_sponsor_domain"]
+      },
+      {
+        url: data.export_path,
+        icon: "icon-download",
+        text: "Export TTL",
+        endOffset: 1,
+        types: ["form", "biomedical_concept_instance", "sdtm_sponsor_domain"]
       },{
-        url: data.build_path, 
-        icon: "icon-build", 
-        text: "Build", 
-        endOffset: 1, 
-        types: ["study"] 
+        url: data.build_path,
+        icon: "icon-build",
+        text: "Build",
+        endOffset: 1,
+        types: ["study"]
       }
     ]
 
@@ -306,22 +320,22 @@ export default class HistoryPanel extends TablePanel {
    * @param {Object} data Item data
    * @returns {Object} Menu Item definition for Impact Analysis with a special case for Thesaurus
    */
-  _impactMenuItem(data) { 
+  _impactMenuItem(data) {
 
     const impactMenuItem = {
-      url: data.impact_path, 
-      icon: "icon-impact", 
-      text: "Impact Analysis", 
-      endOffset: 1, 
-      types: [ 'all' ] 
+      url: data.impact_path,
+      icon: "icon-impact",
+      text: "Impact Analysis",
+      endOffset: 1,
+      types: [ 'all' ]
     }
 
-    if ( this.param === 'thesauri' ) 
+    if ( this.param === 'thesauri' )
       Object.assign( impactMenuItem, {
         target: '#',
         types: [ 'thesauri' ],
       })
-    
+
     return impactMenuItem
 
   }
@@ -335,8 +349,8 @@ export default class HistoryPanel extends TablePanel {
 
     for ( const item of newItems ) {
 
-      const offset = item.endOffset != null ? 
-                      menuItems.length - item.endOffset : 
+      const offset = item.endOffset != null ?
+                      menuItems.length - item.endOffset :
                       menuItems.length
 
       if ( this._isItemValid(item) )
@@ -356,7 +370,7 @@ export default class HistoryPanel extends TablePanel {
     if ( item.required )
       return true;
 
-    return ( item.url ) && 
+    return ( item.url ) &&
            ( item.types.includes(this.param) || item.types.includes('all') )
 
   }
@@ -411,7 +425,7 @@ export default class HistoryPanel extends TablePanel {
       this.itemSelector = new ItemsSelector({
         id: "1",
         types: { thesauri: true },
-        description: `Select one Terminology version with which to compare. 
+        description: `Select one Terminology version with which to compare.
                       It is recommended to select only from other versions of the item you are comparing.`
       });
   }
