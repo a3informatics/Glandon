@@ -54,7 +54,7 @@ class FormsController < ManagedItemsController
     form_html = form.crf
     respond_to do |format|
       format.pdf do
-        @html = form.create(form, form_html, current_user)
+        @html = form.create(form, form_html, current_user, base_url)
         render pdf: "CRF_#{form.has_identifier.identifier}", page_size: current_user.paper_size, orientation: 'Landscape', lowquality: true
       end
     end
@@ -65,7 +65,7 @@ class FormsController < ManagedItemsController
     form_html = form.acrf
     respond_to do |format|
       format.pdf do
-        @html = form.create(form, form_html, current_user)
+        @html = form.create(form, form_html, current_user, base_url)
         render pdf: "aCRF_#{form.has_identifier.identifier}", page_size: current_user.paper_size, orientation: 'Landscape', lowquality: true
       end
     end

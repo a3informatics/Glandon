@@ -13,9 +13,9 @@ class Reports::CdiscChangesReport
   # @param [Hash] results the results hash
   # @param [User] user the current user
   # @return [String] the HTML for the report
-  def create(results, user)
+  def create(results, user, base_url)
     @report = Reports::WickedCore.new
-    @report.open("CDISC Terminology Change Report", "", [], user)
+    @report.open("CDISC Terminology Change Report", "", [], user, base_url)
     body(results)
     @report.close
     return @report.html
@@ -46,7 +46,7 @@ private
         if index == 0
           html += "<h3>Changes</h3>"
         else
-          html += "</tbody></table>" 
+          html += "</tbody></table>"
           @report.add_to_body(html)
           @report.add_page_break
           page_count = C_PER_PAGE

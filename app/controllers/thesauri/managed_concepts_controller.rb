@@ -262,7 +262,7 @@ class Thesauri::ManagedConceptsController < ManagedItemsController
     clis = tc.changes(current_user.max_term_display.to_i)
     respond_to do |format|
       format.pdf do
-        @html = Reports::CdiscChangesReport.new.create(clis, current_user)
+        @html = Reports::CdiscChangesReport.new.create(clis, current_user, base_url)
         render pdf: "CDISC_CL_#{tc.scoped_identifier}", page_size: current_user.paper_size, orientation: 'Landscape', lowquality: true
       end
     end

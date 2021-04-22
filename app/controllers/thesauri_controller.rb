@@ -311,7 +311,7 @@ class ThesauriController < ApplicationController
     cls = ct.changes(current_user.max_term_display.to_i)
     respond_to do |format|
       format.pdf do
-        @html = Reports::CdiscChangesReport.new.create(cls, current_user)
+        @html = Reports::CdiscChangesReport.new.create(cls, current_user, base_url)
         render pdf: "terminology_changes", page_size: current_user.paper_size, orientation: 'Landscape', lowquality: true
       end
     end
@@ -374,7 +374,7 @@ class ThesauriController < ApplicationController
     cls = ct.submission(current_user.max_term_display.to_i)
     respond_to do |format|
       format.pdf do
-        @html = Reports::CdiscSubmissionReport.new.create(cls, current_user)
+        @html = Reports::CdiscSubmissionReport.new.create(cls, current_user, base_url)
         @render_args = {pdf: 'cdisc_submission', page_size: current_user.paper_size, orientation: 'Landscape', lowquality: true}
         render @render_args
       end

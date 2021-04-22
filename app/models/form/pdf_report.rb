@@ -12,10 +12,10 @@ class Form
     # @param [Hash] options the options for the report
     # @param [User] user the user running the report
     # @return [String] the HTML
-    def create(form, html, user)
+    def create(form, html, user, base_url)
       history = build_history(form)
       @report = Reports::WickedCore.new
-      @report.open("Case Report Form", "", history, user)
+      @report.open("Case Report Form", "", history, user, base_url)
       crf_title(form)
       crf_body(html)
       completion_notes_and_term(form)
