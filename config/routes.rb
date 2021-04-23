@@ -425,6 +425,7 @@ Rails.application.routes.draw do
       get :acrf
       get :referenced_items
       post :add_child
+      get :export_odm
     end
     collection do
       get :history

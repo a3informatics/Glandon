@@ -118,6 +118,12 @@ class FormsController < ManagedItemsController
     render :json => {data: new_child.to_h}, :status => 200
   end
 
+  def export_odm
+    #authorize Form, :export_json?
+    @form = Form.find_minimum(protect_from_bad_id(params))
+    send_data @form.to_xml, filename: "#{@form.owner_short_name}_#{@form.identifier}_ODM.xml", :type => 'application/xhtml+xml; header=present', disposition: "attachment"
+  end
+
   # def clone
   #   authorize Form
   #   @form = Form.find(params[:id], params[:namespace])
