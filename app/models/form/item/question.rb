@@ -57,6 +57,33 @@ class Form::Item::Question < Form::Item
     html
   end
 
+  # To XML
+  #
+  # @param [Nokogiri::Node] metadata_version the ODM MetaDataVersion node
+  # @param [Nokogiri::Node] form_def the ODM FormDef node
+  # @param [Nokogiri::Node] item_group_def the ODM ItemGroupDef node
+  # @return [void]
+  def to_xml(metadata_version, form_def, item_group_def)
+    super(metadata_version, form_def, item_group_def)
+    xml_datatype = BaseDatatype.to_odm(self.datatype)
+    xml_length = to_xml_length(self.datatype, self.format)
+    xml_digits = to_xml_significant_digits(self.datatype, self.format)
+    item_def = metadata_version.add_item_def("#{self.id}", "#{self.label}", "#{xml_datatype}", "#{xml_length}", "#{xml_digits}", "", "", "", "")
+    question = item_def.add_question()
+    question.add_translated_text("#{self.question_text}")
+    if tc_refs.length > 0
+      self.tc_refs.sort_by! {|u| u.ordinal}
+      code_list_ref = item_def.add_code_list_ref("#{self.id}-CL")
+      code_list = metadata_version.add_code_list("#{self.id}-CL", "Code list for #{self.label}", "text", "")
+      self.tc_refs.each do |tc_ref|
+        tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri: tc_ref.subject_ref.to_s))
+        code_list_item = code_list.add_code_list_item(tc.notation, "", "#{tc_ref.ordinal}")
+        decode = code_list_item.add_decode()
+        decode.add_translated_text(tc.label)
+      end
+    end
+  end
+
   def question_annotations(annotations)
     return "" if annotations.nil?
     html = ""

@@ -60,6 +60,16 @@ class Form::Item::Common < Form::Item::BcProperty
     html += end_row
   end
 
+  # To XML
+  #
+  # @param [Nokogiri::Node] metadata_version the ODM MetaDataVersion node
+  # @param [Nokogiri::Node] form_def the ODM FormDef node
+  # @param [Nokogiri::Node] item_group_def the ODM ItemGroupDef node
+  # @return [void]
+  def to_xml(metadata_version, form_def, item_group_def)
+    # Do nothing currently
+  end
+
   # Children Ordered. Provides the childen ordered by ordinal
   #
   # @return [Array] the set of children ordered by ordinal

@@ -60,6 +60,16 @@ class Form::Group::Common < Form::Group
     return html
   end
 
+  # To XML
+  #
+  # @param [Nokogiri::Node] metadata_version the ODM MetaDataVersion node
+  # @param [Nokogiri::Node] form_def the ODM FormDef node
+  # @param [Nokogiri::Node] item_group_def the ODM ItemGroupDef node
+  # @return [void]
+  def to_xml(metadata_version, form_def)
+    super(metadata_version, form_def)
+  end
+
   def delete(parent, managed_ancestor)
     parent = super(parent, managed_ancestor)
     parent = Form::Group::Normal.find_full(parent.uri)
