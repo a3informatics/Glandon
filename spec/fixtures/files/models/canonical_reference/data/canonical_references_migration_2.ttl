@@ -1,0 +1,47 @@
+@prefix : <http://www.s-cubed.dk/CAR#> .
+@prefix fr: <http://www.s-cubed.dk/Framework#> .
+@prefix isoC: <http://www.assero.co.uk/ISO11179Concepts#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+<http://www.s-cubed.dk/CAR>
+	rdf:type owl:Ontology ;
+.
+:6ddbc42bbdd4fd8b2e6600dd058e54be6a92ce0c
+	rdf:type fr:CanonicalReference ;
+	isoC:label "Medical Term"^^xsd:string ;
+	fr:definition "Not currently defined."^^xsd:string ;
+	fr:bridg "BRIDG reference required"^^xsd:string ;
+	fr:sdtm "--TERM"^^xsd:string ;
+.
+:77f99ec3581811919aadecc3efd1c668ff8ceab2
+	rdf:type fr:CanonicalReference ;
+	isoC:label "Prespecified Event"^^xsd:string ;
+	fr:definition "Not currently defined."^^xsd:string ;
+	fr:bridg "BRIDG reference required"^^xsd:string ;
+	fr:sdtm "--PRESP"^^xsd:string ;
+.
+:6897325f62e69bbbccb5f133aae6fedf24322337
+	rdf:type fr:CanonicalReference ;
+	isoC:label "Occurred"^^xsd:string ;
+	fr:definition "Not currently defined."^^xsd:string ;
+	fr:bridg "BRIDG reference required"^^xsd:string ;
+	fr:sdtm "--OCCUR"^^xsd:string ;
+.
+:9d7ab1a557965be0eae6205c2d860c45a3eafc11
+	rdf:type fr:CanonicalReference ;
+	isoC:label "Start Date"^^xsd:string ;
+	fr:definition "Not currently defined."^^xsd:string ;
+	fr:bridg "BRIDG reference required"^^xsd:string ;
+	fr:sdtm "--STDTC"^^xsd:string ;
+.
+:84b1478125890bad1cc4b36d6d3781773b3fde5a
+	rdf:type fr:CanonicalReference ;
+	isoC:label "End Date"^^xsd:string ;
+	fr:definition "Not currently defined."^^xsd:string ;
+	fr:bridg "BRIDG reference required"^^xsd:string ;
+	fr:sdtm "--ENDTC"^^xsd:string ;
+.
