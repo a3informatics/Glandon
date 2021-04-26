@@ -148,6 +148,7 @@ class Form::Item::BcProperty < Form::Item
     new_property = self.has_property_objects.clone
     new_property.generate_uri(common_item.uri)
     new_property.save 
+    
     common_item.has_property = new_property
     common_bcp.each do |common_uri|
       common_item.has_common_item_push(common_uri)
@@ -164,9 +165,15 @@ private
     annotation = annotations.annotation_for_uri(self.uri.to_s)
     annotation.each do |a|
       p_class = annotations.retrieve_domain_class(a.domain_prefix.to_sym)
-      html += "<p class=\"#{p_class}\">#{a.sdtm_variable} where #{a.sdtm_topic_variable}=#{a.sdtm_topic_value}</p>"
+      html += annotation_to_html_options(a.sdtm_variable, a.sdtm_topic_variable, a.sdtm_topic_value, p_class)
     end
     return html
+  end
+
+  def annotation_to_html_options(variable, topic_variable, topic_value, p_class)
+    return "<p class=\"#{p_class}\">#{variable}</p>" if variable == topic_variable
+    return "<p class=\"#{p_class}\">#{variable}</p>" if topic_value == ""
+    "<p class=\"#{p_class}\">#{variable} where #{topic_variable}=#{topic_value}</p>"
   end
 
   def clone_common_group(uri, managed_ancestor)

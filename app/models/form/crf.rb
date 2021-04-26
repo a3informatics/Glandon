@@ -7,7 +7,7 @@ class Form
   module CRF
 
     def domain_count
-      5
+      6
     end
 
     def get_css
@@ -27,6 +27,8 @@ class Form
       html += "p.domain-4 {border-radius: 5px; background: #FAD7A0; padding: 5px; }\n"
       html += "h4.domain-5 {border-radius: 5px; background: #F5B7B1; padding: 5px; }\n"
       html += "p.domain-5 {border-radius: 5px; background: #F5B7B1; padding: 5px; }\n"
+      html += "h4.domain-6 {border-radius: 5px; background: #FFE4E1; padding: 5px; }\n"
+      html += "p.domain-6 {border-radius: 5px; background: #FFE4E1; padding: 5px; }\n"
       html += "h4.domain-other {border-radius: 5px; background: #BDC3C7; padding: 5px; }\n"
       html += "p.domain-other {border-radius: 5px; background: #BDC3C7; padding: 5px; }\n"
       html += "</style>"

@@ -75,7 +75,7 @@ class Form
           ?topic_var bd:isA ?canonical_reference .                          
           ?bc_root bc:identifiedBy/bc:hasComplexDatatype/bc:hasProperty ?bc_identifier .           
           ?bc_identifier bc:isA ?canonical_reference .             
-          ?bc_identifier bc:hasCodedValue/bo:reference/th:notation ?sdtm_topic_sub .                      
+          OPTIONAL { ?bc_identifier bc:hasCodedValue/bo:reference/th:notation ?sdtm_topic_sub . }
           ?sdtm_domain bd:prefix ?domain_prefix .                                         
           ?sdtm_domain isoC:label ?domain_long_name .           
           {                                  
