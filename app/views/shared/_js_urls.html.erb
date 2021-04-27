@@ -1,3 +1,5 @@
+<%# THIS IS ONLY USED BY THE NOW ***DEPRECATED*** ITEMS PICKER (V1). USE ITEMS PICKER V2 INSTEAD %>
+<%# Phase out v1 eventually and then delete this file altogether %>
 <%  index_th_url = thesauri_index_path
     history_th_url = history_thesauri_index_path(thesauri: {identifier: "miHistoryId", scope_id: "miScopeId"})
     index_cl_url = set_with_indicators_thesauri_managed_concepts_path(managed_concept: {type: "all"})
@@ -32,7 +34,6 @@
                         miChildrenClUrl = '#{children_cl_url}';"
                         %>
 
-<%# Use these instead %>
 <%= javascript_tag "var _globalIHUrls = { 
                           thesauri: {
                             index: '#{index_th_url}',
