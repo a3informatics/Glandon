@@ -216,7 +216,7 @@ private
     odm = odm_document.root
     study = odm.add_study("S-#{self.id}")
     global_variables = study.add_global_variables()
-    global_variables.add_study_name("Form Export #{self.label} (#{self.identifier})")
+    global_variables.add_study_name("Form Export #{self.label} (#{self.has_identifier.identifier})")
     global_variables.add_study_description("Not applicable. Single form export.")
     global_variables.add_protocol_name("Not applicable. Single form export.")
     metadata_version = study.add_metadata_version("MDV-#{self.id}", "Metadata for #{self.label}", "Not applicable. Single form export.")

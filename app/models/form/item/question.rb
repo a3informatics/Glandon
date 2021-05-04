@@ -75,7 +75,7 @@ class Form::Item::Question < Form::Item
       code_list_ref = item_def.add_code_list_ref("#{self.id}-CL")
       code_list = metadata_version.add_code_list("#{self.id}-CL", "Code list for #{self.label}", "text", "")
       self.has_coded_value_objects.sort_by {|x| x.ordinal}.each do |cv|
-        tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri: cv.reference))
+        tc = Thesaurus::UnmanagedConcept.find(cv.reference)
         code_list_item = code_list.add_code_list_item(tc.notation, "", "#{cv.ordinal}")
         decode = code_list_item.add_decode()
         decode.add_translated_text(tc.label)
