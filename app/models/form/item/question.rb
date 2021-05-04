@@ -71,13 +71,12 @@ class Form::Item::Question < Form::Item
     item_def = metadata_version.add_item_def("#{self.id}", "#{self.label}", "#{xml_datatype}", "#{xml_length}", "#{xml_digits}", "", "", "", "")
     question = item_def.add_question()
     question.add_translated_text("#{self.question_text}")
-    if tc_refs.length > 0
-      self.tc_refs.sort_by! {|u| u.ordinal}
+    if self.has_coded_value.count > 0
       code_list_ref = item_def.add_code_list_ref("#{self.id}-CL")
       code_list = metadata_version.add_code_list("#{self.id}-CL", "Code list for #{self.label}", "text", "")
-      self.tc_refs.each do |tc_ref|
-        tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri: tc_ref.subject_ref.to_s))
-        code_list_item = code_list.add_code_list_item(tc.notation, "", "#{tc_ref.ordinal}")
+      self.has_coded_value_objects.sort_by {|x| x.ordinal}.each do |cv|
+        tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri: cv.reference))
+        code_list_item = code_list.add_code_list_item(tc.notation, "", "#{cv.ordinal}")
         decode = code_list_item.add_decode()
         decode.add_translated_text(tc.label)
       end

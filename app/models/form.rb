@@ -56,27 +56,11 @@ class Form < IsoManagedV2
     to_crf
   end
 
-  # To XML (ODM)
+  # XML (ODM)
   #
   # @return [object] The ODM XML object created.
-  def to_xml
-    odm_document = Odm.new("ODM-#{self.id}", "Assero", "Glandon", Version::VERSION)
-    odm = odm_document.root
-    study = odm.add_study("S-#{self.id}")
-    #global_variables = study.add_global_variables()
-    #global_variables.add_study_name("Form Export #{self.label} (#{self.identifier})")
-    #global_variables.add_study_description("Not applicable. Single form export.")
-    #global_variables.add_protocol_name("Not applicable. Single form export.")
-    metadata_version = study.add_metadata_version("MDV-#{self.id}", "Metadata for #{self.label}", "Not applicable. Single form export.")
-    protocol = metadata_version.add_protocol()
-    protocol.add_study_event_ref("SE-#{self.id}", "1", "Yes", "")
-    study_event_def = metadata_version.add_study_event_def("SE-#{self.id}", "Not applicable. Single form export.", "No", "Scheduled", "")
-    study_event_def.add_form_ref("#{self.id}", "1", "Yes", "")
-    form_def = metadata_version.add_form_def("#{self.id}", "#{self.label}", "No")
-    self.has_group.sort_by {|x| x.ordinal}.each do |group|
-      group.to_xml(metadata_version, form_def)
-    end
-    return odm_document.to_xml
+  def xml
+    to_xml
   end
 
   # Move Up With Clone
@@ -222,6 +206,29 @@ private
       html += group.to_crf(annotations)
     end
     html += '</table>'
+  end
+
+  # To XML (ODM)
+  #
+  # @return [object] The ODM XML object created.
+  def to_xml
+    odm_document = Odm.new("ODM-#{self.id}", "Assero", "Glandon", Version::VERSION)
+    odm = odm_document.root
+    study = odm.add_study("S-#{self.id}")
+    global_variables = study.add_global_variables()
+    global_variables.add_study_name("Form Export #{self.label} (#{self.identifier})")
+    global_variables.add_study_description("Not applicable. Single form export.")
+    global_variables.add_protocol_name("Not applicable. Single form export.")
+    metadata_version = study.add_metadata_version("MDV-#{self.id}", "Metadata for #{self.label}", "Not applicable. Single form export.")
+    protocol = metadata_version.add_protocol()
+    protocol.add_study_event_ref("SE-#{self.id}", "1", "Yes", "")
+    study_event_def = metadata_version.add_study_event_def("SE-#{self.id}", "Not applicable. Single form export.", "No", "Scheduled", "")
+    study_event_def.add_form_ref("#{self.id}", "1", "Yes", "")
+    form_def = metadata_version.add_form_def("#{self.id}", "#{self.label}", "No")
+    self.has_group.sort_by {|x| x.ordinal}.each do |group|
+      group.to_xml(metadata_version, form_def)
+    end
+    return odm_document.to_xml
   end
 
   # Next Ordinal. Get the next ordinal for a managed item collection

@@ -99,10 +99,14 @@ class Form::Group::Normal < Form::Group
     form_def.add_item_group_ref("#{self.id}", "#{self.ordinal}", "No", "")
     item_group_def = metadata_version.add_item_group_def("#{self.id}", "#{self.label}", "No", "", "", "", "", "", "")
     self.has_common_objects.sort_by {|x| x.ordinal}.each do |cm|
-      cm.to_xml(metadata_version, form_def, item_group_def)
+      cm.to_xml(metadata_version, form_def)
     end
-    children_ordered.each do |item|
-      item.to_xml(metadata_version, form_def, item_group_def)
+    children_ordered.each do |child|
+      if child.class == Form::Group::Normal || child.class == Form::Group::Bc
+        child.to_xml(metadata_version, form_def)
+      else
+        child.to_xml(metadata_version, form_def, item_group_def)
+      end
     end
   end
 

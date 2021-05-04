@@ -67,7 +67,11 @@ class Form::Group::Common < Form::Group
   # @param [Nokogiri::Node] item_group_def the ODM ItemGroupDef node
   # @return [void]
   def to_xml(metadata_version, form_def)
-    super(metadata_version, form_def)
+    form_def.add_item_group_ref("#{self.id}", "#{self.ordinal}", "No", "")
+    item_group_def = metadata_version.add_item_group_def("#{self.id}", "#{self.label}", "No", "", "", "", "", "", "")
+    self.has_item_objects.sort_by {|x| x.ordinal}.each do |item|
+      item.to_xml(metadata_version, form_def, item_group_def)
+    end
   end
 
   def delete(parent, managed_ancestor)
@@ -95,10 +99,6 @@ class Form::Group::Common < Form::Group
     self.has_item = items
     sparql.create
   end
-
-  # def children_ordered
-  #   self.has_item_objects.sort_by {|x| x.ordinal}
-  # end
 
   def get_normal_group
     query_string = %Q{
