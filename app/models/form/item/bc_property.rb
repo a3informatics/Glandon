@@ -77,9 +77,10 @@ class Form::Item::BcProperty < Form::Item
     super(metadata_version, form_def, item_group_def)
     property_ref = self.has_property_objects.reference
     bc_property = BiomedicalConcept::PropertyX.find(property_ref)
-    xml_datatype = BaseDatatype.to_odm(bc_property.simple_datatype)
-    xml_length = to_xml_length(bc_property.simple_datatype, bc_property.format)
-    xml_digits = to_xml_significant_digits(bc_property.simple_datatype, bc_property.format)
+    simple_datatype = bc_property.is_complex_datatype_property_objects.simple_datatype
+    xml_datatype = BaseDatatype.to_odm(simple_datatype)
+    xml_length = to_xml_length(simple_datatype, bc_property.format)
+    xml_digits = to_xml_significant_digits(simple_datatype, bc_property.format)
     item_def = metadata_version.add_item_def("#{self.id}", "#{self.label}", "#{xml_datatype}", "#{xml_length}", "#{xml_digits}", "", "", "", "")
     question = item_def.add_question()
     question.add_translated_text("#{bc_property.question_text}")
@@ -87,7 +88,7 @@ class Form::Item::BcProperty < Form::Item
       code_list_ref = item_def.add_code_list_ref("#{self.id}-CL")
       code_list = metadata_version.add_code_list("#{self.id}-CL", "Code list for #{self.label}", "text", "")
       children_ordered.each do |cv|
-        cli = Thesaurus::UnmanagedConcept.find(Uri.new(uri: cv.reference))
+        cli = Thesaurus::UnmanagedConcept.find(cv.reference)
         code_list_item = code_list.add_code_list_item(cli.notation, "", "#{cv.ordinal}")
         decode = code_list_item.add_decode()
         decode.add_translated_text(cli.label)
