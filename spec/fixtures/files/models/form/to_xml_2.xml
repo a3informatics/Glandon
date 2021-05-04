@@ -1,215 +1,3049 @@
 <?xml version="1.0"?>
-<ODM xmlns="http://www.cdisc.org/ns/odm/v1.3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xlink="http://www.w3.org/1999/xlink" Description="ODM-F-ACME_VSBASELINE1" FileType="Snapshot" Granularity="Metadata" FileOID="2018-04-12T14:30:25+01:00" ODMVersion="1.3.2" Originator="Assero" SourceSystem="Glandon" SourceSystemVersion="2.18.0" CreationDateTime="2018-04-12T14:30:25+01:00">
-  <Study OID="S-F-ACME_VSBASELINE1">
+<ODM xmlns="http://www.cdisc.org/ns/odm/v1.3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xlink="http://www.w3.org/1999/xlink" Description="ODM-aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0Y=" FileType="Snapshot" Granularity="Metadata" FileOID="2021-05-04T14:05:14+02:00" ODMVersion="1.3.2" Originator="Assero" SourceSystem="Glandon" SourceSystemVersion="4.0.0" CreationDateTime="2021-05-04T14:05:14+02:00">
+  <Study OID="S-aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0Y=">
     <GlobalVariables>
-      <StudyName>Form Export Vital Signs Baseline (VS BASELINE)</StudyName>
+      <StudyName>Form Export Disability Assessment For Dementia (DAD) (Pilot) (FN000120)</StudyName>
       <StudyDescription>Not applicable. Single form export.</StudyDescription>
       <ProtocolName>Not applicable. Single form export.</ProtocolName>
     </GlobalVariables>
-    <MetaDataVersion OID="MDV-F-ACME_VSBASELINE1" Name="Metadata for Vital Signs Baseline" Description="Not applicable. Single form export.">
+    <MetaDataVersion OID="MDV-aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0Y=" Name="Metadata for Disability Assessment For Dementia (DAD) (Pilot)" Description="Not applicable. Single form export.">
       <Protocol>
-        <StudyEventRef StudyEventOID="SE-F-ACME_VSBASELINE1" OrderNumber="1" Mandatory="Yes"/>
+        <StudyEventRef StudyEventOID="SE-aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0Y=" OrderNumber="1" Mandatory="Yes"/>
       </Protocol>
-      <StudyEventDef OID="SE-F-ACME_VSBASELINE1" Name="Not applicable. Single form export." Repeating="No" Type="Scheduled">
-        <FormRef FormOID="F-ACME_VSBASELINE1" OrderNumber="1" Mandatory="Yes"/>
+      <StudyEventDef OID="SE-aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0Y=" Name="Not applicable. Single form export." Repeating="No" Type="Scheduled">
+        <FormRef FormOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0Y=" OrderNumber="1" Mandatory="Yes"/>
       </StudyEventDef>
-      <FormDef OID="F-ACME_VSBASELINE1" Name="Vital Signs Baseline" Repeating="No">
-        <ItemGroupRef ItemGroupOID="F-ACME_VSBASELINE1_G1_G1" OrderNumber="1" Mandatory="No"/>
-        <ItemGroupRef ItemGroupOID="F-ACME_VSBASELINE1_G1_G2" OrderNumber="2" Mandatory="No"/>
-        <ItemGroupRef ItemGroupOID="F-ACME_VSBASELINE1_G1_G3" OrderNumber="3" Mandatory="No"/>
-        <ItemGroupRef ItemGroupOID="F-ACME_VSBASELINE1_G1_G4" OrderNumber="4" Mandatory="No"/>
-        <ItemGroupRef ItemGroupOID="F-ACME_VSBASELINE1_G1_G5" OrderNumber="5" Mandatory="No"/>
-        <ItemGroupRef ItemGroupOID="F-ACME_VSBASELINE1_G1" OrderNumber="1" Mandatory="No"/>
+      <FormDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0Y=" Name="Disability Assessment For Dementia (DAD) (Pilot)" Repeating="No">
+        <ItemGroupRef ItemGroupOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcx" OrderNumber="1" Mandatory="No"/>
+        <ItemGroupRef ItemGroupOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcy" OrderNumber="2" Mandatory="No"/>
+        <ItemGroupRef ItemGroupOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcz" OrderNumber="3" Mandatory="No"/>
+        <ItemGroupRef ItemGroupOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkczX05HMg==" OrderNumber="2" Mandatory="No"/>
+        <ItemGroupRef ItemGroupOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkczX05HMw==" OrderNumber="3" Mandatory="No"/>
+        <ItemGroupRef ItemGroupOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkczX05HNA==" OrderNumber="4" Mandatory="No"/>
+        <ItemGroupRef ItemGroupOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkczX05HNQ==" OrderNumber="5" Mandatory="No"/>
+        <ItemGroupRef ItemGroupOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkczX05HNg==" OrderNumber="6" Mandatory="No"/>
+        <ItemGroupRef ItemGroupOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkczX05HNw==" OrderNumber="7" Mandatory="No"/>
+        <ItemGroupRef ItemGroupOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkczX05HOA==" OrderNumber="8" Mandatory="No"/>
+        <ItemGroupRef ItemGroupOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc0" OrderNumber="4" Mandatory="No"/>
+        <ItemGroupRef ItemGroupOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc0X05HMg==" OrderNumber="2" Mandatory="No"/>
+        <ItemGroupRef ItemGroupOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc0X05HMw==" OrderNumber="3" Mandatory="No"/>
+        <ItemGroupRef ItemGroupOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc0X05HNA==" OrderNumber="4" Mandatory="No"/>
+        <ItemGroupRef ItemGroupOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc0X05HNQ==" OrderNumber="5" Mandatory="No"/>
+        <ItemGroupRef ItemGroupOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc0X05HNg==" OrderNumber="6" Mandatory="No"/>
+        <ItemGroupRef ItemGroupOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc1" OrderNumber="5" Mandatory="No"/>
+        <ItemGroupRef ItemGroupOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc1X05HMg==" OrderNumber="2" Mandatory="No"/>
+        <ItemGroupRef ItemGroupOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc1X05HMw==" OrderNumber="3" Mandatory="No"/>
+        <ItemGroupRef ItemGroupOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc2" OrderNumber="6" Mandatory="No"/>
+        <ItemGroupRef ItemGroupOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc2X05HMg==" OrderNumber="2" Mandatory="No"/>
+        <ItemGroupRef ItemGroupOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc2X05HMw==" OrderNumber="3" Mandatory="No"/>
+        <ItemGroupRef ItemGroupOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc2X05HNA==" OrderNumber="4" Mandatory="No"/>
+        <ItemGroupRef ItemGroupOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc3" OrderNumber="7" Mandatory="No"/>
+        <ItemGroupRef ItemGroupOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc3X05HMg==" OrderNumber="2" Mandatory="No"/>
+        <ItemGroupRef ItemGroupOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc3X05HMw==" OrderNumber="3" Mandatory="No"/>
+        <ItemGroupRef ItemGroupOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc3X05HNA==" OrderNumber="4" Mandatory="No"/>
+        <ItemGroupRef ItemGroupOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc4" OrderNumber="8" Mandatory="No"/>
+        <ItemGroupRef ItemGroupOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc4X05HMg==" OrderNumber="2" Mandatory="No"/>
+        <ItemGroupRef ItemGroupOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc4X05HMw==" OrderNumber="3" Mandatory="No"/>
+        <ItemGroupRef ItemGroupOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc4X05HNA==" OrderNumber="4" Mandatory="No"/>
+        <ItemGroupRef ItemGroupOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc4X05HNQ==" OrderNumber="5" Mandatory="No"/>
+        <ItemGroupRef ItemGroupOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc5" OrderNumber="9" Mandatory="No"/>
+        <ItemGroupRef ItemGroupOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc5X05HMg==" OrderNumber="2" Mandatory="No"/>
+        <ItemGroupRef ItemGroupOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc5X05HMw==" OrderNumber="3" Mandatory="No"/>
+        <ItemGroupRef ItemGroupOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc5X05HNA==" OrderNumber="4" Mandatory="No"/>
+        <ItemGroupRef ItemGroupOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc5X05HNQ==" OrderNumber="5" Mandatory="No"/>
+        <ItemGroupRef ItemGroupOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc5X05HNg==" OrderNumber="6" Mandatory="No"/>
+        <ItemGroupRef ItemGroupOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMA==" OrderNumber="10" Mandatory="No"/>
+        <ItemGroupRef ItemGroupOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMF9ORzI=" OrderNumber="2" Mandatory="No"/>
+        <ItemGroupRef ItemGroupOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMF9ORzM=" OrderNumber="3" Mandatory="No"/>
+        <ItemGroupRef ItemGroupOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMF9ORzQ=" OrderNumber="4" Mandatory="No"/>
+        <ItemGroupRef ItemGroupOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMF9ORzU=" OrderNumber="5" Mandatory="No"/>
+        <ItemGroupRef ItemGroupOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMQ==" OrderNumber="11" Mandatory="No"/>
+        <ItemGroupRef ItemGroupOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMV9ORzI=" OrderNumber="2" Mandatory="No"/>
+        <ItemGroupRef ItemGroupOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMV9ORzM=" OrderNumber="3" Mandatory="No"/>
+        <ItemGroupRef ItemGroupOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMg==" OrderNumber="12" Mandatory="No"/>
+        <ItemGroupRef ItemGroupOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzI=" OrderNumber="2" Mandatory="No"/>
+        <ItemGroupRef ItemGroupOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzM=" OrderNumber="3" Mandatory="No"/>
+        <ItemGroupRef ItemGroupOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzQ=" OrderNumber="4" Mandatory="No"/>
+        <ItemGroupRef ItemGroupOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzU=" OrderNumber="5" Mandatory="No"/>
+        <ItemGroupRef ItemGroupOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzY=" OrderNumber="6" Mandatory="No"/>
       </FormDef>
-      <ItemGroupDef OID="F-ACME_VSBASELINE1_G1_G1" Name="Common" Repeating="No"/>
-      <ItemGroupDef OID="F-ACME_VSBASELINE1_G1_G2" Name="Height (BC_C25347)" Repeating="No">
-        <ItemRef ItemOID="F-ACME_VSBASELINE1_G1_G2_I1" OrderNumber="1" Mandatory="No"/>
-        <ItemRef ItemOID="F-ACME_VSBASELINE1_G1_G2_I2" OrderNumber="2" Mandatory="No"/>
-        <ItemRef ItemOID="F-ACME_VSBASELINE1_G1_G2_I3" OrderNumber="3" Mandatory="No"/>
+      <ItemGroupDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcx" Name="Not Set" Repeating="No"/>
+      <ItemGroupDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcy" Name="Not Set" Repeating="No">
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcyX1Ex" OrderNumber="1" Mandatory="No"/>
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcyX1Ey" OrderNumber="2" Mandatory="No"/>
       </ItemGroupDef>
-      <ItemGroupDef OID="F-ACME_VSBASELINE1_G1_G3" Name="Weight (BC_C25208)" Repeating="No">
-        <ItemRef ItemOID="F-ACME_VSBASELINE1_G1_G3_I1" OrderNumber="1" Mandatory="No"/>
-        <ItemRef ItemOID="F-ACME_VSBASELINE1_G1_G3_I2" OrderNumber="2" Mandatory="No"/>
-        <ItemRef ItemOID="F-ACME_VSBASELINE1_G1_G3_I3" OrderNumber="3" Mandatory="No"/>
+      <ItemGroupDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcz" Name="HYGIENE" Repeating="No"/>
+      <ItemGroupDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkczX05HMg==" Name="1. Undertake to wash himself/herself or to take a bath or a shower" Repeating="No">
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkczX05HMl9RMg==" OrderNumber="2" Mandatory="No"/>
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkczX05HMl9RMw==" OrderNumber="3" Mandatory="No"/>
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkczX05HMl9RNA==" OrderNumber="4" Mandatory="No"/>
       </ItemGroupDef>
-      <ItemGroupDef OID="F-ACME_VSBASELINE1_G1_G4" Name="Systolic Blood Pressure (BC_C25298)" Repeating="No">
-        <ItemRef ItemOID="F-ACME_VSBASELINE1_G1_G4_I1" OrderNumber="1" Mandatory="No"/>
-        <ItemRef ItemOID="F-ACME_VSBASELINE1_G1_G4_I2" OrderNumber="2" Mandatory="No"/>
-        <ItemRef ItemOID="F-ACME_VSBASELINE1_G1_G4_I3" OrderNumber="3" Mandatory="No"/>
-        <ItemRef ItemOID="F-ACME_VSBASELINE1_G1_G4_I4" OrderNumber="4" Mandatory="No"/>
+      <ItemGroupDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkczX05HMw==" Name="2. Undertake to brush his/her teeth or care for his/her dentures" Repeating="No">
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkczX05HM19RMg==" OrderNumber="2" Mandatory="No"/>
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkczX05HM19RMw==" OrderNumber="3" Mandatory="No"/>
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkczX05HM19RNA==" OrderNumber="4" Mandatory="No"/>
       </ItemGroupDef>
-      <ItemGroupDef OID="F-ACME_VSBASELINE1_G1_G5" Name="Diastolic Blood Pressure (BC_C25299)" Repeating="No">
-        <ItemRef ItemOID="F-ACME_VSBASELINE1_G1_G5_I1" OrderNumber="1" Mandatory="No"/>
-        <ItemRef ItemOID="F-ACME_VSBASELINE1_G1_G5_I2" OrderNumber="2" Mandatory="No"/>
-        <ItemRef ItemOID="F-ACME_VSBASELINE1_G1_G5_I3" OrderNumber="3" Mandatory="No"/>
-        <ItemRef ItemOID="F-ACME_VSBASELINE1_G1_G5_I4" OrderNumber="4" Mandatory="No"/>
+      <ItemGroupDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkczX05HNA==" Name="3. Decide to care for his/her hair (wash and comb)" Repeating="No">
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkczX05HNF9RMg==" OrderNumber="2" Mandatory="No"/>
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkczX05HNF9RMw==" OrderNumber="3" Mandatory="No"/>
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkczX05HNF9RNA==" OrderNumber="4" Mandatory="No"/>
       </ItemGroupDef>
-      <ItemGroupDef OID="F-ACME_VSBASELINE1_G1" Name="Group" Repeating="No"/>
-      <ItemDef OID="F-ACME_VSBASELINE1_G1_G2_I1" Name="Date and Time (--DTC)" DataType="datetime">
+      <ItemGroupDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkczX05HNQ==" Name="4. Prepare the water, towels, and soap for washing, taking a bath, or a shower" Repeating="No">
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkczX05HNV9RMg==" OrderNumber="2" Mandatory="No"/>
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkczX05HNV9RMw==" OrderNumber="3" Mandatory="No"/>
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkczX05HNV9RNA==" OrderNumber="4" Mandatory="No"/>
+      </ItemGroupDef>
+      <ItemGroupDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkczX05HNg==" Name="5.Wash and dry completely all parts of his/her body safely" Repeating="No">
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkczX05HNl9RMg==" OrderNumber="2" Mandatory="No"/>
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkczX05HNl9RMw==" OrderNumber="3" Mandatory="No"/>
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkczX05HNl9RNA==" OrderNumber="4" Mandatory="No"/>
+      </ItemGroupDef>
+      <ItemGroupDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkczX05HNw==" Name="6. Brush his/her teeth or care for his/her dentures appropriately" Repeating="No">
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkczX05HN19RMg==" OrderNumber="2" Mandatory="No"/>
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkczX05HN19RMw==" OrderNumber="3" Mandatory="No"/>
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkczX05HN19RNA==" OrderNumber="4" Mandatory="No"/>
+      </ItemGroupDef>
+      <ItemGroupDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkczX05HOA==" Name="7. Care for his/her hair (wash and comb)" Repeating="No">
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkczX05HOF9RMg==" OrderNumber="2" Mandatory="No"/>
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkczX05HOF9RMw==" OrderNumber="3" Mandatory="No"/>
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkczX05HOF9RNA==" OrderNumber="4" Mandatory="No"/>
+      </ItemGroupDef>
+      <ItemGroupDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc0" Name="DRESSING" Repeating="No"/>
+      <ItemGroupDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc0X05HMg==" Name="8.Undertake to dress himself/herself" Repeating="No">
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc0X05HMl9RMg==" OrderNumber="2" Mandatory="No"/>
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc0X05HMl9RMw==" OrderNumber="3" Mandatory="No"/>
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc0X05HMl9RNA==" OrderNumber="4" Mandatory="No"/>
+      </ItemGroupDef>
+      <ItemGroupDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc0X05HMw==" Name="9. Choose appropriate clothing (with regard to the occasion, neatness, the weather, and color combination)" Repeating="No">
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc0X05HM19RMg==" OrderNumber="2" Mandatory="No"/>
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc0X05HM19RMw==" OrderNumber="3" Mandatory="No"/>
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc0X05HM19RNA==" OrderNumber="4" Mandatory="No"/>
+      </ItemGroupDef>
+      <ItemGroupDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc0X05HNA==" Name="10. Dress himself/herself in the appropriate order (undergarments, pant/dress, shoes)" Repeating="No">
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc0X05HNF9RMg==" OrderNumber="2" Mandatory="No"/>
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc0X05HNF9RMw==" OrderNumber="3" Mandatory="No"/>
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc0X05HNF9RNA==" OrderNumber="4" Mandatory="No"/>
+      </ItemGroupDef>
+      <ItemGroupDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc0X05HNQ==" Name="11. Dress himself/herself completely" Repeating="No">
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc0X05HNV9RMg==" OrderNumber="2" Mandatory="No"/>
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc0X05HNV9RMw==" OrderNumber="3" Mandatory="No"/>
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc0X05HNV9RNA==" OrderNumber="4" Mandatory="No"/>
+      </ItemGroupDef>
+      <ItemGroupDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc0X05HNg==" Name="12. Undress himself/herself completely" Repeating="No">
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc0X05HNl9RMg==" OrderNumber="2" Mandatory="No"/>
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc0X05HNl9RMw==" OrderNumber="3" Mandatory="No"/>
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc0X05HNl9RNA==" OrderNumber="4" Mandatory="No"/>
+      </ItemGroupDef>
+      <ItemGroupDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc1" Name="CONTINENCE" Repeating="No"/>
+      <ItemGroupDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc1X05HMg==" Name="13. Decide to use the toilet at appropriate times" Repeating="No">
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc1X05HMl9RMg==" OrderNumber="2" Mandatory="No"/>
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc1X05HMl9RMw==" OrderNumber="3" Mandatory="No"/>
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc1X05HMl9RNA==" OrderNumber="4" Mandatory="No"/>
+      </ItemGroupDef>
+      <ItemGroupDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc1X05HMw==" Name="14. Use the toilet without &quot;accidents&quot;" Repeating="No">
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc1X05HM19RMg==" OrderNumber="2" Mandatory="No"/>
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc1X05HM19RMw==" OrderNumber="3" Mandatory="No"/>
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc1X05HM19RNA==" OrderNumber="4" Mandatory="No"/>
+      </ItemGroupDef>
+      <ItemGroupDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc2" Name="EATING" Repeating="No"/>
+      <ItemGroupDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc2X05HMg==" Name="15. Decide that he/she needs to eat" Repeating="No">
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc2X05HMl9RMg==" OrderNumber="2" Mandatory="No"/>
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc2X05HMl9RMw==" OrderNumber="3" Mandatory="No"/>
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc2X05HMl9RNA==" OrderNumber="4" Mandatory="No"/>
+      </ItemGroupDef>
+      <ItemGroupDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc2X05HMw==" Name="16. Choose appropriate utensils and seasonings when eating" Repeating="No">
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc2X05HM19RMg==" OrderNumber="2" Mandatory="No"/>
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc2X05HM19RMw==" OrderNumber="3" Mandatory="No"/>
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc2X05HM19RNA==" OrderNumber="4" Mandatory="No"/>
+      </ItemGroupDef>
+      <ItemGroupDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc2X05HNA==" Name="17. Eat his/her meals at a normal pace and with appropriate manners" Repeating="No">
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc2X05HNF9RMg==" OrderNumber="2" Mandatory="No"/>
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc2X05HNF9RMw==" OrderNumber="3" Mandatory="No"/>
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc2X05HNF9RNA==" OrderNumber="4" Mandatory="No"/>
+      </ItemGroupDef>
+      <ItemGroupDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc3" Name="MEAL PREPARATION" Repeating="No"/>
+      <ItemGroupDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc3X05HMg==" Name="18. Undertake to prepare a light meal or snack for himself/herself" Repeating="No">
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc3X05HMl9RMg==" OrderNumber="2" Mandatory="No"/>
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc3X05HMl9RMw==" OrderNumber="3" Mandatory="No"/>
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc3X05HMl9RNA==" OrderNumber="4" Mandatory="No"/>
+      </ItemGroupDef>
+      <ItemGroupDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc3X05HMw==" Name="19. Adequately plan a light meal or snack (ingredients, cookware)" Repeating="No">
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc3X05HM19RMg==" OrderNumber="2" Mandatory="No"/>
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc3X05HM19RMw==" OrderNumber="3" Mandatory="No"/>
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc3X05HM19RNA==" OrderNumber="4" Mandatory="No"/>
+      </ItemGroupDef>
+      <ItemGroupDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc3X05HNA==" Name="20. Prepare or cook a light meal or a snack safely" Repeating="No">
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc3X05HNF9RMg==" OrderNumber="2" Mandatory="No"/>
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc3X05HNF9RMw==" OrderNumber="3" Mandatory="No"/>
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc3X05HNF9RNA==" OrderNumber="4" Mandatory="No"/>
+      </ItemGroupDef>
+      <ItemGroupDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc4" Name="TELEPHONING" Repeating="No"/>
+      <ItemGroupDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc4X05HMg==" Name="21. Attempt to telephone someone at a suitable time" Repeating="No">
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc4X05HMl9RMg==" OrderNumber="2" Mandatory="No"/>
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc4X05HMl9RMw==" OrderNumber="3" Mandatory="No"/>
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc4X05HMl9RNA==" OrderNumber="4" Mandatory="No"/>
+      </ItemGroupDef>
+      <ItemGroupDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc4X05HMw==" Name="22. Find and dial a telephone number correctly" Repeating="No">
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc4X05HM19RMg==" OrderNumber="2" Mandatory="No"/>
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc4X05HM19RMw==" OrderNumber="3" Mandatory="No"/>
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc4X05HM19RNA==" OrderNumber="4" Mandatory="No"/>
+      </ItemGroupDef>
+      <ItemGroupDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc4X05HNA==" Name="23. Carry out an appropriate telephone conversation" Repeating="No">
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc4X05HNF9RMg==" OrderNumber="2" Mandatory="No"/>
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc4X05HNF9RMw==" OrderNumber="3" Mandatory="No"/>
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc4X05HNF9RNA==" OrderNumber="4" Mandatory="No"/>
+      </ItemGroupDef>
+      <ItemGroupDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc4X05HNQ==" Name="24. Write and convey a telephone message adequately" Repeating="No">
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc4X05HNV9RMg==" OrderNumber="2" Mandatory="No"/>
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc4X05HNV9RMw==" OrderNumber="3" Mandatory="No"/>
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc4X05HNV9RNA==" OrderNumber="4" Mandatory="No"/>
+      </ItemGroupDef>
+      <ItemGroupDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc5" Name="GOING ON AN OUTING" Repeating="No"/>
+      <ItemGroupDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc5X05HMg==" Name="25. Undertake to go out (walk, visit, shop) at an appropriate time" Repeating="No">
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc5X05HMl9RMg==" OrderNumber="2" Mandatory="No"/>
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc5X05HMl9RMw==" OrderNumber="3" Mandatory="No"/>
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc5X05HMl9RNA==" OrderNumber="4" Mandatory="No"/>
+      </ItemGroupDef>
+      <ItemGroupDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc5X05HMw==" Name="26. Adequately organize an outing with respect to transportation, keys, destination, weather, necessary money, shopping list" Repeating="No">
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc5X05HM19RMg==" OrderNumber="2" Mandatory="No"/>
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc5X05HM19RMw==" OrderNumber="3" Mandatory="No"/>
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc5X05HM19RNA==" OrderNumber="4" Mandatory="No"/>
+      </ItemGroupDef>
+      <ItemGroupDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc5X05HNA==" Name="27. Go out and reach a familiar destination without getting lost" Repeating="No">
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc5X05HNF9RMg==" OrderNumber="2" Mandatory="No"/>
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc5X05HNF9RMw==" OrderNumber="3" Mandatory="No"/>
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc5X05HNF9RNA==" OrderNumber="4" Mandatory="No"/>
+      </ItemGroupDef>
+      <ItemGroupDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc5X05HNQ==" Name="28. Safely take the adequate mode of transportation (car, bus, taxi)" Repeating="No">
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc5X05HNV9RMg==" OrderNumber="2" Mandatory="No"/>
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc5X05HNV9RMw==" OrderNumber="3" Mandatory="No"/>
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc5X05HNV9RNA==" OrderNumber="4" Mandatory="No"/>
+      </ItemGroupDef>
+      <ItemGroupDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc5X05HNg==" Name="29. Return from the store with the appropriate items" Repeating="No">
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc5X05HNl9RMg==" OrderNumber="2" Mandatory="No"/>
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc5X05HNl9RMw==" OrderNumber="3" Mandatory="No"/>
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc5X05HNl9RNA==" OrderNumber="4" Mandatory="No"/>
+      </ItemGroupDef>
+      <ItemGroupDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMA==" Name="FINANCE AND CORRESPONDENCE" Repeating="No"/>
+      <ItemGroupDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMF9ORzI=" Name="30. Show an interest in his/her personal affairs such as his/her finances and written correspondence" Repeating="No">
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMF9ORzJfUTI=" OrderNumber="2" Mandatory="No"/>
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMF9ORzJfUTM=" OrderNumber="3" Mandatory="No"/>
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMF9ORzJfUTQ=" OrderNumber="4" Mandatory="No"/>
+      </ItemGroupDef>
+      <ItemGroupDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMF9ORzM=" Name="31. Organize his/her finances to pay his/her bills (cheques, bankbook, bills)" Repeating="No">
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMF9ORzNfUTI=" OrderNumber="2" Mandatory="No"/>
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMF9ORzNfUTM=" OrderNumber="3" Mandatory="No"/>
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMF9ORzNfUTQ=" OrderNumber="4" Mandatory="No"/>
+      </ItemGroupDef>
+      <ItemGroupDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMF9ORzQ=" Name="32. Adequately organize his/her correspondence with respect to stationery, address, stamps" Repeating="No">
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMF9ORzRfUTI=" OrderNumber="2" Mandatory="No"/>
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMF9ORzRfUTM=" OrderNumber="3" Mandatory="No"/>
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMF9ORzRfUTQ=" OrderNumber="4" Mandatory="No"/>
+      </ItemGroupDef>
+      <ItemGroupDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMF9ORzU=" Name="33. Handle adequately his/her money (make change)" Repeating="No">
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMF9ORzVfUTI=" OrderNumber="2" Mandatory="No"/>
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMF9ORzVfUTM=" OrderNumber="3" Mandatory="No"/>
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMF9ORzVfUTQ=" OrderNumber="4" Mandatory="No"/>
+      </ItemGroupDef>
+      <ItemGroupDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMQ==" Name="MEDICATIONS" Repeating="No"/>
+      <ItemGroupDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMV9ORzI=" Name="34. Decide to take his/her medications at the correct time" Repeating="No">
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMV9ORzJfUTI=" OrderNumber="2" Mandatory="No"/>
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMV9ORzJfUTM=" OrderNumber="3" Mandatory="No"/>
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMV9ORzJfUTQ=" OrderNumber="4" Mandatory="No"/>
+      </ItemGroupDef>
+      <ItemGroupDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMV9ORzM=" Name="35. Take his/her medications as prescribed (according to the right dosage)" Repeating="No">
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMV9ORzNfUTI=" OrderNumber="2" Mandatory="No"/>
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMV9ORzNfUTM=" OrderNumber="3" Mandatory="No"/>
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMV9ORzNfUTQ=" OrderNumber="4" Mandatory="No"/>
+      </ItemGroupDef>
+      <ItemGroupDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMg==" Name="LEISURE AND HOUSEWORK" Repeating="No"/>
+      <ItemGroupDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzI=" Name="36. Show an interest in leisure activity(ies)" Repeating="No">
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzJfUTI=" OrderNumber="2" Mandatory="No"/>
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzJfUTM=" OrderNumber="3" Mandatory="No"/>
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzJfUTQ=" OrderNumber="4" Mandatory="No"/>
+      </ItemGroupDef>
+      <ItemGroupDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzM=" Name="37.Take an interest in household chores that he/she used to perform in the past" Repeating="No">
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzNfUTI=" OrderNumber="2" Mandatory="No"/>
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzNfUTM=" OrderNumber="3" Mandatory="No"/>
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzNfUTQ=" OrderNumber="4" Mandatory="No"/>
+      </ItemGroupDef>
+      <ItemGroupDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzQ=" Name="38. Plan and organize adequately household chores that he/she used to perform in the past" Repeating="No">
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzRfUTI=" OrderNumber="2" Mandatory="No"/>
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzRfUTM=" OrderNumber="3" Mandatory="No"/>
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzRfUTQ=" OrderNumber="4" Mandatory="No"/>
+      </ItemGroupDef>
+      <ItemGroupDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzU=" Name="39. Complete household chores adequately as he/she used to perform in the past" Repeating="No">
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzVfUTI=" OrderNumber="2" Mandatory="No"/>
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzVfUTM=" OrderNumber="3" Mandatory="No"/>
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzVfUTQ=" OrderNumber="4" Mandatory="No"/>
+      </ItemGroupDef>
+      <ItemGroupDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzY=" Name="40. Stay safely at home by himself/herself when needed" Repeating="No">
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzZfUTI=" OrderNumber="2" Mandatory="No"/>
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzZfUTM=" OrderNumber="3" Mandatory="No"/>
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzZfUTQ=" OrderNumber="4" Mandatory="No"/>
+      </ItemGroupDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcyX1Ex" Name="INFORMATION NOT OBTAINED " DataType="boolean">
         <Question>
-          <TranslatedText xml:lang="en">Question text</TranslatedText>
+          <TranslatedText xml:lang="en">INFORMATION NOT OBTAINED </TranslatedText>
         </Question>
       </ItemDef>
-      <ItemDef OID="F-ACME_VSBASELINE1_G1_G2_I2" Name="Result Value (--ORRES)" DataType="float" Length="4" SignificantDigits="1">
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcyX1Ey" Name="Clinician's initials " DataType="text" Length="3">
         <Question>
-          <TranslatedText xml:lang="en">Result value?</TranslatedText>
+          <TranslatedText xml:lang="en">Clinician's initials </TranslatedText>
         </Question>
       </ItemDef>
-      <ItemDef OID="F-ACME_VSBASELINE1_G1_G2_I3" Name="Result Units (--ORRESU)" DataType="text" Length="20">
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkczX05HMl9RMg==" Name="Initiation" DataType="text" Length="20">
         <Question>
-          <TranslatedText xml:lang="en">Result units?</TranslatedText>
+          <TranslatedText xml:lang="en">Initiation</TranslatedText>
         </Question>
-        <CodeListRef CodeListOID="F-ACME_VSBASELINE1_G1_G2_I3-CL"/>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkczX05HMl9RMg==-CL"/>
       </ItemDef>
-      <ItemDef OID="F-ACME_VSBASELINE1_G1_G3_I1" Name="Date and Time (--DTC)" DataType="datetime">
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkczX05HMl9RMw==" Name="Planning &amp; Organization" DataType="text" Length="20">
         <Question>
-          <TranslatedText xml:lang="en">Question text</TranslatedText>
+          <TranslatedText xml:lang="en">Planning &amp; Organization</TranslatedText>
         </Question>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkczX05HMl9RMw==-CL"/>
       </ItemDef>
-      <ItemDef OID="F-ACME_VSBASELINE1_G1_G3_I2" Name="Result Value (--ORRES)" DataType="float" Length="4" SignificantDigits="1">
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkczX05HMl9RNA==" Name="Effective Performance" DataType="text" Length="20">
         <Question>
-          <TranslatedText xml:lang="en">Result value?</TranslatedText>
+          <TranslatedText xml:lang="en">Effective Performance</TranslatedText>
         </Question>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkczX05HMl9RNA==-CL"/>
       </ItemDef>
-      <ItemDef OID="F-ACME_VSBASELINE1_G1_G3_I3" Name="Result Units (--ORRESU)" DataType="text" Length="20">
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkczX05HM19RMg==" Name="Initiation" DataType="text" Length="20">
         <Question>
-          <TranslatedText xml:lang="en">Result units?</TranslatedText>
+          <TranslatedText xml:lang="en">Initiation</TranslatedText>
         </Question>
-        <CodeListRef CodeListOID="F-ACME_VSBASELINE1_G1_G3_I3-CL"/>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkczX05HM19RMg==-CL"/>
       </ItemDef>
-      <ItemDef OID="F-ACME_VSBASELINE1_G1_G4_I1" Name="Date and Time (--DTC)" DataType="datetime">
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkczX05HM19RMw==" Name="Planning &amp; Organization" DataType="text" Length="20">
         <Question>
-          <TranslatedText xml:lang="en">Question text</TranslatedText>
+          <TranslatedText xml:lang="en">Planning &amp; Organization</TranslatedText>
         </Question>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkczX05HM19RMw==-CL"/>
       </ItemDef>
-      <ItemDef OID="F-ACME_VSBASELINE1_G1_G4_I2" Name="Result Value (--ORRES)" DataType="float" Length="4" SignificantDigits="1">
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkczX05HM19RNA==" Name="Effective Performance" DataType="text" Length="20">
         <Question>
-          <TranslatedText xml:lang="en">Result value?</TranslatedText>
+          <TranslatedText xml:lang="en">Effective Performance</TranslatedText>
         </Question>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkczX05HM19RNA==-CL"/>
       </ItemDef>
-      <ItemDef OID="F-ACME_VSBASELINE1_G1_G4_I3" Name="Result Units (--ORRESU)" DataType="text" Length="20">
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkczX05HNF9RMg==" Name="Initiation" DataType="text" Length="20">
         <Question>
-          <TranslatedText xml:lang="en">Result units?</TranslatedText>
+          <TranslatedText xml:lang="en">Initiation</TranslatedText>
         </Question>
-        <CodeListRef CodeListOID="F-ACME_VSBASELINE1_G1_G4_I3-CL"/>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkczX05HNF9RMg==-CL"/>
       </ItemDef>
-      <ItemDef OID="F-ACME_VSBASELINE1_G1_G4_I4" Name="Body Position (--POS)" DataType="text" Length="20">
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkczX05HNF9RMw==" Name="Planning &amp; Organization" DataType="text" Length="20">
         <Question>
-          <TranslatedText xml:lang="en">Body position?</TranslatedText>
+          <TranslatedText xml:lang="en">Planning &amp; Organization</TranslatedText>
         </Question>
-        <CodeListRef CodeListOID="F-ACME_VSBASELINE1_G1_G4_I4-CL"/>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkczX05HNF9RMw==-CL"/>
       </ItemDef>
-      <ItemDef OID="F-ACME_VSBASELINE1_G1_G5_I1" Name="Date and Time (--DTC)" DataType="datetime">
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkczX05HNF9RNA==" Name="Effective Performance" DataType="text" Length="20">
         <Question>
-          <TranslatedText xml:lang="en">Question text</TranslatedText>
+          <TranslatedText xml:lang="en">Effective Performance</TranslatedText>
         </Question>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkczX05HNF9RNA==-CL"/>
       </ItemDef>
-      <ItemDef OID="F-ACME_VSBASELINE1_G1_G5_I2" Name="Result Value (--ORRES)" DataType="float" Length="4" SignificantDigits="1">
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkczX05HNV9RMg==" Name="Initiation" DataType="text" Length="20">
         <Question>
-          <TranslatedText xml:lang="en">Result value?</TranslatedText>
+          <TranslatedText xml:lang="en">Initiation</TranslatedText>
         </Question>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkczX05HNV9RMg==-CL"/>
       </ItemDef>
-      <ItemDef OID="F-ACME_VSBASELINE1_G1_G5_I3" Name="Result Units (--ORRESU)" DataType="text" Length="20">
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkczX05HNV9RMw==" Name="Planning &amp; Organization" DataType="text" Length="20">
         <Question>
-          <TranslatedText xml:lang="en">Result units?</TranslatedText>
+          <TranslatedText xml:lang="en">Planning &amp; Organization</TranslatedText>
         </Question>
-        <CodeListRef CodeListOID="F-ACME_VSBASELINE1_G1_G5_I3-CL"/>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkczX05HNV9RMw==-CL"/>
       </ItemDef>
-      <ItemDef OID="F-ACME_VSBASELINE1_G1_G5_I4" Name="Body Position (--POS)" DataType="text" Length="20">
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkczX05HNV9RNA==" Name="Effective Performance" DataType="text" Length="20">
         <Question>
-          <TranslatedText xml:lang="en">Body position?</TranslatedText>
+          <TranslatedText xml:lang="en">Effective Performance</TranslatedText>
         </Question>
-        <CodeListRef CodeListOID="F-ACME_VSBASELINE1_G1_G5_I4-CL"/>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkczX05HNV9RNA==-CL"/>
       </ItemDef>
-      <CodeList OID="F-ACME_VSBASELINE1_G1_G2_I3-CL" Name="Code list for Result Units (--ORRESU)" DataType="text">
-        <CodeListItem CodedValue="ft" OrderNumber="1">
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkczX05HNl9RMg==" Name="Initiation" DataType="text" Length="20">
+        <Question>
+          <TranslatedText xml:lang="en">Initiation</TranslatedText>
+        </Question>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkczX05HNl9RMg==-CL"/>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkczX05HNl9RMw==" Name="Planning &amp; Organization" DataType="text" Length="20">
+        <Question>
+          <TranslatedText xml:lang="en">Planning &amp; Organization</TranslatedText>
+        </Question>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkczX05HNl9RMw==-CL"/>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkczX05HNl9RNA==" Name="Effective Performance" DataType="text" Length="20">
+        <Question>
+          <TranslatedText xml:lang="en">Effective Performance</TranslatedText>
+        </Question>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkczX05HNl9RNA==-CL"/>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkczX05HN19RMg==" Name="Initiation" DataType="text" Length="20">
+        <Question>
+          <TranslatedText xml:lang="en">Initiation</TranslatedText>
+        </Question>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkczX05HN19RMg==-CL"/>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkczX05HN19RMw==" Name="Planning &amp; Organization" DataType="text" Length="20">
+        <Question>
+          <TranslatedText xml:lang="en">Planning &amp; Organization</TranslatedText>
+        </Question>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkczX05HN19RMw==-CL"/>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkczX05HN19RNA==" Name="Effective Performance" DataType="text" Length="20">
+        <Question>
+          <TranslatedText xml:lang="en">Effective Performance</TranslatedText>
+        </Question>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkczX05HN19RNA==-CL"/>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkczX05HOF9RMg==" Name="Initiation" DataType="text" Length="20">
+        <Question>
+          <TranslatedText xml:lang="en">Initiation</TranslatedText>
+        </Question>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkczX05HOF9RMg==-CL"/>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkczX05HOF9RMw==" Name="Planning &amp; Organization" DataType="text" Length="20">
+        <Question>
+          <TranslatedText xml:lang="en">Planning &amp; Organization</TranslatedText>
+        </Question>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkczX05HOF9RMw==-CL"/>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkczX05HOF9RNA==" Name="Effective Performance" DataType="text" Length="20">
+        <Question>
+          <TranslatedText xml:lang="en">Effective Performance</TranslatedText>
+        </Question>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkczX05HOF9RNA==-CL"/>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc0X05HMl9RMg==" Name="Initiation" DataType="text" Length="20">
+        <Question>
+          <TranslatedText xml:lang="en">Initiation</TranslatedText>
+        </Question>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc0X05HMl9RMg==-CL"/>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc0X05HMl9RMw==" Name="Planning &amp; Organization" DataType="text" Length="20">
+        <Question>
+          <TranslatedText xml:lang="en">Planning &amp; Organization</TranslatedText>
+        </Question>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc0X05HMl9RMw==-CL"/>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc0X05HMl9RNA==" Name="Effective Performance" DataType="text" Length="20">
+        <Question>
+          <TranslatedText xml:lang="en">Effective Performance</TranslatedText>
+        </Question>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc0X05HMl9RNA==-CL"/>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc0X05HM19RMg==" Name="Initiation" DataType="text" Length="20">
+        <Question>
+          <TranslatedText xml:lang="en">Initiation</TranslatedText>
+        </Question>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc0X05HM19RMg==-CL"/>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc0X05HM19RMw==" Name="Planning &amp; Organization" DataType="text" Length="20">
+        <Question>
+          <TranslatedText xml:lang="en">Planning &amp; Organization</TranslatedText>
+        </Question>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc0X05HM19RMw==-CL"/>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc0X05HM19RNA==" Name="Effective Performance" DataType="text" Length="20">
+        <Question>
+          <TranslatedText xml:lang="en">Effective Performance</TranslatedText>
+        </Question>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc0X05HM19RNA==-CL"/>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc0X05HNF9RMg==" Name="Initiation" DataType="text" Length="20">
+        <Question>
+          <TranslatedText xml:lang="en">Initiation</TranslatedText>
+        </Question>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc0X05HNF9RMg==-CL"/>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc0X05HNF9RMw==" Name="Planning &amp; Organization" DataType="text" Length="20">
+        <Question>
+          <TranslatedText xml:lang="en">Planning &amp; Organization</TranslatedText>
+        </Question>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc0X05HNF9RMw==-CL"/>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc0X05HNF9RNA==" Name="Effective Performance" DataType="text" Length="20">
+        <Question>
+          <TranslatedText xml:lang="en">Effective Performance</TranslatedText>
+        </Question>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc0X05HNF9RNA==-CL"/>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc0X05HNV9RMg==" Name="Initiation" DataType="text" Length="20">
+        <Question>
+          <TranslatedText xml:lang="en">Initiation</TranslatedText>
+        </Question>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc0X05HNV9RMg==-CL"/>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc0X05HNV9RMw==" Name="Planning &amp; Organization" DataType="text" Length="20">
+        <Question>
+          <TranslatedText xml:lang="en">Planning &amp; Organization</TranslatedText>
+        </Question>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc0X05HNV9RMw==-CL"/>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc0X05HNV9RNA==" Name="Effective Performance" DataType="text" Length="20">
+        <Question>
+          <TranslatedText xml:lang="en">Effective Performance</TranslatedText>
+        </Question>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc0X05HNV9RNA==-CL"/>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc0X05HNl9RMg==" Name="Initiation" DataType="text" Length="20">
+        <Question>
+          <TranslatedText xml:lang="en">Initiation</TranslatedText>
+        </Question>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc0X05HNl9RMg==-CL"/>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc0X05HNl9RMw==" Name="Planning &amp; Organization" DataType="text" Length="20">
+        <Question>
+          <TranslatedText xml:lang="en">Planning &amp; Organization</TranslatedText>
+        </Question>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc0X05HNl9RMw==-CL"/>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc0X05HNl9RNA==" Name="Effective Performance" DataType="text" Length="20">
+        <Question>
+          <TranslatedText xml:lang="en">Effective Performance</TranslatedText>
+        </Question>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc0X05HNl9RNA==-CL"/>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc1X05HMl9RMg==" Name="Initiation" DataType="text" Length="20">
+        <Question>
+          <TranslatedText xml:lang="en">Initiation</TranslatedText>
+        </Question>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc1X05HMl9RMg==-CL"/>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc1X05HMl9RMw==" Name="Planning &amp; Organization" DataType="text" Length="20">
+        <Question>
+          <TranslatedText xml:lang="en">Planning &amp; Organization</TranslatedText>
+        </Question>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc1X05HMl9RMw==-CL"/>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc1X05HMl9RNA==" Name="Effective Performance" DataType="text" Length="20">
+        <Question>
+          <TranslatedText xml:lang="en">Effective Performance</TranslatedText>
+        </Question>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc1X05HMl9RNA==-CL"/>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc1X05HM19RMg==" Name="Initiation" DataType="text" Length="20">
+        <Question>
+          <TranslatedText xml:lang="en">Initiation</TranslatedText>
+        </Question>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc1X05HM19RMg==-CL"/>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc1X05HM19RMw==" Name="Planning &amp; Organization" DataType="text" Length="20">
+        <Question>
+          <TranslatedText xml:lang="en">Planning &amp; Organization</TranslatedText>
+        </Question>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc1X05HM19RMw==-CL"/>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc1X05HM19RNA==" Name="Effective Performance" DataType="text" Length="20">
+        <Question>
+          <TranslatedText xml:lang="en">Effective Performance</TranslatedText>
+        </Question>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc1X05HM19RNA==-CL"/>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc2X05HMl9RMg==" Name="Initiation" DataType="text" Length="20">
+        <Question>
+          <TranslatedText xml:lang="en">Initiation</TranslatedText>
+        </Question>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc2X05HMl9RMg==-CL"/>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc2X05HMl9RMw==" Name="Planning &amp; Organization" DataType="text" Length="20">
+        <Question>
+          <TranslatedText xml:lang="en">Planning &amp; Organization</TranslatedText>
+        </Question>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc2X05HMl9RMw==-CL"/>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc2X05HMl9RNA==" Name="Effective Performance" DataType="text" Length="20">
+        <Question>
+          <TranslatedText xml:lang="en">Effective Performance</TranslatedText>
+        </Question>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc2X05HMl9RNA==-CL"/>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc2X05HM19RMg==" Name="Initiation" DataType="text" Length="20">
+        <Question>
+          <TranslatedText xml:lang="en">Initiation</TranslatedText>
+        </Question>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc2X05HM19RMg==-CL"/>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc2X05HM19RMw==" Name="Planning &amp; Organization" DataType="text" Length="20">
+        <Question>
+          <TranslatedText xml:lang="en">Planning &amp; Organization</TranslatedText>
+        </Question>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc2X05HM19RMw==-CL"/>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc2X05HM19RNA==" Name="Effective Performance" DataType="text" Length="20">
+        <Question>
+          <TranslatedText xml:lang="en">Effective Performance</TranslatedText>
+        </Question>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc2X05HM19RNA==-CL"/>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc2X05HNF9RMg==" Name="Initiation" DataType="text" Length="20">
+        <Question>
+          <TranslatedText xml:lang="en">Initiation</TranslatedText>
+        </Question>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc2X05HNF9RMg==-CL"/>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc2X05HNF9RMw==" Name="Planning &amp; Organization" DataType="text" Length="20">
+        <Question>
+          <TranslatedText xml:lang="en">Planning &amp; Organization</TranslatedText>
+        </Question>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc2X05HNF9RMw==-CL"/>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc2X05HNF9RNA==" Name="Effective Performance" DataType="text" Length="20">
+        <Question>
+          <TranslatedText xml:lang="en">Effective Performance</TranslatedText>
+        </Question>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc2X05HNF9RNA==-CL"/>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc3X05HMl9RMg==" Name="Initiation" DataType="text" Length="20">
+        <Question>
+          <TranslatedText xml:lang="en">Initiation</TranslatedText>
+        </Question>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc3X05HMl9RMg==-CL"/>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc3X05HMl9RMw==" Name="Planning &amp; Organization" DataType="text" Length="20">
+        <Question>
+          <TranslatedText xml:lang="en">Planning &amp; Organization</TranslatedText>
+        </Question>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc3X05HMl9RMw==-CL"/>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc3X05HMl9RNA==" Name="Effective Performance" DataType="text" Length="20">
+        <Question>
+          <TranslatedText xml:lang="en">Effective Performance</TranslatedText>
+        </Question>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc3X05HMl9RNA==-CL"/>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc3X05HM19RMg==" Name="Initiation" DataType="text" Length="20">
+        <Question>
+          <TranslatedText xml:lang="en">Initiation</TranslatedText>
+        </Question>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc3X05HM19RMg==-CL"/>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc3X05HM19RMw==" Name="Planning &amp; Organization" DataType="text" Length="20">
+        <Question>
+          <TranslatedText xml:lang="en">Planning &amp; Organization</TranslatedText>
+        </Question>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc3X05HM19RMw==-CL"/>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc3X05HM19RNA==" Name="Effective Performance" DataType="text" Length="20">
+        <Question>
+          <TranslatedText xml:lang="en">Effective Performance</TranslatedText>
+        </Question>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc3X05HM19RNA==-CL"/>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc3X05HNF9RMg==" Name="Initiation" DataType="text" Length="20">
+        <Question>
+          <TranslatedText xml:lang="en">Initiation</TranslatedText>
+        </Question>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc3X05HNF9RMg==-CL"/>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc3X05HNF9RMw==" Name="Planning &amp; Organization" DataType="text" Length="20">
+        <Question>
+          <TranslatedText xml:lang="en">Planning &amp; Organization</TranslatedText>
+        </Question>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc3X05HNF9RMw==-CL"/>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc3X05HNF9RNA==" Name="Effective Performance" DataType="text" Length="20">
+        <Question>
+          <TranslatedText xml:lang="en">Effective Performance</TranslatedText>
+        </Question>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc3X05HNF9RNA==-CL"/>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc4X05HMl9RMg==" Name="Initiation" DataType="text" Length="20">
+        <Question>
+          <TranslatedText xml:lang="en">Initiation</TranslatedText>
+        </Question>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc4X05HMl9RMg==-CL"/>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc4X05HMl9RMw==" Name="Planning &amp; Organization" DataType="text" Length="20">
+        <Question>
+          <TranslatedText xml:lang="en">Planning &amp; Organization</TranslatedText>
+        </Question>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc4X05HMl9RMw==-CL"/>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc4X05HMl9RNA==" Name="Effective Performance" DataType="text" Length="20">
+        <Question>
+          <TranslatedText xml:lang="en">Effective Performance</TranslatedText>
+        </Question>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc4X05HMl9RNA==-CL"/>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc4X05HM19RMg==" Name="Initiation" DataType="text" Length="20">
+        <Question>
+          <TranslatedText xml:lang="en">Initiation</TranslatedText>
+        </Question>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc4X05HM19RMg==-CL"/>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc4X05HM19RMw==" Name="Planning &amp; Organization" DataType="text" Length="20">
+        <Question>
+          <TranslatedText xml:lang="en">Planning &amp; Organization</TranslatedText>
+        </Question>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc4X05HM19RMw==-CL"/>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc4X05HM19RNA==" Name="Effective Performance" DataType="text" Length="20">
+        <Question>
+          <TranslatedText xml:lang="en">Effective Performance</TranslatedText>
+        </Question>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc4X05HM19RNA==-CL"/>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc4X05HNF9RMg==" Name="Initiation" DataType="text" Length="20">
+        <Question>
+          <TranslatedText xml:lang="en">Initiation</TranslatedText>
+        </Question>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc4X05HNF9RMg==-CL"/>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc4X05HNF9RMw==" Name="Planning &amp; Organization" DataType="text" Length="20">
+        <Question>
+          <TranslatedText xml:lang="en">Planning &amp; Organization</TranslatedText>
+        </Question>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc4X05HNF9RMw==-CL"/>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc4X05HNF9RNA==" Name="Effective Performance" DataType="text" Length="20">
+        <Question>
+          <TranslatedText xml:lang="en">Effective Performance</TranslatedText>
+        </Question>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc4X05HNF9RNA==-CL"/>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc4X05HNV9RMg==" Name="Initiation" DataType="text" Length="20">
+        <Question>
+          <TranslatedText xml:lang="en">Initiation</TranslatedText>
+        </Question>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc4X05HNV9RMg==-CL"/>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc4X05HNV9RMw==" Name="Planning &amp; Organization" DataType="text" Length="20">
+        <Question>
+          <TranslatedText xml:lang="en">Planning &amp; Organization</TranslatedText>
+        </Question>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc4X05HNV9RMw==-CL"/>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc4X05HNV9RNA==" Name="Effective Performance" DataType="text" Length="20">
+        <Question>
+          <TranslatedText xml:lang="en">Effective Performance</TranslatedText>
+        </Question>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc4X05HNV9RNA==-CL"/>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc5X05HMl9RMg==" Name="Initiation" DataType="text" Length="20">
+        <Question>
+          <TranslatedText xml:lang="en">Initiation</TranslatedText>
+        </Question>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc5X05HMl9RMg==-CL"/>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc5X05HMl9RMw==" Name="Planning &amp; Organization" DataType="text" Length="20">
+        <Question>
+          <TranslatedText xml:lang="en">Planning &amp; Organization</TranslatedText>
+        </Question>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc5X05HMl9RMw==-CL"/>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc5X05HMl9RNA==" Name="Effective Performance" DataType="text" Length="20">
+        <Question>
+          <TranslatedText xml:lang="en">Effective Performance</TranslatedText>
+        </Question>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc5X05HMl9RNA==-CL"/>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc5X05HM19RMg==" Name="Initiation" DataType="text" Length="20">
+        <Question>
+          <TranslatedText xml:lang="en">Initiation</TranslatedText>
+        </Question>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc5X05HM19RMg==-CL"/>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc5X05HM19RMw==" Name="Planning &amp; Organization" DataType="text" Length="20">
+        <Question>
+          <TranslatedText xml:lang="en">Planning &amp; Organization</TranslatedText>
+        </Question>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc5X05HM19RMw==-CL"/>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc5X05HM19RNA==" Name="Effective Performance" DataType="text" Length="20">
+        <Question>
+          <TranslatedText xml:lang="en">Effective Performance</TranslatedText>
+        </Question>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc5X05HM19RNA==-CL"/>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc5X05HNF9RMg==" Name="Initiation" DataType="text" Length="20">
+        <Question>
+          <TranslatedText xml:lang="en">Initiation</TranslatedText>
+        </Question>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc5X05HNF9RMg==-CL"/>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc5X05HNF9RMw==" Name="Planning &amp; Organization" DataType="text" Length="20">
+        <Question>
+          <TranslatedText xml:lang="en">Planning &amp; Organization</TranslatedText>
+        </Question>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc5X05HNF9RMw==-CL"/>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc5X05HNF9RNA==" Name="Effective Performance" DataType="text" Length="20">
+        <Question>
+          <TranslatedText xml:lang="en">Effective Performance</TranslatedText>
+        </Question>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc5X05HNF9RNA==-CL"/>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc5X05HNV9RMg==" Name="Initiation" DataType="text" Length="20">
+        <Question>
+          <TranslatedText xml:lang="en">Initiation</TranslatedText>
+        </Question>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc5X05HNV9RMg==-CL"/>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc5X05HNV9RMw==" Name="Planning &amp; Organization" DataType="text" Length="20">
+        <Question>
+          <TranslatedText xml:lang="en">Planning &amp; Organization</TranslatedText>
+        </Question>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc5X05HNV9RMw==-CL"/>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc5X05HNV9RNA==" Name="Effective Performance" DataType="text" Length="20">
+        <Question>
+          <TranslatedText xml:lang="en">Effective Performance</TranslatedText>
+        </Question>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc5X05HNV9RNA==-CL"/>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc5X05HNl9RMg==" Name="Initiation" DataType="text" Length="20">
+        <Question>
+          <TranslatedText xml:lang="en">Initiation</TranslatedText>
+        </Question>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc5X05HNl9RMg==-CL"/>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc5X05HNl9RMw==" Name="Planning &amp; Organization" DataType="text" Length="20">
+        <Question>
+          <TranslatedText xml:lang="en">Planning &amp; Organization</TranslatedText>
+        </Question>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc5X05HNl9RMw==-CL"/>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc5X05HNl9RNA==" Name="Effective Performance" DataType="text" Length="20">
+        <Question>
+          <TranslatedText xml:lang="en">Effective Performance</TranslatedText>
+        </Question>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc5X05HNl9RNA==-CL"/>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMF9ORzJfUTI=" Name="Initiation" DataType="text" Length="20">
+        <Question>
+          <TranslatedText xml:lang="en">Initiation</TranslatedText>
+        </Question>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMF9ORzJfUTI=-CL"/>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMF9ORzJfUTM=" Name="Planning &amp; Organization" DataType="text" Length="20">
+        <Question>
+          <TranslatedText xml:lang="en">Planning &amp; Organization</TranslatedText>
+        </Question>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMF9ORzJfUTM=-CL"/>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMF9ORzJfUTQ=" Name="Effective Performance" DataType="text" Length="20">
+        <Question>
+          <TranslatedText xml:lang="en">Effective Performance</TranslatedText>
+        </Question>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMF9ORzJfUTQ=-CL"/>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMF9ORzNfUTI=" Name="Initiation" DataType="text" Length="20">
+        <Question>
+          <TranslatedText xml:lang="en">Initiation</TranslatedText>
+        </Question>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMF9ORzNfUTI=-CL"/>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMF9ORzNfUTM=" Name="Planning &amp; Organization" DataType="text" Length="20">
+        <Question>
+          <TranslatedText xml:lang="en">Planning &amp; Organization</TranslatedText>
+        </Question>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMF9ORzNfUTM=-CL"/>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMF9ORzNfUTQ=" Name="Effective Performance" DataType="text" Length="20">
+        <Question>
+          <TranslatedText xml:lang="en">Effective Performance</TranslatedText>
+        </Question>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMF9ORzNfUTQ=-CL"/>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMF9ORzRfUTI=" Name="Initiation" DataType="text" Length="20">
+        <Question>
+          <TranslatedText xml:lang="en">Initiation</TranslatedText>
+        </Question>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMF9ORzRfUTI=-CL"/>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMF9ORzRfUTM=" Name="Planning &amp; Organization" DataType="text" Length="20">
+        <Question>
+          <TranslatedText xml:lang="en">Planning &amp; Organization</TranslatedText>
+        </Question>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMF9ORzRfUTM=-CL"/>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMF9ORzRfUTQ=" Name="Effective Performance" DataType="text" Length="20">
+        <Question>
+          <TranslatedText xml:lang="en">Effective Performance</TranslatedText>
+        </Question>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMF9ORzRfUTQ=-CL"/>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMF9ORzVfUTI=" Name="Initiation" DataType="text" Length="20">
+        <Question>
+          <TranslatedText xml:lang="en">Initiation</TranslatedText>
+        </Question>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMF9ORzVfUTI=-CL"/>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMF9ORzVfUTM=" Name="Planning &amp; Organization" DataType="text" Length="20">
+        <Question>
+          <TranslatedText xml:lang="en">Planning &amp; Organization</TranslatedText>
+        </Question>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMF9ORzVfUTM=-CL"/>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMF9ORzVfUTQ=" Name="Effective Performance" DataType="text" Length="20">
+        <Question>
+          <TranslatedText xml:lang="en">Effective Performance</TranslatedText>
+        </Question>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMF9ORzVfUTQ=-CL"/>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMV9ORzJfUTI=" Name="Initiation" DataType="text" Length="20">
+        <Question>
+          <TranslatedText xml:lang="en">Initiation</TranslatedText>
+        </Question>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMV9ORzJfUTI=-CL"/>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMV9ORzJfUTM=" Name="Planning &amp; Organization" DataType="text" Length="20">
+        <Question>
+          <TranslatedText xml:lang="en">Planning &amp; Organization</TranslatedText>
+        </Question>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMV9ORzJfUTM=-CL"/>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMV9ORzJfUTQ=" Name="Effective Performance" DataType="text" Length="20">
+        <Question>
+          <TranslatedText xml:lang="en">Effective Performance</TranslatedText>
+        </Question>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMV9ORzJfUTQ=-CL"/>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMV9ORzNfUTI=" Name="Initiation" DataType="text" Length="20">
+        <Question>
+          <TranslatedText xml:lang="en">Initiation</TranslatedText>
+        </Question>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMV9ORzNfUTI=-CL"/>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMV9ORzNfUTM=" Name="Planning &amp; Organization" DataType="text" Length="20">
+        <Question>
+          <TranslatedText xml:lang="en">Planning &amp; Organization</TranslatedText>
+        </Question>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMV9ORzNfUTM=-CL"/>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMV9ORzNfUTQ=" Name="Effective Performance" DataType="text" Length="20">
+        <Question>
+          <TranslatedText xml:lang="en">Effective Performance</TranslatedText>
+        </Question>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMV9ORzNfUTQ=-CL"/>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzJfUTI=" Name="Initiation" DataType="text" Length="20">
+        <Question>
+          <TranslatedText xml:lang="en">Initiation</TranslatedText>
+        </Question>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzJfUTI=-CL"/>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzJfUTM=" Name="Planning &amp; Organization" DataType="text" Length="20">
+        <Question>
+          <TranslatedText xml:lang="en">Planning &amp; Organization</TranslatedText>
+        </Question>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzJfUTM=-CL"/>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzJfUTQ=" Name="Effective Performance" DataType="text" Length="20">
+        <Question>
+          <TranslatedText xml:lang="en">Effective Performance</TranslatedText>
+        </Question>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzJfUTQ=-CL"/>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzNfUTI=" Name="Initiation" DataType="text" Length="20">
+        <Question>
+          <TranslatedText xml:lang="en">Initiation</TranslatedText>
+        </Question>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzNfUTI=-CL"/>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzNfUTM=" Name="Planning &amp; Organization" DataType="text" Length="20">
+        <Question>
+          <TranslatedText xml:lang="en">Planning &amp; Organization</TranslatedText>
+        </Question>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzNfUTM=-CL"/>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzNfUTQ=" Name="Effective Performance" DataType="text" Length="20">
+        <Question>
+          <TranslatedText xml:lang="en">Effective Performance</TranslatedText>
+        </Question>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzNfUTQ=-CL"/>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzRfUTI=" Name="Initiation" DataType="text" Length="20">
+        <Question>
+          <TranslatedText xml:lang="en">Initiation</TranslatedText>
+        </Question>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzRfUTI=-CL"/>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzRfUTM=" Name="Planning &amp; Organization" DataType="text" Length="20">
+        <Question>
+          <TranslatedText xml:lang="en">Planning &amp; Organization</TranslatedText>
+        </Question>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzRfUTM=-CL"/>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzRfUTQ=" Name="Effective Performance" DataType="text" Length="20">
+        <Question>
+          <TranslatedText xml:lang="en">Effective Performance</TranslatedText>
+        </Question>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzRfUTQ=-CL"/>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzVfUTI=" Name="Initiation" DataType="text" Length="20">
+        <Question>
+          <TranslatedText xml:lang="en">Initiation</TranslatedText>
+        </Question>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzVfUTI=-CL"/>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzVfUTM=" Name="Planning &amp; Organization" DataType="text" Length="20">
+        <Question>
+          <TranslatedText xml:lang="en">Planning &amp; Organization</TranslatedText>
+        </Question>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzVfUTM=-CL"/>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzVfUTQ=" Name="Effective Performance" DataType="text" Length="20">
+        <Question>
+          <TranslatedText xml:lang="en">Effective Performance</TranslatedText>
+        </Question>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzVfUTQ=-CL"/>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzZfUTI=" Name="Initiation" DataType="text" Length="20">
+        <Question>
+          <TranslatedText xml:lang="en">Initiation</TranslatedText>
+        </Question>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzZfUTI=-CL"/>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzZfUTM=" Name="Planning &amp; Organization" DataType="text" Length="20">
+        <Question>
+          <TranslatedText xml:lang="en">Planning &amp; Organization</TranslatedText>
+        </Question>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzZfUTM=-CL"/>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzZfUTQ=" Name="Effective Performance" DataType="text" Length="20">
+        <Question>
+          <TranslatedText xml:lang="en">Effective Performance</TranslatedText>
+        </Question>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzZfUTQ=-CL"/>
+      </ItemDef>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkczX05HMl9RMg==-CL" Name="Code list for Initiation" DataType="text">
+        <CodeListItem CodedValue="Y" OrderNumber="1">
           <Decode>
-            <TranslatedText xml:lang="en">International Foot</TranslatedText>
+            <TranslatedText xml:lang="en">Yes</TranslatedText>
           </Decode>
         </CodeListItem>
-        <CodeListItem CodedValue="cm" OrderNumber="4">
+        <CodeListItem CodedValue="N" OrderNumber="2">
           <Decode>
-            <TranslatedText xml:lang="en">Centimeter</TranslatedText>
+            <TranslatedText xml:lang="en">No</TranslatedText>
           </Decode>
         </CodeListItem>
-        <CodeListItem CodedValue="in" OrderNumber="3">
+        <CodeListItem CodedValue="NA" OrderNumber="3">
           <Decode>
-            <TranslatedText xml:lang="en">Inch</TranslatedText>
-          </Decode>
-        </CodeListItem>
-        <CodeListItem CodedValue="m" OrderNumber="2">
-          <Decode>
-            <TranslatedText xml:lang="en">Meter</TranslatedText>
+            <TranslatedText xml:lang="en">Not Applicable</TranslatedText>
           </Decode>
         </CodeListItem>
       </CodeList>
-      <CodeList OID="F-ACME_VSBASELINE1_G1_G3_I3-CL" Name="Code list for Result Units (--ORRESU)" DataType="text">
-        <CodeListItem CodedValue="g" OrderNumber="2">
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkczX05HMl9RMw==-CL" Name="Code list for Planning &amp; Organization" DataType="text">
+        <CodeListItem CodedValue="Y" OrderNumber="1">
           <Decode>
-            <TranslatedText xml:lang="en">Gram</TranslatedText>
+            <TranslatedText xml:lang="en">Yes</TranslatedText>
           </Decode>
         </CodeListItem>
-        <CodeListItem CodedValue="oz" OrderNumber="1">
+        <CodeListItem CodedValue="N" OrderNumber="2">
           <Decode>
-            <TranslatedText xml:lang="en">Ounce</TranslatedText>
+            <TranslatedText xml:lang="en">No</TranslatedText>
           </Decode>
         </CodeListItem>
-        <CodeListItem CodedValue="LB" OrderNumber="3">
+        <CodeListItem CodedValue="NA" OrderNumber="3">
           <Decode>
-            <TranslatedText xml:lang="en">Pound</TranslatedText>
-          </Decode>
-        </CodeListItem>
-        <CodeListItem CodedValue="kg" OrderNumber="4">
-          <Decode>
-            <TranslatedText xml:lang="en">Kilogram</TranslatedText>
+            <TranslatedText xml:lang="en">Not Applicable</TranslatedText>
           </Decode>
         </CodeListItem>
       </CodeList>
-      <CodeList OID="F-ACME_VSBASELINE1_G1_G4_I3-CL" Name="Code list for Result Units (--ORRESU)" DataType="text">
-        <CodeListItem CodedValue="mmHg" OrderNumber="1">
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkczX05HMl9RNA==-CL" Name="Code list for Effective Performance" DataType="text">
+        <CodeListItem CodedValue="Y" OrderNumber="1">
           <Decode>
-            <TranslatedText xml:lang="en">Millimeter of Mercury</TranslatedText>
+            <TranslatedText xml:lang="en">Yes</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="N" OrderNumber="2">
+          <Decode>
+            <TranslatedText xml:lang="en">No</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="NA" OrderNumber="3">
+          <Decode>
+            <TranslatedText xml:lang="en">Not Applicable</TranslatedText>
           </Decode>
         </CodeListItem>
       </CodeList>
-      <CodeList OID="F-ACME_VSBASELINE1_G1_G4_I4-CL" Name="Code list for Body Position (--POS)" DataType="text">
-        <CodeListItem CodedValue="SITTING" OrderNumber="3">
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkczX05HM19RMg==-CL" Name="Code list for Initiation" DataType="text">
+        <CodeListItem CodedValue="Y" OrderNumber="1">
           <Decode>
-            <TranslatedText xml:lang="en">Sitting</TranslatedText>
+            <TranslatedText xml:lang="en">Yes</TranslatedText>
           </Decode>
         </CodeListItem>
-        <CodeListItem CodedValue="STANDING" OrderNumber="2">
+        <CodeListItem CodedValue="N" OrderNumber="2">
           <Decode>
-            <TranslatedText xml:lang="en">Standing</TranslatedText>
+            <TranslatedText xml:lang="en">No</TranslatedText>
           </Decode>
         </CodeListItem>
-        <CodeListItem CodedValue="SUPINE" OrderNumber="1">
+        <CodeListItem CodedValue="NA" OrderNumber="3">
           <Decode>
-            <TranslatedText xml:lang="en">Supine Position</TranslatedText>
-          </Decode>
-        </CodeListItem>
-      </CodeList>
-      <CodeList OID="F-ACME_VSBASELINE1_G1_G5_I3-CL" Name="Code list for Result Units (--ORRESU)" DataType="text">
-        <CodeListItem CodedValue="mmHg" OrderNumber="1">
-          <Decode>
-            <TranslatedText xml:lang="en">Millimeter of Mercury</TranslatedText>
+            <TranslatedText xml:lang="en">Not Applicable</TranslatedText>
           </Decode>
         </CodeListItem>
       </CodeList>
-      <CodeList OID="F-ACME_VSBASELINE1_G1_G5_I4-CL" Name="Code list for Body Position (--POS)" DataType="text">
-        <CodeListItem CodedValue="STANDING" OrderNumber="2">
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkczX05HM19RMw==-CL" Name="Code list for Planning &amp; Organization" DataType="text">
+        <CodeListItem CodedValue="Y" OrderNumber="1">
           <Decode>
-            <TranslatedText xml:lang="en">Standing</TranslatedText>
+            <TranslatedText xml:lang="en">Yes</TranslatedText>
           </Decode>
         </CodeListItem>
-        <CodeListItem CodedValue="SITTING" OrderNumber="3">
+        <CodeListItem CodedValue="N" OrderNumber="2">
           <Decode>
-            <TranslatedText xml:lang="en">Sitting</TranslatedText>
+            <TranslatedText xml:lang="en">No</TranslatedText>
           </Decode>
         </CodeListItem>
-        <CodeListItem CodedValue="SUPINE" OrderNumber="1">
+        <CodeListItem CodedValue="NA" OrderNumber="3">
           <Decode>
-            <TranslatedText xml:lang="en">Supine Position</TranslatedText>
+            <TranslatedText xml:lang="en">Not Applicable</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkczX05HM19RNA==-CL" Name="Code list for Effective Performance" DataType="text">
+        <CodeListItem CodedValue="Y" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">Yes</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="N" OrderNumber="2">
+          <Decode>
+            <TranslatedText xml:lang="en">No</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="NA" OrderNumber="3">
+          <Decode>
+            <TranslatedText xml:lang="en">Not Applicable</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkczX05HNF9RMg==-CL" Name="Code list for Initiation" DataType="text">
+        <CodeListItem CodedValue="NA" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">Not Applicable</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="N" OrderNumber="2">
+          <Decode>
+            <TranslatedText xml:lang="en">No</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="Y" OrderNumber="3">
+          <Decode>
+            <TranslatedText xml:lang="en">Yes</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkczX05HNF9RMw==-CL" Name="Code list for Planning &amp; Organization" DataType="text">
+        <CodeListItem CodedValue="Y" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">Yes</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="N" OrderNumber="2">
+          <Decode>
+            <TranslatedText xml:lang="en">No</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="NA" OrderNumber="3">
+          <Decode>
+            <TranslatedText xml:lang="en">Not Applicable</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkczX05HNF9RNA==-CL" Name="Code list for Effective Performance" DataType="text">
+        <CodeListItem CodedValue="Y" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">Yes</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="N" OrderNumber="2">
+          <Decode>
+            <TranslatedText xml:lang="en">No</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="NA" OrderNumber="3">
+          <Decode>
+            <TranslatedText xml:lang="en">Not Applicable</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkczX05HNV9RMg==-CL" Name="Code list for Initiation" DataType="text">
+        <CodeListItem CodedValue="NA" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">Not Applicable</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="Y" OrderNumber="2">
+          <Decode>
+            <TranslatedText xml:lang="en">Yes</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="N" OrderNumber="3">
+          <Decode>
+            <TranslatedText xml:lang="en">No</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkczX05HNV9RMw==-CL" Name="Code list for Planning &amp; Organization" DataType="text">
+        <CodeListItem CodedValue="NA" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">Not Applicable</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="Y" OrderNumber="2">
+          <Decode>
+            <TranslatedText xml:lang="en">Yes</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="N" OrderNumber="3">
+          <Decode>
+            <TranslatedText xml:lang="en">No</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkczX05HNV9RNA==-CL" Name="Code list for Effective Performance" DataType="text">
+        <CodeListItem CodedValue="N" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">No</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="NA" OrderNumber="2">
+          <Decode>
+            <TranslatedText xml:lang="en">Not Applicable</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="Y" OrderNumber="3">
+          <Decode>
+            <TranslatedText xml:lang="en">Yes</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkczX05HNl9RMg==-CL" Name="Code list for Initiation" DataType="text">
+        <CodeListItem CodedValue="Y" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">Yes</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="N" OrderNumber="2">
+          <Decode>
+            <TranslatedText xml:lang="en">No</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="NA" OrderNumber="3">
+          <Decode>
+            <TranslatedText xml:lang="en">Not Applicable</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkczX05HNl9RMw==-CL" Name="Code list for Planning &amp; Organization" DataType="text">
+        <CodeListItem CodedValue="Y" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">Yes</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="N" OrderNumber="2">
+          <Decode>
+            <TranslatedText xml:lang="en">No</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="NA" OrderNumber="3">
+          <Decode>
+            <TranslatedText xml:lang="en">Not Applicable</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkczX05HNl9RNA==-CL" Name="Code list for Effective Performance" DataType="text">
+        <CodeListItem CodedValue="NA" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">Not Applicable</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="N" OrderNumber="2">
+          <Decode>
+            <TranslatedText xml:lang="en">No</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="Y" OrderNumber="3">
+          <Decode>
+            <TranslatedText xml:lang="en">Yes</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkczX05HN19RMg==-CL" Name="Code list for Initiation" DataType="text">
+        <CodeListItem CodedValue="Y" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">Yes</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="N" OrderNumber="2">
+          <Decode>
+            <TranslatedText xml:lang="en">No</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="NA" OrderNumber="3">
+          <Decode>
+            <TranslatedText xml:lang="en">Not Applicable</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkczX05HN19RMw==-CL" Name="Code list for Planning &amp; Organization" DataType="text">
+        <CodeListItem CodedValue="Y" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">Yes</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="N" OrderNumber="2">
+          <Decode>
+            <TranslatedText xml:lang="en">No</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="NA" OrderNumber="3">
+          <Decode>
+            <TranslatedText xml:lang="en">Not Applicable</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkczX05HN19RNA==-CL" Name="Code list for Effective Performance" DataType="text">
+        <CodeListItem CodedValue="N" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">No</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="NA" OrderNumber="2">
+          <Decode>
+            <TranslatedText xml:lang="en">Not Applicable</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="Y" OrderNumber="3">
+          <Decode>
+            <TranslatedText xml:lang="en">Yes</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkczX05HOF9RMg==-CL" Name="Code list for Initiation" DataType="text">
+        <CodeListItem CodedValue="Y" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">Yes</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="N" OrderNumber="2">
+          <Decode>
+            <TranslatedText xml:lang="en">No</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="NA" OrderNumber="3">
+          <Decode>
+            <TranslatedText xml:lang="en">Not Applicable</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkczX05HOF9RMw==-CL" Name="Code list for Planning &amp; Organization" DataType="text">
+        <CodeListItem CodedValue="Y" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">Yes</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="N" OrderNumber="2">
+          <Decode>
+            <TranslatedText xml:lang="en">No</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="NA" OrderNumber="3">
+          <Decode>
+            <TranslatedText xml:lang="en">Not Applicable</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkczX05HOF9RNA==-CL" Name="Code list for Effective Performance" DataType="text">
+        <CodeListItem CodedValue="Y" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">Yes</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="N" OrderNumber="2">
+          <Decode>
+            <TranslatedText xml:lang="en">No</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="NA" OrderNumber="3">
+          <Decode>
+            <TranslatedText xml:lang="en">Not Applicable</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc0X05HMl9RMg==-CL" Name="Code list for Initiation" DataType="text">
+        <CodeListItem CodedValue="N" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">No</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="NA" OrderNumber="2">
+          <Decode>
+            <TranslatedText xml:lang="en">Not Applicable</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="Y" OrderNumber="3">
+          <Decode>
+            <TranslatedText xml:lang="en">Yes</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc0X05HMl9RMw==-CL" Name="Code list for Planning &amp; Organization" DataType="text">
+        <CodeListItem CodedValue="Y" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">Yes</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="N" OrderNumber="2">
+          <Decode>
+            <TranslatedText xml:lang="en">No</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="NA" OrderNumber="3">
+          <Decode>
+            <TranslatedText xml:lang="en">Not Applicable</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc0X05HMl9RNA==-CL" Name="Code list for Effective Performance" DataType="text">
+        <CodeListItem CodedValue="Y" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">Yes</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="N" OrderNumber="2">
+          <Decode>
+            <TranslatedText xml:lang="en">No</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="NA" OrderNumber="3">
+          <Decode>
+            <TranslatedText xml:lang="en">Not Applicable</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc0X05HM19RMg==-CL" Name="Code list for Initiation" DataType="text">
+        <CodeListItem CodedValue="N" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">No</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="Y" OrderNumber="2">
+          <Decode>
+            <TranslatedText xml:lang="en">Yes</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="NA" OrderNumber="3">
+          <Decode>
+            <TranslatedText xml:lang="en">Not Applicable</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc0X05HM19RMw==-CL" Name="Code list for Planning &amp; Organization" DataType="text">
+        <CodeListItem CodedValue="N" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">No</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="NA" OrderNumber="2">
+          <Decode>
+            <TranslatedText xml:lang="en">Not Applicable</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="Y" OrderNumber="3">
+          <Decode>
+            <TranslatedText xml:lang="en">Yes</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc0X05HM19RNA==-CL" Name="Code list for Effective Performance" DataType="text">
+        <CodeListItem CodedValue="Y" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">Yes</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="N" OrderNumber="2">
+          <Decode>
+            <TranslatedText xml:lang="en">No</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="NA" OrderNumber="3">
+          <Decode>
+            <TranslatedText xml:lang="en">Not Applicable</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc0X05HNF9RMg==-CL" Name="Code list for Initiation" DataType="text">
+        <CodeListItem CodedValue="Y" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">Yes</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="N" OrderNumber="2">
+          <Decode>
+            <TranslatedText xml:lang="en">No</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="NA" OrderNumber="3">
+          <Decode>
+            <TranslatedText xml:lang="en">Not Applicable</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc0X05HNF9RMw==-CL" Name="Code list for Planning &amp; Organization" DataType="text">
+        <CodeListItem CodedValue="NA" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">Not Applicable</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="N" OrderNumber="2">
+          <Decode>
+            <TranslatedText xml:lang="en">No</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="Y" OrderNumber="3">
+          <Decode>
+            <TranslatedText xml:lang="en">Yes</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc0X05HNF9RNA==-CL" Name="Code list for Effective Performance" DataType="text">
+        <CodeListItem CodedValue="N" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">No</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="NA" OrderNumber="2">
+          <Decode>
+            <TranslatedText xml:lang="en">Not Applicable</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="Y" OrderNumber="3">
+          <Decode>
+            <TranslatedText xml:lang="en">Yes</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc0X05HNV9RMg==-CL" Name="Code list for Initiation" DataType="text">
+        <CodeListItem CodedValue="Y" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">Yes</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="N" OrderNumber="2">
+          <Decode>
+            <TranslatedText xml:lang="en">No</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="NA" OrderNumber="3">
+          <Decode>
+            <TranslatedText xml:lang="en">Not Applicable</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc0X05HNV9RMw==-CL" Name="Code list for Planning &amp; Organization" DataType="text">
+        <CodeListItem CodedValue="Y" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">Yes</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="N" OrderNumber="2">
+          <Decode>
+            <TranslatedText xml:lang="en">No</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="NA" OrderNumber="3">
+          <Decode>
+            <TranslatedText xml:lang="en">Not Applicable</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc0X05HNV9RNA==-CL" Name="Code list for Effective Performance" DataType="text">
+        <CodeListItem CodedValue="NA" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">Not Applicable</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="N" OrderNumber="2">
+          <Decode>
+            <TranslatedText xml:lang="en">No</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="Y" OrderNumber="3">
+          <Decode>
+            <TranslatedText xml:lang="en">Yes</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc0X05HNl9RMg==-CL" Name="Code list for Initiation" DataType="text">
+        <CodeListItem CodedValue="Y" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">Yes</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="N" OrderNumber="2">
+          <Decode>
+            <TranslatedText xml:lang="en">No</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="NA" OrderNumber="3">
+          <Decode>
+            <TranslatedText xml:lang="en">Not Applicable</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc0X05HNl9RMw==-CL" Name="Code list for Planning &amp; Organization" DataType="text">
+        <CodeListItem CodedValue="Y" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">Yes</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="N" OrderNumber="2">
+          <Decode>
+            <TranslatedText xml:lang="en">No</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="NA" OrderNumber="3">
+          <Decode>
+            <TranslatedText xml:lang="en">Not Applicable</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc0X05HNl9RNA==-CL" Name="Code list for Effective Performance" DataType="text">
+        <CodeListItem CodedValue="Y" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">Yes</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="N" OrderNumber="2">
+          <Decode>
+            <TranslatedText xml:lang="en">No</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="NA" OrderNumber="3">
+          <Decode>
+            <TranslatedText xml:lang="en">Not Applicable</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc1X05HMl9RMg==-CL" Name="Code list for Initiation" DataType="text">
+        <CodeListItem CodedValue="Y" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">Yes</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="N" OrderNumber="2">
+          <Decode>
+            <TranslatedText xml:lang="en">No</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="NA" OrderNumber="3">
+          <Decode>
+            <TranslatedText xml:lang="en">Not Applicable</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc1X05HMl9RMw==-CL" Name="Code list for Planning &amp; Organization" DataType="text">
+        <CodeListItem CodedValue="NA" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">Not Applicable</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="Y" OrderNumber="2">
+          <Decode>
+            <TranslatedText xml:lang="en">Yes</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="N" OrderNumber="3">
+          <Decode>
+            <TranslatedText xml:lang="en">No</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc1X05HMl9RNA==-CL" Name="Code list for Effective Performance" DataType="text">
+        <CodeListItem CodedValue="Y" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">Yes</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="N" OrderNumber="2">
+          <Decode>
+            <TranslatedText xml:lang="en">No</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="NA" OrderNumber="3">
+          <Decode>
+            <TranslatedText xml:lang="en">Not Applicable</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc1X05HM19RMg==-CL" Name="Code list for Initiation" DataType="text">
+        <CodeListItem CodedValue="Y" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">Yes</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="N" OrderNumber="2">
+          <Decode>
+            <TranslatedText xml:lang="en">No</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="NA" OrderNumber="3">
+          <Decode>
+            <TranslatedText xml:lang="en">Not Applicable</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc1X05HM19RMw==-CL" Name="Code list for Planning &amp; Organization" DataType="text">
+        <CodeListItem CodedValue="NA" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">Not Applicable</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="Y" OrderNumber="2">
+          <Decode>
+            <TranslatedText xml:lang="en">Yes</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="N" OrderNumber="3">
+          <Decode>
+            <TranslatedText xml:lang="en">No</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc1X05HM19RNA==-CL" Name="Code list for Effective Performance" DataType="text">
+        <CodeListItem CodedValue="N" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">No</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="NA" OrderNumber="2">
+          <Decode>
+            <TranslatedText xml:lang="en">Not Applicable</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="Y" OrderNumber="3">
+          <Decode>
+            <TranslatedText xml:lang="en">Yes</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc2X05HMl9RMg==-CL" Name="Code list for Initiation" DataType="text">
+        <CodeListItem CodedValue="Y" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">Yes</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="N" OrderNumber="2">
+          <Decode>
+            <TranslatedText xml:lang="en">No</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="NA" OrderNumber="3">
+          <Decode>
+            <TranslatedText xml:lang="en">Not Applicable</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc2X05HMl9RMw==-CL" Name="Code list for Planning &amp; Organization" DataType="text">
+        <CodeListItem CodedValue="Y" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">Yes</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="N" OrderNumber="2">
+          <Decode>
+            <TranslatedText xml:lang="en">No</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="NA" OrderNumber="3">
+          <Decode>
+            <TranslatedText xml:lang="en">Not Applicable</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc2X05HMl9RNA==-CL" Name="Code list for Effective Performance" DataType="text">
+        <CodeListItem CodedValue="NA" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">Not Applicable</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="N" OrderNumber="2">
+          <Decode>
+            <TranslatedText xml:lang="en">No</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="Y" OrderNumber="3">
+          <Decode>
+            <TranslatedText xml:lang="en">Yes</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc2X05HM19RMg==-CL" Name="Code list for Initiation" DataType="text">
+        <CodeListItem CodedValue="Y" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">Yes</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="N" OrderNumber="2">
+          <Decode>
+            <TranslatedText xml:lang="en">No</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="NA" OrderNumber="3">
+          <Decode>
+            <TranslatedText xml:lang="en">Not Applicable</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc2X05HM19RMw==-CL" Name="Code list for Planning &amp; Organization" DataType="text">
+        <CodeListItem CodedValue="Y" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">Yes</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="N" OrderNumber="2">
+          <Decode>
+            <TranslatedText xml:lang="en">No</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="NA" OrderNumber="3">
+          <Decode>
+            <TranslatedText xml:lang="en">Not Applicable</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc2X05HM19RNA==-CL" Name="Code list for Effective Performance" DataType="text">
+        <CodeListItem CodedValue="NA" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">Not Applicable</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="Y" OrderNumber="2">
+          <Decode>
+            <TranslatedText xml:lang="en">Yes</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="N" OrderNumber="3">
+          <Decode>
+            <TranslatedText xml:lang="en">No</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc2X05HNF9RMg==-CL" Name="Code list for Initiation" DataType="text">
+        <CodeListItem CodedValue="N" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">No</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="NA" OrderNumber="2">
+          <Decode>
+            <TranslatedText xml:lang="en">Not Applicable</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="Y" OrderNumber="3">
+          <Decode>
+            <TranslatedText xml:lang="en">Yes</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc2X05HNF9RMw==-CL" Name="Code list for Planning &amp; Organization" DataType="text">
+        <CodeListItem CodedValue="Y" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">Yes</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="N" OrderNumber="2">
+          <Decode>
+            <TranslatedText xml:lang="en">No</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="NA" OrderNumber="3">
+          <Decode>
+            <TranslatedText xml:lang="en">Not Applicable</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc2X05HNF9RNA==-CL" Name="Code list for Effective Performance" DataType="text">
+        <CodeListItem CodedValue="Y" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">Yes</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="N" OrderNumber="2">
+          <Decode>
+            <TranslatedText xml:lang="en">No</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="NA" OrderNumber="3">
+          <Decode>
+            <TranslatedText xml:lang="en">Not Applicable</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc3X05HMl9RMg==-CL" Name="Code list for Initiation" DataType="text">
+        <CodeListItem CodedValue="Y" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">Yes</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="N" OrderNumber="2">
+          <Decode>
+            <TranslatedText xml:lang="en">No</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="NA" OrderNumber="3">
+          <Decode>
+            <TranslatedText xml:lang="en">Not Applicable</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc3X05HMl9RMw==-CL" Name="Code list for Planning &amp; Organization" DataType="text">
+        <CodeListItem CodedValue="Y" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">Yes</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="N" OrderNumber="2">
+          <Decode>
+            <TranslatedText xml:lang="en">No</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="NA" OrderNumber="3">
+          <Decode>
+            <TranslatedText xml:lang="en">Not Applicable</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc3X05HMl9RNA==-CL" Name="Code list for Effective Performance" DataType="text">
+        <CodeListItem CodedValue="Y" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">Yes</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="N" OrderNumber="2">
+          <Decode>
+            <TranslatedText xml:lang="en">No</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="NA" OrderNumber="3">
+          <Decode>
+            <TranslatedText xml:lang="en">Not Applicable</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc3X05HM19RMg==-CL" Name="Code list for Initiation" DataType="text">
+        <CodeListItem CodedValue="N" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">No</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="NA" OrderNumber="2">
+          <Decode>
+            <TranslatedText xml:lang="en">Not Applicable</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="Y" OrderNumber="3">
+          <Decode>
+            <TranslatedText xml:lang="en">Yes</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc3X05HM19RMw==-CL" Name="Code list for Planning &amp; Organization" DataType="text">
+        <CodeListItem CodedValue="Y" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">Yes</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="N" OrderNumber="2">
+          <Decode>
+            <TranslatedText xml:lang="en">No</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="NA" OrderNumber="3">
+          <Decode>
+            <TranslatedText xml:lang="en">Not Applicable</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc3X05HM19RNA==-CL" Name="Code list for Effective Performance" DataType="text">
+        <CodeListItem CodedValue="Y" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">Yes</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="N" OrderNumber="2">
+          <Decode>
+            <TranslatedText xml:lang="en">No</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="NA" OrderNumber="3">
+          <Decode>
+            <TranslatedText xml:lang="en">Not Applicable</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc3X05HNF9RMg==-CL" Name="Code list for Initiation" DataType="text">
+        <CodeListItem CodedValue="NA" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">Not Applicable</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="Y" OrderNumber="2">
+          <Decode>
+            <TranslatedText xml:lang="en">Yes</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="N" OrderNumber="3">
+          <Decode>
+            <TranslatedText xml:lang="en">No</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc3X05HNF9RMw==-CL" Name="Code list for Planning &amp; Organization" DataType="text">
+        <CodeListItem CodedValue="N" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">No</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="NA" OrderNumber="2">
+          <Decode>
+            <TranslatedText xml:lang="en">Not Applicable</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="Y" OrderNumber="3">
+          <Decode>
+            <TranslatedText xml:lang="en">Yes</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc3X05HNF9RNA==-CL" Name="Code list for Effective Performance" DataType="text">
+        <CodeListItem CodedValue="Y" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">Yes</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="N" OrderNumber="2">
+          <Decode>
+            <TranslatedText xml:lang="en">No</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="NA" OrderNumber="3">
+          <Decode>
+            <TranslatedText xml:lang="en">Not Applicable</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc4X05HMl9RMg==-CL" Name="Code list for Initiation" DataType="text">
+        <CodeListItem CodedValue="N" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">No</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="Y" OrderNumber="2">
+          <Decode>
+            <TranslatedText xml:lang="en">Yes</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="NA" OrderNumber="3">
+          <Decode>
+            <TranslatedText xml:lang="en">Not Applicable</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc4X05HMl9RMw==-CL" Name="Code list for Planning &amp; Organization" DataType="text">
+        <CodeListItem CodedValue="Y" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">Yes</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="N" OrderNumber="2">
+          <Decode>
+            <TranslatedText xml:lang="en">No</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="NA" OrderNumber="3">
+          <Decode>
+            <TranslatedText xml:lang="en">Not Applicable</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc4X05HMl9RNA==-CL" Name="Code list for Effective Performance" DataType="text">
+        <CodeListItem CodedValue="Y" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">Yes</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="N" OrderNumber="2">
+          <Decode>
+            <TranslatedText xml:lang="en">No</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="NA" OrderNumber="3">
+          <Decode>
+            <TranslatedText xml:lang="en">Not Applicable</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc4X05HM19RMg==-CL" Name="Code list for Initiation" DataType="text">
+        <CodeListItem CodedValue="NA" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">Not Applicable</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="N" OrderNumber="2">
+          <Decode>
+            <TranslatedText xml:lang="en">No</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="Y" OrderNumber="3">
+          <Decode>
+            <TranslatedText xml:lang="en">Yes</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc4X05HM19RMw==-CL" Name="Code list for Planning &amp; Organization" DataType="text">
+        <CodeListItem CodedValue="NA" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">Not Applicable</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="Y" OrderNumber="2">
+          <Decode>
+            <TranslatedText xml:lang="en">Yes</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="N" OrderNumber="3">
+          <Decode>
+            <TranslatedText xml:lang="en">No</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc4X05HM19RNA==-CL" Name="Code list for Effective Performance" DataType="text">
+        <CodeListItem CodedValue="Y" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">Yes</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="N" OrderNumber="2">
+          <Decode>
+            <TranslatedText xml:lang="en">No</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="NA" OrderNumber="3">
+          <Decode>
+            <TranslatedText xml:lang="en">Not Applicable</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc4X05HNF9RMg==-CL" Name="Code list for Initiation" DataType="text">
+        <CodeListItem CodedValue="Y" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">Yes</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="N" OrderNumber="2">
+          <Decode>
+            <TranslatedText xml:lang="en">No</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="NA" OrderNumber="3">
+          <Decode>
+            <TranslatedText xml:lang="en">Not Applicable</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc4X05HNF9RMw==-CL" Name="Code list for Planning &amp; Organization" DataType="text">
+        <CodeListItem CodedValue="NA" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">Not Applicable</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="Y" OrderNumber="2">
+          <Decode>
+            <TranslatedText xml:lang="en">Yes</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="N" OrderNumber="3">
+          <Decode>
+            <TranslatedText xml:lang="en">No</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc4X05HNF9RNA==-CL" Name="Code list for Effective Performance" DataType="text">
+        <CodeListItem CodedValue="NA" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">Not Applicable</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="N" OrderNumber="2">
+          <Decode>
+            <TranslatedText xml:lang="en">No</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="Y" OrderNumber="3">
+          <Decode>
+            <TranslatedText xml:lang="en">Yes</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc4X05HNV9RMg==-CL" Name="Code list for Initiation" DataType="text">
+        <CodeListItem CodedValue="Y" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">Yes</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="N" OrderNumber="2">
+          <Decode>
+            <TranslatedText xml:lang="en">No</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="NA" OrderNumber="3">
+          <Decode>
+            <TranslatedText xml:lang="en">Not Applicable</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc4X05HNV9RMw==-CL" Name="Code list for Planning &amp; Organization" DataType="text">
+        <CodeListItem CodedValue="Y" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">Yes</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="N" OrderNumber="2">
+          <Decode>
+            <TranslatedText xml:lang="en">No</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="NA" OrderNumber="3">
+          <Decode>
+            <TranslatedText xml:lang="en">Not Applicable</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc4X05HNV9RNA==-CL" Name="Code list for Effective Performance" DataType="text">
+        <CodeListItem CodedValue="NA" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">Not Applicable</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="Y" OrderNumber="2">
+          <Decode>
+            <TranslatedText xml:lang="en">Yes</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="N" OrderNumber="3">
+          <Decode>
+            <TranslatedText xml:lang="en">No</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc5X05HMl9RMg==-CL" Name="Code list for Initiation" DataType="text">
+        <CodeListItem CodedValue="N" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">No</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="Y" OrderNumber="2">
+          <Decode>
+            <TranslatedText xml:lang="en">Yes</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="NA" OrderNumber="3">
+          <Decode>
+            <TranslatedText xml:lang="en">Not Applicable</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc5X05HMl9RMw==-CL" Name="Code list for Planning &amp; Organization" DataType="text">
+        <CodeListItem CodedValue="N" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">No</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="NA" OrderNumber="2">
+          <Decode>
+            <TranslatedText xml:lang="en">Not Applicable</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="Y" OrderNumber="3">
+          <Decode>
+            <TranslatedText xml:lang="en">Yes</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc5X05HMl9RNA==-CL" Name="Code list for Effective Performance" DataType="text">
+        <CodeListItem CodedValue="N" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">No</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="NA" OrderNumber="2">
+          <Decode>
+            <TranslatedText xml:lang="en">Not Applicable</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="Y" OrderNumber="3">
+          <Decode>
+            <TranslatedText xml:lang="en">Yes</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc5X05HM19RMg==-CL" Name="Code list for Initiation" DataType="text">
+        <CodeListItem CodedValue="Y" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">Yes</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="N" OrderNumber="2">
+          <Decode>
+            <TranslatedText xml:lang="en">No</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="NA" OrderNumber="3">
+          <Decode>
+            <TranslatedText xml:lang="en">Not Applicable</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc5X05HM19RMw==-CL" Name="Code list for Planning &amp; Organization" DataType="text">
+        <CodeListItem CodedValue="N" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">No</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="Y" OrderNumber="2">
+          <Decode>
+            <TranslatedText xml:lang="en">Yes</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="NA" OrderNumber="3">
+          <Decode>
+            <TranslatedText xml:lang="en">Not Applicable</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc5X05HM19RNA==-CL" Name="Code list for Effective Performance" DataType="text">
+        <CodeListItem CodedValue="N" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">No</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="NA" OrderNumber="2">
+          <Decode>
+            <TranslatedText xml:lang="en">Not Applicable</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="Y" OrderNumber="3">
+          <Decode>
+            <TranslatedText xml:lang="en">Yes</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc5X05HNF9RMg==-CL" Name="Code list for Initiation" DataType="text">
+        <CodeListItem CodedValue="Y" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">Yes</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="N" OrderNumber="2">
+          <Decode>
+            <TranslatedText xml:lang="en">No</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="NA" OrderNumber="3">
+          <Decode>
+            <TranslatedText xml:lang="en">Not Applicable</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc5X05HNF9RMw==-CL" Name="Code list for Planning &amp; Organization" DataType="text">
+        <CodeListItem CodedValue="Y" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">Yes</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="N" OrderNumber="2">
+          <Decode>
+            <TranslatedText xml:lang="en">No</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="NA" OrderNumber="3">
+          <Decode>
+            <TranslatedText xml:lang="en">Not Applicable</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc5X05HNF9RNA==-CL" Name="Code list for Effective Performance" DataType="text">
+        <CodeListItem CodedValue="NA" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">Not Applicable</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="Y" OrderNumber="2">
+          <Decode>
+            <TranslatedText xml:lang="en">Yes</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="N" OrderNumber="3">
+          <Decode>
+            <TranslatedText xml:lang="en">No</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc5X05HNV9RMg==-CL" Name="Code list for Initiation" DataType="text">
+        <CodeListItem CodedValue="N" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">No</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="NA" OrderNumber="2">
+          <Decode>
+            <TranslatedText xml:lang="en">Not Applicable</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="Y" OrderNumber="3">
+          <Decode>
+            <TranslatedText xml:lang="en">Yes</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc5X05HNV9RMw==-CL" Name="Code list for Planning &amp; Organization" DataType="text">
+        <CodeListItem CodedValue="Y" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">Yes</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="N" OrderNumber="2">
+          <Decode>
+            <TranslatedText xml:lang="en">No</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="NA" OrderNumber="3">
+          <Decode>
+            <TranslatedText xml:lang="en">Not Applicable</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc5X05HNV9RNA==-CL" Name="Code list for Effective Performance" DataType="text">
+        <CodeListItem CodedValue="Y" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">Yes</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="N" OrderNumber="2">
+          <Decode>
+            <TranslatedText xml:lang="en">No</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="NA" OrderNumber="3">
+          <Decode>
+            <TranslatedText xml:lang="en">Not Applicable</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc5X05HNl9RMg==-CL" Name="Code list for Initiation" DataType="text">
+        <CodeListItem CodedValue="N" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">No</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="NA" OrderNumber="2">
+          <Decode>
+            <TranslatedText xml:lang="en">Not Applicable</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="Y" OrderNumber="3">
+          <Decode>
+            <TranslatedText xml:lang="en">Yes</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc5X05HNl9RMw==-CL" Name="Code list for Planning &amp; Organization" DataType="text">
+        <CodeListItem CodedValue="N" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">No</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="NA" OrderNumber="2">
+          <Decode>
+            <TranslatedText xml:lang="en">Not Applicable</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="Y" OrderNumber="3">
+          <Decode>
+            <TranslatedText xml:lang="en">Yes</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkc5X05HNl9RNA==-CL" Name="Code list for Effective Performance" DataType="text">
+        <CodeListItem CodedValue="Y" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">Yes</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="N" OrderNumber="2">
+          <Decode>
+            <TranslatedText xml:lang="en">No</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="NA" OrderNumber="3">
+          <Decode>
+            <TranslatedText xml:lang="en">Not Applicable</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMF9ORzJfUTI=-CL" Name="Code list for Initiation" DataType="text">
+        <CodeListItem CodedValue="N" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">No</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="Y" OrderNumber="2">
+          <Decode>
+            <TranslatedText xml:lang="en">Yes</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="NA" OrderNumber="3">
+          <Decode>
+            <TranslatedText xml:lang="en">Not Applicable</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMF9ORzJfUTM=-CL" Name="Code list for Planning &amp; Organization" DataType="text">
+        <CodeListItem CodedValue="NA" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">Not Applicable</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="N" OrderNumber="2">
+          <Decode>
+            <TranslatedText xml:lang="en">No</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="Y" OrderNumber="3">
+          <Decode>
+            <TranslatedText xml:lang="en">Yes</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMF9ORzJfUTQ=-CL" Name="Code list for Effective Performance" DataType="text">
+        <CodeListItem CodedValue="NA" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">Not Applicable</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="Y" OrderNumber="2">
+          <Decode>
+            <TranslatedText xml:lang="en">Yes</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="N" OrderNumber="3">
+          <Decode>
+            <TranslatedText xml:lang="en">No</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMF9ORzNfUTI=-CL" Name="Code list for Initiation" DataType="text">
+        <CodeListItem CodedValue="Y" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">Yes</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="N" OrderNumber="2">
+          <Decode>
+            <TranslatedText xml:lang="en">No</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="NA" OrderNumber="3">
+          <Decode>
+            <TranslatedText xml:lang="en">Not Applicable</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMF9ORzNfUTM=-CL" Name="Code list for Planning &amp; Organization" DataType="text">
+        <CodeListItem CodedValue="N" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">No</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="Y" OrderNumber="2">
+          <Decode>
+            <TranslatedText xml:lang="en">Yes</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="NA" OrderNumber="3">
+          <Decode>
+            <TranslatedText xml:lang="en">Not Applicable</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMF9ORzNfUTQ=-CL" Name="Code list for Effective Performance" DataType="text">
+        <CodeListItem CodedValue="NA" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">Not Applicable</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="N" OrderNumber="2">
+          <Decode>
+            <TranslatedText xml:lang="en">No</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="Y" OrderNumber="3">
+          <Decode>
+            <TranslatedText xml:lang="en">Yes</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMF9ORzRfUTI=-CL" Name="Code list for Initiation" DataType="text">
+        <CodeListItem CodedValue="Y" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">Yes</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="N" OrderNumber="2">
+          <Decode>
+            <TranslatedText xml:lang="en">No</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="NA" OrderNumber="3">
+          <Decode>
+            <TranslatedText xml:lang="en">Not Applicable</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMF9ORzRfUTM=-CL" Name="Code list for Planning &amp; Organization" DataType="text">
+        <CodeListItem CodedValue="Y" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">Yes</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="N" OrderNumber="2">
+          <Decode>
+            <TranslatedText xml:lang="en">No</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="NA" OrderNumber="3">
+          <Decode>
+            <TranslatedText xml:lang="en">Not Applicable</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMF9ORzRfUTQ=-CL" Name="Code list for Effective Performance" DataType="text">
+        <CodeListItem CodedValue="NA" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">Not Applicable</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="N" OrderNumber="2">
+          <Decode>
+            <TranslatedText xml:lang="en">No</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="Y" OrderNumber="3">
+          <Decode>
+            <TranslatedText xml:lang="en">Yes</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMF9ORzVfUTI=-CL" Name="Code list for Initiation" DataType="text">
+        <CodeListItem CodedValue="NA" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">Not Applicable</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="Y" OrderNumber="2">
+          <Decode>
+            <TranslatedText xml:lang="en">Yes</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="N" OrderNumber="3">
+          <Decode>
+            <TranslatedText xml:lang="en">No</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMF9ORzVfUTM=-CL" Name="Code list for Planning &amp; Organization" DataType="text">
+        <CodeListItem CodedValue="Y" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">Yes</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="N" OrderNumber="2">
+          <Decode>
+            <TranslatedText xml:lang="en">No</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="NA" OrderNumber="3">
+          <Decode>
+            <TranslatedText xml:lang="en">Not Applicable</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMF9ORzVfUTQ=-CL" Name="Code list for Effective Performance" DataType="text">
+        <CodeListItem CodedValue="Y" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">Yes</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="N" OrderNumber="2">
+          <Decode>
+            <TranslatedText xml:lang="en">No</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="NA" OrderNumber="3">
+          <Decode>
+            <TranslatedText xml:lang="en">Not Applicable</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMV9ORzJfUTI=-CL" Name="Code list for Initiation" DataType="text">
+        <CodeListItem CodedValue="Y" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">Yes</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="N" OrderNumber="2">
+          <Decode>
+            <TranslatedText xml:lang="en">No</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="NA" OrderNumber="3">
+          <Decode>
+            <TranslatedText xml:lang="en">Not Applicable</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMV9ORzJfUTM=-CL" Name="Code list for Planning &amp; Organization" DataType="text">
+        <CodeListItem CodedValue="Y" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">Yes</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="N" OrderNumber="2">
+          <Decode>
+            <TranslatedText xml:lang="en">No</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="NA" OrderNumber="3">
+          <Decode>
+            <TranslatedText xml:lang="en">Not Applicable</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMV9ORzJfUTQ=-CL" Name="Code list for Effective Performance" DataType="text">
+        <CodeListItem CodedValue="Y" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">Yes</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="N" OrderNumber="2">
+          <Decode>
+            <TranslatedText xml:lang="en">No</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="NA" OrderNumber="3">
+          <Decode>
+            <TranslatedText xml:lang="en">Not Applicable</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMV9ORzNfUTI=-CL" Name="Code list for Initiation" DataType="text">
+        <CodeListItem CodedValue="N" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">No</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="NA" OrderNumber="2">
+          <Decode>
+            <TranslatedText xml:lang="en">Not Applicable</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="Y" OrderNumber="3">
+          <Decode>
+            <TranslatedText xml:lang="en">Yes</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMV9ORzNfUTM=-CL" Name="Code list for Planning &amp; Organization" DataType="text">
+        <CodeListItem CodedValue="Y" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">Yes</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="N" OrderNumber="2">
+          <Decode>
+            <TranslatedText xml:lang="en">No</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="NA" OrderNumber="3">
+          <Decode>
+            <TranslatedText xml:lang="en">Not Applicable</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMV9ORzNfUTQ=-CL" Name="Code list for Effective Performance" DataType="text">
+        <CodeListItem CodedValue="Y" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">Yes</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="N" OrderNumber="2">
+          <Decode>
+            <TranslatedText xml:lang="en">No</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="NA" OrderNumber="3">
+          <Decode>
+            <TranslatedText xml:lang="en">Not Applicable</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzJfUTI=-CL" Name="Code list for Initiation" DataType="text">
+        <CodeListItem CodedValue="Y" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">Yes</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="N" OrderNumber="2">
+          <Decode>
+            <TranslatedText xml:lang="en">No</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="NA" OrderNumber="3">
+          <Decode>
+            <TranslatedText xml:lang="en">Not Applicable</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzJfUTM=-CL" Name="Code list for Planning &amp; Organization" DataType="text">
+        <CodeListItem CodedValue="Y" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">Yes</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="N" OrderNumber="2">
+          <Decode>
+            <TranslatedText xml:lang="en">No</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="NA" OrderNumber="3">
+          <Decode>
+            <TranslatedText xml:lang="en">Not Applicable</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzJfUTQ=-CL" Name="Code list for Effective Performance" DataType="text">
+        <CodeListItem CodedValue="Y" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">Yes</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="N" OrderNumber="2">
+          <Decode>
+            <TranslatedText xml:lang="en">No</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="NA" OrderNumber="3">
+          <Decode>
+            <TranslatedText xml:lang="en">Not Applicable</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzNfUTI=-CL" Name="Code list for Initiation" DataType="text">
+        <CodeListItem CodedValue="NA" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">Not Applicable</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="N" OrderNumber="2">
+          <Decode>
+            <TranslatedText xml:lang="en">No</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="Y" OrderNumber="3">
+          <Decode>
+            <TranslatedText xml:lang="en">Yes</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzNfUTM=-CL" Name="Code list for Planning &amp; Organization" DataType="text">
+        <CodeListItem CodedValue="Y" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">Yes</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="N" OrderNumber="2">
+          <Decode>
+            <TranslatedText xml:lang="en">No</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="NA" OrderNumber="3">
+          <Decode>
+            <TranslatedText xml:lang="en">Not Applicable</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzNfUTQ=-CL" Name="Code list for Effective Performance" DataType="text">
+        <CodeListItem CodedValue="Y" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">Yes</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="N" OrderNumber="2">
+          <Decode>
+            <TranslatedText xml:lang="en">No</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="NA" OrderNumber="3">
+          <Decode>
+            <TranslatedText xml:lang="en">Not Applicable</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzRfUTI=-CL" Name="Code list for Initiation" DataType="text">
+        <CodeListItem CodedValue="N" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">No</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="NA" OrderNumber="2">
+          <Decode>
+            <TranslatedText xml:lang="en">Not Applicable</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="Y" OrderNumber="3">
+          <Decode>
+            <TranslatedText xml:lang="en">Yes</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzRfUTM=-CL" Name="Code list for Planning &amp; Organization" DataType="text">
+        <CodeListItem CodedValue="NA" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">Not Applicable</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="N" OrderNumber="2">
+          <Decode>
+            <TranslatedText xml:lang="en">No</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="Y" OrderNumber="3">
+          <Decode>
+            <TranslatedText xml:lang="en">Yes</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzRfUTQ=-CL" Name="Code list for Effective Performance" DataType="text">
+        <CodeListItem CodedValue="N" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">No</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="NA" OrderNumber="2">
+          <Decode>
+            <TranslatedText xml:lang="en">Not Applicable</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="Y" OrderNumber="3">
+          <Decode>
+            <TranslatedText xml:lang="en">Yes</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzVfUTI=-CL" Name="Code list for Initiation" DataType="text">
+        <CodeListItem CodedValue="Y" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">Yes</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="N" OrderNumber="2">
+          <Decode>
+            <TranslatedText xml:lang="en">No</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="NA" OrderNumber="3">
+          <Decode>
+            <TranslatedText xml:lang="en">Not Applicable</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzVfUTM=-CL" Name="Code list for Planning &amp; Organization" DataType="text">
+        <CodeListItem CodedValue="NA" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">Not Applicable</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="N" OrderNumber="2">
+          <Decode>
+            <TranslatedText xml:lang="en">No</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="Y" OrderNumber="3">
+          <Decode>
+            <TranslatedText xml:lang="en">Yes</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzVfUTQ=-CL" Name="Code list for Effective Performance" DataType="text">
+        <CodeListItem CodedValue="NA" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">Not Applicable</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="Y" OrderNumber="2">
+          <Decode>
+            <TranslatedText xml:lang="en">Yes</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="N" OrderNumber="3">
+          <Decode>
+            <TranslatedText xml:lang="en">No</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzZfUTI=-CL" Name="Code list for Initiation" DataType="text">
+        <CodeListItem CodedValue="Y" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">Yes</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="N" OrderNumber="2">
+          <Decode>
+            <TranslatedText xml:lang="en">No</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="NA" OrderNumber="3">
+          <Decode>
+            <TranslatedText xml:lang="en">Not Applicable</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzZfUTM=-CL" Name="Code list for Planning &amp; Organization" DataType="text">
+        <CodeListItem CodedValue="Y" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">Yes</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="N" OrderNumber="2">
+          <Decode>
+            <TranslatedText xml:lang="en">No</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="NA" OrderNumber="3">
+          <Decode>
+            <TranslatedText xml:lang="en">Not Applicable</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTIwL1YxI0ZfTkcxMl9ORzZfUTQ=-CL" Name="Code list for Effective Performance" DataType="text">
+        <CodeListItem CodedValue="N" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">No</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="Y" OrderNumber="2">
+          <Decode>
+            <TranslatedText xml:lang="en">Yes</TranslatedText>
           </Decode>
         </CodeListItem>
       </CodeList>

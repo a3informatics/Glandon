@@ -6,6 +6,7 @@ describe Form do
   include SparqlHelpers
   include SecureRandomHelpers
   include IsoManagedHelpers
+  include OdmHelpers
 
   def sub_dir
     return "models/form"
@@ -1301,7 +1302,23 @@ puts "Extra:    #{uri_result.sort - diff.sort}"
 
     it "to XML I" do
       form = Form.find_full(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F"))
-      check_file_actual_expected(form.xml, sub_dir, "to_xml_1.xml", equate_method: :hash_equal)
+      xml = form.xml
+    #write_text_file_2(xml, sub_dir, "to_xml_1.xml")
+      expected = read_text_file_2(sub_dir, "to_xml_1.xml")
+      odm_fix_datetimes(xml, expected)
+      odm_fix_system_version(xml, expected)
+      expect(xml).to eq(expected)
+      #check_file_actual_expected(form.xml, sub_dir, "to_xml_1.xml", equate_method: :hash_equal)
+    end
+
+    it "to XML II" do
+      form = Form.find_full(Uri.new(uri: "http://www.s-cubed.dk/FN000120/V1#F"))
+      xml = form.xml
+    #write_text_file_2(xml, sub_dir, "to_xml_2.xml")
+      expected = read_text_file_2(sub_dir, "to_xml_2.xml")
+      odm_fix_datetimes(xml, expected)
+      odm_fix_system_version(xml, expected)
+      expect(xml).to eq(expected)
     end
 
   end

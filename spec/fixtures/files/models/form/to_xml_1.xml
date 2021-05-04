@@ -1,69 +1,68 @@
---- |-
-  <?xml version="1.0"?>
-  <ODM xmlns="http://www.cdisc.org/ns/odm/v1.3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xlink="http://www.w3.org/1999/xlink" Description="ODM-aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0Y=" FileType="Snapshot" Granularity="Metadata" FileOID="2021-05-04T11:47:38+02:00" ODMVersion="1.3.2" Originator="Assero" SourceSystem="Glandon" SourceSystemVersion="4.0.0" CreationDateTime="2021-05-04T11:47:38+02:00">
-    <Study OID="S-aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0Y=">
-      <GlobalVariables>
-        <StudyName>Form Export Height (Pilot) (FN000150)</StudyName>
-        <StudyDescription>Not applicable. Single form export.</StudyDescription>
-        <ProtocolName>Not applicable. Single form export.</ProtocolName>
-      </GlobalVariables>
-      <MetaDataVersion OID="MDV-aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0Y=" Name="Metadata for Height (Pilot)" Description="Not applicable. Single form export.">
-        <Protocol>
-          <StudyEventRef StudyEventOID="SE-aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0Y=" OrderNumber="1" Mandatory="Yes"/>
-        </Protocol>
-        <StudyEventDef OID="SE-aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0Y=" Name="Not applicable. Single form export." Repeating="No" Type="Scheduled">
-          <FormRef FormOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0Y=" OrderNumber="1" Mandatory="Yes"/>
-        </StudyEventDef>
-        <FormDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0Y=" Name="Height (Pilot)" Repeating="No">
-          <ItemGroupRef ItemGroupOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcx" OrderNumber="1" Mandatory="No"/>
-        </FormDef>
-        <ItemGroupDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcx" Name="Not Set" Repeating="No">
-          <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX1Ex" OrderNumber="1" Mandatory="No"/>
-          <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX1BMMg==" OrderNumber="2" Mandatory="No"/>
-          <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX1Ez" OrderNumber="3" Mandatory="No"/>
-          <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX1E0" OrderNumber="4" Mandatory="No"/>
-        </ItemGroupDef>
-        <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX1Ex" Name="Completion status" DataType="text" Length="1">
-          <Question>
-            <TranslatedText xml:lang="en"> Compltion Status</TranslatedText>
-          </Question>
-          <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX1Ex-CL"/>
-        </ItemDef>
-        <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX1BMMg==" Name="Placeholder 2" DataType="">
-          <Question>
-            <TranslatedText xml:lang="en">Measure with shoes off. Round up or down to the nearest tenth inch or tenth centimeter.</TranslatedText>
-          </Question>
-        </ItemDef>
-        <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX1Ez" Name="Height" DataType="float" Length="4" SignificantDigits="1">
-          <Question>
-            <TranslatedText xml:lang="en">Height</TranslatedText>
-          </Question>
-        </ItemDef>
-        <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX1E0" Name="Unit" DataType="text" Length="20">
-          <Question>
-            <TranslatedText xml:lang="en">Unit</TranslatedText>
-          </Question>
-          <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX1E0-CL"/>
-        </ItemDef>
-        <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX1Ex-CL" Name="Code list for Completion status" DataType="text">
-          <CodeListItem CodedValue="NOT DONE" OrderNumber="1">
-            <Decode>
-              <TranslatedText xml:lang="en">Not Done</TranslatedText>
-            </Decode>
-          </CodeListItem>
-        </CodeList>
-        <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX1E0-CL" Name="Code list for Unit" DataType="text">
-          <CodeListItem CodedValue="IN" OrderNumber="1">
-            <Decode>
-              <TranslatedText xml:lang="en">Inch</TranslatedText>
-            </Decode>
-          </CodeListItem>
-          <CodeListItem CodedValue="cm" OrderNumber="2">
-            <Decode>
-              <TranslatedText xml:lang="en">Centimeter</TranslatedText>
-            </Decode>
-          </CodeListItem>
-        </CodeList>
-      </MetaDataVersion>
-    </Study>
-  </ODM>
+<?xml version="1.0"?>
+<ODM xmlns="http://www.cdisc.org/ns/odm/v1.3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xlink="http://www.w3.org/1999/xlink" Description="ODM-aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0Y=" FileType="Snapshot" Granularity="Metadata" FileOID="2021-05-04T14:03:02+02:00" ODMVersion="1.3.2" Originator="Assero" SourceSystem="Glandon" SourceSystemVersion="4.0.0" CreationDateTime="2021-05-04T14:03:02+02:00">
+  <Study OID="S-aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0Y=">
+    <GlobalVariables>
+      <StudyName>Form Export Height (Pilot) (FN000150)</StudyName>
+      <StudyDescription>Not applicable. Single form export.</StudyDescription>
+      <ProtocolName>Not applicable. Single form export.</ProtocolName>
+    </GlobalVariables>
+    <MetaDataVersion OID="MDV-aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0Y=" Name="Metadata for Height (Pilot)" Description="Not applicable. Single form export.">
+      <Protocol>
+        <StudyEventRef StudyEventOID="SE-aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0Y=" OrderNumber="1" Mandatory="Yes"/>
+      </Protocol>
+      <StudyEventDef OID="SE-aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0Y=" Name="Not applicable. Single form export." Repeating="No" Type="Scheduled">
+        <FormRef FormOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0Y=" OrderNumber="1" Mandatory="Yes"/>
+      </StudyEventDef>
+      <FormDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0Y=" Name="Height (Pilot)" Repeating="No">
+        <ItemGroupRef ItemGroupOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcx" OrderNumber="1" Mandatory="No"/>
+      </FormDef>
+      <ItemGroupDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcx" Name="Not Set" Repeating="No">
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX1Ex" OrderNumber="1" Mandatory="No"/>
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX1BMMg==" OrderNumber="2" Mandatory="No"/>
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX1Ez" OrderNumber="3" Mandatory="No"/>
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX1E0" OrderNumber="4" Mandatory="No"/>
+      </ItemGroupDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX1Ex" Name="Completion status" DataType="text" Length="1">
+        <Question>
+          <TranslatedText xml:lang="en"> Compltion Status</TranslatedText>
+        </Question>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX1Ex-CL"/>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX1BMMg==" Name="Placeholder 2" DataType="">
+        <Question>
+          <TranslatedText xml:lang="en">Measure with shoes off. Round up or down to the nearest tenth inch or tenth centimeter.</TranslatedText>
+        </Question>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX1Ez" Name="Height" DataType="float" Length="4" SignificantDigits="1">
+        <Question>
+          <TranslatedText xml:lang="en">Height</TranslatedText>
+        </Question>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX1E0" Name="Unit" DataType="text" Length="20">
+        <Question>
+          <TranslatedText xml:lang="en">Unit</TranslatedText>
+        </Question>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX1E0-CL"/>
+      </ItemDef>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX1Ex-CL" Name="Code list for Completion status" DataType="text">
+        <CodeListItem CodedValue="NOT DONE" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">Not Done</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0ZOMDAwMTUwL1YxI0ZfTkcxX1E0-CL" Name="Code list for Unit" DataType="text">
+        <CodeListItem CodedValue="IN" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">Inch</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="cm" OrderNumber="2">
+          <Decode>
+            <TranslatedText xml:lang="en">Centimeter</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+    </MetaDataVersion>
+  </Study>
+</ODM>
