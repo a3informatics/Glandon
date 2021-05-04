@@ -48,13 +48,13 @@ Cucumber::Rails::Database.autorun_database_cleaner = false
 #DatabaseCleaner.strategy = :truncation
 #Cucumber::Rails::Database.javascript_strategy = :truncation
  
-ENVIRONMENT = 'VAL'
+#ENVIRONMENT = 'VAL'
 
 #ENVIRONMENT = 'PROD'
 
 #ENVIRONMENT = 'TEST'
 
-#ENVIRONMENT = 'REMOTE_TEST'
+ENVIRONMENT = 'REMOTE_TEST'
 
 if ENVIRONMENT == 'VAL' 
 RemoteServerHelpers.switch_to_remote
