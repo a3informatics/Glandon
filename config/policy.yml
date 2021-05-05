@@ -373,6 +373,7 @@ defaults: &defaults
       restore: update
       crf_report: show
       acrf_report: show
+      export_odm: show
   CdiscTermPolicy:
     policies:
       index:

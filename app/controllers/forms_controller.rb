@@ -141,9 +141,8 @@ class FormsController < ManagedItemsController
   end
 
   def export_odm
-    #authorize Form, :export_json?
-    @form = Form.find_minimum(protect_from_bad_id(params))
-    send_data @form.xml, filename: "#{@form.owner_short_name}_#{@form.identifier}_ODM.xml", :type => 'application/xhtml+xml; header=present', disposition: "attachment"
+    @form = Form.find_full(protect_from_bad_id(params))
+    send_data @form.xml, filename: "#{@form.owner_short_name}_#{@form.has_identifier.identifier}_ODM.xml", :type => 'application/xhtml+xml; header=present', disposition: "attachment"
   end
 
   # def clone
