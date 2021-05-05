@@ -6,6 +6,7 @@ describe Form::Group::Normal do
   include SparqlHelpers
   include SecureRandomHelpers
   include IsoManagedHelpers
+  include OdmHelpers
   include BiomedicalConceptInstanceFactory
 
   def sub_dir
@@ -398,7 +399,7 @@ describe Form::Group::Normal do
       data_files = ["biomedical_concept_instances.ttl", "biomedical_concept_templates.ttl"]
       load_files(schema_files, data_files)
       load_cdisc_term_versions(1..1)
-      load_data_file_into_triple_store("mdr_identification.ttl") 
+      load_data_file_into_triple_store("mdr_identification.ttl")
     end
 
     it "returns the CRF rendition I" do
@@ -421,7 +422,7 @@ describe Form::Group::Normal do
       normal_group = Form::Group::Normal.find_full(form.has_group.first.uri)
       question = Form::Item::Question.find_full(normal_group.has_item.first.uri)
       question.datatype = "float"
-      question.format = "5.1"  
+      question.format = "5.1"
       question.question_text = "Question text 1"
       question.save
       normal_group = Form::Group::Normal.find_full(form.has_group.first.uri)
@@ -440,14 +441,14 @@ describe Form::Group::Normal do
       normal_group = Form::Group::Normal.find_full(form.has_group.first.uri)
       question = Form::Item::Question.find_full(normal_group.has_item.first.uri)
       question.datatype = "float"
-      question.format = "5.1"   
+      question.format = "5.1"
       question.question_text = "Question text 1"
       question.save
       normal_group = Form::Group::Normal.find_full(form.has_group.first.uri)
       normal_group.add_child({type: "question"})
       normal_group = Form::Group::Normal.find_full(form.has_group.first.uri)
       question = Form::Item::Question.find_full(normal_group.has_item.second.uri)
-      question.datatype = "string" 
+      question.datatype = "string"
       question.question_text = "Question text 2"
       question.save
       normal_group = Form::Group::Normal.find_full(form.has_group.first.uri)
@@ -455,7 +456,7 @@ describe Form::Group::Normal do
       normal_group = Form::Group::Normal.find_full(form.has_group.first.uri)
       question = Form::Item::Question.find_full(normal_group.has_item.third.uri)
       question.datatype = "float"
-      question.format = "5.1"   
+      question.format = "5.1"
       question.question_text = "Question text 3"
       question.save
       normal_group = Form::Group::Normal.find_full(form.has_group.first.uri)
@@ -476,14 +477,14 @@ describe Form::Group::Normal do
       normal_group = Form::Group::Normal.find_full(form.has_group.first.uri)
       question = Form::Item::Question.find_full(normal_group.has_item.first.uri)
       question.datatype = "float"
-      question.format = "5.1" 
+      question.format = "5.1"
       question.question_text = "Question text 1"
       question.save
       normal_group = Form::Group::Normal.find_full(form.has_group.first.uri)
       normal_group.add_child({type: "question"})
       normal_group = Form::Group::Normal.find_full(form.has_group.first.uri)
       question = Form::Item::Question.find_full(normal_group.has_item.second.uri)
-      question.datatype = "string" 
+      question.datatype = "string"
       question.question_text = "Question text 2"
       question.save
       normal_group = Form::Group::Normal.find_full(form.has_group.first.uri)
@@ -491,7 +492,7 @@ describe Form::Group::Normal do
       normal_group = Form::Group::Normal.find_full(form.has_group.first.uri)
       question = Form::Item::Question.find_full(normal_group.has_item.third.uri)
       question.datatype = "float"
-      question.format = "5.1"    
+      question.format = "5.1"
       question.question_text = "Question text 3"
       question.save
       normal_group = Form::Group::Normal.find_full(form.has_group.first.uri)
@@ -512,14 +513,14 @@ describe Form::Group::Normal do
       normal_group = Form::Group::Normal.find_full(form.has_group.first.uri)
       question = Form::Item::Question.find_full(normal_group.has_item.first.uri)
       question.datatype = "float"
-      question.format = "5.1"    
+      question.format = "5.1"
       question.question_text = "Question text 1"
       question.save
       normal_group.add_child({type: "question"})
       normal_group = Form::Group::Normal.find_full(form.has_group.first.uri)
       question = Form::Item::Question.find_full(normal_group.has_item.second.uri)
       question.datatype = "float"
-      question.format = "5.1" 
+      question.format = "5.1"
       question.question_text = "Question text 2"
       question.save
       normal_group.add_child({type: "placeholder"})
@@ -553,7 +554,7 @@ describe Form::Group::Normal do
     before :each do
       load_files(schema_files, [])
       load_data_file_into_triple_store("mdr_identification.ttl")
-      load_data_file_into_triple_store("complex_datatypes.ttl")        
+      load_data_file_into_triple_store("complex_datatypes.ttl")
     end
 
     it "returns the CRF rendition, repeating, is only question group and is only bc group false" do
@@ -604,7 +605,7 @@ describe Form::Group::Normal do
     before :each do
       load_files(schema_files, [])
       load_data_file_into_triple_store("mdr_identification.ttl")
-      load_data_file_into_triple_store("complex_datatypes.ttl")        
+      load_data_file_into_triple_store("complex_datatypes.ttl")
     end
 
     it "repeating true, only question group" do
@@ -698,5 +699,47 @@ describe Form::Group::Normal do
     end
 
   end
-  
+
+  describe "ODM XML Tests" do
+
+    before :each do
+      data_files = ["biomedical_concept_instances.ttl", "biomedical_concept_templates.ttl"]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..1)
+      load_data_file_into_triple_store("mdr_identification.ttl")
+    end
+
+    it "to XML I" do
+      odm = add_root
+      study = add_study(odm.root)
+      mdv = add_mdv(study)
+      form = add_form(mdv)
+      item = Form::Group::Normal.create(label: "test label", ordinal: 1)
+      item.to_xml(mdv, form)
+      xml = odm.to_xml
+    #Xwrite_text_file_2(xml, sub_dir, "to_xml_1.xml")
+      expected = read_text_file_2(sub_dir, "to_xml_1.xml")
+      odm_fix_datetimes(xml, expected)
+      odm_fix_system_version(xml, expected)
+      expect(xml).to eq(expected)
+    end
+
+    it "allows an object to be exported as XML, children" do
+      odm = add_root
+      study = add_study(odm.root)
+      mdv = add_mdv(study)
+      form = add_form(mdv)
+      item = Form::Group::Normal.create(label: "test label", ordinal: 119)
+      item.add_child({type: "normal_group"})
+      item.to_xml(mdv, form)
+      xml = odm.to_xml
+    #Xwrite_text_file_2(xml, sub_dir, "to_xml_2.xml")
+      expected = read_text_file_2(sub_dir, "to_xml_2.xml")
+      odm_fix_datetimes(xml, expected)
+      odm_fix_system_version(xml, expected)
+      expect(xml).to eq(expected)
+    end
+
+  end
+
 end

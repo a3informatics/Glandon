@@ -1324,7 +1324,7 @@ puts "Extra:    #{uri_result.sort - diff.sort}"
     it "to XML III" do
       form = Form.find_full(Uri.new(uri: "http://www.s-cubed.dk/F004/V1#F"))
       xml = form.xml
-    write_text_file_2(xml, sub_dir, "to_xml_3.xml")
+    #write_text_file_2(xml, sub_dir, "to_xml_3.xml")
       expected = read_text_file_2(sub_dir, "to_xml_3.xml")
       odm_fix_datetimes(xml, expected)
       odm_fix_system_version(xml, expected)
