@@ -110,6 +110,23 @@ class Form::Group::Normal < Form::Group
     end
   end
 
+  # Info node. Adds ci, notes and terminology information to generate a report
+  #
+  # @param [Array] form the form object
+  # @param [Array] options the options for the report
+  # @param [Array] user the user running the report
+  # @return [Array] Array ci_nodes, note_nodes and terminology
+  def info_node(ci_nodes, note_nodes, terminology)
+    add_nodes(self.to_h, ci_nodes, :completion)
+    add_nodes(self.to_h, note_nodes, :note)
+    self.has_common_objects.sort_by {|x| x.ordinal}.each do |cm|
+        cm.info_node(ci_nodes, note_nodes, terminology)
+    end
+    self.children_ordered.each do |node|
+      node.info_node(ci_nodes, note_nodes, terminology)
+    end
+  end
+
   def add_child_with_clone(params, managed_ancestor)
     if multiple_managed_ancestors?
       new_normal = self.replicate_with_clone(self, managed_ancestor)

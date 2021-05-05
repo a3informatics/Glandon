@@ -13,9 +13,9 @@ class Reports::CdiscSubmissionReport
   # @param [Hash] results the submission changes report
   # @param [User] user the current user
   # @return [String] the HTML
-  def create(results, user)
+  def create(results, user, base_url)
     @report = Reports::WickedCore.new
-    @report.open("CDISC Submission Value Change Report", "", [], user)
+    @report.open("CDISC Submission Value Change Report", "", [], user, base_url)
     body(results)
     @report.close
     return @report.html
@@ -25,11 +25,11 @@ class Reports::CdiscSubmissionReport
   # Test Only
   # ---------
   if Rails.env == "test"
-  
+
     def html
       return @report.html
     end
-  
+
   end
 
 private
@@ -68,7 +68,7 @@ private
     if @ref > 1
       main_table += close_table
       secondary_table += close_table
-      html += main_table 
+      html += main_table
       html += secondary_table
     end
     @report.add_to_body(html)

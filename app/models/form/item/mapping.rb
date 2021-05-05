@@ -40,6 +40,10 @@ class Form::Item::Mapping < Form::Item
     # Do nothing currently
   end
 
+  def info_node(ci_nodes, note_nodes, terminology)
+    # Do nothing currently
+  end
+
 private
 
   def mapping_row(mapping)

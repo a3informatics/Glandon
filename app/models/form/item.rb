@@ -16,6 +16,7 @@ class Form::Item < IsoConceptV2
 
   include Form::Ordinal
   include Form::CRF
+  include Form::PDFReport
 
   # Managed Ancestors Path. Returns the path from the managed ancestor to this class
   #

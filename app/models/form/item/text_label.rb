@@ -42,4 +42,8 @@ class Form::Item::TextLabel < Form::Item
     question.add_translated_text("#{self.label_text}")
   end
 
+  def info_node(ci_nodes, note_nodes, terminology)
+    # Do nothing currently
+  end
+
 end

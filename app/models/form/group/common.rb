@@ -74,6 +74,20 @@ class Form::Group::Common < Form::Group
     end
   end
 
+  # Info node. Adds ci, notes and terminology information to generate a report
+  #
+  # @param [Array] form the form object
+  # @param [Array] options the options for the report
+  # @param [Array] user the user running the report
+  # @return [Array] Array ci_nodes, note_nodes and terminology
+  def info_node(ci_nodes, note_nodes, terminology)
+    add_nodes(self.to_h, ci_nodes, :completion)
+    add_nodes(self.to_h, note_nodes, :note)
+    self.children_ordered.each do |node|
+      node.info_node(ci_nodes, note_nodes, terminology)
+    end
+  end
+
   def delete(parent, managed_ancestor)
     parent = super(parent, managed_ancestor)
     parent = Form::Group::Normal.find_full(parent.uri)

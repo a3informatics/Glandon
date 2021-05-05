@@ -18,6 +18,7 @@ class Form::Group < IsoConceptV2
 
   include Form::Ordinal
   include Form::CRF
+  include Form::PDFReport
 
   # Managed Ancestors Path. Returns the path from the managed ancestor to this class
   #

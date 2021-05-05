@@ -14,6 +14,7 @@ class Form < IsoManagedV2
 
   include Form::Ordinal
   include Form::CRF
+  include Form::PDFReport
 
   @@owner_ra = nil
 
@@ -61,6 +62,20 @@ class Form < IsoManagedV2
   # @return [object] The ODM XML object created.
   def xml
     to_xml
+  end
+
+  # Info node. Adds ci, notes and terminology information to generate a report
+  #
+  # @param [Array] form the form object
+  # @param [Array] options the options for the report
+  # @param [Array] user the user running the report
+  # @return [Array] Array ci_nodes, note_nodes and terminology
+  def info_node(ci_nodes, note_nodes, terminology)
+    add_nodes(self.to_h, ci_nodes, :completion)
+    add_nodes(self.to_h, note_nodes, :note)
+    self.children_ordered.each do |node|
+      node.info_node(ci_nodes, note_nodes, terminology)
+    end
   end
 
   # Move Up With Clone

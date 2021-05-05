@@ -49,6 +49,28 @@ class FormsController < ManagedItemsController
     @html = @form.acrf
   end
 
+  def crf_report
+    form = Form.find_full(protect_from_bad_id(params))
+    form_html = form.crf
+    respond_to do |format|
+      format.pdf do
+        @html = form.create(form, form_html, current_user, base_url)
+        render pdf: "CRF_#{form.has_identifier.identifier}", page_size: current_user.paper_size, orientation: 'Landscape', lowquality: true
+      end
+    end
+  end
+
+  def acrf_report
+    form = Form.find_full(protect_from_bad_id(params))
+    form_html = form.acrf
+    respond_to do |format|
+      format.pdf do
+        @html = form.create(form, form_html, current_user, base_url)
+        render pdf: "aCRF_#{form.has_identifier.identifier}", page_size: current_user.paper_size, orientation: 'Landscape', lowquality: true
+      end
+    end
+  end
+
   def referenced_items
     form = Form.find_minimum(protect_from_bad_id(params))
     items = form.get_referenced_items
