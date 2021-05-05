@@ -480,4 +480,31 @@ describe FormsController do
 
   end
 
+  describe "ODM XML" do
+
+    login_curator
+
+    before :all do
+      data_files = ["forms/FN000150.ttl"]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..8)
+      load_data_file_into_triple_store("mdr_identification.ttl")
+      @lock_user = ua_add_user(email: "lock@example.com")
+      Token.delete_all
+    end
+
+    after :all do
+      ua_remove_user("lock@example.com")
+    end
+
+    it "odm xml" do
+      request.env['HTTP_ACCEPT'] = "application/xhtml+xml"
+      form = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F"))
+      get :export_odm, params: { :id => form.id}
+      expect(response.content_type).to eq("application/xhtml+xml; header=present")
+      expect(response.header["Content-Disposition"]).to eq("attachment; filename=\"S-cubed_FN000150_ODM.xml\"")
+    end
+
+  end
+
 end
