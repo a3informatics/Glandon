@@ -1,10 +1,11 @@
 require 'rails_helper'
 
 describe Form::Item::Question do
-  
+
   include DataHelpers
   include SparqlHelpers
   include IsoManagedHelpers
+  include OdmHelpers
   include SecureRandomHelpers
 
   def sub_dir
@@ -14,9 +15,9 @@ describe Form::Item::Question do
   def make_standard(item)
     IsoManagedHelpers.make_item_standard(item)
   end
-    
+
   describe "Validations" do
-    
+
     before :all do
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
       load_files(schema_files, data_files)
@@ -59,7 +60,7 @@ describe Form::Item::Question do
   end
 
   describe "Basic tests" do
-    
+
     before :all do
       load_files(schema_files, [])
       load_cdisc_term_versions(1..1)
@@ -124,7 +125,7 @@ describe Form::Item::Question do
       result = item.to_crf(nil)
       check_file_actual_expected(result, sub_dir, "to_crf_expected_2b.yaml", equate_method: :hash_equal)
     end
-  
+
     it "returns the children in ordinal order" do
       item = Form::Item::Question.create(uri: Uri.new(uri: "http://www.s-cubed.dk/Q1"), ordinal: 1, datatype: "string", format: "20", question_text: "Hello")
       expect(item.children_ordered).to eq([])
@@ -151,7 +152,7 @@ describe Form::Item::Question do
   end
 
   describe "aCRF" do
-    
+
     before :all do
       load_files(schema_files, [])
       load_cdisc_term_versions(1..1)
@@ -168,10 +169,10 @@ describe Form::Item::Question do
       load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V6.ttl")
       load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V7.ttl")
       load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
-      load_data_file_into_triple_store("mdr_iso_concept_systems_migration_1.ttl")      
-      load_data_file_into_triple_store("mdr_iso_concept_systems_migration_2.ttl")      
+      load_data_file_into_triple_store("mdr_iso_concept_systems_migration_1.ttl")
+      load_data_file_into_triple_store("mdr_iso_concept_systems_migration_2.ttl")
       load_data_file_into_triple_store("mdr_iso_concept_systems_migration_3.ttl")
-      load_data_file_into_triple_store("association_IG_domain.ttl") 
+      load_data_file_into_triple_store("association_IG_domain.ttl")
       load_data_file_into_triple_store("complex_datatypes.ttl")
     end
 
@@ -183,7 +184,7 @@ describe Form::Item::Question do
       normal_group.add_child({type:"question"})
       question = Form::Item::Question.find(Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#Q_4646b47a-4ae4-4f21-b5e2-565815c8cded"))
       question.mapping = "VSORRESU"
-      question.datatype = "datetype" 
+      question.datatype = "datetype"
       question.question_text = "Question text"
       question.save
       form = Form.find_full(form.uri)
@@ -194,7 +195,7 @@ describe Form::Item::Question do
       result = item.to_crf(annotations)
       check_file_actual_expected(result, sub_dir, "to_acrf_expected_1.yaml", equate_method: :hash_equal)
     end
-    
+
   end
 
   describe "Add child" do
@@ -329,4 +330,31 @@ describe Form::Item::Question do
 
   end
 
-end  
+  describe "ODM XML" do
+
+    before :all do
+      load_files(schema_files, [])
+      load_cdisc_term_versions(1..1)
+      load_data_file_into_triple_store("mdr_identification.ttl")
+    end
+
+    it "to XML I" do
+      odm = add_root
+      study = add_study(odm.root)
+      mdv = add_mdv(study)
+      form = add_form(mdv)
+      form.add_item_group_ref("G-TEST", "1", "No", "")
+      item_group = mdv.add_item_group_def("G-TEST", "test group", "No", "", "", "", "", "", "")
+      item = Form::Item::Question.create(label: "test label", ordinal: 1, datatype: "string", format: "20", question_text: "Hello")
+      item.to_xml(mdv, form, item_group)
+      xml = odm.to_xml
+    #Xwrite_text_file_2(xml, sub_dir, "to_xml_1.xml")
+      expected = read_text_file_2(sub_dir, "to_xml_1.xml")
+      odm_fix_datetimes(xml, expected)
+      odm_fix_system_version(xml, expected)
+      expect(xml).to eq(expected)
+    end
+
+  end
+
+end
