@@ -3,6 +3,7 @@ require 'rails_helper'
 describe Form::Item::TextLabel do
 
   include DataHelpers
+  include OdmHelpers
 
   def sub_dir
     return "models/form/item/text_label"
@@ -41,6 +42,7 @@ describe Form::Item::TextLabel do
     result = item.to_crf(nil)
     check_file_actual_expected(result, sub_dir, "to_crf_expected_1.yaml", equate_method: :hash_equal)
   end
+
   # it "allows an object to be exported as XML" do
   # 	odm = add_root
   #   study = add_study(odm.root)
@@ -61,5 +63,22 @@ describe Form::Item::TextLabel do
   #   odm_fix_system_version(xml, expected)
   #   expect(xml).to eq(expected)
   # end
+
+  it "to XML I" do
+    odm = add_root
+    study = add_study(odm.root)
+    mdv = add_mdv(study)
+    form = add_form(mdv)
+    form.add_item_group_ref("G-TEST", "1", "No", "")
+    item_group = mdv.add_item_group_def("G-TEST", "test group", "No", "", "", "", "", "", "")
+    item = Form::Item::TextLabel.create(label: "item", ordinal: 22, label_text: "The Label")
+    item.to_xml(mdv, form, item_group)
+    xml = odm.to_xml
+  #Xwrite_text_file_2(xml, sub_dir, "to_xml_1.xml")
+    expected = read_text_file_2(sub_dir, "to_xml_1.xml")
+    odm_fix_datetimes(xml, expected)
+    odm_fix_system_version(xml, expected)
+    expect(xml).to eq(expected)
+  end
 
 end
