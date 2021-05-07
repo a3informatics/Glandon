@@ -5,6 +5,7 @@ describe Form::Group::Common do
   include DataHelpers
   include OdmHelpers
   include SparqlHelpers
+  include SecureRandomHelpers
 
   def sub_dir
     return "models/form/group/common"
@@ -52,6 +53,7 @@ describe Form::Group::Common do
     end
 
     it "to XML I" do
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
       odm = add_root
       study = add_study(odm.root)
       mdv = add_mdv(study)

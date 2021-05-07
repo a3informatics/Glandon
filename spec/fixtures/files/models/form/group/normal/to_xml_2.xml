@@ -1,13 +1,13 @@
 <?xml version="1.0"?>
-<ODM xmlns="http://www.cdisc.org/ns/odm/v1.3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xlink="http://www.w3.org/1999/xlink" Description="O-TEST" FileType="Snapshot" Granularity="Metadata" FileOID="2021-05-05T08:48:20+02:00" ODMVersion="1.3.2" Originator="Assero" SourceSystem="Glandon" SourceSystemVersion="4.0.0" CreationDateTime="2021-05-05T08:48:20+02:00">
+<ODM xmlns="http://www.cdisc.org/ns/odm/v1.3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xlink="http://www.w3.org/1999/xlink" Description="O-TEST" FileType="Snapshot" Granularity="Metadata" FileOID="2021-05-07T08:40:00+02:00" ODMVersion="1.3.2" Originator="Assero" SourceSystem="Glandon" SourceSystemVersion="4.0.0" CreationDateTime="2021-05-07T08:40:00+02:00">
   <Study OID="S-TEST">
     <MetaDataVersion OID="MDV-TEST" Name="Metadata for test" Description="Not applicable.">
       <FormDef OID="F-TEST" Name="test form" Repeating="No">
-        <ItemGroupRef ItemGroupOID="aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvSUMjTkdfYjA3NzRkZjItY2ZkYS00ZmYyLWEyZDYtN2ViMjI1M2ZlZTll" OrderNumber="119" Mandatory="No"/>
-        <ItemGroupRef ItemGroupOID="aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvSUMjTkdfYjRiZWNiMzUtZjlhMC00MWEzLWI2MzctZDE4ZjZjZjg5NTM3" OrderNumber="1" Mandatory="No"/>
+        <ItemGroupRef ItemGroupOID="aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvSUMjTkdfMTc2MGNiYjEtYTM3MC00MWY2LWEzYjMtNDkzYzFkOWMyMjM4" OrderNumber="119" Mandatory="No"/>
+        <ItemGroupRef ItemGroupOID="aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvSUMjTkdfNDY0NmI0N2EtNGFlNC00ZjIxLWI1ZTItNTY1ODE1YzhjZGVk" OrderNumber="1" Mandatory="No"/>
       </FormDef>
-      <ItemGroupDef OID="aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvSUMjTkdfYjA3NzRkZjItY2ZkYS00ZmYyLWEyZDYtN2ViMjI1M2ZlZTll" Name="test label" Repeating="No"/>
-      <ItemGroupDef OID="aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvSUMjTkdfYjRiZWNiMzUtZjlhMC00MWEzLWI2MzctZDE4ZjZjZjg5NTM3" Name="Not set" Repeating="No"/>
+      <ItemGroupDef OID="aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvSUMjTkdfMTc2MGNiYjEtYTM3MC00MWY2LWEzYjMtNDkzYzFkOWMyMjM4" Name="test label" Repeating="No"/>
+      <ItemGroupDef OID="aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvSUMjTkdfNDY0NmI0N2EtNGFlNC00ZjIxLWI1ZTItNTY1ODE1YzhjZGVk" Name="Not set" Repeating="No"/>
     </MetaDataVersion>
   </Study>
 </ODM>

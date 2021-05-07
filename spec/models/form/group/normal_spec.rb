@@ -710,6 +710,7 @@ describe Form::Group::Normal do
     end
 
     it "to XML I" do
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
       odm = add_root
       study = add_study(odm.root)
       mdv = add_mdv(study)
@@ -725,6 +726,7 @@ describe Form::Group::Normal do
     end
 
     it "allows an object to be exported as XML, children" do
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
       odm = add_root
       study = add_study(odm.root)
       mdv = add_mdv(study)
