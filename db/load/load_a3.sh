@@ -112,6 +112,7 @@ curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/complex
 # Biomedical Concepts
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/bc/biomedical_concept_templates.ttl" $FileEndPoint
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/bc/intervention.ttl" $FileEndPoint
+curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/bc/event_prespecified.ttl" $FileEndPoint
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/bc/ae/ae.ttl" $FileEndPoint
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/bc/dm/dm.ttl" $FileEndPoint
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/bc/eg/eg.ttl" $FileEndPoint
