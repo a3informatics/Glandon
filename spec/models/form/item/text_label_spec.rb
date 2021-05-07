@@ -4,6 +4,7 @@ describe Form::Item::TextLabel do
 
   include DataHelpers
   include OdmHelpers
+  include SecureRandomHelpers
 
   def sub_dir
     return "models/form/item/text_label"
@@ -44,6 +45,7 @@ describe Form::Item::TextLabel do
   end
 
   it "to XML I" do
+    allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
     odm = add_root
     study = add_study(odm.root)
     mdv = add_mdv(study)
