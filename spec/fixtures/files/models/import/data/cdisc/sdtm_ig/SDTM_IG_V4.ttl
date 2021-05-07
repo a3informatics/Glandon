@@ -1946,6 +1946,7 @@
 	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:ctReference <http://www.cdisc.org/SDTM_IG_AG/V4#IGD_AGPRESP_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V5#CL_--PRESP> ;
+	bd:isA <http://www.s-cubed.dk/CAR#b724045eaf94ce25b3eaa5cd7d2d5bf66de219b1> ;
 .
 <http://www.cdisc.org/SDTM_IG_AG/V4#IGD_AGPRESP_TMC1>
 	rdf:type bo:TMcReference ;
@@ -1968,6 +1969,7 @@
 	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:ctReference <http://www.cdisc.org/SDTM_IG_AG/V4#IGD_AGOCCUR_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V6#CL_--OCCUR> ;
+	bd:isA <http://www.s-cubed.dk/CAR#4f618850ebd7856345f3aae9299ab9fd81e02d93> ;
 .
 <http://www.cdisc.org/SDTM_IG_AG/V4#IGD_AGOCCUR_TMC1>
 	rdf:type bo:TMcReference ;
@@ -2012,6 +2014,7 @@
 	bd:ctAndFormat ""^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V6#CL_--REASND> ;
+	bd:isA <http://www.s-cubed.dk/CAR#52b30e2515e4fa778a3ab77470f0b096877a26c2> ;
 .
 <http://www.cdisc.org/SDTM_IG_AG/V4#IGD_AGCLAS>
 	rdf:type bd:SdtmDomainVariable ;
@@ -2594,6 +2597,7 @@
 	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:ctReference <http://www.cdisc.org/SDTM_IG_CM/V4#IGD_CMPRESP_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V5#CL_--PRESP> ;
+	bd:isA <http://www.s-cubed.dk/CAR#b724045eaf94ce25b3eaa5cd7d2d5bf66de219b1> ;
 .
 <http://www.cdisc.org/SDTM_IG_CM/V4#IGD_CMPRESP_TMC1>
 	rdf:type bo:TMcReference ;
@@ -2616,6 +2620,7 @@
 	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:ctReference <http://www.cdisc.org/SDTM_IG_CM/V4#IGD_CMOCCUR_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V6#CL_--OCCUR> ;
+	bd:isA <http://www.s-cubed.dk/CAR#4f618850ebd7856345f3aae9299ab9fd81e02d93> ;
 .
 <http://www.cdisc.org/SDTM_IG_CM/V4#IGD_CMOCCUR_TMC1>
 	rdf:type bo:TMcReference ;
@@ -2660,6 +2665,7 @@
 	bd:ctAndFormat ""^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V6#CL_--REASND> ;
+	bd:isA <http://www.s-cubed.dk/CAR#52b30e2515e4fa778a3ab77470f0b096877a26c2> ;
 .
 <http://www.cdisc.org/SDTM_IG_CM/V4#IGD_CMINDC>
 	rdf:type bd:SdtmDomainVariable ;
@@ -3895,6 +3901,7 @@
 	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:ctReference <http://www.cdisc.org/SDTM_IG_EC/V4#IGD_ECPRESP_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V5#CL_--PRESP> ;
+	bd:isA <http://www.s-cubed.dk/CAR#b724045eaf94ce25b3eaa5cd7d2d5bf66de219b1> ;
 .
 <http://www.cdisc.org/SDTM_IG_EC/V4#IGD_ECPRESP_TMC1>
 	rdf:type bo:TMcReference ;
@@ -3917,6 +3924,7 @@
 	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:ctReference <http://www.cdisc.org/SDTM_IG_EC/V4#IGD_ECOCCUR_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V6#CL_--OCCUR> ;
+	bd:isA <http://www.s-cubed.dk/CAR#4f618850ebd7856345f3aae9299ab9fd81e02d93> ;
 .
 <http://www.cdisc.org/SDTM_IG_EC/V4#IGD_ECOCCUR_TMC1>
 	rdf:type bo:TMcReference ;
@@ -4576,6 +4584,7 @@
 	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:ctReference <http://www.cdisc.org/SDTM_IG_ML/V4#IGD_MLPRESP_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V5#CL_--PRESP> ;
+	bd:isA <http://www.s-cubed.dk/CAR#b724045eaf94ce25b3eaa5cd7d2d5bf66de219b1> ;
 .
 <http://www.cdisc.org/SDTM_IG_ML/V4#IGD_MLPRESP_TMC1>
 	rdf:type bo:TMcReference ;
@@ -4598,6 +4607,7 @@
 	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:ctReference <http://www.cdisc.org/SDTM_IG_ML/V4#IGD_MLOCCUR_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V6#CL_--OCCUR> ;
+	bd:isA <http://www.s-cubed.dk/CAR#4f618850ebd7856345f3aae9299ab9fd81e02d93> ;
 .
 <http://www.cdisc.org/SDTM_IG_ML/V4#IGD_MLOCCUR_TMC1>
 	rdf:type bo:TMcReference ;
@@ -4642,6 +4652,7 @@
 	bd:ctAndFormat ""^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V6#CL_--REASND> ;
+	bd:isA <http://www.s-cubed.dk/CAR#52b30e2515e4fa778a3ab77470f0b096877a26c2> ;
 .
 <http://www.cdisc.org/SDTM_IG_ML/V4#IGD_MLDOSE>
 	rdf:type bd:SdtmDomainVariable ;
@@ -5181,6 +5192,7 @@
 	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:ctReference <http://www.cdisc.org/SDTM_IG_PR/V4#IGD_PRPRESP_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V5#CL_--PRESP> ;
+	bd:isA <http://www.s-cubed.dk/CAR#b724045eaf94ce25b3eaa5cd7d2d5bf66de219b1> ;
 .
 <http://www.cdisc.org/SDTM_IG_PR/V4#IGD_PRPRESP_TMC1>
 	rdf:type bo:TMcReference ;
@@ -5203,6 +5215,7 @@
 	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:ctReference <http://www.cdisc.org/SDTM_IG_PR/V4#IGD_PROCCUR_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V6#CL_--OCCUR> ;
+	bd:isA <http://www.s-cubed.dk/CAR#4f618850ebd7856345f3aae9299ab9fd81e02d93> ;
 .
 <http://www.cdisc.org/SDTM_IG_PR/V4#IGD_PROCCUR_TMC1>
 	rdf:type bo:TMcReference ;
@@ -5897,6 +5910,7 @@
 	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:ctReference <http://www.cdisc.org/SDTM_IG_SU/V4#IGD_SUPRESP_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V5#CL_--PRESP> ;
+	bd:isA <http://www.s-cubed.dk/CAR#b724045eaf94ce25b3eaa5cd7d2d5bf66de219b1> ;
 .
 <http://www.cdisc.org/SDTM_IG_SU/V4#IGD_SUPRESP_TMC1>
 	rdf:type bo:TMcReference ;
@@ -5919,6 +5933,7 @@
 	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:ctReference <http://www.cdisc.org/SDTM_IG_SU/V4#IGD_SUOCCUR_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V6#CL_--OCCUR> ;
+	bd:isA <http://www.s-cubed.dk/CAR#4f618850ebd7856345f3aae9299ab9fd81e02d93> ;
 .
 <http://www.cdisc.org/SDTM_IG_SU/V4#IGD_SUOCCUR_TMC1>
 	rdf:type bo:TMcReference ;
@@ -5963,6 +5978,7 @@
 	bd:ctAndFormat ""^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V6#CL_--REASND> ;
+	bd:isA <http://www.s-cubed.dk/CAR#52b30e2515e4fa778a3ab77470f0b096877a26c2> ;
 .
 <http://www.cdisc.org/SDTM_IG_SU/V4#IGD_SUCLAS>
 	rdf:type bd:SdtmDomainVariable ;
@@ -6619,6 +6635,7 @@
 	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:ctReference <http://www.cdisc.org/SDTM_IG_AE/V4#IGD_AEPRESP_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_EVENTS/V6#CL_--PRESP> ;
+	bd:isA <http://www.s-cubed.dk/CAR#b724045eaf94ce25b3eaa5cd7d2d5bf66de219b1> ;
 .
 <http://www.cdisc.org/SDTM_IG_AE/V4#IGD_AEPRESP_TMC1>
 	rdf:type bo:TMcReference ;
@@ -7396,6 +7413,7 @@
 	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:ctReference <http://www.cdisc.org/SDTM_IG_CE/V4#IGD_CEPRESP_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_EVENTS/V6#CL_--PRESP> ;
+	bd:isA <http://www.s-cubed.dk/CAR#b724045eaf94ce25b3eaa5cd7d2d5bf66de219b1> ;
 .
 <http://www.cdisc.org/SDTM_IG_CE/V4#IGD_CEPRESP_TMC1>
 	rdf:type bo:TMcReference ;
@@ -7418,6 +7436,7 @@
 	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:ctReference <http://www.cdisc.org/SDTM_IG_CE/V4#IGD_CEOCCUR_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_EVENTS/V6#CL_--OCCUR> ;
+	bd:isA <http://www.s-cubed.dk/CAR#4f618850ebd7856345f3aae9299ab9fd81e02d93> ;
 .
 <http://www.cdisc.org/SDTM_IG_CE/V4#IGD_CEOCCUR_TMC1>
 	rdf:type bo:TMcReference ;
@@ -7462,6 +7481,7 @@
 	bd:ctAndFormat ""^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_EVENTS/V6#CL_--REASND> ;
+	bd:isA <http://www.s-cubed.dk/CAR#52b30e2515e4fa778a3ab77470f0b096877a26c2> ;
 .
 <http://www.cdisc.org/SDTM_IG_CE/V4#IGD_CEBODSYS>
 	rdf:type bd:SdtmDomainVariable ;
@@ -8391,6 +8411,7 @@
 	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:ctReference <http://www.cdisc.org/SDTM_IG_HO/V4#IGD_HOPRESP_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_EVENTS/V6#CL_--PRESP> ;
+	bd:isA <http://www.s-cubed.dk/CAR#b724045eaf94ce25b3eaa5cd7d2d5bf66de219b1> ;
 .
 <http://www.cdisc.org/SDTM_IG_HO/V4#IGD_HOPRESP_TMC1>
 	rdf:type bo:TMcReference ;
@@ -8413,6 +8434,7 @@
 	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:ctReference <http://www.cdisc.org/SDTM_IG_HO/V4#IGD_HOOCCUR_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_EVENTS/V6#CL_--OCCUR> ;
+	bd:isA <http://www.s-cubed.dk/CAR#4f618850ebd7856345f3aae9299ab9fd81e02d93> ;
 .
 <http://www.cdisc.org/SDTM_IG_HO/V4#IGD_HOOCCUR_TMC1>
 	rdf:type bo:TMcReference ;
@@ -8457,6 +8479,7 @@
 	bd:ctAndFormat ""^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_EVENTS/V6#CL_--REASND> ;
+	bd:isA <http://www.s-cubed.dk/CAR#52b30e2515e4fa778a3ab77470f0b096877a26c2> ;
 .
 <http://www.cdisc.org/SDTM_IG_HO/V4#IGD_TAETORD>
 	rdf:type bd:SdtmDomainVariable ;
@@ -8868,6 +8891,7 @@
 	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:ctReference <http://www.cdisc.org/SDTM_IG_MH/V4#IGD_MHPRESP_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_EVENTS/V6#CL_--PRESP> ;
+	bd:isA <http://www.s-cubed.dk/CAR#b724045eaf94ce25b3eaa5cd7d2d5bf66de219b1> ;
 .
 <http://www.cdisc.org/SDTM_IG_MH/V4#IGD_MHPRESP_TMC1>
 	rdf:type bo:TMcReference ;
@@ -8890,6 +8914,7 @@
 	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:ctReference <http://www.cdisc.org/SDTM_IG_MH/V4#IGD_MHOCCUR_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_EVENTS/V6#CL_--OCCUR> ;
+	bd:isA <http://www.s-cubed.dk/CAR#4f618850ebd7856345f3aae9299ab9fd81e02d93> ;
 .
 <http://www.cdisc.org/SDTM_IG_MH/V4#IGD_MHOCCUR_TMC1>
 	rdf:type bo:TMcReference ;
@@ -8934,6 +8959,7 @@
 	bd:ctAndFormat ""^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_EVENTS/V6#CL_--REASND> ;
+	bd:isA <http://www.s-cubed.dk/CAR#52b30e2515e4fa778a3ab77470f0b096877a26c2> ;
 .
 <http://www.cdisc.org/SDTM_IG_MH/V4#IGD_MHBODSYS>
 	rdf:type bd:SdtmDomainVariable ;
@@ -9397,6 +9423,7 @@
 	bd:ctAndFormat ""^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V6#CL_--REASND> ;
+	bd:isA <http://www.s-cubed.dk/CAR#52b30e2515e4fa778a3ab77470f0b096877a26c2> ;
 .
 <http://www.cdisc.org/SDTM_IG_DA/V4#IGD_VISITNUM>
 	rdf:type bd:SdtmDomainVariable ;
@@ -10086,6 +10113,7 @@
 	bd:ctAndFormat ""^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V6#CL_--REASND> ;
+	bd:isA <http://www.s-cubed.dk/CAR#52b30e2515e4fa778a3ab77470f0b096877a26c2> ;
 .
 <http://www.cdisc.org/SDTM_IG_EG/V4#IGD_EGXFN>
 	rdf:type bd:SdtmDomainVariable ;
@@ -11065,6 +11093,7 @@
 	bd:ctAndFormat ""^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V6#CL_--REASND> ;
+	bd:isA <http://www.s-cubed.dk/CAR#52b30e2515e4fa778a3ab77470f0b096877a26c2> ;
 .
 <http://www.cdisc.org/SDTM_IG_IS/V4#IGD_ISNAM>
 	rdf:type bd:SdtmDomainVariable ;
@@ -11713,6 +11742,7 @@
 	bd:ctAndFormat ""^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V6#CL_--REASND> ;
+	bd:isA <http://www.s-cubed.dk/CAR#52b30e2515e4fa778a3ab77470f0b096877a26c2> ;
 .
 <http://www.cdisc.org/SDTM_IG_LB/V4#IGD_LBNAM>
 	rdf:type bd:SdtmDomainVariable ;
@@ -12489,6 +12519,7 @@
 	bd:ctAndFormat ""^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V6#CL_--REASND> ;
+	bd:isA <http://www.s-cubed.dk/CAR#52b30e2515e4fa778a3ab77470f0b096877a26c2> ;
 .
 <http://www.cdisc.org/SDTM_IG_MB/V4#IGD_MBNAM>
 	rdf:type bd:SdtmDomainVariable ;
@@ -13377,6 +13408,7 @@
 	bd:ctAndFormat ""^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V6#CL_--REASND> ;
+	bd:isA <http://www.s-cubed.dk/CAR#52b30e2515e4fa778a3ab77470f0b096877a26c2> ;
 .
 <http://www.cdisc.org/SDTM_IG_MS/V4#IGD_MSXFN>
 	rdf:type bd:SdtmDomainVariable ;
@@ -14459,6 +14491,7 @@
 	bd:ctAndFormat ""^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V6#CL_--REASND> ;
+	bd:isA <http://www.s-cubed.dk/CAR#52b30e2515e4fa778a3ab77470f0b096877a26c2> ;
 .
 <http://www.cdisc.org/SDTM_IG_MI/V4#IGD_MINAM>
 	rdf:type bd:SdtmDomainVariable ;
@@ -15114,6 +15147,7 @@
 	bd:ctAndFormat ""^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V6#CL_--REASND> ;
+	bd:isA <http://www.s-cubed.dk/CAR#52b30e2515e4fa778a3ab77470f0b096877a26c2> ;
 .
 <http://www.cdisc.org/SDTM_IG_MO/V4#IGD_MOXFN>
 	rdf:type bd:SdtmDomainVariable ;
@@ -15905,6 +15939,7 @@
 	bd:ctAndFormat ""^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V6#CL_--REASND> ;
+	bd:isA <http://www.s-cubed.dk/CAR#52b30e2515e4fa778a3ab77470f0b096877a26c2> ;
 .
 <http://www.cdisc.org/SDTM_IG_CV/V4#IGD_CVLOC>
 	rdf:type bd:SdtmDomainVariable ;
@@ -16660,6 +16695,7 @@
 	bd:ctAndFormat ""^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V6#CL_--REASND> ;
+	bd:isA <http://www.s-cubed.dk/CAR#52b30e2515e4fa778a3ab77470f0b096877a26c2> ;
 .
 <http://www.cdisc.org/SDTM_IG_MK/V4#IGD_MKLOC>
 	rdf:type bd:SdtmDomainVariable ;
@@ -17404,6 +17440,7 @@
 	bd:ctAndFormat ""^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V6#CL_--REASND> ;
+	bd:isA <http://www.s-cubed.dk/CAR#52b30e2515e4fa778a3ab77470f0b096877a26c2> ;
 .
 <http://www.cdisc.org/SDTM_IG_NV/V4#IGD_NVLOC>
 	rdf:type bd:SdtmDomainVariable ;
@@ -18250,6 +18287,7 @@
 	bd:ctAndFormat ""^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V6#CL_--REASND> ;
+	bd:isA <http://www.s-cubed.dk/CAR#52b30e2515e4fa778a3ab77470f0b096877a26c2> ;
 .
 <http://www.cdisc.org/SDTM_IG_OE/V4#IGD_OEXFN>
 	rdf:type bd:SdtmDomainVariable ;
@@ -19021,6 +19059,7 @@
 	bd:ctAndFormat ""^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V6#CL_--REASND> ;
+	bd:isA <http://www.s-cubed.dk/CAR#52b30e2515e4fa778a3ab77470f0b096877a26c2> ;
 .
 <http://www.cdisc.org/SDTM_IG_RP/V4#IGD_RPLOBXFL>
 	rdf:type bd:SdtmDomainVariable ;
@@ -19704,6 +19743,7 @@
 	bd:ctAndFormat ""^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V6#CL_--REASND> ;
+	bd:isA <http://www.s-cubed.dk/CAR#52b30e2515e4fa778a3ab77470f0b096877a26c2> ;
 .
 <http://www.cdisc.org/SDTM_IG_RE/V4#IGD_RELOC>
 	rdf:type bd:SdtmDomainVariable ;
@@ -20475,6 +20515,7 @@
 	bd:ctAndFormat ""^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V6#CL_--REASND> ;
+	bd:isA <http://www.s-cubed.dk/CAR#52b30e2515e4fa778a3ab77470f0b096877a26c2> ;
 .
 <http://www.cdisc.org/SDTM_IG_UR/V4#IGD_URSPEC>
 	rdf:type bd:SdtmDomainVariable ;
@@ -21184,6 +21225,7 @@
 	bd:ctAndFormat ""^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V6#CL_--REASND> ;
+	bd:isA <http://www.s-cubed.dk/CAR#52b30e2515e4fa778a3ab77470f0b096877a26c2> ;
 .
 <http://www.cdisc.org/SDTM_IG_PC/V4#IGD_PCNAM>
 	rdf:type bd:SdtmDomainVariable ;
@@ -21825,6 +21867,7 @@
 	bd:ctAndFormat ""^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V6#CL_--REASND> ;
+	bd:isA <http://www.s-cubed.dk/CAR#52b30e2515e4fa778a3ab77470f0b096877a26c2> ;
 .
 <http://www.cdisc.org/SDTM_IG_PP/V4#IGD_PPSPEC>
 	rdf:type bd:SdtmDomainVariable ;
@@ -22216,6 +22259,7 @@
 	bd:ctAndFormat ""^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V6#CL_--REASND> ;
+	bd:isA <http://www.s-cubed.dk/CAR#52b30e2515e4fa778a3ab77470f0b096877a26c2> ;
 .
 <http://www.cdisc.org/SDTM_IG_PE/V4#IGD_PELOC>
 	rdf:type bd:SdtmDomainVariable ;
@@ -22807,6 +22851,7 @@
 	bd:ctAndFormat ""^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V6#CL_--REASND> ;
+	bd:isA <http://www.s-cubed.dk/CAR#52b30e2515e4fa778a3ab77470f0b096877a26c2> ;
 .
 <http://www.cdisc.org/SDTM_IG_FT/V4#IGD_FTXFN>
 	rdf:type bd:SdtmDomainVariable ;
@@ -23407,6 +23452,7 @@
 	bd:ctAndFormat ""^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V6#CL_--REASND> ;
+	bd:isA <http://www.s-cubed.dk/CAR#52b30e2515e4fa778a3ab77470f0b096877a26c2> ;
 .
 <http://www.cdisc.org/SDTM_IG_QS/V4#IGD_QSLOBXFL>
 	rdf:type bd:SdtmDomainVariable ;
@@ -24039,6 +24085,7 @@
 	bd:ctAndFormat ""^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V6#CL_--REASND> ;
+	bd:isA <http://www.s-cubed.dk/CAR#52b30e2515e4fa778a3ab77470f0b096877a26c2> ;
 .
 <http://www.cdisc.org/SDTM_IG_RS/V4#IGD_RSNAM>
 	rdf:type bd:SdtmDomainVariable ;
@@ -24725,6 +24772,7 @@
 	bd:ctAndFormat ""^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V6#CL_--REASND> ;
+	bd:isA <http://www.s-cubed.dk/CAR#52b30e2515e4fa778a3ab77470f0b096877a26c2> ;
 .
 <http://www.cdisc.org/SDTM_IG_SC/V4#IGD_TAETORD>
 	rdf:type bd:SdtmDomainVariable ;
@@ -25032,6 +25080,7 @@
 	bd:ctAndFormat ""^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V6#CL_--REASND> ;
+	bd:isA <http://www.s-cubed.dk/CAR#52b30e2515e4fa778a3ab77470f0b096877a26c2> ;
 .
 <http://www.cdisc.org/SDTM_IG_SS/V4#IGD_SSEVAL>
 	rdf:type bd:SdtmDomainVariable ;
@@ -26039,6 +26088,7 @@
 	bd:ctAndFormat ""^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V6#CL_--REASND> ;
+	bd:isA <http://www.s-cubed.dk/CAR#52b30e2515e4fa778a3ab77470f0b096877a26c2> ;
 .
 <http://www.cdisc.org/SDTM_IG_TR/V4#IGD_TRNAM>
 	rdf:type bd:SdtmDomainVariable ;
@@ -26611,6 +26661,7 @@
 	bd:ctAndFormat ""^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V6#CL_--REASND> ;
+	bd:isA <http://www.s-cubed.dk/CAR#52b30e2515e4fa778a3ab77470f0b096877a26c2> ;
 .
 <http://www.cdisc.org/SDTM_IG_VS/V4#IGD_VSLOC>
 	rdf:type bd:SdtmDomainVariable ;
@@ -27173,6 +27224,7 @@
 	bd:ctAndFormat ""^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V6#CL_--REASND> ;
+	bd:isA <http://www.s-cubed.dk/CAR#52b30e2515e4fa778a3ab77470f0b096877a26c2> ;
 .
 <http://www.cdisc.org/SDTM_IG_FA/V4#IGD_FALOC>
 	rdf:type bd:SdtmDomainVariable ;
@@ -27729,6 +27781,7 @@
 	bd:ctAndFormat ""^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V6#CL_--REASND> ;
+	bd:isA <http://www.s-cubed.dk/CAR#52b30e2515e4fa778a3ab77470f0b096877a26c2> ;
 .
 <http://www.cdisc.org/SDTM_IG_SR/V4#IGD_SRNAM>
 	rdf:type bd:SdtmDomainVariable ;

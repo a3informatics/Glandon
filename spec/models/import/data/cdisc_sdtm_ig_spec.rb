@@ -29,6 +29,8 @@ describe "Import CDISC SDTM Implementation Guide Data" do
     load_data_file_into_triple_store("mdr_iso_concept_systems_migration_1.ttl")
     load_data_file_into_triple_store("mdr_iso_concept_systems_migration_2.ttl")
     load_data_file_into_triple_store("canonical_references.ttl")
+    load_data_file_into_triple_store("canonical_references_migration_1.ttl")
+    load_data_file_into_triple_store("canonical_references_migration_2.ttl")
     load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V1.ttl")
     load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V2.ttl")
     load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V3.ttl")
@@ -47,7 +49,7 @@ describe "Import CDISC SDTM Implementation Guide Data" do
   end
 
   # ---------- IMPORTANT SWITCHES ----------
-  
+
   def set_write_file
     false
   end
@@ -79,8 +81,8 @@ describe "Import CDISC SDTM Implementation Guide Data" do
     modelv = @date_to_info_map[version-1][:model]
     sv = @date_to_info_map[version-1][:semantic_version]
     file_type = !files.empty? ? "0" : "3"
-    { version: "#{version}", date: "#{date}", files: files, version_label: "#{date} Release", label: "SDTM Implementation Guide", 
-      semantic_version: "#{sv}", job: @job, file_type: file_type, 
+    { version: "#{version}", date: "#{date}", files: files, version_label: "#{date} Release", label: "SDTM Implementation Guide",
+      semantic_version: "#{sv}", job: @job, file_type: file_type,
       ct: Uri.new(uri: "http://www.cdisc.org/CT/V#{ctv}#TH"),
       model: Uri.new(uri: "http://www.cdisc.org/SDTM_MODEL/V#{modelv}#M"),
     }
@@ -106,7 +108,7 @@ describe "Import CDISC SDTM Implementation Guide Data" do
     target_filename = excel_filename(version)
     if copy_file
       puts colourize("***** Warning! Copying result file to '#{target_filename}'. *****", "red")
-      copy_file_from_public_files_rename("test", filename, sub_dir, target_filename) 
+      copy_file_from_public_files_rename("test", filename, sub_dir, target_filename)
     end
     check_ttl_fix(filename, target_filename, {last_change_date: true})
     expect(@job.status).to eq("Complete")
@@ -143,13 +145,13 @@ describe "Import CDISC SDTM Implementation Guide Data" do
     ]
 
     @date_to_info_map = [
-      {ct: 13, model: 1, semantic_version: "3.1.2"}, 
-      {ct: 31, model: 2, semantic_version: "3.1.3"}, 
-      {ct: 36, model: 3, semantic_version: "3.2.0"}, 
+      {ct: 13, model: 1, semantic_version: "3.1.2"},
+      {ct: 31, model: 2, semantic_version: "3.1.3"},
+      {ct: 36, model: 3, semantic_version: "3.2.0"},
       {ct: 57, model: 6, semantic_version: "3.3.0"}
     ]
   end
-  
+
   describe "all versions" do
 
     it "Base create, 3.1.2", :import_data => 'slow' do
