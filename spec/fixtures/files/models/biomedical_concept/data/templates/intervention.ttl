@@ -21,7 +21,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2021-03-16T13:03:43+01:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2021-05-07T10:46:01+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bc:hasItem :BCT_BCI1 ;
 	bc:hasItem :BCT_BCI2 ;
@@ -186,6 +186,7 @@
 	bc:promptText ""^^xsd:string ;
 	bc:format ""^^xsd:string ;
 	bc:alias "--PRESP"^^xsd:string ;
+	bc:isA <http://www.s-cubed.dk/CAR#b724045eaf94ce25b3eaa5cd7d2d5bf66de219b1> ;
 	bc:isComplexDatatypeProperty <http://www.s-cubed.dk/CDT#CD_code> ;
 .
 :BCT_BCI6
@@ -210,6 +211,7 @@
 	bc:promptText ""^^xsd:string ;
 	bc:format ""^^xsd:string ;
 	bc:alias "--OCCUR"^^xsd:string ;
+	bc:isA <http://www.s-cubed.dk/CAR#4f618850ebd7856345f3aae9299ab9fd81e02d93> ;
 	bc:isComplexDatatypeProperty <http://www.s-cubed.dk/CDT#CD_code> ;
 .
 :BCT_BCI7
@@ -234,6 +236,7 @@
 	bc:promptText ""^^xsd:string ;
 	bc:format ""^^xsd:string ;
 	bc:alias "--STDTC"^^xsd:string ;
+	bc:isA <http://www.s-cubed.dk/CAR#9b4c23485ee62b9675a10b4470cb3f3e46a8f437> ;
 	bc:isComplexDatatypeProperty <http://www.s-cubed.dk/CDT#DATETIME_value> ;
 .
 :BCT_BCI8
@@ -258,5 +261,6 @@
 	bc:promptText ""^^xsd:string ;
 	bc:format ""^^xsd:string ;
 	bc:alias "--ENDTC"^^xsd:string ;
+	bc:isA <http://www.s-cubed.dk/CAR#7bdd16d5039691e84d403023306a38726d93727a> ;
 	bc:isComplexDatatypeProperty <http://www.s-cubed.dk/CDT#DATETIME_value> ;
 .
