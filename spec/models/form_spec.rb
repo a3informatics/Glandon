@@ -6,6 +6,7 @@ describe Form do
   include SparqlHelpers
   include SecureRandomHelpers
   include IsoManagedHelpers
+  include OdmHelpers
 
   def sub_dir
     return "models/form"
@@ -17,7 +18,7 @@ describe Form do
 
   def uri_set(form)
     query_string = %Q{
-      SELECT DISTINCT ?s WHERE 
+      SELECT DISTINCT ?s WHERE
       {
         {
           #{form.uri.to_ref} bf:hasGroup*/bf:hasSubGroup*/bf:hasItem*/bo:reference* ?s .
@@ -32,7 +33,7 @@ describe Form do
         }
       }
     }
-    query_results = Sparql::Query.new.query(query_string, "", [:isoC, :th, :bo, :bf]) 
+    query_results = Sparql::Query.new.query(query_string, "", [:isoC, :th, :bo, :bf])
     query_results.by_object(:s)
   end
 
@@ -47,14 +48,14 @@ puts "Missing:  #{diff.sort - uri_result.sort}"
 puts "Extra:    #{uri_result.sort - diff.sort}"
     expect(uri_result.sort == diff.sort).to eq(true)
     mapped_result = {}
-    result = new_form.modified_uris.dup.each do |key, value| 
+    result = new_form.modified_uris.dup.each do |key, value|
       mapped_result[key.to_s] = value.to_s
     end
     check_file_actual_expected(mapped_result, sub_dir, filename, equate_method: :hash_equal, write_file: write_file)
   end
 
   describe "Validation Tests" do
-    
+
     before :all do
       load_files(schema_files, [])
       load_data_file_into_triple_store("mdr_identification.ttl")
@@ -89,7 +90,7 @@ puts "Extra:    #{uri_result.sort - diff.sort}"
   end
 
   describe "Find Tests" do
-    
+
     before :all do
       data_files = ["forms/FN000150.ttl", "forms/VSTADIABETES.ttl","forms/FN000120.ttl", "forms/CRF TEST 1.ttl","biomedical_concept_instances.ttl", "biomedical_concept_templates.ttl" ]
       load_files(schema_files, data_files)
@@ -135,7 +136,7 @@ puts "Extra:    #{uri_result.sort - diff.sort}"
   end
 
   describe "CRF Tests" do
-    
+
     before :all do
       data_files = ["biomedical_concept_instances.ttl", "biomedical_concept_templates.ttl", "forms/FN000150.ttl", "forms/CRF TEST 1.ttl","forms/FN000120.ttl",
       "forms/F001_bc_only_group_form.ttl", "forms/F002_question_only_group_form.ttl", "forms/F004_complex_form.ttl", "forms/F003_simple_form.ttl", "forms/F005_repeating_bc_only_group_form.ttl", "forms/F006_repeating_question_only_group_form.ttl" ]
@@ -216,12 +217,12 @@ puts "Extra:    #{uri_result.sort - diff.sort}"
       form = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/F004/V1#F"))
       check_file_actual_expected(form.crf, sub_dir, "to_crf_10.yaml", equate_method: :hash_equal)
     end
-    
+
     it "to crf, repeating bc only group" do
       form = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/F005/V1#F"))
       check_file_actual_expected(form.crf, sub_dir, "to_crf_11.yaml", equate_method: :hash_equal)
     end
-    
+
     it "to crf, repeating question only group" do
       form = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/F006/V1#F"))
       check_file_actual_expected(form.crf, sub_dir, "to_crf_12.yaml", equate_method: :hash_equal)
@@ -230,7 +231,7 @@ puts "Extra:    #{uri_result.sort - diff.sort}"
   end
 
   describe "aCRF Tests" do
-    
+
     before :all do
       data_files = ["biomedical_concept_instances.ttl", "biomedical_concept_templates.ttl", "forms/FN000150.ttl", "forms/CRF TEST 1.ttl","forms/FN000120.ttl", "forms/hackathon_form.ttl",
       "forms/F001_bc_only_group_form.ttl", "forms/F002_question_only_group_form.ttl", "forms/F004_complex_form.ttl", "forms/F003_simple_form.ttl", "forms/F005_repeating_bc_only_group_form.ttl", "forms/F006_repeating_question_only_group_form.ttl" ]
@@ -249,10 +250,10 @@ puts "Extra:    #{uri_result.sort - diff.sort}"
       load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V6.ttl")
       load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V7.ttl")
       load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
-      load_data_file_into_triple_store("mdr_iso_concept_systems_migration_1.ttl")      
-      load_data_file_into_triple_store("mdr_iso_concept_systems_migration_2.ttl")      
+      load_data_file_into_triple_store("mdr_iso_concept_systems_migration_1.ttl")
+      load_data_file_into_triple_store("mdr_iso_concept_systems_migration_2.ttl")
       load_data_file_into_triple_store("mdr_iso_concept_systems_migration_3.ttl")
-      load_data_file_into_triple_store("association_IG_domain.ttl") 
+      load_data_file_into_triple_store("association_IG_domain.ttl")
       load_data_file_into_triple_store("complex_datatypes.ttl")
     end
 
@@ -304,12 +305,12 @@ puts "Extra:    #{uri_result.sort - diff.sort}"
       form = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/F004/V1#F"))
       check_file_actual_expected(form.acrf, sub_dir, "to_acrf_7.yaml", equate_method: :hash_equal)
     end
-    
+
     it "to acrf, repeating bc only group" do
       form = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/F005/V1#F"))
       check_file_actual_expected(form.acrf, sub_dir, "to_acrf_8.yaml", equate_method: :hash_equal)
     end
-    
+
     it "to acrf, repeating question only group" do
       form = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/F006/V1#F"))
       check_file_actual_expected(form.acrf, sub_dir, "to_acrf_9.yaml", equate_method: :hash_equal)
@@ -318,7 +319,7 @@ puts "Extra:    #{uri_result.sort - diff.sort}"
   end
 
   describe "aCRF Tests, SDTM common variables" do
-    
+
     before :all do
       load_files(schema_files, [])
       load_cdisc_term_versions(1..55)
@@ -335,10 +336,10 @@ puts "Extra:    #{uri_result.sort - diff.sort}"
       load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V6.ttl")
       load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V7.ttl")
       load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
-      load_data_file_into_triple_store("mdr_iso_concept_systems_migration_1.ttl")      
-      load_data_file_into_triple_store("mdr_iso_concept_systems_migration_2.ttl")      
+      load_data_file_into_triple_store("mdr_iso_concept_systems_migration_1.ttl")
+      load_data_file_into_triple_store("mdr_iso_concept_systems_migration_2.ttl")
       load_data_file_into_triple_store("mdr_iso_concept_systems_migration_3.ttl")
-      load_data_file_into_triple_store("association_IG_domain.ttl") 
+      load_data_file_into_triple_store("association_IG_domain.ttl")
       load_data_file_into_triple_store("complex_datatypes.ttl")
       load_test_bc_template_and_instances
     end
@@ -397,7 +398,7 @@ puts "Extra:    #{uri_result.sort - diff.sort}"
   end
 
   describe "Get referenced items Tests" do
-    
+
     before :all do
       data_files = ["forms/FN000150.ttl", "forms/VSTADIABETES.ttl","forms/FN000120.ttl", "forms/CRF TEST 1.ttl","biomedical_concept_instances.ttl", "biomedical_concept_templates.ttl" ]
       load_files(schema_files, data_files)
@@ -428,7 +429,7 @@ puts "Extra:    #{uri_result.sort - diff.sort}"
   end
 
   describe "Add child" do
-    
+
     before :all do
       data_files = ["forms/FN000150.ttl", "biomedical_concept_instances.ttl", "biomedical_concept_templates.ttl" ]
       load_files(schema_files, data_files)
@@ -670,7 +671,7 @@ puts "Extra:    #{uri_result.sort - diff.sort}"
       load_test_bc_template_and_instances
     end
 
-    
+
     it "update bc group, clone, no errors" do
       allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
       form = Form.create(label: "Form1", identifier: "XXX")
@@ -967,7 +968,7 @@ puts "Extra:    #{uri_result.sort - diff.sort}"
   end
 
   describe "Delete BC Group" do
-    
+
     before :each do
       data_files = ["biomedical_concept_instances.ttl", "biomedical_concept_templates.ttl" ]
       load_files(schema_files, data_files)
@@ -1215,7 +1216,7 @@ puts "Extra:    #{uri_result.sort - diff.sort}"
   end
 
   describe "Logical Tests" do
-    
+
     before :each do
       data_files = ["biomedical_concept_instances.ttl", "biomedical_concept_templates.ttl" ]
       load_files(schema_files, data_files)
@@ -1250,13 +1251,13 @@ puts "Extra:    #{uri_result.sort - diff.sort}"
   end
 
   describe "Dependency Tests" do
-    
+
     before :all do
       data_files = [
-        "forms/FN000150.ttl", 
-        "forms/F001_bc_only_group_form.ttl", 
-        "biomedical_concept_instances.ttl", 
-        "biomedical_concept_templates.ttl" 
+        "forms/FN000150.ttl",
+        "forms/F001_bc_only_group_form.ttl",
+        "biomedical_concept_instances.ttl",
+        "biomedical_concept_templates.ttl"
       ]
       load_files(schema_files, data_files)
       load_data_file_into_triple_store("mdr_identification.ttl")
@@ -1284,6 +1285,50 @@ puts "Extra:    #{uri_result.sort - diff.sort}"
       item = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.cdisc.org/C66770/V59#C66770"))
       results = item.dependency_required_by
       check_file_actual_expected(results.map{|x| x.uri.to_s}, sub_dir, "dependency_paths_expected_2.yaml", equate_method: :hash_equal)
+    end
+
+  end
+
+  describe "ODM XML Tests" do
+
+    before :all do
+      data_files = ["biomedical_concept_instances.ttl", "biomedical_concept_templates.ttl", "forms/FN000150.ttl", "forms/CRF TEST 1.ttl","forms/FN000120.ttl",
+      "forms/F004_complex_form.ttl" ]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..62)
+      load_data_file_into_triple_store("mdr_identification.ttl")
+      load_data_file_into_triple_store("complex_datatypes.ttl")
+    end
+
+    it "to XML I" do
+      form = Form.find_full(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F"))
+      xml = form.xml
+    #write_text_file_2(xml, sub_dir, "to_xml_1.xml")
+      expected = read_text_file_2(sub_dir, "to_xml_1.xml")
+      odm_fix_datetimes(xml, expected)
+      odm_fix_system_version(xml, expected)
+      expect(xml).to eq(expected)
+      #check_file_actual_expected(form.xml, sub_dir, "to_xml_1.xml", equate_method: :hash_equal)
+    end
+
+    it "to XML II" do
+      form = Form.find_full(Uri.new(uri: "http://www.s-cubed.dk/FN000120/V1#F"))
+      xml = form.xml
+    #write_text_file_2(xml, sub_dir, "to_xml_2.xml")
+      expected = read_text_file_2(sub_dir, "to_xml_2.xml")
+      odm_fix_datetimes(xml, expected)
+      odm_fix_system_version(xml, expected)
+      expect(xml).to eq(expected)
+    end
+
+    it "to XML III" do
+      form = Form.find_full(Uri.new(uri: "http://www.s-cubed.dk/F004/V1#F"))
+      xml = form.xml
+    #write_text_file_2(xml, sub_dir, "to_xml_3.xml")
+      expected = read_text_file_2(sub_dir, "to_xml_3.xml")
+      odm_fix_datetimes(xml, expected)
+      odm_fix_system_version(xml, expected)
+      expect(xml).to eq(expected)
     end
 
   end

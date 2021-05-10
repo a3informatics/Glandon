@@ -8,6 +8,7 @@ describe "Forms", :type => :feature do
   include UiHelpers
   include WaitForAjaxHelper
   include IsoManagedHelpers
+  include OdmHelpers
 
   def sub_dir
     return "features/forms"
@@ -148,6 +149,25 @@ describe "Forms", :type => :feature do
       file = download_content
     # write_text_file_2(file, sub_dir, "form_export_ttl_expected.ttl")
       expected = read_text_file_2(sub_dir, "form_export_ttl_expected.ttl")
+      expect(file).to eq(expected)
+    end
+
+    it "allows ODM XML to be exported", js: true do
+      click_navbar_forms
+      wait_for_ajax 10
+      expect(page).to have_content 'Index: Forms'
+      ui_table_search('index', 'Height')
+      find(:xpath, "//tr[contains(.,'Height (Pilot)')]/td/a", :text => 'History').click
+      wait_for_ajax 10
+      expect(page).to have_content 'Version History of \'FN000150\''
+      context_menu_element_v2('history', 'Height (Pilot)', :acrf)
+      wait_for_ajax 10
+      find(:xpath, "//*[@id='odm']", :text => 'Export ODM XML').click
+      file = download_content
+    # write_text_file_2(file, sub_dir, "form_export_odm_xml_expected.ttl")
+      expected = read_text_file_2(sub_dir, "form_export_odm_xml_expected.ttl")
+      odm_fix_datetimes(file, expected)
+      odm_fix_system_version(file, expected)
       expect(file).to eq(expected)
     end
 

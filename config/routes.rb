@@ -425,6 +425,7 @@ Rails.application.routes.draw do
       get :acrf
       get :referenced_items
       post :add_child
+      get :export_odm
       get :crf_report
       get :acrf_report
     end

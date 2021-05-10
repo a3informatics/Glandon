@@ -89,6 +89,27 @@ class Form::Group::Normal < Form::Group
     return html
   end
 
+  # To XML
+  #
+  # @param [Nokogiri::Node] metadata_version the ODM MetaDataVersion node
+  # @param [Nokogiri::Node] form_def the ODM FormDef node
+  # @param [Nokogiri::Node] item_group_def the ODM ItemGroupDef node
+  # @return [void]
+  def to_xml(metadata_version, form_def)
+    form_def.add_item_group_ref("#{self.id}", "#{self.ordinal}", "No", "")
+    item_group_def = metadata_version.add_item_group_def("#{self.id}", "#{self.label}", "No", "", "", "", "", "", "")
+    self.has_common_objects.sort_by {|x| x.ordinal}.each do |cm|
+      cm.to_xml(metadata_version, form_def)
+    end
+    children_ordered.each do |child|
+      if child.class == Form::Group::Normal || child.class == Form::Group::Bc
+        child.to_xml(metadata_version, form_def)
+      else
+        child.to_xml(metadata_version, form_def, item_group_def)
+      end
+    end
+  end
+
   # Info node. Adds ci, notes and terminology information to generate a report
   #
   # @param [Array] form the form object

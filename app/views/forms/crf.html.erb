@@ -11,6 +11,7 @@
   <%= render layout: "shared/headers/header_managed_item", :locals => { item: @form, badge: "icon-form-view" } do %>
     <div class="actions-wrap">
       <%= render partial: "shared/buttons/ico_btn_secondary", :locals => { url: crf_report_form_path(@form, format: :pdf), id: "report", icon: "icon-file", text: "PDF Report" } %>
+      <%= render partial: "shared/buttons/ico_btn_secondary", :locals => { url: export_odm_form_path(@form, format: :xml), id: "odm", icon: "icon-file", text: "Export ODM XML" } %>
       <%= render partial: "shared/buttons/return", :locals => { url: @close_path } %>
     </div>
   <% end %>
