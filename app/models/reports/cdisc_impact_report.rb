@@ -2,9 +2,9 @@ class Reports::CdiscImpactReport
 
   C_CLASS_NAME = "Reports::CdiscImpactReport"
 
-  def create(results, cls, user)
+  def create(results, cls, user, base_url)
     @report = Reports::WickedCore.new
-    @report.open("CDISC Impact Report", {}, nil, nil, user)
+    @report.open("CDISC Impact Report", {}, nil, nil, user, base_url)
     html = body(results, cls)
     @report.html_body(html)
     pdf = @report.save

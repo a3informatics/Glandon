@@ -60,6 +60,20 @@ class Form::Item::Common < Form::Item::BcProperty
     html += end_row
   end
 
+  # Info node. Adds ci, notes and terminology information to generate a report
+  #
+  # @param [Array] form the form object
+  # @param [Array] options the options for the report
+  # @param [Array] user the user running the report
+  # @return [Array] Array ci_nodes, note_nodes and terminology
+  def info_node(ci_nodes, note_nodes, terminology)
+    add_nodes(self.to_h, ci_nodes, :completion)
+    add_nodes(self.to_h, note_nodes, :note)
+    property = BiomedicalConcept::PropertyX.find(self.has_property_objects.reference)
+    self.to_h.merge!(property.to_h)
+    terminology << self.to_h if self.has_coded_value.count > 0
+  end
+
   # Children Ordered. Provides the childen ordered by ordinal
   #
   # @return [Array] the set of children ordered by ordinal

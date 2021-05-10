@@ -31,6 +31,11 @@ module ControllerHelpers
     results
   end
 
+  #It returns a base url, e.g. http://localhost:3000
+  def base_url
+    return request.protocol + request.host_with_port
+  end
+
 private
 
   # Build a set of paths for a single object. Note expects controllers to provide

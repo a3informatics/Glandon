@@ -96,6 +96,46 @@ describe "Forms", :type => :feature do
       expect(page).to have_content 'Compltion Status'
     end
 
+    it "allows to access CRF view and generate PDF report", js: true do
+      clear_downloads
+      click_navbar_forms
+      wait_for_ajax 10
+      expect(page).to have_content 'Index: Forms'
+      ui_table_search('index', 'Height')
+      find(:xpath, "//tr[contains(.,'Height (Pilot)')]/td/a", :text => 'History').click
+      wait_for_ajax 10
+      expect(page).to have_content 'Version History of \'FN000150\''
+      context_menu_element_v2('history', 'Height (Pilot)', :crf)
+      wait_for_ajax 10
+      new_window = window_opened_by { click_link 'PDF Report' }
+      within_window new_window do
+        sleep 10
+        expect(current_path).to include("crf_report.pdf")
+        page.execute_script "window.close();"
+      end
+      expect(page).to have_content 'CRF'
+    end
+
+    it "allows to access aCRF view and generate PDF report", js: true do
+      clear_downloads
+      click_navbar_forms
+      wait_for_ajax 10
+      expect(page).to have_content 'Index: Forms'
+      ui_table_search('index', 'Height')
+      find(:xpath, "//tr[contains(.,'Height (Pilot)')]/td/a", :text => 'History').click
+      wait_for_ajax 10
+      expect(page).to have_content 'Version History of \'FN000150\''
+      context_menu_element_v2('history', 'Height (Pilot)', :acrf)
+      wait_for_ajax 10
+      new_window = window_opened_by { click_link 'PDF Report' }
+      within_window new_window do
+        sleep 10
+        expect(current_path).to include("acrf_report.pdf")
+        page.execute_script "window.close();"
+      end
+      expect(page).to have_content 'aCRF'
+    end
+
     it "history allows ttl to be exported", js:true do
       click_navbar_forms
       wait_for_ajax 10

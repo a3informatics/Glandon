@@ -18,16 +18,16 @@ describe Reports::WickedCore do
   it "Initiates a report" do
     user = User.create email: "wicked@example.com", password: "Changeme1#"
     report = Reports::WickedCore.new
-    report.open("TEST DOC", "Title", [], user)
+    report.open("TEST DOC", "Title", [], user, "http://localhost:3000")
     html = report.html
   #write_text_file_2(html, sub_dir, "wicked_core_simple_report.txt")
     expected = read_text_file_2(sub_dir,"wicked_core_simple_report.txt")
     run_at_1 = extract_run_at(expected)
     run_at_2 = extract_run_at(html)
     html.sub!(run_at_2, run_at_1) # Need to fix the run at date and time for the comparison
-    path_to_proj_1 = extract_path(expected)
-    path_to_proj_2 = Rails.root.to_s
-    expected.sub!(path_to_proj_1, path_to_proj_2)
+    #path_to_proj_1 = extract_path(expected)
+    #path_to_proj_2 = Rails.root.to_s
+    #expected.sub!(path_to_proj_1, path_to_proj_2)
     expect(html).to eq(expected)
   end
 
@@ -51,23 +51,23 @@ describe Reports::WickedCore do
       }
     ]
     report = Reports::WickedCore.new
-    report.open("TEST DOC", "Title", history, user)
+    report.open("TEST DOC", "Title", history, user, "http://localhost:3000")
     html = report.html
   #write_text_file_2(html, sub_dir, "wicked_core_full_report.txt")
     expected = read_text_file_2(sub_dir, "wicked_core_full_report.txt")
     run_at_1 = extract_run_at(expected)
     run_at_2 = extract_run_at(html)
     html.sub!(run_at_2, run_at_1) # Need to fix the run at date and time for the comparison
-    path_to_proj_1 = extract_path(expected)
-    path_to_proj_2 = Rails.root.to_s
-    expected.sub!(path_to_proj_1, path_to_proj_2)
+    #path_to_proj_1 = extract_path(expected)
+    #path_to_proj_2 = Rails.root.to_s
+    #expected.sub!(path_to_proj_1, path_to_proj_2)
     expect(html).to eq(expected)
   end
 
   it "Allows the body to be set" do
     user = User.create email: "wicked@example.com", password: "Changeme1#"
     report = Reports::WickedCore.new
-    report.open("TEST DOC", "Title", [], user)
+    report.open("TEST DOC", "Title", [], user, "http://localhost:3000")
     report.add_to_body("<h1>THIS IS THE BODY ITEM 1</h1>")
     report.add_to_body("<h1>THIS IS THE BODY ITEM 2</h1>")
     html = report.html
@@ -76,16 +76,16 @@ describe Reports::WickedCore do
     run_at_1 = extract_run_at(expected)
     run_at_2 = extract_run_at(html)
     html.sub!(run_at_2, run_at_1) # Need to fix the run at date and time for the comparison
-    path_to_proj_1 = extract_path(expected)
-    path_to_proj_2 = Rails.root.to_s
-    expected.sub!(path_to_proj_1, path_to_proj_2)
+    #path_to_proj_1 = extract_path(expected)
+    #path_to_proj_2 = Rails.root.to_s
+    #expected.sub!(path_to_proj_1, path_to_proj_2)
     expect(html).to eq(expected)
   end
 
   it "Allows a page break to be set" do
     user = User.create email: "wicked@example.com", password: "Changeme1#"
     report = Reports::WickedCore.new
-    report.open("TEST DOC", "Title", [], user)
+    report.open("TEST DOC", "Title", [], user, "http://localhost:3000")
     report.add_to_body("<h1>THIS IS THE BODY</h1>")
     report.add_page_break
     report.add_to_body("<h1>THIS IS MORE OF THE BODY</h1>")
@@ -96,16 +96,16 @@ describe Reports::WickedCore do
     run_at_1 = extract_run_at(expected)
     run_at_2 = extract_run_at(html)
     html.sub!(run_at_2, run_at_1) # Need to fix the run at date and time for the comparison
-    path_to_proj_1 = extract_path(expected)
-    path_to_proj_2 = Rails.root.to_s
-    expected.sub!(path_to_proj_1, path_to_proj_2)
+    #path_to_proj_1 = extract_path(expected)
+    #path_to_proj_2 = Rails.root.to_s
+    #expected.sub!(path_to_proj_1, path_to_proj_2)
     expect(html).to eq(expected)
   end
 
   it "Allows the document to be closed" do
     user = User.create email: "wicked@example.com", password: "Changeme1#"
     report = Reports::WickedCore.new
-    report.open("TEST DOC", "Title", [], user)
+    report.open("TEST DOC", "Title", [], user, "http://localhost:3000")
     report.add_to_body("<h1>THIS IS THE BODY. Close check</h1>")
     report.add_page_break
     report.add_to_body("<h1>THIS IS MORE OF THE BODY</h1>")
@@ -117,16 +117,16 @@ describe Reports::WickedCore do
     run_at_1 = extract_run_at(expected)
     run_at_2 = extract_run_at(html)
     html.sub!(run_at_2, run_at_1) # Need to fix the run at date and time for the comparison
-    path_to_proj_1 = extract_path(expected)
-    path_to_proj_2 = Rails.root.to_s
-    expected.sub!(path_to_proj_1, path_to_proj_2)
+    #path_to_proj_1 = extract_path(expected)
+    #path_to_proj_2 = Rails.root.to_s
+    #expected.sub!(path_to_proj_1, path_to_proj_2)
     expect(html).to eq(expected)
   end
 
   it "Allows the document html to be returned" do
     user = User.create email: "wicked@example.com", password: "Changeme1#"
     report = Reports::WickedCore.new
-    report.open("TEST DOC", "Title", [], user)
+    report.open("TEST DOC", "Title", [], user, "http://localhost:3000")
     report.add_to_body("<h1>THIS IS THE BODY. This is the html check</h1>")
     report.add_page_break
     report.add_to_body("<h1>THIS IS MORE OF THE BODY</h1>")
@@ -138,17 +138,17 @@ describe Reports::WickedCore do
     run_at_1 = extract_run_at(expected)
     run_at_2 = extract_run_at(html)
     html.sub!(run_at_2, run_at_1) # Need to fix the run at date and time for the comparison
-    path_to_proj_1 = extract_path(expected)
-    path_to_proj_2 = Rails.root.to_s
-    expected.sub!(path_to_proj_1, path_to_proj_2)
+    #path_to_proj_1 = extract_path(expected)
+    #path_to_proj_2 = Rails.root.to_s
+    #expected.sub!(path_to_proj_1, path_to_proj_2)
     expect(html).to eq(expected)
   end
 
   it "Allows the PDF to be generated" do
     user = User.create email: "wicked@example.com", password: "Changeme1#"
     report = Reports::WickedCore.new
-    report.open("TEST DOC", "Title", [], user)
-    report.open("TEST DOC", "Title", [], user)
+    report.open("TEST DOC", "Title", [], user, "http://localhost:3000")
+    report.open("TEST DOC", "Title", [], user, "http://localhost:3000")
     report.add_to_body("<h1>THIS IS THE BODY</h1>")
     report.add_page_break
     report.add_to_body("<h1>THIS IS MORE OF THE BODY FOR THE pdf test</h1>")
@@ -161,9 +161,9 @@ describe Reports::WickedCore do
     run_at_1 = extract_run_at(expected)
     run_at_2 = extract_run_at(html)
     html.sub!(run_at_2, run_at_1) # Need to fix the run at date and time for the comparison
-    path_to_proj_1 = extract_path(expected)
-    path_to_proj_2 = Rails.root.to_s
-    expected.sub!(path_to_proj_1, path_to_proj_2)
+    #path_to_proj_1 = extract_path(expected)
+    #path_to_proj_2 = Rails.root.to_s
+    #expected.sub!(path_to_proj_1, path_to_proj_2)
     expect(html).to eq(expected)
     expect(pdf[0,4]).to eq('%PDF')
   end

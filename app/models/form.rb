@@ -14,6 +14,7 @@ class Form < IsoManagedV2
 
   include Form::Ordinal
   include Form::CRF
+  include Form::PDFReport
 
   @@owner_ra = nil
 
@@ -26,7 +27,7 @@ class Form < IsoManagedV2
     @@owner_ra.freeze
   end
 
-  # Children Ordered. Returns the set of children nodes ordered by ordinal. 
+  # Children Ordered. Returns the set of children nodes ordered by ordinal.
   #
   # @return [Form::Group::Normal] array of objects
   def children_ordered
@@ -54,6 +55,20 @@ class Form < IsoManagedV2
   # @return [String] String of HTML form representation
   def crf
     to_crf
+  end
+
+  # Info node. Adds ci, notes and terminology information to generate a report
+  #
+  # @param [Array] form the form object
+  # @param [Array] options the options for the report
+  # @param [Array] user the user running the report
+  # @return [Array] Array ci_nodes, note_nodes and terminology
+  def info_node(ci_nodes, note_nodes, terminology)
+    add_nodes(self.to_h, ci_nodes, :completion)
+    add_nodes(self.to_h, note_nodes, :note)
+    self.children_ordered.each do |node|
+      node.info_node(ci_nodes, note_nodes, terminology)
+    end
   end
 
   # Move Up With Clone
@@ -166,11 +181,11 @@ class Form < IsoManagedV2
   end
 
 private
-  
+
   # To CRF.
   #
   # @return [String] String of HTML form representation
-  def to_crf(annotations = nil) 
+  def to_crf(annotations = nil)
     form = self.class.find_full(self.uri)
     html = ''
     html += get_css
@@ -178,7 +193,7 @@ private
     html += '<tr>'
     html += '<td colspan="2"><h4>' + form.label + '</h4></td>'
     unless annotations.nil?
-      html += '<td>' 
+      html += '<td>'
       domains = annotations.domain_list
       domains.each_with_index do |(prefix, hash_domain), index|
         domain_annotation = prefix.to_s

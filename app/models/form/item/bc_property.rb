@@ -67,6 +67,23 @@ class Form::Item::BcProperty < Form::Item
     return html
   end
 
+  # Info node. Adds ci, notes and terminology information to generate a report
+  #
+  # @param [Array] form the form object
+  # @param [Array] options the options for the report
+  # @param [Array] user the user running the report
+  # @return [Array] Array ci_nodes, note_nodes and terminology
+  def info_node(ci_nodes, note_nodes, terminology)
+    if !is_common?
+      add_nodes(self.to_h, ci_nodes, :completion)
+      add_nodes(self.to_h, note_nodes, :note)
+      property_ref = self.has_property_objects.reference
+      property = BiomedicalConcept::PropertyX.find(property_ref)
+      self.to_h.merge!(property.to_h)
+      terminology << self.to_h if self.has_coded_value.count > 0
+    end
+  end
+
   def property_annotations(annotations)
     return "" if annotations.nil?
     html = ""
