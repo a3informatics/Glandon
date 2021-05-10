@@ -21,7 +21,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2021-05-07T10:46:01+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2021-05-10T08:34:44+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	bc:hasItem :BCT_BCI1 ;
 	bc:hasItem :BCT_BCI2 ;
@@ -101,7 +101,7 @@
 	bc:promptText ""^^xsd:string ;
 	bc:format ""^^xsd:string ;
 	bc:alias "--DOSU"^^xsd:string ;
-	bc:isA <http://www.s-cubed.dk/CAR#7715259cc4b4ef877c53de5ab0e9673dff58ca35> ;
+	bc:isA <http://www.s-cubed.dk/CAR#eebaa9a3c6d68389172cf7eb48a7a0840f1e3fb6> ;
 	bc:isComplexDatatypeProperty <http://www.s-cubed.dk/CDT#PQR_INT_code> ;
 .
 :BCT_BCI2_BCCDTPQR_INT_BCPvalue
@@ -111,7 +111,7 @@
 	bc:promptText ""^^xsd:string ;
 	bc:format ""^^xsd:string ;
 	bc:alias "--DOSE"^^xsd:string ;
-	bc:isA <http://www.s-cubed.dk/CAR#af5f0ce4847da645162514a984a7b88b67016e80> ;
+	bc:isA <http://www.s-cubed.dk/CAR#1b558fd119f2ae455b56b8df36c1c398ab153061> ;
 	bc:isComplexDatatypeProperty <http://www.s-cubed.dk/CDT#PQR_INT_value> ;
 .
 :BCT_BCI3
