@@ -593,6 +593,7 @@
 	bd:description "Units for --DOSE, --DOSTOT, or --DOSTXT. Examples: \"ng\", \"mg\", \"mg/kg\"."^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#86cd61e6-d48c-4e42-b994-bee35e2351fe> ;
+	bd:isA <http://www.s-cubed.dk/CAR#eebaa9a3c6d68389172cf7eb48a7a0840f1e3fb6> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V6#CL_--DOSFRM>
 	rdf:type bd:SdtmClassVariable ;

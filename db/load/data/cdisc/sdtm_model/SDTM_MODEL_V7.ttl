@@ -903,6 +903,7 @@
 	bd:description "Amount of --TRT given. Not populated when --DOSTXT is populated."^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
+	bd:isA <http://www.s-cubed.dk/CAR#1b558fd119f2ae455b56b8df36c1c398ab153061> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V7#CL_--DOSTXT>
 	rdf:type bd:SdtmClassVariable ;
@@ -925,6 +926,7 @@
 	bd:description "Units for --DOSE, --DOSTOT, or --DOSTXT. Examples: \"ng\", \"mg\", \"mg/kg\"."^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#bf2ac4b3-6323-44e4-8796-447e81f2fd83> ;
+	bd:isA <http://www.s-cubed.dk/CAR#eebaa9a3c6d68389172cf7eb48a7a0840f1e3fb6> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V7#CL_--TDOSD>
 	rdf:type bd:SdtmClassVariable ;
