@@ -8897,6 +8897,7 @@
 	bd:ctAndFormat ""^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V1#CL_--DOSE> ;
+	bd:isA <http://www.s-cubed.dk/CAR#1b558fd119f2ae455b56b8df36c1c398ab153061> ;
 .
 <http://www.cdisc.org/SDTM_IG_CM/V1#IGD_CMDOSTXT>
 	rdf:type bd:SdtmDomainVariable ;
@@ -8922,6 +8923,7 @@
 	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:ctReference <http://www.cdisc.org/SDTM_IG_CM/V1#IGD_CMDOSU_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V1#CL_--DOSU> ;
+	bd:isA <http://www.s-cubed.dk/CAR#eebaa9a3c6d68389172cf7eb48a7a0840f1e3fb6> ;
 .
 <http://www.cdisc.org/SDTM_IG_CM/V1#IGD_CMDOSU_TMC1>
 	rdf:type bo:TMcReference ;
@@ -9368,6 +9370,7 @@
 	bd:ctAndFormat ""^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#046f6c24-9eaf-4f60-8390-f36328c82ec4> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V1#CL_--DOSE> ;
+	bd:isA <http://www.s-cubed.dk/CAR#1b558fd119f2ae455b56b8df36c1c398ab153061> ;
 .
 <http://www.cdisc.org/SDTM_IG_EX/V1#IGD_EXDOSTXT>
 	rdf:type bd:SdtmDomainVariable ;
@@ -9393,6 +9396,7 @@
 	bd:compliance <http://www.assero.co.uk/CSN#046f6c24-9eaf-4f60-8390-f36328c82ec4> ;
 	bd:ctReference <http://www.cdisc.org/SDTM_IG_EX/V1#IGD_EXDOSU_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V1#CL_--DOSU> ;
+	bd:isA <http://www.s-cubed.dk/CAR#eebaa9a3c6d68389172cf7eb48a7a0840f1e3fb6> ;
 .
 <http://www.cdisc.org/SDTM_IG_EX/V1#IGD_EXDOSU_TMC1>
 	rdf:type bo:TMcReference ;
@@ -10043,6 +10047,7 @@
 	bd:ctAndFormat ""^^xsd:string ;
 	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V1#CL_--DOSE> ;
+	bd:isA <http://www.s-cubed.dk/CAR#1b558fd119f2ae455b56b8df36c1c398ab153061> ;
 .
 <http://www.cdisc.org/SDTM_IG_SU/V1#IGD_SUDOSTXT>
 	rdf:type bd:SdtmDomainVariable ;
@@ -10068,6 +10073,7 @@
 	bd:compliance <http://www.assero.co.uk/CSN#f7d9d4e1-a00a-487e-89db-ebece910ba0d> ;
 	bd:ctReference <http://www.cdisc.org/SDTM_IG_SU/V1#IGD_SUDOSU_TMC1> ;
 	bd:basedOnClassVariable <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V1#CL_--DOSU> ;
+	bd:isA <http://www.s-cubed.dk/CAR#eebaa9a3c6d68389172cf7eb48a7a0840f1e3fb6> ;
 .
 <http://www.cdisc.org/SDTM_IG_SU/V1#IGD_SUDOSU_TMC1>
 	rdf:type bo:TMcReference ;
