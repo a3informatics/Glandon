@@ -156,14 +156,14 @@ Capybara.register_driver :selenium_chrome do |app|
   profile.add_preference('download.default_directory', download_path)
   profile.add_preference(:plugins, always_open_pdf_externally: true)
   client = Selenium::WebDriver::Remote::Http::Default.new
-  #client.read_timeout = 120
+    #client.read_timeout = 120
   #client.open_timeout= 120
   client.timeout = 120
   Capybara::Selenium::Driver.new(app, :browser => :chrome, :http_client => client, :options => profile)
 end
 
 Capybara.default_driver = :selenium_chrome
-
+Capybara.current_session.current_window.maximize
 
 
 # Keep only the screenshots generated from the last failing test suite
@@ -196,7 +196,7 @@ end
 def save_screen(e_or_a,screen_shot_enabled=TURN_ON_SCREEN_SHOT)
 
   if screen_shot_enabled
-     Capybara.current_session.current_window.maximize
+     #Capybara.current_session.current_window.maximize
      #zoom_out
      screenshot_file_name = "#{Time.now.strftime("#{e_or_a}_%d_%m_%Y__%H_%M_%S")}.png" 
      save_screenshot(screenshot_file_name, :full => true)

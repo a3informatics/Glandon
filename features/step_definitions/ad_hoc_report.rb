@@ -1,4 +1,3 @@
-  
   TIMEOUT = 10
   PATH    = Rails.root.join("cucumber-report/downloads")
 
@@ -45,8 +44,18 @@
     FileUtils.rm_f(downloads2)
   end
 
+ def set_path_2(sub_dir, filename)
+    return Rails.root.join "#{sub_dir}/#{filename}"
+  end
 
-
+  def read_text_file_3(sub_dir, filename)
+    text = ""
+    full_path = set_path_2(sub_dir, filename)
+    File.open(full_path, "r") do |f|
+      text = f.read
+    end
+    return text
+  end
 ##################### When statements 
 
 When('I click Run in the context menu for the {string} report') do |string|
@@ -86,8 +95,9 @@ Then('I see the change note {string} made by user {string}') do |string1,string2
 Then('I see the report {string} downloaded') do |string|
       file = download_content2
       wait_for_ajax(20)
-      expected = read_text_file('download.default_directory', string)
+      expected = read_text_file_3('cucumber-report/downloads', string)
       expect(file).to eq(expected)
       wait_for_ajax(20)
 	  save_screen(TYPE)
+    attach(expected, 'text/plain')
 	end
