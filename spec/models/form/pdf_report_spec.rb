@@ -21,30 +21,24 @@ describe Form::PDFReport do
   it "creates simple non-annotated report" do
     form = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F"))
     form_html = form.crf
-    report = form.create(form, form_html, @user)
+    report = form.create(form, form_html, @user, "http://localhost:3000")
   #Xwrite_text_file_2(report, sub_dir, "report_1.txt")
     expected = read_text_file_2(sub_dir, "report_1.txt")
     run_at_1 = extract_run_at(expected)
     run_at_2 = extract_run_at(report)
     report.sub!(run_at_2, run_at_1) # Need to fix the run at date and time for the comparison
-    path_to_proj_1 = extract_path(expected)
-    path_to_proj_2 = Rails.root.to_s
-    expected.sub!(path_to_proj_1, path_to_proj_2)
     expect(report).to eq(expected)
   end
 
   it "creates simple annotated report" do
     form = Form.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/FN000150/V1#F"))
     form_html = form.acrf
-    report = form.create(form, form_html, @user)
+    report = form.create(form, form_html, @user, "http://localhost:3000")
   #Xwrite_text_file_2(report, sub_dir, "report_2.txt")
     expected = read_text_file_2(sub_dir, "report_2.txt")
     run_at_1 = extract_run_at(expected)
     run_at_2 = extract_run_at(report)
     report.sub!(run_at_2, run_at_1) # Need to fix the run at date and time for the comparison
-    path_to_proj_1 = extract_path(expected)
-    path_to_proj_2 = Rails.root.to_s
-    expected.sub!(path_to_proj_1, path_to_proj_2)
     expect(report).to eq(expected)
   end
 
