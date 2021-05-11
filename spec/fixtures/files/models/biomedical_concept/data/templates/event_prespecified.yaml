@@ -1,8 +1,8 @@
 ---
-- :label: "Intervention"
-  :identifier: "INTERVENTION"
+- :label: "Event Prespecified"
+  :identifier: "EVENT_PRESPECIFIED"
   :identified_by:
-    :label: "Intervention"
+    :label: "Event Prespecified"
     :mandatory: true
     :enabled: true
     :has_complex_datatype:
@@ -10,25 +10,11 @@
       :has_property:
       -
         :label: "code"
-        :alias: "--TRT"
-        :is_a: "Treatment"
+        :alias: "--TERM"
+        :is_a: "Medical Term"
   :has_items:
-  - :label: "Dose"
-    :madatory: true
-    :enabled: true
-    :has_complex_datatype:
-    - :short_name: PQR_INT
-      :has_property:
-      -
-        :label: "code"
-        :alias: "--DOSU"
-        :is_a: "Dose Unit"
-      -
-        :label: "value"
-        :alias: "--DOSE"
-        :is_a: "Dose Quantity"
   - :label: "Category Code"
-    :mandatory: false
+    :mandatory: true
     :enabled: true
     :has_complex_datatype:
     - :short_name: CD
@@ -38,7 +24,7 @@
        :alias: "--CAT"
        :is_a: "Category"
   - :label: "Subcategory Code"
-    :mandatory: false
+    :mandatory: true
     :enabled: true
     :has_complex_datatype:
     - :short_name: CD
@@ -48,7 +34,7 @@
        :alias: "--SCAT"
        :is_a: "Sub Category"
   - :label: "Pre-specified"
-    :mandatory: false
+    :mandatory: true
     :enabled: true
     :has_complex_datatype:
     - :short_name: CD
@@ -58,7 +44,7 @@
        :alias: "--PRESP"
        :is_a: "Prespecified"
   - :label: "Occurrence"
-    :mandatory: false
+    :mandatory: true
     :enabled: true
     :has_complex_datatype:
     - :short_name: CD
