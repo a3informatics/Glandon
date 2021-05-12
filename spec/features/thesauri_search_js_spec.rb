@@ -34,7 +34,7 @@ describe "Thesauri Search", :type => :feature do
       search_terminologies([
         { identifier: 'CT', version: '2010-04-08' }
       ])
- 
+
       expect(page).to have_content("Controlled Terminology")
       expect(page).to have_content("20.0.0")
       expect(page).to have_content("Make a new column or global search to see data")
@@ -46,7 +46,7 @@ describe "Thesauri Search", :type => :feature do
         { identifier: 'AIRPORTS', version: '1' },
         { identifier: 'SPONSOR TEST', version: '1' }
       ])
-     
+
       expect(page).to have_content("Search Multiple")
       ui_term_column_search(:notation, 'MICROORG')
       ui_check_table_info("searchTable", 0, 0, 0)
@@ -124,7 +124,7 @@ describe "Thesauri Search", :type => :feature do
       search_all('latest')
 
       find("#search-help").click
-      ui_in_modal do 
+      ui_in_modal do
         expect(page).to have_content "How to use Search"
         find(".expandable-content-btn").click
         expect(page).to have_content "Valid examples:"
@@ -190,7 +190,7 @@ describe "Thesauri Search", :type => :feature do
       ui_check_table_info("searchTable", 1, 1, 1)
       ui_term_overall_search("blood AND muscle -tissue")
       ui_check_table_info("searchTable", 0, 0, 0)
-      ui_term_overall_search(" \"a bone of\"")
+      ui_term_overall_search("a bone of")
       ui_check_table_info("searchTable", 1, 2, 2)
       click_button "clear_button"
 
@@ -216,8 +216,16 @@ describe "Thesauri Search", :type => :feature do
       ui_term_column_search(:definition, 'sex AND gender')
       ui_term_column_search(:notation, 'F -M')
       ui_check_table_info("searchTable", 1, 2, 2)
-
       click_button "clear_button"
+
+      ui_term_column_search(:notation, " \"TEMP\" ")
+      ui_check_table_info("searchTable", 1, 1, 1)
+      click_button "clear_button"
+
+      ui_term_column_search(:notation, 'TEMP')
+      ui_check_table_info("searchTable", 1, 10, 30)
+      click_button "clear_button"
+
       ui_term_column_search(:definition, 'sex AND gender OR person')
       ui_check_table_info("searchTable", 0, 0, 0)
       ui_term_column_search(:definition, 'sex - gender')
@@ -286,19 +294,19 @@ describe "Thesauri Search", :type => :feature do
 
   def search_all(type)
     click_navbar_terminology
-    wait_for_ajax 10 
+    wait_for_ajax 10
     click_on 'Search Terminologies'
 
     ui_in_modal do
       click_on 'Search in Latest' if type.eql? 'latest'
       click_on 'Search in Current' if type.eql? 'current'
-    end 
+    end
     wait_for_ajax 10
   end
 
-  def search_terminologies(terminologies) 
+  def search_terminologies(terminologies)
     click_navbar_terminology
-    wait_for_ajax 10 
+    wait_for_ajax 10
 
     click_on 'Search Terminologies'
     ui_in_modal do
