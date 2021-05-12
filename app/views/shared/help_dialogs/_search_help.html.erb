@@ -11,7 +11,7 @@
     <li><span class="font-regular">x OR y</span> (Union) results with either x or y present.</li>
     <li><span class="font-regular">y —x</span> (Exclusion) results with y, but not x present.</li>
     <li><span class="font-regular">"x y z"</span> (Exact match) results containing the phrase 'x y z', in that order. Case sensitive.</li>
-    <li><span class="font-regular">x y</span> (Exact match) same as "x y". Default.</li>
+    <li><span class="font-regular">x y</span> (Contains match) results containing x y. Default.</li>
   </ul>
 
   <%= render layout: "shared/expandable_content", :locals => { size: "tiny", expand_text: "Show syntax examples",
@@ -23,7 +23,7 @@
       <li>Fred OR Harry</li>
       <li>Fred OR Harry -Oliver</li>
       <li>"Fred Harry Oliver"</li>
-      <li>Fred Harry Oliver (same as "Fred Harry Oliver")</li>
+      <li>Fred Harry Oliver</li>
     </ul>
     Invalid examples:
     <ul>
