@@ -1198,17 +1198,17 @@ describe "Thesaurus::UnmanagedConcept" do
     end
 
     def add_cp_1
-      cpd = CustomPropertyDefinition.create(datatype: "string", label: "Some String", 
+      cpd = CustomPropertyDefinition.create(datatype: "string", label: "Some String",
        description: "A description XXX", default: "Default String",
-       custom_property_of: Uri.new(uri: "http://www.assero.co.uk/Thesaurus#UnmanagedConcept"), 
+       custom_property_of: Uri.new(uri: "http://www.assero.co.uk/Thesaurus#UnmanagedConcept"),
        uri: Uri.new(uri: "http://www.assero.co.uk/Test#CVD1"))
       cpd
     end
 
     def add_cp_2
-      cpd = CustomPropertyDefinition.create(datatype: "boolean", label: "A Toggle", 
+      cpd = CustomPropertyDefinition.create(datatype: "boolean", label: "A Toggle",
        description: "A description YYY", default: "false",
-       custom_property_of: Uri.new(uri: "http://www.assero.co.uk/Thesaurus#UnmanagedConcept"), 
+       custom_property_of: Uri.new(uri: "http://www.assero.co.uk/Thesaurus#UnmanagedConcept"),
        uri: Uri.new(uri: "http://www.assero.co.uk/Test#CVD2"))
       cpd
     end
@@ -1248,17 +1248,17 @@ describe "Thesaurus::UnmanagedConcept" do
     end
 
     def add_cp_1
-      cpd = CustomPropertyDefinition.create(datatype: "string", label: "Some String", 
+      cpd = CustomPropertyDefinition.create(datatype: "string", label: "Some String",
        description: "A description XXX", default: "Default String",
-       custom_property_of: Uri.new(uri: "http://www.assero.co.uk/Thesaurus#UnmanagedConcept"), 
+       custom_property_of: Uri.new(uri: "http://www.assero.co.uk/Thesaurus#UnmanagedConcept"),
        uri: Uri.new(uri: "http://www.assero.co.uk/Test#CVD1"))
       cpd
     end
 
     def add_cp_2
-      cpd = CustomPropertyDefinition.create(datatype: "boolean", label: "A Toggle", 
+      cpd = CustomPropertyDefinition.create(datatype: "boolean", label: "A Toggle",
        description: "A description YYY", default: "false",
-       custom_property_of: Uri.new(uri: "http://www.assero.co.uk/Thesaurus#UnmanagedConcept"), 
+       custom_property_of: Uri.new(uri: "http://www.assero.co.uk/Thesaurus#UnmanagedConcept"),
        uri: Uri.new(uri: "http://www.assero.co.uk/Test#CVD2"))
       cpd
     end
@@ -1334,6 +1334,35 @@ describe "Thesaurus::UnmanagedConcept" do
       check_file_actual_expected(child.load_custom_properties(parent).name_value_pairs, sub_dir, "update_with_clone_glan_1474_expected_1.yaml")
       check_file_actual_expected(new_child.load_custom_properties(new_parent).name_value_pairs, sub_dir, "update_with_clone_glan_1474_expected_4.yaml")
 
+    end
+
+  end
+
+  describe "Latest parent" do
+
+    before :all do
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..49)
+      load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
+    end
+
+    it "latest parent I" do
+      tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C66781/V34#C66781_C29848"))
+      actual = tc.latest_parent.to_h
+      expect(actual).to eq("http://www.cdisc.org/C66781/V49#C66781")
+    end
+
+    it "latest parent II" do
+      tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C74457/V10#C74457_C41260"))
+      actual = tc.latest_parent.to_h
+      expect(actual).to eq("http://www.cdisc.org/C74457/V49#C74457")
+    end
+
+    it "latest parent II" do
+      tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C66790/V4#C66790_C41222"))
+      actual = tc.latest_parent.to_h
+      expect(actual).to eq("http://www.cdisc.org/C66790/V34#C66790")
     end
 
   end
