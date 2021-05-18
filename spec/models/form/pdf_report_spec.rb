@@ -29,7 +29,7 @@ describe Form::PDFReport do
     change_1 = extract_change(expected)
     change_2 = extract_change(report)
     report.sub!(run_at_2, run_at_1) # Need to fix the run at date and time for the comparison
-    report.sub!(change_1, change_2) # Need to fix the change date and time for the comparison
+    report.sub!(change_2, change_1) # Need to fix the change date and time for the comparison
     expect(report).to eq(expected)
   end
 
@@ -44,7 +44,7 @@ describe Form::PDFReport do
     change_1 = extract_change(expected)
     change_2 = extract_change(report)
     report.sub!(run_at_2, run_at_1) # Need to fix the run at date and time for the comparison
-    report.sub!(change_1, change_2) # Need to fix the change date and time for the comparison
+    report.sub!(change_2, change_1) # Need to fix the change date and time for the comparison
     expect(report).to eq(expected)
   end
 
