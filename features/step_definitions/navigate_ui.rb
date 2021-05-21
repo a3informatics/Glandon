@@ -16,7 +16,12 @@ When('I access the {string} in the navigation bar') do |string|
 	  wait_for_ajax(20)
   end
   if string == 'Terminology'
-	  click_navbar_terminology
+      section = id_to_section_map('main_nav_te')
+    # Expand sidebar if collapsed
+    ui_navbar_toggle if ui_navbar_collapsed?
+    ui_expand_section(section) if !ui_section_expanded?(section)
+    click_link 'main_nav_te'
+	  #click_navbar_terminology
 	  wait_for_ajax(20)
   end
   if string == 'Biomedical Concepts'
@@ -32,6 +37,25 @@ When('I access the {string} in the navigation bar') do |string|
    wait_for_ajax(20)
  end
  
+ if string == 'Tags'
+   section = id_to_section_map('main_nav_ics')
+    # Expand sidebar if collapsed
+    ui_navbar_toggle if ui_navbar_collapsed?
+    ui_expand_section(section) if !ui_section_expanded?(section)
+    click_link 'main_nav_ics'
+#   click_navbar_tags
+   wait_for_ajax(20)
+ end
+
+  if string == 'Import'
+   section = id_to_section_map('main_nav_i')
+    # Expand sidebar if collapsed
+    ui_navbar_toggle if ui_navbar_collapsed?
+    ui_expand_section(section) if !ui_section_expanded?(section)
+    click_link 'main_nav_i'
+#   click_navbar_tags
+   wait_for_ajax(20)
+ end
 end
 
 When('I click {string} in/at the top/bottom of the page') do |string|
@@ -186,7 +210,7 @@ When('I click {string} button') do |string|
     click_link 'settings_button'
   else
 	click_on string
-  wait_for_ajax(30)
+  wait_for_ajax 50
 end
 end
 
@@ -281,6 +305,10 @@ Then /History page is displayed/ do
 	wait_for_ajax(20)
 	save_screen(TYPE)
 end
+
+Then('I see the Tags Editor') do
+  expect(page).to have_content 'Tags Editor'
+  end
 
 Then('I see {int} code lists') do |int|
  ui_check_table_info("children", 1, 10, int)

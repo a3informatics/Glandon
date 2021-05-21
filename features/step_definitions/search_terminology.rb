@@ -18,9 +18,9 @@ end
 #################### When statements 
 
 
-When ('I enable "Select all current"') do 
- page.find("#select-all-current").click 
-end
+# When ('I enable "Select all current"') do 
+#  page.find("#select-all-current").click 
+# end
 
 When ('I enter {string} in the Code List') do |string|
    ui_term_column_search(:code_list, string)
@@ -32,27 +32,33 @@ When ('I enter {string} in the Definition') do |string|
   wait_for_ajax(20)
 end
 
+When ('I enter {string} in the Tags column') do |string|
+  ui_term_column_search(:tags, string)
+  wait_for_ajax(20)
+end
+
+When('I enter {string} in the Tags column filter') do |string|
+  ui_term_column_filter(:tags, string)
+  wait_for_ajax(20)
+end
+
 When('I click Clear All') do
   click_button 'clear_button' 
 end
 
+
 ##################### Then statements 
 
 
-Then('I see the "Select Terminology" selector window') do 
-  expect(page).to have_content("Select Terminology")
+Then('I see the Terminology Item Picker window') do 
+  ui_in_modal do
+  expect(page).to have_content("Terminologies")
+  expect(page).to have_content("Item Picker")
   wait_for_ajax(20)
   save_screen(TYPE)
 end
-
-
-Then('I see the Search current page') do 
-  expect(page).to have_content('Search Current')
-  wait_for_ajax(20)
-  save_screen(TYPE)
 end
 
- 
 
 Then('there are {string} entries displayed in the table') do |string,table|
   expect(page).to have_content string+" entries"

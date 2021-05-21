@@ -43,6 +43,7 @@ include EditorHelpers
 include ItemsPickerHelpers
 include IsoManagedHelpers
 include UserAccountHelpers
+include D3GraphHelpers
 
 Cucumber::Rails::Database.autorun_database_cleaner = false
 #DatabaseCleaner.strategy = :truncation

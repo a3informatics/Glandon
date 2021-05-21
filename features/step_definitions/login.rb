@@ -21,8 +21,9 @@ end
 if ENVIRONMENT == 'REMOTE_TEST' 
 C_COMM_READER_PW = 'Changeme4?'
 C_COMM_READER_PW_NEW = 'Changeme5?'
-C_CURATOR_PW = 'Changeme6?'
+C_CURATOR_PW = 'Changeme7?'
 C_SYS_CONTENT_ADMIN_PW = 'Changeme5?'
+C_CONTENT_ADMIN_PW = 'Changeme5?'
 end
 
 if ENVIRONMENT == 'TEST'
@@ -38,6 +39,10 @@ if ENVIRONMENT == 'TEST'
     end
     if string == "Admin"
     fill_in "Email", :with => C_SYS_CONTENT_ADMIN
+    fill_in "Password", :with => C_PASSWORD
+    end
+    if string == "Content Admin"
+    fill_in "Email", :with => C_CONTENT_ADMIN
     fill_in "Password", :with => C_PASSWORD
     end
     click_button "Log in"
@@ -59,6 +64,10 @@ if ENVIRONMENT == 'VAL'
     if string == "Admin"
     fill_in "Email", :with => C_SYS_CONTENT_ADMIN
     fill_in "Password", :with => C_SYS_CONTENT_ADMIN_PW
+    end
+    if string == "Content Admin"
+    fill_in "Email", :with => C_CONTENT_ADMIN
+    fill_in "Password", :with => C_PASSWORD
     end
     click_button "Log in"
     expect(page).to have_text string
@@ -94,6 +103,10 @@ if ENVIRONMENT == 'REMOTE_TEST'
     if string == "Admin"
     fill_in "Email", :with => C_SYS_CONTENT_ADMIN
     fill_in "Password", :with => C_SYS_CONTENT_ADMIN_PW
+    end
+    if string == "Content Admin"
+    fill_in "Email", :with => C_CONTENT_ADMIN
+    fill_in "Password", :with => C_CONTENT_ADMIN_PW
     end
     click_button "Log in"
     expect(page).to have_text string
