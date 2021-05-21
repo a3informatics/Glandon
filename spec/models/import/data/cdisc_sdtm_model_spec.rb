@@ -39,6 +39,7 @@ describe "Import CDISC SDTM Model Data" do
       load_data_file_into_triple_store("mdr_iso_concept_systems_migration_2.ttl")
       load_data_file_into_triple_store("canonical_references.ttl")
       load_data_file_into_triple_store("canonical_references_migration_1.ttl")
+      load_data_file_into_triple_store("canonical_references_migration_2.ttl")
       setup
     end
 
@@ -48,7 +49,7 @@ describe "Import CDISC SDTM Model Data" do
     end
 
     # ---------- IMPORTANT SWITCHES ----------
-    
+
     def set_write_file
       false
     end
@@ -70,7 +71,7 @@ describe "Import CDISC SDTM Model Data" do
     def set_params(version, date, files)
       sv = @date_to_info_map[version-1][:semantic_version]
       file_type = !files.empty? ? "0" : "3"
-      { version: "#{version}", date: "#{date}", files: files, version_label: "#{date} Release", label: "SDTM Model", 
+      { version: "#{version}", date: "#{date}", files: files, version_label: "#{date} Release", label: "SDTM Model",
         semantic_version: "#{sv}", job: @job, file_type: file_type}
     end
 
@@ -94,7 +95,7 @@ describe "Import CDISC SDTM Model Data" do
       target_filename = excel_filename(version)
       if copy_file
         puts colourize("***** Warning! Copying result file to '#{target_filename}'. *****", "red")
-        copy_file_from_public_files_rename("test", filename, sub_dir, target_filename) 
+        copy_file_from_public_files_rename("test", filename, sub_dir, target_filename)
       end
       check_ttl_fix(filename, target_filename, {last_change_date: true})
       expect(@job.status).to eq("Complete")
@@ -131,16 +132,16 @@ describe "Import CDISC SDTM Model Data" do
       ]
 
       @date_to_info_map = [
-        {semantic_version: "1.2.0"}, 
-        {semantic_version: "1.3.0"}, 
-        {semantic_version: "1.4.0"}, 
+        {semantic_version: "1.2.0"},
+        {semantic_version: "1.3.0"},
+        {semantic_version: "1.4.0"},
         {semantic_version: "1.5.0"},
         {semantic_version: "1.6.0"},
         {semantic_version: "1.7.0"},
         {semantic_version: "1.8.0"}
-      ]  
+      ]
     end
-  
+
     it "Base create, 1-2", :import_data => 'slow' do
       release_date = "2008-11-12"
       results = execute_import(release_date, set_write_file)

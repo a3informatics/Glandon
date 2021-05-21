@@ -30,6 +30,20 @@ class Form::Item::Mapping < Form::Item
     html
   end
 
+  # To XML
+  #
+  # @param [Nokogiri::Node] metadata_version the ODM MetaDataVersion node
+  # @param [Nokogiri::Node] form_def the ODM FormDef node
+  # @param [Nokogiri::Node] item_group_def the ODM ItemGroupDef node
+  # @return [void]
+  def to_xml(metadata_version, form_def, item_group_def)
+    # Do nothing currently
+  end
+
+  def info_node(ci_nodes, note_nodes, terminology)
+    # Do nothing currently
+  end
+
 private
 
   def mapping_row(mapping)

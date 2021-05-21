@@ -60,6 +60,34 @@ class Form::Group::Common < Form::Group
     return html
   end
 
+  # To XML
+  #
+  # @param [Nokogiri::Node] metadata_version the ODM MetaDataVersion node
+  # @param [Nokogiri::Node] form_def the ODM FormDef node
+  # @param [Nokogiri::Node] item_group_def the ODM ItemGroupDef node
+  # @return [void]
+  def to_xml(metadata_version, form_def)
+    form_def.add_item_group_ref("#{self.id}", "#{self.ordinal}", "No", "")
+    item_group_def = metadata_version.add_item_group_def("#{self.id}", "#{self.label}", "No", "", "", "", "", "", "")
+    self.has_item_objects.sort_by {|x| x.ordinal}.each do |item|
+      item.to_xml(metadata_version, form_def, item_group_def)
+    end
+  end
+
+  # Info node. Adds ci, notes and terminology information to generate a report
+  #
+  # @param [Array] form the form object
+  # @param [Array] options the options for the report
+  # @param [Array] user the user running the report
+  # @return [Array] Array ci_nodes, note_nodes and terminology
+  def info_node(ci_nodes, note_nodes, terminology)
+    add_nodes(self.to_h, ci_nodes, :completion)
+    add_nodes(self.to_h, note_nodes, :note)
+    self.children_ordered.each do |node|
+      node.info_node(ci_nodes, note_nodes, terminology)
+    end
+  end
+
   def delete(parent, managed_ancestor)
     parent = super(parent, managed_ancestor)
     parent = Form::Group::Normal.find_full(parent.uri)
@@ -85,10 +113,6 @@ class Form::Group::Common < Form::Group
     self.has_item = items
     sparql.create
   end
-
-  # def children_ordered
-  #   self.has_item_objects.sort_by {|x| x.ordinal}
-  # end
 
   def get_normal_group
     query_string = %Q{

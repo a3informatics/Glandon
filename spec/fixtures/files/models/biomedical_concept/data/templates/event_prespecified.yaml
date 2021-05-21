@@ -1,0 +1,75 @@
+---
+- :label: "Event Prespecified"
+  :identifier: "EVENT_PRESPECIFIED"
+  :identified_by:
+    :label: "Event Prespecified"
+    :mandatory: true
+    :enabled: true
+    :has_complex_datatype:
+    - :short_name: CD
+      :has_property:
+      -
+        :label: "code"
+        :alias: "--TERM"
+        :is_a: "Medical Term"
+  :has_items:
+  - :label: "Category Code"
+    :mandatory: true
+    :enabled: true
+    :has_complex_datatype:
+    - :short_name: CD
+      :has_property:
+      -
+       :label: "code"
+       :alias: "--CAT"
+       :is_a: "Category"
+  - :label: "Subcategory Code"
+    :mandatory: true
+    :enabled: true
+    :has_complex_datatype:
+    - :short_name: CD
+      :has_property:
+      -
+       :label: "code"
+       :alias: "--SCAT"
+       :is_a: "Sub Category"
+  - :label: "Pre-specified"
+    :mandatory: true
+    :enabled: true
+    :has_complex_datatype:
+    - :short_name: CD
+      :has_property:
+      -
+       :label: "code"
+       :alias: "--PRESP"
+       :is_a: "Prespecified"
+  - :label: "Occurrence"
+    :mandatory: true
+    :enabled: true
+    :has_complex_datatype:
+    - :short_name: CD
+      :has_property:
+      -
+       :label: "code"
+       :alias: "--OCCUR"
+       :is_a: "Occurrence"
+  - :label: "Start DateTime"
+    :mandatory: true
+    :enabled: true
+    :has_complex_datatype:
+    - :short_name: DATETIME
+      :has_property:
+      -
+       :label: "value"
+       :alias: "--STDTC"
+       :is_a: "Start Date Time of Event"
+  - :label: "End DateTime"
+    :mandatory: true
+    :enabled: true
+    :has_complex_datatype:
+    - :short_name: DATETIME
+      :has_property:
+      -
+       :label: "value"
+       :alias: "--ENDTC"
+       :is_a: "End Date Time of Event"

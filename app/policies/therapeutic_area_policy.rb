@@ -1,0 +1,2 @@
+class TherapeuticAreaPolicy < ApplicationPolicy
+end

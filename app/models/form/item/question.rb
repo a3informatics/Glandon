@@ -57,6 +57,44 @@ class Form::Item::Question < Form::Item
     html
   end
 
+  # To XML
+  #
+  # @param [Nokogiri::Node] metadata_version the ODM MetaDataVersion node
+  # @param [Nokogiri::Node] form_def the ODM FormDef node
+  # @param [Nokogiri::Node] item_group_def the ODM ItemGroupDef node
+  # @return [void]
+  def to_xml(metadata_version, form_def, item_group_def)
+    super(metadata_version, form_def, item_group_def)
+    xml_datatype = BaseDatatype.to_odm(self.datatype)
+    xml_length = to_xml_length(self.datatype, self.format)
+    xml_digits = to_xml_significant_digits(self.datatype, self.format)
+    item_def = metadata_version.add_item_def("#{self.id}", "#{self.label}", "#{xml_datatype}", "#{xml_length}", "#{xml_digits}", "", "", "", "")
+    question = item_def.add_question()
+    question.add_translated_text("#{self.question_text}")
+    if self.has_coded_value.count > 0
+      code_list_ref = item_def.add_code_list_ref("#{self.id}-CL")
+      code_list = metadata_version.add_code_list("#{self.id}-CL", "Code list for #{self.label}", "text", "")
+      self.has_coded_value_objects.sort_by {|x| x.ordinal}.each do |cv|
+        tc = Thesaurus::UnmanagedConcept.find(cv.reference)
+        code_list_item = code_list.add_code_list_item(tc.notation, "", "#{cv.ordinal}")
+        decode = code_list_item.add_decode()
+        decode.add_translated_text(tc.label)
+      end
+    end
+  end
+
+  # Info node. Adds ci, notes and terminology information to generate a report
+  #
+  # @param [Array] form the form object
+  # @param [Array] options the options for the report
+  # @param [Array] user the user running the report
+  # @return [Array] Array ci_nodes, note_nodes and terminology
+  def info_node(ci_nodes, note_nodes, terminology)
+      add_nodes(self.to_h, ci_nodes, :completion)
+      add_nodes(self.to_h, note_nodes, :note)
+      terminology << self.to_h if self.has_coded_value.count > 0
+  end
+
   def question_annotations(annotations)
     return "" if annotations.nil?
     html = ""

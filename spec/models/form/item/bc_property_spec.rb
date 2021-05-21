@@ -5,6 +5,7 @@ describe Form::Item::BcProperty do
   include DataHelpers
   include SparqlHelpers
   include SecureRandomHelpers
+  include OdmHelpers
   include IsoManagedHelpers
 
 
@@ -106,10 +107,10 @@ describe Form::Item::BcProperty do
       load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V6.ttl")
       load_data_file_into_triple_store("cdisc/sdtm_model/SDTM_MODEL_V7.ttl")
       load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
-      load_data_file_into_triple_store("mdr_iso_concept_systems_migration_1.ttl")      
-      load_data_file_into_triple_store("mdr_iso_concept_systems_migration_2.ttl")      
+      load_data_file_into_triple_store("mdr_iso_concept_systems_migration_1.ttl")
+      load_data_file_into_triple_store("mdr_iso_concept_systems_migration_2.ttl")
       load_data_file_into_triple_store("mdr_iso_concept_systems_migration_3.ttl")
-      load_data_file_into_triple_store("association_IG_domain.ttl")    
+      load_data_file_into_triple_store("association_IG_domain.ttl")
     end
 
     it "to aCRF I" do
@@ -251,6 +252,42 @@ describe Form::Item::BcProperty do
       form = Form.find_full(form.uri)
       check_dates(form, sub_dir, "update_bc_property_1a.yaml", :creation_date, :last_change_date)
       check_file_actual_expected(form.to_h, sub_dir, "update_bc_property_1a.yaml", equate_method: :hash_equal)
+    end
+
+  end
+
+  describe "ODM XML" do
+
+    before :all do
+      data_files = ["forms/MAKE_COMMON_TEST.ttl", "biomedical_concept_instances.ttl", "biomedical_concept_templates.ttl" ]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..1)
+      load_data_file_into_triple_store("mdr_identification.ttl")
+    end
+
+    it "to XML I" do
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
+      odm = add_root
+      study = add_study(odm.root)
+      mdv = add_mdv(study)
+      form = add_form(mdv)
+      form.add_item_group_ref("G-TEST", "1", "No", "")
+      item_group = mdv.add_item_group_def("G-TEST", "test group", "No", "", "", "", "", "", "")
+      item = Form::Item::BcProperty.create(label: "test label")
+      cdtp = ComplexDatatype::PropertyX.create(label:"cdt_property", simple_datatype:"string")
+      bcp_x = BiomedicalConcept::PropertyX.new(uri: Uri.new(uri: "http://www.s-cubed.dk/XXX/V1#BCI_BCI11_BCCDTPQR_BCPvalue"), ordinal: 1)
+      bcp_x.is_complex_datatype_property = cdtp
+      bcp_x.save
+      bc_property_reference = OperationalReferenceV3.create({reference: bcp_x.uri}, item)
+      item.has_property = bc_property_reference
+      item.save
+      item.to_xml(mdv, form, item_group)
+      xml = odm.to_xml
+    #Xwrite_text_file_2(xml, sub_dir, "to_xml_1.xml")
+      expected = read_text_file_2(sub_dir, "to_xml_1.xml")
+      odm_fix_datetimes(xml, expected)
+      odm_fix_system_version(xml, expected)
+      expect(xml).to eq(expected)
     end
 
   end

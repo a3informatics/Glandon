@@ -1,12 +1,17 @@
 <% content_for :page_title do %> <%= "aCRF: #{@form.has_identifier.identifier} (#{@form.semantic_version})" %> <% end %>
 
+<%= javascript_pack_tag "forms/acrf" %>
+
 <%= stylesheet_link_tag 'shared/forms/form_crf' %>
+<%= javascript_tag "const stylesheetRef = '#{ stylesheet_link_tag "shared/processing/spinner_full_page"}'" %>
 
 <% third_level_breadcrumb(:forms, @form, @close_path) %>
 
 <div class="row">
   <%= render layout: "shared/headers/header_managed_item", :locals => { item: @form, badge: "icon-form-view" } do %>
     <div class="actions-wrap">
+      <%= render partial: "shared/buttons/ico_btn_secondary", :locals => { url: acrf_report_form_path(@form, format: :pdf), id: "report", icon: "icon-file", text: "PDF Report" } %>
+      <%= render partial: "shared/buttons/ico_btn_secondary", :locals => { url: export_odm_form_path(@form, format: :xml), id: "odm", icon: "icon-file", text: "Export ODM XML" } %>
       <%= render partial: "shared/buttons/return", :locals => { url: @close_path } %>
     </div>
   <% end %>

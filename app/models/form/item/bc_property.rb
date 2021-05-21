@@ -67,6 +67,52 @@ class Form::Item::BcProperty < Form::Item
     return html
   end
 
+  # To XML
+  #
+  # @param [Nokogiri::Node] metadata_version the ODM MetaDataVersion node
+  # @param [Nokogiri::Node] form_def the ODM FormDef node
+  # @param [Nokogiri::Node] item_group_def the ODM ItemGroupDef node
+  # @return [void]
+  def to_xml(metadata_version, form_def, item_group_def)
+    super(metadata_version, form_def, item_group_def)
+    property_ref = self.has_property_objects.reference
+    bc_property = BiomedicalConcept::PropertyX.find(property_ref)
+    simple_datatype = bc_property.is_complex_datatype_property_objects.simple_datatype
+    xml_datatype = BaseDatatype.to_odm(simple_datatype)
+    xml_length = to_xml_length(simple_datatype, bc_property.format)
+    xml_digits = to_xml_significant_digits(simple_datatype, bc_property.format)
+    item_def = metadata_version.add_item_def("#{self.id}", "#{self.label}", "#{xml_datatype}", "#{xml_length}", "#{xml_digits}", "", "", "", "")
+    question = item_def.add_question()
+    question.add_translated_text("#{bc_property.question_text}")
+    if children_ordered.count > 0
+      code_list_ref = item_def.add_code_list_ref("#{self.id}-CL")
+      code_list = metadata_version.add_code_list("#{self.id}-CL", "Code list for #{self.label}", "text", "")
+      children_ordered.each do |cv|
+        cli = Thesaurus::UnmanagedConcept.find(cv.reference)
+        code_list_item = code_list.add_code_list_item(cli.notation, "", "#{cv.ordinal}")
+        decode = code_list_item.add_decode()
+        decode.add_translated_text(cli.label)
+      end
+    end
+  end
+
+  # Info node. Adds ci, notes and terminology information to generate a report
+  #
+  # @param [Array] form the form object
+  # @param [Array] options the options for the report
+  # @param [Array] user the user running the report
+  # @return [Array] Array ci_nodes, note_nodes and terminology
+  def info_node(ci_nodes, note_nodes, terminology)
+    if !is_common?
+      add_nodes(self.to_h, ci_nodes, :completion)
+      add_nodes(self.to_h, note_nodes, :note)
+      property_ref = self.has_property_objects.reference
+      property = BiomedicalConcept::PropertyX.find(property_ref)
+      self.to_h.merge!(property.to_h)
+      terminology << self.to_h if self.has_coded_value.count > 0
+    end
+  end
+
   def property_annotations(annotations)
     return "" if annotations.nil?
     html = ""

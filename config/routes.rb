@@ -425,6 +425,9 @@ Rails.application.routes.draw do
       get :acrf
       get :referenced_items
       post :add_child
+      get :export_odm
+      get :crf_report
+      get :acrf_report
     end
     collection do
       get :history
@@ -586,6 +589,58 @@ Rails.application.routes.draw do
       post :add
       put :remove
       put :remove_all
+    end
+    collection do
+      get :history
+    end
+  end
+
+  # Endpoints
+  resources :endpoints, :only => [:show, :index] do
+    member do
+      #get :show_data
+      #post :add
+      #put :remove
+      #put :remove_all
+    end
+    collection do
+      get :history
+    end
+  end
+
+  # Objectives
+  resources :objectives, :only => [:show, :index] do
+    member do
+      #get :show_data
+      #post :add
+      #put :remove
+      #put :remove_all
+    end
+    collection do
+      get :history
+    end
+  end
+
+  # Therapeutic Areas
+  resources :therapeutic_areas, :only => [:show, :index] do
+    member do
+      #get :show_data
+      #post :add
+      #put :remove
+      #put :remove_all
+    end
+    collection do
+      get :history
+    end
+  end
+
+  # Indications
+  resources :indications, :only => [:show, :index] do
+    member do
+      #get :show_data
+      #post :add
+      #put :remove
+      #put :remove_all
     end
     collection do
       get :history

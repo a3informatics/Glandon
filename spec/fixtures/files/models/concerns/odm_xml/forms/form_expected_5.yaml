@@ -44,7 +44,7 @@
     :short_name: ACME
     :name: ACME Pharma
     :authority: www.acme-pharma.com
-:has_previous_version: 
+:has_previous_version:
 :origin: ''
 :change_description: ''
 :creation_date: '2019-11-22T13:06:43+01:00'
@@ -53,7 +53,7 @@
 :note: ''
 :completion: ''
 :has_group:
-- :id: 
+- :id:
   :uri: {}
   :rdf_type: http://www.assero.co.uk/BusinessForm#NormalGroup
   :label: Date of birth
@@ -62,7 +62,7 @@
   :completion: ''
   :optional: false
   :has_item:
-  - :id: 
+  - :id:
     :uri: {}
     :rdf_type: http://www.assero.co.uk/BusinessForm#Question
     :label: Date of birth
@@ -78,7 +78,7 @@
   :repeating: false
   :has_sub_group: []
   :has_common: []
-- :id: 
+- :id:
   :uri: {}
   :rdf_type: http://www.assero.co.uk/BusinessForm#NormalGroup
   :label: Age
@@ -87,7 +87,7 @@
   :completion: ''
   :optional: false
   :has_item:
-  - :id: 
+  - :id:
     :uri: {}
     :rdf_type: http://www.assero.co.uk/BusinessForm#Question
     :label: Age
@@ -100,7 +100,7 @@
     :mapping: QVAL
     :question_text: Age
     :has_coded_value: []
-  - :id: 
+  - :id:
     :uri: {}
     :rdf_type: http://www.assero.co.uk/BusinessForm#Question
     :label: Age unit
@@ -118,7 +118,7 @@
     :mapping: QVAL
     :question_text: Age unit
     :has_coded_value:
-    - :id: 
+    - :id:
       :uri: {}
       :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
       :label: ''
@@ -131,7 +131,7 @@
   :repeating: false
   :has_sub_group: []
   :has_common: []
-- :id: 
+- :id:
   :uri: {}
   :rdf_type: http://www.assero.co.uk/BusinessForm#NormalGroup
   :label: Demographics
@@ -140,7 +140,7 @@
   :completion: ''
   :optional: false
   :has_item:
-  - :id: 
+  - :id:
     :uri: {}
     :rdf_type: http://www.assero.co.uk/BusinessForm#Question
     :label: Sex
@@ -153,7 +153,7 @@
     :mapping: SEX
     :question_text: Sex
     :has_coded_value:
-    - :id: 
+    - :id:
       :uri: {}
       :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
       :label: ''
@@ -163,7 +163,7 @@
       :reference: http://www.cdisc.org/C66731/V16#C66731_C20197
       :context: http://www.cdisc.org/C66731/V39#C66731
       :local_label: Male
-    - :id: 
+    - :id:
       :uri: {}
       :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
       :label: ''
@@ -173,7 +173,7 @@
       :reference: http://www.cdisc.org/C66731/V4#C66731_C16576
       :context: http://www.cdisc.org/C66731/V39#C66731
       :local_label: Female
-  - :id: 
+  - :id:
     :uri: {}
     :rdf_type: http://www.assero.co.uk/BusinessForm#Question
     :label: Ethnicity
@@ -186,7 +186,7 @@
     :mapping: ETHNIC
     :question_text: Ethnicity
     :has_coded_value:
-    - :id: 
+    - :id:
       :uri: {}
       :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
       :label: ''
@@ -196,7 +196,7 @@
       :reference: http://www.cdisc.org/C66790/V16#C66790_C17459
       :context: http://www.cdisc.org/C66790/V34#C66790
       :local_label: Hispanic or Latino
-    - :id: 
+    - :id:
       :uri: {}
       :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
       :label: ''
@@ -206,7 +206,7 @@
       :reference: http://www.cdisc.org/C66790/V4#C66790_C41222
       :context: http://www.cdisc.org/C66790/V34#C66790
       :local_label: Not Hispanic or Latino
-  - :id: 
+  - :id:
     :uri: {}
     :rdf_type: http://www.assero.co.uk/BusinessForm#Question
     :label: Race
@@ -219,7 +219,7 @@
     :mapping: RACE
     :question_text: Race
     :has_coded_value:
-    - :id: 
+    - :id:
       :uri: {}
       :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
       :label: ''
@@ -229,7 +229,7 @@
       :reference: http://www.cdisc.org/C74457/V10#C74457_C41261
       :context: http://www.cdisc.org/C74457/V49#C74457
       :local_label: White
-    - :id: 
+    - :id:
       :uri: {}
       :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
       :label: ''
@@ -239,7 +239,7 @@
       :reference: http://www.cdisc.org/C74457/V49#C74457_C16352
       :context: http://www.cdisc.org/C74457/V49#C74457
       :local_label: Black or African American
-    - :id: 
+    - :id:
       :uri: {}
       :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
       :label: ''
@@ -249,7 +249,7 @@
       :reference: http://www.cdisc.org/C74457/V10#C74457_C41260
       :context: http://www.cdisc.org/C74457/V49#C74457
       :local_label: Asian
-    - :id: 
+    - :id:
       :uri: {}
       :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
       :label: ''
@@ -259,7 +259,7 @@
       :reference: http://www.cdisc.org/C74457/V10#C74457_C41259
       :context: http://www.cdisc.org/C74457/V49#C74457
       :local_label: American Indian or Alaska Native
-    - :id: 
+    - :id:
       :uri: {}
       :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
       :label: ''
@@ -269,7 +269,7 @@
       :reference: http://www.cdisc.org/C74457/V10#C74457_C41219
       :context: http://www.cdisc.org/C74457/V49#C74457
       :local_label: Native Hawaiian or Other Pacific Islander
-  - :id: 
+  - :id:
     :uri: {}
     :rdf_type: http://www.assero.co.uk/BusinessForm#Question
     :label: Race
@@ -282,7 +282,7 @@
     :mapping: RACE
     :question_text: Race
     :has_coded_value:
-    - :id: 
+    - :id:
       :uri: {}
       :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
       :label: ''
@@ -292,7 +292,7 @@
       :reference: http://www.cdisc.org/C74457/V10#C74457_C41261
       :context: http://www.cdisc.org/C74457/V49#C74457
       :local_label: White
-    - :id: 
+    - :id:
       :uri: {}
       :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
       :label: ''
@@ -302,7 +302,7 @@
       :reference: http://www.cdisc.org/C74457/V49#C74457_C16352
       :context: http://www.cdisc.org/C74457/V49#C74457
       :local_label: Black or African American
-    - :id: 
+    - :id:
       :uri: {}
       :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
       :label: ''
@@ -312,7 +312,7 @@
       :reference: http://www.cdisc.org/C74457/V10#C74457_C41260
       :context: http://www.cdisc.org/C74457/V49#C74457
       :local_label: Asian
-    - :id: 
+    - :id:
       :uri: {}
       :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
       :label: ''
@@ -322,7 +322,7 @@
       :reference: http://www.cdisc.org/C74457/V10#C74457_C41259
       :context: http://www.cdisc.org/C74457/V49#C74457
       :local_label: American Indian or Alaska Native
-    - :id: 
+    - :id:
       :uri: {}
       :rdf_type: http://www.assero.co.uk/BusinessOperational#TucReference
       :label: ''
@@ -335,7 +335,7 @@
   :repeating: false
   :has_sub_group: []
   :has_common: []
-- :id: 
+- :id:
   :uri: {}
   :rdf_type: http://www.assero.co.uk/BusinessForm#NormalGroup
   :label: Race Other
@@ -344,7 +344,7 @@
   :completion: ''
   :optional: false
   :has_item:
-  - :id: 
+  - :id:
     :uri: {}
     :rdf_type: http://www.assero.co.uk/BusinessForm#Question
     :label: "[If Other,  ]Specify"

@@ -67,9 +67,9 @@ class OdmXml::Forms < OdmXml
       @oid = identifier
       source_form = list.find { |f| f[:identifier] == identifier }
       if source_form.nil?
-        parent.error(self.class.name, __method__.to_s, "Failed to find the form, possible identifier mismatch.") 
+        parent.error(self.class.name, __method__.to_s, "Failed to find the form, possible identifier mismatch.")
       else
-        @form = ::Form.new 
+        @form = ::Form.new
         @form.set_initial(IsoScopedIdentifierV2.clean_identifier(identifier)) # Make sure we remove anything nasty
         @form.label = source_form[:label]
       end
@@ -80,9 +80,9 @@ class OdmXml::Forms < OdmXml
       doc.xpath("//xmlns:FormDef[@OID = '#{@oid}']/xmlns:ItemGroupRef").each { |n| results << OdmGroup.new(doc, n) }
       results.sort_by! {|r| r.group.ordinal}
       ordinal = 1
-      results.each do |r| 
+      results.each do |r|
         r.group.ordinal = ordinal
-        @form.children << r.group 
+        @form.children << r.group
         r.items(doc)
         ordinal += 1
       end
@@ -90,7 +90,7 @@ class OdmXml::Forms < OdmXml
     end
 
   end
-      
+
   class OdmGroup
 
     extend ActiveModel::Naming
@@ -113,7 +113,7 @@ class OdmXml::Forms < OdmXml
       results.sort_by! {|r| r.items.first.ordinal}
       ordinal = 1
       results.each do |result|
-        result.items.each do |item| 
+        result.items.each do |item|
           item.ordinal = ordinal
           @group.children << item
           ordinal += 1
@@ -131,7 +131,7 @@ class OdmXml::Forms < OdmXml
     attr_reader :oid
     attr_reader :items
 
-    def initialize(doc, node)  
+    def initialize(doc, node)
       @items = []
       @oid = node.attributes["ItemOID"].value
       item_node = doc.xpath("//xmlns:ItemDef[@OID = '#{@oid}']")
@@ -143,7 +143,7 @@ class OdmXml::Forms < OdmXml
       item.datatype = dt_and_format[:datatype]
       item.format = dt_and_format[:format]
       item.ordinal = node.attributes["OrderNumber"].nil? ? 1 : node.attributes["OrderNumber"].value.to_i
-      add_question(item_node.first, item)      
+      add_question(item_node.first, item)
       cl_ref_node = item_node.xpath("xmlns:CodeListRef")
       if !cl_ref_node.empty?
         item.datatype = BaseDatatype::C_STRING
@@ -192,9 +192,9 @@ class OdmXml::Forms < OdmXml
         when BaseDatatype::C_DATE, BaseDatatype::C_TIME, BaseDatatype::C_DATETIME, BaseDatatype::C_BOOLEAN
           return {datatype: datatype, format: ""}
         when BaseDatatype::C_FLOAT
-          return {datatype: datatype, format: "#{length}.#{sig_digits}"}        
+          return {datatype: datatype, format: "#{length}.#{sig_digits}"}
         when BaseDatatype::C_INTEGER
-          return {datatype: datatype, format: "#{length}"}        
+          return {datatype: datatype, format: "#{length}"}
         else
           return {datatype: BaseDatatype::C_STRING, format: length}
       end
@@ -245,7 +245,7 @@ class OdmXml::Forms < OdmXml
       result = name_cl(node, question, cli_nodes)
       return true if result[:result]
       notes += result[:notes]
-      question.note += "\n\nTerminology Search:\n#{notes.join("\n")}" 
+      question.note += "\n\nTerminology Search:\n#{notes.join("\n")}"
     end
 
     def alias_cl(node, question, cli_nodes)
@@ -258,8 +258,8 @@ class OdmXml::Forms < OdmXml
       return {result: false, notes: []} if node.attributes["SASFormatName"].nil?
       text = node.attributes["SASFormatName"].value
       text = text.gsub(/[^0-9A-Za-z]/, "") # Remove any non-alphanumeric, e.g. $
-      text = text.upcase # Make sure it has a chance of matching 
-      return find_cl({identifier: text}, question, cli_nodes) if NciThesaurusUtility.c_code?(text)      
+      text = text.upcase # Make sure it has a chance of matching
+      return find_cl({identifier: text}, question, cli_nodes) if NciThesaurusUtility.c_code?(text)
       find_cl({notation: text}, question, cli_nodes)
     end
 
@@ -315,13 +315,13 @@ class OdmXml::Forms < OdmXml
     def add_op_ref(cli, question, ordinal)
       ref = OperationalReferenceV3::TucReference.new
       ref.local_label = cli.label
-      ref.context = cli.parents.last
+      ref.context = cli.latest_parent
       ref.ordinal = ordinal.value
       ref.reference = cli.uri
       question.has_coded_value << ref
       ordinal.increment
       return true
-    end      
+    end
 
     def add_mu(doc, nodes, question)
       ordinal = Ordinal.new
@@ -338,7 +338,7 @@ class OdmXml::Forms < OdmXml
       end
     end
 
-    def get_tc(params)   
+    def get_tc(params)
       thcs = Thesaurus.where_children_current(params)
       if thcs.empty?
         return {tc: nil, note: "No entries found for parameters #{params_to_s(params)}."}
@@ -369,7 +369,7 @@ class OdmXml::Forms < OdmXml
     def process_mapping_nodes(node, question)
       mapping = []
       sdtm_node = node.xpath("xmlns:Alias[@context = 'SDTM']")
-      mapping << sdtm_node.first.attributes["Name"].value unless sdtm_node.empty? 
+      mapping << sdtm_node.first.attributes["Name"].value unless sdtm_node.empty?
       mapping << node.first.attributes["SDSVarName"].value unless node.first.attributes["SDSVarName"].nil?
       question.mapping = mapping.empty? ? "#{C_NO_MAPPING}" : mapping.join(" | ")
     end
@@ -404,4 +404,3 @@ class OdmXml::Forms < OdmXml
 
 end
 
-    

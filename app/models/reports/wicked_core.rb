@@ -6,17 +6,17 @@ class Reports::WickedCore
     @html = ""
     @paper_size = ""
   end
-    
+
   # Open the document
   #
   # @param doc_type [String] The document type, a title string
   # @param managed_item [Hash] Managed item. Can be empty
   # @param user [Object] The user creating the report
   # @return [Null]
-  def open(doc_type, title, history, user)
+  def open(doc_type, title, history, user, base_url)
     @paper_size = user.paper_size
     @html = page_header
-    @html += title_page(doc_type, title, user)
+    @html += title_page(doc_type, title, user, base_url)
     @html += history_page(history) if !history.empty?
   end
 
@@ -26,7 +26,7 @@ class Reports::WickedCore
   def add_to_body(html)
     @html += html
   end
-  
+
   # Insert page break
   #
   # @return [Null]
@@ -36,7 +36,7 @@ class Reports::WickedCore
 
   # Close up the HTML
   #
-  # @return [Null] 
+  # @return [Null]
   def close
     @html += page_footer
   end
@@ -45,12 +45,12 @@ class Reports::WickedCore
   #
   # @return [Object] The PDF document
   def pdf
-    footer = 
+    footer =
     {
-      :font_size => "8", 
-      :font_name => "Arial, \"Helvetica Neue\", Helvetica, sans-serif", 
-      :left => "", 
-      :center => "", 
+      :font_size => "8",
+      :font_name => "Arial, \"Helvetica Neue\", Helvetica, sans-serif",
+      :left => "",
+      :center => "",
       :right => "[page] of [topage]"
     }
     pdf = WickedPdf.new.pdf_from_string(@html, :page_size => @paper_size, :footer => footer )
@@ -63,7 +63,7 @@ class Reports::WickedCore
   def html
     return @html
   end
-  
+
 private
 
   def page_header
@@ -77,15 +77,12 @@ private
     return html
   end
 
-  def title_page(doc_type, title,  user)
+  def title_page(doc_type, title,  user, base_url)
     html = ""
-    #title = ""
-    #name = APP_CONFIG['organization_title']
-    #image_file = APP_CONFIG['organization_image_file']
     name = ENV['organization_title']
     image_file = ENV['organization_image_file']
-    dir = Rails.root.join("app", "assets", "images")
-    file = File.join(dir, image_file)
+    file = File.join(base_url, "images", image_file)
+
     time_generated = Time.now
     # Generate HTML
     html = "<div style=\"vertical-align:middle; text-align:center\"><img height=\"75\" src=\"#{file}\"></div>"
@@ -101,7 +98,7 @@ private
 
   def history_page(history)
     html = ""
-    if history.length > 0 
+    if history.length > 0
       html += "<h3>Item History</h3>"
       html += "<table class=\"table table-striped table-bordered table-condensed\">"
       html += "<thead><tr><th>Date</th><th>Change</th><th>Comment</th><th>References</th></tr></thead><tbody>"
@@ -111,7 +108,7 @@ private
         comment = MarkdownEngine::render(item[:explanatory_comment])
         refs = MarkdownEngine::render(item[:origin])
         html += "<tr><td>#{changed_date}</td><td>#{description}</td><td>#{comment}</td><td>#{refs}</td></tr>"
-      end 
+      end
       html += "</tbody></table>"
       html += page_break
     end
@@ -121,5 +118,5 @@ private
   def page_break
     return "<div style='page-break-after:always;'></div>"
   end
-  
+
 end

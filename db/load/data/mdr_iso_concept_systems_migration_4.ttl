@@ -1,0 +1,49 @@
+@prefix : <http://www.assero.co.uk/CSN#> .
+@prefix isoC: <http://www.assero.co.uk/ISO11179Concepts#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+<http://www.assero.co.uk/CSN>
+	rdf:type owl:Ontology ;
+.
+:db05017f-56dc-4bbd-8616-80ca4c99556c
+	rdf:type isoC:ConceptSystemNode ;
+	isoC:prefLabel "Study Protocol"^^xsd:string ;
+	isoC:description "Study protocol related tags"^^xsd:string ;
+	isoC:narrower :ecd614ed-60bc-4308-84a4-2bb927268181 ;
+.
+:ecd614ed-60bc-4308-84a4-2bb927268181
+	rdf:type isoC:ConceptSystemNode ;
+	isoC:prefLabel "Endpoint Classification"^^xsd:string ;
+	isoC:description "Endpoint classifcation related information."^^xsd:string ;
+	isoC:narrower :5c891362-f4f9-47fb-98cb-7cf411618ce9 ;
+	isoC:narrower :7b80edd3-e7de-4428-b6ca-1170be808c8d ;
+	isoC:narrower :0d9c4d3e-4e88-4d73-a822-bb851de46149 ;
+	isoC:narrower :0a77e5eb-2964-40bb-94d2-ba9dfddcbec4 ;
+.
+:5c891362-f4f9-47fb-98cb-7cf411618ce9
+	rdf:type isoC:ConceptSystemNode ;
+	isoC:prefLabel "Primary"^^xsd:string ;
+	isoC:description "Primary value."^^xsd:string ;
+.
+:7b80edd3-e7de-4428-b6ca-1170be808c8d
+	rdf:type isoC:ConceptSystemNode ;
+	isoC:prefLabel "Secondary"^^xsd:string ;
+	isoC:description "Secondary value."^^xsd:string ;
+.
+:0d9c4d3e-4e88-4d73-a822-bb851de46149
+	rdf:type isoC:ConceptSystemNode ;
+	isoC:prefLabel "Tertiary"^^xsd:string ;
+	isoC:description "Tertiary value."^^xsd:string ;
+.
+:0a77e5eb-2964-40bb-94d2-ba9dfddcbec4
+	rdf:type isoC:ConceptSystemNode ;
+	isoC:prefLabel "Not set"^^xsd:string ;
+	isoC:description "Value not defined."^^xsd:string ;
+.
+:359a3f39-0920-44cb-b13c-e8bdf5fbd4b8
+	isoC:isTopConcept :db05017f-56dc-4bbd-8616-80ca4c99556c ;
+.

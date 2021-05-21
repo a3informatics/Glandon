@@ -5,6 +5,7 @@ describe Form::Group::Common do
   include DataHelpers
   include OdmHelpers
   include SparqlHelpers
+  include SecureRandomHelpers
 
   def sub_dir
     return "models/form/group/common"
@@ -51,23 +52,21 @@ describe Form::Group::Common do
       expect(result).to eq(false)
     end
 
-    # it "allows an object to be exported as XML" do
-    # 	odm = add_root
-    #   study = add_study(odm.root)
-    #   mdv = add_mdv(study)
-    #   form = add_form(mdv)
-    #   item = Form::Group::Common.new
-    #   item.id = "G-TEST"
-    #   item.label = "test label"
-    #   item.ordinal = 119
-  		# item.to_xml(mdv, form)
-  		# xml = odm.to_xml
-    # #write_text_file_2(xml, sub_dir, "to_xml_expected_1.xml")
-    #   expected = read_text_file_2(sub_dir, "to_xml_expected_1.xml")
-    #   odm_fix_datetimes(xml, expected)
-    #   odm_fix_system_version(xml, expected)
-    #   expect(xml).to eq(expected)
-    # end
+    it "to XML I" do
+      allow(SecureRandom).to receive(:uuid).and_return(*SecureRandomHelpers.predictable)
+      odm = add_root
+      study = add_study(odm.root)
+      mdv = add_mdv(study)
+      form = add_form(mdv)
+      item = Form::Group::Common.create(label: "test label", ordinal: 1)
+      item.to_xml(mdv, form)
+      xml = odm.to_xml
+    #Xwrite_text_file_2(xml, sub_dir, "to_xml_1.xml")
+      expected = read_text_file_2(sub_dir, "to_xml_1.xml")
+      odm_fix_datetimes(xml, expected)
+      odm_fix_system_version(xml, expected)
+      expect(xml).to eq(expected)
+    end
 
   end
 

@@ -17,9 +17,6 @@ describe "Timepoint" do
       load_files(schema_files, data_files)
     end
 
-    after :each do
-    end
-
     it "create an instance" do
       allow(SecureRandom).to receive(:uuid).and_return("1234-5678-9012-3301")
       offset = Timepoint::Offset.create(label: "TP", window_minus: 1, window_plus: 3, window_offset: 2, unit: "Week")
@@ -52,13 +49,6 @@ describe "Timepoint" do
     before :all do
       load_files(schema_files, [])
       load_data_file_into_triple_store("mdr_transcelerate_identification.ttl")
-      load_data_file_into_triple_store("hackathon_thesaurus.ttl")
-      load_data_file_into_triple_store("hackathon_tas.ttl")
-      load_data_file_into_triple_store("hackathon_indications.ttl")
-      load_data_file_into_triple_store("hackathon_endpoints.ttl")
-      load_data_file_into_triple_store("hackathon_parameters.ttl")
-      load_data_file_into_triple_store("hackathon_protocols.ttl")
-      load_data_file_into_triple_store("hackathon_protocol_templates.ttl")
     end
 
     it "add and remove managed" do

@@ -1,0 +1,24 @@
+<% content_for :page_title do %> Index: Therapeutic Areas <% end %>
+
+<%= javascript_pack_tag 'therapeutic_areas/index' %>
+
+<% first_level_breadcrumb (:therapeutic_areas) %>
+
+<div class="row">
+  <%= render layout: "shared/headers/header_minimal", :locals => {badge: "icon-protocol",
+    main_text: "Therapeutic Areas", sub_text: "Browse all Therapeutic Areas in the system." } do %>
+      <div class="btns-wrap"></div>
+  <% end %>
+</div>
+
+<div class="row">
+
+  <% content_for :description do %>
+    Below is the list of all <span class="text-accent-1-dark font-regular">standardized</span> and <span class="text-link font-regular">sponsor</span> Therapeutic Areas.
+    Use the Search bar to find the Therapeutic Area you are looking for.
+    To see Therapeutic areas's respective History page, click on it.
+  <% end %>
+
+  <%= render partial: "shared/iso_managed/index/index_card", locals: { title: "Therapeutic Areas", url: therapeutic_areas_path } %>
+
+</div>

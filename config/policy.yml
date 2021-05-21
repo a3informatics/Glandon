@@ -371,6 +371,9 @@ defaults: &defaults
       move_down: update
       make_common: update
       restore: update
+      crf_report: show
+      acrf_report: show
+      export_odm: show
   CdiscTermPolicy:
     policies:
       index:

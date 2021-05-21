@@ -28,4 +28,21 @@ class Form::Item::Placeholder < Form::Item
     markdown_row(self.free_text)
   end
 
+  # To XML
+  #
+  # @param [Nokogiri::Node] metadata_version the ODM MetaDataVersion node
+  # @param [Nokogiri::Node] form_def the ODM FormDef node
+  # @param [Nokogiri::Node] item_group_def the ODM ItemGroupDef node
+  # @return [void]
+  def to_xml(metadata_version, form_def, item_group_def)
+    super(metadata_version, form_def, item_group_def)
+    item_def = metadata_version.add_item_def("#{self.id}", "#{self.label}", "", "", "", "", "", "", "")
+    question = item_def.add_question()
+    question.add_translated_text("#{self.free_text}")
+  end
+
+  def info_node(ci_nodes, note_nodes, terminology)
+    # Do nothing currently
+  end
+
  end

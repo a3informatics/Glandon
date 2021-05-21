@@ -32,7 +32,11 @@ module ApplicationHelper
     users: {link: "/users", text: "Users"},
     studies: {link: "/studies", text: "Studies", icon: "icon-study"},
     triples: {link: "#", text: "Triples", icon: "icon-triple"},
-    items_generic: {link: "#", text: "Items", icon: "icon-multi"}
+    items_generic: {link: "#", text: "Items", icon: "icon-multi"},
+    endpoints: {link: "/endpoints", text: "Endpoint", icon: "icon-protocol"},
+    objectives: {link: "/objectives", text: "Objective", icon: "icon-protocol"},
+    therapeutic_areas: {link: "/therapeutic_areas", text: "Therapeutic Area", icon: "icon-protocol"},
+    indications: {link: "/indications", text: "Indication", icon: "icon-protocol"}
   }
 
   def instance_title(title, item)
@@ -112,6 +116,7 @@ module ApplicationHelper
       sdtm: "SDTM",
       adam: "ADaM",
       managed_collections: "Managed Collections",
+      protocols: "Protocol"
     }
   end
 
@@ -147,7 +152,7 @@ module ApplicationHelper
 			sdtm_models: mdr_categories[:sdtm], sdtm_igs: mdr_categories[:sdtm], sdtm_ig_domains: mdr_categories[:sdtm], sdtm_sponsor_domains: mdr_categories[:sdtm], sdtm_classes: mdr_categories[:sdtm],
       adam_igs: mdr_categories[:adam], adam_ig_datasets: mdr_categories[:adam],
       managed_collections: mdr_categories[:managed_collections],
-      
+      endpoints: mdr_categories[:protocols], objectives: mdr_categories[:protocols], therapeutic_areas: mdr_categories[:protocols], indications: mdr_categories[:protocols],
       studies: swb_categories[:studies]
 		}
 

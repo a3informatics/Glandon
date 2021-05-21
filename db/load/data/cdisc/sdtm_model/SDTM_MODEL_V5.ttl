@@ -1009,6 +1009,7 @@
 	bd:description "Used to indicate whether the event described by --TERM was pre-specified on a CRF. Value is Y for pre-specified events, null for spontaneously reported events."^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#86cd61e6-d48c-4e42-b994-bee35e2351fe> ;
+	bd:isA <http://www.s-cubed.dk/CAR#b724045eaf94ce25b3eaa5cd7d2d5bf66de219b1> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_EVENTS/V5#CL_--OCCUR>
 	rdf:type bd:SdtmClassVariable ;
@@ -1020,6 +1021,7 @@
 	bd:description "Used to record whether a pre-specified event occurred when information about the occurrence of a specific event is solicited."^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
+	bd:isA <http://www.s-cubed.dk/CAR#4f618850ebd7856345f3aae9299ab9fd81e02d93> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_EVENTS/V5#CL_--STAT>
 	rdf:type bd:SdtmClassVariable ;
@@ -1043,6 +1045,7 @@
 	bd:description "Reason not done. Used in conjunction with --STAT when its value is NOT DONE."^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
+	bd:isA <http://www.s-cubed.dk/CAR#52b30e2515e4fa778a3ab77470f0b096877a26c2> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_EVENTS/V5#CL_--BODSYS>
 	rdf:type bd:SdtmClassVariable ;
@@ -1861,6 +1864,7 @@
 	bd:description "Reason not done. Used in conjunction with --STAT when value is NOT DONE."^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
+	bd:isA <http://www.s-cubed.dk/CAR#52b30e2515e4fa778a3ab77470f0b096877a26c2> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_FINDINGS/V5#CL_--XFN>
 	rdf:type bd:SdtmClassVariable ;
@@ -2446,6 +2450,7 @@
 	bd:description "Used when a specific intervention is pre-specified on a CRF. Values should be \"Y\" or null."^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#86cd61e6-d48c-4e42-b994-bee35e2351fe> ;
+	bd:isA <http://www.s-cubed.dk/CAR#b724045eaf94ce25b3eaa5cd7d2d5bf66de219b1> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V5#CL_--OCCUR>
 	rdf:type bd:SdtmClassVariable ;
@@ -2457,6 +2462,7 @@
 	bd:description "Used to record whether a pre-specified intervention occurred when information about the occurrence of a specific intervention is solicited."^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
+	bd:isA <http://www.s-cubed.dk/CAR#4f618850ebd7856345f3aae9299ab9fd81e02d93> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V5#CL_--STAT>
 	rdf:type bd:SdtmClassVariable ;
@@ -2480,6 +2486,7 @@
 	bd:description "Reason not done. Used in conjunction with --STAT when value is NOT DONE."^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
+	bd:isA <http://www.s-cubed.dk/CAR#52b30e2515e4fa778a3ab77470f0b096877a26c2> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V5#CL_--INDC>
 	rdf:type bd:SdtmClassVariable ;
@@ -2524,6 +2531,7 @@
 	bd:description "Amount of --TRT given. Not populated when --DOSTXT is populated."^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#178f8dbe-c3ba-4dc0-8a2a-18081644b4c6> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#4bb7578c-6705-4d2e-93d6-b56960d9e21e> ;
+	bd:isA <http://www.s-cubed.dk/CAR#1b558fd119f2ae455b56b8df36c1c398ab153061> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V5#CL_--DOSTXT>
 	rdf:type bd:SdtmClassVariable ;
@@ -2546,6 +2554,7 @@
 	bd:description "Units for --DOSE, --DOSTOT, or --DOSTXT (Examples: ng, mg, mg/kg)."^^xsd:string ;
 	bd:typedAs <http://www.assero.co.uk/CSN#d2f2bbeb-8f79-4fb1-b190-dd864d29f080> ;
 	bd:classifiedAs <http://www.assero.co.uk/CSN#86cd61e6-d48c-4e42-b994-bee35e2351fe> ;
+	bd:isA <http://www.s-cubed.dk/CAR#eebaa9a3c6d68389172cf7eb48a7a0840f1e3fb6> ;
 .
 <http://www.cdisc.org/SDTM_MODEL_INTERVENTIONS/V5#CL_--DOSFRM>
 	rdf:type bd:SdtmClassVariable ;

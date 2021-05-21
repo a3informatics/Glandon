@@ -1,0 +1,259 @@
+<?xml version="1.0"?>
+<ODM xmlns="http://www.cdisc.org/ns/odm/v1.3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xlink="http://www.w3.org/1999/xlink" Description="ODM-aHR0cDovL3d3dy5zLWN1YmVkLmRrL0YwMDQvVjEjRg==" FileType="Snapshot" Granularity="Metadata" FileOID="2021-05-04T15:07:41+02:00" ODMVersion="1.3.2" Originator="Assero" SourceSystem="Glandon" SourceSystemVersion="4.0.0" CreationDateTime="2021-05-04T15:07:41+02:00">
+  <Study OID="S-aHR0cDovL3d3dy5zLWN1YmVkLmRrL0YwMDQvVjEjRg==">
+    <GlobalVariables>
+      <StudyName>Form Export Form (F004)</StudyName>
+      <StudyDescription>Not applicable. Single form export.</StudyDescription>
+      <ProtocolName>Not applicable. Single form export.</ProtocolName>
+    </GlobalVariables>
+    <MetaDataVersion OID="MDV-aHR0cDovL3d3dy5zLWN1YmVkLmRrL0YwMDQvVjEjRg==" Name="Metadata for Form" Description="Not applicable. Single form export.">
+      <Protocol>
+        <StudyEventRef StudyEventOID="SE-aHR0cDovL3d3dy5zLWN1YmVkLmRrL0YwMDQvVjEjRg==" OrderNumber="1" Mandatory="Yes"/>
+      </Protocol>
+      <StudyEventDef OID="SE-aHR0cDovL3d3dy5zLWN1YmVkLmRrL0YwMDQvVjEjRg==" Name="Not applicable. Single form export." Repeating="No" Type="Scheduled">
+        <FormRef FormOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0YwMDQvVjEjRg==" OrderNumber="1" Mandatory="Yes"/>
+      </StudyEventDef>
+      <FormDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0YwMDQvVjEjRg==" Name="Form" Repeating="No">
+        <ItemGroupRef ItemGroupOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0YwMDQvVjEjTkdfMjAyNGMyNGYtYjc1ZC00MWQ4LTg4MmMtYjk3Nzc1MzlhNjZk" OrderNumber="1" Mandatory="No"/>
+        <ItemGroupRef ItemGroupOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0YwMDQvVjEjTkdfYmE1MGJmZjItNDFlNC00ZjA1LTg0YTMtZjAxYjE4YWJmY2E5" OrderNumber="2" Mandatory="No"/>
+        <ItemGroupRef ItemGroupOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0YwMDQvVjEjTkdfNjEyMTk1MDMtN2YwMC00Y2NkLThlMjUtYmE5Njg1MzIwOWE3" OrderNumber="3" Mandatory="No"/>
+        <ItemGroupRef ItemGroupOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0YwMDQvVjEjQkNHX2M1MzQyZTE3LWUxNDMtNDZhZi04NGFhLThmZjdkZmExNWJmZg==" OrderNumber="1" Mandatory="No"/>
+        <ItemGroupRef ItemGroupOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0YwMDQvVjEjQkNHX2IyNDZlYmM2LTBlYmEtNGI0MC05OGIxLTRhYzczYzNmMjYzNw==" OrderNumber="2" Mandatory="No"/>
+        <ItemGroupRef ItemGroupOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0YwMDQvVjEjQkNHXzU0NzliOTRmLTM4NWUtNDYzNy04ZWE2LTU5Nzg1Y2VhODY4Nw==" OrderNumber="3" Mandatory="No"/>
+        <ItemGroupRef ItemGroupOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0YwMDQvVjEjTkdfMDcyNmFjNTktYTk2Yy00YTNmLTg2NjAtMDQ1YTU3MDljMWUz" OrderNumber="4" Mandatory="No"/>
+        <ItemGroupRef ItemGroupOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0YwMDQvVjEjQ0dfYWM4ZDk2MWItYTg3Ni00MmQzLTk1NTUtYzgxNWE1NzNmMTgz" OrderNumber="1" Mandatory="No"/>
+        <ItemGroupRef ItemGroupOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0YwMDQvVjEjQkNHX2FiMTY4ZjYwLTZiYTEtNDliNS05ZGM0LTM1ZDdkYTUyNzAzNA==" OrderNumber="2" Mandatory="No"/>
+        <ItemGroupRef ItemGroupOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0YwMDQvVjEjQkNHXzI0MGQzZTgwLTk2MmEtNDdjZi1hOWMzLWI4MmQxMjEyNDM1Nw==" OrderNumber="3" Mandatory="No"/>
+      </FormDef>
+      <ItemGroupDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0YwMDQvVjEjTkdfMjAyNGMyNGYtYjc1ZC00MWQ4LTg4MmMtYjk3Nzc1MzlhNjZk" Name="Not set" Repeating="No">
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0YwMDQvVjEjUV9hNTAzODgwNy05Y2Q4LTQxZWYtYmVhMS1iMTQzMjgyOWRiMWQ=" OrderNumber="1" Mandatory="No"/>
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0YwMDQvVjEjUV9iNDEzMWExMS1hMjFmLTRkY2MtYjQxMi0yOTU0ZWUwMmRhY2Y=" OrderNumber="2" Mandatory="No"/>
+      </ItemGroupDef>
+      <ItemGroupDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0YwMDQvVjEjTkdfYmE1MGJmZjItNDFlNC00ZjA1LTg0YTMtZjAxYjE4YWJmY2E5" Name="Not set" Repeating="No">
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0YwMDQvVjEjUV9mMWY3MTA3NS04OTU5LTQzYjUtOWEyNi0zYjBlOTJiNTg0YTI=" OrderNumber="1" Mandatory="No"/>
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0YwMDQvVjEjUExfNjI3ZTZlZGYtOGNjNy00Yzc5LWIwNjQtZTYxNWFmYjFmMmFh" OrderNumber="2" Mandatory="No"/>
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0YwMDQvVjEjVExfOGNjMWJkMzYtYTFiOC00NDBjLWFjOTEtNGMwMmNlYjFlZmJl" OrderNumber="3" Mandatory="No"/>
+      </ItemGroupDef>
+      <ItemGroupDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0YwMDQvVjEjTkdfNjEyMTk1MDMtN2YwMC00Y2NkLThlMjUtYmE5Njg1MzIwOWE3" Name="Not set" Repeating="No"/>
+      <ItemGroupDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0YwMDQvVjEjQkNHX2M1MzQyZTE3LWUxNDMtNDZhZi04NGFhLThmZjdkZmExNWJmZg==" Name="Height" Repeating="No">
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0YwMDQvVjEjQkNQXzVjNGQ5NTc5LWEyMmUtNDg2ZS04NTBiLWMzM2UwMmQ1MDBkMA==" OrderNumber="1" Mandatory="No"/>
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0YwMDQvVjEjQkNQXzEzMDc4ZGVhLWNkYWMtNGU4Ni1iOGEwLTNmMGJiNGY0OTBhMw==" OrderNumber="2" Mandatory="No"/>
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0YwMDQvVjEjQkNQXzhmNTFjNTBhLTZiNTQtNGE2OC1hZDNmLWZlZjg4N2IyZjJkZQ==" OrderNumber="3" Mandatory="No"/>
+      </ItemGroupDef>
+      <ItemGroupDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0YwMDQvVjEjQkNHX2IyNDZlYmM2LTBlYmEtNGI0MC05OGIxLTRhYzczYzNmMjYzNw==" Name="Weight" Repeating="No">
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0YwMDQvVjEjQkNQX2UwNzNjNjk3LTFlZTUtNGJiOC04YTY4LTc3MWRkMzk4N2M5OA==" OrderNumber="1" Mandatory="No"/>
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0YwMDQvVjEjQkNQXzdjZTA0YTExLTcxZGYtNDM0Yy05ZWMwLWJkZmZkNDQwMzdkNA==" OrderNumber="2" Mandatory="No"/>
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0YwMDQvVjEjQkNQXzZlYzA2ODQyLTdkMzYtNDE0Yi05ZmMyLWY5MTI2ODYyNmQ4Yg==" OrderNumber="3" Mandatory="No"/>
+      </ItemGroupDef>
+      <ItemGroupDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0YwMDQvVjEjQkNHXzU0NzliOTRmLTM4NWUtNDYzNy04ZWE2LTU5Nzg1Y2VhODY4Nw==" Name="BMI" Repeating="No">
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0YwMDQvVjEjQkNQXzIyYmUyMTU5LWYyMzQtNDcwZi04YWVkLTY5YTJkZjMwNjRhNg==" OrderNumber="1" Mandatory="No"/>
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0YwMDQvVjEjQkNQXzljNDk3YjYyLTI0ZmMtNGM5Yi1hNzZlLTk3YjllNDY0MTcyNw==" OrderNumber="2" Mandatory="No"/>
+      </ItemGroupDef>
+      <ItemGroupDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0YwMDQvVjEjTkdfMDcyNmFjNTktYTk2Yy00YTNmLTg2NjAtMDQ1YTU3MDljMWUz" Name="Not set" Repeating="No"/>
+      <ItemGroupDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0YwMDQvVjEjQ0dfYWM4ZDk2MWItYTg3Ni00MmQzLTk1NTUtYzgxNWE1NzNmMTgz" Name="Not set" Repeating="No"/>
+      <ItemGroupDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0YwMDQvVjEjQkNHX2FiMTY4ZjYwLTZiYTEtNDliNS05ZGM0LTM1ZDdkYTUyNzAzNA==" Name="Height" Repeating="No">
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0YwMDQvVjEjQkNQXzk0N2IxYzVjLTUyOTItNDk5ZS04YjE2LTBkM2FmMDMzMWMzNQ==" OrderNumber="1" Mandatory="No"/>
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0YwMDQvVjEjQkNQXzk3NTBlZjA3LTNiYzEtNGJkOS1hOTFhLTY5N2E4YjdhYjZiNA==" OrderNumber="2" Mandatory="No"/>
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0YwMDQvVjEjQkNQX2Q2MGM0M2NiLTljYmItNGRiZi05ZTM5LTA3ZjdmY2FkNDQ0ZA==" OrderNumber="3" Mandatory="No"/>
+      </ItemGroupDef>
+      <ItemGroupDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0YwMDQvVjEjQkNHXzI0MGQzZTgwLTk2MmEtNDdjZi1hOWMzLWI4MmQxMjEyNDM1Nw==" Name="Weight" Repeating="No">
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0YwMDQvVjEjQkNQX2FkOGVlYzJmLTQ0NzItNGEwMC04MDJmLWNmNThkYzFkZTMwOQ==" OrderNumber="1" Mandatory="No"/>
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0YwMDQvVjEjQkNQXzU4MTdkNDE4LTA0ZDctNDcwYy1iYjk1LWJkNWI1ZmE1NTZkNQ==" OrderNumber="2" Mandatory="No"/>
+        <ItemRef ItemOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0YwMDQvVjEjQkNQXzQ3ZjQwMGI4LTJkMjMtNDU2Yy05ZWUzLWMxYTUwMzYyNWVmYQ==" OrderNumber="3" Mandatory="No"/>
+      </ItemGroupDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0YwMDQvVjEjUV9hNTAzODgwNy05Y2Q4LTQxZWYtYmVhMS1iMTQzMjgyOWRiMWQ=" Name="Question 1" DataType="">
+        <Question>
+          <TranslatedText xml:lang="en">Question text 1</TranslatedText>
+        </Question>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0YwMDQvVjEjUV9iNDEzMWExMS1hMjFmLTRkY2MtYjQxMi0yOTU0ZWUwMmRhY2Y=" Name="Question 2" DataType="">
+        <Question>
+          <TranslatedText xml:lang="en">Question text 2</TranslatedText>
+        </Question>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0YwMDQvVjEjUV9mMWY3MTA3NS04OTU5LTQzYjUtOWEyNi0zYjBlOTJiNTg0YTI=" Name="Question 1" DataType="text" Length="20">
+        <Question>
+          <TranslatedText xml:lang="en">Question text 1</TranslatedText>
+        </Question>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0YwMDQvVjEjUV9mMWY3MTA3NS04OTU5LTQzYjUtOWEyNi0zYjBlOTJiNTg0YTI=-CL"/>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0YwMDQvVjEjUExfNjI3ZTZlZGYtOGNjNy00Yzc5LWIwNjQtZTYxNWFmYjFmMmFh" Name="Not set" DataType="">
+        <Question>
+          <TranslatedText xml:lang="en"/>
+        </Question>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0YwMDQvVjEjVExfOGNjMWJkMzYtYTFiOC00NDBjLWFjOTEtNGMwMmNlYjFlZmJl" Name="Not set" DataType="text">
+        <Question>
+          <TranslatedText xml:lang="en"/>
+        </Question>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0YwMDQvVjEjQkNQXzVjNGQ5NTc5LWEyMmUtNDg2ZS04NTBiLWMzM2UwMmQ1MDBkMA==" Name="--DTC" DataType="datetime">
+        <Question>
+          <TranslatedText xml:lang="en">Date and time</TranslatedText>
+        </Question>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0YwMDQvVjEjQkNQXzEzMDc4ZGVhLWNkYWMtNGU4Ni1iOGEwLTNmMGJiNGY0OTBhMw==" Name="--ORRES" DataType="float" Length="4" SignificantDigits="2">
+        <Question>
+          <TranslatedText xml:lang="en">Result</TranslatedText>
+        </Question>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0YwMDQvVjEjQkNQXzhmNTFjNTBhLTZiNTQtNGE2OC1hZDNmLWZlZjg4N2IyZjJkZQ==" Name="--ORRESU" DataType="text" Length="20">
+        <Question>
+          <TranslatedText xml:lang="en">Unit</TranslatedText>
+        </Question>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0YwMDQvVjEjQkNQXzhmNTFjNTBhLTZiNTQtNGE2OC1hZDNmLWZlZjg4N2IyZjJkZQ==-CL"/>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0YwMDQvVjEjQkNQX2UwNzNjNjk3LTFlZTUtNGJiOC04YTY4LTc3MWRkMzk4N2M5OA==" Name="--DTC" DataType="datetime">
+        <Question>
+          <TranslatedText xml:lang="en">Date and time</TranslatedText>
+        </Question>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0YwMDQvVjEjQkNQXzdjZTA0YTExLTcxZGYtNDM0Yy05ZWMwLWJkZmZkNDQwMzdkNA==" Name="--ORRES" DataType="float" Length="4" SignificantDigits="1">
+        <Question>
+          <TranslatedText xml:lang="en">Result</TranslatedText>
+        </Question>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0YwMDQvVjEjQkNQXzZlYzA2ODQyLTdkMzYtNDE0Yi05ZmMyLWY5MTI2ODYyNmQ4Yg==" Name="--ORRESU" DataType="text" Length="20">
+        <Question>
+          <TranslatedText xml:lang="en">Unit</TranslatedText>
+        </Question>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0YwMDQvVjEjQkNQXzZlYzA2ODQyLTdkMzYtNDE0Yi05ZmMyLWY5MTI2ODYyNmQ4Yg==-CL"/>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0YwMDQvVjEjQkNQXzIyYmUyMTU5LWYyMzQtNDcwZi04YWVkLTY5YTJkZjMwNjRhNg==" Name="--ORRES" DataType="float" Length="3" SignificantDigits="1">
+        <Question>
+          <TranslatedText xml:lang="en">Result</TranslatedText>
+        </Question>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0YwMDQvVjEjQkNQXzljNDk3YjYyLTI0ZmMtNGM5Yi1hNzZlLTk3YjllNDY0MTcyNw==" Name="--ORRESU" DataType="text" Length="20">
+        <Question>
+          <TranslatedText xml:lang="en">Unit</TranslatedText>
+        </Question>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0YwMDQvVjEjQkNQXzljNDk3YjYyLTI0ZmMtNGM5Yi1hNzZlLTk3YjllNDY0MTcyNw==-CL"/>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0YwMDQvVjEjQkNQXzk0N2IxYzVjLTUyOTItNDk5ZS04YjE2LTBkM2FmMDMzMWMzNQ==" Name="--DTC" DataType="datetime">
+        <Question>
+          <TranslatedText xml:lang="en">Date and time</TranslatedText>
+        </Question>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0YwMDQvVjEjQkNQXzk3NTBlZjA3LTNiYzEtNGJkOS1hOTFhLTY5N2E4YjdhYjZiNA==" Name="--ORRES" DataType="float" Length="4" SignificantDigits="2">
+        <Question>
+          <TranslatedText xml:lang="en">Result</TranslatedText>
+        </Question>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0YwMDQvVjEjQkNQX2Q2MGM0M2NiLTljYmItNGRiZi05ZTM5LTA3ZjdmY2FkNDQ0ZA==" Name="--ORRESU" DataType="text" Length="20">
+        <Question>
+          <TranslatedText xml:lang="en">Unit</TranslatedText>
+        </Question>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0YwMDQvVjEjQkNQX2Q2MGM0M2NiLTljYmItNGRiZi05ZTM5LTA3ZjdmY2FkNDQ0ZA==-CL"/>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0YwMDQvVjEjQkNQX2FkOGVlYzJmLTQ0NzItNGEwMC04MDJmLWNmNThkYzFkZTMwOQ==" Name="--DTC" DataType="datetime">
+        <Question>
+          <TranslatedText xml:lang="en">Date and time</TranslatedText>
+        </Question>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0YwMDQvVjEjQkNQXzU4MTdkNDE4LTA0ZDctNDcwYy1iYjk1LWJkNWI1ZmE1NTZkNQ==" Name="--ORRES" DataType="float" Length="4" SignificantDigits="1">
+        <Question>
+          <TranslatedText xml:lang="en">Result</TranslatedText>
+        </Question>
+      </ItemDef>
+      <ItemDef OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0YwMDQvVjEjQkNQXzQ3ZjQwMGI4LTJkMjMtNDU2Yy05ZWUzLWMxYTUwMzYyNWVmYQ==" Name="--ORRESU" DataType="text" Length="20">
+        <Question>
+          <TranslatedText xml:lang="en">Unit</TranslatedText>
+        </Question>
+        <CodeListRef CodeListOID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0YwMDQvVjEjQkNQXzQ3ZjQwMGI4LTJkMjMtNDU2Yy05ZWUzLWMxYTUwMzYyNWVmYQ==-CL"/>
+      </ItemDef>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0YwMDQvVjEjUV9mMWY3MTA3NS04OTU5LTQzYjUtOWEyNi0zYjBlOTJiNTg0YTI=-CL" Name="Code list for Question 1" DataType="text">
+        <CodeListItem CodedValue="LARGE" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">Large</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="MEDIUM" OrderNumber="2">
+          <Decode>
+            <TranslatedText xml:lang="en">Medium</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="SMALL" OrderNumber="3">
+          <Decode>
+            <TranslatedText xml:lang="en">Small</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0YwMDQvVjEjQkNQXzhmNTFjNTBhLTZiNTQtNGE2OC1hZDNmLWZlZjg4N2IyZjJkZQ==-CL" Name="Code list for --ORRESU" DataType="text">
+        <CodeListItem CodedValue="cm" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">Centimeter</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="in" OrderNumber="2">
+          <Decode>
+            <TranslatedText xml:lang="en">Inch</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="m" OrderNumber="3">
+          <Decode>
+            <TranslatedText xml:lang="en">Meter</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="ft" OrderNumber="4">
+          <Decode>
+            <TranslatedText xml:lang="en">International Foot</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0YwMDQvVjEjQkNQXzZlYzA2ODQyLTdkMzYtNDE0Yi05ZmMyLWY5MTI2ODYyNmQ4Yg==-CL" Name="Code list for --ORRESU" DataType="text">
+        <CodeListItem CodedValue="kg" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">Kilogram</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="LB" OrderNumber="2">
+          <Decode>
+            <TranslatedText xml:lang="en">Pound</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0YwMDQvVjEjQkNQXzljNDk3YjYyLTI0ZmMtNGM5Yi1hNzZlLTk3YjllNDY0MTcyNw==-CL" Name="Code list for --ORRESU" DataType="text">
+        <CodeListItem CodedValue="kg/m2" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">Kilogram per Square Meter</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0YwMDQvVjEjQkNQX2Q2MGM0M2NiLTljYmItNGRiZi05ZTM5LTA3ZjdmY2FkNDQ0ZA==-CL" Name="Code list for --ORRESU" DataType="text">
+        <CodeListItem CodedValue="cm" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">Centimeter</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="in" OrderNumber="2">
+          <Decode>
+            <TranslatedText xml:lang="en">Inch</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="m" OrderNumber="3">
+          <Decode>
+            <TranslatedText xml:lang="en">Meter</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="ft" OrderNumber="4">
+          <Decode>
+            <TranslatedText xml:lang="en">International Foot</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <CodeList OID="aHR0cDovL3d3dy5zLWN1YmVkLmRrL0YwMDQvVjEjQkNQXzQ3ZjQwMGI4LTJkMjMtNDU2Yy05ZWUzLWMxYTUwMzYyNWVmYQ==-CL" Name="Code list for --ORRESU" DataType="text">
+        <CodeListItem CodedValue="kg" OrderNumber="1">
+          <Decode>
+            <TranslatedText xml:lang="en">Kilogram</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="LB" OrderNumber="2">
+          <Decode>
+            <TranslatedText xml:lang="en">Pound</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+    </MetaDataVersion>
+  </Study>
+</ODM>

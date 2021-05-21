@@ -34,12 +34,12 @@ describe "Syntax" do
 
   it "splits string EXACT MATCH" do
       x = Thesaurus::Syntax.new("\"Harry Potter and The Chamber of Secrets\"")
-      expect(x.array_to_sparql("?x")).to eq(" FILTER (CONTAINS(UCASE(?x), UCASE('Harry Potter and The Chamber of Secrets'))) . \n ")
+      expect(x.array_to_sparql("?x")).to eq(" FILTER (?x = 'Harry Potter and The Chamber of Secrets') . \n ")
   end
 
   it "splits string EXACT MATCH" do
       x = Thesaurus::Syntax.new("\"Harry\"")
-      expect(x.array_to_sparql("?x")).to eq(" FILTER (CONTAINS(UCASE(?x), UCASE('Harry'))) . \n ")
+      expect(x.array_to_sparql("?x")).to eq(" FILTER (?x = 'Harry') . \n ")
   end
 
   it "splits string default" do

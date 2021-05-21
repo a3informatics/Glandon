@@ -1,36 +1,39 @@
 import { initialize as initSidebar } from 'shared/ui/layouts/sidebar'
 
+/**
+ * Primary application initializer - only include code that is required in all pages in the app
+ */
 function initialize() {
 
   // Sidebar handle interaction events 
-  initSidebar();
+  initSidebar()
 
   // Handles events of all Expandable Contents on page, if present
-  initExpandable();
+  initExpandable()
 
   // Adds color to any Tags in page headers, if present
-  initTags();
+  initTags()
 
 }
 
 async function initExpandable() {
 
   if ( !window.pageHasExpandableContent )
-    return;
+    return
 
-  let ExpandableContent = await import( 'shared/ui/expandable_content' );
-  ExpandableContent.default.initialize();
+  let ExpandableContent = await import( 'shared/ui/expandable_content' )
+  ExpandableContent.default.initialize()
 
 }
 
 async function initTags() {
 
   if ( !window.pageHeaderHasTags )
-  return;
+    return
 
-  let { tagOutlines } = await import( 'shared/ui/tags' );
-  tagOutlines();
+  let { tagOutlines } = await import( 'shared/ui/tags' )
+  tagOutlines()
 
 }
 
-export default initialize;
+export default initialize

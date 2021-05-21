@@ -1,0 +1,24 @@
+<% content_for :page_title do %> Index: Indications <% end %>
+
+<%= javascript_pack_tag 'indications/index' %>
+
+<% first_level_breadcrumb (:indications) %>
+
+<div class="row">
+  <%= render layout: "shared/headers/header_minimal", :locals => {badge: "icon-protocol",
+    main_text: "Indications", sub_text: "Browse all Indications in the system." } do %>
+      <div class="btns-wrap"></div>
+  <% end %>
+</div>
+
+<div class="row">
+
+  <% content_for :description do %>
+    Below is the list of all <span class="text-accent-1-dark font-regular">standardized</span> and <span class="text-link font-regular">sponsor</span> Indications.
+    Use the Search bar to find the Indication you are looking for.
+    To see Indication's respective History page, click on it.
+  <% end %>
+
+  <%= render partial: "shared/iso_managed/index/index_card", locals: { title: "Indications", url: indications_path } %>
+
+</div>
