@@ -90,19 +90,6 @@ class BiomedicalConceptInstance < BiomedicalConcept
     end
   end
 
-  # Dependency Paths. Returns the paths for any dependencies this class may have.
-  #
-  # @return [Array] array of strings suitable for inclusion in a sparql query
-  def self.dependency_paths
-    [
-      '<http://www.assero.co.uk/BiomedicalConcept#hasItem>/'\
-      '<http://www.assero.co.uk/BiomedicalConcept#hasComplexDatatype>/'\
-      '<http://www.assero.co.uk/BiomedicalConcept#hasPropert>/'\
-      '<http://www.assero.co.uk/BiomedicalConcept#hasCodedValue>/'\
-      '<http://www.assero.co.uk/BusinessOperational#reference>'
-    ]
-  end
-
 private
 
   # Split the params into the two parts, property and item

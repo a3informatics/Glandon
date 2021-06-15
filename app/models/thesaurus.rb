@@ -798,16 +798,6 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{Thesaur
     "Terminology"
   end
 
-  # Dependency Paths. Returns the paths for any dependencies this class may have.
-  #
-  # @return [Array] array of strings suitable for inclusion in a sparql query
-  def self.dependency_paths
-    [
-      '<http://www.assero.co.uk/Thesaurus#isTopConceptReference>/'\
-      '<http://www.assero.co.uk/BusinessOperational#reference>'
-    ]
-  end
-
 private
 
   def self.recursion(item_id, results, sponsor_version, have_i_seen)
