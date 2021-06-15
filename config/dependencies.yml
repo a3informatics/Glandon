@@ -41,11 +41,13 @@ defaults: &defaults
   "Thesaurus":
     :models: []
     :paths:
-      - <http://www.assero.co.uk/Thesaurus#isTopConceptReference>/<http://www.assero.co.uk/BusinessOperational#reference>
+      - "<http://www.assero.co.uk/Thesaurus#isTopConceptReference>/\
+        <http://www.assero.co.uk/BusinessOperational#reference>"
   "SdtmSponsorDomain":
     :models: []
     :paths:
-      - ^<http://www.assero.co.uk/BusinessOperational#theSubject>/<http://www.assero.co.uk/BusinessOperational#associatedWith>
+      - "^<http://www.assero.co.uk/BusinessOperational#theSubject>/\
+        <http://www.assero.co.uk/BusinessOperational#associatedWith>"
       - <http://www.assero.co.uk/Tabulation#basedOnClass>
 
 development:
