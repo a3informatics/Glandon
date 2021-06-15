@@ -15,4 +15,30 @@ $(document).ready( () => {
 
   })
 
+  // Fetch and itialize specific Tab module
+  const tab = new URLSearchParams( window.location.search ).get( 'tab' )
+  initialize( tab )
+
+  // Helpers
+  async function initialize(tab) {
+
+    switch( tab ) {
+  
+      case 'timeline': 
+        const StudyMatrix = await fetchModule( 'study_timeline/study_matrix' )
+        new StudyMatrix()
+        break
+  
+      // Add other tab modules 
+    }
+  
+  }
+  
+  async function fetchModule(filename) {
+  
+    let module = await import( /* webpackPrefetch: true */ `shared/custom/studies/build/${ filename }` )
+    return module.default
+  
+  }
+
 });

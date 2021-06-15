@@ -1,267 +1,56 @@
 @import "shared/vars.scss";
 
-#tab-timeline-body {
-  font-family: $font-light;
-  overflow-x: auto;
-  display: block;
-  padding: 10px;
-  text-align: center;
-  position: relative;
+$axisColor: #76ccbe;
+$timepointColor: #ffaf6e;
+$textColor: #7e7e7e;
+
+
+// Container
+#timeline-container {
+  padding: 0px 50px;
+
+  .d3-timeline {
+    min-height: 140px;
+  }
 }
 
-#study-matrix, #study-timeline, #btns-wrap {
-  width: 100%;
-  display: block;
-  min-width: 900px;
-}
+// Axis and ticks 
+.d3-timeline svg {
 
-#btns-wrap {
-  display: flex;
-  justify-content: center;
-}
+  cursor: ew-resize;
 
-// Matrix
-
-#study-matrix table {
-  margin: 0 auto;
-  width: auto !important;
-  font-size: $font-small;
-}
-
-#study-matrix table td {
-  white-space: nowrap;
-  text-align: center;
-  padding: 4px 0px;
-}
-
-#study-matrix table .bg-label {
-  padding: 4px 20px;
-  display: block;
-  border: 2px solid;
-  background-color: white;
-  transition: background-color 0.1s;
-}
-
-#study-matrix table .bg-label:hover {
-  cursor: pointer;
-}
-
-#study-matrix table .bg-label.disabled {
-  pointer-events: none;
-  opacity: .5;
-}
-
-// Timeline
-
-#study-timeline{
-  transition: opacity 0.25s;
-}
-
-#study-timeline.fadein{
-  opacity: 0;
-  transition: none;
-}
-
-#study-timeline #tl-wrapper {
-  width: 90%;
-  min-height: 120px;
-  position: relative;
-  display: block;
-  margin: 40px auto 10px auto;
-}
-
-#tl-wrapper #timeline-axis {
-  position: absolute;
-  display: block;
-  width: 100%;
-  height: 2px;
-  top: calc(100% - 50px);
-  background-color: lightgrey;
-  z-index: 2;
-}
-
-#tl-wrapper #timeline-axis #before, #tl-wrapper #timeline-axis #after {
-  position: absolute;
-  display: block;
-  top: -40px;
-  color: $grey-light;
-  font-size: $font-tiny;
-  z-index: 2;
-  text-align: center;
-}
-
-#tl-wrapper #timeline-axis #before {
-  left: -25px;
-}
-
-#tl-wrapper #timeline-axis #after {
-  right: -25px;
-}
-
-#tl-wrapper #timeline-axis .axis-label {
-  position: absolute;
-  display: block;
-  z-index: 2;
-  left: -50px;
-  bottom: -25px;
-  transform: rotate(-90deg);
-  transform-origin: 0% 0%;
-  font-family: $font-primary;
-  font-size: $font-normal;
-  white-space: nowrap;
-}
-
-#tl-wrapper div.epoch-block {
-  position: absolute;
-  display: block;
-  width: 100px;
-  height: 70px;
-  z-index: 1;
-  top: 0;
-  -webkit-box-shadow: inset -3px 0px 0px 0px white;
-  -moz-box-shadow: inset -3px 0px 0px 0px white;
-  box-shadow: inset -3px 0px 0px 0px white;
-  box-sizing: border-box;
-  opacity: .6;
-}
-
-#tl-wrapper .epoch-label {
-  position: absolute;
-  display: block;
-  z-index: 2;
-  top: -20px;
-  left: 25%;
-  opacity: 1;
-  font-family: $font-light;
-  font-size: $font-small;
-}
-
-#tl-wrapper .timepoint {
-  position: absolute;
-  display: block;
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  z-index: 10;
-  top: calc(50%);
-  transition: transform .2s;
-}
-
-#tl-wrapper .timepoint:hover {
-  cursor: pointer;
-  z-index: 11;
-}
-
-#tl-wrapper .timepoint.ui-droppable-hover {
-  transform: scale(1.2);
-}
-
-#tl-wrapper .timepoint:focus{
-  z-index: 11;
-  outline: solid lightgrey 1px;
-}
-
-#tl-wrapper .timepoint.baseline::after {
-  position: absolute;
-  width: 100%;
-  font-size: 13px;
-  color: white;
-  font-family: $font-bold;
-  text-align: center;
-  content: "B";
-  top: calc(50% - 8px);
-  left: 0%;
-  z-index: 11;
-}
-
-#tl-wrapper .timepoint .tp-badge{
-  position: absolute;
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  font-size: 10px;
-  line-height: 17px;
-  text-align: center;
-  font-family: $font-primary;
-  color: white;
-  right: -5px;
-  top: 50%;
-}
-
-#tl-wrapper .timepoint .tp-label{
-  position: absolute;
-  word-spacing: 9999px;
-  line-height: 10px;
-  color: $grey-medium;
-  font-family: $font-primary;
-  font-size: 10px;
-  text-align: center;
-  top: 28px;
-  left: -2px;
-  display: block;
-  background: rgba(255,255,255,.7);
-  padding: 3px;
-}
-
-#tl-wrapper div.visit-block {
-  position: absolute;
-  display: block;
-  width: 100px;
-  height: 2px;
-  z-index: 1;
-  top: 48px;
-  background: $primary-color-light;
-  box-sizing: border-box;
-}
-
-#tl-wrapper .visit-label {
-  position: absolute;
-  display: block;
-  z-index: 2;
-  top: -18px;
-  left: 25%;
-  opacity: .8;
-  font-family: $font-light;
-  font-size: 9pt;
-  color: $primary-color-medium;
-}
-
-#tl-wrapper  .ui-resizable-handle.ui-resizable-w:hover,
-  #tl-wrapper  .ui-resizable-handle.ui-resizable-e:hover {
-    cursor: ew-resize !important;
+  .domain, .tick line {
+    stroke-width: 2;
+    stroke: $axisColor;
   }
 
-// Visits
+  .tick text {
+    fill: $textColor;
+  }
 
-#tab-timeline-body #visits-list {
-  margin: -5px auto 10px auto;
-  max-width: 500px;
+  .arm-label {
+    fill: $axisColor;
+    font-size: $font-small;
+    transform: rotate(-90deg);
+    text-anchor: middle;
+  }
+
 }
 
-#tab-timeline-body #visits-list .visit{
-  margin-top: 10px;
-  z-index: 12;
+// Timepoints
+.d3-timeline svg {
+
+  .timepoint {
+    cursor: pointer;
+    fill: $timepointColor;
+  }
+
 }
 
-#tab-timeline-body #visits-list .ui-draggable-dragging{
-  z-index: 500;
-}
-
-body .dark-overlay {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  display: block;
-  z-index: 9;
-  backdrop-filter: saturate(0%);
-}
-
-.new-tp-mode #timeline-axis {
-  padding: 2px 0px;
-}
-
-.new-tp-mode #timeline-axis:hover {
-  cursor: crosshair;
+@media(max-width: 1400px) {
+  
+  #timeline-container {
+    padding: 0;
+  }
+  
 }
