@@ -44,6 +44,11 @@ describe IsoManagedV2::Dependencies do
     configure rdf_type: "http://www.assero.co.uk/Test#RegistrationAuthority3"
   end
 
+  class IMDLayer5 < IsoManagedV2
+    configure rdf_type: "http://www.assero.co.uk/Test#RegistrationAuthority5"
+
+  end
+
   def create_data
     @item_1 = IMDLayer1.create(identifier: "ITEM1")
     @item_7 = IMDLayer1.create(identifier: "ITEM7")
@@ -70,8 +75,18 @@ describe IsoManagedV2::Dependencies do
       expect{IsoManagedV2.dependency_paths}.to raise_error(Errors::ApplicationLogicError, "Method not implemented for class IsoManagedV2.")
     end
 
+    it "error no paths defined" do
+      expect{IMDLayer5.dependency_paths}.to raise_error(Errors::ApplicationLogicError, "Method not implemented for class IMDLayer5.")
+    end
+
     it "error no configuration for class" do
       instance = IMDLayer4.new
+      result = instance.dependency_required_by
+      expect(result).to eq([])
+    end
+
+    it "error no models for class" do
+      instance = IMDLayer3.new
       result = instance.dependency_required_by
       expect(result).to eq([])
     end
