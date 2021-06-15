@@ -1,16 +1,39 @@
 defaults: &defaults
-  "Thesaurus::ManagedConcept": 
-    - "Thesaurus::ManagedConcept"
-    - "BiomedicalConceptInstance"
-    - "Form"
-    - "Thesaurus"
+  "Thesaurus::ManagedConcept":
+    :models:
+      - "Thesaurus::ManagedConcept"
+      - "BiomedicalConceptInstance"
+      - "Form"
+      - "Thesaurus"
+    :paths:
+      - <http://www.assero.co.uk/Thesaurus#extends>
+      - <http://www.assero.co.uk/Thesaurus#subsets>
+      - <http://www.assero.co.uk/Thesaurus#pairedWith>
   "BiomedicalConceptInstance":
-    - "Form"
-    - "SdtmSponsorDomain"
+    :models:
+      - "Form"
+      - "SdtmSponsorDomain"
+    :paths:
+      - <http://www.assero.co.uk/BiomedicalConcept#hasItem>/<http://www.assero.co.uk/BiomedicalConcept#hasComplexDatatype>/<http://www.assero.co.uk/BiomedicalConcept#hasProperty>/<http://www.assero.co.uk/BiomedicalConcept#hasCodedValue>/<http://www.assero.co.uk/BusinessOperational#reference>/^<http://www.assero.co.uk/Thesaurus#narrower>
   "SdtmClass":
-    - "Form"
-    - "SdtmSponsorDomain"
-  "Form": []
+    :models:
+      - "Form"
+      - "SdtmSponsorDomain"
+    :paths: []
+  "Form":
+    :models: []
+    :paths:
+      - <http://www.assero.co.uk/BusinessForm#hasGroup>/<http://www.assero.co.uk/BusinessForm#hasSubGroup>*/<http://www.assero.co.uk/BusinessForm#hasItem>/<http://www.assero.co.uk/BusinessForm#hasCodedValue>/<http://www.assero.co.uk/BusinessOperational#reference>/^<http://www.assero.co.uk/Thesaurus#narrower>
+      - <http://www.assero.co.uk/BusinessForm#hasGroup>/<http://www.assero.co.uk/BusinessForm#hasSubGroup>*/<http://www.assero.co.uk/BusinessForm#hasBiomedicalConcept>/<http://www.assero.co.uk/BusinessOperational#reference>
+  "Thesaurus":
+    :models: []
+    :paths:
+      - <http://www.assero.co.uk/Thesaurus#isTopConceptReference>/<http://www.assero.co.uk/BusinessOperational#reference>
+  "SdtmSponsorDomain":
+    :models: []
+    :paths:
+      - ^<http://www.assero.co.uk/BusinessOperational#theSubject>/<http://www.assero.co.uk/BusinessOperational#associatedWith>
+      - <http://www.assero.co.uk/Tabulation#basedOnClass>
 
 development:
   <<: *defaults
@@ -21,7 +44,17 @@ production:
 test: 
   <<: *defaults
   "IMDLayer1":
-    - "IMDLayer2"
+    :models:
+      - "IMDLayer2"
+    :paths: []
   "IMDLayer2":
-    - "IMDLayer3"
-  "IMDLayer3": []
+    :models:
+      - "IMDLayer3"
+    :paths: []
+  "IMDLayer3":
+    :models: []
+    :paths: []
+  "IMDLayer5":
+    :models:
+      - "IMDLayer3"
+    :paths: []
