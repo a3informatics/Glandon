@@ -2615,6 +2615,10 @@ describe "Thesaurus::ManagedConcept" do
       check_file_actual_expected(paths, sub_dir, "dependency_paths_expected_1.yaml", equate_method: :hash_equal)
     end
 
+    it "error no paths defined" do
+      expect{SdtmClass.dependency_paths}.to raise_error(Errors::ApplicationLogicError, "Method not implemented for class SdtmClass.")
+    end
+
     it "dependencies" do
       item = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.cdisc.org/C66781/V2#C66781"))
       results = item.dependency_required_by
