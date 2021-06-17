@@ -19,10 +19,10 @@ C_SYS_CONTENT_ADMIN_PW ='Changeme12?'
 end
 
 if ENVIRONMENT == 'REMOTE_TEST' 
-C_COMM_READER_PW = 'Changeme4?'
-C_COMM_READER_PW_NEW = 'Changeme5?'
+C_COMM_READER_PW = 'Changeme5?'
+C_COMM_READER_PW_NEW = 'Changeme6?'
 C_CURATOR_PW = 'Changeme7?'
-C_SYS_CONTENT_ADMIN_PW = 'Changeme5?'
+C_SYS_CONTENT_ADMIN_PW = 'Changeme6?'
 C_CONTENT_ADMIN_PW = 'Changeme5?'
 end
 
