@@ -19,11 +19,16 @@ class IsoManagedV2
       # @raise [Errors::ApplicationLogicError] raised to indicate the class has not configured the method
       # @return [Array] array of strings suitable for inclusion in a sparql query
       def dependency_paths
-        klasses = Rails.configuration.dependencies[self.to_s.to_sym]
+        klasses = dependency_configuration[self.to_s.to_sym]
         if klasses.nil? || klasses[:paths].empty?
           Errors.application_error(self.name, __method__.to_s, "Method not implemented for class #{self}.")
         end
         klasses[:paths]
+      end
+
+      # Get the dependency configuiration
+      def dependency_configuration
+        Rails.configuration.dependencies
       end
 
     end
@@ -71,7 +76,7 @@ class IsoManagedV2
 
     # Get the dependency configuiration
     def dependency_configuration
-      Rails.configuration.dependencies
+      self.class.dependency_configuration
     end
 
   end
