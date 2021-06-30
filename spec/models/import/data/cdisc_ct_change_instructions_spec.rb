@@ -63,7 +63,8 @@ describe Import::ChangeInstruction do
       qs: "#{base_path}/QS Terminology Changes #{release_date}",
       qsft: "#{base_path}/QS-FT Terminology Changes #{release_date}",
       send: "#{base_path}/SEND Terminology Changes #{release_date}",
-      protocol: "#{base_path}/Protocol Terminology Changes #{release_date}"
+      protocol: "#{base_path}/Protocol Terminology Changes #{release_date}",
+      define: "#{base_path}/Define-XML Terminology Changes #{release_date}"
     }
     reqd_files.each {|k, v| files << "#{file_pattern[k]}.xlsx" if reqd_files.key?(k)}
     results = load(files, current_version, create_file)
@@ -123,6 +124,11 @@ describe Import::ChangeInstruction do
   it "2021-03-26" do
     release_date = "2021-03-26"
     execute_import(release_date, {sdtm: true, send: true}, set_write_file)
+  end  
+
+  it "2021-06-25" do
+    release_date = "2021-06-25"
+    execute_import(release_date, {sdtm: true, send: true, define: true}, true)
   end  
 
 end
