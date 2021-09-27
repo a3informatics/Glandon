@@ -133,7 +133,7 @@ describe Import::ChangeInstruction do
 
   it "2021-09-24" do
     release_date = "2021-09-24"
-    execute_import(release_date, {sdtm: true, send: true, define: true}, true)
+    execute_import(release_date, {sdtm: true, send: true, define: true}, set_write_file)
   end  
 
 end
