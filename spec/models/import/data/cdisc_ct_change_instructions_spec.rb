@@ -34,7 +34,6 @@ describe Import::ChangeInstruction do
     }
     result = @object.import(params)
     filename = "cdisc_change_instructions_#{@object.id}_errors.yml"
-byebug
     expect(public_file_does_not_exist?("test", filename)).to eq(true)
     filename = "cdisc_change_instructions_#{@object.id}_load.ttl"
     expect(public_file_exists?("test", filename)).to eq(true)
