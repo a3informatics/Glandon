@@ -34,6 +34,7 @@ describe Import::ChangeInstruction do
     }
     result = @object.import(params)
     filename = "cdisc_change_instructions_#{@object.id}_errors.yml"
+byebug
     expect(public_file_does_not_exist?("test", filename)).to eq(true)
     filename = "cdisc_change_instructions_#{@object.id}_load.ttl"
     expect(public_file_exists?("test", filename)).to eq(true)
@@ -128,6 +129,11 @@ describe Import::ChangeInstruction do
 
   it "2021-06-25" do
     release_date = "2021-06-25"
+    execute_import(release_date, {sdtm: true, send: true, define: true}, set_write_file)
+  end  
+
+  it "2021-09-24" do
+    release_date = "2021-09-24"
     execute_import(release_date, {sdtm: true, send: true, define: true}, true)
   end  
 
