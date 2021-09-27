@@ -24,7 +24,7 @@ describe "Thesaurus Submission" do
   # ---------- IMPORTANT SWITCHES ----------
   
   def set_write_file(version)
-    version >= CdiscCtHelpers.version_range.last ? true : false
+    version >= CdiscCtHelpers.version_range.last ? false : false
   end
 
   # ----------------------------------------
