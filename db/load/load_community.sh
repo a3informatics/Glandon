@@ -94,6 +94,7 @@ curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/cdisc/c
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/cdisc/ct/CT_V68.ttl" $FileEndPoint
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/cdisc/ct/CT_V69.ttl" $FileEndPoint
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/cdisc/ct/CT_V70.ttl" $FileEndPoint
+curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/cdisc/ct/CT_V71.ttl" $FileEndPoint
 # Load Change Instructions
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/cdisc/ct/changes/change_instructions_v47.ttl" $FileEndPoint
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/cdisc/ct/changes/change_instructions_v52.ttl" $FileEndPoint
@@ -104,4 +105,5 @@ curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/cdisc/c
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/cdisc/ct/changes/change_instructions_v68.ttl" $FileEndPoint
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/cdisc/ct/changes/change_instructions_v69.ttl" $FileEndPoint
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/cdisc/ct/changes/change_instructions_v70.ttl" $FileEndPoint
+curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/cdisc/ct/changes/change_instructions_v71.ttl" $FileEndPoint
 set +x
